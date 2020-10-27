@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "5NM\\COMPHY_112G_ADC_X4_R1P0\\4lane\\inc"
+		},
+		{
+			"path": "5NM\\COMPHY_112G_ADC_X4_R1P0\\4lane\\src"
+		},
+		{
+			"path": "5NM\\COMPHY_112G_ADC_X4_R1P0\\shared\\inc"
+		},
+		{
+			"path": "5NM\\COMPHY_112G_ADC_X4_R1P0\\shared\\src"
+		}
+	]
+}

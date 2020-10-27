@@ -1,0 +1,83 @@
+-myux
+-i ./serdes/main.ihx
+-Y
+-a 0x0100
+-v 0x0200
+-w 0x1ffff
+-b HOME = 0x0000
+-b DSEG = 0x0018
+-b XSEG = 0x6600
+-b PSEG = 0x6600
+-b ISEG = 0x0000
+-b BSEG = 0x0000
+-bCSEG=0x000000
+-bCONST=0x00000
+-bBANK1=0x018000
+-bBANK2=0x028000
+-r
+-k /proj/caesys/bin/linux64-rh7.1/../../share/sdcc/lib/small-stack-auto
+-k /proj/caesys/share/sdcc/lib/small-stack-auto
+-l mcs51
+-l libsdcc
+-l libint
+-l liblong
+-l libfloat
+./serdes/align90_cal.rel
+./serdes/align90_cal_rom.rel
+./serdes/apta.rel
+./serdes/cal_rom.rel
+./serdes/cal_top.rel
+./serdes/cdr_dfe_scheme.rel
+./serdes/cds.rel
+./serdes/cds_base.rel
+./serdes/cli.rel
+./serdes/cmd_if.rel
+./serdes/cpu.rel
+./serdes/dcc_cal.rel
+./serdes/debug.rel
+./serdes/dfe_adaptation.rel
+./serdes/dll_cal.rel
+./serdes/dll_cal_rom.rel
+./serdes/eom.rel
+./serdes/eom_align_cal.rel
+./serdes/global.rel
+./serdes/imp_cal.rel
+./serdes/interrupt.rel
+./serdes/lane_margin.rel
+./serdes/main.rel
+./serdes/mcu_sync.rel
+./serdes/misc.rel
+./serdes/misc_rom.rel
+./serdes/ph_ctrl.rel
+./serdes/phase_adaptation.rel
+./serdes/phase_train.rel
+./serdes/phy_init.rel
+./serdes/pll_cal.rel
+./serdes/pll_cal_rom.rel
+./serdes/pll_dcc_cal.rel
+./serdes/pll_temp_cal.rel
+./serdes/power.rel
+./serdes/power_pcie.rel
+./serdes/power_rom.rel
+./serdes/power_sata.rel
+./serdes/printf.rel
+./serdes/process_cal.rel
+./serdes/ring_pll_cal.rel
+./serdes/rx_init.rel
+./serdes/rx_train.rel
+./serdes/sampler_cal.rel
+./serdes/spd_ctrl.rel
+./serdes/spdtbl_pmem.rel
+./serdes/squelch_cal.rel
+./serdes/train_if.rel
+./serdes/trx_train.rel
+./serdes/tx_lane_align.rel
+./serdes/tx_train.rel
+./serdes/tx_train_if.rel
+./serdes/tx_train_pcie.rel
+./serdes/tx_train_sas.rel
+./serdes/txdetect_cal.rel
+./serdes/uart.rel
+./serdes/vdd_cal.rel
+
+-e

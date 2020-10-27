@@ -1,0 +1,8 @@
+//*********************************************************************
+//	    COMPHY_28G_PIPE4 Firmware Change History			
+//
+//   Copyright (c) 2016 Marvell Semiconductor, Inc. All rights reserved
+//*********************************************************************
+ 9/16/2020 Chun-Kang Chen 0.12.22.129
+  - Add reg_testbus_dbg[15:0] assignment in the pcie power management functions
+  - The FW has been verified on raptor by me and Shaobing.

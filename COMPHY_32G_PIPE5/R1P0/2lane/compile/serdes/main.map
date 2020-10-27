@@ -1,0 +1,2321 @@
+ASxxxx Linker V02.00 + NoICE + sdld,  page 1.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CABS3                              0000   0001 =      1. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  0000  l_CABS                           
+       0C:  0000  l_GSINIT                         
+       0C:  0000  l_GSINIT1                        
+       0C:  0000  l_GSINIT3                        
+       0C:  0000  l_GSINIT5                        
+       0C:  0000  l_IABS                           
+       0C:  0000  l_ISEG                           
+       0C:  0000  l_OSEG                           
+       0C:  0000  l_PSEG                           
+       0C:  0000  l_REG_BANK_1                     
+       0C:  0000  l_REG_BANK_3                     
+       0C:  0000  l_RSEG                           
+       0C:  0000  l_RSEG0                          
+       0C:  0000  l_RSEG1                          
+       0C:  0000  l_XABS                           
+       0C:  0000  l_XINIT                          
+       0C:  0000  l_XISEG                          
+       0C:  0000  l__CODE                          
+       0C:  0000  s_BSEG                           
+       0C:  0000  s_CABS                           
+       0C:  0000  s_CABS2                          
+       0C:  0000  s_CABS3                          
+       0C:  0000  s_CONST                          
+       0C:  0000  s_CSEG                           
+       0C:  0000  s_DSEG                           
+       0C:  0000  s_HOME                           
+       0C:  0000  s_IABS                           
+       0C:  0000  s_ISEG                           
+       0C:  0000  s_REG_BANK_0                     
+       0C:  0000  s_RSEG                           
+       0C:  0000  s_RSEG0                          
+       0C:  0000  s_RSEG1                          
+       0C:  0000  s_XABS                           
+       0C:  0001  l_BIT_BANK                       
+       0C:  0001  l_CABS3                          
+       0C:  0003  l_GSFINAL                        
+       0C:  0003  l_GSINIT0                        
+       0C:  0004  l_CABS2                          
+       0C:  0005  l_BSEG_BYTES                     
+       0C:  0006  l_GSINIT4                        
+       0C:  0008  l_REG_BANK_0                     
+       0C:  0008  l_REG_BANK_2                     
+       0C:  0008  s_REG_BANK_1                     
+       0C:  000A  l_GSINIT2                        
+       0C:  0010  s_REG_BANK_2                     
+       0C:  0018  s_OSEG                           
+       0C:  0018  s_REG_BANK_3                     
+       0C:  0020  s_BSEG_BYTES                     
+       0C:  0020  s__CODE                          
+       0C:  0025  s_BIT_BANK                       
+ASxxxx Linker V02.00 + NoICE + sdld,  page 2.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CABS3                              0000   0001 =      1. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  0028  l_BSEG                           
+       0C:  0030  s_SSEG                           
+       0C:  0071  l_DSEG                           
+       0C:  00C8  l_HOME                           
+       0C:  00C8  s_GSINIT0                        
+       0C:  00CB  s_GSINIT1                        
+       0C:  00CB  s_GSINIT2                        
+       0C:  00D0  l_SSEG                           
+       0C:  00D2  l_CONST                          
+       0C:  00D5  s_GSINIT3                        
+       0C:  00D5  s_GSINIT4                        
+       0C:  00DB  s_GSFINAL                        
+       0C:  00DB  s_GSINIT                         
+       0C:  00DB  s_GSINIT5                        
+       0C:  0100  l_IRAM                           
+       0C:  01BA  l_XSEG                           
+       0C:  01EF  s_XINIT                          
+       0C:  6600  s_PSEG                           
+       0C:  6600  s_XSEG                           
+       0C:  67BA  s_XISEG                          
+       0C:  6C9F  l_BANK1                          
+       0C:  6E8E  l_BANK2                          
+       0C:  7CAE  l_CSEG                           
+       0C:  18000  s_BANK1                          
+       0C:  28000  s_BANK2                          
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 3.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CABS2                              0000   0004 =      4. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 4.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CABS                               0000   0000 =      0. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 5.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+XABS                               0000   0000 =      0. bytes (ABS,CON,XDATA)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 6.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+IABS                               0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 7.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+RSEG1                              0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 8.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+RSEG0                              0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 9.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+RSEG                               0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 10.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            0000  .__.ABS.                         
+            0000  _UPHY14_TRX_ANAREG_BOT_0         
+            0004  _UPHY14_TRX_ANAREG_BOT_1         
+            0008  _UPHY14_TRX_ANAREG_BOT_2         
+            000C  _UPHY14_TRX_ANAREG_BOT_3         
+            0010  _UPHY14_TRX_ANAREG_BOT_4         
+            0014  _UPHY14_TRX_ANAREG_BOT_5         
+            0018  _UPHY14_TRX_ANAREG_BOT_6         
+            001C  _UPHY14_TRX_ANAREG_BOT_7         
+            0020  _UPHY14_TRX_ANAREG_BOT_8         
+            0024  _UPHY14_TRX_ANAREG_BOT_9         
+            0028  _UPHY14_TRX_ANAREG_BOT_10        
+            002C  _UPHY14_TRX_ANAREG_BOT_11        
+            0030  _UPHY14_TRX_ANAREG_BOT_12        
+            0034  _UPHY14_TRX_ANAREG_BOT_13        
+            0038  _UPHY14_TRX_ANAREG_BOT_14        
+            003C  _UPHY14_TRX_ANAREG_BOT_15        
+            0040  _UPHY14_TRX_ANAREG_BOT_16        
+            0044  _UPHY14_TRX_ANAREG_BOT_17        
+            0048  _UPHY14_TRX_ANAREG_BOT_18        
+            004C  _UPHY14_TRX_ANAREG_BOT_19        
+            0050  _UPHY14_TRX_ANAREG_BOT_20        
+            0054  _UPHY14_TRX_ANAREG_BOT_21        
+            0058  _UPHY14_TRX_ANAREG_BOT_22        
+            005C  _UPHY14_TRX_ANAREG_BOT_23        
+            0060  _UPHY14_TRX_ANAREG_BOT_24        
+            0064  _UPHY14_TRX_ANAREG_BOT_25        
+            0068  _UPHY14_TRX_ANAREG_BOT_26        
+            006C  _UPHY14_TRX_ANAREG_BOT_27        
+            0070  _UPHY14_TRX_ANAREG_BOT_28        
+            0074  _UPHY14_TRX_ANAREG_BOT_29        
+            0078  _UPHY14_TRX_ANAREG_BOT_30        
+            007C  _UPHY14_TRX_ANAREG_BOT_31        
+            0080  _P0                              
+            0080  _P0_0                            
+            0080  _UPHY14_TRX_ANAREG_BOT_32        
+            0081  _P0_1                            
+            0082  _DPL                             
+            0082  _P0_2                            
+            0083  _DPH                             
+            0083  _P0_3                            
+            0084  _P0_4                            
+            0085  _P0_5                            
+            0086  _P0_6                            
+            0086  _WDTREL                          
+            0087  _P0_7                            
+            0087  _PCON                            
+            0088  _IT0                             
+            0088  _TCON                            
+            0089  _IE0                             
+ASxxxx Linker V02.00 + NoICE + sdld,  page 11.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            0089  _TMOD                            
+            008A  _IT1                             
+            008A  _TL0                             
+            008B  _IE1                             
+            008B  _TL1                             
+            008C  _TH0                             
+            008C  _TR0                             
+            008D  _TF0                             
+            008D  _TH1                             
+            008E  _CKCON                           
+            008E  _TR1                             
+            008F  _TF1                             
+            0090  _P1                              
+            0090  _P1_0                            
+            0091  _P1_1                            
+            0092  _DPS                             
+            0092  _P1_2                            
+            0093  _P1_3                            
+            0094  _P1_4                            
+            0094  _PSBANK                          
+            0095  _P1_5                            
+            0096  _P1_6                            
+            0097  _P1_7                            
+            0098  _RI                              
+            0098  _SCON                            
+            0099  _SBUF                            
+            0099  _TI                              
+            009A  _ES1                             
+            009A  _IEN2                            
+            009B  _EX8                             
+            009C  _EX9                             
+            009D  _EX10                            
+            009E  _EX11                            
+            009F  _EX12                            
+            00A0  _P2                              
+            00A0  _P2_0                            
+            00A1  _DMAS0                           
+            00A1  _P2_1                            
+            00A2  _DMAS1                           
+            00A2  _P2_2                            
+            00A3  _DMAS2                           
+            00A3  _P2_3                            
+            00A4  _DMAT0                           
+            00A4  _P2_4                            
+            00A5  _DMAT1                           
+            00A5  _P2_5                            
+            00A6  _DMAT2                           
+            00A6  _P2_6                            
+            00A7  _P2_7                            
+            00A8  _EX0                             
+            00A8  _IEN0                            
+ASxxxx Linker V02.00 + NoICE + sdld,  page 12.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            00A9  _ET0                             
+            00A9  _IP0                             
+            00AA  _EX1                             
+            00AA  _S0RELL                          
+            00AB  _ET1                             
+            00AC  _ES                              
+            00AD  _ET2                             
+            00AE  _WDT                             
+            00AF  _EA                              
+            00B0  _P3                              
+            00B0  _P3_0                            
+            00B1  _DMAC0                           
+            00B1  _P3_1                            
+            00B2  _DMAC1                           
+            00B2  _P3_2                            
+            00B3  _DMAC2                           
+            00B3  _P3_3                            
+            00B4  _DMASEL                          
+            00B4  _P3_4                            
+            00B5  _DMAM0                           
+            00B5  _P3_5                            
+            00B6  _DMAM1                           
+            00B6  _P3_6                            
+            00B7  _P3_7                            
+            00B8  _EX7                             
+            00B8  _IEN1                            
+            00B9  _EX2                             
+            00B9  _IP1                             
+            00BA  _EX3                             
+            00BA  _S0RELH                          
+            00BB  _EX4                             
+            00BC  _EX5                             
+            00BD  _EX6                             
+            00BE  _PS1                             
+            00C0  _IRCON                           
+            00C1  _CCEN                            
+            00C6  _TF2                             
+            00C8  _T2CON                           
+            00CA  _RCAP2L                          
+            00CB  _RCAP2H                          
+            00CC  _TL2                             
+            00CD  _TH2                             
+            00D0  _PSW                             
+            00D8  _ADCON                           
+            00E0  _ACC                             
+            00E8  _EIE                             
+            00F0  _B                               
+            00F5  _B_5                             
+            00F6  _B_6                             
+            00F7  _B_7                             
+            00F7  _SRST                            
+ASxxxx Linker V02.00 + NoICE + sdld,  page 13.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            0200  _UPHY14_TRX_ANAREG_TOP_128       
+            0204  _UPHY14_TRX_ANAREG_TOP_129       
+            0208  _UPHY14_TRX_ANAREG_TOP_130       
+            020C  _UPHY14_TRX_ANAREG_TOP_131       
+            0210  _UPHY14_TRX_ANAREG_TOP_132       
+            0214  _UPHY14_TRX_ANAREG_TOP_133       
+            0218  _UPHY14_TRX_ANAREG_TOP_134       
+            021C  _UPHY14_TRX_ANAREG_TOP_135       
+            0220  _UPHY14_TRX_ANAREG_TOP_136       
+            0224  _UPHY14_TRX_ANAREG_TOP_137       
+            0228  _UPHY14_TRX_ANAREG_TOP_138       
+            022C  _UPHY14_TRX_ANAREG_TOP_139       
+            0230  _UPHY14_TRX_ANAREG_TOP_140       
+            0234  _UPHY14_TRX_ANAREG_TOP_141       
+            0238  _UPHY14_TRX_ANAREG_TOP_142       
+            023C  _UPHY14_TRX_ANAREG_TOP_143       
+            0240  _UPHY14_TRX_ANAREG_TOP_144       
+            0244  _UPHY14_TRX_ANAREG_TOP_145       
+            0248  _UPHY14_TRX_ANAREG_TOP_146       
+            024C  _UPHY14_TRX_ANAREG_TOP_147       
+            0250  _UPHY14_TRX_ANAREG_TOP_148       
+            0254  _UPHY14_TRX_ANAREG_TOP_149       
+            0258  _UPHY14_TRX_ANAREG_TOP_150       
+            025C  _UPHY14_TRX_ANAREG_TOP_151       
+            0260  _UPHY14_TRX_ANAREG_TOP_152       
+            0264  _UPHY14_TRX_ANAREG_TOP_153       
+            0268  _UPHY14_TRX_ANAREG_TOP_154       
+            026C  _UPHY14_TRX_ANAREG_TOP_155       
+            0270  _UPHY14_TRX_ANAREG_TOP_156       
+            0274  _UPHY14_TRX_ANAREG_TOP_157       
+            03FC  _UPHY_ANAREG_REV_0               
+            0400  _ANA_DFEE_REG_00                 
+            0404  _ANA_DFEE_REG_01                 
+            0408  _ANA_DFEE_REG_02                 
+            040C  _ANA_DFEE_REG_03                 
+            0410  _ANA_DFEE_REG_04                 
+            0414  _ANA_DFEE_REG_05                 
+            0418  _ANA_DFEE_REG_06                 
+            041C  _ANA_DFEE_REG_07                 
+            0420  _ANA_DFEE_REG_08                 
+            0424  _ANA_DFEE_REG_09                 
+            0428  _ANA_DFEE_REG_0A                 
+            042C  _ANA_DFEE_REG_0B                 
+            0430  _ANA_DFEE_REG_0C                 
+            0434  _ANA_DFEE_REG_0D                 
+            0438  _ANA_DFEE_REG_0E                 
+            043C  _ANA_DFEE_REG_0F                 
+            0440  _ANA_DFEE_REG_10                 
+            0444  _ANA_DFEE_REG_11                 
+            0448  _ANA_DFEE_REG_12                 
+            044C  _ANA_DFEE_REG_13                 
+ASxxxx Linker V02.00 + NoICE + sdld,  page 14.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            0450  _ANA_DFEE_REG_14                 
+            0454  _ANA_DFEE_REG_15                 
+            0458  _ANA_DFEE_REG_16                 
+            045C  _ANA_DFEE_REG_17                 
+            0460  _ANA_DFEE_REG_18                 
+            0464  _ANA_DFEE_REG_19                 
+            0468  _ANA_DFEE_REG_1A                 
+            046C  _ANA_DFEE_REG_1B                 
+            0470  _ANA_DFEE_REG_1C                 
+            0474  _ANA_DFEE_REG_1D                 
+            0478  _ANA_DFEE_REG_1E                 
+            047C  _ANA_DFEE_REG_1F                 
+            0480  _ANA_DFEE_REG_20                 
+            0484  _ANA_DFEE_REG_21                 
+            0488  _ANA_DFEE_REG_22                 
+            048C  _ANA_DFEE_REG_23                 
+            0490  _ANA_DFEE_REG_24                 
+            0494  _ANA_DFEE_REG_25                 
+            0498  _ANA_DFEE_REG_26                 
+            049C  _ANA_DFEE_REG_27                 
+            0800  _ANA_DFEO_REG_00                 
+            0804  _ANA_DFEO_REG_01                 
+            0808  _ANA_DFEO_REG_02                 
+            080C  _ANA_DFEO_REG_03                 
+            0810  _ANA_DFEO_REG_04                 
+            0814  _ANA_DFEO_REG_05                 
+            0818  _ANA_DFEO_REG_06                 
+            081C  _ANA_DFEO_REG_07                 
+            0820  _ANA_DFEO_REG_08                 
+            0824  _ANA_DFEO_REG_09                 
+            0828  _ANA_DFEO_REG_0A                 
+            082C  _ANA_DFEO_REG_0B                 
+            0830  _ANA_DFEO_REG_0C                 
+            0834  _ANA_DFEO_REG_0D                 
+            0838  _ANA_DFEO_REG_0E                 
+            083C  _ANA_DFEO_REG_0F                 
+            0840  _ANA_DFEO_REG_10                 
+            0844  _ANA_DFEO_REG_11                 
+            0848  _ANA_DFEO_REG_12                 
+            084C  _ANA_DFEO_REG_13                 
+            0850  _ANA_DFEO_REG_14                 
+            0854  _ANA_DFEO_REG_15                 
+            0858  _ANA_DFEO_REG_16                 
+            085C  _ANA_DFEO_REG_17                 
+            0860  _ANA_DFEO_REG_18                 
+            0864  _ANA_DFEO_REG_19                 
+            0868  _ANA_DFEO_REG_1A                 
+            086C  _ANA_DFEO_REG_1B                 
+            0870  _ANA_DFEO_REG_1C                 
+            0874  _ANA_DFEO_REG_1D                 
+            0878  _ANA_DFEO_REG_1E                 
+ASxxxx Linker V02.00 + NoICE + sdld,  page 15.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            087C  _ANA_DFEO_REG_1F                 
+            0880  _ANA_DFEO_REG_20                 
+            0884  _ANA_DFEO_REG_21                 
+            0888  _ANA_DFEO_REG_22                 
+            088C  _ANA_DFEO_REG_23                 
+            0890  _ANA_DFEO_REG_24                 
+            0894  _ANA_DFEO_REG_25                 
+            0898  _ANA_DFEO_REG_26                 
+            089C  _ANA_DFEO_REG_27                 
+            1000  _UPHY14_TRX_LANEPLL_ANAREG_TOP_12
+            1004  _UPHY14_TRX_LANEPLL_ANAREG_TOP_12
+            1008  _UPHY14_TRX_LANEPLL_ANAREG_TOP_13
+            100C  _UPHY14_TRX_LANEPLL_ANAREG_TOP_13
+            1010  _UPHY14_TRX_LANEPLL_ANAREG_TOP_13
+            1014  _UPHY14_TRX_LANEPLL_ANAREG_TOP_13
+            1018  _UPHY14_TRX_LANEPLL_ANAREG_TOP_13
+            101C  _UPHY14_TRX_LANEPLL_ANAREG_TOP_13
+            1020  _UPHY14_TRX_LANEPLL_ANAREG_TOP_13
+            1024  _UPHY14_TRX_LANEPLL_ANAREG_TOP_13
+            1028  _UPHY14_TRX_LANEPLL_ANAREG_TOP_13
+            102C  _UPHY14_TRX_LANEPLL_ANAREG_TOP_13
+            1030  _UPHY14_TRX_LANEPLL_ANAREG_TOP_14
+            1034  _UPHY14_TRX_LANEPLL_ANAREG_TOP_14
+            1038  _UPHY14_TRX_LANEPLL_ANAREG_TOP_14
+            103C  _UPHY14_TRX_LANEPLL_ANAREG_TOP_14
+            2000  _PM_CTRL_TX_LANE_REG1_LANE       
+            2004  _PM_CTRL_TX_LANE_REG2_LANE       
+            2008  _INPUT_TX_PIN_REG0_LANE          
+            200C  _INPUT_TX_PIN_REG1_LANE          
+            2010  _INPUT_TX_PIN_REG2_LANE          
+            2014  _INPUT_TX_PIN_REG3_LANE          
+            2018  _PM_CTRL_INTERRUPT_REG1_LANE     
+            201C  _PM_CTRL_INTERRUPT_REG2          
+            2020  _CLKGEN_TX_LANE_REG1_LANE        
+            2024  _TX_SPEED_CONVERT_LANE           
+            2028  _SPD_CTRL_INTERRUPT_REG1_LANE    
+            202C  _SPD_CTRL_INTERRUPT_REG2         
+            2030  _SPD_CTRL_TX_LANE_REG1_LANE      
+            2034  _TX_SYSTEM_LANE                  
+            203C  _INPUT_TX_PIN_REG4_LANE          
+            2040  _TX_CALIBRATION_LANE             
+            2044  _DIG_TX_RSVD_REG0                
+            2048  _INPUT_TX_PIN_REG5_LANE          
+            204C  __FIELDNAME__LANE                
+            2050  _PM_CTRL_INTERRUPT_ISR_REG1_LANE 
+            2054  _SPD_CTRL_INTERRUPT_CLEAR_REG1_LA
+            2058  _ANALOG_TX_REALTIME_REG_1        
+            205C  _MON_TOP                         
+            2100  _PM_CTRL_RX_LANE_REG1_LANE       
+            2104  _RX_SYSTEM_LANE                  
+            2108  _INPUT_RX_PIN_REG0_LANE          
+ASxxxx Linker V02.00 + NoICE + sdld,  page 16.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            210C  _INPUT_RX_PIN_REG1_LANE          
+            2110  _INPUT_RX_PIN_REG2_LANE          
+            2114  _SPD_CTRL_RX_LANE_REG1_LANE      
+            2118  _DIG_RX_RSVD_REG0                
+            211C  _CLKGEN_RX_LANE_REG1_LANE        
+            2120  _FRAME_SYNC_DET_REG0             
+            2124  _FRAME_SYNC_DET_REG1             
+            2128  _FRAME_SYNC_DET_REG2             
+            212C  _FRAME_SYNC_DET_REG3             
+            2130  _FRAME_SYNC_DET_REG4             
+            2134  _FRAME_SYNC_DET_REG5             
+            2138  _FRAME_SYNC_DET_REG6             
+            213C  _CDR_LOCK_REG                    
+            2140  _RX_LANE_INTERRUPT               
+            2144  _RX_LANE_INTERRUPT_MASK          
+            2148  _RX_DATA_PATH_REG                
+            214C  _INPUT_RX_PIN_REG3_LANE          
+            2150  _RX_CALIBRATION_REG              
+            2158  _RX_LANE_INTERRUPT_REG1          
+            2160  _DTL_REG0                        
+            2164  _DTL_REG1                        
+            2168  _DTL_REG2                        
+            216C  _DTL_REG3                        
+            2170  _SQ_REG0                         
+            2200  _MCU_CONTROL_LANE                
+            2204  _MCU_GPIO                        
+            2208  _CACHE_DEBUG0                    
+            220C  _CACHE_DEBUG1                    
+            2210  _LANE_SYSTEM0                    
+            2230  _MCU_STATUS0_LANE                
+            2234  _MCU_STATUS1_LANE                
+            2238  _MCU_STATUS2_LANE                
+            223C  _MCU_STATUS3_LANE                
+            2240  _MCU_INT0_CONTROL                
+            2244  _MCU_INT1_CONTROL                
+            2248  _MCU_INT2_CONTROL                
+            224C  _MCU_INT3_CONTROL                
+            2250  _MCU_INT4_CONTROL                
+            2254  _MCU_INT5_CONTROL                
+            2258  _MCU_INT6_CONTROL                
+            225C  _MCU_INT7_CONTROL                
+            2260  _MCU_INT8_CONTROL                
+            2264  _MCU_INT9_CONTROL                
+            2268  _MCU_INT10_CONTROL               
+            226C  _MCU_INT11_CONTROL               
+            2270  _MCU_INT12_CONTROL               
+            2274  _MCU_TIMER_CONTROL               
+            2278  _MCU_TIMER0_CONTROL              
+            227C  _MCU_TIMER1_CONTROL              
+            2280  _MCU_TIMER2_CONTROL              
+            2284  _MCU_TIMER3_CONTROL              
+ASxxxx Linker V02.00 + NoICE + sdld,  page 17.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            2288  _MCU_IRQ_LANE                    
+            228C  _MCU_IRQ_MASK_LANE               
+            2290  _MCU_MEM_REG1_LANE               
+            2294  _MCU_MEM_REG2_LANE               
+            2298  _MCU_TIMER_CTRL_1_LANE           
+            229C  _MCU_TIMER_CTRL_2_LANE           
+            22A0  _MCU_TIMER_CTRL_3_LANE           
+            22A4  _MCU_TIMER_CTRL_4_LANE           
+            22A8  _MCU_TIMER_CTRL_5_LANE           
+            22AC  _MCU_TIMER_CTRL_6_LANE           
+            22B0  _MCU_TIMER_CTRL_7_LANE           
+            22B4  _MCU_DEBUG0_LANE                 
+            22B8  _MCU_DEBUG1_LANE                 
+            22BC  _MCU_DEBUG2_LANE                 
+            22C0  _MCU_DEBUG3_LANE                 
+            22C4  _MCU_DEBUG_LANE                  
+            22C8  _EXT_INT_CONTROL                 
+            22CC  _ANA_IF_TRX_REG0                 
+            22D0  _ANA_IF_DFEE_REG0                
+            22D4  _ANA_IF_DFEO_REG0                
+            22D8  _MCU_IRQ_ISR_LANE                
+            22DC  _MCU_WDT_LANE                    
+            22E0  _MCU_INT_CONTROL_13              
+            22E4  _MCU_COMMAND0                    
+            22F4  _MEM_ECC_ERR_ADDRESS0            
+            22F8  _XDATA_MEM_CHECKSUM_LANE0        
+            22FC  _XDATA_MEM_CHECKSUM_LANE1        
+            2300  _PT_CONTROL0                     
+            2304  _PT_CONTROL1                     
+            2308  _PT_USER_PATTERN0                
+            230C  _PT_USER_PATTERN1                
+            2310  _PT_USER_PATTERN2                
+            2314  _PT_COUNTER0                     
+            2318  _PT_COUNTER1                     
+            231C  _PT_COUNTER2                     
+            2400  _DFE_CTRL_REG0                   
+            2404  _DFE_CTRL_REG1                   
+            2408  _DFE_CTRL_REG2                   
+            240C  _DFE_CTRL_REG3                   
+            2410  _RX_EQ_CLK_CTRL                  
+            2414  _DFE_CTRL_REG4                   
+            2418  _DFE_ANA_REG0                    
+            241C  _DFE_ANA_REG1                    
+            2420  _DFE_STEP_REG0                   
+            2424  _DFE_STEP_REG1                   
+            2430  _DFE_FEN_EVEN_REG                
+            2434  _DFE_FEN_ODD_REG                 
+            2438  _DFE_DC_EVEN_REG8                
+            243C  _DFE_DC_ODD_REG8                 
+            2440  _DFE_FEXT_EVEN_REG0              
+            2444  _DFE_FEXT_EVEN_REG1              
+ASxxxx Linker V02.00 + NoICE + sdld,  page 18.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            2448  _DFE_FEXT_EVEN_REG2              
+            244C  _DFE_FEXT_EVEN_REG3              
+            2450  _DFE_FEXT_EVEN_REG4              
+            2454  _DFE_FEXT_EVEN_REG5              
+            2458  _DFE_FEXT_EVEN_REG6              
+            245C  _DFE_FEXT_EVEN_REG7              
+            2460  _DFE_FEXT_ODD_REG0               
+            2464  _DFE_FEXT_ODD_REG1               
+            2468  _DFE_FEXT_ODD_REG2               
+            246C  _DFE_FEXT_ODD_REG3               
+            2470  _DFE_FEXT_ODD_REG4               
+            2474  _DFE_FEXT_ODD_REG5               
+            2478  _DFE_FEXT_ODD_REG6               
+            247C  _DFE_FEXT_ODD_REG7               
+            2480  _DFE_READ_EVEN_SM_REG0           
+            2484  _DFE_READ_EVEN_SM_REG1           
+            2488  _DFE_READ_EVEN_SM_REG2           
+            248C  _DFE_READ_EVEN_SM_REG3           
+            2490  _DFE_READ_EVEN_SM_REG4           
+            2494  _DFE_READ_EVEN_SM_REG5           
+            2498  _DFE_READ_EVEN_SM_REG6           
+            249C  _DFE_READ_EVEN_SM_REG7           
+            24A0  _DFE_READ_ODD_SM_REG0            
+            24A4  _DFE_READ_ODD_SM_REG1            
+            24A8  _DFE_READ_ODD_SM_REG2            
+            24AC  _DFE_READ_ODD_SM_REG3            
+            24B0  _DFE_READ_ODD_SM_REG4            
+            24B4  _DFE_READ_ODD_SM_REG5            
+            24B8  _DFE_READ_ODD_SM_REG6            
+            24BC  _DFE_READ_ODD_SM_REG7            
+            24C0  _DFE_READ_EVEN_SM_REG8           
+            24C4  _DFE_READ_ODD_SM_REG8            
+            24D0  _DFE_READ_EVEN_2C_REG0           
+            24D4  _DFE_READ_EVEN_2C_REG1           
+            24D8  _DFE_READ_EVEN_2C_REG2           
+            24DC  _DFE_READ_EVEN_2C_REG3           
+            24E0  _DFE_READ_EVEN_2C_REG4           
+            24E4  _DFE_READ_EVEN_2C_REG5           
+            24E8  _DFE_READ_EVEN_2C_REG6           
+            24EC  _DFE_READ_EVEN_2C_REG7           
+            24F0  _DFE_READ_ODD_2C_REG0            
+            24F4  _DFE_READ_ODD_2C_REG1            
+            24F8  _DFE_READ_ODD_2C_REG2            
+            24FC  _DFE_READ_ODD_2C_REG3            
+            2500  _DFE_READ_ODD_2C_REG4            
+            2504  _DFE_READ_ODD_2C_REG5            
+            2508  _DFE_READ_ODD_2C_REG6            
+            250C  _DFE_READ_ODD_2C_REG7            
+            2510  _DFE_READ_EVEN_2C_REG8           
+            2514  _DFE_READ_ODD_2C_REG8            
+            2518  _CAL_OFST_REG0                   
+ASxxxx Linker V02.00 + NoICE + sdld,  page 19.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            251C  _CAL_OFST_REG1                   
+            2520  _CAL_OFST_REG2                   
+            2530  _DFE_DCE_REG0                    
+            2540  _DFE_STATIC_LANE_REG0            
+            2544  _DFE_STATIC_LANE_REG1            
+            2548  _DFE_STATIC_LANE_REG3            
+            254C  _DFE_STATIC_LANE_REG4            
+            2550  _DFE_STATIC_LANE_REG5            
+            2554  _DFE_STATIC_LANE_REG6            
+            2560  _EOM_VLD_REG0                    
+            2564  _EOM_VLD_REG1                    
+            2568  _EOM_VLD_REG2                    
+            256C  _EOM_VLD_REG3                    
+            2570  _EOM_ERR_REG0                    
+            2574  _EOM_ERR_REG1                    
+            2578  _EOM_ERR_REG2                    
+            257C  _EOM_ERR_REG3                    
+            2580  _EOM_REG0                        
+            25F0  _EOM_VLD_REG4                    
+            25F4  _LANE_MARGIN_REG0                
+            2600  _DME_ENC_REG0                    
+            2604  _DME_ENC_REG1                    
+            2608  _DME_ENC_REG2                    
+            260C  _DME_DEC_REG0                    
+            2610  _DME_DEC_REG1                    
+            2614  _TX_TRAIN_IF_REG0                
+            2618  _TX_TRAIN_IF_REG1                
+            261C  _TX_TRAIN_IF_REG2                
+            2620  _TX_TRAIN_IF_REG3                
+            2624  _TX_TRAIN_PATTTERN_REG0          
+            2628  _TX_TRAIN_DRIVER_REG0            
+            262C  _TX_TRAIN_DRIVER_REG1            
+            2630  _TX_TRAIN_DRIVER_REG2            
+            2634  _TX_TRAIN_DEFAULT_REG0           
+            2638  _TX_TRAIN_DEFAULT_REG1           
+            263C  _TX_TRAIN_DEFAULT_REG2           
+            2640  _TX_TRAIN_DEFAULT_REG3           
+            2644  _TX_TRAIN_DEFAULT_REG4           
+            2648  _TX_TRAIN_DEFAULT_REG5           
+            264C  _TX_EMPH_CTRL_REG0               
+            2650  _LINK_TRAIN_MODE0                
+            2654  _TX_DRV_RD_OUT_REG0              
+            2658  _TX_AMP_CTRL_REG0                
+            265C  _TRX_TRAIN_IF_INTERRUPT_LANE     
+            2660  _TRX_TRAIN_IF_INTERRUPT_MASK0_LAN
+            2664  _TRX_TRAIN_IF_INTERRUPT_CLEAR_LAN
+            2668  _TX_TRAIN_IF_REG4                
+            266C  _TX_TRAIN_IF_REG5                
+            2670  _TX_TRAIN_IF_REG6                
+            2674  _TX_TRAIN_IF_REG7                
+            2678  _TX_TRAIN_CTRL_LANE              
+ASxxxx Linker V02.00 + NoICE + sdld,  page 20.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            267C  _TX_TRAIN_IF_REG8                
+            4000  _LANE_CFG0                       
+            4004  _LANE_STATUS0                    
+            4008  _LANE_CFG_STATUS2_LANE           
+            400C  _LANE_CFG2_LANE                  
+            4010  _LANE_CFG4                       
+            4014  _LANE_CFG_STATUS3_LANE           
+            4018  _LANE_DP_PIE8_CFG0_LANE          
+            401C  _LANE_USB_DP_CFG1_LANE           
+            4020  _LANE_USB_DP_CFG2_LANE           
+            4024  _LANE_EQ_CFG0_LANE               
+            4028  _LANE_EQ_CFG1_LANE               
+            402C  _LANE_PRESET_CFG0_LANE           
+            4030  _LANE_PRESET_CFG2_LANE           
+            4034  _LANE_PRESET_CFG4_LANE           
+            4038  _LANE_PRESET_CFG6_LANE           
+            403C  _LANE_PRESET_CFG8_LANE           
+            4040  _LANE_PRESET_CFG10_LANE          
+            4044  _LANE_PRESET_CFG12_LANE          
+            4048  _LANE_PRESET_CFG14_LANE          
+            404C  _LANE_PRESET_CFG16_LANE          
+            4050  _LANE_COEFF_MAX0_LANE            
+            4054  _LANE_REMOTE_SET_LANE            
+            4058  _LANE_EQ_16G_CFG0_LANE           
+            405C  _LANE_16G_PRESET_CFG0_LANE       
+            4060  _LANE_16G_PRESET_CFG2_LANE       
+            4064  _LANE_16G_PRESET_CFG4_LANE       
+            4068  _LANE_16G_PRESET_CFG6_LANE       
+            406C  _LANE_16G_PRESET_CFG8_LANE       
+            4070  _LANE_16G_PRESET_CFG10_LANE      
+            4074  _LANE_16G_PRESET_CFG12_LANE      
+            4078  _LANE_16G_PRESET_CFG14_LANE      
+            407C  _LANE_16G_PRESET_CFG16_LANE      
+            4080  _LANE_EQ_32G_CFG0_LANE           
+            4084  _LANE_32G_PRESET_CFG0_LANE       
+            4088  _LANE_32G_PRESET_CFG2_LANE       
+            408C  _LANE_32G_PRESET_CFG4_LANE       
+            4090  _LANE_32G_PRESET_CFG6_LANE       
+            4094  _LANE_32G_PRESET_CFG8_LANE       
+            4098  _LANE_32G_PRESET_CFG10_LANE      
+            409C  _LANE_32G_PRESET_CFG12_LANE      
+            40A0  _LANE_32G_PRESET_CFG14_LANE      
+            40A4  _LANE_32G_PRESET_CFG16_LANE      
+            4200  _GLOB_RST_CLK_CTRL               
+            4204  _GLOB_CLK_SRC_LO                 
+            4208  _GLOB_CLK_SRC_HI                 
+            420C  _GLOB_MISC_CTRL                  
+            4210  _GLOB_DP_SAL_CFG                 
+            4214  _GLOB_DP_SAL_CFG1                
+            4218  _GLOB_DP_SAL_CFG3                
+            421C  _GLOB_DP_SAL_CFG5                
+ASxxxx Linker V02.00 + NoICE + sdld,  page 21.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            4220  _GLOB_PM_CFG0                    
+            4224  _GLOB_COUNTER_CTRL               
+            4228  _GLOB_COUNTER_HI                 
+            422C  _GLOB_PM_DP_CTRL                 
+            4230  _GLOB_DP_BAL_CFG0                
+            4234  _GLOB_DP_BAL_CFG2                
+            4238  _GLOB_DP_BAL_CFG4                
+            423C  _GLOB_BIST_CTRL                  
+            4240  _GLOB_BIST_LANE_TYPE             
+            4244  _GLOB_BIST_START                 
+            4248  _GLOB_BIST_MASK                  
+            424C  _GLOB_BIST_RESULT                
+            4250  _GLOB_BIST_SEQR_CFG              
+            4254  _GLOB_BIST_DATA_HI               
+            4258  _GLOB_PIPE_REVISION              
+            425C  _GLOB_L1_SUBSTATES_CFG           
+            6000  _CAL_CTRL1_LANE                  
+            6004  _CAL_CTRL2_LANE                  
+            6008  _CAL_CTRL3_LANE                  
+            600C  _CAL_CTRL4_LANE                  
+            6010  _CAL_SAVE_DATA1_LANE             
+            6014  _CAL_SAVE_DATA2_LANE             
+            6018  _CAL_SAVE_DATA3_LANE             
+            601C  _PHY_REMOTE_CTRL_COMMAND_LANE    
+            6020  _PHY_REMOTE_CTRL_VALUE_LANE      
+            6024  _PHY_LOCAL_VALUE_LANE            
+            6028  _TRX_TRAIN_IF_TIMERS1_LANE       
+            602C  _TRX_TRAIN_IF_TIMERS2_LANE       
+            6030  _TRX_TRAIN_IF_TIMERS_ENABLE_LANE 
+            6030  _train_gn1_index                 
+            6031  _train_g1_index                  
+            6032  _train_g0_index                  
+            6034  _DFE_CONTROL_0                   
+            6038  _DFE_CONTROL_1                   
+            6040  _DFE_CONTROL_2                   
+            6044  _DFE_CONTROL_3                   
+            6048  _DFE_CONTROL_4                   
+            604C  _DFE_CONTROL_5                   
+            6050  _TRAIN_CONTROL_0                 
+            6054  _TRAIN_CONTROL_1                 
+            6058  _TRAIN_CONTROL_2                 
+            605C  _RPTA_CONFIG_0                   
+            6060  _RPTA_CONFIG_1                   
+            6064  _DLL_CAL                         
+            6068  _TRAIN_PARA_0                    
+            606C  _TRAIN_PARA_1                    
+            6070  _TRAIN_PARA_2                    
+            6074  _TRAIN_PARA_3                    
+            6078  _DFE_CONTROL_6                   
+            607C  _DFE_TEST_0                      
+            607C  _sq_thrs_ratio_tb                
+ASxxxx Linker V02.00 + NoICE + sdld,  page 22.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            6080  _DFE_TEST_1                      
+            6084  _DFE_TEST_4                      
+            6088  _DFE_TEST_5                      
+            608C  _DFE_CONTROL_7                   
+            6090  _DFE_CONTROL_8                   
+            6094  _DFE_CONTROL_9                   
+            6098  _DFE_CONTROL_10                  
+            609C  _DFE_CONTROL_11                  
+            60A0  _CDS_CTRL_REG0                   
+            60A4  _CDS_CTRL_REG1                   
+            60A8  _ESM_POP_P_CNT_LOW_LANE          
+            60AC  _ESM_ERR_P_CNT_LOW_LANE          
+            60B0  _ESM_ERR_POP_CNT_HIGH_LANE       
+            60B4  _TRAIN_CONTROL_3                 
+            60B4  _rc_save                         
+            60B8  _TRAIN_CONTROL_4                 
+            60BC  _TRAIN_CONTROL_5                 
+            60C0  _TRAIN_CONTROL_6                 
+            60C4  _TRAIN_CONTROL_7                 
+            60C8  _TRAIN_CONTROL_8                 
+            60CC  _TRAIN_CONTROL_9                 
+            60D0  _TRAIN_CONTROL_10                
+            60D0  _txffe_save                      
+            60D4  _TRAIN_CONTROL_11                
+            60D8  _TRAIN_CONTROL_12                
+            60DC  _ESM_POP_N_CNT_LOW_LANE          
+            60E0  _ESM_ERR_N_CNT_LOW_LANE          
+            60E4  _TRAIN_CONTROL_13                
+            60E4  _phase_save                      
+            60E8  _TRAIN_CONTROL_14                
+            60EC  _TRAIN_CONTROL_15                
+            60F0  _TRAIN_CONTROL_16                
+            60F4  _TRAIN_CONTROL_17                
+            60F8  _END_XDAT_LANE                   
+            6100  _DFE_READ_EVEN_REG0              
+            6100  _cds28                           
+            6104  _DFE_READ_EVEN_REG1              
+            6108  _DFE_READ_EVEN_REG2              
+            610C  _DFE_READ_EVEN_REG3              
+            6110  _DFE_READ_EVEN_REG4              
+            6114  _DFE_READ_EVEN_REG5              
+            6118  _DFE_READ_EVEN_REG6              
+            611C  _DFE_READ_EVEN_REG7              
+            6120  _DFE_READ_ODD_REG0               
+            6124  _DFE_READ_ODD_REG1               
+            6128  _DFE_READ_ODD_REG2               
+            612C  _DFE_READ_ODD_REG3               
+            6130  _DFE_READ_ODD_REG4               
+            6134  _DFE_READ_ODD_REG5               
+            6138  _DFE_READ_ODD_REG6               
+            613C  _DFE_READ_ODD_REG7               
+ASxxxx Linker V02.00 + NoICE + sdld,  page 23.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            6140  _DFE_READ_EVEN_REG8              
+            6144  _DFE_READ_ODD_REG8               
+            6148  _DFE_READ_F0A_EVEN               
+            614C  _DFE_READ_F0A_ODD                
+            6150  _DFE_READ_F0B_EVEN               
+            6154  _DFE_READ_F0B_ODD                
+            6158  _DFE_READ_F0D_EVEN               
+            615C  _DFE_READ_F0D_ODD                
+            6160  _DFE_READ_F0D_LEFT_EVEN          
+            6164  _DFE_READ_F0D_LEFT_ODD           
+            6168  _DFE_READ_F0D_RIGHT_EVEN         
+            616C  _DFE_READ_F0D_RIGHT_ODD          
+            6170  _CDS_READ_MISC0                  
+            6174  _CDS_READ_MISC1                  
+            6178  _dfe_sm                          
+            61B8  _dfe_sm_dc                       
+            61C0  _dfe_sm_save                     
+            6214  _TXTRAIN_IF_REG0                 
+            6300  _max_gen                         
+            6301  _min_gen                         
+            6304  _speedtable                      
+            6490  _lnx_calx_txdcc_pdiv             
+            6496  _lnx_calx_txdcc_pdiv_hg          
+            6499  _lnx_calx_txdcc                  
+            649F  _lnx_calx_txdcc_hg               
+            64A2  _lnx_calx_rxdcc_dll              
+            64A8  _lnx_calx_rxdcc_dll_hg           
+            64AB  _lnx_calx_dll_gmsel              
+            64AE  _lnx_calx_vdda_dll_sel           
+            64B4  _lnx_calx_dll_eom_gmsel          
+            64B7  _lnx_calx_vdda_dll_eom_sel       
+            64BD  _lnx_calx_eom_dpher              
+            64C0  _lnx_calx_align90_dummy_clk      
+            64CC  _lnx_calx_align90_dac            
+            64D8  _lnx_calx_align90_gm             
+            65D4  _lnx_cal_txdcc_pdiv              
+            65D4  _phy_mode_lane_table             
+            65D8  _lnx_cal_txdcc_pdiv_hg           
+            65DA  _lnx_cal_txdcc                   
+            65DE  _lnx_cal_txdcc_hg                
+            65E0  _lnx_cal_rxdcc_dll               
+            65E4  _lnx_cal_rxdcc_dll_hg            
+            65E6  _lnx_cal_rxdcc_data              
+            65F0  _lnx_cal_rxdcc_data_hg           
+            65F5  _lnx_cal_rxdcc_eom               
+            65FF  _lnx_cal_rxdcc_eom_hg            
+            6604  _lnx_cal_dll_gmsel               
+            6606  _lnx_cal_vdda_dll_sel            
+            660A  _lnx_cal_dll_eom_gmsel           
+            660C  _lnx_cal_vdda_dll_eom_sel        
+            6610  _lnx_cal_eom_dpher               
+ASxxxx Linker V02.00 + NoICE + sdld,  page 24.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            6612  _lnx_cal_align90_dummy_clk       
+            661A  _lnx_cal_align90_dac             
+            6622  _lnx_cal_align90_gm              
+            662A  _lnx_cal_sellv_txdata            
+            6634  _lnx_cal_sellv_txclk             
+            663E  _lnx_cal_sellv_rxdataclk         
+            6648  _lnx_cal_sellv_txpre             
+            6652  _lnx_cal_sellv_rxsampler         
+            665C  _lnx_cal_sellv_rxeomclk          
+            6666  _lnx_spdoft_tx_preset_index_lane 
+            8200  _UPHY14_CMN_ANAREG_TOP_128       
+            8204  _UPHY14_CMN_ANAREG_TOP_129       
+            8208  _UPHY14_CMN_ANAREG_TOP_130       
+            820C  _UPHY14_CMN_ANAREG_TOP_131       
+            8210  _UPHY14_CMN_ANAREG_TOP_132       
+            8214  _UPHY14_CMN_ANAREG_TOP_133       
+            8218  _UPHY14_CMN_ANAREG_TOP_134       
+            821C  _UPHY14_CMN_ANAREG_TOP_135       
+            8220  _UPHY14_CMN_ANAREG_TOP_136       
+            8224  _UPHY14_CMN_ANAREG_TOP_137       
+            8228  _UPHY14_CMN_ANAREG_TOP_138       
+            822C  _UPHY14_CMN_ANAREG_TOP_139       
+            8230  _UPHY14_CMN_ANAREG_TOP_140       
+            8234  _UPHY14_CMN_ANAREG_TOP_141       
+            8238  _UPHY14_CMN_ANAREG_TOP_142       
+            823C  _UPHY14_CMN_ANAREG_TOP_143       
+            8240  _UPHY14_CMN_ANAREG_TOP_144       
+            8244  _UPHY14_CMN_ANAREG_TOP_145       
+            8248  _UPHY14_CMN_ANAREG_TOP_146       
+            824C  _UPHY14_CMN_ANAREG_TOP_147       
+            8250  _UPHY14_CMN_ANAREG_TOP_148       
+            8254  _UPHY14_CMN_ANAREG_TOP_149       
+            8258  _UPHY14_CMN_ANAREG_TOP_150       
+            825C  _UPHY14_CMN_ANAREG_TOP_151       
+            8260  _UPHY14_CMN_ANAREG_TOP_152       
+            8264  _UPHY14_CMN_ANAREG_TOP_153       
+            8268  _UPHY14_CMN_ANAREG_TOP_154       
+            826C  _UPHY14_CMN_ANAREG_TOP_155       
+            8270  _UPHY14_CMN_ANAREG_TOP_156       
+            8274  _UPHY14_CMN_ANAREG_TOP_157       
+            8278  _UPHY14_CMN_ANAREG_TOP_158       
+            827C  _UPHY14_CMN_ANAREG_TOP_159       
+            8280  _UPHY14_CMN_ANAREG_TOP_160       
+            8284  _UPHY14_CMN_ANAREG_TOP_161       
+            8288  _UPHY14_CMN_ANAREG_TOP_162       
+            828C  _UPHY14_CMN_ANAREG_TOP_163       
+            8290  _UPHY14_CMN_ANAREG_TOP_164       
+            8294  _UPHY14_CMN_ANAREG_TOP_165       
+            8298  _UPHY14_CMN_ANAREG_TOP_166       
+            829C  _UPHY14_CMN_ANAREG_TOP_167       
+            82A0  _UPHY14_CMN_ANAREG_TOP_168       
+ASxxxx Linker V02.00 + NoICE + sdld,  page 25.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            82A4  _UPHY14_CMN_ANAREG_TOP_169       
+            82A8  _UPHY14_CMN_ANAREG_TOP_170       
+            82AC  _UPHY14_CMN_ANAREG_TOP_171       
+            82B0  _UPHY14_CMN_ANAREG_TOP_172       
+            82B4  _UPHY14_CMN_ANAREG_TOP_173       
+            82B8  _UPHY14_CMN_ANAREG_TOP_174       
+            82BC  _UPHY14_CMN_ANAREG_TOP_175       
+            82C0  _UPHY14_CMN_ANAREG_TOP_176       
+            82C4  _UPHY14_CMN_ANAREG_TOP_177       
+            82C8  _UPHY14_CMN_ANAREG_TOP_178       
+            82CC  _UPHY14_CMN_ANAREG_TOP_179       
+            82D0  _UPHY14_CMN_ANAREG_TOP_180       
+            82D4  _UPHY14_CMN_ANAREG_TOP_181       
+            82D8  _UPHY14_CMN_ANAREG_TOP_182       
+            82DC  _UPHY14_CMN_ANAREG_TOP_183       
+            82E0  _UPHY14_CMN_ANAREG_TOP_184       
+            82E4  _UPHY14_CMN_ANAREG_TOP_185       
+            82E8  _UPHY14_CMN_ANAREG_TOP_186       
+            82EC  _UPHY14_CMN_ANAREG_TOP_187       
+            82F0  _UPHY14_CMN_ANAREG_TOP_188       
+            82F4  _UPHY14_CMN_ANAREG_TOP_189       
+            82F8  _UPHY14_CMN_ANAREG_TOP_190       
+            82FC  _UPHY14_CMN_ANAREG_TOP_191       
+            8300  _UPHY14_CMN_ANAREG_TOP_192       
+            8304  _UPHY14_CMN_ANAREG_TOP_193       
+            8308  _UPHY14_CMN_ANAREG_TOP_194       
+            830C  _UPHY14_CMN_ANAREG_TOP_195       
+            8310  _UPHY14_CMN_ANAREG_TOP_196       
+            8314  _UPHY14_CMN_ANAREG_TOP_197       
+            8318  _UPHY14_CMN_ANAREG_TOP_198       
+            831C  _UPHY14_CMN_ANAREG_TOP_199       
+            8320  _UPHY14_CMN_ANAREG_TOP_200       
+            8324  _UPHY14_CMN_ANAREG_TOP_201       
+            8328  _UPHY14_CMN_ANAREG_TOP_202       
+            832C  _UPHY14_CMN_ANAREG_TOP_203       
+            8330  _UPHY14_CMN_ANAREG_TOP_204       
+            8334  _UPHY14_CMN_ANAREG_TOP_205       
+            8338  _UPHY14_CMN_ANAREG_TOP_206       
+            833C  _UPHY14_CMN_ANAREG_TOP_207       
+            8340  _UPHY14_CMN_ANAREG_TOP_208       
+            8344  _UPHY14_CMN_ANAREG_TOP_209       
+            8348  _UPHY14_CMN_ANAREG_TOP_210       
+            834C  _UPHY14_CMN_ANAREG_TOP_211       
+            8350  _UPHY14_CMN_ANAREG_TOP_212       
+            8354  _UPHY14_CMN_ANAREG_TOP_213       
+            8358  _UPHY14_CMN_ANAREG_TOP_214       
+            8C8A  _TMR0                            
+            8D8B  _TMR1                            
+            A000  _TX_CMN_REG                      
+            A008  _DTX_REG0                        
+            A00C  _DTX_REG1                        
+ASxxxx Linker V02.00 + NoICE + sdld,  page 26.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            A010  _DTX_REG2                        
+            A014  _DTX_REG3                        
+            A018  _DTX_REG4                        
+            A01C  _DTX_PHY_ALIGN_REG0              
+            A024  _DTX_PHY_ALIGN_REG1              
+            A028  _DTX_PHY_ALIGN_REG2              
+            A02C  _SRIS_REG0                       
+            A030  _SRIS_REG1                       
+            A100  _RX_CMN_0                        
+            A110  _DFE_STATIC_REG0                 
+            A114  _DFE_STATIC_REG1                 
+            A118  _DFE_STATIC_REG3                 
+            A11C  _DFE_STATIC_REG4                 
+            A120  _DFE_STATIC_REG5                 
+            A124  _DFE_STATIC_REG6                 
+            A200  _MCU_CONTROL_0                   
+            A204  _MCU_CONTROL_1                   
+            A208  _MCU_CONTROL_2                   
+            A20C  _MCU_CONTROL_3                   
+            A210  _MCU_CONTROL_4                   
+            A214  _MCU_DEBUG0                      
+            A218  _MCU_DEBUG1                      
+            A21C  _MEMORY_CONTROL_0                
+            A220  _MEMORY_CONTROL_1                
+            A224  _MEMORY_CONTROL_2                
+            A228  _MEMORY_CONTROL_3                
+            A22C  _MEMORY_CONTROL_4                
+            A234  _MCU_INFO_0                      
+            A238  _MCU_INFO_1                      
+            A23C  _MCU_INFO_2                      
+            A240  _MCU_INFO_3                      
+            A244  _MEM_CMN_ECC_ERR_ADDRESS0        
+            A2A1  _DMASA                           
+            A2E0  _ANA_IF_CMN_REG1                 
+            A2E4  _MEM_IRQ                         
+            A2E8  _MEM_IRQ_MASK                    
+            A2EC  _ANA_IF_CMN_REG0                 
+            A2F0  _APB_CONTROL_REG                 
+            A2F4  _MEM_IRQ_CLEAR                   
+            A2F8  _MCU_SYNC1                       
+            A2FC  _MCU_SYNC2                       
+            A300  _TEST0                           
+            A304  _TEST1                           
+            A308  _TEST2                           
+            A30C  _TEST3                           
+            A310  _TEST4                           
+            A314  _SYSTEM                          
+            A318  _PM_CMN_REG1                     
+            A31C  _INPUT_CMN_PIN_REG0              
+            A320  _INPUT_CMN_PIN_REG1              
+            A324  _INPUT_CMN_PIN_REG2              
+ASxxxx Linker V02.00 + NoICE + sdld,  page 27.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            A328  _ANA_TSEN_CONTROL                
+            A32C  _PLLCAL_REG0                     
+            A330  _PLLCAL_REG1                     
+            A334  _CLKGEN_CMN_REG1                 
+            A338  _SPD_CMN_REG1                    
+            A33C  _OUTPUT_CMN_PIN_REG0             
+            A340  _CMN_CALIBRATION                 
+            A344  __FIELDNAME_                     
+            A348  _INPUT_CMN_PIN_REG3              
+            A34C  _PM_CMN_REG2                     
+            A354  _TEST5                           
+            A358  _XDATA_MEM_CHECKSUM_CMN_0        
+            A35C  _XDATA_MEM_CHECKSUM_CMN_1        
+            A360  _XDATA_MEM_CHECKSUM_CMN_2        
+            A364  _MCU_SDT_CMN                     
+            A368  _CMN_CACHE_DEBUG0                
+            A36C  _MCU_INT_ADDR                    
+            A370  _CMN_ISR_2                       
+            A374  _CMN_ISR_MASK_2                  
+            A378  _CMN_ISR_CLEAR_2                 
+            A37C  _CMN_MCU_GPIO                    
+            A380  _CMN_CACHE_DEBUG1                
+            A384  _CMN_MCU_TIMER_CONTROL           
+            A388  _CMN_MCU_TIMER_CTRL_2_LANE       
+            A38C  _CMN_MCU_TIMER_CTRL_3_LANE       
+            A390  _CMN_MCU_TIMER_CTRL_4_LANE       
+            A394  _CMN_MCU_TIMER_CTRL_5_LANE       
+            A398  _CMN_MCU_TIMER0_CONTROL          
+            A39C  _CMN_MCU_TIMER1_CONTROL          
+            A3A0  _CMN_MCU_TIMER2_CONTROL          
+            A3A4  _CMN_MCU_TIMER3_CONTROL          
+            A3A8  _CMN_ISR_1                       
+            A3AC  _CMN_ISR_MASK_1                  
+            A3B0  _SET_LANE_ISR                    
+            A3F4  _CMN_MCU_REG                     
+            A3F8  _CID_REG0                        
+            A3FC  _CID_REG1                        
+            A5A4  _DMATA                           
+            B2B1  _DMAC                            
+            CDCC  _TMR2                            
+            E000  _lc_speedtable                   
+            E1C0  _ring_speedtable                 
+            E5C0  _phy_mode_cmn_table              
+            E5C1  _cmx_cal_lcvco_dac               
+            E5C1  _cmx_cal_lcvco_dac_lsb           
+            E5C4  _cmx_cal_lcvco_dac_msb           
+            E5C8  _cmx_cal_lccap_lsb               
+            E5CA  _cmx_cal_lccap_msb               
+            E5CC  _cmx_cal_plldcc                  
+            E5D0  _cmx_cal_pll_speed_ring          
+            E5D4  _cmx_cal_pll_sllp_dac_coarse_ring
+ASxxxx Linker V02.00 + NoICE + sdld,  page 28.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            E5D8  _cmx_cal_sllp_dac_fine_ring      
+            E600  _FW_REV                          
+            E604  _CONTROL_CONFIG0                 
+            E608  _CONTROL_CONFIG1                 
+            E60C  _CONTROL_CONFIG2                 
+            E610  _CONTROL_CONFIG3                 
+            E614  _CONTROL_CONFIG4                 
+            E618  _CONTROL_CONFIG5                 
+            E61C  _CONTROL_CONFIG6                 
+            E620  _CONTROL_CONFIG7                 
+            E624  _CAL_DATA0                       
+            E628  _TRAIN_IF_CONFIG                 
+            E62C  _CONTROL_CONFIG8                 
+            E630  _CONTROL_CONFIG9                 
+            E634  _CON_CAL_STEP_SIZE1              
+            E638  _CON_CAL_STEP_SIZE2              
+            E63C  _CON_CAL_STEP_SIZE3              
+            E640  _CON_CAL_STEP_SIZE4              
+            E644  _CON_CAL_STEP_SIZE5              
+            E648  _CAL_TIME_OUT_AND_DIS            
+            E64C  _CAL_STATUS_READ                 
+            E650  _MCU_CONFIG                      
+            E654  _CAL_DATA1                       
+            E658  _LOOP_CNTS                       
+            E65C  _MCU_CONFIG1                     
+            E660  _TIMER_SEL1                      
+            E664  _TIMER_SEL2                      
+            E668  _TIMER_SEL3                      
+            E66C  _G_SELLV_TXCLK                   
+            E670  _G_SELLV_TXDATA                  
+            E674  _G_SELLV_TXPRE                   
+            E678  _G_SELLV_RXEOMCLK                
+            E67C  _G_SELLV_RXDATACLK               
+            E680  _G_SELLV_RXSAMPLER               
+            E684  _SAS_PRESET0_TB                  
+            E684  _tx_tb                           
+            E688  _SAS_PRESET1_TB                  
+            E68C  _SAS_PRESET2_TB                  
+            E690  _ETH_PRESET0_TB                  
+            E694  _ETH_PRESET1_TB                  
+            E698  _TX_SAVE_0                       
+            E698  _train_save_tb                   
+            E69C  _TX_SAVE_1                       
+            E6A0  _TX_SAVE_2                       
+            E6A4  _TX_SAVE_3                       
+            E6A8  _TX_SAVE_4                       
+            E6AC  _CDS_EYE_CLK_THR                 
+            E6B0  _SYNC_INFO                       
+            E6B0  _local_tx_preset_tb              
+            E6B4  _MCU_INFO_4                      
+            E6B8  _MCU_INFO_5                      
+ASxxxx Linker V02.00 + NoICE + sdld,  page 29.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            E6BC  _MCU_INFO_12                     
+            E6C0  _MCU_INFO_13                     
+            E6C4  _END_XDAT_CMN                    
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 30.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+BSEG_BYTES                         0020   0005 =      5. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 31.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+_CODE                              0020   0000 =      0. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 32.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+REG_BANK_0                         0000   0008 =      8. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 33.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+REG_BANK_1                         0008   0000 =      0. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 34.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+REG_BANK_2                         0010   0008 =      8. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 35.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+REG_BANK_3                         0018   0000 =      0. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 36.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+BSEG                               0000   0028 =     40. bytes (REL,CON,BIT)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0B:  0000  _int_pu_rx                       
+       0B:  0001  _int_pu_tx                       
+       0B:  0002  _sync_check                      
+       0B:  0003  _timeout                         
+       0B:  0004  _timeout2                        
+       0B:  0005  _do_wake                         
+       0B:  0006  _do_train                        
+       0B:  0007  _do_rxtrain                      
+       0B:  0008  _do_rxinit                       
+       0B:  0009  _do_rx_apta                      
+       0B:  000A  _do_tx_apta                      
+       0B:  000B  _do_apta                         
+       0B:  000C  _adapt_slicer_en                 
+       0B:  000D  _adapt_data_en                   
+       0B:  000E  _rx_pll_rate                     
+       0B:  000F  _tx_pll_rate                     
+       0B:  0010  _use_ring_pll                    
+       0B:  0011  _lc_pll_used                     
+       0B:  0012  _ring_pll_enabled                
+       0B:  0013  _ring_use_250m                   
+       0B:  0014  _force_exit_cal                  
+       0B:  0015  _no_pllspdchg                    
+       0B:  0016  _cont_cal_on                     
+       0B:  0017  _tx_amp_is_max                   
+       0B:  0018  _tx_amp_is_min                   
+       0B:  0019  _tx_emph0_is_max                 
+       0B:  001A  _tx_emph0_is_min                 
+       0B:  001B  _tx_emph1_is_max                 
+       0B:  001C  _tx_emph1_is_min                 
+       0B:  001D  _tx_remote_ctrl_on               
+       0B:  001E  _ctrl_cdr_phase_on               
+       0B:  001F  _ctrl_rx_train_on                
+       0B:  0020  _ctrl_tx_train_on                
+       0B:  0021  _ctrl_rx_train_done              
+       0B:  0022  _ctrl_tx_train_done              
+       0B:  0023  _ctrl_trx_train_done             
+       0B:  0024  _gain_train_with_c               
+       0B:  0025  _ctrl_trx_ffe_updated            
+       0B:  0026  _tx_pipe4_en                     
+       0B:  0027  _tx_status_pcie_mode             
+ASxxxx Linker V02.00 + NoICE + sdld,  page 37.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+BIT_BANK                           0025   0001 =      1. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 38.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+DSEG                               0000   0071 =    113. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            0018  _bp                              
+            0026  _SIGN_POS                        
+            0028  _NEG                             
+            002A  _SAMPLER_CAL_SAVE                
+            002C  _SAMPLER_TRAIN_SAVE              
+            002E  _SAMPLER_CAL_SM_SAVE             
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 39.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+OSEG                               0018   0000 =      0. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 40.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+ISEG                               0000   0000 =      0. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 41.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+SSEG                               0030   00D0 =    208. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            0030  __start__stack                   
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 42.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+PSEG                               6600   0000 =      0. bytes (REL,CON,PAG,XDATA)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 43.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+XSEG                               6600   01BA =    442. bytes (REL,CON,XDATA)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0D:  6600  _save_pt_tx_pattern_sel_lane_5_0_
+       0D:  6601  _save_pt_tx_pattern_sel_lane_5_0_
+       0D:  6602  _save_pt_en_lane                 
+       0D:  6603  _save_pt_tx_clk_en_lane          
+       0D:  6604  _save_local_ana_tx2rx_lpbk_en_lan
+       0D:  6605  _txclk_vdd_step_cnt              
+       0D:  6606  _txpre_vdd_step_cnt              
+       0D:  6607  _txdata_vdd_step_cnt             
+       0D:  6608  _rxdcc_eom_step_cnt              
+       0D:  6609  _rxdcc_data_step_cnt             
+       0D:  660A  _rxdcc_dll_step_cnt              
+       0D:  660B  _rxsmplr_vdd_step_cnt            
+       0D:  660C  _rxeomclk_vdd_step_cnt           
+       0D:  660D  _plldcc_step_cnt                 
+       0D:  660E  _pllamp_step_cnt                 
+       0D:  660F  _txdcc_pdiv_step_cnt             
+       0D:  6610  _txdcc_step_cnt                  
+       0D:  6611  _txdetect_step_cnt               
+       0D:  6612  _rxdll_step_cnt                  
+       0D:  6613  _eom_dll_step_cnt                
+       0D:  6614  _align90_step_cnt                
+       0D:  6615  _gen_tx                          
+       0D:  6616  _gen_rx                          
+       0D:  6617  _tsen_dat                        
+       0D:  6619  _mcuclk_mc                       
+       0D:  661A  _cal_lccap_msb_index             
+       0D:  661C  _slave_phy_on                    
+       0D:  661D  _gm_bin                          
+       0D:  661E  _dac                             
+       0D:  661F  _dm                              
+       0D:  6620  _gm                              
+       0D:  6621  _ringpll_dac_fine                
+       0D:  6623  _serdes_ring_lane_en             
+       0D:  6624  _ring_lane_sel                   
+       0D:  6625  _pllcal_first_time               
+       0D:  6626  _tempc_step_state                
+       0D:  6627  _tempc_dir                       
+       0D:  6628  _old_status                      
+       0D:  6629  _new_gen_tx                      
+       0D:  662A  _new_gen_rx                      
+       0D:  662B  _pwrsq_on                        
+       0D:  662C  _ringpll_step_size_cnt           
+       0D:  662D  _tsen_dat_cal                    
+       0D:  662F  _tsen_dat_train                  
+       0D:  6631  _tsen_dat_normal                 
+       0D:  6633  _cal_align90_gm_bin              
+       0D:  6636  _rxdll_temp_a_lane               
+       0D:  6637  _rxdll_temp_b_lane               
+       0D:  6638  _vdd_cnt                         
+       0D:  6639  _dcc_cont                        
+ASxxxx Linker V02.00 + NoICE + sdld,  page 44.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+XSEG                               6600   01BA =    442. bytes (REL,CON,XDATA)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0D:  663A  _dfe_norm_cnt                    
+       0D:  663B  _f1p_e_old                       
+       0D:  663C  _f1p_o_old                       
+       0D:  663D  _first_time_ring_pll_cont        
+       0D:  663E  _ring_size_counter               
+       0D:  663F  _ring_size_counter_mid           
+       0D:  6640  _train                           
+       0D:  666F  _opt                             
+       0D:  669E  _tx                              
+       0D:  66AC  _rx                              
+       0D:  66B1  _cdr                             
+       0D:  66BF  _ctrl_num_blind_loop             
+       0D:  66C0  _ctrl_num_big_loop               
+       0D:  66C1  _dfe_res_f0a_low_thres_01        
+       0D:  66C2  _dfe_res_f0a_low_thres_2         
+       0D:  66C3  _dfe_res_f0a_low_thres_3         
+       0D:  66C4  _dfe_res_f0a_high_thres          
+       0D:  66C5  _train_c                         
+       0D:  66C6  _train_r                         
+       0D:  66C7  _opt_c                           
+       0D:  66C8  _opt_r                           
+       0D:  66C9  _r2_adj_on                       
+       0D:  66CA  _sumf_boost_target_c             
+       0D:  66CB  _cdr_midpoint_phase_os           
+       0D:  66CC  _train_timer_int                 
+       0D:  66CD  _sum                             
+       0D:  66F5  _ctrl_max_dfe_adapt_shift        
+       0D:  66F6  _half_shift                      
+       0D:  66F7  _dfe_dis                         
+       0D:  66F8  _ph_control_mode                 
+       0D:  66F9  _adapted_phase                   
+       0D:  66FA  _PH_CONV_CNT                     
+       0D:  66FB  _EOM_CONV_CNT                    
+       0D:  66FC  _ph_conv_dir                     
+       0D:  66FD  _eom_conv_dir                    
+       0D:  66FE  _norm_f1                         
+       0D:  66FF  _norm_ofst                       
+       0D:  6700  _norm_eom_ph_os_l                
+       0D:  6701  _norm_eom_ph_os_c                
+       0D:  6702  _norm_eom_ph_os_r                
+       0D:  6703  _phase_vote_acc                  
+       0D:  6705  _eom_vote_acc                    
+       0D:  6707  _f0d_c_pre                       
+       0D:  6708  _f0d_l_pre                       
+       0D:  6709  _f0d_r_pre                       
+       0D:  670A  _phase_l_offset                  
+       0D:  670B  _phase_r_offset                  
+       0D:  670C  _phase_offset                    
+       0D:  670D  _adapt_eom_phase_save            
+       0D:  670E  _cur_esm_phase                   
+       0D:  6710  _tx_init_bit                     
+ASxxxx Linker V02.00 + NoICE + sdld,  page 45.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+XSEG                               6600   01BA =    442. bytes (REL,CON,XDATA)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0D:  6711  _train_comp                      
+       0D:  6712  _uart_rx_busy                    
+       0D:  6713  _tx_sweep_preset_en              
+       0D:  6714  _pcie_usb_mode                   
+       0D:  6715  _do_phase_adapt                  
+       0D:  6716  _Phase_Adapt_Inited              
+       0D:  6717  _detect_sat                      
+       0D:  6718  _ctrl_rx_only_mode               
+       0D:  6719  _ctrl_trx_train_pass             
+       0D:  671A  _ctrl_rx_train_mode              
+       0D:  671B  _tx_num_tx_preset                
+       0D:  671C  _pre_sq_rd                       
+       0D:  671D  _save_pu_f1p_s_o                 
+       0D:  671E  _save_pu_f1p_s_e                 
+       0D:  671F  _save_dfe_adapt_splr             
+       0D:  6720  _save_dfe_adapt_e_en             
+       0D:  6721  _save_dfe_adapt_o_en             
+       0D:  6722  _save_eom_en_s                   
+       0D:  6723  _save_eom_en_d                   
+       0D:  6724  _save_dfe_en                     
+       0D:  6725  _eom_ext_mode                    
+       0D:  6726  _dfe_2c                          
+       0D:  6766  _rpta_loop_cnt                   
+       0D:  6768  _tx_ctrl_stat                    
+       0D:  676A  _rpta_vote                       
+       0D:  676B  _cdr_state                       
+       0D:  676C  _uart_rx_in                      
+       0D:  676D  _uart_rx_out                     
+       0D:  676E  _uart_rx_buf                     
+       0D:  678C  _gen_pll_rate                    
+       0D:  678D  _pre_gen_pll_rate                
+       0D:  678E  _pre_lcpll_rate                  
+       0D:  678F  _pre_ringpll_rate                
+       0D:  6790  _invalidate_pll_rate             
+       0D:  6791  _skip_dfe_adapt_cdr_midpoint     
+       0D:  6792  _cds_dfe_ofst                    
+       0D:  6793  _cdr_ui_pi_code_num              
+       0D:  6794  _half_ui_code                    
+       0D:  6795  _eom_data_align_success          
+       0D:  6796  _ofst_sat                        
+       0D:  6797  _cur_phase_offset_data           
+       0D:  6798  _cur_phase_offset_esm            
+       0D:  6799  _dfe_err_found                   
+       0D:  679A  _save_dfe_dis                    
+       0D:  679B  _train_ofst_save                 
+       0D:  679C  _pre_local_ctrl                  
+       0D:  679E  _save_local_status               
+       0D:  67A0  _tx_train_p2p_hold               
+       0D:  67A1  _rxinit_4_spdchg_en              
+       0D:  67A2  _apta_sim_state                  
+       0D:  67A3  _apta_rm_state_err               
+ASxxxx Linker V02.00 + NoICE + sdld,  page 46.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+XSEG                               6600   01BA =    442. bytes (REL,CON,XDATA)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0D:  67A4  _txffe_force_en                  
+       0D:  67A5  _g_fw_flags                      
+       0D:  67A6  _sq_thrs_ratio                   
+       0D:  67A7  _sq_thrs_ratio_gen_en            
+       0D:  67A8  _dfe_res_save_en                 
+       0D:  67A9  _dfe_save_en                     
+       0D:  67AA  _dfe_phase_save_en               
+       0D:  67AB  _tx_train_frame_det_timer        
+       0D:  67AD  _rx_pll_rate_x                   
+       0D:  67AE  _tx_pll_rate_x                   
+       0D:  67AF  _cal_start_on                    
+       0D:  67B0  _tx_sel_bit                      
+       0D:  67B1  _rx_sel_bit                      
+       0D:  67B2  _pcie_f0b_en                     
+       0D:  67B3  _opt_g0_index                    
+       0D:  67B4  _opt_gn1_index                   
+       0D:  67B5  _opt_g1_index                    
+       0D:  67B6  _pll_cal_timeout_dis_save        
+       0D:  67B7  _tx_apta_state                   
+       0D:  67B8  _Align90_CLK_OFFSET              
+       0D:  67B9  _EOM_CLK_OFFSET                  
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 47.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+HOME                               0000   00C8 =    200. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  00AE  __sdcc_program_startup           
+       0C:  00B3  __sdcc_banked_call               
+       0C:  00C5  __sdcc_banked_ret                
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 48.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+GSINIT0                            00C8   0003 =      3. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  00C8  __sdcc_gsinit_startup            
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 49.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+GSINIT1                            00CB   0000 =      0. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 50.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+GSINIT2                            00CB   000A =     10. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 51.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+GSINIT3                            00D5   0000 =      0. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 52.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+GSINIT4                            00D5   0006 =      6. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  00D5  __mcs51_genRAMCLEAR              
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 53.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+GSINIT5                            00DB   0000 =      0. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 54.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+GSINIT                             00DB   0000 =      0. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 55.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+GSFINAL                            00DB   0003 =      3. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 56.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CSEG                               0000   7CAE =  31918. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  00DE  _cds_table                       
+       0C:  00F8  _cli_monitor                     
+       0C:  0222  _cmd_if                          
+       0C:  04F6  _cmd_tx_ffe                      
+       0C:  0674  _cmd_dfe_res                     
+       0C:  0792  _cmd_rx_ffe                      
+       0C:  0884  _cmd_sq_thrs_ratio               
+       0C:  096A  _cmd_tx_slew_rate                
+       0C:  0ACD  _cmd_bypass_ctle_train           
+       0C:  0AF3  _cmd_rx_cdr_bw                   
+       0C:  0C9A  _cmd_tx_margin                   
+       0C:  0CD3  _cmd_remote_tx_preset_index      
+       0C:  0D1F  _cmd_tx_preset                   
+       0C:  0DB1  _cmd_local_tx_preset_index       
+       0C:  0E06  _cmd_ssc                         
+       0C:  0F8C  _cmd_rx_imp_cal                  
+       0C:  0FBD  _cmd_tx_imp_cal                  
+       0C:  0FEE  _cpu_init                        
+       0C:  102C  _Check_EOM_Stage_fmExt           
+       0C:  1571  _sum_32                          
+       0C:  1631  _eom_pop_threhold                
+       0C:  16A1  _timer0_isr                      
+       0C:  16C9  _timer1_isr                      
+       0C:  16DB  _timer2_isr                      
+       0C:  17BF  _int0_isr                        
+       0C:  17DC  _int3_isr                        
+       0C:  185E  _int1_isr                        
+       0C:  1866  _int8_isr                        
+       0C:  186E  _int9_isr                        
+       0C:  1A67  _int2_isr                        
+       0C:  1AFD  _int11_isr                       
+       0C:  1BD4  _int5_isr                        
+       0C:  1E10  _int10_isr                       
+       0C:  1E57  _int7_isr                        
+       0C:  28AD  _int6_isr                        
+       0C:  2914  _int12_isr                       
+       0C:  29AF  _int4_isr                        
+       0C:  2AF1  _uart0_isr                       
+       0C:  2B07  _valid_coe_tbl                   
+       0C:  2B12  __sdcc_external_startup          
+       0C:  2B16  _main                            
+       0C:  2DF3  _phase_control_func              
+       0C:  2E07  _phase_control_func_0            
+       0C:  2FA8  _set_edge_dly                    
+       0C:  30DA  _cdr_phase_update                
+       0C:  3196  _move_eom_phase                  
+       0C:  3220  _sel_sdge_dly_tb2                
+       0C:  3223  _sel_sdge_dly_tb3                
+       0C:  3226  _rx_train                        
+       0C:  32DB  _rx_train_dummy                  
+ASxxxx Linker V02.00 + NoICE + sdld,  page 57.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CSEG                               0000   7CAE =  31918. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  32E4  _rx_ffe_train                    
+       0C:  32E9  _set_train                       
+       0C:  334C  _RX_FFE_Comparision              
+       0C:  345D  _ffe_res2_adjust                 
+       0C:  3525  _rx_ffe_set_c_tb                 
+       0C:  3565  _rx_ffe_set_r_tb                 
+       0C:  35A5  _rx_ffe_set_r_pcie_tb            
+       0C:  35B1  _SpeedChange                     
+       0C:  38F4  _sata_speedchange                
+       0C:  3986  _loadspeedtbl_pll                
+       0C:  3D59  _loadspeedtbl_ringpll            
+       0C:  4230  _get_gen_memory_index            
+       0C:  4341  _loadspeedtbl_gen                
+       0C:  4FE6  _loadSpeedtbl                    
+       0C:  502E  _loadSpdtbl_4_fcnt               
+       0C:  507D  _ringloadSpdtbl_4_fcnt           
+       0C:  5101  _link_train_complete             
+       0C:  5163  _auto_train_complete             
+       0C:  51EA  _TRX_Train                       
+       0C:  5417  _trx_train_one_time              
+       0C:  544E  _trx_train_init                  
+       0C:  5795  _trx_train_control               
+       0C:  57FB  _update_dfe_res                  
+       0C:  5A7D  _trx_train_end                   
+       0C:  5BB0  _gain_train                      
+       0C:  5D77  _update_opt_trx_ffe              
+       0C:  5DC4  _dfe_cdr_phase_opt               
+       0C:  5E46  _train_status_reset              
+       0C:  6002  _opt2train                       
+       0C:  6054  _train2opt                       
+       0C:  60A4  _Set_Rx_FFE                      
+       0C:  618D  _save_train                      
+       0C:  643A  _restore_train                   
+       0C:  669A  _sq_auto_train_enable            
+       0C:  66C3  _sq_wait                         
+       0C:  66E1  _tx_train                        
+       0C:  6702  _tx_train_initial                
+       0C:  670E  _tx_train_end                    
+       0C:  6714  _tx_g0_train                     
+       0C:  6811  _tx_gn1_train                    
+       0C:  6898  _tx_g1_train                     
+       0C:  6921  _g1n1_maxf0t                     
+       0C:  6C46  _g1n1_midpoint                   
+       0C:  71DD  _compare_g0                      
+       0C:  73DC  _compare_g1n1                    
+       0C:  7785  _tx_train_dummy                  
+       0C:  77A2  _tx_reset                        
+       0C:  77D7  _update_g0                       
+       0C:  7887  _update_gn1                      
+       0C:  798B  _update_g1                       
+       0C:  7A8F  _train_if_init                   
+ASxxxx Linker V02.00 + NoICE + sdld,  page 58.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CSEG                               0000   7CAE =  31918. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  7AE4  _set_train_comp                  
+       0C:  7AFA  _set_remote_tx_pam2              
+       0C:  7BE7  _set_remote_tx                   
+       0C:  7C25  _tx_train_control                
+       0C:  7C60  _tx_ffe_train                    
+       0C:  7C99  __divuint                        
+       0C:  7CA3  __divint                         
+       0C:  7CCA  __gptrput                        
+       0C:  7CE3  __mulint                         
+       0C:  7CE3  __mulint_dummy                   
+       0C:  7D05  __divslong                       
+       0C:  7D5B  __divulong                       
+       0C:  7D61  __divlong                        
+       0C:  7DC8  __gptrget                        
+       0C:  7DE4  __mullong                        
+       0C:  7DE4  __mullong_dummy                  
+       0C:  7E54  __divsint                        
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 59.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+BANK1                              18000   6C9F =  27807. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  18039  _find_align90_lock               
+       0C:  1822C  _rxalign90_cal                   
+       0C:  183A5  _align90_update                  
+       0C:  183FD  _pattern_tb                      
+       0C:  1840D  _pattern_tb_mask                 
+       0C:  1841D  _gray2bi                         
+       0C:  18425  _apta_l_r_error_check            
+       0C:  18561  _apta_txtrain                    
+       0C:  18683  _apta_local_ctrl_tb              
+       0C:  1869F  _apta_local_ctrl_sim_tb          
+       0C:  186A7  _Calibration                     
+       0C:  18F16  _Cal_Cont                        
+       0C:  1922D  _phy_check_lane                  
+       0C:  19249  _mcu_align_0                     
+       0C:  192A1  _all_cal_ext                     
+       0C:  19457  _clear_normal_mode_cal_en        
+       0C:  19568  _cdr_dfe_scheme                  
+       0C:  19D1D  _dfe_load_all                    
+       0C:  19D62  _get_ec_voltage                  
+       0C:  19E32  _cdr_dfe_init                    
+       0C:  19E82  _DFE_Oncewhile_Adapt             
+       0C:  19F66  _RxFFE_ACCap                     
+       0C:  19FAD  _dfe_adaptation                  
+       0C:  1A051  _pre_calculation                 
+       0C:  1A548  _DFE_Final_Calculation           
+       0C:  1AAF7  _level_ffe                       
+       0C:  1AB55  _Check_F0d                       
+       0C:  1ABFC  _dfe_res_f0_sumFtap              
+       0C:  1AC00  _dfe_res_f1_sumFtap              
+       0C:  1AC04  _dfe_res_f2_sumFtap              
+       0C:  1AC06  _dfe_res_f3_sumFtap              
+       0C:  1AC08  _dfe_res_f4_sumFtap              
+       0C:  1AC0A  _dfe_res_f567_sumFtap            
+       0C:  1AC0C  _dll_cal                         
+       0C:  1AC5A  _get_vref_rxdll_sel              
+       0C:  1ADAD  _dll_vdda_cal                    
+       0C:  1AE72  _dll_eom_vdda_cal                
+       0C:  1B06E  _sync_status_lane_en             
+       0C:  1B08A  _sync_status_lane                
+       0C:  1B0A6  _master_sync_request             
+       0C:  1B0D4  _master_sync_clean               
+       0C:  1B101  _slave_sync_wait                 
+       0C:  1B14B  _check_master_phy_status         
+       0C:  1B1ED  _get_offset_number               
+       0C:  1B1FE  _Phase_Adaptation                
+       0C:  1B2AF  _Init_Phase_Adapt                
+       0C:  1B382  _EOM_Clock_Alignment             
+       0C:  1B55A  _Data_EOM_Align90_Adapt_EyeWidthM
+       0C:  1B866  _Data_Path_DFE_Adapt             
+       0C:  1B8C7  _EOM_clock_DFE_Adapt             
+ASxxxx Linker V02.00 + NoICE + sdld,  page 60.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+BANK1                              18000   6C9F =  27807. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  1B904  _F0d_measurement                 
+       0C:  1B946  _EOM_clock_analog_align          
+       0C:  1B9D9  _cdr_phase_opt                   
+       0C:  1BA58  _cdr_phase_opt_init              
+       0C:  1BADD  _cdr_phase_maxf0p                
+       0C:  1BC4F  _cdr_phase_midpoint              
+       0C:  1BF0C  _cdr_phase_opt_final_processing  
+       0C:  1BF99  _calculatef0p                    
+       0C:  1BFB2  _advanced_clk_align              
+       0C:  1C2A5  _dfe_adapt_align                 
+       0C:  1C2C8  _clear_xdata                     
+       0C:  1C362  _init_xdata                      
+       0C:  1C4C3  _init_irq                        
+       0C:  1C627  _init_reg                        
+       0C:  1C94D  _reset_pwr_reg                   
+       0C:  1CBA7  _set_timer_cnt                   
+       0C:  1CCC4  _refclk_tb                       
+       0C:  1CCCC  _pll_cal                         
+       0C:  1CDDF  _pll_fast_cal                    
+       0C:  1CE81  _spdchg_pll_fast_cal             
+       0C:  1CEE0  _PowerUp_Seq                     
+       0C:  1D1E5  _pu_pll_on                       
+       0C:  1D2D3  _pu_pll_off                      
+       0C:  1D37F  _DTL_DTX_DFE_clkoff_reset_0      
+       0C:  1D428  _DTL_DTX_DFE_clkoff_reset_1      
+       0C:  1D4AC  _DTL_DFE_clkoff_reset_1          
+       0C:  1D4D9  _Power_Slumber                   
+       0C:  1D563  _Power_Slumber_Wakeup            
+       0C:  1D769  _Power_Patial_Slumber            
+       0C:  1D82D  _ring_pll_cal                    
+       0C:  1DF79  _ring_pll_cont                   
+       0C:  1E06C  _ring_pll_fast_cal               
+       0C:  1E467  _RX_Init                         
+       0C:  1E5A8  _pre_normal_process              
+       0C:  1E5FE  _frame_marker_ready              
+       0C:  1E61A  _request_local_status            
+       0C:  1E698  _remote_error_check              
+       0C:  1E855  _request_local_ctrl              
+       0C:  1E8FB  _get_tx_status                   
+       0C:  1E9CC  _Send_ctrl_to_tx                 
+       0C:  1EB89  _trainif_init                    
+       0C:  1EBE1  _txtrain_force_restart           
+ASxxxx Linker V02.00 + NoICE + sdld,  page 61.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+BANK2                              28000   6E8E =  28302. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  28000  _align90_comp_cal                
+       0C:  28135  _align90_read_pd                 
+       0C:  28150  _align90_cal_update              
+       0C:  281A6  _get_dac_inc                     
+       0C:  2824D  _get_dac_dec                     
+       0C:  282D7  _load_cal_data_all               
+       0C:  28642  _load_cal_data_dll               
+       0C:  28761  _ringpll_save                    
+       0C:  287D4  _ringpll_load                    
+       0C:  2885E  _ringpll_dac_fine_output         
+       0C:  2888E  _maxu32                          
+       0C:  288CA  _check_eye                       
+       0C:  28B12  _set_esm_voltage                 
+       0C:  28B97  _dfe_load_type                   
+       0C:  28CA5  _dfe_save                        
+       0C:  28CCF  _cds_save                        
+       0C:  28F69  _cds_load_f0                     
+       0C:  290A8  _set_ctle_accap                  
+       0C:  290F9  _enable_all_tap_adapt            
+       0C:  29154  _dfe_hardware_cont_stop          
+       0C:  29189  _dfe_hardware_cont_run           
+       0C:  29244  _set_slicer_data_sampler_adapt   
+       0C:  2927F  _cal_half_code                   
+       0C:  29354  _dfe_fsm                         
+       0C:  295F1  _dc_load                         
+       0C:  296D8  _set_dfe_fbmd                    
+       0C:  2973B  _set_ph_mode                     
+       0C:  297BC  _txdcc_clk_toggle                
+       0C:  297E5  _txdcc_cal                       
+       0C:  29BA5  _txdcc_pdiv_cal                  
+       0C:  29EAE  _rxdcc_clk_toggle                
+       0C:  29F09  _rxdcc_dll_cal                   
+       0C:  2A25F  _rxdcc_data_cal                  
+       0C:  2A628  _rxdcc_eom_cal                   
+       0C:  2AA4D  _dll_comp_cal                    
+       0C:  2AB34  _dll_gm_cal                      
+       0C:  2AC95  _dll_vdda_cal_loop               
+       0C:  2ADDA  _set_sellv_rxdll_ch              
+       0C:  2AE0F  _get_sellv_rxdll_ch              
+       0C:  2AE41  _dll_eom_gm_cal                  
+       0C:  2AFA5  _set_sellv_rxeomdll_ch           
+       0C:  2AFDA  _get_sellv_rxeomdll_ch           
+       0C:  2B00C  _eom_align_cal                   
+       0C:  2B379  _eom_comp_out_rd                 
+       0C:  2B392  _toggle_impcal_out_req           
+       0C:  2B3D7  _tximp_cal                       
+       0C:  2BA8E  _rximp_cal                       
+       0C:  2BC12  _tximp_thermo_tb                 
+       0C:  2BC16  _delay01                         
+       0C:  2BD33  _sign_abs_up                     
+ASxxxx Linker V02.00 + NoICE + sdld,  page 62.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+BANK2                              28000   6E8E =  28302. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  2BD55  _sign_abs_dn                     
+       0C:  2BD79  _is_num_toggle_pat               
+       0C:  2BDCD  _is_toggle_pat                   
+       0C:  2BDF4  _set_test_pattern                
+       0C:  2BE6D  _recover_test_pattern            
+       0C:  2BEB9  _read_tsen                       
+       0C:  2BF3E  _u16div                          
+       0C:  2BF8D  _u16mul                          
+       0C:  2C005  _short_delay                     
+       0C:  2C00F  _short_delay_0                   
+       0C:  2C012  _max                             
+       0C:  2C03B  _min                             
+       0C:  2C064  _clamp                           
+       0C:  2C0AC  _clamp_u8                        
+       0C:  2C0E5  _clamp16                         
+       0C:  2C141  _abs                             
+       0C:  2C158  _abs16                           
+       0C:  2C178  _memcpy                          
+       0C:  2C1BE  _memcpy_prom_to_xdat             
+       0C:  2C20C  _memset0                         
+       0C:  2C250  _conv_thermo_2_bi                
+       0C:  2C263  _set_lcvco_dac                   
+       0C:  2C281  _pll_cal_loop                    
+       0C:  2C531  _pll_amp_cal                     
+       0C:  2C654  _pll_amp_dac_dec                 
+       0C:  2C68C  _pll_amp_dac_inc                 
+       0C:  2C6CA  _pll_amp_cal_cont                
+       0C:  2C7BD  _pllcal_load                     
+       0C:  2C87D  _check_pll_lock                  
+       0C:  2C89D  _pllcal_save                     
+       0C:  2C921  _temp_level_todic_rd             
+       0C:  2C938  _lccap_msb_thermo_tb             
+       0C:  2C93D  _plldcc_clk_toggle               
+       0C:  2C974  _plldcc_cal                      
+       0C:  2CC33  _pll_temp_force_idle             
+       0C:  2CC88  _pll_temp_jump_idle              
+       0C:  2CCF1  _pll_tempc_speed_adj             
+       0C:  2CDD6  _pll_temp_cal                    
+       0C:  2D17B  _load_init_temp_table            
+       0C:  2D286  _gray2bi_tb                      
+       0C:  2D296  _pu_ivref_on                     
+       0C:  2D2DD  _check_pu_ivref                  
+       0C:  2D2E7  _pu_rx_on                        
+       0C:  2D350  _pu_rx_off                       
+       0C:  2D373  _pu_ringpll_off                  
+       0C:  2D3AE  _pu_lcgpll_off                   
+       0C:  2D3E9  _master_pu_pll_off               
+       0C:  2D447  _pll_clk_ready_1                 
+       0C:  2D477  _pll_clk_ready_0                 
+       0C:  2D48F  _pll_clk_ready_ring_0            
+       0C:  2D4A7  _pll_clk_ready_ring_1            
+ASxxxx Linker V02.00 + NoICE + sdld,  page 63.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+BANK2                              28000   6E8E =  28302. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  2D4D7  _check_pll_clk_ready             
+       0C:  2D4F4  _check_pll_clk_ready_pcie        
+       0C:  2D50E  _pll_clk_ready_all_0             
+       0C:  2D53B  _proc_cal                        
+       0C:  2D83E  _sampler_sel                     
+       0C:  2D90D  _sampler_cal_sel                 
+       0C:  2D94E  _set_sampler                     
+       0C:  2D994  _sampler_cal                     
+       0C:  2DF87  _get_sampler                     
+       0C:  2DFB1  _Edge_Sampler_Update             
+       0C:  2E0A3  _save_sampler_edge               
+       0C:  2E0DC  _r_training_bound_tb             
+       0C:  2E0E0  _samper_cal_sel_tb               
+       0C:  2E0EA  _sampler_f1_pol_tb               
+       0C:  2E0F4  _squelch_cal                     
+       0C:  2E597  _set_txdata                      
+       0C:  2E5ED  _get_txdata                      
+       0C:  2E61C  _txdetect_cal                    
+       0C:  2E745  _vdd_cal                         
+       0C:  2E776  _set_vdd_cal                     
+       0C:  2E96D  _save_vdd_cal                    
+       0C:  2EA61  _get_vdd_cal                     
+       0C:  2EB40  _vdd_cal_calen                   
+       0C:  2EBF7  _vdd_cal_set_pass                
+       0C:  2EC84  _vdd_cal_sel                     
+       0C:  2ED49  _vdd_cal_op                      
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 64.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CONST                              0000   00D2 =    210. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  011D  _gt0_dfe_res                     
+       0C:  0121  _gt1_dfe_res                     
+       0C:  0134  _gt1_c                           
+       0C:  0148  _gt2_dfe_res                     
+       0C:  014F  _gt3_dfe_res                     
+       0C:  0165  _gt3_c                           
+       0C:  017C  _gt1_c_pcie                      
+       0C:  017F  _Res_sel_Table                   
+       0C:  018F  _Res_sel2_e_Table                
+       0C:  019F  _Res_sel2_o_Table                
+       0C:  01AF  _Cap_sel_Table                   
+       0C:  01BF  _Cap_sel2_e_Table                
+       0C:  01CF  _Cap_sel2_o_Table                
+       0C:  01DF  _Cap_sel2_Table                  
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 65.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+XISEG                              67BA   0000 =      0. bytes (REL,CON,XDATA)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 66.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+XINIT                              01EF   0000 =      0. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 67.
+
+Files Linked                              [ module(s) ]
+
+./serdes/align90_cal.rel                  [ 
+./serdes/align90_cal_rom.rel              [ 
+./serdes/apta.rel                         [ 
+./serdes/cal_rom.rel                      [ 
+./serdes/cal_top.rel                      [ 
+./serdes/cdr_dfe_scheme.rel               [ 
+./serdes/cds.rel                          [ 
+./serdes/cds_base.rel                     [ 
+./serdes/cli.rel                          [ 
+./serdes/cmd_if.rel                       [ 
+./serdes/cpu.rel                          [ 
+./serdes/dcc_cal.rel                      [ 
+./serdes/debug.rel                        [ 
+./serdes/dfe_adaptation.rel               [ 
+./serdes/dll_cal.rel                      [ 
+./serdes/dll_cal_rom.rel                  [ 
+./serdes/eom.rel                          [ 
+./serdes/eom_align_cal.rel                [ 
+./serdes/global.rel                       [ 
+./serdes/imp_cal.rel                      [ 
+./serdes/interrupt.rel                    [ 
+./serdes/lane_margin.rel                  [ 
+./serdes/main.rel                         [ 
+./serdes/mcu_sync.rel                     [ 
+./serdes/misc.rel                         [ 
+./serdes/misc_rom.rel                     [ 
+./serdes/ph_ctrl.rel                      [ 
+./serdes/phase_adaptation.rel             [ 
+./serdes/phase_train.rel                  [ 
+./serdes/phy_init.rel                     [ 
+./serdes/pll_cal.rel                      [ 
+./serdes/pll_cal_rom.rel                  [ 
+./serdes/pll_dcc_cal.rel                  [ 
+./serdes/pll_temp_cal.rel                 [ 
+./serdes/power.rel                        [ 
+./serdes/power_pcie.rel                   [ 
+./serdes/power_rom.rel                    [ 
+./serdes/power_sata.rel                   [ 
+./serdes/printf.rel                       [ 
+./serdes/process_cal.rel                  [ 
+./serdes/ring_pll_cal.rel                 [ 
+./serdes/rx_init.rel                      [ 
+./serdes/rx_train.rel                     [ 
+./serdes/sampler_cal.rel                  [ 
+./serdes/spd_ctrl.rel                     [ 
+./serdes/spdtbl_pmem.rel                  [ 
+./serdes/squelch_cal.rel                  [ 
+./serdes/train_if.rel                     [ 
+./serdes/trx_train.rel                    [ 
+./serdes/tx_lane_align.rel                [ 
+./serdes/tx_train.rel                     [ 
+./serdes/tx_train_if.rel                  [ 
+./serdes/tx_train_pcie.rel                [ 
+./serdes/tx_train_sas.rel                 [ 
+./serdes/txdetect_cal.rel                 [ 
+./serdes/uart.rel                         [ 
+./serdes/vdd_cal.rel                      [ 
+
+
+Libraries Linked                          [ object file ]
+
+/proj/caesys/bin/linux64-rh7.1/../../sha  [ _divuint.rel ]
+/proj/caesys/bin/linux64-rh7.1/../../sha  [ crtclear.rel ]
+/proj/caesys/bin/linux64-rh7.1/../../sha  [ crtbank.rel ]
+/proj/caesys/bin/linux64-rh7.1/../../sha  [ _gptrput.rel ]
+/proj/caesys/bin/linux64-rh7.1/../../sha  [ _mulint.rel ]
+/proj/caesys/bin/linux64-rh7.1/../../sha  [ _divslong.rel ]
+/proj/caesys/bin/linux64-rh7.1/../../sha  [ _divulong.rel ]
+/proj/caesys/bin/linux64-rh7.1/../../sha  [ _bp.rel ]
+/proj/caesys/bin/linux64-rh7.1/../../sha  [ crtstart.rel ]
+/proj/caesys/bin/linux64-rh7.1/../../sha  [ _gptrget.rel ]
+/proj/caesys/bin/linux64-rh7.1/../../sha  [ _mullong.rel ]
+/proj/caesys/bin/linux64-rh7.1/../../sha  [ _divsint.rel ]
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 68.
+
+User Base Address Definitions
+
+HOME = 0x0000
+DSEG = 0x0018
+XSEG = 0x6600
+PSEG = 0x6600
+ISEG = 0x0000
+BSEG = 0x0000
+CSEG=0x000000
+CONST=0x00000
+BANK1=0x018000
+BANK2=0x028000
+
+

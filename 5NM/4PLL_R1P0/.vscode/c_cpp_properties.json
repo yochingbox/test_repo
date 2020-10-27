@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/fw_repo/include/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "intelliSenseMode": "msvc-x64",
+            "cStandard": "c99",
+            "forcedInclude": [
+                "C:\\fw_repo\\include\\mcs51\\lint.h"
+            ]
+        }
+    ],
+    "version": 4
+}

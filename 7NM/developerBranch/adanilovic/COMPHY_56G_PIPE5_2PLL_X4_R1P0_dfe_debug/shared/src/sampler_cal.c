@@ -1,0 +1,250 @@
+/******************************************************************
+* 	        Marvell Semiconductor  
+*******************************************************************
+* \file sampler_cal.c
+* \purpose Sampler calibration
+* \History
+*	7/29/2019 Heejeong Ryu		Copied from 112G-A 
+*/
+#include "common.h"
+// Code banking configuration, do not remove
+#ifdef USE_BANKING
+#pragma codeseg BANK1
+#pragma constseg BANK1
+#endif
+
+/**
+ * \module Sampler Calibration
+ *
+ * \param 
+ *    <NONE> 
+ * \return
+ *    <NONE> 
+ * \note
+ *    Input:  VOFF_POS
+ *    Output: 
+*/
+
+#define OFST_RES 					reg_OFST_RES_LANE
+#define SMPLR_CAL_EN 				reg_SMPLR_CAL_EN_LANE
+#define SMPLR_ODD_TIMEOUT_STEPS		reg_SMPLR_D_TOP_O_CAL_TIMEOUT_STEPS_LANE_2_0
+#define SMPLR_EVEN_TIMEOUT_STEPS	reg_SMPLR_D_TOP_E_CAL_TIMEOUT_STEPS_LANE_2_0
+
+//#define TIMEOUT_SMPLR_CAL		1000
+
+void config_sampler_ext(uint8_t val) BANKING_CTRL {
+	if(BYPASS_DELAY>0) return;
+	reg_SMPLR_D_BOT_E_CAL_INDV_EXT_EN_LANE = val;
+	reg_SMPLR_D_BOT_O_CAL_INDV_EXT_EN_LANE = val;
+	reg_SMPLR_D_MID_E_CAL_INDV_EXT_EN_LANE = val;
+	reg_SMPLR_D_MID_O_CAL_INDV_EXT_EN_LANE = val;
+	reg_SMPLR_D_TOP_E_CAL_INDV_EXT_EN_LANE = val;
+	reg_SMPLR_D_TOP_O_CAL_INDV_EXT_EN_LANE = val;
+	reg_SMPLR_S_BOT_E_CAL_INDV_EXT_EN_LANE = val;
+	reg_SMPLR_S_BOT_O_CAL_INDV_EXT_EN_LANE = val;
+	reg_SMPLR_S_MID_E_CAL_INDV_EXT_EN_LANE = val;
+	reg_SMPLR_S_MID_O_CAL_INDV_EXT_EN_LANE = val;
+	reg_SMPLR_S_TOP_E_CAL_INDV_EXT_EN_LANE = val;
+	reg_SMPLR_S_TOP_O_CAL_INDV_EXT_EN_LANE = val;
+	reg_SMPLR_EDGE_E_CAL_INDV_EXT_EN_LANE  = val;
+	reg_SMPLR_EDGE_O_CAL_INDV_EXT_EN_LANE  = val;
+}
+
+
+void smplr_to_dfe_ofst(void) BANKING_CTRL {
+	//uint8_t mask_dc;
+
+	//mask_dc = (reg_DFE_DC_SIGN_XOR_LANE << 5) & 0x3f;
+
+	#ifdef _56G_5NM
+	reg_DFE_FEXTDC_D_BOT_E_LANE_6_0 = 0x40 ^ lnx_CAL_SMPLR_D_BOT_E_LANE_7_0;
+	reg_DFE_FEXTDC_D_MID_E_LANE_6_0 = 0x40 ^ lnx_CAL_SMPLR_D_MID_E_LANE_7_0;
+	reg_DFE_FEXTDC_D_TOP_E_LANE_6_0 = 0x40 ^ lnx_CAL_SMPLR_D_TOP_E_LANE_7_0;
+	reg_DFE_FEXTDC_S_BOT_E_LANE_6_0 = 0x40 ^ lnx_CAL_SMPLR_S_BOT_E_LANE_7_0;
+	reg_DFE_FEXTDC_S_MID_E_LANE_6_0 = 0x40 ^ lnx_CAL_SMPLR_S_MID_E_LANE_7_0;
+	reg_DFE_FEXTDC_S_TOP_E_LANE_6_0 = 0x40 ^ lnx_CAL_SMPLR_S_TOP_E_LANE_7_0;
+	reg_DFE_FEXTDC_E_E_LANE_6_0     = 0x40 ^ lnx_CAL_SMPLR_EDGE_E_LANE_7_0;
+
+	reg_DFE_FEXTDC_D_BOT_O_LANE_6_0 = 0x40 ^ lnx_CAL_SMPLR_D_BOT_O_LANE_7_0;
+	reg_DFE_FEXTDC_D_MID_O_LANE_6_0 = 0x40 ^ lnx_CAL_SMPLR_D_MID_O_LANE_7_0;
+	reg_DFE_FEXTDC_D_TOP_O_LANE_6_0 = 0x40 ^ lnx_CAL_SMPLR_S_TOP_O_LANE_7_0;
+	reg_DFE_FEXTDC_S_BOT_O_LANE_6_0 = 0x40 ^ lnx_CAL_SMPLR_S_BOT_O_LANE_7_0;
+	reg_DFE_FEXTDC_S_MID_O_LANE_6_0 = 0x40 ^ lnx_CAL_SMPLR_S_MID_O_LANE_7_0;
+	reg_DFE_FEXTDC_S_TOP_O_LANE_6_0 = 0x40 ^ lnx_CAL_SMPLR_D_TOP_O_LANE_7_0;
+	reg_DFE_FEXTDC_E_O_LANE_6_0     = 0x40 ^ lnx_CAL_SMPLR_EDGE_O_LANE_7_0;
+
+	#else 
+		
+	reg_DFE_FEXTDC_D_BOT_E_LANE_5_0 = 0x20 ^ lnx_CAL_SMPLR_D_BOT_E_LANE_7_0;
+	reg_DFE_FEXTDC_D_MID_E_LANE_5_0 = 0x20 ^ lnx_CAL_SMPLR_D_MID_E_LANE_7_0;
+	reg_DFE_FEXTDC_D_TOP_E_LANE_5_0 = 0x20 ^ lnx_CAL_SMPLR_D_TOP_E_LANE_7_0;
+	reg_DFE_FEXTDC_S_BOT_E_LANE_5_0 = 0x20 ^ lnx_CAL_SMPLR_S_BOT_E_LANE_7_0;
+	reg_DFE_FEXTDC_S_MID_E_LANE_5_0 = 0x20 ^ lnx_CAL_SMPLR_S_MID_E_LANE_7_0;
+	reg_DFE_FEXTDC_S_TOP_E_LANE_5_0 = 0x20 ^ lnx_CAL_SMPLR_S_TOP_E_LANE_7_0;
+	reg_DFE_FEXTDC_E_E_LANE_6_0     = 0x40 ^ lnx_CAL_SMPLR_EDGE_E_LANE_7_0;
+
+	reg_DFE_FEXTDC_D_BOT_O_LANE_5_0 = 0x20 ^ lnx_CAL_SMPLR_D_BOT_O_LANE_7_0;
+	reg_DFE_FEXTDC_D_MID_O_LANE_5_0 = 0x20 ^ lnx_CAL_SMPLR_D_MID_O_LANE_7_0;
+	reg_DFE_FEXTDC_D_TOP_O_LANE_5_0 = 0x20 ^ lnx_CAL_SMPLR_S_TOP_O_LANE_7_0;
+	reg_DFE_FEXTDC_S_BOT_O_LANE_5_0 = 0x20 ^ lnx_CAL_SMPLR_S_BOT_O_LANE_7_0;
+	reg_DFE_FEXTDC_S_MID_O_LANE_5_0 = 0x20 ^ lnx_CAL_SMPLR_S_MID_O_LANE_7_0;
+	reg_DFE_FEXTDC_S_TOP_O_LANE_5_0 = 0x20 ^ lnx_CAL_SMPLR_D_TOP_O_LANE_7_0;
+	reg_DFE_FEXTDC_E_O_LANE_6_0     = 0x40 ^ lnx_CAL_SMPLR_EDGE_O_LANE_7_0;
+
+	#endif		
+
+}
+
+void sampler_cal(void) BANKING_CTRL {
+	
+	PHY_STATUS =  ST_SAMPLER_CAL;
+	
+	if( cmx_SAMPLER_CAL_EXT_EN ) {
+		lnx_SAMPLER_CAL_DONE_LANE = 1;
+		return;
+	}	
+	
+	/*if(reg_DFE_CLK_OFF_LANE) reg_DFE_MCU_CLK_EN_LANE = 1;*/
+
+    reg_MCU_DEBUG7_LANE_7_0 = reg_DFE_CLK_OFF_LANE;
+    reg_MCU_DEBUG8_LANE_7_0 = reg_DFE_CLK_ON_LANE;
+    reg_MCU_DEBUG9_LANE_7_0 = reg_DFE_MCU_CLK_EN_LANE;
+
+	//odd
+	reg_SMPLR_D_TOP_O_CAL_BYPASS_EN_LANE = (reg_PU_SMPLR_D_O_LANE_2_0&0x4) == 0; //1;
+	reg_SMPLR_D_MID_O_CAL_BYPASS_EN_LANE = (reg_PU_SMPLR_D_O_LANE_2_0&0x2) == 0;
+	reg_SMPLR_D_BOT_O_CAL_BYPASS_EN_LANE = (reg_PU_SMPLR_D_O_LANE_2_0&0x1) == 0; //1;
+	reg_SMPLR_S_TOP_O_CAL_BYPASS_EN_LANE = (reg_PU_SMPLR_S_O_LANE_2_0&0x4) == 0; //1;
+	reg_SMPLR_S_MID_O_CAL_BYPASS_EN_LANE = (reg_PU_SMPLR_S_O_LANE_2_0&0x2) == 0;
+	reg_SMPLR_S_BOT_O_CAL_BYPASS_EN_LANE = (reg_PU_SMPLR_S_O_LANE_2_0&0x1) == 0; //1;
+	reg_SMPLR_EDGE_O_CAL_BYPASS_EN_LANE	= reg_PATH_DISABLE_EDGE_LANE;
+	
+	if (phy_mode == PCIE){
+		reg_SMPLR_D_TOP_O_CAL_TOGGLE_TIMES_LANE_2_0 = 3; //SMPLR_ODD_TOGGLE_TIMES[2:0]=3
+	}
+	else{
+		reg_SMPLR_D_TOP_O_CAL_TOGGLE_TIMES_LANE_2_0 = 4; //SMPLR_ODD_TOGGLE_TIMES[2:0]=4
+	}
+	
+	config_sampler_ext(0); //disable indv_ext_en
+	
+	SMPLR_CAL_EN = 1;
+	OFST_RES = 1;
+	SMPLR_ODD_TIMEOUT_STEPS = 0x06;
+	reg_SMPLR_ODD_TOP_START_LANE = 0;
+	reg_SMPLR_ODD_TOP_START_LANE = 1;
+	delay(Tus);
+	while (!reg_SMPLR_ODD_TOP_DONE_LANE);
+
+	reg_SMPLR_ODD_TOP_START_LANE = 0;
+	
+	if(reg_SMPLR_D_TOP_O_CAL_TIMEOUT_RD_LANE) {
+
+		reg_SMPLR_D_TOP_O_CAL_TOGGLE_TIMES_LANE_2_0 = 0; //Set SMPLR_ODD_TOGGLE_TIMES[2:0]=3’b000      
+		reg_SMPLR_ODD_TOP_START_LANE = 0;
+		reg_SMPLR_ODD_TOP_START_LANE = 1;
+		delay(Tus);
+		while (!reg_SMPLR_ODD_TOP_DONE_LANE);
+
+		reg_SMPLR_ODD_TOP_START_LANE = 0;
+	}	
+
+	if(reg_SMPLR_D_TOP_O_CAL_TIMEOUT_RD_LANE)  lnx_SAMPLER_CAL_PASS_LANE = 0;
+	else lnx_SAMPLER_CAL_PASS_LANE = 1;
+	
+	//smplr_to_dfe_ofst();
+	//config_sampler_ext(1);
+	
+	//-- even
+	reg_SMPLR_D_TOP_E_CAL_BYPASS_EN_LANE = (reg_PU_SMPLR_D_E_LANE_2_0&0x4) == 0; //1;
+	reg_SMPLR_D_MID_E_CAL_BYPASS_EN_LANE = (reg_PU_SMPLR_D_E_LANE_2_0&0x2) == 0;
+	reg_SMPLR_D_BOT_E_CAL_BYPASS_EN_LANE = (reg_PU_SMPLR_D_E_LANE_2_0&0x1) == 0; //1;
+	reg_SMPLR_S_TOP_E_CAL_BYPASS_EN_LANE = (reg_PU_SMPLR_S_E_LANE_2_0&0x4) == 0; //1;
+	reg_SMPLR_S_MID_E_CAL_BYPASS_EN_LANE = (reg_PU_SMPLR_S_E_LANE_2_0&0x2) == 0;
+	reg_SMPLR_S_BOT_E_CAL_BYPASS_EN_LANE = (reg_PU_SMPLR_S_E_LANE_2_0&0x1) == 0; //1;
+	reg_SMPLR_EDGE_E_CAL_BYPASS_EN_LANE	= reg_PATH_DISABLE_EDGE_LANE;
+
+	if (phy_mode == PCIE){
+		reg_SMPLR_D_TOP_E_CAL_TOGGLE_TIMES_LANE_2_0 = 3; //SMPLR_EVEN_TOGGLE_TIMES[2:0]=3
+	}
+	else{
+		reg_SMPLR_D_TOP_E_CAL_TOGGLE_TIMES_LANE_2_0 = 4; //SMPLR_EVEN_TOGGLE_TIMES[2:0]=4
+	}
+	OFST_RES = 1; 
+	SMPLR_EVEN_TIMEOUT_STEPS = 0x06;
+	reg_SMPLR_EVEN_TOP_START_LANE = 1;
+	delay(Tus);
+	while (!reg_SMPLR_EVEN_TOP_DONE_LANE);
+
+	reg_SMPLR_EVEN_TOP_START_LANE = 0;
+	
+	if(reg_SMPLR_D_TOP_E_CAL_TIMEOUT_RD_LANE) {
+		reg_SMPLR_D_TOP_E_CAL_TOGGLE_TIMES_LANE_2_0 = 0; //Set SMPLR_ODD_TOGGLE_TIMES[2:0]=3’b000      
+		reg_SMPLR_EVEN_TOP_START_LANE = 0;
+		reg_SMPLR_EVEN_TOP_START_LANE = 1;
+		delay(Tus);
+		while (!reg_SMPLR_EVEN_TOP_DONE_LANE);
+
+		reg_SMPLR_EVEN_TOP_START_LANE = 0;
+
+	}	
+	
+	if(reg_SMPLR_D_TOP_E_CAL_TIMEOUT_RD_LANE)  lnx_SAMPLER_CAL_PASS_LANE = 0;
+	
+	SMPLR_CAL_EN = 0;
+	
+	//smplr_to_dfe_ofst();
+
+    #ifdef _56G_5NM
+	lnx_CAL_SMPLR_D_BOT_E_LANE_7_0 = reg_SMPLR_D_BOT_E_CAL_RESULT_RD_LANE_6_0; 
+	lnx_CAL_SMPLR_D_MID_E_LANE_7_0 = reg_SMPLR_D_MID_E_CAL_RESULT_RD_LANE_6_0; 
+	lnx_CAL_SMPLR_D_TOP_E_LANE_7_0 = reg_SMPLR_D_TOP_E_CAL_RESULT_RD_LANE_6_0; 
+	lnx_CAL_SMPLR_S_BOT_E_LANE_7_0 = reg_SMPLR_S_BOT_E_CAL_RESULT_RD_LANE_6_0; 
+	lnx_CAL_SMPLR_S_MID_E_LANE_7_0 = reg_SMPLR_S_MID_E_CAL_RESULT_RD_LANE_6_0; 
+	lnx_CAL_SMPLR_S_TOP_E_LANE_7_0 = reg_SMPLR_S_TOP_E_CAL_RESULT_RD_LANE_6_0; 
+	lnx_CAL_SMPLR_EDGE_E_LANE_7_0 = (((reg_SMPLR_EDGE_E_CAL_RESULT_PN_SIGN_RD_LANE) << 6) \
+			| (reg_SMPLR_EDGE_E_CAL_RESULT_P_RD_LANE_4_0 + reg_SMPLR_EDGE_E_CAL_RESULT_N_RD_LANE_4_0));
+			
+	lnx_CAL_SMPLR_D_BOT_O_LANE_7_0 = reg_SMPLR_D_BOT_O_CAL_RESULT_RD_LANE_6_0; 
+	lnx_CAL_SMPLR_D_MID_O_LANE_7_0 = reg_SMPLR_D_MID_O_CAL_RESULT_RD_LANE_6_0; 
+	lnx_CAL_SMPLR_S_TOP_O_LANE_7_0 = reg_SMPLR_D_TOP_O_CAL_RESULT_RD_LANE_6_0; 
+	lnx_CAL_SMPLR_S_BOT_O_LANE_7_0 = reg_SMPLR_S_BOT_O_CAL_RESULT_RD_LANE_6_0; 
+	lnx_CAL_SMPLR_S_MID_O_LANE_7_0 = reg_SMPLR_S_MID_O_CAL_RESULT_RD_LANE_6_0; 
+	lnx_CAL_SMPLR_D_TOP_O_LANE_7_0 = reg_SMPLR_S_TOP_O_CAL_RESULT_RD_LANE_6_0;
+	lnx_CAL_SMPLR_EDGE_O_LANE_7_0 = (((reg_SMPLR_EDGE_O_CAL_RESULT_PN_SIGN_RD_LANE) << 6) \
+			| (reg_SMPLR_EDGE_O_CAL_RESULT_P_RD_LANE_4_0 + reg_SMPLR_EDGE_O_CAL_RESULT_N_RD_LANE_4_0));     	
+    #else // #ifdef _56G_5NM
+	lnx_CAL_SMPLR_D_BOT_E_LANE_7_0 = reg_SMPLR_D_BOT_E_CAL_RESULT_RD_LANE_5_0; 
+	lnx_CAL_SMPLR_D_MID_E_LANE_7_0 = reg_SMPLR_D_MID_E_CAL_RESULT_RD_LANE_5_0; 
+	lnx_CAL_SMPLR_D_TOP_E_LANE_7_0 = reg_SMPLR_D_TOP_E_CAL_RESULT_RD_LANE_5_0; 
+	lnx_CAL_SMPLR_S_BOT_E_LANE_7_0 = reg_SMPLR_S_BOT_E_CAL_RESULT_RD_LANE_5_0; 
+	lnx_CAL_SMPLR_S_MID_E_LANE_7_0 = reg_SMPLR_S_MID_E_CAL_RESULT_RD_LANE_5_0; 
+	lnx_CAL_SMPLR_S_TOP_E_LANE_7_0 = reg_SMPLR_S_TOP_E_CAL_RESULT_RD_LANE_5_0; 
+	lnx_CAL_SMPLR_EDGE_E_LANE_7_0 = (((reg_SMPLR_EDGE_E_CAL_RESULT_PN_SIGN_RD_LANE) << 6) \
+			| (reg_SMPLR_EDGE_E_CAL_RESULT_P_RD_LANE_4_0 + reg_SMPLR_EDGE_E_CAL_RESULT_N_RD_LANE_4_0));
+			
+	lnx_CAL_SMPLR_D_BOT_O_LANE_7_0 = reg_SMPLR_D_BOT_O_CAL_RESULT_RD_LANE_5_0; 
+	lnx_CAL_SMPLR_D_MID_O_LANE_7_0 = reg_SMPLR_D_MID_O_CAL_RESULT_RD_LANE_5_0; 
+	lnx_CAL_SMPLR_S_TOP_O_LANE_7_0 = reg_SMPLR_D_TOP_O_CAL_RESULT_RD_LANE_5_0; 
+	lnx_CAL_SMPLR_S_BOT_O_LANE_7_0 = reg_SMPLR_S_BOT_O_CAL_RESULT_RD_LANE_5_0; 
+	lnx_CAL_SMPLR_S_MID_O_LANE_7_0 = reg_SMPLR_S_MID_O_CAL_RESULT_RD_LANE_5_0; 
+	lnx_CAL_SMPLR_D_TOP_O_LANE_7_0 = reg_SMPLR_S_TOP_O_CAL_RESULT_RD_LANE_5_0;
+	lnx_CAL_SMPLR_EDGE_O_LANE_7_0 = (((reg_SMPLR_EDGE_O_CAL_RESULT_PN_SIGN_RD_LANE) << 6) \
+			| (reg_SMPLR_EDGE_O_CAL_RESULT_P_RD_LANE_4_0 + reg_SMPLR_EDGE_O_CAL_RESULT_N_RD_LANE_4_0));     	
+    #endif // #else // #ifdef _56G_5NM
+
+	/*reg_DFE_MCU_CLK_EN_LANE = 0;*/
+	
+	lnx_SAMPLER_CAL_DONE_LANE = 1;
+
+	smplr_to_dfe_ofst();
+	if(reg_RXSPEED_DIV_LANE_2_0 < 6)
+		config_sampler_ext(1);
+	else
+		config_sampler_ext(0);
+	
+    reg_MCU_DEBUGA_LANE_7_0 = reg_DFE_CLK_OFF_LANE;
+    reg_MCU_DEBUGB_LANE_7_0 = reg_DFE_CLK_ON_LANE;
+    reg_MCU_DEBUGC_LANE_7_0 = reg_DFE_MCU_CLK_EN_LANE;
+}
+

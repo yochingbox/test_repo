@@ -1,0 +1,269 @@
+//*********************************************************************
+//	    COMPHY_28G_PIPE4_RPLL Firmware Change History			
+//
+//   Copyright (c) 2016 Marvell Semiconductor, Inc. All rights reserved
+//*********************************************************************
+//*********************************************************************
+10/14/2020 Chun-Kang Chen 0.12.12.7 (be careful on the bank0/1 usage) 
+  1. Add the link train back
+  Who request - Fuqiang
+  Why - SERDES support link train
+  What - link train
+  Test - It is verified by DV team.
+9/30/2020 Chun-Kang Chen 0.12.12.6 (be careful on the bank0/1 usage) 
+  1. SOC access for TX_GN1_MIDPOINT registers
+  Who request - Chun-Kang Chen
+  Why - same setting as Fabrico requested from Fang
+  What - TX_GN1_MIDPOINT registers
+9/28/2020 Chun-Kang Chen 0.12.12.5 (be careful on the bank0/1 usage) 
+  1. Code clean up and code alignment
+  Who requested - Chun-Kang Chen
+  Why - easy to read 
+  What - code clean up
+  2. Change TrxTrain complete sequence ported from Fabrico
+  Who requested - Kuang-Yu requested to put on Fabrico. Heejeong agrees to put it to AC5X
+  Why - Fix trx train stuck issue
+  What - trx train complete sequence
+  3. Remove lc pu pll turn on code
+  Who requested - Chun-Kang Chen
+  Why - no necessary to do to save code space
+  What - lc pu pll turn on 
+9/22/2020 Bing Bai 0.12.12.4
+  - ceproject-1654, modify calibration algorithm for IR drop issue: sas/serdes mode PLL_SPEED_RING +3
+8/18/2020 Chun-Kang Chen 0.12.12.3 (be careful on the bank0/1 usage) 
+  - 0.12.13.0 is not released so keep 0.12.12.3
+  - ECC enable IPCE_COMPHY-2023
+  - update dat_cks.pl for 4K xdata
+7/20/2020 Chun-Kang Chen 0.12.13.0 ===== Formal release ====================
+7/18/2020 Chun-Kang Chen 0.12.12.2
+  - Remove incorrect reseting PLL READY signal
+7/16/2020 Chun-Kang Chen 0.12.12.1
+  - Fix failing swtiching from 20.625G LCPLL to 20.625G RPLL because of same pll rate
+7/10/2020 Chun-Kang Chen 0.12.12.0 ===== Formal release ====================
+7/9/2020 Chun-Kang Chen 0.12.11.33
+  - Changed ANA_RSVD9 control:  
+        Rx rates               ANA_RSVD9[7]  ANA_RSVD9[0]    ANA_RSVD9[3]
+        2.5G/3G/3.125G/2.578125G    1              0               1         : NO 3G case for serdes
+        Other rates          RX_SPEED_DIV[1]    RX_SPEED_DIV[0]    0
+  - latest settings from Fabrico compliance on midpoint_large/small_thres_k_lane
+  - update speed table 
+  - fix SAS train from Elnath - CEAMSDV-686
+6/22/2020 Chun-Kang Chen 0.12.11.32
+  - Fix calibration sync up code
+6/9/2020 Chun-Kang Chen 0.12.11.31
+  - Apply analog fix on sampler voltage regulator for 3.125G 2.5G 2.57G
+5/18/2020 Chun-Kang Chen 0.12.11.30
+  - Fix wrong index in Calibration function
+  - enable tx/rx imp calibration at common MCU
+  - Sync changes from RPLL X2
+  - Code optimization
+5/1/2020 Chun-Kang Chen same as previous(the code hasn't been enabled)
+  - Sync bench regression code from 7121. Since the silicon is not back, the code is not enabled.
+4/13/2020 Chun-Kang Chen 0.12.11.29
+  - reverted back remote_*_int_en recover at train abort
+4/8/2020 Chun-Kang Chen 0.12.11.28 
+  - Fix missing new function prototype
+4/7/2020 Chun-Kang Chen 0.12.11.27 (sync up with RPLL X2 r6244)
+  - Avoid using the result if FBC CNT timeout 
+3/13/2020 Chun-Kang Chen 0.12.11.26 (sync up with RPLL X2 r6067 6131)
+  - recovered INT7_REMOTE_CTRL/SATUS_VALID_INT_EN_LANE=1 when mcu_reset
+  - updated frame unlock timeout initial check 
+  - added TX_TRAIN_END_PATTERN_DIS_LANE control 
+  - added DIS_SPEED_CHANGE_TX_IDLE_LANE control
+3/12/2020 Chun-Kang Chen 0.12.11.25 (sync up with RPLL X2 r5919)
+  - updated EOM draw for 25G debug
+  - enabled waiting xdat*_end
+  - ceproject-1708 FW: Updated UI alignment sequence for 1.25G/2.5G EOM as a workaround for analog PI alignment limitation
+  - ceproject-1654 FW: Changed the setting of vddvco_vth_12nm_sel to 1.
+  - ceproject-2052 FW: Fixed PLL continuous calibrations work only after toggling RX_INIT
+3/11/2020 Chun-Kang Chen 0.12.11.24 (sync up with RPLL X2 r5898)
+  - added rxffe, align90, dfe_res to default value when speed change
+3/8/2020 Chun-Kang Chen 0.12.11.23
+  - fixed CEAMSDV-870. train enable only short time and power down. (MCU ignored the falling edge train enable to revert back the sel bits because of power down reset)
+3/8/2020 Chun-Kang Chen 0.12.11.22 (sync up with RPLL X2 r5889)
+  - fixed speed change using RINGPLL
+  - added pll lock check during speed change
+  - applied pll cont calibation sequence after speed change
+  - added train failure indicator
+         0x60a0[5]  RX_TRAIN_FAIL_INT_LANE
+         0x60a4[31] RX_TRAIN_COMPLETE_INT_LANE 
+         0x60cc[21] TX_TRAIN_TIMEOUT_LANE
+         0x60cc[22] TX_TRAIN_FRAME_UNLOCK_FAILED_TIMEOUT_INT_LANE
+  - disabled Tx_train_failed for frame unlock timeout happen to match with Fabrico A0
+       * SOC may check by TX_TRAIN_FRAME_UNLOCK_FAILED_TIMEOUT_INT_LANE value
+  - fixed dfe freeze after trxtrain
+  - fixed test pattern change after speed change with PT_EN=1   
+  - Move eom.c to BANK1 to avoid BANK0 usage over 100%
+  - Add all missing BANK assignment 
+3/4/2020 Chun-Kang Chen 0.12.11.21 (sync up with RPLL X2 r5858)
+  - Improve LCPLL & RingPLL calibration relationship independent
+  - Added more train indicator for train failure
+  - added EOM exit to STR_NORMAL, improved EOM exit to normal tracking
+3/3/2020 Chun-Kang Chen 0.12.11.20
+  - Not turn off LC PLL when in slumber mode because there could be some other lanes using it. CEANSDV-854
+3/2/2020 Chun-Kang Chen 0.12.11.19
+  - fix PLL not ready because of uninitialized slave_phy_on 
+  - fix missing semicolon on while
+2/27/2020 Chun-Kang Chen 0.12.11.18
+  - Use cmn CMU to do one-time calibration sync
+  - sync up changes from RPLL X2
+2/20/2020 Chun-Kang Chen 0.12.11.17
+  - Modify the correct way to assign master MCU
+  - Add TRAIN_SIM_EN skip in Phase_Adaption 
+  - Assert rx_init_done after all rx_init things are done
+2/18/2020 Chun-Kang Chen 0.12.11.16
+  - Fix rx_init_done de-assert inproperly CEAMSDV-844
+  - Avoid double assigning to calibration stage while slumber mode speed change
+2/14/2020 Chun-Kang Chen 0.12.11.15
+  - Update speed table
+2/13/2020 Marc Yu 0.12.11.14
+  - Fixed rx_init_done assertion issue
+  - https://essjira.marvell.com/browse/CEAMSDV-840
+2/12/2020 Chun-Kang Chen 0.12.11.13
+  - Serdes code optimization to lower the BANK0 usage under 100%
+  - SOC request: revert RX/TX sel bits at  TX TRAIN COMPLETE LANE signal(Move much before SOC de-asserting train_en)
+2/11/2020 Chun-Kang Chen 0.12.11.12
+  - When train_sim_en, remove remote_control_int_signal in int7. It will avoid keep calling int7.
+  - When train_sim_en, set POL_LPNUM to 0 to reduce time to stop DFE before training.
+2/10/2020 Chun-Kang Chen 0.12.11.11
+  - Fix inproper macro usage
+2/3/2020 Chun-Kang Chen 0.12.11.10
+  - Enable LCPLL change on the fly
+  - Remove pll ready at the slumber mode stage to avoid user enable tx training
+  - Use individual lane LCPLL rate change registers in xdat_cmn
+1/27/2020 Chun-Kang Chen 0.12.11.9
+  - Fix slumber mode speed change
+1/15/2020 Chun-Kang Chen 0.12.11.8
+  - Port command interface from 112G A
+1/14/2020 Chun-Kang Chen 0.12.11.7 
+  - LCPLL change scratch.
+1/9/2020 Chun-Kang Chen 0.12.11.6
+  - Designer makes changes on speed table. 
+1/9/2020 Chun-Kang Chen 0.12.11.5
+  - Correct speed table accommodation
+  - Remove GEN_MAX for serdes
+1/7/2020 Chun-Kang Chen 0.12.11.4
+  - scratch for LCPLL rate change
+  - Ethernet_cfg to 3 bits
+1/6/2020 Chun-Kang Chen 0.12.11.3
+  - scratch for LCPLL rate change
+  - speed table update
+12/19/2019 Chun-Kang Chen 0.12.11.2
+  - change makefile because expanding xdat lane from 2K to 4K
+  - Ethernet CFG will have 4 options
+12/17/2019 Chun-Kang Chen 0.12.11.1
+  - resolve compiling errors for digital changes
+12/17/2019 Chun-Kang Chen 0.12.11.0
+  - unlink RPLL X2
+  - change from PIN_PHY_GEN_TX_RD_LANE_3_0 to 4_0
+12/12/2019 Chun-Kang Chen 0.12.10.2
+  - sync with to other RPLL projects
+12/4/2019 Chun-Kang Chen 0.12.10.1
+  - allow different lanes to power up at different timing
+08/29/2019 Chun-Kang Chen 0.12.10.0
+  - Fixed Bank keyword "bank ctrl"
+08/19/2019 Chun-Kang Chen 0.12.9.1
+  - Add macro, _28G_X4, for fixing issue that cannot run for X4 
+08/06/2019 Chun-Kang Chen 0.12.9.0
+  - The first version release to IPDOC
+  - Added new speed support as requested in jira IPCE_COMPHY-1458
+ 02/20/2019 Minh Tran 0.12.8.32
+  - Get ring_pll_cal simulation passed by using the cmx_PLL_CAL_RING_* registers
+ 12/10/2018 Minh Tran 0.12.8.31
+  - Keep the common LCPLL clock selection all the time
+  - Save Ring PLL Continuous Calibration results in lane xdata
+ 12/05/2018 Minh Tran 0.12.8.30
+  - Save Ring PLL Calibration results in lane xdata
+  - Fixed spd_chg timeout
+ 11/30/2018 Minh Tran 0.12.8.29
+  - Don't turn off LCPLL clock during speed change in bypass mode
+ 11/28/2018 Minh Tran 0.12.8.28
+  - Changed clock path reset to select LC PLL
+  - Generated the register header files from MIDAS
+ 11/13/2018 Minh Tran 0.12.8.27
+  - Built binaries from current source code
+ 10/26/2018 Minh Tran 0.12.8.26
+  - Sync up latest 32G common code changes
+  - Clean up none RPLL code to compile
+ 9/07/2018 Minh Tran 0.12.8.25
+  - CESD-373: Changing the SERDES speed to use LC PLL independently can cause simulation hang
+  - Updated Sharepoint Midas registers
+ 8/29/2018 Minh Tran 0.12.8.24
+  - CESD-371: Uninitialize ANA RESET caused incorrect RX/TX clock frequencies
+      Init reg_ANA_TX_RESET_ANA_RPLL_LANE to 1 also.
+ 8/28/2018 Minh Tran 0.12.8.23
+  - CESD-371: Uninitialize ANA RESET caused incorrect RX/TX clock frequencies
+  - Initialized reg_RESET_ANA to 1 in the power on sequence to fix the problem of the clock not config properly.
+    Previous default value was 1 so the FW does not need to init the RESET_ANA reg, now the default is 0.
+  - Updated SharePoint Midas register files.
+ 8/24/2018 Minh Tran 0.12.8.22
+  - Fixed regression caused by previous change (typo)
+ 8/23/2018 Minh Tran 0.12.8.21
+  - Need to overwrite some of the speed table values before power on also.
+ 8/22/2018 Minh Tran 0.12.8.20
+  - Overwrite some speedtable values for SERDES mode as follow:
+    CMN LC - TX_CK_SEL_LANE = 0; RX_CK_SEL_LANE = 0
+    CMN RING - TX_CK_SEL_LANE = 1; RX_CK_SEL_LANE = 1 (PCIE only)
+    LANE RING - TX_CK_SEL_LANE = 1; RX_CK_SEL_LANE = 1 (SERDES && GEN<= 20.62500GHz)
+ 8/21/2018 Minh Tran 0.12.8.19
+  - Update FW with the latest RPLL common clock MUX table to support mix CMN LC + Lane Ring clock sources.
+ 8/21/2018 Heejeong Ryu
+  - CEAMSDV-223: update dual coefficient handling
+ 8/20/2018 Minh Tran 0.12.8.18
+  - Partial implement of CESD-349: SERDES mode to change speed freely for both lanes from 1.25, 3.125, 10.3125 and 25.78125 
+    - Supported new RPLL common clock MUX (28G_PIPE4_RPLL only) commit this first so China team can run simulation on new Ana model.
+ 8/16/2018 Minh Tran 0.12.8.17
+  - Update RPLL local files to compile with the 32G_X2 previous check in
+  - Updated mcu_lane and cmn_cmn header files from share point to support MCU interrupts
+  - Initial support for RPLL_X4 (need to add lane 2/3 cmn xdata regs for PCIe build)
+ 8/10/2018 Minh Tran 0.12.8.16
+  - Synced up xdata and speed table
+  - New binaries
+ 8/10/2018 Minh Tran 0.12.8.15
+  - Merged from 28G_PIPE4_X2 upto r2280
+ 8/09/2018 Minh Tran 0.12.8.15
+  - Merged from 28G_PIPE4_X2 upto r2249
+ 8/8/2018 Heejeong Ryu 0.12.8.14 
+  - fixed train error
+ 8/07/2018 Minh Tran 0.12.8.13
+  - Merged from 28G_PIPE4_X2 upto r2224
+ 7/24/2018 Minh Tran 0.12.8.12
+  - Removed local variables warning
+  - Merged with 16FFC_COMPHY_28G_PIPE4_X2 upto r2189
+ 7/23/2018 Minh Tran 0.12.8.11
+  - Added compiler option _LANE_RPLL and initial support of common RPLL
+ 7/20/2018 Minh Tran 0.12.8.10
+  - Clean up _28G_X2 compiler option
+  - CESD-337: clear the interrupt enable bits in the SW reset
+ 7/13/2018 Minh Tran 0.12.8.9
+  - Updated tx_lane header file from share point
+  - Fixed FW not taking rpll_lane out of reset properly, plus typo
+ 7/13/2018 X.Su
+  - CESD-302: Watch Dog Timer not enabled in all 28G PHY. (Applied change. No build)
+ 7/10/2018 Minh Tran 0.12.8.8
+  - Merged with 16FFC_COMPHY_28G_PIPE4_X2 upto r2107
+  - Fixed issues reported by Wei.
+	reg_ssc_step_125ppm_tx_ring_lane mapping
+	L1.1 entry latency exceeds spec (fixed from merge)
+ 7/10/2018 Minh Tran 0.12.8.7
+  - Fixed the tx alignment issue
+ 7/06/2018 Minh Tran 0.12.8.6
+  - Fixed the PCIe P1CLKREQ_WK hung issue
+ 7/06/2018 Minh Tran 0.12.8.5
+  - Sync up from X2 changes. Optimized fast calibration performance; changed "wait time" from 4us to 3us
+  - Updated RPLL remapped register reg_ANA_TX_PLL_LOCK_RING_RD_LANE
+ 7/05/2018 Minh Tran 0.12.8.4
+  - Fixed lane 1 (none master) load wrong data from Ring PLL speed table
+ 7/03/2018 Minh Tran 0.12.8.3
+    Updated to latest reg files from share point
+    Fixed lane 1 hung in calibration and more registers remapped changes
+    New RPLL binaries
+ 7/01/2018 Minh Tran 0.12.8.2
+  - Initial RPLL support 
+    New reg files from share point
+    New registers remapped with compiled code
+ 6/21/2018 X.Su 0.12.8.1
+  - Applied CESD-299 (PCIe link training issue) fix from 28G_PIPE4 FW.
+ 6/18/2018 X.Su 0.12.8.0
+  - First revision copied from 28G_PIPE4 R2.0 firmware with 2lane and shared folders
+//********************************************************************* 

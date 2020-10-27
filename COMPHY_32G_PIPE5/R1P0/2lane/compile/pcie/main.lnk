@@ -1,0 +1,83 @@
+-myux
+-i ./pcie/main.ihx
+-Y
+-a 0x0100
+-v 0x0200
+-w 0x1ffff
+-b HOME = 0x0000
+-b DSEG = 0x0018
+-b XSEG = 0x6600
+-b PSEG = 0x6600
+-b ISEG = 0x0000
+-b BSEG = 0x0000
+-bCSEG=0x000000
+-bCONST=0x00000
+-bBANK1=0x018000
+-bBANK2=0x028000
+-r
+-k /proj/caesys/bin/linux64-rh7.1/../../share/sdcc/lib/small-stack-auto
+-k /proj/caesys/share/sdcc/lib/small-stack-auto
+-l mcs51
+-l libsdcc
+-l libint
+-l liblong
+-l libfloat
+./pcie/align90_cal.rel
+./pcie/align90_cal_rom.rel
+./pcie/apta.rel
+./pcie/cal_rom.rel
+./pcie/cal_top.rel
+./pcie/cdr_dfe_scheme.rel
+./pcie/cds.rel
+./pcie/cds_base.rel
+./pcie/cli.rel
+./pcie/cmd_if.rel
+./pcie/cpu.rel
+./pcie/dcc_cal.rel
+./pcie/debug.rel
+./pcie/dfe_adaptation.rel
+./pcie/dll_cal.rel
+./pcie/dll_cal_rom.rel
+./pcie/eom.rel
+./pcie/eom_align_cal.rel
+./pcie/global.rel
+./pcie/imp_cal.rel
+./pcie/interrupt.rel
+./pcie/lane_margin.rel
+./pcie/main.rel
+./pcie/mcu_sync.rel
+./pcie/misc.rel
+./pcie/misc_rom.rel
+./pcie/ph_ctrl.rel
+./pcie/phase_adaptation.rel
+./pcie/phase_train.rel
+./pcie/phy_init.rel
+./pcie/pll_cal.rel
+./pcie/pll_cal_rom.rel
+./pcie/pll_dcc_cal.rel
+./pcie/pll_temp_cal.rel
+./pcie/power.rel
+./pcie/power_pcie.rel
+./pcie/power_rom.rel
+./pcie/power_sata.rel
+./pcie/printf.rel
+./pcie/process_cal.rel
+./pcie/ring_pll_cal.rel
+./pcie/rx_init.rel
+./pcie/rx_train.rel
+./pcie/sampler_cal.rel
+./pcie/spd_ctrl.rel
+./pcie/spdtbl_pmem.rel
+./pcie/squelch_cal.rel
+./pcie/train_if.rel
+./pcie/trx_train.rel
+./pcie/tx_lane_align.rel
+./pcie/tx_train.rel
+./pcie/tx_train_if.rel
+./pcie/tx_train_pcie.rel
+./pcie/tx_train_sas.rel
+./pcie/txdetect_cal.rel
+./pcie/uart.rel
+./pcie/vdd_cal.rel
+
+-e

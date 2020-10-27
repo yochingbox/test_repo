@@ -1,0 +1,4 @@
+PCIe Firmware RAM Checksum: 0x30326543
+SAS Firmware RAM Checksum: 0x072fcd40
+SerDes Firmware RAM Checksum: 0x072fcd40
+Firmware ROM Checksum: 0x3f42d9f8

@@ -1,0 +1,1 @@
+SdccMapFileAnalyzer main.map

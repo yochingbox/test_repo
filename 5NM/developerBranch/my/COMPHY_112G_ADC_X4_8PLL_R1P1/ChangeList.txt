@@ -1,0 +1,130 @@
+//*********************************************************************
+//	    COMPHY_112G_X4 Firmware Change History			
+//
+//   Copyright (c) 2019 Marvell Semiconductor, Inc. All rights reserved
+//*********************************************************************
+//Rule:
+// <date> <name> <revision#> <JIRA#> <CETask#> <SOC release info>
+// - summary of "what" change for "why" 
+//*********************************************************************
+08/25/2020 Marc Yu 0.0.0.46
+ - removed calibration framework because IPDOC auto-gen is currently not using the framework.
+08/19/2020 Xu Han 0.0.0.45
+ - moved drv_default_toggle from power.c to drv_rx_func_cfg.c
+08/19/2020 Marc Yu 0.0.0.44
+ - moved 16 calibration files from 4lane/src/ to shared/src/
+ - added compiler flag to these files for 1.0 and 1.1
+08/19/2020 Marc Yu 0.0.0.43
+ - one more place in power.c reg_PIN_MCU_FREQ_RD_15_0 only exists in 1.1 and after.
+ - added compiler switch
+08/19/2020 Marc Yu 0.0.0.42
+ - power.c reg_PIN_MCU_FREQ_RD_15_0 only exists in 1.1 and after.
+ - added compiler switch
+08/18/2020 Ka Kit ling 0.0.0.41
+ - Updated HW driver to match 5nm 56G
+08/17/2020 Kai Liu 0.0.0.40
+ - split init_reg() function into four sub_func
+ - load rx/tx lane cfg after loadspeedtbl_lc_pll
+ - update power.c spd_ctrl.c common.h
+08/12/2020 Marc Yu 0.0.0.39
+ - power.c: reg_PIN_MCU_FREQ_RD_15_0 cannot be accessed due to MIDAS error
+ - change access to reg_PIN_MCU_FREQ_RD_15_0 to reg_PIN_MCU_FREQ_RD_15_0_b0 and reg_PIN_MCU_FREQ_RD_15_0_b1
+08/10/2020 Bin Sheng 0.0.0.38
+ - updated power_control.c, reduced wait time when deassert RESET_CORE
+07/30/2020 Yung-Hung Chen 0.0.0.37
+ - updated drv_command_interface.c
+07/29/2020 Marc Yu 0.0.0.36
+ - updated soft reset handling in power.c 
+ - removed redundant interrupt handling in power.c
+ - removed wait for pu_pll in drv_pm_ctrl.c
+07/28/2020 Mo Yang 0.0.0.35
+ - update speed table (previous revision was wrong)
+07/28/2020 Mo Yang 0.0.0.34
+ - update speed table
+07/27/2020 Chun-Kang Chen 0.0.0.33
+ -Fix potential issue on wait for function
+07/23/2020 Lisa Wang 0.0.0.32
+ -Updated 2X clock select control in nt driver
+07/21/2020 Bin Sheng 0.0.0.31
+ -Updated ANA_T/RX_T/RXCLK_NT/4X_EN_LANE from PIN_T/RXDCLK_NT/4X_EN_RD_LANE
+07/17/2020 Lisa Wang 0.0.0.30
+ -Updated 2X clock select control
+ -pll_rate_sel moved from hw to xdat
+07/16/2020 Marc Yu 0.0.0.29
+ - https://ceproject.marvell.com/index.html#/task/2299/subtask/45968
+ - power.c, For 1.1 and above, Added code to handle reg_PIN_RESET_CORE_TX/RX_RD_LANE and ack at first time power-up
+ - run_test.pl -simulator irun -file_list flist_flat.v -test_case t_sft_rst -define SERDES_1P0625G,BIT32,156P25M,CHK_NT,CHK_4X,DUMP_ON
+07/13/2020 Lisa Wang 0.0.0.28
+ -header update
+07/09/2020 Mo Yang 0.0.0.27
+ - drv_spd_cfg_dec.c: program clock divider according to MCU frequency S-2214-2
+07/09/2020 marc yu 0.0.0.26
+ - cal_top.c, added reg_rx_adc_reset_lane toggle in simulation speed up
+07/09/2020 Lisa Wang 0.0.0.25
+ -Updated spd cfg driver to use remote in max configuration mode
+07/09/2020 Marc Yu 0.0.0.24
+ - power.c made lnx_REFCLK_FREQ_RD_LANE_15_0 assignment common to all
+07/08/2020 Marc Yu 0.0.0.23
+ - power.c https://ceproject.marvell.com/index.html#/task/2259, for 1.1 and above move timer/PWM ref clock to mcu clock
+ - power.c https://ceproject.marvell.com/index.html#/task/2292
+ 	reg_PIN_PU_PLL_RD_LANE0 to LANE3 are removed from RTL 1.1 and above for the purpose of reducing digital design complexity.
+	Therefore, firmware need to add new feature to mimick the functionalities of these signals.
+07/07/2020 Bin Sheng 0.0.0.22
+ - Split reg_pwron_seq_lane to reg_pwron_seq_tx_lane and reg_pwron_seq_rx_lane 
+07/06/2020 Nan Yang 0.0.0.21
+ - Added rx_rxclk_2x_div_ratio_lane[2:0] and rx_rxclk_4x_div_ratio_lane[2:0] in the speed table
+07/02/2020 Marc Yu
+ - Added compiler switch for code sharing between 1.1 and 1.0
+ - No binary change
+06/30/2020 Mo Yang 0.0.0.20
+ - Updated drv_nt_decoder_t/rx.c after using PIN to control t/rxclk_2x_sel
+06/26/2020 Jue Wang 0.0.0.19
+ - Fixed the issue that some function calls are skipped due to macro update to DRV_PWR_V2
+06/25/2020 Bin Sheng 0.0.0.18
+ - Added PIN_RESET_CORE_ACK_TX/RX function
+06/25/2020 Jue Wang 0.0.0.17
+ - Updated PM handling function to resolve regression PM case failure.
+06/23/2020 Mo Yang 0.0.0.16
+ - Updated tx_if_lane, rx_if_lane, tx_lane and rx_lane midas
+06/19/2020 Xu Han 0.0.0.15
+ - https://ceproject.marvell.com/index.html#/task/2249
+ - split PIN_REFCLK_SEL and PIN_REF_FREF_SEL to Tx and Rx
+06/19/2020 Mo Yang 0.0.0.14
+ - https://ceproject.marvell.com/index.html#/task/2250/subtask/44925
+ - Put MCU_FREQ in PIN
+06/11/2020 Marc Yu 0.0.0.13
+ - https://ceproject.marvell.com/index.html#/task/2254
+ - REFCLK_DIS is removed from design
+06/08/2020 Mo Yang 0.0.0.12
+ - Updated tx_if_lane and rx_if_lane midas
+06/04/2020 Jue Wang 0.0.0.11
+ - Gated reg_pwron_seq restoration pulse during TX only sequence with sq_detect_gated_en to avoid unintended SQ in rebundle mode
+ - Added timeout handling in PM wait_for function for rebundle mode.
+06/04/2020 Marc Yu 0.0.0.10
+ - T_128us delay overflows the counter, replaced with two 64us delays in misc.c
+ - https://ceproject.marvell.com/index.html#/task/2242
+06/04/2020 Chun-Kang Chen Chen 0.0.0.9
+ - Set external clk for timer
+05/21/2020 Yung-Hung Chen 0.0.0.8
+ - Updated drv_cmd_top.c and drv_command_interace.c
+05/20/2020 Jue Wang 0.0.0.7
+ - Added TX-only PM/SPD/RST handling branch for mini_scheduler.
+05/19/2020 Jue Wang 0.0.0.6
+ - Updated drv_tx_func_cfg for FIR latency bypass setting.
+ - Generated latest speedtable code.
+05/15/2020 Yung-Hung Chen 0.0.0.5
+ - Integrated command interface into scheduler.c
+ - Created drv_cmd_top.c and drv_cmd_misc.c and added in banking control
+05/11/2020 Jue Wang 0.0.0.4
+ - Updated PM/SPD conditions to close ISR clearing loop and solve JIRA ticket IPCE_COMPHY-1883.
+05/08/2020 Jue Wang 0.0.0.3
+ - Updated PM/SPD conditions to enter TRX combined function for SPD_CFG = 1 case
+05/05/2020 Mo Yang 0.0.0.2
+ - update midas ana_trx_cal_bot header file
+05/05/2020 Mo Yang 0.0.0.1
+ - update midas header file
+05/05/2020 Xu Han 0.0.0.0
+ - duplicate FW from V57 R1P0 revision
+ - update midas header and speed table for R1.1
+ - update FFE coe bit witdth for drv_eom
+ - add rx_eq_pam2_en control in drv_rx_func_cfg

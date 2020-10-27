@@ -1,0 +1,4214 @@
+;--------------------------------------------------------
+; File Created by SDCC : free open source ANSI-C Compiler
+; Version 3.0.0 #6037 (May 26 2011) (Linux)
+; This file was generated Thu Oct 18 21:21:47 2018
+;--------------------------------------------------------
+	.module ring_pll_cal
+	.optsdcc -mmcs51 --model-small
+	
+;--------------------------------------------------------
+; Public variables in this module
+;--------------------------------------------------------
+	.globl _TF2
+	.globl _TI
+	.globl _RI
+	.globl _EX12
+	.globl _EX11
+	.globl _EX10
+	.globl _EX9
+	.globl _EX8
+	.globl _ES1
+	.globl _PS1
+	.globl _EX6
+	.globl _EX5
+	.globl _EX4
+	.globl _EX3
+	.globl _EX2
+	.globl _EX7
+	.globl _EA
+	.globl _WDT
+	.globl _ET2
+	.globl _ES
+	.globl _ET1
+	.globl _EX1
+	.globl _ET0
+	.globl _EX0
+	.globl _TF1
+	.globl _TR1
+	.globl _TF0
+	.globl _TR0
+	.globl _IE1
+	.globl _IT1
+	.globl _IE0
+	.globl _IT0
+	.globl _P3_7
+	.globl _P3_6
+	.globl _P3_5
+	.globl _P3_4
+	.globl _P3_3
+	.globl _P3_2
+	.globl _P3_1
+	.globl _P3_0
+	.globl _P2_7
+	.globl _P2_6
+	.globl _P2_5
+	.globl _P2_4
+	.globl _P2_3
+	.globl _P2_2
+	.globl _P2_1
+	.globl _P2_0
+	.globl _P1_7
+	.globl _P1_6
+	.globl _P1_5
+	.globl _P1_4
+	.globl _P1_3
+	.globl _P1_2
+	.globl _P1_1
+	.globl _P1_0
+	.globl _P0_7
+	.globl _P0_6
+	.globl _P0_5
+	.globl _P0_4
+	.globl _P0_3
+	.globl _P0_2
+	.globl _P0_1
+	.globl _P0_0
+	.globl _DMAC
+	.globl _DMATA
+	.globl _DMASA
+	.globl _TMR2
+	.globl _TMR1
+	.globl _TMR0
+	.globl _SRST
+	.globl _B
+	.globl _EIE
+	.globl _ACC
+	.globl _ADCON
+	.globl _PSW
+	.globl _TH2
+	.globl _TL2
+	.globl _RCAP2H
+	.globl _RCAP2L
+	.globl _T2CON
+	.globl _CCEN
+	.globl _IRCON
+	.globl _S0RELH
+	.globl _IP1
+	.globl _IEN1
+	.globl _DMAM1
+	.globl _DMAM0
+	.globl _DMASEL
+	.globl _DMAC2
+	.globl _DMAC1
+	.globl _DMAC0
+	.globl _P3
+	.globl _S0RELL
+	.globl _IP0
+	.globl _IEN0
+	.globl _DMAT2
+	.globl _DMAT1
+	.globl _DMAT0
+	.globl _DMAS2
+	.globl _DMAS1
+	.globl _DMAS0
+	.globl _P2
+	.globl _IEN2
+	.globl _SBUF
+	.globl _SCON
+	.globl _PSBANK
+	.globl _DPS
+	.globl _P1
+	.globl _CKCON
+	.globl _TH1
+	.globl _TH0
+	.globl _TL1
+	.globl _TL0
+	.globl _TMOD
+	.globl _TCON
+	.globl _PCON
+	.globl _WDTREL
+	.globl _DPH
+	.globl _DPL
+	.globl _P0
+	.globl _sq_thrs_ratio_tb
+	.globl _train_save_tb
+	.globl _tx_tb
+	.globl _UPHY_ANAREG_REV_0
+	.globl _dfe_sm_save
+	.globl _dfe_sm_dc
+	.globl _dfe_sm
+	.globl _cds28
+	.globl _lnx_calx_align90_gm
+	.globl _lnx_calx_align90_dac
+	.globl _lnx_calx_align90_dummy_clk
+	.globl _lnx_calx_eom_dpher
+	.globl _lnx_calx_vdda_dll_eom_sel
+	.globl _lnx_calx_dll_eom_gmsel
+	.globl _lnx_calx_vdda_dll_sel
+	.globl _lnx_calx_dll_gmsel
+	.globl _lnx_calx_rxdcc_dll_hg
+	.globl _lnx_calx_rxdcc_dll
+	.globl _lnx_calx_txdcc_hg
+	.globl _lnx_calx_txdcc
+	.globl _lnx_calx_txdcc_pdiv_hg
+	.globl _lnx_calx_txdcc_pdiv
+	.globl _lnx_spdoft_tx_preset_index_lane
+	.globl _lnx_cal_sellv_rxeomclk
+	.globl _lnx_cal_sellv_rxsampler
+	.globl _lnx_cal_sellv_txpre
+	.globl _lnx_cal_sellv_rxdataclk
+	.globl _lnx_cal_sellv_txclk
+	.globl _lnx_cal_sellv_txdata
+	.globl _lnx_cal_align90_gm
+	.globl _lnx_cal_align90_dac
+	.globl _lnx_cal_align90_dummy_clk
+	.globl _lnx_cal_eom_dpher
+	.globl _lnx_cal_vdda_dll_eom_sel
+	.globl _lnx_cal_dll_eom_gmsel
+	.globl _lnx_cal_vdda_dll_sel
+	.globl _lnx_cal_dll_gmsel
+	.globl _lnx_cal_rxdcc_eom_hg
+	.globl _lnx_cal_rxdcc_eom
+	.globl _lnx_cal_rxdcc_data_hg
+	.globl _lnx_cal_rxdcc_data
+	.globl _lnx_cal_rxdcc_dll_hg
+	.globl _lnx_cal_rxdcc_dll
+	.globl _lnx_cal_txdcc_hg
+	.globl _lnx_cal_txdcc
+	.globl _lnx_cal_txdcc_pdiv_hg
+	.globl _lnx_cal_txdcc_pdiv
+	.globl _cmx_cal_sllp_dac_fine_ring
+	.globl _cmx_cal_pll_sllp_dac_coarse_ring
+	.globl _cmx_cal_pll_speed_ring
+	.globl _cmx_cal_plldcc
+	.globl _cmx_cal_lccap_lsb
+	.globl _cmx_cal_lccap_msb
+	.globl _cmx_cal_lcvco_dac_msb
+	.globl _cmx_cal_lcvco_dac_lsb
+	.globl _cmx_cal_lcvco_dac
+	.globl _local_tx_preset_tb
+	.globl _train_g0_index
+	.globl _train_g1_index
+	.globl _train_gn1_index
+	.globl _phase_save
+	.globl _txffe_save
+	.globl _rc_save
+	.globl _phy_mode_lane_table
+	.globl _speedtable
+	.globl _min_gen
+	.globl _max_gen
+	.globl _phy_mode_cmn_table
+	.globl _ring_speedtable
+	.globl _lc_speedtable
+	.globl _TXTRAIN_IF_REG0
+	.globl _CDS_READ_MISC1
+	.globl _CDS_READ_MISC0
+	.globl _DFE_READ_F0D_RIGHT_ODD
+	.globl _DFE_READ_F0D_RIGHT_EVEN
+	.globl _DFE_READ_F0D_LEFT_ODD
+	.globl _DFE_READ_F0D_LEFT_EVEN
+	.globl _DFE_READ_F0D_ODD
+	.globl _DFE_READ_F0D_EVEN
+	.globl _DFE_READ_F0B_ODD
+	.globl _DFE_READ_F0B_EVEN
+	.globl _DFE_READ_F0A_ODD
+	.globl _DFE_READ_F0A_EVEN
+	.globl _DFE_READ_ODD_REG8
+	.globl _DFE_READ_EVEN_REG8
+	.globl _DFE_READ_ODD_REG7
+	.globl _DFE_READ_ODD_REG6
+	.globl _DFE_READ_ODD_REG5
+	.globl _DFE_READ_ODD_REG4
+	.globl _DFE_READ_ODD_REG3
+	.globl _DFE_READ_ODD_REG2
+	.globl _DFE_READ_ODD_REG1
+	.globl _DFE_READ_ODD_REG0
+	.globl _DFE_READ_EVEN_REG7
+	.globl _DFE_READ_EVEN_REG6
+	.globl _DFE_READ_EVEN_REG5
+	.globl _DFE_READ_EVEN_REG4
+	.globl _DFE_READ_EVEN_REG3
+	.globl _DFE_READ_EVEN_REG2
+	.globl _DFE_READ_EVEN_REG1
+	.globl _DFE_READ_EVEN_REG0
+	.globl _TX_TRAIN_IF_REG8
+	.globl _TX_TRAIN_CTRL_LANE
+	.globl _TX_TRAIN_IF_REG7
+	.globl _TX_TRAIN_IF_REG6
+	.globl _TX_TRAIN_IF_REG5
+	.globl _TX_TRAIN_IF_REG4
+	.globl _TRX_TRAIN_IF_INTERRUPT_CLEAR_LANE
+	.globl _TRX_TRAIN_IF_INTERRUPT_MASK0_LANE
+	.globl _TRX_TRAIN_IF_INTERRUPT_LANE
+	.globl _TX_AMP_CTRL_REG0
+	.globl _TX_DRV_RD_OUT_REG0
+	.globl _LINK_TRAIN_MODE0
+	.globl _TX_EMPH_CTRL_REG0
+	.globl _TX_TRAIN_DEFAULT_REG5
+	.globl _TX_TRAIN_DEFAULT_REG4
+	.globl _TX_TRAIN_DEFAULT_REG3
+	.globl _TX_TRAIN_DEFAULT_REG2
+	.globl _TX_TRAIN_DEFAULT_REG1
+	.globl _TX_TRAIN_DEFAULT_REG0
+	.globl _TX_TRAIN_DRIVER_REG2
+	.globl _TX_TRAIN_DRIVER_REG1
+	.globl _TX_TRAIN_DRIVER_REG0
+	.globl _TX_TRAIN_PATTTERN_REG0
+	.globl _TX_TRAIN_IF_REG3
+	.globl _TX_TRAIN_IF_REG2
+	.globl _TX_TRAIN_IF_REG1
+	.globl _TX_TRAIN_IF_REG0
+	.globl _DME_DEC_REG1
+	.globl _DME_DEC_REG0
+	.globl _DME_ENC_REG2
+	.globl _DME_ENC_REG1
+	.globl _DME_ENC_REG0
+	.globl _END_XDAT_CMN
+	.globl _MCU_INFO_13
+	.globl _MCU_INFO_12
+	.globl _MCU_INFO_5
+	.globl _MCU_INFO_4
+	.globl _SYNC_INFO
+	.globl _CDS_EYE_CLK_THR
+	.globl _TX_SAVE_4
+	.globl _TX_SAVE_3
+	.globl _TX_SAVE_2
+	.globl _TX_SAVE_1
+	.globl _TX_SAVE_0
+	.globl _ETH_PRESET1_TB
+	.globl _ETH_PRESET0_TB
+	.globl _SAS_PRESET2_TB
+	.globl _SAS_PRESET1_TB
+	.globl _SAS_PRESET0_TB
+	.globl _G_SELLV_RXSAMPLER
+	.globl _G_SELLV_RXDATACLK
+	.globl _G_SELLV_RXEOMCLK
+	.globl _G_SELLV_TXPRE
+	.globl _G_SELLV_TXDATA
+	.globl _G_SELLV_TXCLK
+	.globl _TIMER_SEL3
+	.globl _TIMER_SEL2
+	.globl _TIMER_SEL1
+	.globl _MCU_CONFIG1
+	.globl _LOOP_CNTS
+	.globl _CAL_DATA1
+	.globl _MCU_CONFIG
+	.globl _CAL_STATUS_READ
+	.globl _CAL_TIME_OUT_AND_DIS
+	.globl _CON_CAL_STEP_SIZE5
+	.globl _CON_CAL_STEP_SIZE4
+	.globl _CON_CAL_STEP_SIZE3
+	.globl _CON_CAL_STEP_SIZE2
+	.globl _CON_CAL_STEP_SIZE1
+	.globl _CONTROL_CONFIG9
+	.globl _CONTROL_CONFIG8
+	.globl _TRAIN_IF_CONFIG
+	.globl _CAL_DATA0
+	.globl _CONTROL_CONFIG7
+	.globl _CONTROL_CONFIG6
+	.globl _CONTROL_CONFIG5
+	.globl _CONTROL_CONFIG4
+	.globl _CONTROL_CONFIG3
+	.globl _CONTROL_CONFIG2
+	.globl _CONTROL_CONFIG1
+	.globl _CONTROL_CONFIG0
+	.globl _FW_REV
+	.globl _CID_REG1
+	.globl _CID_REG0
+	.globl _CMN_MCU_REG
+	.globl _SET_LANE_ISR
+	.globl _CMN_ISR_MASK_1
+	.globl _CMN_ISR_1
+	.globl _CMN_MCU_TIMER3_CONTROL
+	.globl _CMN_MCU_TIMER2_CONTROL
+	.globl _CMN_MCU_TIMER1_CONTROL
+	.globl _CMN_MCU_TIMER0_CONTROL
+	.globl _CMN_MCU_TIMER_CTRL_5_LANE
+	.globl _CMN_MCU_TIMER_CTRL_4_LANE
+	.globl _CMN_MCU_TIMER_CTRL_3_LANE
+	.globl _CMN_MCU_TIMER_CTRL_2_LANE
+	.globl _CMN_MCU_TIMER_CONTROL
+	.globl _CMN_CACHE_DEBUG1
+	.globl _CMN_MCU_GPIO
+	.globl _CMN_ISR_CLEAR_2
+	.globl _CMN_ISR_MASK_2
+	.globl _CMN_ISR_2
+	.globl _MCU_INT_ADDR
+	.globl _CMN_CACHE_DEBUG0
+	.globl _MCU_SDT_CMN
+	.globl _XDATA_MEM_CHECKSUM_CMN_2
+	.globl _XDATA_MEM_CHECKSUM_CMN_1
+	.globl _XDATA_MEM_CHECKSUM_CMN_0
+	.globl _TEST5
+	.globl _PM_CMN_REG2
+	.globl _INPUT_CMN_PIN_REG3
+	.globl __FIELDNAME_
+	.globl _CMN_CALIBRATION
+	.globl _OUTPUT_CMN_PIN_REG0
+	.globl _SPD_CMN_REG1
+	.globl _CLKGEN_CMN_REG1
+	.globl _PLLCAL_REG1
+	.globl _PLLCAL_REG0
+	.globl _ANA_TSEN_CONTROL
+	.globl _INPUT_CMN_PIN_REG2
+	.globl _INPUT_CMN_PIN_REG1
+	.globl _INPUT_CMN_PIN_REG0
+	.globl _PM_CMN_REG1
+	.globl _SYSTEM
+	.globl _TEST4
+	.globl _TEST3
+	.globl _TEST2
+	.globl _TEST1
+	.globl _TEST0
+	.globl _MCU_SYNC2
+	.globl _MCU_SYNC1
+	.globl _MEM_IRQ_CLEAR
+	.globl _APB_CONTROL_REG
+	.globl _ANA_IF_CMN_REG0
+	.globl _MEM_IRQ_MASK
+	.globl _MEM_IRQ
+	.globl _ANA_IF_CMN_REG1
+	.globl _MEM_CMN_ECC_ERR_ADDRESS0
+	.globl _MCU_INFO_3
+	.globl _MCU_INFO_2
+	.globl _MCU_INFO_1
+	.globl _MCU_INFO_0
+	.globl _MEMORY_CONTROL_4
+	.globl _MEMORY_CONTROL_3
+	.globl _MEMORY_CONTROL_2
+	.globl _MEMORY_CONTROL_1
+	.globl _MEMORY_CONTROL_0
+	.globl _MCU_DEBUG1
+	.globl _MCU_DEBUG0
+	.globl _MCU_CONTROL_4
+	.globl _MCU_CONTROL_3
+	.globl _MCU_CONTROL_2
+	.globl _MCU_CONTROL_1
+	.globl _MCU_CONTROL_0
+	.globl _GLOB_L1_SUBSTATES_CFG
+	.globl _GLOB_PIPE_REVISION
+	.globl _GLOB_BIST_DATA_HI
+	.globl _GLOB_BIST_SEQR_CFG
+	.globl _GLOB_BIST_RESULT
+	.globl _GLOB_BIST_MASK
+	.globl _GLOB_BIST_START
+	.globl _GLOB_BIST_LANE_TYPE
+	.globl _GLOB_BIST_CTRL
+	.globl _GLOB_DP_BAL_CFG4
+	.globl _GLOB_DP_BAL_CFG2
+	.globl _GLOB_DP_BAL_CFG0
+	.globl _GLOB_PM_DP_CTRL
+	.globl _GLOB_COUNTER_HI
+	.globl _GLOB_COUNTER_CTRL
+	.globl _GLOB_PM_CFG0
+	.globl _GLOB_DP_SAL_CFG5
+	.globl _GLOB_DP_SAL_CFG3
+	.globl _GLOB_DP_SAL_CFG1
+	.globl _GLOB_DP_SAL_CFG
+	.globl _GLOB_MISC_CTRL
+	.globl _GLOB_CLK_SRC_HI
+	.globl _GLOB_CLK_SRC_LO
+	.globl _GLOB_RST_CLK_CTRL
+	.globl _DFE_STATIC_REG6
+	.globl _DFE_STATIC_REG5
+	.globl _DFE_STATIC_REG4
+	.globl _DFE_STATIC_REG3
+	.globl _DFE_STATIC_REG1
+	.globl _DFE_STATIC_REG0
+	.globl _RX_CMN_0
+	.globl _SRIS_REG1
+	.globl _SRIS_REG0
+	.globl _DTX_PHY_ALIGN_REG2
+	.globl _DTX_PHY_ALIGN_REG1
+	.globl _DTX_PHY_ALIGN_REG0
+	.globl _DTX_REG4
+	.globl _DTX_REG3
+	.globl _DTX_REG2
+	.globl _DTX_REG1
+	.globl _DTX_REG0
+	.globl _TX_CMN_REG
+	.globl _END_XDAT_LANE
+	.globl _TRAIN_CONTROL_17
+	.globl _TRAIN_CONTROL_16
+	.globl _TRAIN_CONTROL_15
+	.globl _TRAIN_CONTROL_14
+	.globl _TRAIN_CONTROL_13
+	.globl _ESM_ERR_N_CNT_LOW_LANE
+	.globl _ESM_POP_N_CNT_LOW_LANE
+	.globl _TRAIN_CONTROL_12
+	.globl _TRAIN_CONTROL_11
+	.globl _TRAIN_CONTROL_10
+	.globl _TRAIN_CONTROL_9
+	.globl _TRAIN_CONTROL_8
+	.globl _TRAIN_CONTROL_7
+	.globl _TRAIN_CONTROL_6
+	.globl _TRAIN_CONTROL_5
+	.globl _TRAIN_CONTROL_4
+	.globl _TRAIN_CONTROL_3
+	.globl _ESM_ERR_POP_CNT_HIGH_LANE
+	.globl _ESM_ERR_P_CNT_LOW_LANE
+	.globl _ESM_POP_P_CNT_LOW_LANE
+	.globl _CDS_CTRL_REG1
+	.globl _CDS_CTRL_REG0
+	.globl _DFE_CONTROL_11
+	.globl _DFE_CONTROL_10
+	.globl _DFE_CONTROL_9
+	.globl _DFE_CONTROL_8
+	.globl _DFE_CONTROL_7
+	.globl _DFE_TEST_5
+	.globl _DFE_TEST_4
+	.globl _DFE_TEST_1
+	.globl _DFE_TEST_0
+	.globl _DFE_CONTROL_6
+	.globl _TRAIN_PARA_3
+	.globl _TRAIN_PARA_2
+	.globl _TRAIN_PARA_1
+	.globl _TRAIN_PARA_0
+	.globl _DLL_CAL
+	.globl _RPTA_CONFIG_1
+	.globl _RPTA_CONFIG_0
+	.globl _TRAIN_CONTROL_2
+	.globl _TRAIN_CONTROL_1
+	.globl _TRAIN_CONTROL_0
+	.globl _DFE_CONTROL_5
+	.globl _DFE_CONTROL_4
+	.globl _DFE_CONTROL_3
+	.globl _DFE_CONTROL_2
+	.globl _DFE_CONTROL_1
+	.globl _DFE_CONTROL_0
+	.globl _TRX_TRAIN_IF_TIMERS_ENABLE_LANE
+	.globl _TRX_TRAIN_IF_TIMERS2_LANE
+	.globl _TRX_TRAIN_IF_TIMERS1_LANE
+	.globl _PHY_LOCAL_VALUE_LANE
+	.globl _PHY_REMOTE_CTRL_VALUE_LANE
+	.globl _PHY_REMOTE_CTRL_COMMAND_LANE
+	.globl _CAL_SAVE_DATA3_LANE
+	.globl _CAL_SAVE_DATA2_LANE
+	.globl _CAL_SAVE_DATA1_LANE
+	.globl _CAL_CTRL4_LANE
+	.globl _CAL_CTRL3_LANE
+	.globl _CAL_CTRL2_LANE
+	.globl _CAL_CTRL1_LANE
+	.globl _LANE_MARGIN_REG0
+	.globl _EOM_VLD_REG4
+	.globl _EOM_REG0
+	.globl _EOM_ERR_REG3
+	.globl _EOM_ERR_REG2
+	.globl _EOM_ERR_REG1
+	.globl _EOM_ERR_REG0
+	.globl _EOM_VLD_REG3
+	.globl _EOM_VLD_REG2
+	.globl _EOM_VLD_REG1
+	.globl _EOM_VLD_REG0
+	.globl _DFE_STATIC_LANE_REG6
+	.globl _DFE_STATIC_LANE_REG5
+	.globl _DFE_STATIC_LANE_REG4
+	.globl _DFE_STATIC_LANE_REG3
+	.globl _DFE_STATIC_LANE_REG1
+	.globl _DFE_STATIC_LANE_REG0
+	.globl _DFE_DCE_REG0
+	.globl _CAL_OFST_REG2
+	.globl _CAL_OFST_REG1
+	.globl _CAL_OFST_REG0
+	.globl _DFE_READ_ODD_2C_REG8
+	.globl _DFE_READ_EVEN_2C_REG8
+	.globl _DFE_READ_ODD_2C_REG7
+	.globl _DFE_READ_ODD_2C_REG6
+	.globl _DFE_READ_ODD_2C_REG5
+	.globl _DFE_READ_ODD_2C_REG4
+	.globl _DFE_READ_ODD_2C_REG3
+	.globl _DFE_READ_ODD_2C_REG2
+	.globl _DFE_READ_ODD_2C_REG1
+	.globl _DFE_READ_ODD_2C_REG0
+	.globl _DFE_READ_EVEN_2C_REG7
+	.globl _DFE_READ_EVEN_2C_REG6
+	.globl _DFE_READ_EVEN_2C_REG5
+	.globl _DFE_READ_EVEN_2C_REG4
+	.globl _DFE_READ_EVEN_2C_REG3
+	.globl _DFE_READ_EVEN_2C_REG2
+	.globl _DFE_READ_EVEN_2C_REG1
+	.globl _DFE_READ_EVEN_2C_REG0
+	.globl _DFE_READ_ODD_SM_REG8
+	.globl _DFE_READ_EVEN_SM_REG8
+	.globl _DFE_READ_ODD_SM_REG7
+	.globl _DFE_READ_ODD_SM_REG6
+	.globl _DFE_READ_ODD_SM_REG5
+	.globl _DFE_READ_ODD_SM_REG4
+	.globl _DFE_READ_ODD_SM_REG3
+	.globl _DFE_READ_ODD_SM_REG2
+	.globl _DFE_READ_ODD_SM_REG1
+	.globl _DFE_READ_ODD_SM_REG0
+	.globl _DFE_READ_EVEN_SM_REG7
+	.globl _DFE_READ_EVEN_SM_REG6
+	.globl _DFE_READ_EVEN_SM_REG5
+	.globl _DFE_READ_EVEN_SM_REG4
+	.globl _DFE_READ_EVEN_SM_REG3
+	.globl _DFE_READ_EVEN_SM_REG2
+	.globl _DFE_READ_EVEN_SM_REG1
+	.globl _DFE_READ_EVEN_SM_REG0
+	.globl _DFE_FEXT_ODD_REG7
+	.globl _DFE_FEXT_ODD_REG6
+	.globl _DFE_FEXT_ODD_REG5
+	.globl _DFE_FEXT_ODD_REG4
+	.globl _DFE_FEXT_ODD_REG3
+	.globl _DFE_FEXT_ODD_REG2
+	.globl _DFE_FEXT_ODD_REG1
+	.globl _DFE_FEXT_ODD_REG0
+	.globl _DFE_FEXT_EVEN_REG7
+	.globl _DFE_FEXT_EVEN_REG6
+	.globl _DFE_FEXT_EVEN_REG5
+	.globl _DFE_FEXT_EVEN_REG4
+	.globl _DFE_FEXT_EVEN_REG3
+	.globl _DFE_FEXT_EVEN_REG2
+	.globl _DFE_FEXT_EVEN_REG1
+	.globl _DFE_FEXT_EVEN_REG0
+	.globl _DFE_DC_ODD_REG8
+	.globl _DFE_DC_EVEN_REG8
+	.globl _DFE_FEN_ODD_REG
+	.globl _DFE_FEN_EVEN_REG
+	.globl _DFE_STEP_REG1
+	.globl _DFE_STEP_REG0
+	.globl _DFE_ANA_REG1
+	.globl _DFE_ANA_REG0
+	.globl _DFE_CTRL_REG4
+	.globl _RX_EQ_CLK_CTRL
+	.globl _DFE_CTRL_REG3
+	.globl _DFE_CTRL_REG2
+	.globl _DFE_CTRL_REG1
+	.globl _DFE_CTRL_REG0
+	.globl _PT_COUNTER2
+	.globl _PT_COUNTER1
+	.globl _PT_COUNTER0
+	.globl _PT_USER_PATTERN2
+	.globl _PT_USER_PATTERN1
+	.globl _PT_USER_PATTERN0
+	.globl _PT_CONTROL1
+	.globl _PT_CONTROL0
+	.globl _XDATA_MEM_CHECKSUM_LANE1
+	.globl _XDATA_MEM_CHECKSUM_LANE0
+	.globl _MEM_ECC_ERR_ADDRESS0
+	.globl _MCU_COMMAND0
+	.globl _MCU_INT_CONTROL_13
+	.globl _MCU_WDT_LANE
+	.globl _MCU_IRQ_ISR_LANE
+	.globl _ANA_IF_DFEO_REG0
+	.globl _ANA_IF_DFEE_REG0
+	.globl _ANA_IF_TRX_REG0
+	.globl _EXT_INT_CONTROL
+	.globl _MCU_DEBUG_LANE
+	.globl _MCU_DEBUG3_LANE
+	.globl _MCU_DEBUG2_LANE
+	.globl _MCU_DEBUG1_LANE
+	.globl _MCU_DEBUG0_LANE
+	.globl _MCU_TIMER_CTRL_7_LANE
+	.globl _MCU_TIMER_CTRL_6_LANE
+	.globl _MCU_TIMER_CTRL_5_LANE
+	.globl _MCU_TIMER_CTRL_4_LANE
+	.globl _MCU_TIMER_CTRL_3_LANE
+	.globl _MCU_TIMER_CTRL_2_LANE
+	.globl _MCU_TIMER_CTRL_1_LANE
+	.globl _MCU_MEM_REG2_LANE
+	.globl _MCU_MEM_REG1_LANE
+	.globl _MCU_IRQ_MASK_LANE
+	.globl _MCU_IRQ_LANE
+	.globl _MCU_TIMER3_CONTROL
+	.globl _MCU_TIMER2_CONTROL
+	.globl _MCU_TIMER1_CONTROL
+	.globl _MCU_TIMER0_CONTROL
+	.globl _MCU_TIMER_CONTROL
+	.globl _MCU_INT12_CONTROL
+	.globl _MCU_INT11_CONTROL
+	.globl _MCU_INT10_CONTROL
+	.globl _MCU_INT9_CONTROL
+	.globl _MCU_INT8_CONTROL
+	.globl _MCU_INT7_CONTROL
+	.globl _MCU_INT6_CONTROL
+	.globl _MCU_INT5_CONTROL
+	.globl _MCU_INT4_CONTROL
+	.globl _MCU_INT3_CONTROL
+	.globl _MCU_INT2_CONTROL
+	.globl _MCU_INT1_CONTROL
+	.globl _MCU_INT0_CONTROL
+	.globl _MCU_STATUS3_LANE
+	.globl _MCU_STATUS2_LANE
+	.globl _MCU_STATUS1_LANE
+	.globl _MCU_STATUS0_LANE
+	.globl _LANE_SYSTEM0
+	.globl _CACHE_DEBUG1
+	.globl _CACHE_DEBUG0
+	.globl _MCU_GPIO
+	.globl _MCU_CONTROL_LANE
+	.globl _LANE_32G_PRESET_CFG16_LANE
+	.globl _LANE_32G_PRESET_CFG14_LANE
+	.globl _LANE_32G_PRESET_CFG12_LANE
+	.globl _LANE_32G_PRESET_CFG10_LANE
+	.globl _LANE_32G_PRESET_CFG8_LANE
+	.globl _LANE_32G_PRESET_CFG6_LANE
+	.globl _LANE_32G_PRESET_CFG4_LANE
+	.globl _LANE_32G_PRESET_CFG2_LANE
+	.globl _LANE_32G_PRESET_CFG0_LANE
+	.globl _LANE_EQ_32G_CFG0_LANE
+	.globl _LANE_16G_PRESET_CFG16_LANE
+	.globl _LANE_16G_PRESET_CFG14_LANE
+	.globl _LANE_16G_PRESET_CFG12_LANE
+	.globl _LANE_16G_PRESET_CFG10_LANE
+	.globl _LANE_16G_PRESET_CFG8_LANE
+	.globl _LANE_16G_PRESET_CFG6_LANE
+	.globl _LANE_16G_PRESET_CFG4_LANE
+	.globl _LANE_16G_PRESET_CFG2_LANE
+	.globl _LANE_16G_PRESET_CFG0_LANE
+	.globl _LANE_EQ_16G_CFG0_LANE
+	.globl _LANE_REMOTE_SET_LANE
+	.globl _LANE_COEFF_MAX0_LANE
+	.globl _LANE_PRESET_CFG16_LANE
+	.globl _LANE_PRESET_CFG14_LANE
+	.globl _LANE_PRESET_CFG12_LANE
+	.globl _LANE_PRESET_CFG10_LANE
+	.globl _LANE_PRESET_CFG8_LANE
+	.globl _LANE_PRESET_CFG6_LANE
+	.globl _LANE_PRESET_CFG4_LANE
+	.globl _LANE_PRESET_CFG2_LANE
+	.globl _LANE_PRESET_CFG0_LANE
+	.globl _LANE_EQ_CFG1_LANE
+	.globl _LANE_EQ_CFG0_LANE
+	.globl _LANE_USB_DP_CFG2_LANE
+	.globl _LANE_USB_DP_CFG1_LANE
+	.globl _LANE_DP_PIE8_CFG0_LANE
+	.globl _LANE_CFG_STATUS3_LANE
+	.globl _LANE_CFG4
+	.globl _LANE_CFG2_LANE
+	.globl _LANE_CFG_STATUS2_LANE
+	.globl _LANE_STATUS0
+	.globl _LANE_CFG0
+	.globl _SQ_REG0
+	.globl _DTL_REG3
+	.globl _DTL_REG2
+	.globl _DTL_REG1
+	.globl _DTL_REG0
+	.globl _RX_LANE_INTERRUPT_REG1
+	.globl _RX_CALIBRATION_REG
+	.globl _INPUT_RX_PIN_REG3_LANE
+	.globl _RX_DATA_PATH_REG
+	.globl _RX_LANE_INTERRUPT_MASK
+	.globl _RX_LANE_INTERRUPT
+	.globl _CDR_LOCK_REG
+	.globl _FRAME_SYNC_DET_REG6
+	.globl _FRAME_SYNC_DET_REG5
+	.globl _FRAME_SYNC_DET_REG4
+	.globl _FRAME_SYNC_DET_REG3
+	.globl _FRAME_SYNC_DET_REG2
+	.globl _FRAME_SYNC_DET_REG1
+	.globl _FRAME_SYNC_DET_REG0
+	.globl _CLKGEN_RX_LANE_REG1_LANE
+	.globl _DIG_RX_RSVD_REG0
+	.globl _SPD_CTRL_RX_LANE_REG1_LANE
+	.globl _INPUT_RX_PIN_REG2_LANE
+	.globl _INPUT_RX_PIN_REG1_LANE
+	.globl _INPUT_RX_PIN_REG0_LANE
+	.globl _RX_SYSTEM_LANE
+	.globl _PM_CTRL_RX_LANE_REG1_LANE
+	.globl _MON_TOP
+	.globl _ANALOG_TX_REALTIME_REG_1
+	.globl _SPD_CTRL_INTERRUPT_CLEAR_REG1_LANE
+	.globl _PM_CTRL_INTERRUPT_ISR_REG1_LANE
+	.globl __FIELDNAME__LANE
+	.globl _INPUT_TX_PIN_REG5_LANE
+	.globl _DIG_TX_RSVD_REG0
+	.globl _TX_CALIBRATION_LANE
+	.globl _INPUT_TX_PIN_REG4_LANE
+	.globl _TX_SYSTEM_LANE
+	.globl _SPD_CTRL_TX_LANE_REG1_LANE
+	.globl _SPD_CTRL_INTERRUPT_REG2
+	.globl _SPD_CTRL_INTERRUPT_REG1_LANE
+	.globl _TX_SPEED_CONVERT_LANE
+	.globl _CLKGEN_TX_LANE_REG1_LANE
+	.globl _PM_CTRL_INTERRUPT_REG2
+	.globl _PM_CTRL_INTERRUPT_REG1_LANE
+	.globl _INPUT_TX_PIN_REG3_LANE
+	.globl _INPUT_TX_PIN_REG2_LANE
+	.globl _INPUT_TX_PIN_REG1_LANE
+	.globl _INPUT_TX_PIN_REG0_LANE
+	.globl _PM_CTRL_TX_LANE_REG2_LANE
+	.globl _PM_CTRL_TX_LANE_REG1_LANE
+	.globl _UPHY14_CMN_ANAREG_TOP_214
+	.globl _UPHY14_CMN_ANAREG_TOP_213
+	.globl _UPHY14_CMN_ANAREG_TOP_212
+	.globl _UPHY14_CMN_ANAREG_TOP_211
+	.globl _UPHY14_CMN_ANAREG_TOP_210
+	.globl _UPHY14_CMN_ANAREG_TOP_209
+	.globl _UPHY14_CMN_ANAREG_TOP_208
+	.globl _UPHY14_CMN_ANAREG_TOP_207
+	.globl _UPHY14_CMN_ANAREG_TOP_206
+	.globl _UPHY14_CMN_ANAREG_TOP_205
+	.globl _UPHY14_CMN_ANAREG_TOP_204
+	.globl _UPHY14_CMN_ANAREG_TOP_203
+	.globl _UPHY14_CMN_ANAREG_TOP_202
+	.globl _UPHY14_CMN_ANAREG_TOP_201
+	.globl _UPHY14_CMN_ANAREG_TOP_200
+	.globl _UPHY14_CMN_ANAREG_TOP_199
+	.globl _UPHY14_CMN_ANAREG_TOP_198
+	.globl _UPHY14_CMN_ANAREG_TOP_197
+	.globl _UPHY14_CMN_ANAREG_TOP_196
+	.globl _UPHY14_CMN_ANAREG_TOP_195
+	.globl _UPHY14_CMN_ANAREG_TOP_194
+	.globl _UPHY14_CMN_ANAREG_TOP_193
+	.globl _UPHY14_CMN_ANAREG_TOP_192
+	.globl _UPHY14_CMN_ANAREG_TOP_191
+	.globl _UPHY14_CMN_ANAREG_TOP_190
+	.globl _UPHY14_CMN_ANAREG_TOP_189
+	.globl _UPHY14_CMN_ANAREG_TOP_188
+	.globl _UPHY14_CMN_ANAREG_TOP_187
+	.globl _UPHY14_CMN_ANAREG_TOP_186
+	.globl _UPHY14_CMN_ANAREG_TOP_185
+	.globl _UPHY14_CMN_ANAREG_TOP_184
+	.globl _UPHY14_CMN_ANAREG_TOP_183
+	.globl _UPHY14_CMN_ANAREG_TOP_182
+	.globl _UPHY14_CMN_ANAREG_TOP_181
+	.globl _UPHY14_CMN_ANAREG_TOP_180
+	.globl _UPHY14_CMN_ANAREG_TOP_179
+	.globl _UPHY14_CMN_ANAREG_TOP_178
+	.globl _UPHY14_CMN_ANAREG_TOP_177
+	.globl _UPHY14_CMN_ANAREG_TOP_176
+	.globl _UPHY14_CMN_ANAREG_TOP_175
+	.globl _UPHY14_CMN_ANAREG_TOP_174
+	.globl _UPHY14_CMN_ANAREG_TOP_173
+	.globl _UPHY14_CMN_ANAREG_TOP_172
+	.globl _UPHY14_CMN_ANAREG_TOP_171
+	.globl _UPHY14_CMN_ANAREG_TOP_170
+	.globl _UPHY14_CMN_ANAREG_TOP_169
+	.globl _UPHY14_CMN_ANAREG_TOP_168
+	.globl _UPHY14_CMN_ANAREG_TOP_167
+	.globl _UPHY14_CMN_ANAREG_TOP_166
+	.globl _UPHY14_CMN_ANAREG_TOP_165
+	.globl _UPHY14_CMN_ANAREG_TOP_164
+	.globl _UPHY14_CMN_ANAREG_TOP_163
+	.globl _UPHY14_CMN_ANAREG_TOP_162
+	.globl _UPHY14_CMN_ANAREG_TOP_161
+	.globl _UPHY14_CMN_ANAREG_TOP_160
+	.globl _UPHY14_CMN_ANAREG_TOP_159
+	.globl _UPHY14_CMN_ANAREG_TOP_158
+	.globl _UPHY14_CMN_ANAREG_TOP_157
+	.globl _UPHY14_CMN_ANAREG_TOP_156
+	.globl _UPHY14_CMN_ANAREG_TOP_155
+	.globl _UPHY14_CMN_ANAREG_TOP_154
+	.globl _UPHY14_CMN_ANAREG_TOP_153
+	.globl _UPHY14_CMN_ANAREG_TOP_152
+	.globl _UPHY14_CMN_ANAREG_TOP_151
+	.globl _UPHY14_CMN_ANAREG_TOP_150
+	.globl _UPHY14_CMN_ANAREG_TOP_149
+	.globl _UPHY14_CMN_ANAREG_TOP_148
+	.globl _UPHY14_CMN_ANAREG_TOP_147
+	.globl _UPHY14_CMN_ANAREG_TOP_146
+	.globl _UPHY14_CMN_ANAREG_TOP_145
+	.globl _UPHY14_CMN_ANAREG_TOP_144
+	.globl _UPHY14_CMN_ANAREG_TOP_143
+	.globl _UPHY14_CMN_ANAREG_TOP_142
+	.globl _UPHY14_CMN_ANAREG_TOP_141
+	.globl _UPHY14_CMN_ANAREG_TOP_140
+	.globl _UPHY14_CMN_ANAREG_TOP_139
+	.globl _UPHY14_CMN_ANAREG_TOP_138
+	.globl _UPHY14_CMN_ANAREG_TOP_137
+	.globl _UPHY14_CMN_ANAREG_TOP_136
+	.globl _UPHY14_CMN_ANAREG_TOP_135
+	.globl _UPHY14_CMN_ANAREG_TOP_134
+	.globl _UPHY14_CMN_ANAREG_TOP_133
+	.globl _UPHY14_CMN_ANAREG_TOP_132
+	.globl _UPHY14_CMN_ANAREG_TOP_131
+	.globl _UPHY14_CMN_ANAREG_TOP_130
+	.globl _UPHY14_CMN_ANAREG_TOP_129
+	.globl _UPHY14_CMN_ANAREG_TOP_128
+	.globl _ANA_DFEO_REG_0B
+	.globl _ANA_DFEO_REG_0A
+	.globl _ANA_DFEO_REG_09
+	.globl _ANA_DFEO_REG_08
+	.globl _ANA_DFEO_REG_07
+	.globl _ANA_DFEO_REG_06
+	.globl _ANA_DFEO_REG_05
+	.globl _ANA_DFEO_REG_04
+	.globl _ANA_DFEO_REG_03
+	.globl _ANA_DFEO_REG_02
+	.globl _ANA_DFEO_REG_01
+	.globl _ANA_DFEO_REG_00
+	.globl _ANA_DFEO_REG_27
+	.globl _ANA_DFEO_REG_26
+	.globl _ANA_DFEO_REG_25
+	.globl _ANA_DFEO_REG_24
+	.globl _ANA_DFEO_REG_23
+	.globl _ANA_DFEO_REG_22
+	.globl _ANA_DFEO_REG_21
+	.globl _ANA_DFEO_REG_20
+	.globl _ANA_DFEO_REG_1F
+	.globl _ANA_DFEO_REG_1E
+	.globl _ANA_DFEO_REG_1D
+	.globl _ANA_DFEO_REG_1C
+	.globl _ANA_DFEO_REG_1B
+	.globl _ANA_DFEO_REG_1A
+	.globl _ANA_DFEO_REG_19
+	.globl _ANA_DFEO_REG_18
+	.globl _ANA_DFEO_REG_17
+	.globl _ANA_DFEO_REG_16
+	.globl _ANA_DFEO_REG_15
+	.globl _ANA_DFEO_REG_14
+	.globl _ANA_DFEO_REG_13
+	.globl _ANA_DFEO_REG_12
+	.globl _ANA_DFEO_REG_11
+	.globl _ANA_DFEO_REG_10
+	.globl _ANA_DFEO_REG_0F
+	.globl _ANA_DFEO_REG_0E
+	.globl _ANA_DFEO_REG_0D
+	.globl _ANA_DFEO_REG_0C
+	.globl _ANA_DFEE_REG_1D
+	.globl _ANA_DFEE_REG_1C
+	.globl _ANA_DFEE_REG_1B
+	.globl _ANA_DFEE_REG_1A
+	.globl _ANA_DFEE_REG_19
+	.globl _ANA_DFEE_REG_18
+	.globl _ANA_DFEE_REG_17
+	.globl _ANA_DFEE_REG_16
+	.globl _ANA_DFEE_REG_15
+	.globl _ANA_DFEE_REG_14
+	.globl _ANA_DFEE_REG_13
+	.globl _ANA_DFEE_REG_12
+	.globl _ANA_DFEE_REG_11
+	.globl _ANA_DFEE_REG_10
+	.globl _ANA_DFEE_REG_0F
+	.globl _ANA_DFEE_REG_0E
+	.globl _ANA_DFEE_REG_0D
+	.globl _ANA_DFEE_REG_0C
+	.globl _ANA_DFEE_REG_0B
+	.globl _ANA_DFEE_REG_0A
+	.globl _ANA_DFEE_REG_09
+	.globl _ANA_DFEE_REG_08
+	.globl _ANA_DFEE_REG_07
+	.globl _ANA_DFEE_REG_06
+	.globl _ANA_DFEE_REG_05
+	.globl _ANA_DFEE_REG_04
+	.globl _ANA_DFEE_REG_03
+	.globl _ANA_DFEE_REG_02
+	.globl _ANA_DFEE_REG_01
+	.globl _ANA_DFEE_REG_00
+	.globl _ANA_DFEE_REG_27
+	.globl _ANA_DFEE_REG_26
+	.globl _ANA_DFEE_REG_25
+	.globl _ANA_DFEE_REG_24
+	.globl _ANA_DFEE_REG_23
+	.globl _ANA_DFEE_REG_22
+	.globl _ANA_DFEE_REG_21
+	.globl _ANA_DFEE_REG_20
+	.globl _ANA_DFEE_REG_1F
+	.globl _ANA_DFEE_REG_1E
+	.globl _UPHY14_TRX_ANAREG_BOT_32
+	.globl _UPHY14_TRX_ANAREG_BOT_31
+	.globl _UPHY14_TRX_ANAREG_BOT_30
+	.globl _UPHY14_TRX_ANAREG_BOT_29
+	.globl _UPHY14_TRX_ANAREG_BOT_28
+	.globl _UPHY14_TRX_ANAREG_BOT_27
+	.globl _UPHY14_TRX_ANAREG_BOT_26
+	.globl _UPHY14_TRX_ANAREG_BOT_25
+	.globl _UPHY14_TRX_ANAREG_BOT_24
+	.globl _UPHY14_TRX_ANAREG_BOT_23
+	.globl _UPHY14_TRX_ANAREG_BOT_22
+	.globl _UPHY14_TRX_ANAREG_BOT_21
+	.globl _UPHY14_TRX_ANAREG_BOT_20
+	.globl _UPHY14_TRX_ANAREG_BOT_19
+	.globl _UPHY14_TRX_ANAREG_BOT_18
+	.globl _UPHY14_TRX_ANAREG_BOT_17
+	.globl _UPHY14_TRX_ANAREG_BOT_16
+	.globl _UPHY14_TRX_ANAREG_BOT_15
+	.globl _UPHY14_TRX_ANAREG_BOT_14
+	.globl _UPHY14_TRX_ANAREG_BOT_13
+	.globl _UPHY14_TRX_ANAREG_BOT_12
+	.globl _UPHY14_TRX_ANAREG_BOT_11
+	.globl _UPHY14_TRX_ANAREG_BOT_10
+	.globl _UPHY14_TRX_ANAREG_BOT_9
+	.globl _UPHY14_TRX_ANAREG_BOT_8
+	.globl _UPHY14_TRX_ANAREG_BOT_7
+	.globl _UPHY14_TRX_ANAREG_BOT_6
+	.globl _UPHY14_TRX_ANAREG_BOT_5
+	.globl _UPHY14_TRX_ANAREG_BOT_4
+	.globl _UPHY14_TRX_ANAREG_BOT_3
+	.globl _UPHY14_TRX_ANAREG_BOT_2
+	.globl _UPHY14_TRX_ANAREG_BOT_1
+	.globl _UPHY14_TRX_ANAREG_BOT_0
+	.globl _UPHY14_TRX_ANAREG_TOP_157
+	.globl _UPHY14_TRX_ANAREG_TOP_156
+	.globl _UPHY14_TRX_ANAREG_TOP_155
+	.globl _UPHY14_TRX_ANAREG_TOP_154
+	.globl _UPHY14_TRX_ANAREG_TOP_153
+	.globl _UPHY14_TRX_ANAREG_TOP_152
+	.globl _UPHY14_TRX_ANAREG_TOP_151
+	.globl _UPHY14_TRX_ANAREG_TOP_150
+	.globl _UPHY14_TRX_ANAREG_TOP_149
+	.globl _UPHY14_TRX_ANAREG_TOP_148
+	.globl _UPHY14_TRX_ANAREG_TOP_147
+	.globl _UPHY14_TRX_ANAREG_TOP_146
+	.globl _UPHY14_TRX_ANAREG_TOP_145
+	.globl _UPHY14_TRX_ANAREG_TOP_144
+	.globl _UPHY14_TRX_ANAREG_TOP_143
+	.globl _UPHY14_TRX_ANAREG_TOP_142
+	.globl _UPHY14_TRX_ANAREG_TOP_141
+	.globl _UPHY14_TRX_ANAREG_TOP_140
+	.globl _UPHY14_TRX_ANAREG_TOP_139
+	.globl _UPHY14_TRX_ANAREG_TOP_138
+	.globl _UPHY14_TRX_ANAREG_TOP_137
+	.globl _UPHY14_TRX_ANAREG_TOP_136
+	.globl _UPHY14_TRX_ANAREG_TOP_135
+	.globl _UPHY14_TRX_ANAREG_TOP_134
+	.globl _UPHY14_TRX_ANAREG_TOP_133
+	.globl _UPHY14_TRX_ANAREG_TOP_132
+	.globl _UPHY14_TRX_ANAREG_TOP_131
+	.globl _UPHY14_TRX_ANAREG_TOP_130
+	.globl _UPHY14_TRX_ANAREG_TOP_129
+	.globl _UPHY14_TRX_ANAREG_TOP_128
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_143
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_142
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_141
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_140
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_139
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_138
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_137
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_136
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_135
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_134
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_133
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_132
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_131
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_130
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_129
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_128
+	.globl _ring_pll_cal
+	.globl _ring_pll_cont
+	.globl _ring_pll_fast_cal
+;--------------------------------------------------------
+; special function registers
+;--------------------------------------------------------
+	.area RSEG    (ABS,DATA)
+	.org 0x0000
+_P0	=	0x0080
+_DPL	=	0x0082
+_DPH	=	0x0083
+_WDTREL	=	0x0086
+_PCON	=	0x0087
+_TCON	=	0x0088
+_TMOD	=	0x0089
+_TL0	=	0x008a
+_TL1	=	0x008b
+_TH0	=	0x008c
+_TH1	=	0x008d
+_CKCON	=	0x008e
+_P1	=	0x0090
+_DPS	=	0x0092
+_PSBANK	=	0x0094
+_SCON	=	0x0098
+_SBUF	=	0x0099
+_IEN2	=	0x009a
+_P2	=	0x00a0
+_DMAS0	=	0x00a1
+_DMAS1	=	0x00a2
+_DMAS2	=	0x00a3
+_DMAT0	=	0x00a4
+_DMAT1	=	0x00a5
+_DMAT2	=	0x00a6
+_IEN0	=	0x00a8
+_IP0	=	0x00a9
+_S0RELL	=	0x00aa
+_P3	=	0x00b0
+_DMAC0	=	0x00b1
+_DMAC1	=	0x00b2
+_DMAC2	=	0x00b3
+_DMASEL	=	0x00b4
+_DMAM0	=	0x00b5
+_DMAM1	=	0x00b6
+_IEN1	=	0x00b8
+_IP1	=	0x00b9
+_S0RELH	=	0x00ba
+_IRCON	=	0x00c0
+_CCEN	=	0x00c1
+_T2CON	=	0x00c8
+_RCAP2L	=	0x00ca
+_RCAP2H	=	0x00cb
+_TL2	=	0x00cc
+_TH2	=	0x00cd
+_PSW	=	0x00d0
+_ADCON	=	0x00d8
+_ACC	=	0x00e0
+_EIE	=	0x00e8
+_B	=	0x00f0
+_SRST	=	0x00f7
+_TMR0	=	0x8c8a
+_TMR1	=	0x8d8b
+_TMR2	=	0xcdcc
+_DMASA	=	0xa2a1
+_DMATA	=	0xa5a4
+_DMAC	=	0xb2b1
+;--------------------------------------------------------
+; special function bits
+;--------------------------------------------------------
+	.area RSEG    (ABS,DATA)
+	.org 0x0000
+_P0_0	=	0x0080
+_P0_1	=	0x0081
+_P0_2	=	0x0082
+_P0_3	=	0x0083
+_P0_4	=	0x0084
+_P0_5	=	0x0085
+_P0_6	=	0x0086
+_P0_7	=	0x0087
+_P1_0	=	0x0090
+_P1_1	=	0x0091
+_P1_2	=	0x0092
+_P1_3	=	0x0093
+_P1_4	=	0x0094
+_P1_5	=	0x0095
+_P1_6	=	0x0096
+_P1_7	=	0x0097
+_P2_0	=	0x00a0
+_P2_1	=	0x00a1
+_P2_2	=	0x00a2
+_P2_3	=	0x00a3
+_P2_4	=	0x00a4
+_P2_5	=	0x00a5
+_P2_6	=	0x00a6
+_P2_7	=	0x00a7
+_P3_0	=	0x00b0
+_P3_1	=	0x00b1
+_P3_2	=	0x00b2
+_P3_3	=	0x00b3
+_P3_4	=	0x00b4
+_P3_5	=	0x00b5
+_P3_6	=	0x00b6
+_P3_7	=	0x00b7
+_IT0	=	0x0088
+_IE0	=	0x0089
+_IT1	=	0x008a
+_IE1	=	0x008b
+_TR0	=	0x008c
+_TF0	=	0x008d
+_TR1	=	0x008e
+_TF1	=	0x008f
+_EX0	=	0x00a8
+_ET0	=	0x00a9
+_EX1	=	0x00aa
+_ET1	=	0x00ab
+_ES	=	0x00ac
+_ET2	=	0x00ad
+_WDT	=	0x00ae
+_EA	=	0x00af
+_EX7	=	0x00b8
+_EX2	=	0x00b9
+_EX3	=	0x00ba
+_EX4	=	0x00bb
+_EX5	=	0x00bc
+_EX6	=	0x00bd
+_PS1	=	0x00be
+_ES1	=	0x009a
+_EX8	=	0x009b
+_EX9	=	0x009c
+_EX10	=	0x009d
+_EX11	=	0x009e
+_EX12	=	0x009f
+_RI	=	0x0098
+_TI	=	0x0099
+_TF2	=	0x00c6
+;--------------------------------------------------------
+; overlayable register banks
+;--------------------------------------------------------
+	.area REG_BANK_0	(REL,OVR,DATA)
+	.ds 8
+;--------------------------------------------------------
+; internal ram data
+;--------------------------------------------------------
+	.area DSEG    (DATA)
+;--------------------------------------------------------
+; overlayable items in internal ram 
+;--------------------------------------------------------
+	.area OSEG    (OVR,DATA)
+;--------------------------------------------------------
+; indirectly addressable internal ram data
+;--------------------------------------------------------
+	.area ISEG    (DATA)
+;--------------------------------------------------------
+; absolute internal ram data
+;--------------------------------------------------------
+	.area IABS    (ABS,DATA)
+	.area IABS    (ABS,DATA)
+;--------------------------------------------------------
+; bit data
+;--------------------------------------------------------
+	.area BSEG    (BIT)
+;--------------------------------------------------------
+; paged external ram data
+;--------------------------------------------------------
+	.area PSEG    (PAG,XDATA)
+;--------------------------------------------------------
+; external ram data
+;--------------------------------------------------------
+	.area XSEG    (XDATA)
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_128	=	0x1000
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_129	=	0x1004
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_130	=	0x1008
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_131	=	0x100c
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_132	=	0x1010
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_133	=	0x1014
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_134	=	0x1018
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_135	=	0x101c
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_136	=	0x1020
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_137	=	0x1024
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_138	=	0x1028
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_139	=	0x102c
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_140	=	0x1030
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_141	=	0x1034
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_142	=	0x1038
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_143	=	0x103c
+_UPHY14_TRX_ANAREG_TOP_128	=	0x0200
+_UPHY14_TRX_ANAREG_TOP_129	=	0x0204
+_UPHY14_TRX_ANAREG_TOP_130	=	0x0208
+_UPHY14_TRX_ANAREG_TOP_131	=	0x020c
+_UPHY14_TRX_ANAREG_TOP_132	=	0x0210
+_UPHY14_TRX_ANAREG_TOP_133	=	0x0214
+_UPHY14_TRX_ANAREG_TOP_134	=	0x0218
+_UPHY14_TRX_ANAREG_TOP_135	=	0x021c
+_UPHY14_TRX_ANAREG_TOP_136	=	0x0220
+_UPHY14_TRX_ANAREG_TOP_137	=	0x0224
+_UPHY14_TRX_ANAREG_TOP_138	=	0x0228
+_UPHY14_TRX_ANAREG_TOP_139	=	0x022c
+_UPHY14_TRX_ANAREG_TOP_140	=	0x0230
+_UPHY14_TRX_ANAREG_TOP_141	=	0x0234
+_UPHY14_TRX_ANAREG_TOP_142	=	0x0238
+_UPHY14_TRX_ANAREG_TOP_143	=	0x023c
+_UPHY14_TRX_ANAREG_TOP_144	=	0x0240
+_UPHY14_TRX_ANAREG_TOP_145	=	0x0244
+_UPHY14_TRX_ANAREG_TOP_146	=	0x0248
+_UPHY14_TRX_ANAREG_TOP_147	=	0x024c
+_UPHY14_TRX_ANAREG_TOP_148	=	0x0250
+_UPHY14_TRX_ANAREG_TOP_149	=	0x0254
+_UPHY14_TRX_ANAREG_TOP_150	=	0x0258
+_UPHY14_TRX_ANAREG_TOP_151	=	0x025c
+_UPHY14_TRX_ANAREG_TOP_152	=	0x0260
+_UPHY14_TRX_ANAREG_TOP_153	=	0x0264
+_UPHY14_TRX_ANAREG_TOP_154	=	0x0268
+_UPHY14_TRX_ANAREG_TOP_155	=	0x026c
+_UPHY14_TRX_ANAREG_TOP_156	=	0x0270
+_UPHY14_TRX_ANAREG_TOP_157	=	0x0274
+_UPHY14_TRX_ANAREG_BOT_0	=	0x0000
+_UPHY14_TRX_ANAREG_BOT_1	=	0x0004
+_UPHY14_TRX_ANAREG_BOT_2	=	0x0008
+_UPHY14_TRX_ANAREG_BOT_3	=	0x000c
+_UPHY14_TRX_ANAREG_BOT_4	=	0x0010
+_UPHY14_TRX_ANAREG_BOT_5	=	0x0014
+_UPHY14_TRX_ANAREG_BOT_6	=	0x0018
+_UPHY14_TRX_ANAREG_BOT_7	=	0x001c
+_UPHY14_TRX_ANAREG_BOT_8	=	0x0020
+_UPHY14_TRX_ANAREG_BOT_9	=	0x0024
+_UPHY14_TRX_ANAREG_BOT_10	=	0x0028
+_UPHY14_TRX_ANAREG_BOT_11	=	0x002c
+_UPHY14_TRX_ANAREG_BOT_12	=	0x0030
+_UPHY14_TRX_ANAREG_BOT_13	=	0x0034
+_UPHY14_TRX_ANAREG_BOT_14	=	0x0038
+_UPHY14_TRX_ANAREG_BOT_15	=	0x003c
+_UPHY14_TRX_ANAREG_BOT_16	=	0x0040
+_UPHY14_TRX_ANAREG_BOT_17	=	0x0044
+_UPHY14_TRX_ANAREG_BOT_18	=	0x0048
+_UPHY14_TRX_ANAREG_BOT_19	=	0x004c
+_UPHY14_TRX_ANAREG_BOT_20	=	0x0050
+_UPHY14_TRX_ANAREG_BOT_21	=	0x0054
+_UPHY14_TRX_ANAREG_BOT_22	=	0x0058
+_UPHY14_TRX_ANAREG_BOT_23	=	0x005c
+_UPHY14_TRX_ANAREG_BOT_24	=	0x0060
+_UPHY14_TRX_ANAREG_BOT_25	=	0x0064
+_UPHY14_TRX_ANAREG_BOT_26	=	0x0068
+_UPHY14_TRX_ANAREG_BOT_27	=	0x006c
+_UPHY14_TRX_ANAREG_BOT_28	=	0x0070
+_UPHY14_TRX_ANAREG_BOT_29	=	0x0074
+_UPHY14_TRX_ANAREG_BOT_30	=	0x0078
+_UPHY14_TRX_ANAREG_BOT_31	=	0x007c
+_UPHY14_TRX_ANAREG_BOT_32	=	0x0080
+_ANA_DFEE_REG_1E	=	0x0478
+_ANA_DFEE_REG_1F	=	0x047c
+_ANA_DFEE_REG_20	=	0x0480
+_ANA_DFEE_REG_21	=	0x0484
+_ANA_DFEE_REG_22	=	0x0488
+_ANA_DFEE_REG_23	=	0x048c
+_ANA_DFEE_REG_24	=	0x0490
+_ANA_DFEE_REG_25	=	0x0494
+_ANA_DFEE_REG_26	=	0x0498
+_ANA_DFEE_REG_27	=	0x049c
+_ANA_DFEE_REG_00	=	0x0400
+_ANA_DFEE_REG_01	=	0x0404
+_ANA_DFEE_REG_02	=	0x0408
+_ANA_DFEE_REG_03	=	0x040c
+_ANA_DFEE_REG_04	=	0x0410
+_ANA_DFEE_REG_05	=	0x0414
+_ANA_DFEE_REG_06	=	0x0418
+_ANA_DFEE_REG_07	=	0x041c
+_ANA_DFEE_REG_08	=	0x0420
+_ANA_DFEE_REG_09	=	0x0424
+_ANA_DFEE_REG_0A	=	0x0428
+_ANA_DFEE_REG_0B	=	0x042c
+_ANA_DFEE_REG_0C	=	0x0430
+_ANA_DFEE_REG_0D	=	0x0434
+_ANA_DFEE_REG_0E	=	0x0438
+_ANA_DFEE_REG_0F	=	0x043c
+_ANA_DFEE_REG_10	=	0x0440
+_ANA_DFEE_REG_11	=	0x0444
+_ANA_DFEE_REG_12	=	0x0448
+_ANA_DFEE_REG_13	=	0x044c
+_ANA_DFEE_REG_14	=	0x0450
+_ANA_DFEE_REG_15	=	0x0454
+_ANA_DFEE_REG_16	=	0x0458
+_ANA_DFEE_REG_17	=	0x045c
+_ANA_DFEE_REG_18	=	0x0460
+_ANA_DFEE_REG_19	=	0x0464
+_ANA_DFEE_REG_1A	=	0x0468
+_ANA_DFEE_REG_1B	=	0x046c
+_ANA_DFEE_REG_1C	=	0x0470
+_ANA_DFEE_REG_1D	=	0x0474
+_ANA_DFEO_REG_0C	=	0x0830
+_ANA_DFEO_REG_0D	=	0x0834
+_ANA_DFEO_REG_0E	=	0x0838
+_ANA_DFEO_REG_0F	=	0x083c
+_ANA_DFEO_REG_10	=	0x0840
+_ANA_DFEO_REG_11	=	0x0844
+_ANA_DFEO_REG_12	=	0x0848
+_ANA_DFEO_REG_13	=	0x084c
+_ANA_DFEO_REG_14	=	0x0850
+_ANA_DFEO_REG_15	=	0x0854
+_ANA_DFEO_REG_16	=	0x0858
+_ANA_DFEO_REG_17	=	0x085c
+_ANA_DFEO_REG_18	=	0x0860
+_ANA_DFEO_REG_19	=	0x0864
+_ANA_DFEO_REG_1A	=	0x0868
+_ANA_DFEO_REG_1B	=	0x086c
+_ANA_DFEO_REG_1C	=	0x0870
+_ANA_DFEO_REG_1D	=	0x0874
+_ANA_DFEO_REG_1E	=	0x0878
+_ANA_DFEO_REG_1F	=	0x087c
+_ANA_DFEO_REG_20	=	0x0880
+_ANA_DFEO_REG_21	=	0x0884
+_ANA_DFEO_REG_22	=	0x0888
+_ANA_DFEO_REG_23	=	0x088c
+_ANA_DFEO_REG_24	=	0x0890
+_ANA_DFEO_REG_25	=	0x0894
+_ANA_DFEO_REG_26	=	0x0898
+_ANA_DFEO_REG_27	=	0x089c
+_ANA_DFEO_REG_00	=	0x0800
+_ANA_DFEO_REG_01	=	0x0804
+_ANA_DFEO_REG_02	=	0x0808
+_ANA_DFEO_REG_03	=	0x080c
+_ANA_DFEO_REG_04	=	0x0810
+_ANA_DFEO_REG_05	=	0x0814
+_ANA_DFEO_REG_06	=	0x0818
+_ANA_DFEO_REG_07	=	0x081c
+_ANA_DFEO_REG_08	=	0x0820
+_ANA_DFEO_REG_09	=	0x0824
+_ANA_DFEO_REG_0A	=	0x0828
+_ANA_DFEO_REG_0B	=	0x082c
+_UPHY14_CMN_ANAREG_TOP_128	=	0x8200
+_UPHY14_CMN_ANAREG_TOP_129	=	0x8204
+_UPHY14_CMN_ANAREG_TOP_130	=	0x8208
+_UPHY14_CMN_ANAREG_TOP_131	=	0x820c
+_UPHY14_CMN_ANAREG_TOP_132	=	0x8210
+_UPHY14_CMN_ANAREG_TOP_133	=	0x8214
+_UPHY14_CMN_ANAREG_TOP_134	=	0x8218
+_UPHY14_CMN_ANAREG_TOP_135	=	0x821c
+_UPHY14_CMN_ANAREG_TOP_136	=	0x8220
+_UPHY14_CMN_ANAREG_TOP_137	=	0x8224
+_UPHY14_CMN_ANAREG_TOP_138	=	0x8228
+_UPHY14_CMN_ANAREG_TOP_139	=	0x822c
+_UPHY14_CMN_ANAREG_TOP_140	=	0x8230
+_UPHY14_CMN_ANAREG_TOP_141	=	0x8234
+_UPHY14_CMN_ANAREG_TOP_142	=	0x8238
+_UPHY14_CMN_ANAREG_TOP_143	=	0x823c
+_UPHY14_CMN_ANAREG_TOP_144	=	0x8240
+_UPHY14_CMN_ANAREG_TOP_145	=	0x8244
+_UPHY14_CMN_ANAREG_TOP_146	=	0x8248
+_UPHY14_CMN_ANAREG_TOP_147	=	0x824c
+_UPHY14_CMN_ANAREG_TOP_148	=	0x8250
+_UPHY14_CMN_ANAREG_TOP_149	=	0x8254
+_UPHY14_CMN_ANAREG_TOP_150	=	0x8258
+_UPHY14_CMN_ANAREG_TOP_151	=	0x825c
+_UPHY14_CMN_ANAREG_TOP_152	=	0x8260
+_UPHY14_CMN_ANAREG_TOP_153	=	0x8264
+_UPHY14_CMN_ANAREG_TOP_154	=	0x8268
+_UPHY14_CMN_ANAREG_TOP_155	=	0x826c
+_UPHY14_CMN_ANAREG_TOP_156	=	0x8270
+_UPHY14_CMN_ANAREG_TOP_157	=	0x8274
+_UPHY14_CMN_ANAREG_TOP_158	=	0x8278
+_UPHY14_CMN_ANAREG_TOP_159	=	0x827c
+_UPHY14_CMN_ANAREG_TOP_160	=	0x8280
+_UPHY14_CMN_ANAREG_TOP_161	=	0x8284
+_UPHY14_CMN_ANAREG_TOP_162	=	0x8288
+_UPHY14_CMN_ANAREG_TOP_163	=	0x828c
+_UPHY14_CMN_ANAREG_TOP_164	=	0x8290
+_UPHY14_CMN_ANAREG_TOP_165	=	0x8294
+_UPHY14_CMN_ANAREG_TOP_166	=	0x8298
+_UPHY14_CMN_ANAREG_TOP_167	=	0x829c
+_UPHY14_CMN_ANAREG_TOP_168	=	0x82a0
+_UPHY14_CMN_ANAREG_TOP_169	=	0x82a4
+_UPHY14_CMN_ANAREG_TOP_170	=	0x82a8
+_UPHY14_CMN_ANAREG_TOP_171	=	0x82ac
+_UPHY14_CMN_ANAREG_TOP_172	=	0x82b0
+_UPHY14_CMN_ANAREG_TOP_173	=	0x82b4
+_UPHY14_CMN_ANAREG_TOP_174	=	0x82b8
+_UPHY14_CMN_ANAREG_TOP_175	=	0x82bc
+_UPHY14_CMN_ANAREG_TOP_176	=	0x82c0
+_UPHY14_CMN_ANAREG_TOP_177	=	0x82c4
+_UPHY14_CMN_ANAREG_TOP_178	=	0x82c8
+_UPHY14_CMN_ANAREG_TOP_179	=	0x82cc
+_UPHY14_CMN_ANAREG_TOP_180	=	0x82d0
+_UPHY14_CMN_ANAREG_TOP_181	=	0x82d4
+_UPHY14_CMN_ANAREG_TOP_182	=	0x82d8
+_UPHY14_CMN_ANAREG_TOP_183	=	0x82dc
+_UPHY14_CMN_ANAREG_TOP_184	=	0x82e0
+_UPHY14_CMN_ANAREG_TOP_185	=	0x82e4
+_UPHY14_CMN_ANAREG_TOP_186	=	0x82e8
+_UPHY14_CMN_ANAREG_TOP_187	=	0x82ec
+_UPHY14_CMN_ANAREG_TOP_188	=	0x82f0
+_UPHY14_CMN_ANAREG_TOP_189	=	0x82f4
+_UPHY14_CMN_ANAREG_TOP_190	=	0x82f8
+_UPHY14_CMN_ANAREG_TOP_191	=	0x82fc
+_UPHY14_CMN_ANAREG_TOP_192	=	0x8300
+_UPHY14_CMN_ANAREG_TOP_193	=	0x8304
+_UPHY14_CMN_ANAREG_TOP_194	=	0x8308
+_UPHY14_CMN_ANAREG_TOP_195	=	0x830c
+_UPHY14_CMN_ANAREG_TOP_196	=	0x8310
+_UPHY14_CMN_ANAREG_TOP_197	=	0x8314
+_UPHY14_CMN_ANAREG_TOP_198	=	0x8318
+_UPHY14_CMN_ANAREG_TOP_199	=	0x831c
+_UPHY14_CMN_ANAREG_TOP_200	=	0x8320
+_UPHY14_CMN_ANAREG_TOP_201	=	0x8324
+_UPHY14_CMN_ANAREG_TOP_202	=	0x8328
+_UPHY14_CMN_ANAREG_TOP_203	=	0x832c
+_UPHY14_CMN_ANAREG_TOP_204	=	0x8330
+_UPHY14_CMN_ANAREG_TOP_205	=	0x8334
+_UPHY14_CMN_ANAREG_TOP_206	=	0x8338
+_UPHY14_CMN_ANAREG_TOP_207	=	0x833c
+_UPHY14_CMN_ANAREG_TOP_208	=	0x8340
+_UPHY14_CMN_ANAREG_TOP_209	=	0x8344
+_UPHY14_CMN_ANAREG_TOP_210	=	0x8348
+_UPHY14_CMN_ANAREG_TOP_211	=	0x834c
+_UPHY14_CMN_ANAREG_TOP_212	=	0x8350
+_UPHY14_CMN_ANAREG_TOP_213	=	0x8354
+_UPHY14_CMN_ANAREG_TOP_214	=	0x8358
+_PM_CTRL_TX_LANE_REG1_LANE	=	0x2000
+_PM_CTRL_TX_LANE_REG2_LANE	=	0x2004
+_INPUT_TX_PIN_REG0_LANE	=	0x2008
+_INPUT_TX_PIN_REG1_LANE	=	0x200c
+_INPUT_TX_PIN_REG2_LANE	=	0x2010
+_INPUT_TX_PIN_REG3_LANE	=	0x2014
+_PM_CTRL_INTERRUPT_REG1_LANE	=	0x2018
+_PM_CTRL_INTERRUPT_REG2	=	0x201c
+_CLKGEN_TX_LANE_REG1_LANE	=	0x2020
+_TX_SPEED_CONVERT_LANE	=	0x2024
+_SPD_CTRL_INTERRUPT_REG1_LANE	=	0x2028
+_SPD_CTRL_INTERRUPT_REG2	=	0x202c
+_SPD_CTRL_TX_LANE_REG1_LANE	=	0x2030
+_TX_SYSTEM_LANE	=	0x2034
+_INPUT_TX_PIN_REG4_LANE	=	0x203c
+_TX_CALIBRATION_LANE	=	0x2040
+_DIG_TX_RSVD_REG0	=	0x2044
+_INPUT_TX_PIN_REG5_LANE	=	0x2048
+__FIELDNAME__LANE	=	0x204c
+_PM_CTRL_INTERRUPT_ISR_REG1_LANE	=	0x2050
+_SPD_CTRL_INTERRUPT_CLEAR_REG1_LANE	=	0x2054
+_ANALOG_TX_REALTIME_REG_1	=	0x2058
+_MON_TOP	=	0x205c
+_PM_CTRL_RX_LANE_REG1_LANE	=	0x2100
+_RX_SYSTEM_LANE	=	0x2104
+_INPUT_RX_PIN_REG0_LANE	=	0x2108
+_INPUT_RX_PIN_REG1_LANE	=	0x210c
+_INPUT_RX_PIN_REG2_LANE	=	0x2110
+_SPD_CTRL_RX_LANE_REG1_LANE	=	0x2114
+_DIG_RX_RSVD_REG0	=	0x2118
+_CLKGEN_RX_LANE_REG1_LANE	=	0x211c
+_FRAME_SYNC_DET_REG0	=	0x2120
+_FRAME_SYNC_DET_REG1	=	0x2124
+_FRAME_SYNC_DET_REG2	=	0x2128
+_FRAME_SYNC_DET_REG3	=	0x212c
+_FRAME_SYNC_DET_REG4	=	0x2130
+_FRAME_SYNC_DET_REG5	=	0x2134
+_FRAME_SYNC_DET_REG6	=	0x2138
+_CDR_LOCK_REG	=	0x213c
+_RX_LANE_INTERRUPT	=	0x2140
+_RX_LANE_INTERRUPT_MASK	=	0x2144
+_RX_DATA_PATH_REG	=	0x2148
+_INPUT_RX_PIN_REG3_LANE	=	0x214c
+_RX_CALIBRATION_REG	=	0x2150
+_RX_LANE_INTERRUPT_REG1	=	0x2158
+_DTL_REG0	=	0x2160
+_DTL_REG1	=	0x2164
+_DTL_REG2	=	0x2168
+_DTL_REG3	=	0x216c
+_SQ_REG0	=	0x2170
+_LANE_CFG0	=	0x4000
+_LANE_STATUS0	=	0x4004
+_LANE_CFG_STATUS2_LANE	=	0x4008
+_LANE_CFG2_LANE	=	0x400c
+_LANE_CFG4	=	0x4010
+_LANE_CFG_STATUS3_LANE	=	0x4014
+_LANE_DP_PIE8_CFG0_LANE	=	0x4018
+_LANE_USB_DP_CFG1_LANE	=	0x401c
+_LANE_USB_DP_CFG2_LANE	=	0x4020
+_LANE_EQ_CFG0_LANE	=	0x4024
+_LANE_EQ_CFG1_LANE	=	0x4028
+_LANE_PRESET_CFG0_LANE	=	0x402c
+_LANE_PRESET_CFG2_LANE	=	0x4030
+_LANE_PRESET_CFG4_LANE	=	0x4034
+_LANE_PRESET_CFG6_LANE	=	0x4038
+_LANE_PRESET_CFG8_LANE	=	0x403c
+_LANE_PRESET_CFG10_LANE	=	0x4040
+_LANE_PRESET_CFG12_LANE	=	0x4044
+_LANE_PRESET_CFG14_LANE	=	0x4048
+_LANE_PRESET_CFG16_LANE	=	0x404c
+_LANE_COEFF_MAX0_LANE	=	0x4050
+_LANE_REMOTE_SET_LANE	=	0x4054
+_LANE_EQ_16G_CFG0_LANE	=	0x4058
+_LANE_16G_PRESET_CFG0_LANE	=	0x405c
+_LANE_16G_PRESET_CFG2_LANE	=	0x4060
+_LANE_16G_PRESET_CFG4_LANE	=	0x4064
+_LANE_16G_PRESET_CFG6_LANE	=	0x4068
+_LANE_16G_PRESET_CFG8_LANE	=	0x406c
+_LANE_16G_PRESET_CFG10_LANE	=	0x4070
+_LANE_16G_PRESET_CFG12_LANE	=	0x4074
+_LANE_16G_PRESET_CFG14_LANE	=	0x4078
+_LANE_16G_PRESET_CFG16_LANE	=	0x407c
+_LANE_EQ_32G_CFG0_LANE	=	0x4080
+_LANE_32G_PRESET_CFG0_LANE	=	0x4084
+_LANE_32G_PRESET_CFG2_LANE	=	0x4088
+_LANE_32G_PRESET_CFG4_LANE	=	0x408c
+_LANE_32G_PRESET_CFG6_LANE	=	0x4090
+_LANE_32G_PRESET_CFG8_LANE	=	0x4094
+_LANE_32G_PRESET_CFG10_LANE	=	0x4098
+_LANE_32G_PRESET_CFG12_LANE	=	0x409c
+_LANE_32G_PRESET_CFG14_LANE	=	0x40a0
+_LANE_32G_PRESET_CFG16_LANE	=	0x40a4
+_MCU_CONTROL_LANE	=	0x2200
+_MCU_GPIO	=	0x2204
+_CACHE_DEBUG0	=	0x2208
+_CACHE_DEBUG1	=	0x220c
+_LANE_SYSTEM0	=	0x2210
+_MCU_STATUS0_LANE	=	0x2230
+_MCU_STATUS1_LANE	=	0x2234
+_MCU_STATUS2_LANE	=	0x2238
+_MCU_STATUS3_LANE	=	0x223c
+_MCU_INT0_CONTROL	=	0x2240
+_MCU_INT1_CONTROL	=	0x2244
+_MCU_INT2_CONTROL	=	0x2248
+_MCU_INT3_CONTROL	=	0x224c
+_MCU_INT4_CONTROL	=	0x2250
+_MCU_INT5_CONTROL	=	0x2254
+_MCU_INT6_CONTROL	=	0x2258
+_MCU_INT7_CONTROL	=	0x225c
+_MCU_INT8_CONTROL	=	0x2260
+_MCU_INT9_CONTROL	=	0x2264
+_MCU_INT10_CONTROL	=	0x2268
+_MCU_INT11_CONTROL	=	0x226c
+_MCU_INT12_CONTROL	=	0x2270
+_MCU_TIMER_CONTROL	=	0x2274
+_MCU_TIMER0_CONTROL	=	0x2278
+_MCU_TIMER1_CONTROL	=	0x227c
+_MCU_TIMER2_CONTROL	=	0x2280
+_MCU_TIMER3_CONTROL	=	0x2284
+_MCU_IRQ_LANE	=	0x2288
+_MCU_IRQ_MASK_LANE	=	0x228c
+_MCU_MEM_REG1_LANE	=	0x2290
+_MCU_MEM_REG2_LANE	=	0x2294
+_MCU_TIMER_CTRL_1_LANE	=	0x2298
+_MCU_TIMER_CTRL_2_LANE	=	0x229c
+_MCU_TIMER_CTRL_3_LANE	=	0x22a0
+_MCU_TIMER_CTRL_4_LANE	=	0x22a4
+_MCU_TIMER_CTRL_5_LANE	=	0x22a8
+_MCU_TIMER_CTRL_6_LANE	=	0x22ac
+_MCU_TIMER_CTRL_7_LANE	=	0x22b0
+_MCU_DEBUG0_LANE	=	0x22b4
+_MCU_DEBUG1_LANE	=	0x22b8
+_MCU_DEBUG2_LANE	=	0x22bc
+_MCU_DEBUG3_LANE	=	0x22c0
+_MCU_DEBUG_LANE	=	0x22c4
+_EXT_INT_CONTROL	=	0x22c8
+_ANA_IF_TRX_REG0	=	0x22cc
+_ANA_IF_DFEE_REG0	=	0x22d0
+_ANA_IF_DFEO_REG0	=	0x22d4
+_MCU_IRQ_ISR_LANE	=	0x22d8
+_MCU_WDT_LANE	=	0x22dc
+_MCU_INT_CONTROL_13	=	0x22e0
+_MCU_COMMAND0	=	0x22e4
+_MEM_ECC_ERR_ADDRESS0	=	0x22f4
+_XDATA_MEM_CHECKSUM_LANE0	=	0x22f8
+_XDATA_MEM_CHECKSUM_LANE1	=	0x22fc
+_PT_CONTROL0	=	0x2300
+_PT_CONTROL1	=	0x2304
+_PT_USER_PATTERN0	=	0x2308
+_PT_USER_PATTERN1	=	0x230c
+_PT_USER_PATTERN2	=	0x2310
+_PT_COUNTER0	=	0x2314
+_PT_COUNTER1	=	0x2318
+_PT_COUNTER2	=	0x231c
+_DFE_CTRL_REG0	=	0x2400
+_DFE_CTRL_REG1	=	0x2404
+_DFE_CTRL_REG2	=	0x2408
+_DFE_CTRL_REG3	=	0x240c
+_RX_EQ_CLK_CTRL	=	0x2410
+_DFE_CTRL_REG4	=	0x2414
+_DFE_ANA_REG0	=	0x2418
+_DFE_ANA_REG1	=	0x241c
+_DFE_STEP_REG0	=	0x2420
+_DFE_STEP_REG1	=	0x2424
+_DFE_FEN_EVEN_REG	=	0x2430
+_DFE_FEN_ODD_REG	=	0x2434
+_DFE_DC_EVEN_REG8	=	0x2438
+_DFE_DC_ODD_REG8	=	0x243c
+_DFE_FEXT_EVEN_REG0	=	0x2440
+_DFE_FEXT_EVEN_REG1	=	0x2444
+_DFE_FEXT_EVEN_REG2	=	0x2448
+_DFE_FEXT_EVEN_REG3	=	0x244c
+_DFE_FEXT_EVEN_REG4	=	0x2450
+_DFE_FEXT_EVEN_REG5	=	0x2454
+_DFE_FEXT_EVEN_REG6	=	0x2458
+_DFE_FEXT_EVEN_REG7	=	0x245c
+_DFE_FEXT_ODD_REG0	=	0x2460
+_DFE_FEXT_ODD_REG1	=	0x2464
+_DFE_FEXT_ODD_REG2	=	0x2468
+_DFE_FEXT_ODD_REG3	=	0x246c
+_DFE_FEXT_ODD_REG4	=	0x2470
+_DFE_FEXT_ODD_REG5	=	0x2474
+_DFE_FEXT_ODD_REG6	=	0x2478
+_DFE_FEXT_ODD_REG7	=	0x247c
+_DFE_READ_EVEN_SM_REG0	=	0x2480
+_DFE_READ_EVEN_SM_REG1	=	0x2484
+_DFE_READ_EVEN_SM_REG2	=	0x2488
+_DFE_READ_EVEN_SM_REG3	=	0x248c
+_DFE_READ_EVEN_SM_REG4	=	0x2490
+_DFE_READ_EVEN_SM_REG5	=	0x2494
+_DFE_READ_EVEN_SM_REG6	=	0x2498
+_DFE_READ_EVEN_SM_REG7	=	0x249c
+_DFE_READ_ODD_SM_REG0	=	0x24a0
+_DFE_READ_ODD_SM_REG1	=	0x24a4
+_DFE_READ_ODD_SM_REG2	=	0x24a8
+_DFE_READ_ODD_SM_REG3	=	0x24ac
+_DFE_READ_ODD_SM_REG4	=	0x24b0
+_DFE_READ_ODD_SM_REG5	=	0x24b4
+_DFE_READ_ODD_SM_REG6	=	0x24b8
+_DFE_READ_ODD_SM_REG7	=	0x24bc
+_DFE_READ_EVEN_SM_REG8	=	0x24c0
+_DFE_READ_ODD_SM_REG8	=	0x24c4
+_DFE_READ_EVEN_2C_REG0	=	0x24d0
+_DFE_READ_EVEN_2C_REG1	=	0x24d4
+_DFE_READ_EVEN_2C_REG2	=	0x24d8
+_DFE_READ_EVEN_2C_REG3	=	0x24dc
+_DFE_READ_EVEN_2C_REG4	=	0x24e0
+_DFE_READ_EVEN_2C_REG5	=	0x24e4
+_DFE_READ_EVEN_2C_REG6	=	0x24e8
+_DFE_READ_EVEN_2C_REG7	=	0x24ec
+_DFE_READ_ODD_2C_REG0	=	0x24f0
+_DFE_READ_ODD_2C_REG1	=	0x24f4
+_DFE_READ_ODD_2C_REG2	=	0x24f8
+_DFE_READ_ODD_2C_REG3	=	0x24fc
+_DFE_READ_ODD_2C_REG4	=	0x2500
+_DFE_READ_ODD_2C_REG5	=	0x2504
+_DFE_READ_ODD_2C_REG6	=	0x2508
+_DFE_READ_ODD_2C_REG7	=	0x250c
+_DFE_READ_EVEN_2C_REG8	=	0x2510
+_DFE_READ_ODD_2C_REG8	=	0x2514
+_CAL_OFST_REG0	=	0x2518
+_CAL_OFST_REG1	=	0x251c
+_CAL_OFST_REG2	=	0x2520
+_DFE_DCE_REG0	=	0x2530
+_DFE_STATIC_LANE_REG0	=	0x2540
+_DFE_STATIC_LANE_REG1	=	0x2544
+_DFE_STATIC_LANE_REG3	=	0x2548
+_DFE_STATIC_LANE_REG4	=	0x254c
+_DFE_STATIC_LANE_REG5	=	0x2550
+_DFE_STATIC_LANE_REG6	=	0x2554
+_EOM_VLD_REG0	=	0x2560
+_EOM_VLD_REG1	=	0x2564
+_EOM_VLD_REG2	=	0x2568
+_EOM_VLD_REG3	=	0x256c
+_EOM_ERR_REG0	=	0x2570
+_EOM_ERR_REG1	=	0x2574
+_EOM_ERR_REG2	=	0x2578
+_EOM_ERR_REG3	=	0x257c
+_EOM_REG0	=	0x2580
+_EOM_VLD_REG4	=	0x25f0
+_LANE_MARGIN_REG0	=	0x25f4
+_CAL_CTRL1_LANE	=	0x6000
+_CAL_CTRL2_LANE	=	0x6004
+_CAL_CTRL3_LANE	=	0x6008
+_CAL_CTRL4_LANE	=	0x600c
+_CAL_SAVE_DATA1_LANE	=	0x6010
+_CAL_SAVE_DATA2_LANE	=	0x6014
+_CAL_SAVE_DATA3_LANE	=	0x6018
+_PHY_REMOTE_CTRL_COMMAND_LANE	=	0x601c
+_PHY_REMOTE_CTRL_VALUE_LANE	=	0x6020
+_PHY_LOCAL_VALUE_LANE	=	0x6024
+_TRX_TRAIN_IF_TIMERS1_LANE	=	0x6028
+_TRX_TRAIN_IF_TIMERS2_LANE	=	0x602c
+_TRX_TRAIN_IF_TIMERS_ENABLE_LANE	=	0x6030
+_DFE_CONTROL_0	=	0x6034
+_DFE_CONTROL_1	=	0x6038
+_DFE_CONTROL_2	=	0x6040
+_DFE_CONTROL_3	=	0x6044
+_DFE_CONTROL_4	=	0x6048
+_DFE_CONTROL_5	=	0x604c
+_TRAIN_CONTROL_0	=	0x6050
+_TRAIN_CONTROL_1	=	0x6054
+_TRAIN_CONTROL_2	=	0x6058
+_RPTA_CONFIG_0	=	0x605c
+_RPTA_CONFIG_1	=	0x6060
+_DLL_CAL	=	0x6064
+_TRAIN_PARA_0	=	0x6068
+_TRAIN_PARA_1	=	0x606c
+_TRAIN_PARA_2	=	0x6070
+_TRAIN_PARA_3	=	0x6074
+_DFE_CONTROL_6	=	0x6078
+_DFE_TEST_0	=	0x607c
+_DFE_TEST_1	=	0x6080
+_DFE_TEST_4	=	0x6084
+_DFE_TEST_5	=	0x6088
+_DFE_CONTROL_7	=	0x608c
+_DFE_CONTROL_8	=	0x6090
+_DFE_CONTROL_9	=	0x6094
+_DFE_CONTROL_10	=	0x6098
+_DFE_CONTROL_11	=	0x609c
+_CDS_CTRL_REG0	=	0x60a0
+_CDS_CTRL_REG1	=	0x60a4
+_ESM_POP_P_CNT_LOW_LANE	=	0x60a8
+_ESM_ERR_P_CNT_LOW_LANE	=	0x60ac
+_ESM_ERR_POP_CNT_HIGH_LANE	=	0x60b0
+_TRAIN_CONTROL_3	=	0x60b4
+_TRAIN_CONTROL_4	=	0x60b8
+_TRAIN_CONTROL_5	=	0x60bc
+_TRAIN_CONTROL_6	=	0x60c0
+_TRAIN_CONTROL_7	=	0x60c4
+_TRAIN_CONTROL_8	=	0x60c8
+_TRAIN_CONTROL_9	=	0x60cc
+_TRAIN_CONTROL_10	=	0x60d0
+_TRAIN_CONTROL_11	=	0x60d4
+_TRAIN_CONTROL_12	=	0x60d8
+_ESM_POP_N_CNT_LOW_LANE	=	0x60dc
+_ESM_ERR_N_CNT_LOW_LANE	=	0x60e0
+_TRAIN_CONTROL_13	=	0x60e4
+_TRAIN_CONTROL_14	=	0x60e8
+_TRAIN_CONTROL_15	=	0x60ec
+_TRAIN_CONTROL_16	=	0x60f0
+_TRAIN_CONTROL_17	=	0x60f4
+_END_XDAT_LANE	=	0x60f8
+_TX_CMN_REG	=	0xa000
+_DTX_REG0	=	0xa008
+_DTX_REG1	=	0xa00c
+_DTX_REG2	=	0xa010
+_DTX_REG3	=	0xa014
+_DTX_REG4	=	0xa018
+_DTX_PHY_ALIGN_REG0	=	0xa01c
+_DTX_PHY_ALIGN_REG1	=	0xa024
+_DTX_PHY_ALIGN_REG2	=	0xa028
+_SRIS_REG0	=	0xa02c
+_SRIS_REG1	=	0xa030
+_RX_CMN_0	=	0xa100
+_DFE_STATIC_REG0	=	0xa110
+_DFE_STATIC_REG1	=	0xa114
+_DFE_STATIC_REG3	=	0xa118
+_DFE_STATIC_REG4	=	0xa11c
+_DFE_STATIC_REG5	=	0xa120
+_DFE_STATIC_REG6	=	0xa124
+_GLOB_RST_CLK_CTRL	=	0x4200
+_GLOB_CLK_SRC_LO	=	0x4204
+_GLOB_CLK_SRC_HI	=	0x4208
+_GLOB_MISC_CTRL	=	0x420c
+_GLOB_DP_SAL_CFG	=	0x4210
+_GLOB_DP_SAL_CFG1	=	0x4214
+_GLOB_DP_SAL_CFG3	=	0x4218
+_GLOB_DP_SAL_CFG5	=	0x421c
+_GLOB_PM_CFG0	=	0x4220
+_GLOB_COUNTER_CTRL	=	0x4224
+_GLOB_COUNTER_HI	=	0x4228
+_GLOB_PM_DP_CTRL	=	0x422c
+_GLOB_DP_BAL_CFG0	=	0x4230
+_GLOB_DP_BAL_CFG2	=	0x4234
+_GLOB_DP_BAL_CFG4	=	0x4238
+_GLOB_BIST_CTRL	=	0x423c
+_GLOB_BIST_LANE_TYPE	=	0x4240
+_GLOB_BIST_START	=	0x4244
+_GLOB_BIST_MASK	=	0x4248
+_GLOB_BIST_RESULT	=	0x424c
+_GLOB_BIST_SEQR_CFG	=	0x4250
+_GLOB_BIST_DATA_HI	=	0x4254
+_GLOB_PIPE_REVISION	=	0x4258
+_GLOB_L1_SUBSTATES_CFG	=	0x425c
+_MCU_CONTROL_0	=	0xa200
+_MCU_CONTROL_1	=	0xa204
+_MCU_CONTROL_2	=	0xa208
+_MCU_CONTROL_3	=	0xa20c
+_MCU_CONTROL_4	=	0xa210
+_MCU_DEBUG0	=	0xa214
+_MCU_DEBUG1	=	0xa218
+_MEMORY_CONTROL_0	=	0xa21c
+_MEMORY_CONTROL_1	=	0xa220
+_MEMORY_CONTROL_2	=	0xa224
+_MEMORY_CONTROL_3	=	0xa228
+_MEMORY_CONTROL_4	=	0xa22c
+_MCU_INFO_0	=	0xa234
+_MCU_INFO_1	=	0xa238
+_MCU_INFO_2	=	0xa23c
+_MCU_INFO_3	=	0xa240
+_MEM_CMN_ECC_ERR_ADDRESS0	=	0xa244
+_ANA_IF_CMN_REG1	=	0xa2e0
+_MEM_IRQ	=	0xa2e4
+_MEM_IRQ_MASK	=	0xa2e8
+_ANA_IF_CMN_REG0	=	0xa2ec
+_APB_CONTROL_REG	=	0xa2f0
+_MEM_IRQ_CLEAR	=	0xa2f4
+_MCU_SYNC1	=	0xa2f8
+_MCU_SYNC2	=	0xa2fc
+_TEST0	=	0xa300
+_TEST1	=	0xa304
+_TEST2	=	0xa308
+_TEST3	=	0xa30c
+_TEST4	=	0xa310
+_SYSTEM	=	0xa314
+_PM_CMN_REG1	=	0xa318
+_INPUT_CMN_PIN_REG0	=	0xa31c
+_INPUT_CMN_PIN_REG1	=	0xa320
+_INPUT_CMN_PIN_REG2	=	0xa324
+_ANA_TSEN_CONTROL	=	0xa328
+_PLLCAL_REG0	=	0xa32c
+_PLLCAL_REG1	=	0xa330
+_CLKGEN_CMN_REG1	=	0xa334
+_SPD_CMN_REG1	=	0xa338
+_OUTPUT_CMN_PIN_REG0	=	0xa33c
+_CMN_CALIBRATION	=	0xa340
+__FIELDNAME_	=	0xa344
+_INPUT_CMN_PIN_REG3	=	0xa348
+_PM_CMN_REG2	=	0xa34c
+_TEST5	=	0xa354
+_XDATA_MEM_CHECKSUM_CMN_0	=	0xa358
+_XDATA_MEM_CHECKSUM_CMN_1	=	0xa35c
+_XDATA_MEM_CHECKSUM_CMN_2	=	0xa360
+_MCU_SDT_CMN	=	0xa364
+_CMN_CACHE_DEBUG0	=	0xa368
+_MCU_INT_ADDR	=	0xa36c
+_CMN_ISR_2	=	0xa370
+_CMN_ISR_MASK_2	=	0xa374
+_CMN_ISR_CLEAR_2	=	0xa378
+_CMN_MCU_GPIO	=	0xa37c
+_CMN_CACHE_DEBUG1	=	0xa380
+_CMN_MCU_TIMER_CONTROL	=	0xa384
+_CMN_MCU_TIMER_CTRL_2_LANE	=	0xa388
+_CMN_MCU_TIMER_CTRL_3_LANE	=	0xa38c
+_CMN_MCU_TIMER_CTRL_4_LANE	=	0xa390
+_CMN_MCU_TIMER_CTRL_5_LANE	=	0xa394
+_CMN_MCU_TIMER0_CONTROL	=	0xa398
+_CMN_MCU_TIMER1_CONTROL	=	0xa39c
+_CMN_MCU_TIMER2_CONTROL	=	0xa3a0
+_CMN_MCU_TIMER3_CONTROL	=	0xa3a4
+_CMN_ISR_1	=	0xa3a8
+_CMN_ISR_MASK_1	=	0xa3ac
+_SET_LANE_ISR	=	0xa3b0
+_CMN_MCU_REG	=	0xa3f4
+_CID_REG0	=	0xa3f8
+_CID_REG1	=	0xa3fc
+_FW_REV	=	0xe600
+_CONTROL_CONFIG0	=	0xe604
+_CONTROL_CONFIG1	=	0xe608
+_CONTROL_CONFIG2	=	0xe60c
+_CONTROL_CONFIG3	=	0xe610
+_CONTROL_CONFIG4	=	0xe614
+_CONTROL_CONFIG5	=	0xe618
+_CONTROL_CONFIG6	=	0xe61c
+_CONTROL_CONFIG7	=	0xe620
+_CAL_DATA0	=	0xe624
+_TRAIN_IF_CONFIG	=	0xe628
+_CONTROL_CONFIG8	=	0xe62c
+_CONTROL_CONFIG9	=	0xe630
+_CON_CAL_STEP_SIZE1	=	0xe634
+_CON_CAL_STEP_SIZE2	=	0xe638
+_CON_CAL_STEP_SIZE3	=	0xe63c
+_CON_CAL_STEP_SIZE4	=	0xe640
+_CON_CAL_STEP_SIZE5	=	0xe644
+_CAL_TIME_OUT_AND_DIS	=	0xe648
+_CAL_STATUS_READ	=	0xe64c
+_MCU_CONFIG	=	0xe650
+_CAL_DATA1	=	0xe654
+_LOOP_CNTS	=	0xe658
+_MCU_CONFIG1	=	0xe65c
+_TIMER_SEL1	=	0xe660
+_TIMER_SEL2	=	0xe664
+_TIMER_SEL3	=	0xe668
+_G_SELLV_TXCLK	=	0xe66c
+_G_SELLV_TXDATA	=	0xe670
+_G_SELLV_TXPRE	=	0xe674
+_G_SELLV_RXEOMCLK	=	0xe678
+_G_SELLV_RXDATACLK	=	0xe67c
+_G_SELLV_RXSAMPLER	=	0xe680
+_SAS_PRESET0_TB	=	0xe684
+_SAS_PRESET1_TB	=	0xe688
+_SAS_PRESET2_TB	=	0xe68c
+_ETH_PRESET0_TB	=	0xe690
+_ETH_PRESET1_TB	=	0xe694
+_TX_SAVE_0	=	0xe698
+_TX_SAVE_1	=	0xe69c
+_TX_SAVE_2	=	0xe6a0
+_TX_SAVE_3	=	0xe6a4
+_TX_SAVE_4	=	0xe6a8
+_CDS_EYE_CLK_THR	=	0xe6ac
+_SYNC_INFO	=	0xe6b0
+_MCU_INFO_4	=	0xe6b4
+_MCU_INFO_5	=	0xe6b8
+_MCU_INFO_12	=	0xe6bc
+_MCU_INFO_13	=	0xe6c0
+_END_XDAT_CMN	=	0xe6c4
+_DME_ENC_REG0	=	0x2600
+_DME_ENC_REG1	=	0x2604
+_DME_ENC_REG2	=	0x2608
+_DME_DEC_REG0	=	0x260c
+_DME_DEC_REG1	=	0x2610
+_TX_TRAIN_IF_REG0	=	0x2614
+_TX_TRAIN_IF_REG1	=	0x2618
+_TX_TRAIN_IF_REG2	=	0x261c
+_TX_TRAIN_IF_REG3	=	0x2620
+_TX_TRAIN_PATTTERN_REG0	=	0x2624
+_TX_TRAIN_DRIVER_REG0	=	0x2628
+_TX_TRAIN_DRIVER_REG1	=	0x262c
+_TX_TRAIN_DRIVER_REG2	=	0x2630
+_TX_TRAIN_DEFAULT_REG0	=	0x2634
+_TX_TRAIN_DEFAULT_REG1	=	0x2638
+_TX_TRAIN_DEFAULT_REG2	=	0x263c
+_TX_TRAIN_DEFAULT_REG3	=	0x2640
+_TX_TRAIN_DEFAULT_REG4	=	0x2644
+_TX_TRAIN_DEFAULT_REG5	=	0x2648
+_TX_EMPH_CTRL_REG0	=	0x264c
+_LINK_TRAIN_MODE0	=	0x2650
+_TX_DRV_RD_OUT_REG0	=	0x2654
+_TX_AMP_CTRL_REG0	=	0x2658
+_TRX_TRAIN_IF_INTERRUPT_LANE	=	0x265c
+_TRX_TRAIN_IF_INTERRUPT_MASK0_LANE	=	0x2660
+_TRX_TRAIN_IF_INTERRUPT_CLEAR_LANE	=	0x2664
+_TX_TRAIN_IF_REG4	=	0x2668
+_TX_TRAIN_IF_REG5	=	0x266c
+_TX_TRAIN_IF_REG6	=	0x2670
+_TX_TRAIN_IF_REG7	=	0x2674
+_TX_TRAIN_CTRL_LANE	=	0x2678
+_TX_TRAIN_IF_REG8	=	0x267c
+_DFE_READ_EVEN_REG0	=	0x6100
+_DFE_READ_EVEN_REG1	=	0x6104
+_DFE_READ_EVEN_REG2	=	0x6108
+_DFE_READ_EVEN_REG3	=	0x610c
+_DFE_READ_EVEN_REG4	=	0x6110
+_DFE_READ_EVEN_REG5	=	0x6114
+_DFE_READ_EVEN_REG6	=	0x6118
+_DFE_READ_EVEN_REG7	=	0x611c
+_DFE_READ_ODD_REG0	=	0x6120
+_DFE_READ_ODD_REG1	=	0x6124
+_DFE_READ_ODD_REG2	=	0x6128
+_DFE_READ_ODD_REG3	=	0x612c
+_DFE_READ_ODD_REG4	=	0x6130
+_DFE_READ_ODD_REG5	=	0x6134
+_DFE_READ_ODD_REG6	=	0x6138
+_DFE_READ_ODD_REG7	=	0x613c
+_DFE_READ_EVEN_REG8	=	0x6140
+_DFE_READ_ODD_REG8	=	0x6144
+_DFE_READ_F0A_EVEN	=	0x6148
+_DFE_READ_F0A_ODD	=	0x614c
+_DFE_READ_F0B_EVEN	=	0x6150
+_DFE_READ_F0B_ODD	=	0x6154
+_DFE_READ_F0D_EVEN	=	0x6158
+_DFE_READ_F0D_ODD	=	0x615c
+_DFE_READ_F0D_LEFT_EVEN	=	0x6160
+_DFE_READ_F0D_LEFT_ODD	=	0x6164
+_DFE_READ_F0D_RIGHT_EVEN	=	0x6168
+_DFE_READ_F0D_RIGHT_ODD	=	0x616c
+_CDS_READ_MISC0	=	0x6170
+_CDS_READ_MISC1	=	0x6174
+_TXTRAIN_IF_REG0	=	0x6214
+_lc_speedtable	=	0xe000
+_ring_speedtable	=	0xe1c0
+_phy_mode_cmn_table	=	0xe5c0
+_max_gen	=	0x6300
+_min_gen	=	0x6301
+_speedtable	=	0x6304
+_phy_mode_lane_table	=	0x65d4
+_rc_save	=	0x60b4
+_txffe_save	=	0x60d0
+_phase_save	=	0x60e4
+_train_gn1_index	=	0x6030
+_train_g1_index	=	0x6031
+_train_g0_index	=	0x6032
+_local_tx_preset_tb	=	0xe6b0
+_cmx_cal_lcvco_dac	=	0xe5c1
+_cmx_cal_lcvco_dac_lsb	=	0xe5c1
+_cmx_cal_lcvco_dac_msb	=	0xe5c4
+_cmx_cal_lccap_msb	=	0xe5ca
+_cmx_cal_lccap_lsb	=	0xe5c8
+_cmx_cal_plldcc	=	0xe5cc
+_cmx_cal_pll_speed_ring	=	0xe5d0
+_cmx_cal_pll_sllp_dac_coarse_ring	=	0xe5d4
+_cmx_cal_sllp_dac_fine_ring	=	0xe5d8
+_lnx_cal_txdcc_pdiv	=	0x65d4
+_lnx_cal_txdcc_pdiv_hg	=	0x65d8
+_lnx_cal_txdcc	=	0x65da
+_lnx_cal_txdcc_hg	=	0x65de
+_lnx_cal_rxdcc_dll	=	0x65e0
+_lnx_cal_rxdcc_dll_hg	=	0x65e4
+_lnx_cal_rxdcc_data	=	0x65e6
+_lnx_cal_rxdcc_data_hg	=	0x65f0
+_lnx_cal_rxdcc_eom	=	0x65f5
+_lnx_cal_rxdcc_eom_hg	=	0x65ff
+_lnx_cal_dll_gmsel	=	0x6604
+_lnx_cal_vdda_dll_sel	=	0x6606
+_lnx_cal_dll_eom_gmsel	=	0x660a
+_lnx_cal_vdda_dll_eom_sel	=	0x660c
+_lnx_cal_eom_dpher	=	0x6610
+_lnx_cal_align90_dummy_clk	=	0x6612
+_lnx_cal_align90_dac	=	0x661a
+_lnx_cal_align90_gm	=	0x6622
+_lnx_cal_sellv_txdata	=	0x662a
+_lnx_cal_sellv_txclk	=	0x6634
+_lnx_cal_sellv_rxdataclk	=	0x663e
+_lnx_cal_sellv_txpre	=	0x6648
+_lnx_cal_sellv_rxsampler	=	0x6652
+_lnx_cal_sellv_rxeomclk	=	0x665c
+_lnx_spdoft_tx_preset_index_lane	=	0x6666
+_lnx_calx_txdcc_pdiv	=	0x6490
+_lnx_calx_txdcc_pdiv_hg	=	0x6496
+_lnx_calx_txdcc	=	0x6499
+_lnx_calx_txdcc_hg	=	0x649f
+_lnx_calx_rxdcc_dll	=	0x64a2
+_lnx_calx_rxdcc_dll_hg	=	0x64a8
+_lnx_calx_dll_gmsel	=	0x64ab
+_lnx_calx_vdda_dll_sel	=	0x64ae
+_lnx_calx_dll_eom_gmsel	=	0x64b4
+_lnx_calx_vdda_dll_eom_sel	=	0x64b7
+_lnx_calx_eom_dpher	=	0x64bd
+_lnx_calx_align90_dummy_clk	=	0x64c0
+_lnx_calx_align90_dac	=	0x64cc
+_lnx_calx_align90_gm	=	0x64d8
+_cds28	=	0x6100
+_dfe_sm	=	0x6178
+_dfe_sm_dc	=	0x61b8
+_dfe_sm_save	=	0x61c0
+_UPHY_ANAREG_REV_0	=	0x03fc
+_tx_tb	=	0xe684
+_train_save_tb	=	0xe698
+_sq_thrs_ratio_tb	=	0x607c
+;--------------------------------------------------------
+; absolute external ram data
+;--------------------------------------------------------
+	.area XABS    (ABS,XDATA)
+;--------------------------------------------------------
+; external initialized ram data
+;--------------------------------------------------------
+	.area HOME    (CODE)
+	.area GSINIT0 (CODE)
+	.area GSINIT1 (CODE)
+	.area GSINIT2 (CODE)
+	.area GSINIT3 (CODE)
+	.area GSINIT4 (CODE)
+	.area GSINIT5 (CODE)
+	.area GSINIT  (CODE)
+	.area GSFINAL (CODE)
+	.area CSEG    (CODE)
+;--------------------------------------------------------
+; global & static initialisations
+;--------------------------------------------------------
+	.area HOME    (CODE)
+	.area GSINIT  (CODE)
+	.area GSFINAL (CODE)
+	.area GSINIT  (CODE)
+;--------------------------------------------------------
+; Home
+;--------------------------------------------------------
+	.area HOME    (CODE)
+	.area HOME    (CODE)
+;--------------------------------------------------------
+; code
+;--------------------------------------------------------
+	.area BANK1   (CODE)
+;------------------------------------------------------------
+;Allocation info for local variables in function 'ring_pll_cal'
+;------------------------------------------------------------
+;cnt_rdy                   Allocated to registers r7 
+;save_FBDIV_h              Allocated to stack - offset 1
+;save_FBDIV_l              Allocated to stack - offset 2
+;save_FBCK_SEL             Allocated to stack - offset 3
+;Fmea                      Allocated to stack - offset 4
+;temp                      Allocated to stack - offset 6
+;dac_fine_max              Allocated to registers r2 r3 
+;dac_fine_min              Allocated to registers r4 r5 
+;tmp                       Allocated to registers r2 r3 
+;------------------------------------------------------------
+;	../../shared/src/ring_pll_cal.c:101: void ring_pll_cal( void ) BANKING_CTRL {
+;	-----------------------------------------
+;	 function ring_pll_cal
+;	-----------------------------------------
+_ring_pll_cal:
+	ar2 = 0x02
+	ar3 = 0x03
+	ar4 = 0x04
+	ar5 = 0x05
+	ar6 = 0x06
+	ar7 = 0x07
+	ar0 = 0x00
+	ar1 = 0x01
+	push	_bp
+	mov	a,sp
+	mov	_bp,a
+	add	a,#0x07
+	mov	sp,a
+;	../../shared/src/ring_pll_cal.c:107: PHY_STATUS =  ST_PLL_CAL_RING_CAL;
+	mov	dptr,#_MCU_STATUS0_LANE
+	mov	a,#0x36
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:110: if(phy_mode == SERDES) {
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r2,a
+	cjne	r2,#0x04,00110$
+;	../../shared/src/ring_pll_cal.c:111: while(1) {
+00107$:
+;	../../shared/src/ring_pll_cal.c:112: if(cmx_PLL_CAL_DONE==1) {
+	mov	dptr,#(_CAL_STATUS_READ + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x01
+	mov	r2,a
+	cjne	r2,#0x01,00107$
+;	../../shared/src/ring_pll_cal.c:113: if(cmx_PLL_CAL_DONE==1 && reg_PLLCAL_EN==0) break; //wait for LCPLL calibration done
+	mov	dptr,#(_CAL_STATUS_READ + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x01
+	mov	r2,a
+	cjne	r2,#0x01,00107$
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_168
+	movx	a,@dptr
+	jb	acc.7,00107$
+00110$:
+;	../../shared/src/ring_pll_cal.c:122: cmx_PLL_CAL_RING_DONE = 0;
+	mov	dptr,#(_CAL_STATUS_READ + 0x0003)
+	movx	a,@dptr
+	anl	a,#0xfe
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:125: if( cmx_RING_PLL_CAL_EXT_EN /*|| (phy_mode==PCIE && cmx_PLL_CAL_RING_PASS)*/) { //PCIe Link enable/disable test patch
+	mov	dptr,#(_CONTROL_CONFIG1 + 0x0001)
+	movx	a,@dptr
+	jnb	acc.0,00112$
+;	../../shared/src/ring_pll_cal.c:126: ringpll_load(PWR);
+	mov	dpl,#0x00
+	mov	r0,#_ringpll_load
+	mov	r1,#(_ringpll_load >> 8)
+	mov	r2,#(_ringpll_load >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/ring_pll_cal.c:127: SLLP_DAC_VALID = 1;	SLLP_DAC_VALID = 0;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	orl	a,#0x40
+	movx	@dptr,a
+	movx	a,@dptr
+	anl	a,#0xbf
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:128: goto exit_out;
+	ljmp	00241$
+00112$:
+;	../../shared/src/ring_pll_cal.c:134: cmx_PLL_CAL_RING_PASS = 1;
+	mov	dptr,#(_CAL_STATUS_READ + 0x0001)
+	movx	a,@dptr
+	orl	a,#0x08
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:137: timeout=0;
+	clr	_timeout
+;	../../shared/src/ring_pll_cal.c:138: if(cmx_RINGPLL_CAL_TIMEOUT_DIS==0) {
+	mov	dptr,#(_CAL_TIME_OUT_AND_DIS + 0x0001)
+	movx	a,@dptr
+	jb	acc.2,00114$
+;	../../shared/src/ring_pll_cal.c:139: timeout_start((uint16_t)RINGPLL_TIMEOUT_TIMER);
+	mov	_TMR1,#0xF0
+	mov	(_TMR1 >> 8),#0xD8
+	setb	_TR1
+	clr	_timeout
+00114$:
+;	../../shared/src/ring_pll_cal.c:143: tmp = read_tsen();
+	mov	r0,#_read_tsen
+	mov	r1,#(_read_tsen >> 8)
+	mov	r2,#(_read_tsen >> 16)
+	lcall	__sdcc_banked_call
+	mov	r2,dpl
+	mov	r3,dph
+;	../../shared/src/ring_pll_cal.c:144: if(tmp > TEMP_85 ) ringpll_dac_fine = 1280;
+	clr	c
+	mov	a,#0x86
+	subb	a,r2
+	mov	a,#(0xFF ^ 0x80)
+	mov	b,r3
+	xrl	b,#0x80
+	subb	a,b
+	jnc	00120$
+	mov	dptr,#_ringpll_dac_fine
+	clr	a
+	movx	@dptr,a
+	inc	dptr
+	mov	a,#0x05
+	movx	@dptr,a
+	sjmp	00121$
+00120$:
+;	../../shared/src/ring_pll_cal.c:145: else if(tmp < TEMP_85 && tmp > TEMP_5 ) ringpll_dac_fine = 1024;
+	clr	c
+	mov	a,r2
+	subb	a,#0x86
+	mov	a,r3
+	xrl	a,#0x80
+	subb	a,#0x7f
+	jnc	00116$
+	clr	c
+	mov	a,#0xBF
+	subb	a,r2
+	mov	a,#(0xFE ^ 0x80)
+	mov	b,r3
+	xrl	b,#0x80
+	subb	a,b
+	jnc	00116$
+	mov	dptr,#_ringpll_dac_fine
+	clr	a
+	movx	@dptr,a
+	inc	dptr
+	mov	a,#0x04
+	movx	@dptr,a
+	sjmp	00121$
+00116$:
+;	../../shared/src/ring_pll_cal.c:146: else ringpll_dac_fine = 768; 
+	mov	dptr,#_ringpll_dac_fine
+	clr	a
+	movx	@dptr,a
+	inc	dptr
+	mov	a,#0x03
+	movx	@dptr,a
+00121$:
+;	../../shared/src/ring_pll_cal.c:147: dac_fine_min = ringpll_dac_fine-DAC_FINE_DELTA_RANGE;
+	mov	dptr,#_ringpll_dac_fine
+	movx	a,@dptr
+	mov	r2,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r3,a
+	mov	a,r2
+	add	a,#0x80
+	mov	r4,a
+	mov	a,r3
+	addc	a,#0xff
+	mov	r5,a
+;	../../shared/src/ring_pll_cal.c:148: dac_fine_max = ringpll_dac_fine+DAC_FINE_DELTA_RANGE;
+	mov	a,#0x80
+	add	a,r2
+	mov	r2,a
+	clr	a
+	addc	a,r3
+	mov	r3,a
+;	../../shared/src/ring_pll_cal.c:150: PLL_SPEED_RING = 0;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_192
+	movx	a,@dptr
+	anl	a,#0x07
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:151: SLLP_DAC_COARSE_RING = 0;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	anl	a,#0xf0
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:152: ringpll_dac_fine_output();
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	mov	r0,#_ringpll_dac_fine_output
+	mov	r1,#(_ringpll_dac_fine_output >> 8)
+	mov	r2,#(_ringpll_dac_fine_output >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/ring_pll_cal.c:153: PLL_SHRTR_RING = 1;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_196
+	movx	a,@dptr
+	orl	a,#0x40
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:159: delay01(100);
+	mov	dptr,#0x0064
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+;	../../shared/src/ring_pll_cal.c:160: PLL_CAL_EN_RING = 1;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_196
+	movx	a,@dptr
+	orl	a,#0x80
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:161: temp = cmx_REFCLK_FREQ_7_0;
+	mov	dptr,#(_CONTROL_CONFIG8 + 0x0003)
+	movx	a,@dptr
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x06
+	mov	r0,a
+	mov	@r0,ar6
+	inc	r0
+	mov	@r0,#0x00
+;	../../shared/src/ring_pll_cal.c:162: temp--;
+	mov	a,_bp
+	add	a,#0x06
+	mov	r0,a
+	dec	@r0
+	cjne	@r0,#0xff,00314$
+	inc	r0
+	dec	@r0
+00314$:
+;	../../shared/src/ring_pll_cal.c:167: reg_FBC_CNT_TIMER_15_0_b0 = (uint8_t)temp;
+	mov	a,_bp
+	add	a,#0x06
+	mov	r0,a
+	mov	ar6,@r0
+	mov	dptr,#_PLLCAL_REG0
+	mov	a,r6
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:168: reg_FBC_CNT_TIMER_15_0_b1 = (uint8_t)(temp >> 8);
+	mov	a,_bp
+	add	a,#0x06
+	mov	r0,a
+	inc	r0
+	mov	ar6,@r0
+	mov	dptr,#(_PLLCAL_REG0 + 0x0001)
+	mov	a,r6
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:170: reg_FBC_PLLCAL_RING_EN = 1;
+	mov	dptr,#(_PLLCAL_REG1 + 0x0001)
+	movx	a,@dptr
+	orl	a,#0x02
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:177: save_FBDIV_h = reg_PLL_FBDIV_RING_9_8;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_188
+	movx	a,@dptr
+	rr	a
+	anl	a,#0x03
+	mov	r6,a
+	mov	r0,_bp
+	inc	r0
+	mov	@r0,ar6
+;	../../shared/src/ring_pll_cal.c:178: save_FBDIV_l = reg_PLL_FBDIV_RING_7_0;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_189
+	movx	a,@dptr
+	mov	r7,a
+	mov	r0,_bp
+	inc	r0
+	inc	r0
+	mov	@r0,ar7
+;	../../shared/src/ring_pll_cal.c:179: save_FBCK_SEL = reg_ANA_FBCK_SEL_RING;
+	mov	dptr,#_PM_CMN_REG1
+	movx	a,@dptr
+	rr	a
+	rr	a
+	anl	a,#0x01
+	mov	r7,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	@r0,ar7
+;	../../shared/src/ring_pll_cal.c:182: ringloadSpdtbl_4_fcnt();
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	lcall	_ringloadSpdtbl_4_fcnt
+;	../../shared/src/ring_pll_cal.c:185: delay01(40);
+	mov	dptr,#0x0028
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+;	../../shared/src/ring_pll_cal.c:187: do {
+00128$:
+;	../../shared/src/ring_pll_cal.c:188: if((PLL_VDDVCO_OVERTH_RING==1&&cmx_PLL_VDDVCO_POLARITY_INV==0) ||
+	mov	dptr,#(_PLLCAL_REG1 + 0x0001)
+	movx	a,@dptr
+	swap	a
+	rl	a
+	anl	a,#0x01
+	mov	r7,a
+	cjne	r7,#0x01,00127$
+	mov	dptr,#_CON_CAL_STEP_SIZE5
+	movx	a,@dptr
+	jnb	acc.0,00164$
+00127$:
+;	../../shared/src/ring_pll_cal.c:189: (PLL_VDDVCO_OVERTH_RING==0&&cmx_PLL_VDDVCO_POLARITY_INV==1)) break;
+	mov	dptr,#(_PLLCAL_REG1 + 0x0001)
+	movx	a,@dptr
+	jb	acc.3,00123$
+	mov	dptr,#_CON_CAL_STEP_SIZE5
+	movx	a,@dptr
+	anl	a,#0x01
+	mov	r7,a
+	cjne	r7,#0x01,00319$
+	sjmp	00164$
+00319$:
+00123$:
+;	../../shared/src/ring_pll_cal.c:190: else SLLP_DAC_COARSE_RING++;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r7,a
+	inc	r7
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	mov	a,r7
+	anl	a,#0x0f
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf0
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:191: SLLP_DAC_VALID = 1;	SLLP_DAC_VALID = 0;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	orl	a,#0x40
+	movx	@dptr,a
+	movx	a,@dptr
+	anl	a,#0xbf
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:192: delay01(40);
+	mov	dptr,#0x0028
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+;	../../shared/src/ring_pll_cal.c:193: } while(SLLP_DAC_COARSE_RING < DAC_COARSE_MAX);
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r7,a
+	clr	c
+	xrl	a,#0x80
+	subb	a,#0x8f
+	jc	00128$
+;	../../shared/src/ring_pll_cal.c:197: do {
+00164$:
+;	../../shared/src/ring_pll_cal.c:208: cnt_rdy = reg_FBC_PLLCAL_CNT_READY;
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	rr	a
+	anl	a,#0x01
+	mov	r7,a
+;	../../shared/src/ring_pll_cal.c:209: reg_FBC_CNT_START = 0;
+;	../../shared/src/ring_pll_cal.c:210: reg_FBC_CNT_START = 1;
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	anl	a,#0xfe
+	movx	@dptr,a
+	movx	a,@dptr
+	orl	a,#0x01
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:211: if( cnt_rdy ) while(reg_FBC_PLLCAL_CNT_READY && !timeout);
+	mov	a,r7
+	jz	00138$
+00132$:
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	jnb	acc.1,00138$
+	jnb	_timeout,00132$
+;	../../shared/src/ring_pll_cal.c:212: while(!reg_FBC_PLLCAL_CNT_READY && !timeout);
+00138$:
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	jb	acc.1,00140$
+	jnb	_timeout,00138$
+00140$:
+;	../../shared/src/ring_pll_cal.c:213: reg_FBC_CNT_START = 0;
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	anl	a,#0xfe
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:214: if( timeout ) break;
+	jnb	_timeout,00326$
+	ljmp	00195$
+00326$:
+;	../../shared/src/ring_pll_cal.c:215: Fmea = reg_FBC_PLLCAL_CNT_15_0_b0;
+	mov	dptr,#(_PLLCAL_REG0 + 0x0002)
+	movx	a,@dptr
+	mov	r7,a
+	mov	a,_bp
+	add	a,#0x04
+	mov	r0,a
+	mov	@r0,ar7
+	inc	r0
+	mov	@r0,#0x00
+;	../../shared/src/ring_pll_cal.c:218: if(Fmea >= Ftarget_ring ) break; 
+	mov	dptr,#_CONTROL_CONFIG5
+	movx	a,@dptr
+	mov	r7,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x04
+	mov	r0,a
+	clr	c
+	mov	a,@r0
+	subb	a,r7
+	inc	r0
+	mov	a,@r0
+	subb	a,r6
+	jc	00327$
+	ljmp	00195$
+00327$:
+;	../../shared/src/ring_pll_cal.c:221: if(PLL_SPEED_RING == PLL_SPEED_RING_MAX) {
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_192
+	movx	a,@dptr
+	swap	a
+	rl	a
+	anl	a,#0x1f
+	mov	r6,a
+	cjne	r6,#0x17,00146$
+;	../../shared/src/ring_pll_cal.c:222: if( SLLP_DAC_COARSE_RING!=DAC_COARSE_MAX) {
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r6,a
+	cjne	r6,#0x0F,00330$
+	sjmp	00158$
+00330$:
+;	../../shared/src/ring_pll_cal.c:223: SLLP_DAC_COARSE_RING++;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r6,a
+	inc	r6
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	mov	a,r6
+	anl	a,#0x0f
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf0
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:224: SLLP_DAC_VALID = 1;	SLLP_DAC_VALID = 0;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	orl	a,#0x40
+	movx	@dptr,a
+	movx	a,@dptr
+	anl	a,#0xbf
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:225: delay01(40);
+	mov	dptr,#0x0028
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+;	../../shared/src/ring_pll_cal.c:226: continue;
+	ljmp	00165$
+00146$:
+;	../../shared/src/ring_pll_cal.c:230: PLL_SPEED_RING++;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_192
+	movx	a,@dptr
+	swap	a
+	rl	a
+	anl	a,#0x1f
+	mov	r6,a
+	inc	r6
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_192
+	mov	a,r6
+	swap	a
+	rr	a
+	anl	a,#(0xf8&0xf8)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x07
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:231: delay01(20);
+	mov	dptr,#0x0014
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+;	../../shared/src/ring_pll_cal.c:234: while(((SLLP_DAC_COARSE_RING<DAC_COARSE_MAX) && \
+00158$:
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r6,a
+	clr	c
+	xrl	a,#0x80
+	subb	a,#0x8f
+	jnc	00157$
+	mov	dptr,#(_PLLCAL_REG1 + 0x0001)
+	movx	a,@dptr
+	jb	acc.3,00155$
+	mov	dptr,#_CON_CAL_STEP_SIZE5
+	movx	a,@dptr
+	jnb	acc.0,00159$
+00155$:
+;	../../shared/src/ring_pll_cal.c:236: (PLL_VDDVCO_OVERTH_RING && cmx_PLL_VDDVCO_POLARITY_INV)))||(PLL_SPEED_RING == PLL_SPEED_RING_MAX)) {
+	mov	dptr,#(_PLLCAL_REG1 + 0x0001)
+	movx	a,@dptr
+	jnb	acc.3,00157$
+	mov	dptr,#_CON_CAL_STEP_SIZE5
+	movx	a,@dptr
+	jb	acc.0,00159$
+00157$:
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_192
+	movx	a,@dptr
+	swap	a
+	rl	a
+	anl	a,#0x1f
+	mov	r6,a
+	cjne	r6,#0x17,00336$
+	sjmp	00337$
+00336$:
+	ljmp	00163$
+00337$:
+00159$:
+;	../../shared/src/ring_pll_cal.c:238: SLLP_DAC_COARSE_RING++;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r6,a
+	inc	r6
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	mov	a,r6
+	anl	a,#0x0f
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf0
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:239: SLLP_DAC_VALID = 1;	SLLP_DAC_VALID = 0;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	orl	a,#0x40
+	movx	@dptr,a
+	movx	a,@dptr
+	anl	a,#0xbf
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:240: delay01(40);
+	mov	dptr,#0x0028
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+;	../../shared/src/ring_pll_cal.c:242: if( SLLP_DAC_COARSE_RING>=DAC_COARSE_MAX ) {
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r6,a
+	clr	c
+	xrl	a,#0x80
+	subb	a,#0x8f
+	jnc	00338$
+	ljmp	00158$
+00338$:
+;	../../shared/src/ring_pll_cal.c:243: if( ringpll_dac_fine<dac_fine_max ){
+	mov	dptr,#_ringpll_dac_fine
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	clr	c
+	mov	a,r6
+	subb	a,r2
+	mov	a,r7
+	subb	a,r3
+	jc	00339$
+	ljmp	00229$
+00339$:
+;	../../shared/src/ring_pll_cal.c:244: ringpll_dac_fine += PWR_FINE_STEP;
+	mov	dptr,#_ringpll_dac_fine
+	mov	a,#0x20
+	add	a,r6
+	movx	@dptr,a
+	clr	a
+	addc	a,r7
+	inc	dptr
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:245: ringpll_dac_fine_output();
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	mov	r0,#_ringpll_dac_fine_output
+	mov	r1,#(_ringpll_dac_fine_output >> 8)
+	mov	r2,#(_ringpll_dac_fine_output >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/ring_pll_cal.c:247: delay01(40);
+	mov	dptr,#0x0028
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+;	../../shared/src/ring_pll_cal.c:249: else goto adjust;
+	ljmp	00158$
+00163$:
+;	../../shared/src/ring_pll_cal.c:254: delay01(20);
+	mov	dptr,#0x0014
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+00165$:
+;	../../shared/src/ring_pll_cal.c:256: } while(Fmea < Ftarget_ring);
+	mov	dptr,#_CONTROL_CONFIG5
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	a,_bp
+	add	a,#0x04
+	mov	r0,a
+	clr	c
+	mov	a,@r0
+	subb	a,r6
+	inc	r0
+	mov	a,@r0
+	subb	a,r7
+	jnc	00340$
+	ljmp	00164$
+00340$:
+;	../../shared/src/ring_pll_cal.c:261: while ( ringpll_dac_fine != 0 ) {
+00195$:
+	mov	dptr,#_ringpll_dac_fine
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	orl	a,r6
+	jnz	00341$
+	ljmp	00229$
+00341$:
+;	../../shared/src/ring_pll_cal.c:262: if( timeout ) break;
+	jnb	_timeout,00342$
+	ljmp	00229$
+00342$:
+;	../../shared/src/ring_pll_cal.c:264: ringpll_dac_fine -= PWR_FINE_STEP;
+	mov	a,r6
+	add	a,#0xe0
+	mov	r6,a
+	mov	a,r7
+	addc	a,#0xff
+	mov	r7,a
+	mov	dptr,#_ringpll_dac_fine
+	mov	a,r6
+	movx	@dptr,a
+	inc	dptr
+	mov	a,r7
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:266: if( SLLP_DAC_COARSE_RING>0 && SLLP_DAC_COARSE_RING<DAC_COARSE_MAX) {
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	anl	a,#0x0f
+	jnz	00343$
+	ljmp	00179$
+00343$:
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r6,a
+	clr	c
+	xrl	a,#0x80
+	subb	a,#0x8f
+	jc	00344$
+	ljmp	00179$
+00344$:
+;	../../shared/src/ring_pll_cal.c:269: if(ringpll_dac_fine<dac_fine_min) { 
+	mov	dptr,#_ringpll_dac_fine
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	clr	c
+	mov	a,r6
+	subb	a,r4
+	mov	a,r7
+	subb	a,r5
+	jnc	00176$
+;	../../shared/src/ring_pll_cal.c:270: ringpll_dac_fine += 300; 
+	mov	dptr,#_ringpll_dac_fine
+	mov	a,#0x2C
+	add	a,r6
+	movx	@dptr,a
+	mov	a,#0x01
+	addc	a,r7
+	inc	dptr
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:271: if( SLLP_DAC_COARSE_RING > DAC_COARSE_MIN )
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	anl	a,#0x0f
+	jz	00179$
+;	../../shared/src/ring_pll_cal.c:272: SLLP_DAC_COARSE_RING--;
+	push	ar4
+	push	ar5
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r4,a
+	dec	r4
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	mov	a,r4
+	anl	a,#0x0f
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf0
+	orl	a,b
+	movx	@dptr,a
+	pop	ar5
+	pop	ar4
+	sjmp	00179$
+00176$:
+;	../../shared/src/ring_pll_cal.c:274: else if(ringpll_dac_fine>dac_fine_max) { 
+	clr	c
+	mov	a,r2
+	subb	a,r6
+	mov	a,r3
+	subb	a,r7
+	jnc	00179$
+;	../../shared/src/ring_pll_cal.c:275: ringpll_dac_fine -= 300; 
+	mov	a,r6
+	add	a,#0xd4
+	mov	r6,a
+	mov	a,r7
+	addc	a,#0xfe
+	mov	r7,a
+	mov	dptr,#_ringpll_dac_fine
+	mov	a,r6
+	movx	@dptr,a
+	inc	dptr
+	mov	a,r7
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:276: if( SLLP_DAC_COARSE_RING < DAC_COARSE_MAX )
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r6,a
+	clr	c
+	xrl	a,#0x80
+	subb	a,#0x8f
+	jnc	00179$
+;	../../shared/src/ring_pll_cal.c:277: SLLP_DAC_COARSE_RING++;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r6,a
+	inc	r6
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	mov	a,r6
+	anl	a,#0x0f
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf0
+	orl	a,b
+	movx	@dptr,a
+00179$:
+;	../../shared/src/ring_pll_cal.c:281: ringpll_dac_fine_output();
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	mov	r0,#_ringpll_dac_fine_output
+	mov	r1,#(_ringpll_dac_fine_output >> 8)
+	mov	r2,#(_ringpll_dac_fine_output >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/ring_pll_cal.c:282: delay01(40);
+	mov	dptr,#0x0028
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+;	../../shared/src/ring_pll_cal.c:293: cnt_rdy = reg_FBC_PLLCAL_CNT_READY;
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	rr	a
+	anl	a,#0x01
+	mov	r6,a
+	mov	r7,a
+;	../../shared/src/ring_pll_cal.c:294: reg_FBC_CNT_START = 1;
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	orl	a,#0x01
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:295: if( cnt_rdy ) while(reg_FBC_PLLCAL_CNT_READY && !timeout);
+	mov	a,r7
+	jz	00188$
+00182$:
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	jnb	acc.1,00188$
+	jnb	_timeout,00182$
+;	../../shared/src/ring_pll_cal.c:296: while(!reg_FBC_PLLCAL_CNT_READY && !timeout );
+00188$:
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	jb	acc.1,00190$
+	jnb	_timeout,00188$
+00190$:
+;	../../shared/src/ring_pll_cal.c:297: reg_FBC_CNT_START = 0;
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	anl	a,#0xfe
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:298: if(timeout) break;
+	jb	_timeout,00229$
+;	../../shared/src/ring_pll_cal.c:299: Fmea = reg_FBC_PLLCAL_CNT_15_0;
+	mov	dptr,#(_PLLCAL_REG0 + 0x0002)
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	a,_bp
+	add	a,#0x04
+	mov	r0,a
+	mov	@r0,ar6
+	inc	r0
+	mov	@r0,ar7
+;	../../shared/src/ring_pll_cal.c:302: if(Fmea <= Ftarget_ring ) break;
+	mov	dptr,#_CONTROL_CONFIG5
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	a,_bp
+	add	a,#0x04
+	mov	r0,a
+	clr	c
+	mov	a,r6
+	subb	a,@r0
+	mov	a,r7
+	inc	r0
+	subb	a,@r0
+	jnc	00355$
+	ljmp	00195$
+00355$:
+;	../../shared/src/ring_pll_cal.c:306: do {
+00229$:
+;	../../shared/src/ring_pll_cal.c:307: if( timeout ) break;
+	jnb	_timeout,00356$
+	ljmp	00231$
+00356$:
+;	../../shared/src/ring_pll_cal.c:318: cnt_rdy = reg_FBC_PLLCAL_CNT_READY;
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	rr	a
+	anl	a,#0x01
+	mov	r6,a
+	mov	r7,a
+;	../../shared/src/ring_pll_cal.c:319: reg_FBC_CNT_START = 1;
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	orl	a,#0x01
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:320: if( cnt_rdy ) while(reg_FBC_PLLCAL_CNT_READY && !timeout);
+	mov	a,r7
+	jz	00208$
+00202$:
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	jnb	acc.1,00208$
+	jnb	_timeout,00202$
+;	../../shared/src/ring_pll_cal.c:321: while(!reg_FBC_PLLCAL_CNT_READY && !timeout);
+00208$:
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	jb	acc.1,00210$
+	jnb	_timeout,00208$
+00210$:
+;	../../shared/src/ring_pll_cal.c:322: reg_FBC_CNT_START = 0;
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	anl	a,#0xfe
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:323: if (timeout) break;
+	jnb	_timeout,00362$
+	ljmp	00231$
+00362$:
+;	../../shared/src/ring_pll_cal.c:324: Fmea = reg_FBC_PLLCAL_CNT_15_0;
+	mov	dptr,#(_PLLCAL_REG0 + 0x0002)
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	a,_bp
+	add	a,#0x04
+	mov	r0,a
+	mov	@r0,ar6
+	inc	r0
+	mov	@r0,ar7
+;	../../shared/src/ring_pll_cal.c:327: if (Fmea == Ftarget_ring) break;
+	mov	dptr,#_CONTROL_CONFIG5
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	a,_bp
+	add	a,#0x04
+	mov	r0,a
+	mov	a,@r0
+	cjne	a,ar6,00363$
+	inc	r0
+	mov	a,@r0
+	cjne	a,ar7,00363$
+	ljmp	00231$
+00363$:
+;	../../shared/src/ring_pll_cal.c:328: else if ( Fmea > Ftarget_ring ) {
+	mov	dptr,#_CONTROL_CONFIG5
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	a,_bp
+	add	a,#0x04
+	mov	r0,a
+	clr	c
+	mov	a,r6
+	subb	a,@r0
+	mov	a,r7
+	inc	r0
+	subb	a,@r0
+	jnc	00214$
+;	../../shared/src/ring_pll_cal.c:329: ringpll_dac_fine-=PWR_FINE_STEP;
+	mov	dptr,#_ringpll_dac_fine
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	a,r6
+	add	a,#0xe0
+	mov	r6,a
+	mov	a,r7
+	addc	a,#0xff
+	mov	r7,a
+	mov	dptr,#_ringpll_dac_fine
+	mov	a,r6
+	movx	@dptr,a
+	inc	dptr
+	mov	a,r7
+	movx	@dptr,a
+	sjmp	00218$
+00214$:
+;	../../shared/src/ring_pll_cal.c:332: ringpll_dac_fine+=PWR_FINE_STEP;
+	mov	dptr,#_ringpll_dac_fine
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	dptr,#_ringpll_dac_fine
+	mov	a,#0x20
+	add	a,r6
+	movx	@dptr,a
+	clr	a
+	addc	a,r7
+	inc	dptr
+	movx	@dptr,a
+00218$:
+;	../../shared/src/ring_pll_cal.c:334: if(ringpll_dac_fine<dac_fine_min) { 
+	mov	dptr,#_ringpll_dac_fine
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	clr	c
+	mov	a,r6
+	subb	a,r4
+	mov	a,r7
+	subb	a,r5
+	jnc	00226$
+;	../../shared/src/ring_pll_cal.c:335: ringpll_dac_fine += 300; 
+	mov	dptr,#_ringpll_dac_fine
+	mov	a,#0x2C
+	add	a,r6
+	movx	@dptr,a
+	mov	a,#0x01
+	addc	a,r7
+	inc	dptr
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:336: if(SLLP_DAC_COARSE_RING>DAC_COARSE_MIN)	SLLP_DAC_COARSE_RING--;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	anl	a,#0x0f
+	jz	00227$
+	push	ar4
+	push	ar5
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r4,a
+	dec	r4
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	mov	a,r4
+	anl	a,#0x0f
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf0
+	orl	a,b
+	movx	@dptr,a
+	pop	ar5
+	pop	ar4
+	sjmp	00227$
+00226$:
+;	../../shared/src/ring_pll_cal.c:338: else if(ringpll_dac_fine>dac_fine_max) { 
+	clr	c
+	mov	a,r2
+	subb	a,r6
+	mov	a,r3
+	subb	a,r7
+	jnc	00227$
+;	../../shared/src/ring_pll_cal.c:339: ringpll_dac_fine -= 300; 
+	mov	a,r6
+	add	a,#0xd4
+	mov	r6,a
+	mov	a,r7
+	addc	a,#0xfe
+	mov	r7,a
+	mov	dptr,#_ringpll_dac_fine
+	mov	a,r6
+	movx	@dptr,a
+	inc	dptr
+	mov	a,r7
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:340: if(SLLP_DAC_COARSE_RING<DAC_COARSE_MAX) SLLP_DAC_COARSE_RING++;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r6,a
+	clr	c
+	xrl	a,#0x80
+	subb	a,#0x8f
+	jnc	00227$
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r6,a
+	inc	r6
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	mov	a,r6
+	anl	a,#0x0f
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf0
+	orl	a,b
+	movx	@dptr,a
+00227$:
+;	../../shared/src/ring_pll_cal.c:343: ringpll_dac_fine_output();
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	mov	r0,#_ringpll_dac_fine_output
+	mov	r1,#(_ringpll_dac_fine_output >> 8)
+	mov	r2,#(_ringpll_dac_fine_output >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/ring_pll_cal.c:345: delay01(40);
+	mov	dptr,#0x0028
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+;	../../shared/src/ring_pll_cal.c:347: } while ((ringpll_dac_fine>0) && (ringpll_dac_fine<dac_fine_max));
+	mov	dptr,#_ringpll_dac_fine
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	orl	a,r6
+	jz	00231$
+	clr	c
+	mov	a,r6
+	subb	a,r2
+	mov	a,r7
+	subb	a,r3
+	jnc	00370$
+	ljmp	00229$
+00370$:
+00231$:
+;	../../shared/src/ring_pll_cal.c:354: reg_PLL_FBDIV_RING_9_8 = save_FBDIV_h;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_188
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	add	a,acc
+	anl	a,#0x06
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf9
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:355: reg_PLL_FBDIV_RING_7_0 = save_FBDIV_l;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_189
+	mov	r0,_bp
+	inc	r0
+	inc	r0
+	mov	a,@r0
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:356: reg_ANA_FBCK_SEL_RING = save_FBCK_SEL;
+	mov	dptr,#_PM_CMN_REG1
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	rrc	a
+	movx	a,@dptr
+	mov	acc.2,c
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:359: reg_FBC_PLLCAL_RING_EN = 0;
+	mov	dptr,#(_PLLCAL_REG1 + 0x0001)
+	movx	a,@dptr
+	anl	a,#0xfd
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:360: PLL_SHRTR_RING = 0;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_196
+	movx	a,@dptr
+	anl	a,#0xbf
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:361: PLL_CAL_EN_RING = 0;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_196
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:363: timeout=0;
+	clr	_timeout
+;	../../shared/src/ring_pll_cal.c:364: if(cmx_RINGPLL_CAL_TIMEOUT_DIS==0) {
+	mov	dptr,#(_CAL_TIME_OUT_AND_DIS + 0x0001)
+	movx	a,@dptr
+	jb	acc.2,00235$
+;	../../shared/src/ring_pll_cal.c:365: timeout_start((uint16_t)RINGPLL_TIMEOUT_TIMER);
+	mov	_TMR1,#0xF0
+	mov	(_TMR1 >> 8),#0xD8
+	setb	_TR1
+	clr	_timeout
+;	../../shared/src/ring_pll_cal.c:370: while(!reg_ANA_PLL_LOCK_RING_RD && !timeout);
+00235$:
+	mov	dptr,#(_PM_CMN_REG1 + 0x0001)
+	movx	a,@dptr
+	jb	acc.7,00237$
+	jnb	_timeout,00235$
+00237$:
+;	../../shared/src/ring_pll_cal.c:373: if(timeout) {
+	jnb	_timeout,00239$
+;	../../shared/src/ring_pll_cal.c:377: cmx_PLL_CAL_RING_PASS = 0;
+	mov	dptr,#(_CAL_STATUS_READ + 0x0001)
+	movx	a,@dptr
+	anl	a,#0xf7
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:379: ringpll_load(PWR);
+	mov	dpl,#0x00
+	mov	r0,#_ringpll_load
+	mov	r1,#(_ringpll_load >> 8)
+	mov	r2,#(_ringpll_load >> 16)
+	lcall	__sdcc_banked_call
+	sjmp	00241$
+00239$:
+;	../../shared/src/ring_pll_cal.c:382: ringpll_save(PWR);
+	mov	dpl,#0x00
+	mov	r0,#_ringpll_save
+	mov	r1,#(_ringpll_save >> 8)
+	mov	r2,#(_ringpll_save >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/ring_pll_cal.c:385: exit_out:
+00241$:
+;	../../shared/src/ring_pll_cal.c:386: ringpll_save(CONT);
+	mov	dpl,#0x01
+	mov	r0,#_ringpll_save
+	mov	r1,#(_ringpll_save >> 8)
+	mov	r2,#(_ringpll_save >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/ring_pll_cal.c:387: ring_size_counter_mid = (RINGPLL_CAL_COUNTER_SIZE >> 1);   //register give max value, use mid point as start
+	mov	dptr,#(_CON_CAL_STEP_SIZE5 + 0x0002)
+	movx	a,@dptr
+	clr	c
+	rrc	a
+	mov	r2,a
+	mov	dptr,#_ring_size_counter_mid
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:388: ring_size_counter = ring_size_counter_mid;
+	mov	dptr,#_ring_size_counter
+	mov	a,r2
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:392: cmx_PLL_CAL_RING_DONE = 1;
+	mov	dptr,#(_CAL_STATUS_READ + 0x0003)
+	movx	a,@dptr
+	orl	a,#0x01
+	movx	@dptr,a
+	mov	sp,_bp
+	pop	_bp
+	ljmp	__sdcc_banked_ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'ring_pll_cont'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	../../shared/src/ring_pll_cal.c:397: void ring_pll_cont(void) BANKING_CTRL {
+;	-----------------------------------------
+;	 function ring_pll_cont
+;	-----------------------------------------
+_ring_pll_cont:
+;	../../shared/src/ring_pll_cal.c:398: PHY_STATUS =  ST_RING_PLL_CONT;
+	mov	dptr,#_MCU_STATUS0_LANE
+	mov	a,#0x3A
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:407: EA = 0;
+	clr	_EA
+;	../../shared/src/ring_pll_cal.c:408: ringpll_dac_fine = cmx_cal_sllp_dac_fine_ring[CONT][rate]; 
+	mov	dptr,#(_CONTROL_CONFIG6 + 0x0003)
+	movx	a,@dptr
+	add	a,acc
+	add	a,#(_cmx_cal_sllp_dac_fine_ring + 0x0004)
+	mov	dpl,a
+	clr	a
+	addc	a,#((_cmx_cal_sllp_dac_fine_ring + 0x0004) >> 8)
+	mov	dph,a
+	movx	a,@dptr
+	mov	r2,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r3,a
+	mov	dptr,#_ringpll_dac_fine
+	mov	a,r2
+	movx	@dptr,a
+	inc	dptr
+	mov	a,r3
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:409: SLLP_DAC_FINE_RING_10_8 = (uint8_t)(ringpll_dac_fine>>8); 
+	mov	ar4,r3
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_194
+	mov	a,r4
+	swap	a
+	rl	a
+	anl	a,#(0xe0&0xe0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x1f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:410: SLLP_DAC_FINE_RING_7_0 = (uint8_t)ringpll_dac_fine;
+	mov	ar4,r2
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_195
+	mov	a,r4
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:411: EA = 1;
+	setb	_EA
+;	../../shared/src/ring_pll_cal.c:413: if ((PLL_VCON_OVERTH_RING==0&&cmx_PLL_VCON_POLARITY_INV==0) || (PLL_VCON_OVERTH_RING&&cmx_PLL_VCON_POLARITY_INV) )
+	mov	dptr,#(_PLLCAL_REG1 + 0x0001)
+	movx	a,@dptr
+	jb	acc.2,00106$
+	mov	dptr,#_CON_CAL_STEP_SIZE5
+	movx	a,@dptr
+	jnb	acc.1,00101$
+00106$:
+	mov	dptr,#(_PLLCAL_REG1 + 0x0001)
+	movx	a,@dptr
+	jnb	acc.2,00102$
+	mov	dptr,#_CON_CAL_STEP_SIZE5
+	movx	a,@dptr
+	jnb	acc.1,00102$
+00101$:
+;	../../shared/src/ring_pll_cal.c:414: ring_size_counter ++;
+	mov	dptr,#_ring_size_counter
+	movx	a,@dptr
+	add	a,#0x01
+	movx	@dptr,a
+	sjmp	00103$
+00102$:
+;	../../shared/src/ring_pll_cal.c:416: ring_size_counter --;
+	mov	dptr,#_ring_size_counter
+	movx	a,@dptr
+	dec	a
+	mov	dptr,#_ring_size_counter
+	movx	@dptr,a
+00103$:
+;	../../shared/src/ring_pll_cal.c:422: if (ring_size_counter >= RINGPLL_CAL_COUNTER_SIZE) {
+	mov	dptr,#(_CON_CAL_STEP_SIZE5 + 0x0002)
+	movx	a,@dptr
+	mov	r4,a
+	mov	dptr,#_ring_size_counter
+	movx	a,@dptr
+	mov	r5,a
+	mov	r6,a
+	mov	a,r6
+	cjne	a,ar4,00132$
+00132$:
+	jc	00117$
+;	../../shared/src/ring_pll_cal.c:423: ring_size_counter = ring_size_counter_mid;
+	mov	dptr,#_ring_size_counter_mid
+	movx	a,@dptr
+	mov	dptr,#_ring_size_counter
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:424: if ( ringpll_dac_fine < (dac_fine_max_value - RINGPLL_CAL_FINE_STEP))
+	mov	dptr,#(_CON_CAL_STEP_SIZE5 + 0x0001)
+	movx	a,@dptr
+	mov	r4,a
+	mov	r6,#0x00
+	mov	a,#0xFF
+	clr	c
+	subb	a,r4
+	mov	r4,a
+	mov	a,#0x07
+	subb	a,r6
+	mov	r6,a
+	clr	c
+	mov	a,r2
+	subb	a,r4
+	mov	a,r3
+	subb	a,r6
+	jnc	00120$
+;	../../shared/src/ring_pll_cal.c:425: ringpll_dac_fine += RINGPLL_CAL_FINE_STEP;
+	mov	dptr,#(_CON_CAL_STEP_SIZE5 + 0x0001)
+	movx	a,@dptr
+	mov	r4,a
+	mov	r6,#0x00
+	mov	dptr,#_ringpll_dac_fine
+	mov	a,r4
+	add	a,r2
+	movx	@dptr,a
+	mov	a,r6
+	addc	a,r3
+	inc	dptr
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:427: goto ringpll_cont_ext0;
+	sjmp	00118$
+00117$:
+;	../../shared/src/ring_pll_cal.c:429: else if (ring_size_counter == 0) {
+	mov	a,r5
+	jnz	00120$
+;	../../shared/src/ring_pll_cal.c:430: ring_size_counter = ring_size_counter_mid;
+	mov	dptr,#_ring_size_counter_mid
+	movx	a,@dptr
+	mov	dptr,#_ring_size_counter
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:431: if ( ringpll_dac_fine > RINGPLL_CAL_FINE_STEP )
+	mov	dptr,#(_CON_CAL_STEP_SIZE5 + 0x0001)
+	movx	a,@dptr
+	mov	r4,a
+	mov	r5,#0x00
+	clr	c
+	mov	a,r4
+	subb	a,r2
+	mov	a,r5
+	subb	a,r3
+	jnc	00120$
+;	../../shared/src/ring_pll_cal.c:432: ringpll_dac_fine -= RINGPLL_CAL_FINE_STEP;
+	mov	dptr,#(_CON_CAL_STEP_SIZE5 + 0x0001)
+	movx	a,@dptr
+	mov	r4,a
+	mov	r5,#0x00
+	mov	dptr,#_ringpll_dac_fine
+	mov	a,r2
+	clr	c
+	subb	a,r4
+	movx	@dptr,a
+	mov	a,r3
+	subb	a,r5
+	inc	dptr
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:437: goto ringpll_cont_ext0;
+00118$:
+;	../../shared/src/ring_pll_cal.c:439: ringpll_dac_fine_output();
+	mov	r0,#_ringpll_dac_fine_output
+	mov	r1,#(_ringpll_dac_fine_output >> 8)
+	mov	r2,#(_ringpll_dac_fine_output >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/ring_pll_cal.c:444: ringpll_save(CONT);
+	mov	dpl,#0x01
+	mov	r0,#_ringpll_save
+	mov	r1,#(_ringpll_save >> 8)
+	mov	r2,#(_ringpll_save >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/ring_pll_cal.c:446: ringpll_cont_ext0:
+00120$:
+	ljmp	__sdcc_banked_ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'ring_pll_fast_cal'
+;------------------------------------------------------------
+;i                         Allocated to stack - offset 1
+;cnt_rdy                   Allocated to registers r6 
+;save_FBDIV_h              Allocated to registers r6 
+;save_FBDIV_l              Allocated to stack - offset 2
+;save_FBCK_SEL             Allocated to stack - offset 3
+;first_op_ring             Allocated to stack - offset 4
+;Fmea                      Allocated to stack - offset 5
+;Fmea_prev                 Allocated to stack - offset 7
+;Fdiff                     Allocated to stack - offset 9
+;delta_code                Allocated to stack - offset 11
+;delta_code_first          Allocated to registers r4 r5 
+;delta_code_nom            Allocated to registers r2 r3 
+;sloc0                     Allocated to stack - offset 13
+;------------------------------------------------------------
+;	../../shared/src/ring_pll_cal.c:455: void ring_pll_fast_cal(void) BANKING_CTRL {
+;	-----------------------------------------
+;	 function ring_pll_fast_cal
+;	-----------------------------------------
+_ring_pll_fast_cal:
+	push	_bp
+	mov	a,sp
+	mov	_bp,a
+	add	a,#0x0d
+	mov	sp,a
+;	../../shared/src/ring_pll_cal.c:461: Fmea_prev = 0;
+	mov	a,_bp
+	add	a,#0x07
+	mov	r0,a
+	mov	@r0,#0x00
+	inc	r0
+	mov	@r0,#0x00
+;	../../shared/src/ring_pll_cal.c:463: delta_code_first = 0;
+	mov	r4,#0x00
+	mov	r5,#0x00
+;	../../shared/src/ring_pll_cal.c:471: timeout=0;
+	clr	_timeout
+;	../../shared/src/ring_pll_cal.c:472: if(cmx_RINGPLL_CAL_TIMEOUT_DIS==0) {
+	mov	dptr,#(_CAL_TIME_OUT_AND_DIS + 0x0001)
+	movx	a,@dptr
+	jb	acc.2,00102$
+;	../../shared/src/ring_pll_cal.c:473: timeout_start((uint16_t)RINGPLL_TIMEOUT_TIMER);
+	mov	_TMR1,#0xF0
+	mov	(_TMR1 >> 8),#0xD8
+	setb	_TR1
+	clr	_timeout
+00102$:
+;	../../shared/src/ring_pll_cal.c:487: if(reg_ANA_PU_PLL_DLY_RING==0) {
+	mov	dptr,#(_PM_CMN_REG2 + 0x0001)
+	movx	a,@dptr
+	jb	acc.2,00104$
+;	../../shared/src/ring_pll_cal.c:488: reg_ANA_PU_PLL_RING = 1;
+	mov	dptr,#_INPUT_CMN_PIN_REG2
+	movx	a,@dptr
+	orl	a,#0x20
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:489: delay01(5);
+	mov	dptr,#0x0005
+	push	ar4
+	push	ar5
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/ring_pll_cal.c:490: reg_ANA_PU_PLL_DLY_RING = 1;
+	mov	dptr,#(_PM_CMN_REG2 + 0x0001)
+	movx	a,@dptr
+	orl	a,#0x04
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:491: delay01(5);
+	mov	dptr,#0x0005
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar5
+	pop	ar4
+;	../../shared/src/ring_pll_cal.c:492: reg_RESET_ANA_RING = 0;
+	mov	dptr,#(_PLLCAL_REG1 + 0x0003)
+	movx	a,@dptr
+	anl	a,#0xf7
+	movx	@dptr,a
+00104$:
+;	../../shared/src/ring_pll_cal.c:496: PLL_SHRTR_RING = 1;
+	push	ar4
+	push	ar5
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_196
+	movx	a,@dptr
+	orl	a,#0x40
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:497: PLL_CAL_EN_RING = 1;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_196
+	movx	a,@dptr
+	orl	a,#0x80
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:498: reg_FBC_CNT_START = 0;
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	anl	a,#0xfe
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:505: save_FBDIV_h = reg_PLL_FBDIV_RING_9_8;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_188
+	movx	a,@dptr
+	rr	a
+	anl	a,#0x03
+	mov	r6,a
+;	../../shared/src/ring_pll_cal.c:506: save_FBDIV_l = reg_PLL_FBDIV_RING_7_0;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_189
+	movx	a,@dptr
+	mov	r7,a
+	mov	r0,_bp
+	inc	r0
+	inc	r0
+	mov	@r0,ar7
+;	../../shared/src/ring_pll_cal.c:507: save_FBCK_SEL = reg_ANA_FBCK_SEL_RING;
+	mov	dptr,#_PM_CMN_REG1
+	movx	a,@dptr
+	rr	a
+	rr	a
+	anl	a,#0x01
+	mov	r4,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	@r0,ar4
+;	../../shared/src/ring_pll_cal.c:509: ringloadSpdtbl_4_fcnt();
+	push	ar4
+	push	ar5
+	push	ar6
+	lcall	_ringloadSpdtbl_4_fcnt
+;	../../shared/src/ring_pll_cal.c:511: ringpll_load(CONT);
+	mov	dpl,#0x01
+	mov	r0,#_ringpll_load
+	mov	r1,#(_ringpll_load >> 8)
+	mov	r2,#(_ringpll_load >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/ring_pll_cal.c:512: SLLP_DAC_VALID = 1;  SLLP_DAC_VALID = 0;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_193
+	movx	a,@dptr
+	orl	a,#0x40
+	movx	@dptr,a
+	movx	a,@dptr
+	anl	a,#0xbf
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:514: delay01(40); //first DAC_VALID need 8uS settling time from next new DAC value
+	mov	dptr,#0x0028
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar6
+	pop	ar5
+	pop	ar4
+;	../../shared/src/ring_pll_cal.c:516: reg_FBC_PLLCAL_RING_EN = 1;
+	mov	dptr,#(_PLLCAL_REG1 + 0x0001)
+	movx	a,@dptr
+	orl	a,#0x02
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:518: i = 0;
+	mov	a,_bp
+	add	a,#0x0d
+	mov	r0,a
+	mov	@r0,#0x00
+;	../../shared/src/ring_pll_cal.c:519: first_op_ring = 0;
+	mov	a,_bp
+	add	a,#0x04
+	mov	r0,a
+	mov	@r0,#0x00
+;	../../shared/src/ring_pll_cal.c:662: pll_clk_ready_ring_1();
+	pop	ar5
+	pop	ar4
+;	../../shared/src/ring_pll_cal.c:521: do {
+	mov	r0,_bp
+	inc	r0
+	mov	@r0,#0x00
+00142$:
+;	../../shared/src/ring_pll_cal.c:529: cnt_rdy = reg_FBC_PLLCAL_CNT_READY;
+	push	ar6
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	rr	a
+	anl	a,#0x01
+	mov	r6,a
+;	../../shared/src/ring_pll_cal.c:530: reg_FBC_CNT_START = 1;
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	orl	a,#0x01
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:531: if( cnt_rdy ) while(reg_FBC_PLLCAL_CNT_READY && !timeout);
+	mov	a,r6
+	pop	ar6
+	jz	00112$
+00106$:
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	jnb	acc.1,00112$
+	jnb	_timeout,00106$
+;	../../shared/src/ring_pll_cal.c:532: while(!reg_FBC_PLLCAL_CNT_READY && !timeout);
+00112$:
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	jb	acc.1,00114$
+	jnb	_timeout,00112$
+00114$:
+;	../../shared/src/ring_pll_cal.c:533: reg_FBC_CNT_START = 0;
+	mov	dptr,#_PLLCAL_REG1
+	movx	a,@dptr
+	anl	a,#0xfe
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:535: if(timeout) {
+	jnb	_timeout,00184$
+	ljmp	00144$
+00184$:
+;	../../shared/src/ring_pll_cal.c:544: Fmea = reg_FBC_PLLCAL_CNT_15_0;
+	push	ar6
+	mov	dptr,#(_PLLCAL_REG0 + 0x0002)
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r2,a
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	@r0,ar6
+	inc	r0
+	mov	@r0,ar2
+;	../../shared/src/ring_pll_cal.c:556: if((Fmea >= (Ftarget_ring-TARGET_RANGE)) && (Fmea <= (Ftarget_ring+TARGET_RANGE))) {
+	mov	dptr,#_CONTROL_CONFIG5
+	movx	a,@dptr
+	mov	r2,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r3,a
+	dec	r2
+	cjne	r2,#0xff,00185$
+	dec	r3
+00185$:
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	clr	c
+	mov	a,@r0
+	subb	a,r2
+	inc	r0
+	mov	a,@r0
+	subb	a,r3
+	pop	ar6
+	jc	00139$
+	mov	dptr,#_CONTROL_CONFIG5
+	movx	a,@dptr
+	mov	r2,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r3,a
+	inc	r2
+	cjne	r2,#0x00,00187$
+	inc	r3
+00187$:
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	clr	c
+	mov	a,r2
+	subb	a,@r0
+	mov	a,r3
+	inc	r0
+	subb	a,@r0
+	jc	00139$
+;	../../shared/src/ring_pll_cal.c:557: if (i == 0)	first_op_ring = 1;
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	jnz	00118$
+	mov	a,_bp
+	add	a,#0x04
+	mov	r0,a
+	mov	@r0,#0x01
+00118$:
+;	../../shared/src/ring_pll_cal.c:558: if (i >= min_step_number) {
+	mov	r0,_bp
+	inc	r0
+	cjne	@r0,#0x01,00190$
+00190$:
+	jnc	00191$
+	ljmp	00140$
+00191$:
+;	../../shared/src/ring_pll_cal.c:562: break;  //1
+	ljmp	00144$
+00139$:
+;	../../shared/src/ring_pll_cal.c:567: if((i == 0)||(first_op_ring == 1)) {
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	jz	00124$
+	mov	a,_bp
+	add	a,#0x04
+	mov	r0,a
+	cjne	@r0,#0x01,00125$
+00124$:
+;	../../shared/src/ring_pll_cal.c:568: first_op_ring = 0;
+	push	ar6
+	mov	a,_bp
+	add	a,#0x04
+	mov	r0,a
+	mov	@r0,#0x00
+;	../../shared/src/ring_pll_cal.c:569: delta_code = (Ftarget_ring - Fmea)<<code_ratio; //5; // * code_ratio;
+	mov	dptr,#_CONTROL_CONFIG5
+	movx	a,@dptr
+	mov	r2,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r3,a
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,r2
+	clr	c
+	subb	a,@r0
+	mov	r2,a
+	mov	a,r3
+	inc	r0
+	subb	a,@r0
+	mov	r3,a
+	mov	dptr,#(_CONTROL_CONFIG5 + 0x0002)
+	movx	a,@dptr
+	mov	r6,a
+	mov	b,r6
+	inc	b
+	sjmp	00196$
+00195$:
+	mov	a,r2
+	add	a,r2
+	mov	r2,a
+	mov	a,r3
+	rlc	a
+	mov	r3,a
+00196$:
+	djnz	b,00195$
+	mov	a,_bp
+	add	a,#0x0b
+	mov	r0,a
+	mov	@r0,ar2
+	inc	r0
+	mov	@r0,ar3
+;	../../shared/src/ring_pll_cal.c:570: delta_code_first = delta_code;
+	mov	a,_bp
+	add	a,#0x0b
+	mov	r0,a
+	mov	ar4,@r0
+	inc	r0
+	mov	ar5,@r0
+	pop	ar6
+	ljmp	00126$
+00125$:
+;	../../shared/src/ring_pll_cal.c:573: Fdiff = Fmea - Fmea_prev;
+	push	ar6
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,_bp
+	add	a,#0x07
+	mov	r1,a
+	mov	a,@r0
+	clr	c
+	subb	a,@r1
+	mov	r2,a
+	inc	r0
+	mov	a,@r0
+	inc	r1
+	subb	a,@r1
+	mov	r3,a
+	mov	a,_bp
+	add	a,#0x09
+	mov	r0,a
+	mov	@r0,ar2
+	inc	r0
+	mov	@r0,ar3
+;	../../shared/src/ring_pll_cal.c:574: delta_code_nom = (Ftarget_ring - Fmea) * delta_code_first;
+	mov	dptr,#_CONTROL_CONFIG5
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r2,a
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,r6
+	clr	c
+	subb	a,@r0
+	mov	r6,a
+	mov	a,r2
+	inc	r0
+	subb	a,@r0
+	mov	r2,a
+	mov	ar3,r4
+	mov	ar7,r5
+	push	ar6
+	push	ar3
+	push	ar7
+	mov	dpl,r6
+	mov	dph,r2
+	lcall	__mulint
+	mov	r2,dpl
+	mov	r3,dph
+	dec	sp
+	dec	sp
+	pop	ar6
+;	../../shared/src/ring_pll_cal.c:575: if (Fdiff == 0)
+	pop	ar6
+	mov	a,_bp
+	add	a,#0x09
+	mov	r0,a
+	mov	a,@r0
+	inc	r0
+	orl	a,@r0
+	jnz	00122$
+;	../../shared/src/ring_pll_cal.c:576: delta_code = (Ftarget_ring - Fmea) * fdiff_0;
+	mov	dptr,#_CONTROL_CONFIG5
+	movx	a,@dptr
+	mov	r2,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r3,a
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,r2
+	clr	c
+	subb	a,@r0
+	mov	r2,a
+	mov	a,r3
+	inc	r0
+	subb	a,@r0
+	mov	r3,a
+	push	ar6
+	push	ar2
+	push	ar3
+	mov	dptr,#0x0014
+	lcall	__mulint
+	mov	r2,dpl
+	mov	r3,dph
+	dec	sp
+	dec	sp
+	pop	ar6
+	mov	a,_bp
+	add	a,#0x0b
+	mov	r0,a
+	mov	@r0,ar2
+	inc	r0
+	mov	@r0,ar3
+	sjmp	00123$
+00122$:
+;	../../shared/src/ring_pll_cal.c:578: delta_code = delta_code_nom / Fdiff;
+	push	ar6
+	mov	a,_bp
+	add	a,#0x09
+	mov	r0,a
+	mov	a,@r0
+	push	acc
+	inc	r0
+	mov	a,@r0
+	push	acc
+	mov	dpl,r2
+	mov	dph,r3
+	lcall	__divsint
+	mov	r2,dpl
+	mov	r3,dph
+	dec	sp
+	dec	sp
+	pop	ar6
+	mov	a,_bp
+	add	a,#0x0b
+	mov	r0,a
+	mov	@r0,ar2
+	inc	r0
+	mov	@r0,ar3
+00123$:
+;	../../shared/src/ring_pll_cal.c:579: delta_code_first = delta_code;
+	mov	a,_bp
+	add	a,#0x0b
+	mov	r0,a
+	mov	ar4,@r0
+	inc	r0
+	mov	ar5,@r0
+00126$:
+;	../../shared/src/ring_pll_cal.c:582: ringpll_dac_fine = ringpll_dac_fine + delta_code;
+	mov	dptr,#_ringpll_dac_fine
+	movx	a,@dptr
+	mov	r2,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r3,a
+	mov	a,_bp
+	add	a,#0x0b
+	mov	r0,a
+	mov	dptr,#_ringpll_dac_fine
+	mov	a,@r0
+	add	a,r2
+	movx	@dptr,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r3
+	inc	dptr
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:584: if (ringpll_dac_fine >= dac_fine_max_value) 
+	mov	dptr,#_ringpll_dac_fine
+	movx	a,@dptr
+	mov	r2,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r3,a
+	clr	c
+	mov	a,r2
+	subb	a,#0xFF
+	mov	a,r3
+	subb	a,#0x07
+	jc	00131$
+;	../../shared/src/ring_pll_cal.c:585: ringpll_dac_fine = dac_fine_max_value;
+	mov	dptr,#_ringpll_dac_fine
+	mov	a,#0xFF
+	movx	@dptr,a
+	inc	dptr
+	mov	a,#0x07
+	movx	@dptr,a
+	sjmp	00132$
+00131$:
+;	../../shared/src/ring_pll_cal.c:586: else if (ringpll_dac_fine <= 0)
+	mov	a,r2
+	orl	a,r3
+	jnz	00132$
+;	../../shared/src/ring_pll_cal.c:587: ringpll_dac_fine = 0;
+	mov	dptr,#_ringpll_dac_fine
+	clr	a
+	movx	@dptr,a
+	inc	dptr
+	movx	@dptr,a
+00132$:
+;	../../shared/src/ring_pll_cal.c:589: if ((ringpll_dac_fine == dac_fine_max_value) || (ringpll_dac_fine == 0)) {
+	mov	dptr,#_ringpll_dac_fine
+	movx	a,@dptr
+	mov	r2,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r3,a
+	cjne	r2,#0xFF,00200$
+	cjne	r3,#0x07,00200$
+	sjmp	00135$
+00200$:
+	mov	a,r2
+	orl	a,r3
+	jnz	00136$
+00135$:
+;	../../shared/src/ring_pll_cal.c:590: if (i >= min_step_number) {
+	mov	r0,_bp
+	inc	r0
+	cjne	@r0,#0x01,00202$
+00202$:
+	jc	00136$
+;	../../shared/src/ring_pll_cal.c:594: cmx_PLL_CAL_RING_PASS = 0;
+	mov	dptr,#(_CAL_STATUS_READ + 0x0001)
+	movx	a,@dptr
+	anl	a,#0xf7
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:599: break;
+	sjmp	00144$
+00136$:
+;	../../shared/src/ring_pll_cal.c:603: Fmea_prev = Fmea;
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,_bp
+	add	a,#0x07
+	mov	r1,a
+	mov	a,@r0
+	mov	@r1,a
+	inc	r0
+	inc	r1
+	mov	a,@r0
+	mov	@r1,a
+;	../../shared/src/ring_pll_cal.c:604: ringpll_dac_fine_output();
+	push	ar4
+	push	ar5
+	push	ar6
+	mov	r0,#_ringpll_dac_fine_output
+	mov	r1,#(_ringpll_dac_fine_output >> 8)
+	mov	r2,#(_ringpll_dac_fine_output >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/ring_pll_cal.c:616: delay01(30); //6uSec settling time required after from second DAC_VALID toggle to new DAC value or SHRTR=0 
+	mov	dptr,#0x001E
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar6
+	pop	ar5
+	pop	ar4
+00140$:
+;	../../shared/src/ring_pll_cal.c:618: i++;
+	mov	r0,_bp
+	inc	r0
+	inc	@r0
+	mov	r0,_bp
+	inc	r0
+	mov	a,_bp
+	add	a,#0x0d
+	mov	r1,a
+	mov	a,@r0
+	mov	@r1,a
+;	../../shared/src/ring_pll_cal.c:620: } while (i < max_step_number);
+	mov	dptr,#(_CONTROL_CONFIG5 + 0x0003)
+	movx	a,@dptr
+	mov	r2,a
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	cjne	a,ar2,00204$
+00204$:
+	jnc	00205$
+	ljmp	00142$
+00205$:
+00144$:
+;	../../shared/src/ring_pll_cal.c:621: reg_MCU_DEBUGF_LANE_7_0 = i; //test
+	mov	dptr,#(_MCU_DEBUG3_LANE + 0x0003)
+	mov	a,_bp
+	add	a,#0x0d
+	mov	r0,a
+	mov	a,@r0
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:622: reg_FBC_PLLCAL_RING_EN = 0;
+	mov	dptr,#(_PLLCAL_REG1 + 0x0001)
+	movx	a,@dptr
+	anl	a,#0xfd
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:623: ringpll_save(CONT);
+	mov	dpl,#0x01
+	push	ar6
+	mov	r0,#_ringpll_save
+	mov	r1,#(_ringpll_save >> 8)
+	mov	r2,#(_ringpll_save >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar6
+;	../../shared/src/ring_pll_cal.c:630: reg_PLL_FBDIV_RING_9_8 = save_FBDIV_h;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_188
+	mov	a,r6
+	add	a,r6
+	anl	a,#0x06
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf9
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:631: reg_PLL_FBDIV_RING_7_0 = save_FBDIV_l;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_189
+	mov	r0,_bp
+	inc	r0
+	inc	r0
+	mov	a,@r0
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:632: reg_ANA_FBCK_SEL_RING = save_FBCK_SEL;
+	mov	dptr,#_PM_CMN_REG1
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	rrc	a
+	movx	a,@dptr
+	mov	acc.2,c
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:635: ring_size_counter = ring_size_counter_mid;
+	mov	dptr,#_ring_size_counter_mid
+	movx	a,@dptr
+	mov	r2,a
+	mov	dptr,#_ring_size_counter
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:637: PLL_CAL_EN_RING = 0;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_196
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:638: PLL_SHRTR_RING = 0;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_196
+	movx	a,@dptr
+	anl	a,#0xbf
+	movx	@dptr,a
+;	../../shared/src/ring_pll_cal.c:643: while(!reg_ANA_PLL_LOCK_RING_RD && !timeout);
+00146$:
+	mov	dptr,#(_PM_CMN_REG1 + 0x0001)
+	movx	a,@dptr
+	jb	acc.7,00148$
+	jnb	_timeout,00146$
+00148$:
+;	../../shared/src/ring_pll_cal.c:649: if(timeout) cmx_PLL_CAL_RING_PASS = 0;
+	jnb	_timeout,00150$
+	mov	dptr,#(_CAL_STATUS_READ + 0x0001)
+	movx	a,@dptr
+	anl	a,#0xf7
+	movx	@dptr,a
+00150$:
+;	../../shared/src/ring_pll_cal.c:658: if(PHY_STATUS != ST_SPDCHG) {
+	mov	dptr,#_MCU_STATUS0_LANE
+	movx	a,@dptr
+	mov	r2,a
+	cjne	r2,#0x19,00209$
+	sjmp	00152$
+00209$:
+;	../../shared/src/ring_pll_cal.c:659: delay01(200);	//delay 20usec for glitch
+	mov	dptr,#0x00C8
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+00152$:
+;	../../shared/src/ring_pll_cal.c:662: pll_clk_ready_ring_1();
+	mov	r0,#_pll_clk_ready_ring_1
+	mov	r1,#(_pll_clk_ready_ring_1 >> 8)
+	mov	r2,#(_pll_clk_ready_ring_1 >> 16)
+	lcall	__sdcc_banked_call
+	mov	sp,_bp
+	pop	_bp
+	ljmp	__sdcc_banked_ret
+	.area CSEG    (CODE)
+	.area BANK1   (CODE)
+	.area CABS    (ABS,CODE)

@@ -1,0 +1,30 @@
+#+TITLE: TODOs for matlab_wrapper
+#+AUTHOR: Marek Rudnicki
+#+CATEGORY: matlab_wrap
+
+* TODO Auto-detect the number of output arguments (nout)
+
+  - check get_nout() from oct2py:
+
+    https://github.com/blink1073/oct2py/blob/master/oct2py/utils.py
+
+  - check mlabwrap
+
+
+* TODO Proper handling of char arrays (strings)
+
+Branch: char_arrays
+
+The equivalent type of MATLAB's strings (char arrays) should be
+ndarray with dtype=S.
+
+At the moment MATLAB's multidimensional char array conversion to
+Python is not correct.
+
+
+* TODO Explicit warning when using Python 3
+
+* TODO [#C] Test string parameters (path) to a function (#15)
+
+ftp://ftp.scp.byu.edu/pub/software/matlab/loadsir.m
+ftp://ftp.scp.byu.edu/data/qscat/1999/sir/queh/SAm/201/a/queh-a-SAm99-201-204.sir.gz

@@ -1,0 +1,87 @@
+//*********************************************************************
+//	    COMPHY_28G_PIPE4_RPLL Firmware Change History			
+//
+//   Copyright (c) 2016 Marvell Semiconductor, Inc. All rights reserved
+//*********************************************************************
+ 9/07/2018 Minh Tran 0.12.8.25
+  - CESD-373: Changing the SERDES speed to use LC PLL independently can cause simulation hang
+  - Updated Sharepoint Midas registers
+ 8/29/2018 Minh Tran 0.12.8.24
+  - CESD-371: Uninitialize ANA RESET caused incorrect RX/TX clock frequencies
+      Init reg_ANA_TX_RESET_ANA_RPLL_LANE to 1 also.
+ 8/28/2018 Minh Tran 0.12.8.23
+  - CESD-371: Uninitialize ANA RESET caused incorrect RX/TX clock frequencies
+  - Initialized reg_RESET_ANA to 1 in the power on sequence to fix the problem of the clock not config properly.
+    Previous default value was 1 so the FW does not need to init the RESET_ANA reg, now the default is 0.
+  - Updated SharePoint Midas register files.
+ 8/24/2018 Minh Tran 0.12.8.22
+  - Fixed regression caused by previous change (typo)
+ 8/23/2018 Minh Tran 0.12.8.21
+  - Need to overwrite some of the speed table values before power on also.
+ 8/22/2018 Minh Tran 0.12.8.20
+  - Overwrite some speedtable values for SERDES mode as follow:
+    CMN LC - TX_CK_SEL_LANE = 0; RX_CK_SEL_LANE = 0
+    CMN RING - TX_CK_SEL_LANE = 1; RX_CK_SEL_LANE = 1 (PCIE only)
+    LANE RING - TX_CK_SEL_LANE = 1; RX_CK_SEL_LANE = 1 (SERDES && GEN<= 20.62500GHz)
+ 8/21/2018 Minh Tran 0.12.8.19
+  - Update FW with the latest RPLL common clock MUX table to support mix CMN LC + Lane Ring clock sources.
+ 8/21/2018 Heejeong Ryu
+  - CEAMSDV-223: update dual coefficient handling
+ 8/20/2018 Minh Tran 0.12.8.18
+  - Partial implement of CESD-349: SERDES mode to change speed freely for both lanes from 1.25, 3.125, 10.3125 and 25.78125 
+    - Supported new RPLL common clock MUX (28G_PIPE4_RPLL only) commit this first so China team can run simulation on new Ana model.
+ 8/16/2018 Minh Tran 0.12.8.17
+  - Update RPLL local files to compile with the 32G_X2 previous check in
+  - Updated mcu_lane and cmn_cmn header files from share point to support MCU interrupts
+  - Initial support for RPLL_X4 (need to add lane 2/3 cmn xdata regs for PCIe build)
+ 8/10/2018 Minh Tran 0.12.8.16
+  - Synced up xdata and speed table
+  - New binaries
+ 8/10/2018 Minh Tran 0.12.8.15
+  - Merged from 28G_PIPE4_X2 upto r2280
+ 8/09/2018 Minh Tran 0.12.8.15
+  - Merged from 28G_PIPE4_X2 upto r2249
+ 8/8/2018 Heejeong Ryu 0.12.8.14 
+  - fixed train error
+ 8/07/2018 Minh Tran 0.12.8.13
+  - Merged from 28G_PIPE4_X2 upto r2224
+ 7/24/2018 Minh Tran 0.12.8.12
+  - Removed local variables warning
+  - Merged with 16FFC_COMPHY_28G_PIPE4_X2 upto r2189
+ 7/23/2018 Minh Tran 0.12.8.11
+  - Added compiler option _LANE_RPLL and initial support of common RPLL
+ 7/20/2018 Minh Tran 0.12.8.10
+  - Clean up _28G_X2 compiler option
+  - CESD-337: clear the interrupt enable bits in the SW reset
+ 7/13/2018 Minh Tran 0.12.8.9
+  - Updated tx_lane header file from share point
+  - Fixed FW not taking rpll_lane out of reset properly, plus typo
+ 7/13/2018 X.Su
+  - CESD-302: Watch Dog Timer not enabled in all 28G PHY. (Applied change. No build)
+ 7/10/2018 Minh Tran 0.12.8.8
+  - Merged with 16FFC_COMPHY_28G_PIPE4_X2 upto r2107
+  - Fixed issues reported by Wei.
+	reg_ssc_step_125ppm_tx_ring_lane mapping
+	L1.1 entry latency exceeds spec (fixed from merge)
+ 7/10/2018 Minh Tran 0.12.8.7
+  - Fixed the tx alignment issue
+ 7/06/2018 Minh Tran 0.12.8.6
+  - Fixed the PCIe P1CLKREQ_WK hung issue
+ 7/06/2018 Minh Tran 0.12.8.5
+  - Sync up from X2 changes. Optimized fast calibration performance; changed "wait time" from 4us to 3us
+  - Updated RPLL remapped register reg_ANA_TX_PLL_LOCK_RING_RD_LANE
+ 7/05/2018 Minh Tran 0.12.8.4
+  - Fixed lane 1 (none master) load wrong data from Ring PLL speed table
+ 7/03/2018 Minh Tran 0.12.8.3
+    Updated to latest reg files from share point
+    Fixed lane 1 hung in calibration and more registers remapped changes
+    New RPLL binaries
+ 7/01/2018 Minh Tran 0.12.8.2
+  - Initial RPLL support 
+    New reg files from share point
+    New registers remapped with compiled code
+ 6/21/2018 X.Su 0.12.8.1
+  - Applied CESD-299 (PCIe link training issue) fix from 28G_PIPE4 FW.
+ 6/18/2018 X.Su 0.12.8.0
+  - First revision copied from 28G_PIPE4 R2.0 firmware with 2lane and shared folders
+//********************************************************************* 

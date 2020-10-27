@@ -1,0 +1,24 @@
+{
+	"folders": [
+		{
+			"path": "include"
+		},
+		{
+			"path": "12FFC\\COMPHY_28G_PIPE4_RPLL_X4_R1P0\\shared\\inc"
+		},
+		{
+			"path": "12FFC\\COMPHY_28G_PIPE4_RPLL_X4_R1P0\\shared\\src"
+		},
+		{
+			"path": "12FFC\\COMPHY_28G_PIPE4_RPLL_X4_R1P0\\4lane\\inc"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"common.h": "c"
+		},
+		"highlightwords.defaultMode": 1,
+		"highlight-icemode.borderRadius": "",
+                "highlight-icemode.borderWidth": ""
+	}
+}

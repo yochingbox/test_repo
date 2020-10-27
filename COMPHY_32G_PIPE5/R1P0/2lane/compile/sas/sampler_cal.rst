@@ -1,0 +1,3663 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.0 #6037 (May 26 2011) (Linux)
+                              4 ; This file was generated Thu Oct 18 21:21:48 2018
+                              5 ;--------------------------------------------------------
+                              6 	.module sampler_cal
+                              7 	.optsdcc -mmcs51 --model-small
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _sampler_f1_pol_tb
+                             13 	.globl _samper_cal_sel_tb
+                             14 	.globl _r_training_bound_tb
+                             15 	.globl _sampler_cal_sel
+                             16 	.globl _TF2
+                             17 	.globl _TI
+                             18 	.globl _RI
+                             19 	.globl _EX12
+                             20 	.globl _EX11
+                             21 	.globl _EX10
+                             22 	.globl _EX9
+                             23 	.globl _EX8
+                             24 	.globl _ES1
+                             25 	.globl _PS1
+                             26 	.globl _EX6
+                             27 	.globl _EX5
+                             28 	.globl _EX4
+                             29 	.globl _EX3
+                             30 	.globl _EX2
+                             31 	.globl _EX7
+                             32 	.globl _EA
+                             33 	.globl _WDT
+                             34 	.globl _ET2
+                             35 	.globl _ES
+                             36 	.globl _ET1
+                             37 	.globl _EX1
+                             38 	.globl _ET0
+                             39 	.globl _EX0
+                             40 	.globl _TF1
+                             41 	.globl _TR1
+                             42 	.globl _TF0
+                             43 	.globl _TR0
+                             44 	.globl _IE1
+                             45 	.globl _IT1
+                             46 	.globl _IE0
+                             47 	.globl _IT0
+                             48 	.globl _P3_7
+                             49 	.globl _P3_6
+                             50 	.globl _P3_5
+                             51 	.globl _P3_4
+                             52 	.globl _P3_3
+                             53 	.globl _P3_2
+                             54 	.globl _P3_1
+                             55 	.globl _P3_0
+                             56 	.globl _P2_7
+                             57 	.globl _P2_6
+                             58 	.globl _P2_5
+                             59 	.globl _P2_4
+                             60 	.globl _P2_3
+                             61 	.globl _P2_2
+                             62 	.globl _P2_1
+                             63 	.globl _P2_0
+                             64 	.globl _P1_7
+                             65 	.globl _P1_6
+                             66 	.globl _P1_5
+                             67 	.globl _P1_4
+                             68 	.globl _P1_3
+                             69 	.globl _P1_2
+                             70 	.globl _P1_1
+                             71 	.globl _P1_0
+                             72 	.globl _P0_7
+                             73 	.globl _P0_6
+                             74 	.globl _P0_5
+                             75 	.globl _P0_4
+                             76 	.globl _P0_3
+                             77 	.globl _P0_2
+                             78 	.globl _P0_1
+                             79 	.globl _P0_0
+                             80 	.globl _DMAC
+                             81 	.globl _DMATA
+                             82 	.globl _DMASA
+                             83 	.globl _TMR2
+                             84 	.globl _TMR1
+                             85 	.globl _TMR0
+                             86 	.globl _SRST
+                             87 	.globl _B
+                             88 	.globl _EIE
+                             89 	.globl _ACC
+                             90 	.globl _ADCON
+                             91 	.globl _PSW
+                             92 	.globl _TH2
+                             93 	.globl _TL2
+                             94 	.globl _RCAP2H
+                             95 	.globl _RCAP2L
+                             96 	.globl _T2CON
+                             97 	.globl _CCEN
+                             98 	.globl _IRCON
+                             99 	.globl _S0RELH
+                            100 	.globl _IP1
+                            101 	.globl _IEN1
+                            102 	.globl _DMAM1
+                            103 	.globl _DMAM0
+                            104 	.globl _DMASEL
+                            105 	.globl _DMAC2
+                            106 	.globl _DMAC1
+                            107 	.globl _DMAC0
+                            108 	.globl _P3
+                            109 	.globl _S0RELL
+                            110 	.globl _IP0
+                            111 	.globl _IEN0
+                            112 	.globl _DMAT2
+                            113 	.globl _DMAT1
+                            114 	.globl _DMAT0
+                            115 	.globl _DMAS2
+                            116 	.globl _DMAS1
+                            117 	.globl _DMAS0
+                            118 	.globl _P2
+                            119 	.globl _IEN2
+                            120 	.globl _SBUF
+                            121 	.globl _SCON
+                            122 	.globl _PSBANK
+                            123 	.globl _DPS
+                            124 	.globl _P1
+                            125 	.globl _CKCON
+                            126 	.globl _TH1
+                            127 	.globl _TH0
+                            128 	.globl _TL1
+                            129 	.globl _TL0
+                            130 	.globl _TMOD
+                            131 	.globl _TCON
+                            132 	.globl _PCON
+                            133 	.globl _WDTREL
+                            134 	.globl _DPH
+                            135 	.globl _DPL
+                            136 	.globl _P0
+                            137 	.globl _sq_thrs_ratio_tb
+                            138 	.globl _train_save_tb
+                            139 	.globl _tx_tb
+                            140 	.globl _UPHY_ANAREG_REV_0
+                            141 	.globl _dfe_sm_save
+                            142 	.globl _dfe_sm_dc
+                            143 	.globl _dfe_sm
+                            144 	.globl _cds28
+                            145 	.globl _lnx_calx_align90_gm
+                            146 	.globl _lnx_calx_align90_dac
+                            147 	.globl _lnx_calx_align90_dummy_clk
+                            148 	.globl _lnx_calx_eom_dpher
+                            149 	.globl _lnx_calx_vdda_dll_eom_sel
+                            150 	.globl _lnx_calx_dll_eom_gmsel
+                            151 	.globl _lnx_calx_vdda_dll_sel
+                            152 	.globl _lnx_calx_dll_gmsel
+                            153 	.globl _lnx_calx_rxdcc_dll_hg
+                            154 	.globl _lnx_calx_rxdcc_dll
+                            155 	.globl _lnx_calx_txdcc_hg
+                            156 	.globl _lnx_calx_txdcc
+                            157 	.globl _lnx_calx_txdcc_pdiv_hg
+                            158 	.globl _lnx_calx_txdcc_pdiv
+                            159 	.globl _lnx_spdoft_tx_preset_index_lane
+                            160 	.globl _lnx_cal_sellv_rxeomclk
+                            161 	.globl _lnx_cal_sellv_rxsampler
+                            162 	.globl _lnx_cal_sellv_txpre
+                            163 	.globl _lnx_cal_sellv_rxdataclk
+                            164 	.globl _lnx_cal_sellv_txclk
+                            165 	.globl _lnx_cal_sellv_txdata
+                            166 	.globl _lnx_cal_align90_gm
+                            167 	.globl _lnx_cal_align90_dac
+                            168 	.globl _lnx_cal_align90_dummy_clk
+                            169 	.globl _lnx_cal_eom_dpher
+                            170 	.globl _lnx_cal_vdda_dll_eom_sel
+                            171 	.globl _lnx_cal_dll_eom_gmsel
+                            172 	.globl _lnx_cal_vdda_dll_sel
+                            173 	.globl _lnx_cal_dll_gmsel
+                            174 	.globl _lnx_cal_rxdcc_eom_hg
+                            175 	.globl _lnx_cal_rxdcc_eom
+                            176 	.globl _lnx_cal_rxdcc_data_hg
+                            177 	.globl _lnx_cal_rxdcc_data
+                            178 	.globl _lnx_cal_rxdcc_dll_hg
+                            179 	.globl _lnx_cal_rxdcc_dll
+                            180 	.globl _lnx_cal_txdcc_hg
+                            181 	.globl _lnx_cal_txdcc
+                            182 	.globl _lnx_cal_txdcc_pdiv_hg
+                            183 	.globl _lnx_cal_txdcc_pdiv
+                            184 	.globl _cmx_cal_sllp_dac_fine_ring
+                            185 	.globl _cmx_cal_pll_sllp_dac_coarse_ring
+                            186 	.globl _cmx_cal_pll_speed_ring
+                            187 	.globl _cmx_cal_plldcc
+                            188 	.globl _cmx_cal_lccap_lsb
+                            189 	.globl _cmx_cal_lccap_msb
+                            190 	.globl _cmx_cal_lcvco_dac_msb
+                            191 	.globl _cmx_cal_lcvco_dac_lsb
+                            192 	.globl _cmx_cal_lcvco_dac
+                            193 	.globl _local_tx_preset_tb
+                            194 	.globl _train_g0_index
+                            195 	.globl _train_g1_index
+                            196 	.globl _train_gn1_index
+                            197 	.globl _phase_save
+                            198 	.globl _txffe_save
+                            199 	.globl _rc_save
+                            200 	.globl _phy_mode_lane_table
+                            201 	.globl _speedtable
+                            202 	.globl _min_gen
+                            203 	.globl _max_gen
+                            204 	.globl _phy_mode_cmn_table
+                            205 	.globl _ring_speedtable
+                            206 	.globl _lc_speedtable
+                            207 	.globl _TXTRAIN_IF_REG0
+                            208 	.globl _CDS_READ_MISC1
+                            209 	.globl _CDS_READ_MISC0
+                            210 	.globl _DFE_READ_F0D_RIGHT_ODD
+                            211 	.globl _DFE_READ_F0D_RIGHT_EVEN
+                            212 	.globl _DFE_READ_F0D_LEFT_ODD
+                            213 	.globl _DFE_READ_F0D_LEFT_EVEN
+                            214 	.globl _DFE_READ_F0D_ODD
+                            215 	.globl _DFE_READ_F0D_EVEN
+                            216 	.globl _DFE_READ_F0B_ODD
+                            217 	.globl _DFE_READ_F0B_EVEN
+                            218 	.globl _DFE_READ_F0A_ODD
+                            219 	.globl _DFE_READ_F0A_EVEN
+                            220 	.globl _DFE_READ_ODD_REG8
+                            221 	.globl _DFE_READ_EVEN_REG8
+                            222 	.globl _DFE_READ_ODD_REG7
+                            223 	.globl _DFE_READ_ODD_REG6
+                            224 	.globl _DFE_READ_ODD_REG5
+                            225 	.globl _DFE_READ_ODD_REG4
+                            226 	.globl _DFE_READ_ODD_REG3
+                            227 	.globl _DFE_READ_ODD_REG2
+                            228 	.globl _DFE_READ_ODD_REG1
+                            229 	.globl _DFE_READ_ODD_REG0
+                            230 	.globl _DFE_READ_EVEN_REG7
+                            231 	.globl _DFE_READ_EVEN_REG6
+                            232 	.globl _DFE_READ_EVEN_REG5
+                            233 	.globl _DFE_READ_EVEN_REG4
+                            234 	.globl _DFE_READ_EVEN_REG3
+                            235 	.globl _DFE_READ_EVEN_REG2
+                            236 	.globl _DFE_READ_EVEN_REG1
+                            237 	.globl _DFE_READ_EVEN_REG0
+                            238 	.globl _TX_TRAIN_IF_REG8
+                            239 	.globl _TX_TRAIN_CTRL_LANE
+                            240 	.globl _TX_TRAIN_IF_REG7
+                            241 	.globl _TX_TRAIN_IF_REG6
+                            242 	.globl _TX_TRAIN_IF_REG5
+                            243 	.globl _TX_TRAIN_IF_REG4
+                            244 	.globl _TRX_TRAIN_IF_INTERRUPT_CLEAR_LANE
+                            245 	.globl _TRX_TRAIN_IF_INTERRUPT_MASK0_LANE
+                            246 	.globl _TRX_TRAIN_IF_INTERRUPT_LANE
+                            247 	.globl _TX_AMP_CTRL_REG0
+                            248 	.globl _TX_DRV_RD_OUT_REG0
+                            249 	.globl _LINK_TRAIN_MODE0
+                            250 	.globl _TX_EMPH_CTRL_REG0
+                            251 	.globl _TX_TRAIN_DEFAULT_REG5
+                            252 	.globl _TX_TRAIN_DEFAULT_REG4
+                            253 	.globl _TX_TRAIN_DEFAULT_REG3
+                            254 	.globl _TX_TRAIN_DEFAULT_REG2
+                            255 	.globl _TX_TRAIN_DEFAULT_REG1
+                            256 	.globl _TX_TRAIN_DEFAULT_REG0
+                            257 	.globl _TX_TRAIN_DRIVER_REG2
+                            258 	.globl _TX_TRAIN_DRIVER_REG1
+                            259 	.globl _TX_TRAIN_DRIVER_REG0
+                            260 	.globl _TX_TRAIN_PATTTERN_REG0
+                            261 	.globl _TX_TRAIN_IF_REG3
+                            262 	.globl _TX_TRAIN_IF_REG2
+                            263 	.globl _TX_TRAIN_IF_REG1
+                            264 	.globl _TX_TRAIN_IF_REG0
+                            265 	.globl _DME_DEC_REG1
+                            266 	.globl _DME_DEC_REG0
+                            267 	.globl _DME_ENC_REG2
+                            268 	.globl _DME_ENC_REG1
+                            269 	.globl _DME_ENC_REG0
+                            270 	.globl _END_XDAT_CMN
+                            271 	.globl _MCU_INFO_13
+                            272 	.globl _MCU_INFO_12
+                            273 	.globl _MCU_INFO_5
+                            274 	.globl _MCU_INFO_4
+                            275 	.globl _SYNC_INFO
+                            276 	.globl _CDS_EYE_CLK_THR
+                            277 	.globl _TX_SAVE_4
+                            278 	.globl _TX_SAVE_3
+                            279 	.globl _TX_SAVE_2
+                            280 	.globl _TX_SAVE_1
+                            281 	.globl _TX_SAVE_0
+                            282 	.globl _ETH_PRESET1_TB
+                            283 	.globl _ETH_PRESET0_TB
+                            284 	.globl _SAS_PRESET2_TB
+                            285 	.globl _SAS_PRESET1_TB
+                            286 	.globl _SAS_PRESET0_TB
+                            287 	.globl _G_SELLV_RXSAMPLER
+                            288 	.globl _G_SELLV_RXDATACLK
+                            289 	.globl _G_SELLV_RXEOMCLK
+                            290 	.globl _G_SELLV_TXPRE
+                            291 	.globl _G_SELLV_TXDATA
+                            292 	.globl _G_SELLV_TXCLK
+                            293 	.globl _TIMER_SEL3
+                            294 	.globl _TIMER_SEL2
+                            295 	.globl _TIMER_SEL1
+                            296 	.globl _MCU_CONFIG1
+                            297 	.globl _LOOP_CNTS
+                            298 	.globl _CAL_DATA1
+                            299 	.globl _MCU_CONFIG
+                            300 	.globl _CAL_STATUS_READ
+                            301 	.globl _CAL_TIME_OUT_AND_DIS
+                            302 	.globl _CON_CAL_STEP_SIZE5
+                            303 	.globl _CON_CAL_STEP_SIZE4
+                            304 	.globl _CON_CAL_STEP_SIZE3
+                            305 	.globl _CON_CAL_STEP_SIZE2
+                            306 	.globl _CON_CAL_STEP_SIZE1
+                            307 	.globl _CONTROL_CONFIG9
+                            308 	.globl _CONTROL_CONFIG8
+                            309 	.globl _TRAIN_IF_CONFIG
+                            310 	.globl _CAL_DATA0
+                            311 	.globl _CONTROL_CONFIG7
+                            312 	.globl _CONTROL_CONFIG6
+                            313 	.globl _CONTROL_CONFIG5
+                            314 	.globl _CONTROL_CONFIG4
+                            315 	.globl _CONTROL_CONFIG3
+                            316 	.globl _CONTROL_CONFIG2
+                            317 	.globl _CONTROL_CONFIG1
+                            318 	.globl _CONTROL_CONFIG0
+                            319 	.globl _FW_REV
+                            320 	.globl _CID_REG1
+                            321 	.globl _CID_REG0
+                            322 	.globl _CMN_MCU_REG
+                            323 	.globl _SET_LANE_ISR
+                            324 	.globl _CMN_ISR_MASK_1
+                            325 	.globl _CMN_ISR_1
+                            326 	.globl _CMN_MCU_TIMER3_CONTROL
+                            327 	.globl _CMN_MCU_TIMER2_CONTROL
+                            328 	.globl _CMN_MCU_TIMER1_CONTROL
+                            329 	.globl _CMN_MCU_TIMER0_CONTROL
+                            330 	.globl _CMN_MCU_TIMER_CTRL_5_LANE
+                            331 	.globl _CMN_MCU_TIMER_CTRL_4_LANE
+                            332 	.globl _CMN_MCU_TIMER_CTRL_3_LANE
+                            333 	.globl _CMN_MCU_TIMER_CTRL_2_LANE
+                            334 	.globl _CMN_MCU_TIMER_CONTROL
+                            335 	.globl _CMN_CACHE_DEBUG1
+                            336 	.globl _CMN_MCU_GPIO
+                            337 	.globl _CMN_ISR_CLEAR_2
+                            338 	.globl _CMN_ISR_MASK_2
+                            339 	.globl _CMN_ISR_2
+                            340 	.globl _MCU_INT_ADDR
+                            341 	.globl _CMN_CACHE_DEBUG0
+                            342 	.globl _MCU_SDT_CMN
+                            343 	.globl _XDATA_MEM_CHECKSUM_CMN_2
+                            344 	.globl _XDATA_MEM_CHECKSUM_CMN_1
+                            345 	.globl _XDATA_MEM_CHECKSUM_CMN_0
+                            346 	.globl _TEST5
+                            347 	.globl _PM_CMN_REG2
+                            348 	.globl _INPUT_CMN_PIN_REG3
+                            349 	.globl __FIELDNAME_
+                            350 	.globl _CMN_CALIBRATION
+                            351 	.globl _OUTPUT_CMN_PIN_REG0
+                            352 	.globl _SPD_CMN_REG1
+                            353 	.globl _CLKGEN_CMN_REG1
+                            354 	.globl _PLLCAL_REG1
+                            355 	.globl _PLLCAL_REG0
+                            356 	.globl _ANA_TSEN_CONTROL
+                            357 	.globl _INPUT_CMN_PIN_REG2
+                            358 	.globl _INPUT_CMN_PIN_REG1
+                            359 	.globl _INPUT_CMN_PIN_REG0
+                            360 	.globl _PM_CMN_REG1
+                            361 	.globl _SYSTEM
+                            362 	.globl _TEST4
+                            363 	.globl _TEST3
+                            364 	.globl _TEST2
+                            365 	.globl _TEST1
+                            366 	.globl _TEST0
+                            367 	.globl _MCU_SYNC2
+                            368 	.globl _MCU_SYNC1
+                            369 	.globl _MEM_IRQ_CLEAR
+                            370 	.globl _APB_CONTROL_REG
+                            371 	.globl _ANA_IF_CMN_REG0
+                            372 	.globl _MEM_IRQ_MASK
+                            373 	.globl _MEM_IRQ
+                            374 	.globl _ANA_IF_CMN_REG1
+                            375 	.globl _MEM_CMN_ECC_ERR_ADDRESS0
+                            376 	.globl _MCU_INFO_3
+                            377 	.globl _MCU_INFO_2
+                            378 	.globl _MCU_INFO_1
+                            379 	.globl _MCU_INFO_0
+                            380 	.globl _MEMORY_CONTROL_4
+                            381 	.globl _MEMORY_CONTROL_3
+                            382 	.globl _MEMORY_CONTROL_2
+                            383 	.globl _MEMORY_CONTROL_1
+                            384 	.globl _MEMORY_CONTROL_0
+                            385 	.globl _MCU_DEBUG1
+                            386 	.globl _MCU_DEBUG0
+                            387 	.globl _MCU_CONTROL_4
+                            388 	.globl _MCU_CONTROL_3
+                            389 	.globl _MCU_CONTROL_2
+                            390 	.globl _MCU_CONTROL_1
+                            391 	.globl _MCU_CONTROL_0
+                            392 	.globl _GLOB_L1_SUBSTATES_CFG
+                            393 	.globl _GLOB_PIPE_REVISION
+                            394 	.globl _GLOB_BIST_DATA_HI
+                            395 	.globl _GLOB_BIST_SEQR_CFG
+                            396 	.globl _GLOB_BIST_RESULT
+                            397 	.globl _GLOB_BIST_MASK
+                            398 	.globl _GLOB_BIST_START
+                            399 	.globl _GLOB_BIST_LANE_TYPE
+                            400 	.globl _GLOB_BIST_CTRL
+                            401 	.globl _GLOB_DP_BAL_CFG4
+                            402 	.globl _GLOB_DP_BAL_CFG2
+                            403 	.globl _GLOB_DP_BAL_CFG0
+                            404 	.globl _GLOB_PM_DP_CTRL
+                            405 	.globl _GLOB_COUNTER_HI
+                            406 	.globl _GLOB_COUNTER_CTRL
+                            407 	.globl _GLOB_PM_CFG0
+                            408 	.globl _GLOB_DP_SAL_CFG5
+                            409 	.globl _GLOB_DP_SAL_CFG3
+                            410 	.globl _GLOB_DP_SAL_CFG1
+                            411 	.globl _GLOB_DP_SAL_CFG
+                            412 	.globl _GLOB_MISC_CTRL
+                            413 	.globl _GLOB_CLK_SRC_HI
+                            414 	.globl _GLOB_CLK_SRC_LO
+                            415 	.globl _GLOB_RST_CLK_CTRL
+                            416 	.globl _DFE_STATIC_REG6
+                            417 	.globl _DFE_STATIC_REG5
+                            418 	.globl _DFE_STATIC_REG4
+                            419 	.globl _DFE_STATIC_REG3
+                            420 	.globl _DFE_STATIC_REG1
+                            421 	.globl _DFE_STATIC_REG0
+                            422 	.globl _RX_CMN_0
+                            423 	.globl _SRIS_REG1
+                            424 	.globl _SRIS_REG0
+                            425 	.globl _DTX_PHY_ALIGN_REG2
+                            426 	.globl _DTX_PHY_ALIGN_REG1
+                            427 	.globl _DTX_PHY_ALIGN_REG0
+                            428 	.globl _DTX_REG4
+                            429 	.globl _DTX_REG3
+                            430 	.globl _DTX_REG2
+                            431 	.globl _DTX_REG1
+                            432 	.globl _DTX_REG0
+                            433 	.globl _TX_CMN_REG
+                            434 	.globl _END_XDAT_LANE
+                            435 	.globl _TRAIN_CONTROL_17
+                            436 	.globl _TRAIN_CONTROL_16
+                            437 	.globl _TRAIN_CONTROL_15
+                            438 	.globl _TRAIN_CONTROL_14
+                            439 	.globl _TRAIN_CONTROL_13
+                            440 	.globl _ESM_ERR_N_CNT_LOW_LANE
+                            441 	.globl _ESM_POP_N_CNT_LOW_LANE
+                            442 	.globl _TRAIN_CONTROL_12
+                            443 	.globl _TRAIN_CONTROL_11
+                            444 	.globl _TRAIN_CONTROL_10
+                            445 	.globl _TRAIN_CONTROL_9
+                            446 	.globl _TRAIN_CONTROL_8
+                            447 	.globl _TRAIN_CONTROL_7
+                            448 	.globl _TRAIN_CONTROL_6
+                            449 	.globl _TRAIN_CONTROL_5
+                            450 	.globl _TRAIN_CONTROL_4
+                            451 	.globl _TRAIN_CONTROL_3
+                            452 	.globl _ESM_ERR_POP_CNT_HIGH_LANE
+                            453 	.globl _ESM_ERR_P_CNT_LOW_LANE
+                            454 	.globl _ESM_POP_P_CNT_LOW_LANE
+                            455 	.globl _CDS_CTRL_REG1
+                            456 	.globl _CDS_CTRL_REG0
+                            457 	.globl _DFE_CONTROL_11
+                            458 	.globl _DFE_CONTROL_10
+                            459 	.globl _DFE_CONTROL_9
+                            460 	.globl _DFE_CONTROL_8
+                            461 	.globl _DFE_CONTROL_7
+                            462 	.globl _DFE_TEST_5
+                            463 	.globl _DFE_TEST_4
+                            464 	.globl _DFE_TEST_1
+                            465 	.globl _DFE_TEST_0
+                            466 	.globl _DFE_CONTROL_6
+                            467 	.globl _TRAIN_PARA_3
+                            468 	.globl _TRAIN_PARA_2
+                            469 	.globl _TRAIN_PARA_1
+                            470 	.globl _TRAIN_PARA_0
+                            471 	.globl _DLL_CAL
+                            472 	.globl _RPTA_CONFIG_1
+                            473 	.globl _RPTA_CONFIG_0
+                            474 	.globl _TRAIN_CONTROL_2
+                            475 	.globl _TRAIN_CONTROL_1
+                            476 	.globl _TRAIN_CONTROL_0
+                            477 	.globl _DFE_CONTROL_5
+                            478 	.globl _DFE_CONTROL_4
+                            479 	.globl _DFE_CONTROL_3
+                            480 	.globl _DFE_CONTROL_2
+                            481 	.globl _DFE_CONTROL_1
+                            482 	.globl _DFE_CONTROL_0
+                            483 	.globl _TRX_TRAIN_IF_TIMERS_ENABLE_LANE
+                            484 	.globl _TRX_TRAIN_IF_TIMERS2_LANE
+                            485 	.globl _TRX_TRAIN_IF_TIMERS1_LANE
+                            486 	.globl _PHY_LOCAL_VALUE_LANE
+                            487 	.globl _PHY_REMOTE_CTRL_VALUE_LANE
+                            488 	.globl _PHY_REMOTE_CTRL_COMMAND_LANE
+                            489 	.globl _CAL_SAVE_DATA3_LANE
+                            490 	.globl _CAL_SAVE_DATA2_LANE
+                            491 	.globl _CAL_SAVE_DATA1_LANE
+                            492 	.globl _CAL_CTRL4_LANE
+                            493 	.globl _CAL_CTRL3_LANE
+                            494 	.globl _CAL_CTRL2_LANE
+                            495 	.globl _CAL_CTRL1_LANE
+                            496 	.globl _LANE_MARGIN_REG0
+                            497 	.globl _EOM_VLD_REG4
+                            498 	.globl _EOM_REG0
+                            499 	.globl _EOM_ERR_REG3
+                            500 	.globl _EOM_ERR_REG2
+                            501 	.globl _EOM_ERR_REG1
+                            502 	.globl _EOM_ERR_REG0
+                            503 	.globl _EOM_VLD_REG3
+                            504 	.globl _EOM_VLD_REG2
+                            505 	.globl _EOM_VLD_REG1
+                            506 	.globl _EOM_VLD_REG0
+                            507 	.globl _DFE_STATIC_LANE_REG6
+                            508 	.globl _DFE_STATIC_LANE_REG5
+                            509 	.globl _DFE_STATIC_LANE_REG4
+                            510 	.globl _DFE_STATIC_LANE_REG3
+                            511 	.globl _DFE_STATIC_LANE_REG1
+                            512 	.globl _DFE_STATIC_LANE_REG0
+                            513 	.globl _DFE_DCE_REG0
+                            514 	.globl _CAL_OFST_REG2
+                            515 	.globl _CAL_OFST_REG1
+                            516 	.globl _CAL_OFST_REG0
+                            517 	.globl _DFE_READ_ODD_2C_REG8
+                            518 	.globl _DFE_READ_EVEN_2C_REG8
+                            519 	.globl _DFE_READ_ODD_2C_REG7
+                            520 	.globl _DFE_READ_ODD_2C_REG6
+                            521 	.globl _DFE_READ_ODD_2C_REG5
+                            522 	.globl _DFE_READ_ODD_2C_REG4
+                            523 	.globl _DFE_READ_ODD_2C_REG3
+                            524 	.globl _DFE_READ_ODD_2C_REG2
+                            525 	.globl _DFE_READ_ODD_2C_REG1
+                            526 	.globl _DFE_READ_ODD_2C_REG0
+                            527 	.globl _DFE_READ_EVEN_2C_REG7
+                            528 	.globl _DFE_READ_EVEN_2C_REG6
+                            529 	.globl _DFE_READ_EVEN_2C_REG5
+                            530 	.globl _DFE_READ_EVEN_2C_REG4
+                            531 	.globl _DFE_READ_EVEN_2C_REG3
+                            532 	.globl _DFE_READ_EVEN_2C_REG2
+                            533 	.globl _DFE_READ_EVEN_2C_REG1
+                            534 	.globl _DFE_READ_EVEN_2C_REG0
+                            535 	.globl _DFE_READ_ODD_SM_REG8
+                            536 	.globl _DFE_READ_EVEN_SM_REG8
+                            537 	.globl _DFE_READ_ODD_SM_REG7
+                            538 	.globl _DFE_READ_ODD_SM_REG6
+                            539 	.globl _DFE_READ_ODD_SM_REG5
+                            540 	.globl _DFE_READ_ODD_SM_REG4
+                            541 	.globl _DFE_READ_ODD_SM_REG3
+                            542 	.globl _DFE_READ_ODD_SM_REG2
+                            543 	.globl _DFE_READ_ODD_SM_REG1
+                            544 	.globl _DFE_READ_ODD_SM_REG0
+                            545 	.globl _DFE_READ_EVEN_SM_REG7
+                            546 	.globl _DFE_READ_EVEN_SM_REG6
+                            547 	.globl _DFE_READ_EVEN_SM_REG5
+                            548 	.globl _DFE_READ_EVEN_SM_REG4
+                            549 	.globl _DFE_READ_EVEN_SM_REG3
+                            550 	.globl _DFE_READ_EVEN_SM_REG2
+                            551 	.globl _DFE_READ_EVEN_SM_REG1
+                            552 	.globl _DFE_READ_EVEN_SM_REG0
+                            553 	.globl _DFE_FEXT_ODD_REG7
+                            554 	.globl _DFE_FEXT_ODD_REG6
+                            555 	.globl _DFE_FEXT_ODD_REG5
+                            556 	.globl _DFE_FEXT_ODD_REG4
+                            557 	.globl _DFE_FEXT_ODD_REG3
+                            558 	.globl _DFE_FEXT_ODD_REG2
+                            559 	.globl _DFE_FEXT_ODD_REG1
+                            560 	.globl _DFE_FEXT_ODD_REG0
+                            561 	.globl _DFE_FEXT_EVEN_REG7
+                            562 	.globl _DFE_FEXT_EVEN_REG6
+                            563 	.globl _DFE_FEXT_EVEN_REG5
+                            564 	.globl _DFE_FEXT_EVEN_REG4
+                            565 	.globl _DFE_FEXT_EVEN_REG3
+                            566 	.globl _DFE_FEXT_EVEN_REG2
+                            567 	.globl _DFE_FEXT_EVEN_REG1
+                            568 	.globl _DFE_FEXT_EVEN_REG0
+                            569 	.globl _DFE_DC_ODD_REG8
+                            570 	.globl _DFE_DC_EVEN_REG8
+                            571 	.globl _DFE_FEN_ODD_REG
+                            572 	.globl _DFE_FEN_EVEN_REG
+                            573 	.globl _DFE_STEP_REG1
+                            574 	.globl _DFE_STEP_REG0
+                            575 	.globl _DFE_ANA_REG1
+                            576 	.globl _DFE_ANA_REG0
+                            577 	.globl _DFE_CTRL_REG4
+                            578 	.globl _RX_EQ_CLK_CTRL
+                            579 	.globl _DFE_CTRL_REG3
+                            580 	.globl _DFE_CTRL_REG2
+                            581 	.globl _DFE_CTRL_REG1
+                            582 	.globl _DFE_CTRL_REG0
+                            583 	.globl _PT_COUNTER2
+                            584 	.globl _PT_COUNTER1
+                            585 	.globl _PT_COUNTER0
+                            586 	.globl _PT_USER_PATTERN2
+                            587 	.globl _PT_USER_PATTERN1
+                            588 	.globl _PT_USER_PATTERN0
+                            589 	.globl _PT_CONTROL1
+                            590 	.globl _PT_CONTROL0
+                            591 	.globl _XDATA_MEM_CHECKSUM_LANE1
+                            592 	.globl _XDATA_MEM_CHECKSUM_LANE0
+                            593 	.globl _MEM_ECC_ERR_ADDRESS0
+                            594 	.globl _MCU_COMMAND0
+                            595 	.globl _MCU_INT_CONTROL_13
+                            596 	.globl _MCU_WDT_LANE
+                            597 	.globl _MCU_IRQ_ISR_LANE
+                            598 	.globl _ANA_IF_DFEO_REG0
+                            599 	.globl _ANA_IF_DFEE_REG0
+                            600 	.globl _ANA_IF_TRX_REG0
+                            601 	.globl _EXT_INT_CONTROL
+                            602 	.globl _MCU_DEBUG_LANE
+                            603 	.globl _MCU_DEBUG3_LANE
+                            604 	.globl _MCU_DEBUG2_LANE
+                            605 	.globl _MCU_DEBUG1_LANE
+                            606 	.globl _MCU_DEBUG0_LANE
+                            607 	.globl _MCU_TIMER_CTRL_7_LANE
+                            608 	.globl _MCU_TIMER_CTRL_6_LANE
+                            609 	.globl _MCU_TIMER_CTRL_5_LANE
+                            610 	.globl _MCU_TIMER_CTRL_4_LANE
+                            611 	.globl _MCU_TIMER_CTRL_3_LANE
+                            612 	.globl _MCU_TIMER_CTRL_2_LANE
+                            613 	.globl _MCU_TIMER_CTRL_1_LANE
+                            614 	.globl _MCU_MEM_REG2_LANE
+                            615 	.globl _MCU_MEM_REG1_LANE
+                            616 	.globl _MCU_IRQ_MASK_LANE
+                            617 	.globl _MCU_IRQ_LANE
+                            618 	.globl _MCU_TIMER3_CONTROL
+                            619 	.globl _MCU_TIMER2_CONTROL
+                            620 	.globl _MCU_TIMER1_CONTROL
+                            621 	.globl _MCU_TIMER0_CONTROL
+                            622 	.globl _MCU_TIMER_CONTROL
+                            623 	.globl _MCU_INT12_CONTROL
+                            624 	.globl _MCU_INT11_CONTROL
+                            625 	.globl _MCU_INT10_CONTROL
+                            626 	.globl _MCU_INT9_CONTROL
+                            627 	.globl _MCU_INT8_CONTROL
+                            628 	.globl _MCU_INT7_CONTROL
+                            629 	.globl _MCU_INT6_CONTROL
+                            630 	.globl _MCU_INT5_CONTROL
+                            631 	.globl _MCU_INT4_CONTROL
+                            632 	.globl _MCU_INT3_CONTROL
+                            633 	.globl _MCU_INT2_CONTROL
+                            634 	.globl _MCU_INT1_CONTROL
+                            635 	.globl _MCU_INT0_CONTROL
+                            636 	.globl _MCU_STATUS3_LANE
+                            637 	.globl _MCU_STATUS2_LANE
+                            638 	.globl _MCU_STATUS1_LANE
+                            639 	.globl _MCU_STATUS0_LANE
+                            640 	.globl _LANE_SYSTEM0
+                            641 	.globl _CACHE_DEBUG1
+                            642 	.globl _CACHE_DEBUG0
+                            643 	.globl _MCU_GPIO
+                            644 	.globl _MCU_CONTROL_LANE
+                            645 	.globl _LANE_32G_PRESET_CFG16_LANE
+                            646 	.globl _LANE_32G_PRESET_CFG14_LANE
+                            647 	.globl _LANE_32G_PRESET_CFG12_LANE
+                            648 	.globl _LANE_32G_PRESET_CFG10_LANE
+                            649 	.globl _LANE_32G_PRESET_CFG8_LANE
+                            650 	.globl _LANE_32G_PRESET_CFG6_LANE
+                            651 	.globl _LANE_32G_PRESET_CFG4_LANE
+                            652 	.globl _LANE_32G_PRESET_CFG2_LANE
+                            653 	.globl _LANE_32G_PRESET_CFG0_LANE
+                            654 	.globl _LANE_EQ_32G_CFG0_LANE
+                            655 	.globl _LANE_16G_PRESET_CFG16_LANE
+                            656 	.globl _LANE_16G_PRESET_CFG14_LANE
+                            657 	.globl _LANE_16G_PRESET_CFG12_LANE
+                            658 	.globl _LANE_16G_PRESET_CFG10_LANE
+                            659 	.globl _LANE_16G_PRESET_CFG8_LANE
+                            660 	.globl _LANE_16G_PRESET_CFG6_LANE
+                            661 	.globl _LANE_16G_PRESET_CFG4_LANE
+                            662 	.globl _LANE_16G_PRESET_CFG2_LANE
+                            663 	.globl _LANE_16G_PRESET_CFG0_LANE
+                            664 	.globl _LANE_EQ_16G_CFG0_LANE
+                            665 	.globl _LANE_REMOTE_SET_LANE
+                            666 	.globl _LANE_COEFF_MAX0_LANE
+                            667 	.globl _LANE_PRESET_CFG16_LANE
+                            668 	.globl _LANE_PRESET_CFG14_LANE
+                            669 	.globl _LANE_PRESET_CFG12_LANE
+                            670 	.globl _LANE_PRESET_CFG10_LANE
+                            671 	.globl _LANE_PRESET_CFG8_LANE
+                            672 	.globl _LANE_PRESET_CFG6_LANE
+                            673 	.globl _LANE_PRESET_CFG4_LANE
+                            674 	.globl _LANE_PRESET_CFG2_LANE
+                            675 	.globl _LANE_PRESET_CFG0_LANE
+                            676 	.globl _LANE_EQ_CFG1_LANE
+                            677 	.globl _LANE_EQ_CFG0_LANE
+                            678 	.globl _LANE_USB_DP_CFG2_LANE
+                            679 	.globl _LANE_USB_DP_CFG1_LANE
+                            680 	.globl _LANE_DP_PIE8_CFG0_LANE
+                            681 	.globl _LANE_CFG_STATUS3_LANE
+                            682 	.globl _LANE_CFG4
+                            683 	.globl _LANE_CFG2_LANE
+                            684 	.globl _LANE_CFG_STATUS2_LANE
+                            685 	.globl _LANE_STATUS0
+                            686 	.globl _LANE_CFG0
+                            687 	.globl _SQ_REG0
+                            688 	.globl _DTL_REG3
+                            689 	.globl _DTL_REG2
+                            690 	.globl _DTL_REG1
+                            691 	.globl _DTL_REG0
+                            692 	.globl _RX_LANE_INTERRUPT_REG1
+                            693 	.globl _RX_CALIBRATION_REG
+                            694 	.globl _INPUT_RX_PIN_REG3_LANE
+                            695 	.globl _RX_DATA_PATH_REG
+                            696 	.globl _RX_LANE_INTERRUPT_MASK
+                            697 	.globl _RX_LANE_INTERRUPT
+                            698 	.globl _CDR_LOCK_REG
+                            699 	.globl _FRAME_SYNC_DET_REG6
+                            700 	.globl _FRAME_SYNC_DET_REG5
+                            701 	.globl _FRAME_SYNC_DET_REG4
+                            702 	.globl _FRAME_SYNC_DET_REG3
+                            703 	.globl _FRAME_SYNC_DET_REG2
+                            704 	.globl _FRAME_SYNC_DET_REG1
+                            705 	.globl _FRAME_SYNC_DET_REG0
+                            706 	.globl _CLKGEN_RX_LANE_REG1_LANE
+                            707 	.globl _DIG_RX_RSVD_REG0
+                            708 	.globl _SPD_CTRL_RX_LANE_REG1_LANE
+                            709 	.globl _INPUT_RX_PIN_REG2_LANE
+                            710 	.globl _INPUT_RX_PIN_REG1_LANE
+                            711 	.globl _INPUT_RX_PIN_REG0_LANE
+                            712 	.globl _RX_SYSTEM_LANE
+                            713 	.globl _PM_CTRL_RX_LANE_REG1_LANE
+                            714 	.globl _MON_TOP
+                            715 	.globl _ANALOG_TX_REALTIME_REG_1
+                            716 	.globl _SPD_CTRL_INTERRUPT_CLEAR_REG1_LANE
+                            717 	.globl _PM_CTRL_INTERRUPT_ISR_REG1_LANE
+                            718 	.globl __FIELDNAME__LANE
+                            719 	.globl _INPUT_TX_PIN_REG5_LANE
+                            720 	.globl _DIG_TX_RSVD_REG0
+                            721 	.globl _TX_CALIBRATION_LANE
+                            722 	.globl _INPUT_TX_PIN_REG4_LANE
+                            723 	.globl _TX_SYSTEM_LANE
+                            724 	.globl _SPD_CTRL_TX_LANE_REG1_LANE
+                            725 	.globl _SPD_CTRL_INTERRUPT_REG2
+                            726 	.globl _SPD_CTRL_INTERRUPT_REG1_LANE
+                            727 	.globl _TX_SPEED_CONVERT_LANE
+                            728 	.globl _CLKGEN_TX_LANE_REG1_LANE
+                            729 	.globl _PM_CTRL_INTERRUPT_REG2
+                            730 	.globl _PM_CTRL_INTERRUPT_REG1_LANE
+                            731 	.globl _INPUT_TX_PIN_REG3_LANE
+                            732 	.globl _INPUT_TX_PIN_REG2_LANE
+                            733 	.globl _INPUT_TX_PIN_REG1_LANE
+                            734 	.globl _INPUT_TX_PIN_REG0_LANE
+                            735 	.globl _PM_CTRL_TX_LANE_REG2_LANE
+                            736 	.globl _PM_CTRL_TX_LANE_REG1_LANE
+                            737 	.globl _UPHY14_CMN_ANAREG_TOP_214
+                            738 	.globl _UPHY14_CMN_ANAREG_TOP_213
+                            739 	.globl _UPHY14_CMN_ANAREG_TOP_212
+                            740 	.globl _UPHY14_CMN_ANAREG_TOP_211
+                            741 	.globl _UPHY14_CMN_ANAREG_TOP_210
+                            742 	.globl _UPHY14_CMN_ANAREG_TOP_209
+                            743 	.globl _UPHY14_CMN_ANAREG_TOP_208
+                            744 	.globl _UPHY14_CMN_ANAREG_TOP_207
+                            745 	.globl _UPHY14_CMN_ANAREG_TOP_206
+                            746 	.globl _UPHY14_CMN_ANAREG_TOP_205
+                            747 	.globl _UPHY14_CMN_ANAREG_TOP_204
+                            748 	.globl _UPHY14_CMN_ANAREG_TOP_203
+                            749 	.globl _UPHY14_CMN_ANAREG_TOP_202
+                            750 	.globl _UPHY14_CMN_ANAREG_TOP_201
+                            751 	.globl _UPHY14_CMN_ANAREG_TOP_200
+                            752 	.globl _UPHY14_CMN_ANAREG_TOP_199
+                            753 	.globl _UPHY14_CMN_ANAREG_TOP_198
+                            754 	.globl _UPHY14_CMN_ANAREG_TOP_197
+                            755 	.globl _UPHY14_CMN_ANAREG_TOP_196
+                            756 	.globl _UPHY14_CMN_ANAREG_TOP_195
+                            757 	.globl _UPHY14_CMN_ANAREG_TOP_194
+                            758 	.globl _UPHY14_CMN_ANAREG_TOP_193
+                            759 	.globl _UPHY14_CMN_ANAREG_TOP_192
+                            760 	.globl _UPHY14_CMN_ANAREG_TOP_191
+                            761 	.globl _UPHY14_CMN_ANAREG_TOP_190
+                            762 	.globl _UPHY14_CMN_ANAREG_TOP_189
+                            763 	.globl _UPHY14_CMN_ANAREG_TOP_188
+                            764 	.globl _UPHY14_CMN_ANAREG_TOP_187
+                            765 	.globl _UPHY14_CMN_ANAREG_TOP_186
+                            766 	.globl _UPHY14_CMN_ANAREG_TOP_185
+                            767 	.globl _UPHY14_CMN_ANAREG_TOP_184
+                            768 	.globl _UPHY14_CMN_ANAREG_TOP_183
+                            769 	.globl _UPHY14_CMN_ANAREG_TOP_182
+                            770 	.globl _UPHY14_CMN_ANAREG_TOP_181
+                            771 	.globl _UPHY14_CMN_ANAREG_TOP_180
+                            772 	.globl _UPHY14_CMN_ANAREG_TOP_179
+                            773 	.globl _UPHY14_CMN_ANAREG_TOP_178
+                            774 	.globl _UPHY14_CMN_ANAREG_TOP_177
+                            775 	.globl _UPHY14_CMN_ANAREG_TOP_176
+                            776 	.globl _UPHY14_CMN_ANAREG_TOP_175
+                            777 	.globl _UPHY14_CMN_ANAREG_TOP_174
+                            778 	.globl _UPHY14_CMN_ANAREG_TOP_173
+                            779 	.globl _UPHY14_CMN_ANAREG_TOP_172
+                            780 	.globl _UPHY14_CMN_ANAREG_TOP_171
+                            781 	.globl _UPHY14_CMN_ANAREG_TOP_170
+                            782 	.globl _UPHY14_CMN_ANAREG_TOP_169
+                            783 	.globl _UPHY14_CMN_ANAREG_TOP_168
+                            784 	.globl _UPHY14_CMN_ANAREG_TOP_167
+                            785 	.globl _UPHY14_CMN_ANAREG_TOP_166
+                            786 	.globl _UPHY14_CMN_ANAREG_TOP_165
+                            787 	.globl _UPHY14_CMN_ANAREG_TOP_164
+                            788 	.globl _UPHY14_CMN_ANAREG_TOP_163
+                            789 	.globl _UPHY14_CMN_ANAREG_TOP_162
+                            790 	.globl _UPHY14_CMN_ANAREG_TOP_161
+                            791 	.globl _UPHY14_CMN_ANAREG_TOP_160
+                            792 	.globl _UPHY14_CMN_ANAREG_TOP_159
+                            793 	.globl _UPHY14_CMN_ANAREG_TOP_158
+                            794 	.globl _UPHY14_CMN_ANAREG_TOP_157
+                            795 	.globl _UPHY14_CMN_ANAREG_TOP_156
+                            796 	.globl _UPHY14_CMN_ANAREG_TOP_155
+                            797 	.globl _UPHY14_CMN_ANAREG_TOP_154
+                            798 	.globl _UPHY14_CMN_ANAREG_TOP_153
+                            799 	.globl _UPHY14_CMN_ANAREG_TOP_152
+                            800 	.globl _UPHY14_CMN_ANAREG_TOP_151
+                            801 	.globl _UPHY14_CMN_ANAREG_TOP_150
+                            802 	.globl _UPHY14_CMN_ANAREG_TOP_149
+                            803 	.globl _UPHY14_CMN_ANAREG_TOP_148
+                            804 	.globl _UPHY14_CMN_ANAREG_TOP_147
+                            805 	.globl _UPHY14_CMN_ANAREG_TOP_146
+                            806 	.globl _UPHY14_CMN_ANAREG_TOP_145
+                            807 	.globl _UPHY14_CMN_ANAREG_TOP_144
+                            808 	.globl _UPHY14_CMN_ANAREG_TOP_143
+                            809 	.globl _UPHY14_CMN_ANAREG_TOP_142
+                            810 	.globl _UPHY14_CMN_ANAREG_TOP_141
+                            811 	.globl _UPHY14_CMN_ANAREG_TOP_140
+                            812 	.globl _UPHY14_CMN_ANAREG_TOP_139
+                            813 	.globl _UPHY14_CMN_ANAREG_TOP_138
+                            814 	.globl _UPHY14_CMN_ANAREG_TOP_137
+                            815 	.globl _UPHY14_CMN_ANAREG_TOP_136
+                            816 	.globl _UPHY14_CMN_ANAREG_TOP_135
+                            817 	.globl _UPHY14_CMN_ANAREG_TOP_134
+                            818 	.globl _UPHY14_CMN_ANAREG_TOP_133
+                            819 	.globl _UPHY14_CMN_ANAREG_TOP_132
+                            820 	.globl _UPHY14_CMN_ANAREG_TOP_131
+                            821 	.globl _UPHY14_CMN_ANAREG_TOP_130
+                            822 	.globl _UPHY14_CMN_ANAREG_TOP_129
+                            823 	.globl _UPHY14_CMN_ANAREG_TOP_128
+                            824 	.globl _ANA_DFEO_REG_0B
+                            825 	.globl _ANA_DFEO_REG_0A
+                            826 	.globl _ANA_DFEO_REG_09
+                            827 	.globl _ANA_DFEO_REG_08
+                            828 	.globl _ANA_DFEO_REG_07
+                            829 	.globl _ANA_DFEO_REG_06
+                            830 	.globl _ANA_DFEO_REG_05
+                            831 	.globl _ANA_DFEO_REG_04
+                            832 	.globl _ANA_DFEO_REG_03
+                            833 	.globl _ANA_DFEO_REG_02
+                            834 	.globl _ANA_DFEO_REG_01
+                            835 	.globl _ANA_DFEO_REG_00
+                            836 	.globl _ANA_DFEO_REG_27
+                            837 	.globl _ANA_DFEO_REG_26
+                            838 	.globl _ANA_DFEO_REG_25
+                            839 	.globl _ANA_DFEO_REG_24
+                            840 	.globl _ANA_DFEO_REG_23
+                            841 	.globl _ANA_DFEO_REG_22
+                            842 	.globl _ANA_DFEO_REG_21
+                            843 	.globl _ANA_DFEO_REG_20
+                            844 	.globl _ANA_DFEO_REG_1F
+                            845 	.globl _ANA_DFEO_REG_1E
+                            846 	.globl _ANA_DFEO_REG_1D
+                            847 	.globl _ANA_DFEO_REG_1C
+                            848 	.globl _ANA_DFEO_REG_1B
+                            849 	.globl _ANA_DFEO_REG_1A
+                            850 	.globl _ANA_DFEO_REG_19
+                            851 	.globl _ANA_DFEO_REG_18
+                            852 	.globl _ANA_DFEO_REG_17
+                            853 	.globl _ANA_DFEO_REG_16
+                            854 	.globl _ANA_DFEO_REG_15
+                            855 	.globl _ANA_DFEO_REG_14
+                            856 	.globl _ANA_DFEO_REG_13
+                            857 	.globl _ANA_DFEO_REG_12
+                            858 	.globl _ANA_DFEO_REG_11
+                            859 	.globl _ANA_DFEO_REG_10
+                            860 	.globl _ANA_DFEO_REG_0F
+                            861 	.globl _ANA_DFEO_REG_0E
+                            862 	.globl _ANA_DFEO_REG_0D
+                            863 	.globl _ANA_DFEO_REG_0C
+                            864 	.globl _ANA_DFEE_REG_1D
+                            865 	.globl _ANA_DFEE_REG_1C
+                            866 	.globl _ANA_DFEE_REG_1B
+                            867 	.globl _ANA_DFEE_REG_1A
+                            868 	.globl _ANA_DFEE_REG_19
+                            869 	.globl _ANA_DFEE_REG_18
+                            870 	.globl _ANA_DFEE_REG_17
+                            871 	.globl _ANA_DFEE_REG_16
+                            872 	.globl _ANA_DFEE_REG_15
+                            873 	.globl _ANA_DFEE_REG_14
+                            874 	.globl _ANA_DFEE_REG_13
+                            875 	.globl _ANA_DFEE_REG_12
+                            876 	.globl _ANA_DFEE_REG_11
+                            877 	.globl _ANA_DFEE_REG_10
+                            878 	.globl _ANA_DFEE_REG_0F
+                            879 	.globl _ANA_DFEE_REG_0E
+                            880 	.globl _ANA_DFEE_REG_0D
+                            881 	.globl _ANA_DFEE_REG_0C
+                            882 	.globl _ANA_DFEE_REG_0B
+                            883 	.globl _ANA_DFEE_REG_0A
+                            884 	.globl _ANA_DFEE_REG_09
+                            885 	.globl _ANA_DFEE_REG_08
+                            886 	.globl _ANA_DFEE_REG_07
+                            887 	.globl _ANA_DFEE_REG_06
+                            888 	.globl _ANA_DFEE_REG_05
+                            889 	.globl _ANA_DFEE_REG_04
+                            890 	.globl _ANA_DFEE_REG_03
+                            891 	.globl _ANA_DFEE_REG_02
+                            892 	.globl _ANA_DFEE_REG_01
+                            893 	.globl _ANA_DFEE_REG_00
+                            894 	.globl _ANA_DFEE_REG_27
+                            895 	.globl _ANA_DFEE_REG_26
+                            896 	.globl _ANA_DFEE_REG_25
+                            897 	.globl _ANA_DFEE_REG_24
+                            898 	.globl _ANA_DFEE_REG_23
+                            899 	.globl _ANA_DFEE_REG_22
+                            900 	.globl _ANA_DFEE_REG_21
+                            901 	.globl _ANA_DFEE_REG_20
+                            902 	.globl _ANA_DFEE_REG_1F
+                            903 	.globl _ANA_DFEE_REG_1E
+                            904 	.globl _UPHY14_TRX_ANAREG_BOT_32
+                            905 	.globl _UPHY14_TRX_ANAREG_BOT_31
+                            906 	.globl _UPHY14_TRX_ANAREG_BOT_30
+                            907 	.globl _UPHY14_TRX_ANAREG_BOT_29
+                            908 	.globl _UPHY14_TRX_ANAREG_BOT_28
+                            909 	.globl _UPHY14_TRX_ANAREG_BOT_27
+                            910 	.globl _UPHY14_TRX_ANAREG_BOT_26
+                            911 	.globl _UPHY14_TRX_ANAREG_BOT_25
+                            912 	.globl _UPHY14_TRX_ANAREG_BOT_24
+                            913 	.globl _UPHY14_TRX_ANAREG_BOT_23
+                            914 	.globl _UPHY14_TRX_ANAREG_BOT_22
+                            915 	.globl _UPHY14_TRX_ANAREG_BOT_21
+                            916 	.globl _UPHY14_TRX_ANAREG_BOT_20
+                            917 	.globl _UPHY14_TRX_ANAREG_BOT_19
+                            918 	.globl _UPHY14_TRX_ANAREG_BOT_18
+                            919 	.globl _UPHY14_TRX_ANAREG_BOT_17
+                            920 	.globl _UPHY14_TRX_ANAREG_BOT_16
+                            921 	.globl _UPHY14_TRX_ANAREG_BOT_15
+                            922 	.globl _UPHY14_TRX_ANAREG_BOT_14
+                            923 	.globl _UPHY14_TRX_ANAREG_BOT_13
+                            924 	.globl _UPHY14_TRX_ANAREG_BOT_12
+                            925 	.globl _UPHY14_TRX_ANAREG_BOT_11
+                            926 	.globl _UPHY14_TRX_ANAREG_BOT_10
+                            927 	.globl _UPHY14_TRX_ANAREG_BOT_9
+                            928 	.globl _UPHY14_TRX_ANAREG_BOT_8
+                            929 	.globl _UPHY14_TRX_ANAREG_BOT_7
+                            930 	.globl _UPHY14_TRX_ANAREG_BOT_6
+                            931 	.globl _UPHY14_TRX_ANAREG_BOT_5
+                            932 	.globl _UPHY14_TRX_ANAREG_BOT_4
+                            933 	.globl _UPHY14_TRX_ANAREG_BOT_3
+                            934 	.globl _UPHY14_TRX_ANAREG_BOT_2
+                            935 	.globl _UPHY14_TRX_ANAREG_BOT_1
+                            936 	.globl _UPHY14_TRX_ANAREG_BOT_0
+                            937 	.globl _UPHY14_TRX_ANAREG_TOP_157
+                            938 	.globl _UPHY14_TRX_ANAREG_TOP_156
+                            939 	.globl _UPHY14_TRX_ANAREG_TOP_155
+                            940 	.globl _UPHY14_TRX_ANAREG_TOP_154
+                            941 	.globl _UPHY14_TRX_ANAREG_TOP_153
+                            942 	.globl _UPHY14_TRX_ANAREG_TOP_152
+                            943 	.globl _UPHY14_TRX_ANAREG_TOP_151
+                            944 	.globl _UPHY14_TRX_ANAREG_TOP_150
+                            945 	.globl _UPHY14_TRX_ANAREG_TOP_149
+                            946 	.globl _UPHY14_TRX_ANAREG_TOP_148
+                            947 	.globl _UPHY14_TRX_ANAREG_TOP_147
+                            948 	.globl _UPHY14_TRX_ANAREG_TOP_146
+                            949 	.globl _UPHY14_TRX_ANAREG_TOP_145
+                            950 	.globl _UPHY14_TRX_ANAREG_TOP_144
+                            951 	.globl _UPHY14_TRX_ANAREG_TOP_143
+                            952 	.globl _UPHY14_TRX_ANAREG_TOP_142
+                            953 	.globl _UPHY14_TRX_ANAREG_TOP_141
+                            954 	.globl _UPHY14_TRX_ANAREG_TOP_140
+                            955 	.globl _UPHY14_TRX_ANAREG_TOP_139
+                            956 	.globl _UPHY14_TRX_ANAREG_TOP_138
+                            957 	.globl _UPHY14_TRX_ANAREG_TOP_137
+                            958 	.globl _UPHY14_TRX_ANAREG_TOP_136
+                            959 	.globl _UPHY14_TRX_ANAREG_TOP_135
+                            960 	.globl _UPHY14_TRX_ANAREG_TOP_134
+                            961 	.globl _UPHY14_TRX_ANAREG_TOP_133
+                            962 	.globl _UPHY14_TRX_ANAREG_TOP_132
+                            963 	.globl _UPHY14_TRX_ANAREG_TOP_131
+                            964 	.globl _UPHY14_TRX_ANAREG_TOP_130
+                            965 	.globl _UPHY14_TRX_ANAREG_TOP_129
+                            966 	.globl _UPHY14_TRX_ANAREG_TOP_128
+                            967 	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_143
+                            968 	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_142
+                            969 	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_141
+                            970 	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_140
+                            971 	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_139
+                            972 	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_138
+                            973 	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_137
+                            974 	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_136
+                            975 	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_135
+                            976 	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_134
+                            977 	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_133
+                            978 	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_132
+                            979 	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_131
+                            980 	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_130
+                            981 	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_129
+                            982 	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_128
+                            983 	.globl _sampler_sel
+                            984 	.globl _set_sampler
+                            985 	.globl _sampler_cal
+                            986 	.globl _get_sampler
+                            987 	.globl _Edge_Sampler_Update
+                            988 	.globl _save_sampler_edge
+                            989 ;--------------------------------------------------------
+                            990 ; special function registers
+                            991 ;--------------------------------------------------------
+                            992 	.area RSEG    (ABS,DATA)
+   0000                     993 	.org 0x0000
+                    0080    994 _P0	=	0x0080
+                    0082    995 _DPL	=	0x0082
+                    0083    996 _DPH	=	0x0083
+                    0086    997 _WDTREL	=	0x0086
+                    0087    998 _PCON	=	0x0087
+                    0088    999 _TCON	=	0x0088
+                    0089   1000 _TMOD	=	0x0089
+                    008A   1001 _TL0	=	0x008a
+                    008B   1002 _TL1	=	0x008b
+                    008C   1003 _TH0	=	0x008c
+                    008D   1004 _TH1	=	0x008d
+                    008E   1005 _CKCON	=	0x008e
+                    0090   1006 _P1	=	0x0090
+                    0092   1007 _DPS	=	0x0092
+                    0094   1008 _PSBANK	=	0x0094
+                    0098   1009 _SCON	=	0x0098
+                    0099   1010 _SBUF	=	0x0099
+                    009A   1011 _IEN2	=	0x009a
+                    00A0   1012 _P2	=	0x00a0
+                    00A1   1013 _DMAS0	=	0x00a1
+                    00A2   1014 _DMAS1	=	0x00a2
+                    00A3   1015 _DMAS2	=	0x00a3
+                    00A4   1016 _DMAT0	=	0x00a4
+                    00A5   1017 _DMAT1	=	0x00a5
+                    00A6   1018 _DMAT2	=	0x00a6
+                    00A8   1019 _IEN0	=	0x00a8
+                    00A9   1020 _IP0	=	0x00a9
+                    00AA   1021 _S0RELL	=	0x00aa
+                    00B0   1022 _P3	=	0x00b0
+                    00B1   1023 _DMAC0	=	0x00b1
+                    00B2   1024 _DMAC1	=	0x00b2
+                    00B3   1025 _DMAC2	=	0x00b3
+                    00B4   1026 _DMASEL	=	0x00b4
+                    00B5   1027 _DMAM0	=	0x00b5
+                    00B6   1028 _DMAM1	=	0x00b6
+                    00B8   1029 _IEN1	=	0x00b8
+                    00B9   1030 _IP1	=	0x00b9
+                    00BA   1031 _S0RELH	=	0x00ba
+                    00C0   1032 _IRCON	=	0x00c0
+                    00C1   1033 _CCEN	=	0x00c1
+                    00C8   1034 _T2CON	=	0x00c8
+                    00CA   1035 _RCAP2L	=	0x00ca
+                    00CB   1036 _RCAP2H	=	0x00cb
+                    00CC   1037 _TL2	=	0x00cc
+                    00CD   1038 _TH2	=	0x00cd
+                    00D0   1039 _PSW	=	0x00d0
+                    00D8   1040 _ADCON	=	0x00d8
+                    00E0   1041 _ACC	=	0x00e0
+                    00E8   1042 _EIE	=	0x00e8
+                    00F0   1043 _B	=	0x00f0
+                    00F7   1044 _SRST	=	0x00f7
+                    8C8A   1045 _TMR0	=	0x8c8a
+                    8D8B   1046 _TMR1	=	0x8d8b
+                    CDCC   1047 _TMR2	=	0xcdcc
+                    A2A1   1048 _DMASA	=	0xa2a1
+                    A5A4   1049 _DMATA	=	0xa5a4
+                    B2B1   1050 _DMAC	=	0xb2b1
+                           1051 ;--------------------------------------------------------
+                           1052 ; special function bits
+                           1053 ;--------------------------------------------------------
+                           1054 	.area RSEG    (ABS,DATA)
+   0000                    1055 	.org 0x0000
+                    0080   1056 _P0_0	=	0x0080
+                    0081   1057 _P0_1	=	0x0081
+                    0082   1058 _P0_2	=	0x0082
+                    0083   1059 _P0_3	=	0x0083
+                    0084   1060 _P0_4	=	0x0084
+                    0085   1061 _P0_5	=	0x0085
+                    0086   1062 _P0_6	=	0x0086
+                    0087   1063 _P0_7	=	0x0087
+                    0090   1064 _P1_0	=	0x0090
+                    0091   1065 _P1_1	=	0x0091
+                    0092   1066 _P1_2	=	0x0092
+                    0093   1067 _P1_3	=	0x0093
+                    0094   1068 _P1_4	=	0x0094
+                    0095   1069 _P1_5	=	0x0095
+                    0096   1070 _P1_6	=	0x0096
+                    0097   1071 _P1_7	=	0x0097
+                    00A0   1072 _P2_0	=	0x00a0
+                    00A1   1073 _P2_1	=	0x00a1
+                    00A2   1074 _P2_2	=	0x00a2
+                    00A3   1075 _P2_3	=	0x00a3
+                    00A4   1076 _P2_4	=	0x00a4
+                    00A5   1077 _P2_5	=	0x00a5
+                    00A6   1078 _P2_6	=	0x00a6
+                    00A7   1079 _P2_7	=	0x00a7
+                    00B0   1080 _P3_0	=	0x00b0
+                    00B1   1081 _P3_1	=	0x00b1
+                    00B2   1082 _P3_2	=	0x00b2
+                    00B3   1083 _P3_3	=	0x00b3
+                    00B4   1084 _P3_4	=	0x00b4
+                    00B5   1085 _P3_5	=	0x00b5
+                    00B6   1086 _P3_6	=	0x00b6
+                    00B7   1087 _P3_7	=	0x00b7
+                    0088   1088 _IT0	=	0x0088
+                    0089   1089 _IE0	=	0x0089
+                    008A   1090 _IT1	=	0x008a
+                    008B   1091 _IE1	=	0x008b
+                    008C   1092 _TR0	=	0x008c
+                    008D   1093 _TF0	=	0x008d
+                    008E   1094 _TR1	=	0x008e
+                    008F   1095 _TF1	=	0x008f
+                    00A8   1096 _EX0	=	0x00a8
+                    00A9   1097 _ET0	=	0x00a9
+                    00AA   1098 _EX1	=	0x00aa
+                    00AB   1099 _ET1	=	0x00ab
+                    00AC   1100 _ES	=	0x00ac
+                    00AD   1101 _ET2	=	0x00ad
+                    00AE   1102 _WDT	=	0x00ae
+                    00AF   1103 _EA	=	0x00af
+                    00B8   1104 _EX7	=	0x00b8
+                    00B9   1105 _EX2	=	0x00b9
+                    00BA   1106 _EX3	=	0x00ba
+                    00BB   1107 _EX4	=	0x00bb
+                    00BC   1108 _EX5	=	0x00bc
+                    00BD   1109 _EX6	=	0x00bd
+                    00BE   1110 _PS1	=	0x00be
+                    009A   1111 _ES1	=	0x009a
+                    009B   1112 _EX8	=	0x009b
+                    009C   1113 _EX9	=	0x009c
+                    009D   1114 _EX10	=	0x009d
+                    009E   1115 _EX11	=	0x009e
+                    009F   1116 _EX12	=	0x009f
+                    0098   1117 _RI	=	0x0098
+                    0099   1118 _TI	=	0x0099
+                    00C6   1119 _TF2	=	0x00c6
+                           1120 ;--------------------------------------------------------
+                           1121 ; overlayable register banks
+                           1122 ;--------------------------------------------------------
+                           1123 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                    1124 	.ds 8
+                           1125 ;--------------------------------------------------------
+                           1126 ; internal ram data
+                           1127 ;--------------------------------------------------------
+                           1128 	.area DSEG    (DATA)
+                           1129 ;--------------------------------------------------------
+                           1130 ; overlayable items in internal ram 
+                           1131 ;--------------------------------------------------------
+                           1132 	.area OSEG    (OVR,DATA)
+                           1133 ;--------------------------------------------------------
+                           1134 ; indirectly addressable internal ram data
+                           1135 ;--------------------------------------------------------
+                           1136 	.area ISEG    (DATA)
+                           1137 ;--------------------------------------------------------
+                           1138 ; absolute internal ram data
+                           1139 ;--------------------------------------------------------
+                           1140 	.area IABS    (ABS,DATA)
+                           1141 	.area IABS    (ABS,DATA)
+                           1142 ;--------------------------------------------------------
+                           1143 ; bit data
+                           1144 ;--------------------------------------------------------
+                           1145 	.area BSEG    (BIT)
+                           1146 ;--------------------------------------------------------
+                           1147 ; paged external ram data
+                           1148 ;--------------------------------------------------------
+                           1149 	.area PSEG    (PAG,XDATA)
+                           1150 ;--------------------------------------------------------
+                           1151 ; external ram data
+                           1152 ;--------------------------------------------------------
+                           1153 	.area XSEG    (XDATA)
+                    1000   1154 _UPHY14_TRX_LANEPLL_ANAREG_TOP_128	=	0x1000
+                    1004   1155 _UPHY14_TRX_LANEPLL_ANAREG_TOP_129	=	0x1004
+                    1008   1156 _UPHY14_TRX_LANEPLL_ANAREG_TOP_130	=	0x1008
+                    100C   1157 _UPHY14_TRX_LANEPLL_ANAREG_TOP_131	=	0x100c
+                    1010   1158 _UPHY14_TRX_LANEPLL_ANAREG_TOP_132	=	0x1010
+                    1014   1159 _UPHY14_TRX_LANEPLL_ANAREG_TOP_133	=	0x1014
+                    1018   1160 _UPHY14_TRX_LANEPLL_ANAREG_TOP_134	=	0x1018
+                    101C   1161 _UPHY14_TRX_LANEPLL_ANAREG_TOP_135	=	0x101c
+                    1020   1162 _UPHY14_TRX_LANEPLL_ANAREG_TOP_136	=	0x1020
+                    1024   1163 _UPHY14_TRX_LANEPLL_ANAREG_TOP_137	=	0x1024
+                    1028   1164 _UPHY14_TRX_LANEPLL_ANAREG_TOP_138	=	0x1028
+                    102C   1165 _UPHY14_TRX_LANEPLL_ANAREG_TOP_139	=	0x102c
+                    1030   1166 _UPHY14_TRX_LANEPLL_ANAREG_TOP_140	=	0x1030
+                    1034   1167 _UPHY14_TRX_LANEPLL_ANAREG_TOP_141	=	0x1034
+                    1038   1168 _UPHY14_TRX_LANEPLL_ANAREG_TOP_142	=	0x1038
+                    103C   1169 _UPHY14_TRX_LANEPLL_ANAREG_TOP_143	=	0x103c
+                    0200   1170 _UPHY14_TRX_ANAREG_TOP_128	=	0x0200
+                    0204   1171 _UPHY14_TRX_ANAREG_TOP_129	=	0x0204
+                    0208   1172 _UPHY14_TRX_ANAREG_TOP_130	=	0x0208
+                    020C   1173 _UPHY14_TRX_ANAREG_TOP_131	=	0x020c
+                    0210   1174 _UPHY14_TRX_ANAREG_TOP_132	=	0x0210
+                    0214   1175 _UPHY14_TRX_ANAREG_TOP_133	=	0x0214
+                    0218   1176 _UPHY14_TRX_ANAREG_TOP_134	=	0x0218
+                    021C   1177 _UPHY14_TRX_ANAREG_TOP_135	=	0x021c
+                    0220   1178 _UPHY14_TRX_ANAREG_TOP_136	=	0x0220
+                    0224   1179 _UPHY14_TRX_ANAREG_TOP_137	=	0x0224
+                    0228   1180 _UPHY14_TRX_ANAREG_TOP_138	=	0x0228
+                    022C   1181 _UPHY14_TRX_ANAREG_TOP_139	=	0x022c
+                    0230   1182 _UPHY14_TRX_ANAREG_TOP_140	=	0x0230
+                    0234   1183 _UPHY14_TRX_ANAREG_TOP_141	=	0x0234
+                    0238   1184 _UPHY14_TRX_ANAREG_TOP_142	=	0x0238
+                    023C   1185 _UPHY14_TRX_ANAREG_TOP_143	=	0x023c
+                    0240   1186 _UPHY14_TRX_ANAREG_TOP_144	=	0x0240
+                    0244   1187 _UPHY14_TRX_ANAREG_TOP_145	=	0x0244
+                    0248   1188 _UPHY14_TRX_ANAREG_TOP_146	=	0x0248
+                    024C   1189 _UPHY14_TRX_ANAREG_TOP_147	=	0x024c
+                    0250   1190 _UPHY14_TRX_ANAREG_TOP_148	=	0x0250
+                    0254   1191 _UPHY14_TRX_ANAREG_TOP_149	=	0x0254
+                    0258   1192 _UPHY14_TRX_ANAREG_TOP_150	=	0x0258
+                    025C   1193 _UPHY14_TRX_ANAREG_TOP_151	=	0x025c
+                    0260   1194 _UPHY14_TRX_ANAREG_TOP_152	=	0x0260
+                    0264   1195 _UPHY14_TRX_ANAREG_TOP_153	=	0x0264
+                    0268   1196 _UPHY14_TRX_ANAREG_TOP_154	=	0x0268
+                    026C   1197 _UPHY14_TRX_ANAREG_TOP_155	=	0x026c
+                    0270   1198 _UPHY14_TRX_ANAREG_TOP_156	=	0x0270
+                    0274   1199 _UPHY14_TRX_ANAREG_TOP_157	=	0x0274
+                    0000   1200 _UPHY14_TRX_ANAREG_BOT_0	=	0x0000
+                    0004   1201 _UPHY14_TRX_ANAREG_BOT_1	=	0x0004
+                    0008   1202 _UPHY14_TRX_ANAREG_BOT_2	=	0x0008
+                    000C   1203 _UPHY14_TRX_ANAREG_BOT_3	=	0x000c
+                    0010   1204 _UPHY14_TRX_ANAREG_BOT_4	=	0x0010
+                    0014   1205 _UPHY14_TRX_ANAREG_BOT_5	=	0x0014
+                    0018   1206 _UPHY14_TRX_ANAREG_BOT_6	=	0x0018
+                    001C   1207 _UPHY14_TRX_ANAREG_BOT_7	=	0x001c
+                    0020   1208 _UPHY14_TRX_ANAREG_BOT_8	=	0x0020
+                    0024   1209 _UPHY14_TRX_ANAREG_BOT_9	=	0x0024
+                    0028   1210 _UPHY14_TRX_ANAREG_BOT_10	=	0x0028
+                    002C   1211 _UPHY14_TRX_ANAREG_BOT_11	=	0x002c
+                    0030   1212 _UPHY14_TRX_ANAREG_BOT_12	=	0x0030
+                    0034   1213 _UPHY14_TRX_ANAREG_BOT_13	=	0x0034
+                    0038   1214 _UPHY14_TRX_ANAREG_BOT_14	=	0x0038
+                    003C   1215 _UPHY14_TRX_ANAREG_BOT_15	=	0x003c
+                    0040   1216 _UPHY14_TRX_ANAREG_BOT_16	=	0x0040
+                    0044   1217 _UPHY14_TRX_ANAREG_BOT_17	=	0x0044
+                    0048   1218 _UPHY14_TRX_ANAREG_BOT_18	=	0x0048
+                    004C   1219 _UPHY14_TRX_ANAREG_BOT_19	=	0x004c
+                    0050   1220 _UPHY14_TRX_ANAREG_BOT_20	=	0x0050
+                    0054   1221 _UPHY14_TRX_ANAREG_BOT_21	=	0x0054
+                    0058   1222 _UPHY14_TRX_ANAREG_BOT_22	=	0x0058
+                    005C   1223 _UPHY14_TRX_ANAREG_BOT_23	=	0x005c
+                    0060   1224 _UPHY14_TRX_ANAREG_BOT_24	=	0x0060
+                    0064   1225 _UPHY14_TRX_ANAREG_BOT_25	=	0x0064
+                    0068   1226 _UPHY14_TRX_ANAREG_BOT_26	=	0x0068
+                    006C   1227 _UPHY14_TRX_ANAREG_BOT_27	=	0x006c
+                    0070   1228 _UPHY14_TRX_ANAREG_BOT_28	=	0x0070
+                    0074   1229 _UPHY14_TRX_ANAREG_BOT_29	=	0x0074
+                    0078   1230 _UPHY14_TRX_ANAREG_BOT_30	=	0x0078
+                    007C   1231 _UPHY14_TRX_ANAREG_BOT_31	=	0x007c
+                    0080   1232 _UPHY14_TRX_ANAREG_BOT_32	=	0x0080
+                    0478   1233 _ANA_DFEE_REG_1E	=	0x0478
+                    047C   1234 _ANA_DFEE_REG_1F	=	0x047c
+                    0480   1235 _ANA_DFEE_REG_20	=	0x0480
+                    0484   1236 _ANA_DFEE_REG_21	=	0x0484
+                    0488   1237 _ANA_DFEE_REG_22	=	0x0488
+                    048C   1238 _ANA_DFEE_REG_23	=	0x048c
+                    0490   1239 _ANA_DFEE_REG_24	=	0x0490
+                    0494   1240 _ANA_DFEE_REG_25	=	0x0494
+                    0498   1241 _ANA_DFEE_REG_26	=	0x0498
+                    049C   1242 _ANA_DFEE_REG_27	=	0x049c
+                    0400   1243 _ANA_DFEE_REG_00	=	0x0400
+                    0404   1244 _ANA_DFEE_REG_01	=	0x0404
+                    0408   1245 _ANA_DFEE_REG_02	=	0x0408
+                    040C   1246 _ANA_DFEE_REG_03	=	0x040c
+                    0410   1247 _ANA_DFEE_REG_04	=	0x0410
+                    0414   1248 _ANA_DFEE_REG_05	=	0x0414
+                    0418   1249 _ANA_DFEE_REG_06	=	0x0418
+                    041C   1250 _ANA_DFEE_REG_07	=	0x041c
+                    0420   1251 _ANA_DFEE_REG_08	=	0x0420
+                    0424   1252 _ANA_DFEE_REG_09	=	0x0424
+                    0428   1253 _ANA_DFEE_REG_0A	=	0x0428
+                    042C   1254 _ANA_DFEE_REG_0B	=	0x042c
+                    0430   1255 _ANA_DFEE_REG_0C	=	0x0430
+                    0434   1256 _ANA_DFEE_REG_0D	=	0x0434
+                    0438   1257 _ANA_DFEE_REG_0E	=	0x0438
+                    043C   1258 _ANA_DFEE_REG_0F	=	0x043c
+                    0440   1259 _ANA_DFEE_REG_10	=	0x0440
+                    0444   1260 _ANA_DFEE_REG_11	=	0x0444
+                    0448   1261 _ANA_DFEE_REG_12	=	0x0448
+                    044C   1262 _ANA_DFEE_REG_13	=	0x044c
+                    0450   1263 _ANA_DFEE_REG_14	=	0x0450
+                    0454   1264 _ANA_DFEE_REG_15	=	0x0454
+                    0458   1265 _ANA_DFEE_REG_16	=	0x0458
+                    045C   1266 _ANA_DFEE_REG_17	=	0x045c
+                    0460   1267 _ANA_DFEE_REG_18	=	0x0460
+                    0464   1268 _ANA_DFEE_REG_19	=	0x0464
+                    0468   1269 _ANA_DFEE_REG_1A	=	0x0468
+                    046C   1270 _ANA_DFEE_REG_1B	=	0x046c
+                    0470   1271 _ANA_DFEE_REG_1C	=	0x0470
+                    0474   1272 _ANA_DFEE_REG_1D	=	0x0474
+                    0830   1273 _ANA_DFEO_REG_0C	=	0x0830
+                    0834   1274 _ANA_DFEO_REG_0D	=	0x0834
+                    0838   1275 _ANA_DFEO_REG_0E	=	0x0838
+                    083C   1276 _ANA_DFEO_REG_0F	=	0x083c
+                    0840   1277 _ANA_DFEO_REG_10	=	0x0840
+                    0844   1278 _ANA_DFEO_REG_11	=	0x0844
+                    0848   1279 _ANA_DFEO_REG_12	=	0x0848
+                    084C   1280 _ANA_DFEO_REG_13	=	0x084c
+                    0850   1281 _ANA_DFEO_REG_14	=	0x0850
+                    0854   1282 _ANA_DFEO_REG_15	=	0x0854
+                    0858   1283 _ANA_DFEO_REG_16	=	0x0858
+                    085C   1284 _ANA_DFEO_REG_17	=	0x085c
+                    0860   1285 _ANA_DFEO_REG_18	=	0x0860
+                    0864   1286 _ANA_DFEO_REG_19	=	0x0864
+                    0868   1287 _ANA_DFEO_REG_1A	=	0x0868
+                    086C   1288 _ANA_DFEO_REG_1B	=	0x086c
+                    0870   1289 _ANA_DFEO_REG_1C	=	0x0870
+                    0874   1290 _ANA_DFEO_REG_1D	=	0x0874
+                    0878   1291 _ANA_DFEO_REG_1E	=	0x0878
+                    087C   1292 _ANA_DFEO_REG_1F	=	0x087c
+                    0880   1293 _ANA_DFEO_REG_20	=	0x0880
+                    0884   1294 _ANA_DFEO_REG_21	=	0x0884
+                    0888   1295 _ANA_DFEO_REG_22	=	0x0888
+                    088C   1296 _ANA_DFEO_REG_23	=	0x088c
+                    0890   1297 _ANA_DFEO_REG_24	=	0x0890
+                    0894   1298 _ANA_DFEO_REG_25	=	0x0894
+                    0898   1299 _ANA_DFEO_REG_26	=	0x0898
+                    089C   1300 _ANA_DFEO_REG_27	=	0x089c
+                    0800   1301 _ANA_DFEO_REG_00	=	0x0800
+                    0804   1302 _ANA_DFEO_REG_01	=	0x0804
+                    0808   1303 _ANA_DFEO_REG_02	=	0x0808
+                    080C   1304 _ANA_DFEO_REG_03	=	0x080c
+                    0810   1305 _ANA_DFEO_REG_04	=	0x0810
+                    0814   1306 _ANA_DFEO_REG_05	=	0x0814
+                    0818   1307 _ANA_DFEO_REG_06	=	0x0818
+                    081C   1308 _ANA_DFEO_REG_07	=	0x081c
+                    0820   1309 _ANA_DFEO_REG_08	=	0x0820
+                    0824   1310 _ANA_DFEO_REG_09	=	0x0824
+                    0828   1311 _ANA_DFEO_REG_0A	=	0x0828
+                    082C   1312 _ANA_DFEO_REG_0B	=	0x082c
+                    8200   1313 _UPHY14_CMN_ANAREG_TOP_128	=	0x8200
+                    8204   1314 _UPHY14_CMN_ANAREG_TOP_129	=	0x8204
+                    8208   1315 _UPHY14_CMN_ANAREG_TOP_130	=	0x8208
+                    820C   1316 _UPHY14_CMN_ANAREG_TOP_131	=	0x820c
+                    8210   1317 _UPHY14_CMN_ANAREG_TOP_132	=	0x8210
+                    8214   1318 _UPHY14_CMN_ANAREG_TOP_133	=	0x8214
+                    8218   1319 _UPHY14_CMN_ANAREG_TOP_134	=	0x8218
+                    821C   1320 _UPHY14_CMN_ANAREG_TOP_135	=	0x821c
+                    8220   1321 _UPHY14_CMN_ANAREG_TOP_136	=	0x8220
+                    8224   1322 _UPHY14_CMN_ANAREG_TOP_137	=	0x8224
+                    8228   1323 _UPHY14_CMN_ANAREG_TOP_138	=	0x8228
+                    822C   1324 _UPHY14_CMN_ANAREG_TOP_139	=	0x822c
+                    8230   1325 _UPHY14_CMN_ANAREG_TOP_140	=	0x8230
+                    8234   1326 _UPHY14_CMN_ANAREG_TOP_141	=	0x8234
+                    8238   1327 _UPHY14_CMN_ANAREG_TOP_142	=	0x8238
+                    823C   1328 _UPHY14_CMN_ANAREG_TOP_143	=	0x823c
+                    8240   1329 _UPHY14_CMN_ANAREG_TOP_144	=	0x8240
+                    8244   1330 _UPHY14_CMN_ANAREG_TOP_145	=	0x8244
+                    8248   1331 _UPHY14_CMN_ANAREG_TOP_146	=	0x8248
+                    824C   1332 _UPHY14_CMN_ANAREG_TOP_147	=	0x824c
+                    8250   1333 _UPHY14_CMN_ANAREG_TOP_148	=	0x8250
+                    8254   1334 _UPHY14_CMN_ANAREG_TOP_149	=	0x8254
+                    8258   1335 _UPHY14_CMN_ANAREG_TOP_150	=	0x8258
+                    825C   1336 _UPHY14_CMN_ANAREG_TOP_151	=	0x825c
+                    8260   1337 _UPHY14_CMN_ANAREG_TOP_152	=	0x8260
+                    8264   1338 _UPHY14_CMN_ANAREG_TOP_153	=	0x8264
+                    8268   1339 _UPHY14_CMN_ANAREG_TOP_154	=	0x8268
+                    826C   1340 _UPHY14_CMN_ANAREG_TOP_155	=	0x826c
+                    8270   1341 _UPHY14_CMN_ANAREG_TOP_156	=	0x8270
+                    8274   1342 _UPHY14_CMN_ANAREG_TOP_157	=	0x8274
+                    8278   1343 _UPHY14_CMN_ANAREG_TOP_158	=	0x8278
+                    827C   1344 _UPHY14_CMN_ANAREG_TOP_159	=	0x827c
+                    8280   1345 _UPHY14_CMN_ANAREG_TOP_160	=	0x8280
+                    8284   1346 _UPHY14_CMN_ANAREG_TOP_161	=	0x8284
+                    8288   1347 _UPHY14_CMN_ANAREG_TOP_162	=	0x8288
+                    828C   1348 _UPHY14_CMN_ANAREG_TOP_163	=	0x828c
+                    8290   1349 _UPHY14_CMN_ANAREG_TOP_164	=	0x8290
+                    8294   1350 _UPHY14_CMN_ANAREG_TOP_165	=	0x8294
+                    8298   1351 _UPHY14_CMN_ANAREG_TOP_166	=	0x8298
+                    829C   1352 _UPHY14_CMN_ANAREG_TOP_167	=	0x829c
+                    82A0   1353 _UPHY14_CMN_ANAREG_TOP_168	=	0x82a0
+                    82A4   1354 _UPHY14_CMN_ANAREG_TOP_169	=	0x82a4
+                    82A8   1355 _UPHY14_CMN_ANAREG_TOP_170	=	0x82a8
+                    82AC   1356 _UPHY14_CMN_ANAREG_TOP_171	=	0x82ac
+                    82B0   1357 _UPHY14_CMN_ANAREG_TOP_172	=	0x82b0
+                    82B4   1358 _UPHY14_CMN_ANAREG_TOP_173	=	0x82b4
+                    82B8   1359 _UPHY14_CMN_ANAREG_TOP_174	=	0x82b8
+                    82BC   1360 _UPHY14_CMN_ANAREG_TOP_175	=	0x82bc
+                    82C0   1361 _UPHY14_CMN_ANAREG_TOP_176	=	0x82c0
+                    82C4   1362 _UPHY14_CMN_ANAREG_TOP_177	=	0x82c4
+                    82C8   1363 _UPHY14_CMN_ANAREG_TOP_178	=	0x82c8
+                    82CC   1364 _UPHY14_CMN_ANAREG_TOP_179	=	0x82cc
+                    82D0   1365 _UPHY14_CMN_ANAREG_TOP_180	=	0x82d0
+                    82D4   1366 _UPHY14_CMN_ANAREG_TOP_181	=	0x82d4
+                    82D8   1367 _UPHY14_CMN_ANAREG_TOP_182	=	0x82d8
+                    82DC   1368 _UPHY14_CMN_ANAREG_TOP_183	=	0x82dc
+                    82E0   1369 _UPHY14_CMN_ANAREG_TOP_184	=	0x82e0
+                    82E4   1370 _UPHY14_CMN_ANAREG_TOP_185	=	0x82e4
+                    82E8   1371 _UPHY14_CMN_ANAREG_TOP_186	=	0x82e8
+                    82EC   1372 _UPHY14_CMN_ANAREG_TOP_187	=	0x82ec
+                    82F0   1373 _UPHY14_CMN_ANAREG_TOP_188	=	0x82f0
+                    82F4   1374 _UPHY14_CMN_ANAREG_TOP_189	=	0x82f4
+                    82F8   1375 _UPHY14_CMN_ANAREG_TOP_190	=	0x82f8
+                    82FC   1376 _UPHY14_CMN_ANAREG_TOP_191	=	0x82fc
+                    8300   1377 _UPHY14_CMN_ANAREG_TOP_192	=	0x8300
+                    8304   1378 _UPHY14_CMN_ANAREG_TOP_193	=	0x8304
+                    8308   1379 _UPHY14_CMN_ANAREG_TOP_194	=	0x8308
+                    830C   1380 _UPHY14_CMN_ANAREG_TOP_195	=	0x830c
+                    8310   1381 _UPHY14_CMN_ANAREG_TOP_196	=	0x8310
+                    8314   1382 _UPHY14_CMN_ANAREG_TOP_197	=	0x8314
+                    8318   1383 _UPHY14_CMN_ANAREG_TOP_198	=	0x8318
+                    831C   1384 _UPHY14_CMN_ANAREG_TOP_199	=	0x831c
+                    8320   1385 _UPHY14_CMN_ANAREG_TOP_200	=	0x8320
+                    8324   1386 _UPHY14_CMN_ANAREG_TOP_201	=	0x8324
+                    8328   1387 _UPHY14_CMN_ANAREG_TOP_202	=	0x8328
+                    832C   1388 _UPHY14_CMN_ANAREG_TOP_203	=	0x832c
+                    8330   1389 _UPHY14_CMN_ANAREG_TOP_204	=	0x8330
+                    8334   1390 _UPHY14_CMN_ANAREG_TOP_205	=	0x8334
+                    8338   1391 _UPHY14_CMN_ANAREG_TOP_206	=	0x8338
+                    833C   1392 _UPHY14_CMN_ANAREG_TOP_207	=	0x833c
+                    8340   1393 _UPHY14_CMN_ANAREG_TOP_208	=	0x8340
+                    8344   1394 _UPHY14_CMN_ANAREG_TOP_209	=	0x8344
+                    8348   1395 _UPHY14_CMN_ANAREG_TOP_210	=	0x8348
+                    834C   1396 _UPHY14_CMN_ANAREG_TOP_211	=	0x834c
+                    8350   1397 _UPHY14_CMN_ANAREG_TOP_212	=	0x8350
+                    8354   1398 _UPHY14_CMN_ANAREG_TOP_213	=	0x8354
+                    8358   1399 _UPHY14_CMN_ANAREG_TOP_214	=	0x8358
+                    2000   1400 _PM_CTRL_TX_LANE_REG1_LANE	=	0x2000
+                    2004   1401 _PM_CTRL_TX_LANE_REG2_LANE	=	0x2004
+                    2008   1402 _INPUT_TX_PIN_REG0_LANE	=	0x2008
+                    200C   1403 _INPUT_TX_PIN_REG1_LANE	=	0x200c
+                    2010   1404 _INPUT_TX_PIN_REG2_LANE	=	0x2010
+                    2014   1405 _INPUT_TX_PIN_REG3_LANE	=	0x2014
+                    2018   1406 _PM_CTRL_INTERRUPT_REG1_LANE	=	0x2018
+                    201C   1407 _PM_CTRL_INTERRUPT_REG2	=	0x201c
+                    2020   1408 _CLKGEN_TX_LANE_REG1_LANE	=	0x2020
+                    2024   1409 _TX_SPEED_CONVERT_LANE	=	0x2024
+                    2028   1410 _SPD_CTRL_INTERRUPT_REG1_LANE	=	0x2028
+                    202C   1411 _SPD_CTRL_INTERRUPT_REG2	=	0x202c
+                    2030   1412 _SPD_CTRL_TX_LANE_REG1_LANE	=	0x2030
+                    2034   1413 _TX_SYSTEM_LANE	=	0x2034
+                    203C   1414 _INPUT_TX_PIN_REG4_LANE	=	0x203c
+                    2040   1415 _TX_CALIBRATION_LANE	=	0x2040
+                    2044   1416 _DIG_TX_RSVD_REG0	=	0x2044
+                    2048   1417 _INPUT_TX_PIN_REG5_LANE	=	0x2048
+                    204C   1418 __FIELDNAME__LANE	=	0x204c
+                    2050   1419 _PM_CTRL_INTERRUPT_ISR_REG1_LANE	=	0x2050
+                    2054   1420 _SPD_CTRL_INTERRUPT_CLEAR_REG1_LANE	=	0x2054
+                    2058   1421 _ANALOG_TX_REALTIME_REG_1	=	0x2058
+                    205C   1422 _MON_TOP	=	0x205c
+                    2100   1423 _PM_CTRL_RX_LANE_REG1_LANE	=	0x2100
+                    2104   1424 _RX_SYSTEM_LANE	=	0x2104
+                    2108   1425 _INPUT_RX_PIN_REG0_LANE	=	0x2108
+                    210C   1426 _INPUT_RX_PIN_REG1_LANE	=	0x210c
+                    2110   1427 _INPUT_RX_PIN_REG2_LANE	=	0x2110
+                    2114   1428 _SPD_CTRL_RX_LANE_REG1_LANE	=	0x2114
+                    2118   1429 _DIG_RX_RSVD_REG0	=	0x2118
+                    211C   1430 _CLKGEN_RX_LANE_REG1_LANE	=	0x211c
+                    2120   1431 _FRAME_SYNC_DET_REG0	=	0x2120
+                    2124   1432 _FRAME_SYNC_DET_REG1	=	0x2124
+                    2128   1433 _FRAME_SYNC_DET_REG2	=	0x2128
+                    212C   1434 _FRAME_SYNC_DET_REG3	=	0x212c
+                    2130   1435 _FRAME_SYNC_DET_REG4	=	0x2130
+                    2134   1436 _FRAME_SYNC_DET_REG5	=	0x2134
+                    2138   1437 _FRAME_SYNC_DET_REG6	=	0x2138
+                    213C   1438 _CDR_LOCK_REG	=	0x213c
+                    2140   1439 _RX_LANE_INTERRUPT	=	0x2140
+                    2144   1440 _RX_LANE_INTERRUPT_MASK	=	0x2144
+                    2148   1441 _RX_DATA_PATH_REG	=	0x2148
+                    214C   1442 _INPUT_RX_PIN_REG3_LANE	=	0x214c
+                    2150   1443 _RX_CALIBRATION_REG	=	0x2150
+                    2158   1444 _RX_LANE_INTERRUPT_REG1	=	0x2158
+                    2160   1445 _DTL_REG0	=	0x2160
+                    2164   1446 _DTL_REG1	=	0x2164
+                    2168   1447 _DTL_REG2	=	0x2168
+                    216C   1448 _DTL_REG3	=	0x216c
+                    2170   1449 _SQ_REG0	=	0x2170
+                    4000   1450 _LANE_CFG0	=	0x4000
+                    4004   1451 _LANE_STATUS0	=	0x4004
+                    4008   1452 _LANE_CFG_STATUS2_LANE	=	0x4008
+                    400C   1453 _LANE_CFG2_LANE	=	0x400c
+                    4010   1454 _LANE_CFG4	=	0x4010
+                    4014   1455 _LANE_CFG_STATUS3_LANE	=	0x4014
+                    4018   1456 _LANE_DP_PIE8_CFG0_LANE	=	0x4018
+                    401C   1457 _LANE_USB_DP_CFG1_LANE	=	0x401c
+                    4020   1458 _LANE_USB_DP_CFG2_LANE	=	0x4020
+                    4024   1459 _LANE_EQ_CFG0_LANE	=	0x4024
+                    4028   1460 _LANE_EQ_CFG1_LANE	=	0x4028
+                    402C   1461 _LANE_PRESET_CFG0_LANE	=	0x402c
+                    4030   1462 _LANE_PRESET_CFG2_LANE	=	0x4030
+                    4034   1463 _LANE_PRESET_CFG4_LANE	=	0x4034
+                    4038   1464 _LANE_PRESET_CFG6_LANE	=	0x4038
+                    403C   1465 _LANE_PRESET_CFG8_LANE	=	0x403c
+                    4040   1466 _LANE_PRESET_CFG10_LANE	=	0x4040
+                    4044   1467 _LANE_PRESET_CFG12_LANE	=	0x4044
+                    4048   1468 _LANE_PRESET_CFG14_LANE	=	0x4048
+                    404C   1469 _LANE_PRESET_CFG16_LANE	=	0x404c
+                    4050   1470 _LANE_COEFF_MAX0_LANE	=	0x4050
+                    4054   1471 _LANE_REMOTE_SET_LANE	=	0x4054
+                    4058   1472 _LANE_EQ_16G_CFG0_LANE	=	0x4058
+                    405C   1473 _LANE_16G_PRESET_CFG0_LANE	=	0x405c
+                    4060   1474 _LANE_16G_PRESET_CFG2_LANE	=	0x4060
+                    4064   1475 _LANE_16G_PRESET_CFG4_LANE	=	0x4064
+                    4068   1476 _LANE_16G_PRESET_CFG6_LANE	=	0x4068
+                    406C   1477 _LANE_16G_PRESET_CFG8_LANE	=	0x406c
+                    4070   1478 _LANE_16G_PRESET_CFG10_LANE	=	0x4070
+                    4074   1479 _LANE_16G_PRESET_CFG12_LANE	=	0x4074
+                    4078   1480 _LANE_16G_PRESET_CFG14_LANE	=	0x4078
+                    407C   1481 _LANE_16G_PRESET_CFG16_LANE	=	0x407c
+                    4080   1482 _LANE_EQ_32G_CFG0_LANE	=	0x4080
+                    4084   1483 _LANE_32G_PRESET_CFG0_LANE	=	0x4084
+                    4088   1484 _LANE_32G_PRESET_CFG2_LANE	=	0x4088
+                    408C   1485 _LANE_32G_PRESET_CFG4_LANE	=	0x408c
+                    4090   1486 _LANE_32G_PRESET_CFG6_LANE	=	0x4090
+                    4094   1487 _LANE_32G_PRESET_CFG8_LANE	=	0x4094
+                    4098   1488 _LANE_32G_PRESET_CFG10_LANE	=	0x4098
+                    409C   1489 _LANE_32G_PRESET_CFG12_LANE	=	0x409c
+                    40A0   1490 _LANE_32G_PRESET_CFG14_LANE	=	0x40a0
+                    40A4   1491 _LANE_32G_PRESET_CFG16_LANE	=	0x40a4
+                    2200   1492 _MCU_CONTROL_LANE	=	0x2200
+                    2204   1493 _MCU_GPIO	=	0x2204
+                    2208   1494 _CACHE_DEBUG0	=	0x2208
+                    220C   1495 _CACHE_DEBUG1	=	0x220c
+                    2210   1496 _LANE_SYSTEM0	=	0x2210
+                    2230   1497 _MCU_STATUS0_LANE	=	0x2230
+                    2234   1498 _MCU_STATUS1_LANE	=	0x2234
+                    2238   1499 _MCU_STATUS2_LANE	=	0x2238
+                    223C   1500 _MCU_STATUS3_LANE	=	0x223c
+                    2240   1501 _MCU_INT0_CONTROL	=	0x2240
+                    2244   1502 _MCU_INT1_CONTROL	=	0x2244
+                    2248   1503 _MCU_INT2_CONTROL	=	0x2248
+                    224C   1504 _MCU_INT3_CONTROL	=	0x224c
+                    2250   1505 _MCU_INT4_CONTROL	=	0x2250
+                    2254   1506 _MCU_INT5_CONTROL	=	0x2254
+                    2258   1507 _MCU_INT6_CONTROL	=	0x2258
+                    225C   1508 _MCU_INT7_CONTROL	=	0x225c
+                    2260   1509 _MCU_INT8_CONTROL	=	0x2260
+                    2264   1510 _MCU_INT9_CONTROL	=	0x2264
+                    2268   1511 _MCU_INT10_CONTROL	=	0x2268
+                    226C   1512 _MCU_INT11_CONTROL	=	0x226c
+                    2270   1513 _MCU_INT12_CONTROL	=	0x2270
+                    2274   1514 _MCU_TIMER_CONTROL	=	0x2274
+                    2278   1515 _MCU_TIMER0_CONTROL	=	0x2278
+                    227C   1516 _MCU_TIMER1_CONTROL	=	0x227c
+                    2280   1517 _MCU_TIMER2_CONTROL	=	0x2280
+                    2284   1518 _MCU_TIMER3_CONTROL	=	0x2284
+                    2288   1519 _MCU_IRQ_LANE	=	0x2288
+                    228C   1520 _MCU_IRQ_MASK_LANE	=	0x228c
+                    2290   1521 _MCU_MEM_REG1_LANE	=	0x2290
+                    2294   1522 _MCU_MEM_REG2_LANE	=	0x2294
+                    2298   1523 _MCU_TIMER_CTRL_1_LANE	=	0x2298
+                    229C   1524 _MCU_TIMER_CTRL_2_LANE	=	0x229c
+                    22A0   1525 _MCU_TIMER_CTRL_3_LANE	=	0x22a0
+                    22A4   1526 _MCU_TIMER_CTRL_4_LANE	=	0x22a4
+                    22A8   1527 _MCU_TIMER_CTRL_5_LANE	=	0x22a8
+                    22AC   1528 _MCU_TIMER_CTRL_6_LANE	=	0x22ac
+                    22B0   1529 _MCU_TIMER_CTRL_7_LANE	=	0x22b0
+                    22B4   1530 _MCU_DEBUG0_LANE	=	0x22b4
+                    22B8   1531 _MCU_DEBUG1_LANE	=	0x22b8
+                    22BC   1532 _MCU_DEBUG2_LANE	=	0x22bc
+                    22C0   1533 _MCU_DEBUG3_LANE	=	0x22c0
+                    22C4   1534 _MCU_DEBUG_LANE	=	0x22c4
+                    22C8   1535 _EXT_INT_CONTROL	=	0x22c8
+                    22CC   1536 _ANA_IF_TRX_REG0	=	0x22cc
+                    22D0   1537 _ANA_IF_DFEE_REG0	=	0x22d0
+                    22D4   1538 _ANA_IF_DFEO_REG0	=	0x22d4
+                    22D8   1539 _MCU_IRQ_ISR_LANE	=	0x22d8
+                    22DC   1540 _MCU_WDT_LANE	=	0x22dc
+                    22E0   1541 _MCU_INT_CONTROL_13	=	0x22e0
+                    22E4   1542 _MCU_COMMAND0	=	0x22e4
+                    22F4   1543 _MEM_ECC_ERR_ADDRESS0	=	0x22f4
+                    22F8   1544 _XDATA_MEM_CHECKSUM_LANE0	=	0x22f8
+                    22FC   1545 _XDATA_MEM_CHECKSUM_LANE1	=	0x22fc
+                    2300   1546 _PT_CONTROL0	=	0x2300
+                    2304   1547 _PT_CONTROL1	=	0x2304
+                    2308   1548 _PT_USER_PATTERN0	=	0x2308
+                    230C   1549 _PT_USER_PATTERN1	=	0x230c
+                    2310   1550 _PT_USER_PATTERN2	=	0x2310
+                    2314   1551 _PT_COUNTER0	=	0x2314
+                    2318   1552 _PT_COUNTER1	=	0x2318
+                    231C   1553 _PT_COUNTER2	=	0x231c
+                    2400   1554 _DFE_CTRL_REG0	=	0x2400
+                    2404   1555 _DFE_CTRL_REG1	=	0x2404
+                    2408   1556 _DFE_CTRL_REG2	=	0x2408
+                    240C   1557 _DFE_CTRL_REG3	=	0x240c
+                    2410   1558 _RX_EQ_CLK_CTRL	=	0x2410
+                    2414   1559 _DFE_CTRL_REG4	=	0x2414
+                    2418   1560 _DFE_ANA_REG0	=	0x2418
+                    241C   1561 _DFE_ANA_REG1	=	0x241c
+                    2420   1562 _DFE_STEP_REG0	=	0x2420
+                    2424   1563 _DFE_STEP_REG1	=	0x2424
+                    2430   1564 _DFE_FEN_EVEN_REG	=	0x2430
+                    2434   1565 _DFE_FEN_ODD_REG	=	0x2434
+                    2438   1566 _DFE_DC_EVEN_REG8	=	0x2438
+                    243C   1567 _DFE_DC_ODD_REG8	=	0x243c
+                    2440   1568 _DFE_FEXT_EVEN_REG0	=	0x2440
+                    2444   1569 _DFE_FEXT_EVEN_REG1	=	0x2444
+                    2448   1570 _DFE_FEXT_EVEN_REG2	=	0x2448
+                    244C   1571 _DFE_FEXT_EVEN_REG3	=	0x244c
+                    2450   1572 _DFE_FEXT_EVEN_REG4	=	0x2450
+                    2454   1573 _DFE_FEXT_EVEN_REG5	=	0x2454
+                    2458   1574 _DFE_FEXT_EVEN_REG6	=	0x2458
+                    245C   1575 _DFE_FEXT_EVEN_REG7	=	0x245c
+                    2460   1576 _DFE_FEXT_ODD_REG0	=	0x2460
+                    2464   1577 _DFE_FEXT_ODD_REG1	=	0x2464
+                    2468   1578 _DFE_FEXT_ODD_REG2	=	0x2468
+                    246C   1579 _DFE_FEXT_ODD_REG3	=	0x246c
+                    2470   1580 _DFE_FEXT_ODD_REG4	=	0x2470
+                    2474   1581 _DFE_FEXT_ODD_REG5	=	0x2474
+                    2478   1582 _DFE_FEXT_ODD_REG6	=	0x2478
+                    247C   1583 _DFE_FEXT_ODD_REG7	=	0x247c
+                    2480   1584 _DFE_READ_EVEN_SM_REG0	=	0x2480
+                    2484   1585 _DFE_READ_EVEN_SM_REG1	=	0x2484
+                    2488   1586 _DFE_READ_EVEN_SM_REG2	=	0x2488
+                    248C   1587 _DFE_READ_EVEN_SM_REG3	=	0x248c
+                    2490   1588 _DFE_READ_EVEN_SM_REG4	=	0x2490
+                    2494   1589 _DFE_READ_EVEN_SM_REG5	=	0x2494
+                    2498   1590 _DFE_READ_EVEN_SM_REG6	=	0x2498
+                    249C   1591 _DFE_READ_EVEN_SM_REG7	=	0x249c
+                    24A0   1592 _DFE_READ_ODD_SM_REG0	=	0x24a0
+                    24A4   1593 _DFE_READ_ODD_SM_REG1	=	0x24a4
+                    24A8   1594 _DFE_READ_ODD_SM_REG2	=	0x24a8
+                    24AC   1595 _DFE_READ_ODD_SM_REG3	=	0x24ac
+                    24B0   1596 _DFE_READ_ODD_SM_REG4	=	0x24b0
+                    24B4   1597 _DFE_READ_ODD_SM_REG5	=	0x24b4
+                    24B8   1598 _DFE_READ_ODD_SM_REG6	=	0x24b8
+                    24BC   1599 _DFE_READ_ODD_SM_REG7	=	0x24bc
+                    24C0   1600 _DFE_READ_EVEN_SM_REG8	=	0x24c0
+                    24C4   1601 _DFE_READ_ODD_SM_REG8	=	0x24c4
+                    24D0   1602 _DFE_READ_EVEN_2C_REG0	=	0x24d0
+                    24D4   1603 _DFE_READ_EVEN_2C_REG1	=	0x24d4
+                    24D8   1604 _DFE_READ_EVEN_2C_REG2	=	0x24d8
+                    24DC   1605 _DFE_READ_EVEN_2C_REG3	=	0x24dc
+                    24E0   1606 _DFE_READ_EVEN_2C_REG4	=	0x24e0
+                    24E4   1607 _DFE_READ_EVEN_2C_REG5	=	0x24e4
+                    24E8   1608 _DFE_READ_EVEN_2C_REG6	=	0x24e8
+                    24EC   1609 _DFE_READ_EVEN_2C_REG7	=	0x24ec
+                    24F0   1610 _DFE_READ_ODD_2C_REG0	=	0x24f0
+                    24F4   1611 _DFE_READ_ODD_2C_REG1	=	0x24f4
+                    24F8   1612 _DFE_READ_ODD_2C_REG2	=	0x24f8
+                    24FC   1613 _DFE_READ_ODD_2C_REG3	=	0x24fc
+                    2500   1614 _DFE_READ_ODD_2C_REG4	=	0x2500
+                    2504   1615 _DFE_READ_ODD_2C_REG5	=	0x2504
+                    2508   1616 _DFE_READ_ODD_2C_REG6	=	0x2508
+                    250C   1617 _DFE_READ_ODD_2C_REG7	=	0x250c
+                    2510   1618 _DFE_READ_EVEN_2C_REG8	=	0x2510
+                    2514   1619 _DFE_READ_ODD_2C_REG8	=	0x2514
+                    2518   1620 _CAL_OFST_REG0	=	0x2518
+                    251C   1621 _CAL_OFST_REG1	=	0x251c
+                    2520   1622 _CAL_OFST_REG2	=	0x2520
+                    2530   1623 _DFE_DCE_REG0	=	0x2530
+                    2540   1624 _DFE_STATIC_LANE_REG0	=	0x2540
+                    2544   1625 _DFE_STATIC_LANE_REG1	=	0x2544
+                    2548   1626 _DFE_STATIC_LANE_REG3	=	0x2548
+                    254C   1627 _DFE_STATIC_LANE_REG4	=	0x254c
+                    2550   1628 _DFE_STATIC_LANE_REG5	=	0x2550
+                    2554   1629 _DFE_STATIC_LANE_REG6	=	0x2554
+                    2560   1630 _EOM_VLD_REG0	=	0x2560
+                    2564   1631 _EOM_VLD_REG1	=	0x2564
+                    2568   1632 _EOM_VLD_REG2	=	0x2568
+                    256C   1633 _EOM_VLD_REG3	=	0x256c
+                    2570   1634 _EOM_ERR_REG0	=	0x2570
+                    2574   1635 _EOM_ERR_REG1	=	0x2574
+                    2578   1636 _EOM_ERR_REG2	=	0x2578
+                    257C   1637 _EOM_ERR_REG3	=	0x257c
+                    2580   1638 _EOM_REG0	=	0x2580
+                    25F0   1639 _EOM_VLD_REG4	=	0x25f0
+                    25F4   1640 _LANE_MARGIN_REG0	=	0x25f4
+                    6000   1641 _CAL_CTRL1_LANE	=	0x6000
+                    6004   1642 _CAL_CTRL2_LANE	=	0x6004
+                    6008   1643 _CAL_CTRL3_LANE	=	0x6008
+                    600C   1644 _CAL_CTRL4_LANE	=	0x600c
+                    6010   1645 _CAL_SAVE_DATA1_LANE	=	0x6010
+                    6014   1646 _CAL_SAVE_DATA2_LANE	=	0x6014
+                    6018   1647 _CAL_SAVE_DATA3_LANE	=	0x6018
+                    601C   1648 _PHY_REMOTE_CTRL_COMMAND_LANE	=	0x601c
+                    6020   1649 _PHY_REMOTE_CTRL_VALUE_LANE	=	0x6020
+                    6024   1650 _PHY_LOCAL_VALUE_LANE	=	0x6024
+                    6028   1651 _TRX_TRAIN_IF_TIMERS1_LANE	=	0x6028
+                    602C   1652 _TRX_TRAIN_IF_TIMERS2_LANE	=	0x602c
+                    6030   1653 _TRX_TRAIN_IF_TIMERS_ENABLE_LANE	=	0x6030
+                    6034   1654 _DFE_CONTROL_0	=	0x6034
+                    6038   1655 _DFE_CONTROL_1	=	0x6038
+                    6040   1656 _DFE_CONTROL_2	=	0x6040
+                    6044   1657 _DFE_CONTROL_3	=	0x6044
+                    6048   1658 _DFE_CONTROL_4	=	0x6048
+                    604C   1659 _DFE_CONTROL_5	=	0x604c
+                    6050   1660 _TRAIN_CONTROL_0	=	0x6050
+                    6054   1661 _TRAIN_CONTROL_1	=	0x6054
+                    6058   1662 _TRAIN_CONTROL_2	=	0x6058
+                    605C   1663 _RPTA_CONFIG_0	=	0x605c
+                    6060   1664 _RPTA_CONFIG_1	=	0x6060
+                    6064   1665 _DLL_CAL	=	0x6064
+                    6068   1666 _TRAIN_PARA_0	=	0x6068
+                    606C   1667 _TRAIN_PARA_1	=	0x606c
+                    6070   1668 _TRAIN_PARA_2	=	0x6070
+                    6074   1669 _TRAIN_PARA_3	=	0x6074
+                    6078   1670 _DFE_CONTROL_6	=	0x6078
+                    607C   1671 _DFE_TEST_0	=	0x607c
+                    6080   1672 _DFE_TEST_1	=	0x6080
+                    6084   1673 _DFE_TEST_4	=	0x6084
+                    6088   1674 _DFE_TEST_5	=	0x6088
+                    608C   1675 _DFE_CONTROL_7	=	0x608c
+                    6090   1676 _DFE_CONTROL_8	=	0x6090
+                    6094   1677 _DFE_CONTROL_9	=	0x6094
+                    6098   1678 _DFE_CONTROL_10	=	0x6098
+                    609C   1679 _DFE_CONTROL_11	=	0x609c
+                    60A0   1680 _CDS_CTRL_REG0	=	0x60a0
+                    60A4   1681 _CDS_CTRL_REG1	=	0x60a4
+                    60A8   1682 _ESM_POP_P_CNT_LOW_LANE	=	0x60a8
+                    60AC   1683 _ESM_ERR_P_CNT_LOW_LANE	=	0x60ac
+                    60B0   1684 _ESM_ERR_POP_CNT_HIGH_LANE	=	0x60b0
+                    60B4   1685 _TRAIN_CONTROL_3	=	0x60b4
+                    60B8   1686 _TRAIN_CONTROL_4	=	0x60b8
+                    60BC   1687 _TRAIN_CONTROL_5	=	0x60bc
+                    60C0   1688 _TRAIN_CONTROL_6	=	0x60c0
+                    60C4   1689 _TRAIN_CONTROL_7	=	0x60c4
+                    60C8   1690 _TRAIN_CONTROL_8	=	0x60c8
+                    60CC   1691 _TRAIN_CONTROL_9	=	0x60cc
+                    60D0   1692 _TRAIN_CONTROL_10	=	0x60d0
+                    60D4   1693 _TRAIN_CONTROL_11	=	0x60d4
+                    60D8   1694 _TRAIN_CONTROL_12	=	0x60d8
+                    60DC   1695 _ESM_POP_N_CNT_LOW_LANE	=	0x60dc
+                    60E0   1696 _ESM_ERR_N_CNT_LOW_LANE	=	0x60e0
+                    60E4   1697 _TRAIN_CONTROL_13	=	0x60e4
+                    60E8   1698 _TRAIN_CONTROL_14	=	0x60e8
+                    60EC   1699 _TRAIN_CONTROL_15	=	0x60ec
+                    60F0   1700 _TRAIN_CONTROL_16	=	0x60f0
+                    60F4   1701 _TRAIN_CONTROL_17	=	0x60f4
+                    60F8   1702 _END_XDAT_LANE	=	0x60f8
+                    A000   1703 _TX_CMN_REG	=	0xa000
+                    A008   1704 _DTX_REG0	=	0xa008
+                    A00C   1705 _DTX_REG1	=	0xa00c
+                    A010   1706 _DTX_REG2	=	0xa010
+                    A014   1707 _DTX_REG3	=	0xa014
+                    A018   1708 _DTX_REG4	=	0xa018
+                    A01C   1709 _DTX_PHY_ALIGN_REG0	=	0xa01c
+                    A024   1710 _DTX_PHY_ALIGN_REG1	=	0xa024
+                    A028   1711 _DTX_PHY_ALIGN_REG2	=	0xa028
+                    A02C   1712 _SRIS_REG0	=	0xa02c
+                    A030   1713 _SRIS_REG1	=	0xa030
+                    A100   1714 _RX_CMN_0	=	0xa100
+                    A110   1715 _DFE_STATIC_REG0	=	0xa110
+                    A114   1716 _DFE_STATIC_REG1	=	0xa114
+                    A118   1717 _DFE_STATIC_REG3	=	0xa118
+                    A11C   1718 _DFE_STATIC_REG4	=	0xa11c
+                    A120   1719 _DFE_STATIC_REG5	=	0xa120
+                    A124   1720 _DFE_STATIC_REG6	=	0xa124
+                    4200   1721 _GLOB_RST_CLK_CTRL	=	0x4200
+                    4204   1722 _GLOB_CLK_SRC_LO	=	0x4204
+                    4208   1723 _GLOB_CLK_SRC_HI	=	0x4208
+                    420C   1724 _GLOB_MISC_CTRL	=	0x420c
+                    4210   1725 _GLOB_DP_SAL_CFG	=	0x4210
+                    4214   1726 _GLOB_DP_SAL_CFG1	=	0x4214
+                    4218   1727 _GLOB_DP_SAL_CFG3	=	0x4218
+                    421C   1728 _GLOB_DP_SAL_CFG5	=	0x421c
+                    4220   1729 _GLOB_PM_CFG0	=	0x4220
+                    4224   1730 _GLOB_COUNTER_CTRL	=	0x4224
+                    4228   1731 _GLOB_COUNTER_HI	=	0x4228
+                    422C   1732 _GLOB_PM_DP_CTRL	=	0x422c
+                    4230   1733 _GLOB_DP_BAL_CFG0	=	0x4230
+                    4234   1734 _GLOB_DP_BAL_CFG2	=	0x4234
+                    4238   1735 _GLOB_DP_BAL_CFG4	=	0x4238
+                    423C   1736 _GLOB_BIST_CTRL	=	0x423c
+                    4240   1737 _GLOB_BIST_LANE_TYPE	=	0x4240
+                    4244   1738 _GLOB_BIST_START	=	0x4244
+                    4248   1739 _GLOB_BIST_MASK	=	0x4248
+                    424C   1740 _GLOB_BIST_RESULT	=	0x424c
+                    4250   1741 _GLOB_BIST_SEQR_CFG	=	0x4250
+                    4254   1742 _GLOB_BIST_DATA_HI	=	0x4254
+                    4258   1743 _GLOB_PIPE_REVISION	=	0x4258
+                    425C   1744 _GLOB_L1_SUBSTATES_CFG	=	0x425c
+                    A200   1745 _MCU_CONTROL_0	=	0xa200
+                    A204   1746 _MCU_CONTROL_1	=	0xa204
+                    A208   1747 _MCU_CONTROL_2	=	0xa208
+                    A20C   1748 _MCU_CONTROL_3	=	0xa20c
+                    A210   1749 _MCU_CONTROL_4	=	0xa210
+                    A214   1750 _MCU_DEBUG0	=	0xa214
+                    A218   1751 _MCU_DEBUG1	=	0xa218
+                    A21C   1752 _MEMORY_CONTROL_0	=	0xa21c
+                    A220   1753 _MEMORY_CONTROL_1	=	0xa220
+                    A224   1754 _MEMORY_CONTROL_2	=	0xa224
+                    A228   1755 _MEMORY_CONTROL_3	=	0xa228
+                    A22C   1756 _MEMORY_CONTROL_4	=	0xa22c
+                    A234   1757 _MCU_INFO_0	=	0xa234
+                    A238   1758 _MCU_INFO_1	=	0xa238
+                    A23C   1759 _MCU_INFO_2	=	0xa23c
+                    A240   1760 _MCU_INFO_3	=	0xa240
+                    A244   1761 _MEM_CMN_ECC_ERR_ADDRESS0	=	0xa244
+                    A2E0   1762 _ANA_IF_CMN_REG1	=	0xa2e0
+                    A2E4   1763 _MEM_IRQ	=	0xa2e4
+                    A2E8   1764 _MEM_IRQ_MASK	=	0xa2e8
+                    A2EC   1765 _ANA_IF_CMN_REG0	=	0xa2ec
+                    A2F0   1766 _APB_CONTROL_REG	=	0xa2f0
+                    A2F4   1767 _MEM_IRQ_CLEAR	=	0xa2f4
+                    A2F8   1768 _MCU_SYNC1	=	0xa2f8
+                    A2FC   1769 _MCU_SYNC2	=	0xa2fc
+                    A300   1770 _TEST0	=	0xa300
+                    A304   1771 _TEST1	=	0xa304
+                    A308   1772 _TEST2	=	0xa308
+                    A30C   1773 _TEST3	=	0xa30c
+                    A310   1774 _TEST4	=	0xa310
+                    A314   1775 _SYSTEM	=	0xa314
+                    A318   1776 _PM_CMN_REG1	=	0xa318
+                    A31C   1777 _INPUT_CMN_PIN_REG0	=	0xa31c
+                    A320   1778 _INPUT_CMN_PIN_REG1	=	0xa320
+                    A324   1779 _INPUT_CMN_PIN_REG2	=	0xa324
+                    A328   1780 _ANA_TSEN_CONTROL	=	0xa328
+                    A32C   1781 _PLLCAL_REG0	=	0xa32c
+                    A330   1782 _PLLCAL_REG1	=	0xa330
+                    A334   1783 _CLKGEN_CMN_REG1	=	0xa334
+                    A338   1784 _SPD_CMN_REG1	=	0xa338
+                    A33C   1785 _OUTPUT_CMN_PIN_REG0	=	0xa33c
+                    A340   1786 _CMN_CALIBRATION	=	0xa340
+                    A344   1787 __FIELDNAME_	=	0xa344
+                    A348   1788 _INPUT_CMN_PIN_REG3	=	0xa348
+                    A34C   1789 _PM_CMN_REG2	=	0xa34c
+                    A354   1790 _TEST5	=	0xa354
+                    A358   1791 _XDATA_MEM_CHECKSUM_CMN_0	=	0xa358
+                    A35C   1792 _XDATA_MEM_CHECKSUM_CMN_1	=	0xa35c
+                    A360   1793 _XDATA_MEM_CHECKSUM_CMN_2	=	0xa360
+                    A364   1794 _MCU_SDT_CMN	=	0xa364
+                    A368   1795 _CMN_CACHE_DEBUG0	=	0xa368
+                    A36C   1796 _MCU_INT_ADDR	=	0xa36c
+                    A370   1797 _CMN_ISR_2	=	0xa370
+                    A374   1798 _CMN_ISR_MASK_2	=	0xa374
+                    A378   1799 _CMN_ISR_CLEAR_2	=	0xa378
+                    A37C   1800 _CMN_MCU_GPIO	=	0xa37c
+                    A380   1801 _CMN_CACHE_DEBUG1	=	0xa380
+                    A384   1802 _CMN_MCU_TIMER_CONTROL	=	0xa384
+                    A388   1803 _CMN_MCU_TIMER_CTRL_2_LANE	=	0xa388
+                    A38C   1804 _CMN_MCU_TIMER_CTRL_3_LANE	=	0xa38c
+                    A390   1805 _CMN_MCU_TIMER_CTRL_4_LANE	=	0xa390
+                    A394   1806 _CMN_MCU_TIMER_CTRL_5_LANE	=	0xa394
+                    A398   1807 _CMN_MCU_TIMER0_CONTROL	=	0xa398
+                    A39C   1808 _CMN_MCU_TIMER1_CONTROL	=	0xa39c
+                    A3A0   1809 _CMN_MCU_TIMER2_CONTROL	=	0xa3a0
+                    A3A4   1810 _CMN_MCU_TIMER3_CONTROL	=	0xa3a4
+                    A3A8   1811 _CMN_ISR_1	=	0xa3a8
+                    A3AC   1812 _CMN_ISR_MASK_1	=	0xa3ac
+                    A3B0   1813 _SET_LANE_ISR	=	0xa3b0
+                    A3F4   1814 _CMN_MCU_REG	=	0xa3f4
+                    A3F8   1815 _CID_REG0	=	0xa3f8
+                    A3FC   1816 _CID_REG1	=	0xa3fc
+                    E600   1817 _FW_REV	=	0xe600
+                    E604   1818 _CONTROL_CONFIG0	=	0xe604
+                    E608   1819 _CONTROL_CONFIG1	=	0xe608
+                    E60C   1820 _CONTROL_CONFIG2	=	0xe60c
+                    E610   1821 _CONTROL_CONFIG3	=	0xe610
+                    E614   1822 _CONTROL_CONFIG4	=	0xe614
+                    E618   1823 _CONTROL_CONFIG5	=	0xe618
+                    E61C   1824 _CONTROL_CONFIG6	=	0xe61c
+                    E620   1825 _CONTROL_CONFIG7	=	0xe620
+                    E624   1826 _CAL_DATA0	=	0xe624
+                    E628   1827 _TRAIN_IF_CONFIG	=	0xe628
+                    E62C   1828 _CONTROL_CONFIG8	=	0xe62c
+                    E630   1829 _CONTROL_CONFIG9	=	0xe630
+                    E634   1830 _CON_CAL_STEP_SIZE1	=	0xe634
+                    E638   1831 _CON_CAL_STEP_SIZE2	=	0xe638
+                    E63C   1832 _CON_CAL_STEP_SIZE3	=	0xe63c
+                    E640   1833 _CON_CAL_STEP_SIZE4	=	0xe640
+                    E644   1834 _CON_CAL_STEP_SIZE5	=	0xe644
+                    E648   1835 _CAL_TIME_OUT_AND_DIS	=	0xe648
+                    E64C   1836 _CAL_STATUS_READ	=	0xe64c
+                    E650   1837 _MCU_CONFIG	=	0xe650
+                    E654   1838 _CAL_DATA1	=	0xe654
+                    E658   1839 _LOOP_CNTS	=	0xe658
+                    E65C   1840 _MCU_CONFIG1	=	0xe65c
+                    E660   1841 _TIMER_SEL1	=	0xe660
+                    E664   1842 _TIMER_SEL2	=	0xe664
+                    E668   1843 _TIMER_SEL3	=	0xe668
+                    E66C   1844 _G_SELLV_TXCLK	=	0xe66c
+                    E670   1845 _G_SELLV_TXDATA	=	0xe670
+                    E674   1846 _G_SELLV_TXPRE	=	0xe674
+                    E678   1847 _G_SELLV_RXEOMCLK	=	0xe678
+                    E67C   1848 _G_SELLV_RXDATACLK	=	0xe67c
+                    E680   1849 _G_SELLV_RXSAMPLER	=	0xe680
+                    E684   1850 _SAS_PRESET0_TB	=	0xe684
+                    E688   1851 _SAS_PRESET1_TB	=	0xe688
+                    E68C   1852 _SAS_PRESET2_TB	=	0xe68c
+                    E690   1853 _ETH_PRESET0_TB	=	0xe690
+                    E694   1854 _ETH_PRESET1_TB	=	0xe694
+                    E698   1855 _TX_SAVE_0	=	0xe698
+                    E69C   1856 _TX_SAVE_1	=	0xe69c
+                    E6A0   1857 _TX_SAVE_2	=	0xe6a0
+                    E6A4   1858 _TX_SAVE_3	=	0xe6a4
+                    E6A8   1859 _TX_SAVE_4	=	0xe6a8
+                    E6AC   1860 _CDS_EYE_CLK_THR	=	0xe6ac
+                    E6B0   1861 _SYNC_INFO	=	0xe6b0
+                    E6B4   1862 _MCU_INFO_4	=	0xe6b4
+                    E6B8   1863 _MCU_INFO_5	=	0xe6b8
+                    E6BC   1864 _MCU_INFO_12	=	0xe6bc
+                    E6C0   1865 _MCU_INFO_13	=	0xe6c0
+                    E6C4   1866 _END_XDAT_CMN	=	0xe6c4
+                    2600   1867 _DME_ENC_REG0	=	0x2600
+                    2604   1868 _DME_ENC_REG1	=	0x2604
+                    2608   1869 _DME_ENC_REG2	=	0x2608
+                    260C   1870 _DME_DEC_REG0	=	0x260c
+                    2610   1871 _DME_DEC_REG1	=	0x2610
+                    2614   1872 _TX_TRAIN_IF_REG0	=	0x2614
+                    2618   1873 _TX_TRAIN_IF_REG1	=	0x2618
+                    261C   1874 _TX_TRAIN_IF_REG2	=	0x261c
+                    2620   1875 _TX_TRAIN_IF_REG3	=	0x2620
+                    2624   1876 _TX_TRAIN_PATTTERN_REG0	=	0x2624
+                    2628   1877 _TX_TRAIN_DRIVER_REG0	=	0x2628
+                    262C   1878 _TX_TRAIN_DRIVER_REG1	=	0x262c
+                    2630   1879 _TX_TRAIN_DRIVER_REG2	=	0x2630
+                    2634   1880 _TX_TRAIN_DEFAULT_REG0	=	0x2634
+                    2638   1881 _TX_TRAIN_DEFAULT_REG1	=	0x2638
+                    263C   1882 _TX_TRAIN_DEFAULT_REG2	=	0x263c
+                    2640   1883 _TX_TRAIN_DEFAULT_REG3	=	0x2640
+                    2644   1884 _TX_TRAIN_DEFAULT_REG4	=	0x2644
+                    2648   1885 _TX_TRAIN_DEFAULT_REG5	=	0x2648
+                    264C   1886 _TX_EMPH_CTRL_REG0	=	0x264c
+                    2650   1887 _LINK_TRAIN_MODE0	=	0x2650
+                    2654   1888 _TX_DRV_RD_OUT_REG0	=	0x2654
+                    2658   1889 _TX_AMP_CTRL_REG0	=	0x2658
+                    265C   1890 _TRX_TRAIN_IF_INTERRUPT_LANE	=	0x265c
+                    2660   1891 _TRX_TRAIN_IF_INTERRUPT_MASK0_LANE	=	0x2660
+                    2664   1892 _TRX_TRAIN_IF_INTERRUPT_CLEAR_LANE	=	0x2664
+                    2668   1893 _TX_TRAIN_IF_REG4	=	0x2668
+                    266C   1894 _TX_TRAIN_IF_REG5	=	0x266c
+                    2670   1895 _TX_TRAIN_IF_REG6	=	0x2670
+                    2674   1896 _TX_TRAIN_IF_REG7	=	0x2674
+                    2678   1897 _TX_TRAIN_CTRL_LANE	=	0x2678
+                    267C   1898 _TX_TRAIN_IF_REG8	=	0x267c
+                    6100   1899 _DFE_READ_EVEN_REG0	=	0x6100
+                    6104   1900 _DFE_READ_EVEN_REG1	=	0x6104
+                    6108   1901 _DFE_READ_EVEN_REG2	=	0x6108
+                    610C   1902 _DFE_READ_EVEN_REG3	=	0x610c
+                    6110   1903 _DFE_READ_EVEN_REG4	=	0x6110
+                    6114   1904 _DFE_READ_EVEN_REG5	=	0x6114
+                    6118   1905 _DFE_READ_EVEN_REG6	=	0x6118
+                    611C   1906 _DFE_READ_EVEN_REG7	=	0x611c
+                    6120   1907 _DFE_READ_ODD_REG0	=	0x6120
+                    6124   1908 _DFE_READ_ODD_REG1	=	0x6124
+                    6128   1909 _DFE_READ_ODD_REG2	=	0x6128
+                    612C   1910 _DFE_READ_ODD_REG3	=	0x612c
+                    6130   1911 _DFE_READ_ODD_REG4	=	0x6130
+                    6134   1912 _DFE_READ_ODD_REG5	=	0x6134
+                    6138   1913 _DFE_READ_ODD_REG6	=	0x6138
+                    613C   1914 _DFE_READ_ODD_REG7	=	0x613c
+                    6140   1915 _DFE_READ_EVEN_REG8	=	0x6140
+                    6144   1916 _DFE_READ_ODD_REG8	=	0x6144
+                    6148   1917 _DFE_READ_F0A_EVEN	=	0x6148
+                    614C   1918 _DFE_READ_F0A_ODD	=	0x614c
+                    6150   1919 _DFE_READ_F0B_EVEN	=	0x6150
+                    6154   1920 _DFE_READ_F0B_ODD	=	0x6154
+                    6158   1921 _DFE_READ_F0D_EVEN	=	0x6158
+                    615C   1922 _DFE_READ_F0D_ODD	=	0x615c
+                    6160   1923 _DFE_READ_F0D_LEFT_EVEN	=	0x6160
+                    6164   1924 _DFE_READ_F0D_LEFT_ODD	=	0x6164
+                    6168   1925 _DFE_READ_F0D_RIGHT_EVEN	=	0x6168
+                    616C   1926 _DFE_READ_F0D_RIGHT_ODD	=	0x616c
+                    6170   1927 _CDS_READ_MISC0	=	0x6170
+                    6174   1928 _CDS_READ_MISC1	=	0x6174
+                    6214   1929 _TXTRAIN_IF_REG0	=	0x6214
+                    E000   1930 _lc_speedtable	=	0xe000
+                    E1C0   1931 _ring_speedtable	=	0xe1c0
+                    E5C0   1932 _phy_mode_cmn_table	=	0xe5c0
+                    6300   1933 _max_gen	=	0x6300
+                    6301   1934 _min_gen	=	0x6301
+                    6304   1935 _speedtable	=	0x6304
+                    65D4   1936 _phy_mode_lane_table	=	0x65d4
+                    60B4   1937 _rc_save	=	0x60b4
+                    60D0   1938 _txffe_save	=	0x60d0
+                    60E4   1939 _phase_save	=	0x60e4
+                    6030   1940 _train_gn1_index	=	0x6030
+                    6031   1941 _train_g1_index	=	0x6031
+                    6032   1942 _train_g0_index	=	0x6032
+                    E6B0   1943 _local_tx_preset_tb	=	0xe6b0
+                    E5C1   1944 _cmx_cal_lcvco_dac	=	0xe5c1
+                    E5C1   1945 _cmx_cal_lcvco_dac_lsb	=	0xe5c1
+                    E5C4   1946 _cmx_cal_lcvco_dac_msb	=	0xe5c4
+                    E5CA   1947 _cmx_cal_lccap_msb	=	0xe5ca
+                    E5C8   1948 _cmx_cal_lccap_lsb	=	0xe5c8
+                    E5CC   1949 _cmx_cal_plldcc	=	0xe5cc
+                    E5D0   1950 _cmx_cal_pll_speed_ring	=	0xe5d0
+                    E5D4   1951 _cmx_cal_pll_sllp_dac_coarse_ring	=	0xe5d4
+                    E5D8   1952 _cmx_cal_sllp_dac_fine_ring	=	0xe5d8
+                    65D4   1953 _lnx_cal_txdcc_pdiv	=	0x65d4
+                    65D8   1954 _lnx_cal_txdcc_pdiv_hg	=	0x65d8
+                    65DA   1955 _lnx_cal_txdcc	=	0x65da
+                    65DE   1956 _lnx_cal_txdcc_hg	=	0x65de
+                    65E0   1957 _lnx_cal_rxdcc_dll	=	0x65e0
+                    65E4   1958 _lnx_cal_rxdcc_dll_hg	=	0x65e4
+                    65E6   1959 _lnx_cal_rxdcc_data	=	0x65e6
+                    65F0   1960 _lnx_cal_rxdcc_data_hg	=	0x65f0
+                    65F5   1961 _lnx_cal_rxdcc_eom	=	0x65f5
+                    65FF   1962 _lnx_cal_rxdcc_eom_hg	=	0x65ff
+                    6604   1963 _lnx_cal_dll_gmsel	=	0x6604
+                    6606   1964 _lnx_cal_vdda_dll_sel	=	0x6606
+                    660A   1965 _lnx_cal_dll_eom_gmsel	=	0x660a
+                    660C   1966 _lnx_cal_vdda_dll_eom_sel	=	0x660c
+                    6610   1967 _lnx_cal_eom_dpher	=	0x6610
+                    6612   1968 _lnx_cal_align90_dummy_clk	=	0x6612
+                    661A   1969 _lnx_cal_align90_dac	=	0x661a
+                    6622   1970 _lnx_cal_align90_gm	=	0x6622
+                    662A   1971 _lnx_cal_sellv_txdata	=	0x662a
+                    6634   1972 _lnx_cal_sellv_txclk	=	0x6634
+                    663E   1973 _lnx_cal_sellv_rxdataclk	=	0x663e
+                    6648   1974 _lnx_cal_sellv_txpre	=	0x6648
+                    6652   1975 _lnx_cal_sellv_rxsampler	=	0x6652
+                    665C   1976 _lnx_cal_sellv_rxeomclk	=	0x665c
+                    6666   1977 _lnx_spdoft_tx_preset_index_lane	=	0x6666
+                    6490   1978 _lnx_calx_txdcc_pdiv	=	0x6490
+                    6496   1979 _lnx_calx_txdcc_pdiv_hg	=	0x6496
+                    6499   1980 _lnx_calx_txdcc	=	0x6499
+                    649F   1981 _lnx_calx_txdcc_hg	=	0x649f
+                    64A2   1982 _lnx_calx_rxdcc_dll	=	0x64a2
+                    64A8   1983 _lnx_calx_rxdcc_dll_hg	=	0x64a8
+                    64AB   1984 _lnx_calx_dll_gmsel	=	0x64ab
+                    64AE   1985 _lnx_calx_vdda_dll_sel	=	0x64ae
+                    64B4   1986 _lnx_calx_dll_eom_gmsel	=	0x64b4
+                    64B7   1987 _lnx_calx_vdda_dll_eom_sel	=	0x64b7
+                    64BD   1988 _lnx_calx_eom_dpher	=	0x64bd
+                    64C0   1989 _lnx_calx_align90_dummy_clk	=	0x64c0
+                    64CC   1990 _lnx_calx_align90_dac	=	0x64cc
+                    64D8   1991 _lnx_calx_align90_gm	=	0x64d8
+                    6100   1992 _cds28	=	0x6100
+                    6178   1993 _dfe_sm	=	0x6178
+                    61B8   1994 _dfe_sm_dc	=	0x61b8
+                    61C0   1995 _dfe_sm_save	=	0x61c0
+                    03FC   1996 _UPHY_ANAREG_REV_0	=	0x03fc
+                    E684   1997 _tx_tb	=	0xe684
+                    E698   1998 _train_save_tb	=	0xe698
+                    607C   1999 _sq_thrs_ratio_tb	=	0x607c
+                           2000 ;--------------------------------------------------------
+                           2001 ; absolute external ram data
+                           2002 ;--------------------------------------------------------
+                           2003 	.area XABS    (ABS,XDATA)
+                           2004 ;--------------------------------------------------------
+                           2005 ; external initialized ram data
+                           2006 ;--------------------------------------------------------
+                           2007 	.area HOME    (CODE)
+                           2008 	.area GSINIT0 (CODE)
+                           2009 	.area GSINIT1 (CODE)
+                           2010 	.area GSINIT2 (CODE)
+                           2011 	.area GSINIT3 (CODE)
+                           2012 	.area GSINIT4 (CODE)
+                           2013 	.area GSINIT5 (CODE)
+                           2014 	.area GSINIT  (CODE)
+                           2015 	.area GSFINAL (CODE)
+                           2016 	.area CSEG    (CODE)
+                           2017 ;--------------------------------------------------------
+                           2018 ; global & static initialisations
+                           2019 ;--------------------------------------------------------
+                           2020 	.area HOME    (CODE)
+                           2021 	.area GSINIT  (CODE)
+                           2022 	.area GSFINAL (CODE)
+                           2023 	.area GSINIT  (CODE)
+                           2024 ;--------------------------------------------------------
+                           2025 ; Home
+                           2026 ;--------------------------------------------------------
+                           2027 	.area HOME    (CODE)
+                           2028 	.area HOME    (CODE)
+                           2029 ;--------------------------------------------------------
+                           2030 ; code
+                           2031 ;--------------------------------------------------------
+                           2032 	.area BANK2   (CODE)
+                           2033 ;------------------------------------------------------------
+                           2034 ;Allocation info for local variables in function 'sampler_sel'
+                           2035 ;------------------------------------------------------------
+                           2036 ;sw                        Allocated to registers r2 
+                           2037 ;------------------------------------------------------------
+                           2038 ;	../../shared/src/sampler_cal.c:94: void sampler_sel(uint8_t sw) BANKING_CTRL
+                           2039 ;	-----------------------------------------
+                           2040 ;	 function sampler_sel
+                           2041 ;	-----------------------------------------
+   D83E                    2042 _sampler_sel:
+                    0002   2043 	ar2 = 0x02
+                    0003   2044 	ar3 = 0x03
+                    0004   2045 	ar4 = 0x04
+                    0005   2046 	ar5 = 0x05
+                    0006   2047 	ar6 = 0x06
+                    0007   2048 	ar7 = 0x07
+                    0000   2049 	ar0 = 0x00
+                    0001   2050 	ar1 = 0x01
+   D83E AA 82              2051 	mov	r2,dpl
+                           2052 ;	../../shared/src/sampler_cal.c:96: switch (sw) {
+   D840 74 09              2053 	mov	a,#0x09
+   D842 B5 02 00           2054 	cjne	a,ar2,00115$
+   D845                    2055 00115$:
+   D845 50 03              2056 	jnc	00116$
+   D847 02 D8 FA           2057 	ljmp	00111$
+   D84A                    2058 00116$:
+   D84A EA                 2059 	mov	a,r2
+   D84B 2A                 2060 	add	a,r2
+   D84C 2A                 2061 	add	a,r2
+   D84D 90 D8 51           2062 	mov	dptr,#00117$
+   D850 73                 2063 	jmp	@a+dptr
+   D851                    2064 00117$:
+   D851 02 D8 6F           2065 	ljmp	00101$
+   D854 02 D8 7E           2066 	ljmp	00102$
+   D857 02 D8 A8           2067 	ljmp	00105$
+   D85A 02 D8 B6           2068 	ljmp	00106$
+   D85D 02 D8 8C           2069 	ljmp	00103$
+   D860 02 D8 9A           2070 	ljmp	00104$
+   D863 02 D8 C4           2071 	ljmp	00107$
+   D866 02 D8 D2           2072 	ljmp	00108$
+   D869 02 D8 E0           2073 	ljmp	00109$
+   D86C 02 D8 EE           2074 	ljmp	00110$
+                           2075 ;	../../shared/src/sampler_cal.c:97: case OFST_F1P_D_E:
+   D86F                    2076 00101$:
+                           2077 ;	../../shared/src/sampler_cal.c:98: SIGN_POS = (uint8_t*)&ANA_DFEE_REG_1E;
+   D86F 75 26 78           2078 	mov	_SIGN_POS,#_ANA_DFEE_REG_1E
+   D872 75 27 04           2079 	mov	(_SIGN_POS + 1),#(_ANA_DFEE_REG_1E >> 8)
+                           2080 ;	../../shared/src/sampler_cal.c:99: NEG = (uint8_t*)&ANA_DFEE_REG_1F;
+   D875 75 28 7C           2081 	mov	_NEG,#_ANA_DFEE_REG_1F
+   D878 75 29 04           2082 	mov	(_NEG + 1),#(_ANA_DFEE_REG_1F >> 8)
+                           2083 ;	../../shared/src/sampler_cal.c:100: break;
+   D87B 02 D8 FA           2084 	ljmp	00111$
+                           2085 ;	../../shared/src/sampler_cal.c:101: case OFST_F1N_D_E:
+   D87E                    2086 00102$:
+                           2087 ;	../../shared/src/sampler_cal.c:102: SIGN_POS = (uint8_t*)&ANA_DFEE_REG_20;
+   D87E 75 26 80           2088 	mov	_SIGN_POS,#_ANA_DFEE_REG_20
+   D881 75 27 04           2089 	mov	(_SIGN_POS + 1),#(_ANA_DFEE_REG_20 >> 8)
+                           2090 ;	../../shared/src/sampler_cal.c:103: NEG = (uint8_t*)&ANA_DFEE_REG_21;
+   D884 75 28 84           2091 	mov	_NEG,#_ANA_DFEE_REG_21
+   D887 75 29 04           2092 	mov	(_NEG + 1),#(_ANA_DFEE_REG_21 >> 8)
+                           2093 ;	../../shared/src/sampler_cal.c:104: break;
+                           2094 ;	../../shared/src/sampler_cal.c:105: case OFST_F1P_D_O:
+   D88A 80 6E              2095 	sjmp	00111$
+   D88C                    2096 00103$:
+                           2097 ;	../../shared/src/sampler_cal.c:106: SIGN_POS = (uint8_t*)&ANA_DFEO_REG_1E;
+   D88C 75 26 78           2098 	mov	_SIGN_POS,#_ANA_DFEO_REG_1E
+   D88F 75 27 08           2099 	mov	(_SIGN_POS + 1),#(_ANA_DFEO_REG_1E >> 8)
+                           2100 ;	../../shared/src/sampler_cal.c:107: NEG = (uint8_t*)&ANA_DFEO_REG_1F;
+   D892 75 28 7C           2101 	mov	_NEG,#_ANA_DFEO_REG_1F
+   D895 75 29 08           2102 	mov	(_NEG + 1),#(_ANA_DFEO_REG_1F >> 8)
+                           2103 ;	../../shared/src/sampler_cal.c:108: break;
+                           2104 ;	../../shared/src/sampler_cal.c:109: case OFST_F1N_D_O:
+   D898 80 60              2105 	sjmp	00111$
+   D89A                    2106 00104$:
+                           2107 ;	../../shared/src/sampler_cal.c:110: SIGN_POS = (uint8_t*)&ANA_DFEO_REG_20;
+   D89A 75 26 80           2108 	mov	_SIGN_POS,#_ANA_DFEO_REG_20
+   D89D 75 27 08           2109 	mov	(_SIGN_POS + 1),#(_ANA_DFEO_REG_20 >> 8)
+                           2110 ;	../../shared/src/sampler_cal.c:111: NEG = (uint8_t*)&ANA_DFEO_REG_21;
+   D8A0 75 28 84           2111 	mov	_NEG,#_ANA_DFEO_REG_21
+   D8A3 75 29 08           2112 	mov	(_NEG + 1),#(_ANA_DFEO_REG_21 >> 8)
+                           2113 ;	../../shared/src/sampler_cal.c:112: break;
+                           2114 ;	../../shared/src/sampler_cal.c:113: case OFST_F1P_S_E:
+   D8A6 80 52              2115 	sjmp	00111$
+   D8A8                    2116 00105$:
+                           2117 ;	../../shared/src/sampler_cal.c:114: SIGN_POS = (uint8_t*)&ANA_DFEE_REG_22;
+   D8A8 75 26 88           2118 	mov	_SIGN_POS,#_ANA_DFEE_REG_22
+   D8AB 75 27 04           2119 	mov	(_SIGN_POS + 1),#(_ANA_DFEE_REG_22 >> 8)
+                           2120 ;	../../shared/src/sampler_cal.c:115: NEG = (uint8_t*)&ANA_DFEE_REG_23;
+   D8AE 75 28 8C           2121 	mov	_NEG,#_ANA_DFEE_REG_23
+   D8B1 75 29 04           2122 	mov	(_NEG + 1),#(_ANA_DFEE_REG_23 >> 8)
+                           2123 ;	../../shared/src/sampler_cal.c:116: break;
+                           2124 ;	../../shared/src/sampler_cal.c:117: case OFST_F1N_S_E:
+   D8B4 80 44              2125 	sjmp	00111$
+   D8B6                    2126 00106$:
+                           2127 ;	../../shared/src/sampler_cal.c:118: SIGN_POS = (uint8_t*)&ANA_DFEE_REG_24;
+   D8B6 75 26 90           2128 	mov	_SIGN_POS,#_ANA_DFEE_REG_24
+   D8B9 75 27 04           2129 	mov	(_SIGN_POS + 1),#(_ANA_DFEE_REG_24 >> 8)
+                           2130 ;	../../shared/src/sampler_cal.c:119: NEG = (uint8_t*)&ANA_DFEE_REG_25;
+   D8BC 75 28 94           2131 	mov	_NEG,#_ANA_DFEE_REG_25
+   D8BF 75 29 04           2132 	mov	(_NEG + 1),#(_ANA_DFEE_REG_25 >> 8)
+                           2133 ;	../../shared/src/sampler_cal.c:120: break;
+                           2134 ;	../../shared/src/sampler_cal.c:121: case OFST_F1P_S_O:
+   D8C2 80 36              2135 	sjmp	00111$
+   D8C4                    2136 00107$:
+                           2137 ;	../../shared/src/sampler_cal.c:122: SIGN_POS = (uint8_t*)&ANA_DFEO_REG_22;
+   D8C4 75 26 88           2138 	mov	_SIGN_POS,#_ANA_DFEO_REG_22
+   D8C7 75 27 08           2139 	mov	(_SIGN_POS + 1),#(_ANA_DFEO_REG_22 >> 8)
+                           2140 ;	../../shared/src/sampler_cal.c:123: NEG = (uint8_t*)&ANA_DFEO_REG_23;
+   D8CA 75 28 8C           2141 	mov	_NEG,#_ANA_DFEO_REG_23
+   D8CD 75 29 08           2142 	mov	(_NEG + 1),#(_ANA_DFEO_REG_23 >> 8)
+                           2143 ;	../../shared/src/sampler_cal.c:124: break;
+                           2144 ;	../../shared/src/sampler_cal.c:125: case OFST_F1N_S_O:
+   D8D0 80 28              2145 	sjmp	00111$
+   D8D2                    2146 00108$:
+                           2147 ;	../../shared/src/sampler_cal.c:126: SIGN_POS = (uint8_t*)&ANA_DFEO_REG_24;
+   D8D2 75 26 90           2148 	mov	_SIGN_POS,#_ANA_DFEO_REG_24
+   D8D5 75 27 08           2149 	mov	(_SIGN_POS + 1),#(_ANA_DFEO_REG_24 >> 8)
+                           2150 ;	../../shared/src/sampler_cal.c:127: NEG = (uint8_t*)&ANA_DFEO_REG_25;
+   D8D8 75 28 94           2151 	mov	_NEG,#_ANA_DFEO_REG_25
+   D8DB 75 29 08           2152 	mov	(_NEG + 1),#(_ANA_DFEO_REG_25 >> 8)
+                           2153 ;	../../shared/src/sampler_cal.c:128: break;
+                           2154 ;	../../shared/src/sampler_cal.c:129: case OFST_EDGE_E:
+   D8DE 80 1A              2155 	sjmp	00111$
+   D8E0                    2156 00109$:
+                           2157 ;	../../shared/src/sampler_cal.c:130: SIGN_POS = (uint8_t*)&ANA_DFEE_REG_26;
+   D8E0 75 26 98           2158 	mov	_SIGN_POS,#_ANA_DFEE_REG_26
+   D8E3 75 27 04           2159 	mov	(_SIGN_POS + 1),#(_ANA_DFEE_REG_26 >> 8)
+                           2160 ;	../../shared/src/sampler_cal.c:131: NEG = (uint8_t*)&ANA_DFEE_REG_27;
+   D8E6 75 28 9C           2161 	mov	_NEG,#_ANA_DFEE_REG_27
+   D8E9 75 29 04           2162 	mov	(_NEG + 1),#(_ANA_DFEE_REG_27 >> 8)
+                           2163 ;	../../shared/src/sampler_cal.c:132: break;
+                           2164 ;	../../shared/src/sampler_cal.c:133: case OFST_EDGE_O:
+   D8EC 80 0C              2165 	sjmp	00111$
+   D8EE                    2166 00110$:
+                           2167 ;	../../shared/src/sampler_cal.c:134: SIGN_POS = (uint8_t*)&ANA_DFEO_REG_26;
+   D8EE 75 26 98           2168 	mov	_SIGN_POS,#_ANA_DFEO_REG_26
+   D8F1 75 27 08           2169 	mov	(_SIGN_POS + 1),#(_ANA_DFEO_REG_26 >> 8)
+                           2170 ;	../../shared/src/sampler_cal.c:135: NEG = (uint8_t*)&ANA_DFEO_REG_27;
+   D8F4 75 28 9C           2171 	mov	_NEG,#_ANA_DFEO_REG_27
+   D8F7 75 29 08           2172 	mov	(_NEG + 1),#(_ANA_DFEO_REG_27 >> 8)
+                           2173 ;	../../shared/src/sampler_cal.c:137: }
+   D8FA                    2174 00111$:
+                           2175 ;	../../shared/src/sampler_cal.c:140: SAMPLER_CAL_SM_SAVE = (uint8_t*)&CAL_OFST_REG0; SAMPLER_CAL_SM_SAVE+=sw; //sm
+   D8FA 75 2E 18           2176 	mov	_SAMPLER_CAL_SM_SAVE,#_CAL_OFST_REG0
+   D8FD 75 2F 25           2177 	mov	(_SAMPLER_CAL_SM_SAVE + 1),#(_CAL_OFST_REG0 >> 8)
+   D900 EA                 2178 	mov	a,r2
+   D901 25 2E              2179 	add	a,_SAMPLER_CAL_SM_SAVE
+   D903 F5 2E              2180 	mov	_SAMPLER_CAL_SM_SAVE,a
+   D905 E4                 2181 	clr	a
+   D906 35 2F              2182 	addc	a,(_SAMPLER_CAL_SM_SAVE + 1)
+   D908 F5 2F              2183 	mov	(_SAMPLER_CAL_SM_SAVE + 1),a
+   D90A 02 00 C5           2184 	ljmp	__sdcc_banked_ret
+                           2185 ;------------------------------------------------------------
+                           2186 ;Allocation info for local variables in function 'sampler_cal_sel'
+                           2187 ;------------------------------------------------------------
+                           2188 ;sw                        Allocated to registers r2 
+                           2189 ;------------------------------------------------------------
+                           2190 ;	../../shared/src/sampler_cal.c:153: void sampler_cal_sel(uint8_t sw) BANKING_CTRL
+                           2191 ;	-----------------------------------------
+                           2192 ;	 function sampler_cal_sel
+                           2193 ;	-----------------------------------------
+   D90D                    2194 _sampler_cal_sel:
+                           2195 ;	../../shared/src/sampler_cal.c:155: SAMPLER_CAL_SEL = samper_cal_sel_tb[sw];
+   D90D E5 82              2196 	mov	a,dpl
+   D90F FA                 2197 	mov	r2,a
+   D910 90 E0 E0           2198 	mov	dptr,#_samper_cal_sel_tb
+   D913 93                 2199 	movc	a,@a+dptr
+   D914 FB                 2200 	mov	r3,a
+   D915 90 00 50           2201 	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_20
+   D918 C4                 2202 	swap	a
+   D919 23                 2203 	rl	a
+   D91A 54 E0              2204 	anl	a,#(0xe0&0xe0)
+   D91C F5 F0              2205 	mov	b,a
+   D91E E0                 2206 	movx	a,@dptr
+   D91F 54 1F              2207 	anl	a,#0x1f
+   D921 45 F0              2208 	orl	a,b
+   D923 F0                 2209 	movx	@dptr,a
+                           2210 ;	../../shared/src/sampler_cal.c:156: if((sw&0x02)==0)  
+   D924 EA                 2211 	mov	a,r2
+   D925 20 E1 10           2212 	jb	acc.1,00104$
+                           2213 ;	../../shared/src/sampler_cal.c:157: DFE_F1_POL_D = sampler_f1_pol_tb[sw];
+   D928 EA                 2214 	mov	a,r2
+   D929 90 E0 EA           2215 	mov	dptr,#_sampler_f1_pol_tb
+   D92C 93                 2216 	movc	a,@a+dptr
+   D92D FB                 2217 	mov	r3,a
+   D92E 90 24 1A           2218 	mov	dptr,#(_DFE_ANA_REG0 + 0x0002)
+   D931 13                 2219 	rrc	a
+   D932 E0                 2220 	movx	a,@dptr
+   D933 92 E2              2221 	mov	acc.2,c
+   D935 F0                 2222 	movx	@dptr,a
+   D936 80 13              2223 	sjmp	00106$
+   D938                    2224 00104$:
+                           2225 ;	../../shared/src/sampler_cal.c:158: else if(sw < OFST_EDGE_E ) 	
+   D938 BA 08 00           2226 	cjne	r2,#0x08,00111$
+   D93B                    2227 00111$:
+   D93B 50 0E              2228 	jnc	00106$
+                           2229 ;	../../shared/src/sampler_cal.c:159: DFE_F1_POL_S = sampler_f1_pol_tb[sw];		
+   D93D EA                 2230 	mov	a,r2
+   D93E 90 E0 EA           2231 	mov	dptr,#_sampler_f1_pol_tb
+   D941 93                 2232 	movc	a,@a+dptr
+   D942 FA                 2233 	mov	r2,a
+   D943 90 24 1A           2234 	mov	dptr,#(_DFE_ANA_REG0 + 0x0002)
+   D946 13                 2235 	rrc	a
+   D947 E0                 2236 	movx	a,@dptr
+   D948 92 E3              2237 	mov	acc.3,c
+   D94A F0                 2238 	movx	@dptr,a
+   D94B                    2239 00106$:
+   D94B 02 00 C5           2240 	ljmp	__sdcc_banked_ret
+                           2241 ;------------------------------------------------------------
+                           2242 ;Allocation info for local variables in function 'set_sampler'
+                           2243 ;------------------------------------------------------------
+                           2244 ;val                       Allocated to registers r2 
+                           2245 ;dat                       Allocated to registers r3 
+                           2246 ;------------------------------------------------------------
+                           2247 ;	../../shared/src/sampler_cal.c:162: void set_sampler(int8_t val) BANKING_CTRL {
+                           2248 ;	-----------------------------------------
+                           2249 ;	 function set_sampler
+                           2250 ;	-----------------------------------------
+   D94E                    2251 _set_sampler:
+                           2252 ;	../../shared/src/sampler_cal.c:165: if (val>=0) {
+   D94E E5 82              2253 	mov	a,dpl
+   D950 FA                 2254 	mov	r2,a
+   D951 20 E7 1B           2255 	jb	acc.7,00102$
+                           2256 ;	../../shared/src/sampler_cal.c:166: dat = (uint8_t)(val>>1);
+   D954 EA                 2257 	mov	a,r2
+   D955 A2 E7              2258 	mov	c,acc.7
+   D957 13                 2259 	rrc	a
+                           2260 ;	../../shared/src/sampler_cal.c:167: *NEG = dat;	
+   D958 FB                 2261 	mov	r3,a
+   D959 85 28 82           2262 	mov	dpl,_NEG
+   D95C 85 29 83           2263 	mov	dph,(_NEG + 1)
+   D95F F0                 2264 	movx	@dptr,a
+                           2265 ;	../../shared/src/sampler_cal.c:168: *SIGN_POS = (uint8_t)(val-dat);	
+   D960 AC 26              2266 	mov	r4,_SIGN_POS
+   D962 AD 27              2267 	mov	r5,(_SIGN_POS + 1)
+   D964 EA                 2268 	mov	a,r2
+   D965 C3                 2269 	clr	c
+   D966 9B                 2270 	subb	a,r3
+   D967 FE                 2271 	mov	r6,a
+   D968 8C 82              2272 	mov	dpl,r4
+   D96A 8D 83              2273 	mov	dph,r5
+   D96C F0                 2274 	movx	@dptr,a
+   D96D 80 22              2275 	sjmp	00104$
+   D96F                    2276 00102$:
+                           2277 ;	../../shared/src/sampler_cal.c:171: val = -val; 
+   D96F C3                 2278 	clr	c
+   D970 E4                 2279 	clr	a
+   D971 9A                 2280 	subb	a,r2
+                           2281 ;	../../shared/src/sampler_cal.c:172: dat = (uint8_t)(val>>1);
+   D972 FA                 2282 	mov	r2,a
+   D973 A2 E7              2283 	mov	c,acc.7
+   D975 13                 2284 	rrc	a
+   D976 FB                 2285 	mov	r3,a
+                           2286 ;	../../shared/src/sampler_cal.c:173: *SIGN_POS = 0x20 | dat;	
+   D977 AC 26              2287 	mov	r4,_SIGN_POS
+   D979 AD 27              2288 	mov	r5,(_SIGN_POS + 1)
+   D97B 74 20              2289 	mov	a,#0x20
+   D97D 4B                 2290 	orl	a,r3
+   D97E FE                 2291 	mov	r6,a
+   D97F 8C 82              2292 	mov	dpl,r4
+   D981 8D 83              2293 	mov	dph,r5
+   D983 F0                 2294 	movx	@dptr,a
+                           2295 ;	../../shared/src/sampler_cal.c:174: *NEG = (uint8_t)(val-dat);				
+   D984 AC 28              2296 	mov	r4,_NEG
+   D986 AD 29              2297 	mov	r5,(_NEG + 1)
+   D988 EA                 2298 	mov	a,r2
+   D989 C3                 2299 	clr	c
+   D98A 9B                 2300 	subb	a,r3
+   D98B FA                 2301 	mov	r2,a
+   D98C 8C 82              2302 	mov	dpl,r4
+   D98E 8D 83              2303 	mov	dph,r5
+   D990 F0                 2304 	movx	@dptr,a
+   D991                    2305 00104$:
+   D991 02 00 C5           2306 	ljmp	__sdcc_banked_ret
+                           2307 ;------------------------------------------------------------
+                           2308 ;Allocation info for local variables in function 'sampler_cal'
+                           2309 ;------------------------------------------------------------
+                           2310 ;i                         Allocated to stack - offset 1
+                           2311 ;j                         Allocated to registers r4 
+                           2312 ;k                         Allocated to registers r5 
+                           2313 ;ntimes                    Allocated to registers r6 
+                           2314 ;ntimes_shft               Allocated to stack - offset 2
+                           2315 ;out_of_bound              Allocated to registers r4 
+                           2316 ;offset                    Allocated to registers r2 
+                           2317 ;ofst_res_f                Allocated to registers r3 
+                           2318 ;offset_sum_neg            Allocated to stack - offset 3
+                           2319 ;offset_sum_pos            Allocated to stack - offset 5
+                           2320 ;ofst_bnd                  Allocated to stack - offset 7
+                           2321 ;sloc0                     Allocated to stack - offset 14
+                           2322 ;------------------------------------------------------------
+                           2323 ;	../../shared/src/sampler_cal.c:178: void sampler_cal() BANKING_CTRL {
+                           2324 ;	-----------------------------------------
+                           2325 ;	 function sampler_cal
+                           2326 ;	-----------------------------------------
+   D994                    2327 _sampler_cal:
+   D994 C0 18              2328 	push	_bp
+   D996 E5 81              2329 	mov	a,sp
+   D998 F5 18              2330 	mov	_bp,a
+   D99A 24 07              2331 	add	a,#0x07
+   D99C F5 81              2332 	mov	sp,a
+                           2333 ;	../../shared/src/sampler_cal.c:186: PHY_STATUS = ST_SAMPLER_CAL;
+   D99E 90 22 30           2334 	mov	dptr,#_MCU_STATUS0_LANE
+   D9A1 74 13              2335 	mov	a,#0x13
+   D9A3 F0                 2336 	movx	@dptr,a
+                           2337 ;	../../shared/src/sampler_cal.c:187: lnx_SAMPLER_RES_CAL_DONE_LANE = 0;
+   D9A4 90 60 01           2338 	mov	dptr,#(_CAL_CTRL1_LANE + 0x0001)
+   D9A7 E0                 2339 	movx	a,@dptr
+   D9A8 54 EF              2340 	anl	a,#0xef
+   D9AA F0                 2341 	movx	@dptr,a
+                           2342 ;	../../shared/src/sampler_cal.c:188: lnx_SAMPLER_CAL_DONE_LANE = 0;
+   D9AB 90 60 01           2343 	mov	dptr,#(_CAL_CTRL1_LANE + 0x0001)
+   D9AE E0                 2344 	movx	a,@dptr
+   D9AF 54 F7              2345 	anl	a,#0xf7
+   D9B1 F0                 2346 	movx	@dptr,a
+                           2347 ;	../../shared/src/sampler_cal.c:191: offset = 0;
+   D9B2 7A 00              2348 	mov	r2,#0x00
+                           2349 ;	../../shared/src/sampler_cal.c:192: if(cal_start_on==0) {
+   D9B4 90 67 AF           2350 	mov	dptr,#_cal_start_on
+   D9B7 E0                 2351 	movx	a,@dptr
+   D9B8 FB                 2352 	mov	r3,a
+   D9B9 60 03              2353 	jz	00237$
+   D9BB 02 DA B1           2354 	ljmp	00102$
+   D9BE                    2355 00237$:
+                           2356 ;	../../shared/src/sampler_cal.c:193: reg_DFE_CTRL_ANA_BYPASS_LANE = 1;
+   D9BE 90 24 1B           2357 	mov	dptr,#(_DFE_ANA_REG0 + 0x0003)
+   D9C1 E0                 2358 	movx	a,@dptr
+   D9C2 44 80              2359 	orl	a,#0x80
+   D9C4 F0                 2360 	movx	@dptr,a
+                           2361 ;	../../shared/src/sampler_cal.c:194: SMPLR_CAL_EN = 1; reg_SMPLR_CAL_EN_DLY_LANE = 1;
+   D9C5 90 00 4C           2362 	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_19
+   D9C8 E0                 2363 	movx	a,@dptr
+   D9C9 44 01              2364 	orl	a,#0x01
+   D9CB F0                 2365 	movx	@dptr,a
+   D9CC 90 02 24           2366 	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+   D9CF E0                 2367 	movx	a,@dptr
+   D9D0 44 80              2368 	orl	a,#0x80
+   D9D2 F0                 2369 	movx	@dptr,a
+                           2370 ;	../../shared/src/sampler_cal.c:195: DATA_SLICER_PATH_SWITCH_E = 0;
+   D9D3 90 24 18           2371 	mov	dptr,#_DFE_ANA_REG0
+   D9D6 E0                 2372 	movx	a,@dptr
+   D9D7 54 EF              2373 	anl	a,#0xef
+   D9D9 F0                 2374 	movx	@dptr,a
+                           2375 ;	../../shared/src/sampler_cal.c:196: DATA_SLICER_PATH_SWITCH_O = 0;
+   D9DA 90 24 18           2376 	mov	dptr,#_DFE_ANA_REG0
+   D9DD E0                 2377 	movx	a,@dptr
+   D9DE 54 DF              2378 	anl	a,#0xdf
+   D9E0 F0                 2379 	movx	@dptr,a
+                           2380 ;	../../shared/src/sampler_cal.c:197: DFE_F1_POL_EN_D = 1;
+   D9E1 90 24 19           2381 	mov	dptr,#(_DFE_ANA_REG0 + 0x0001)
+   D9E4 E0                 2382 	movx	a,@dptr
+   D9E5 44 04              2383 	orl	a,#0x04
+   D9E7 F0                 2384 	movx	@dptr,a
+                           2385 ;	../../shared/src/sampler_cal.c:198: DFE_F1_POL_EN_S = 1;
+   D9E8 90 24 19           2386 	mov	dptr,#(_DFE_ANA_REG0 + 0x0001)
+   D9EB E0                 2387 	movx	a,@dptr
+   D9EC 44 08              2388 	orl	a,#0x08
+   D9EE F0                 2389 	movx	@dptr,a
+                           2390 ;	../../shared/src/sampler_cal.c:199: PU_DFE = 0;
+   D9EF 90 21 01           2391 	mov	dptr,#(_PM_CTRL_RX_LANE_REG1_LANE + 0x0001)
+   D9F2 E0                 2392 	movx	a,@dptr
+   D9F3 54 BF              2393 	anl	a,#0xbf
+   D9F5 F0                 2394 	movx	@dptr,a
+                           2395 ;	../../shared/src/sampler_cal.c:200: PU_LB = 0;	reg_PU_LB_DLY_LANE = 0; //should be 0.
+   D9F6 90 02 08           2396 	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_130
+   D9F9 E0                 2397 	movx	a,@dptr
+   D9FA 54 F7              2398 	anl	a,#0xf7
+   D9FC F0                 2399 	movx	@dptr,a
+   D9FD 90 02 08           2400 	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_130
+   DA00 E0                 2401 	movx	a,@dptr
+   DA01 54 FB              2402 	anl	a,#0xfb
+   DA03 F0                 2403 	movx	@dptr,a
+                           2404 ;	../../shared/src/sampler_cal.c:201: FFE_PULSE_EN = 0;
+   DA04 90 02 0C           2405 	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_131
+   DA07 E0                 2406 	movx	a,@dptr
+   DA08 54 7F              2407 	anl	a,#0x7f
+   DA0A F0                 2408 	movx	@dptr,a
+                           2409 ;	../../shared/src/sampler_cal.c:202: PU_F1P_D_E = 1; //sequence
+   DA0B 90 00 5C           2410 	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_23
+   DA0E E0                 2411 	movx	a,@dptr
+   DA0F 44 08              2412 	orl	a,#0x08
+   DA11 F0                 2413 	movx	@dptr,a
+                           2414 ;	../../shared/src/sampler_cal.c:203: PU_F1P_D_O = 1;
+   DA12 90 00 60           2415 	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_24
+   DA15 E0                 2416 	movx	a,@dptr
+   DA16 44 80              2417 	orl	a,#0x80
+   DA18 F0                 2418 	movx	@dptr,a
+                           2419 ;	../../shared/src/sampler_cal.c:204: PU_F1N_D_E = 1;
+   DA19 90 00 5C           2420 	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_23
+   DA1C E0                 2421 	movx	a,@dptr
+   DA1D 44 04              2422 	orl	a,#0x04
+   DA1F F0                 2423 	movx	@dptr,a
+                           2424 ;	../../shared/src/sampler_cal.c:205: PU_F1N_D_O = 1;
+   DA20 90 00 60           2425 	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_24
+   DA23 E0                 2426 	movx	a,@dptr
+   DA24 44 40              2427 	orl	a,#0x40
+   DA26 F0                 2428 	movx	@dptr,a
+                           2429 ;	../../shared/src/sampler_cal.c:206: PU_F1P_S_E = 1;
+   DA27 90 00 5C           2430 	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_23
+   DA2A E0                 2431 	movx	a,@dptr
+   DA2B 44 02              2432 	orl	a,#0x02
+   DA2D F0                 2433 	movx	@dptr,a
+                           2434 ;	../../shared/src/sampler_cal.c:207: PU_F1P_S_O = 1;
+   DA2E 90 00 60           2435 	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_24
+   DA31 E0                 2436 	movx	a,@dptr
+   DA32 44 20              2437 	orl	a,#0x20
+   DA34 F0                 2438 	movx	@dptr,a
+                           2439 ;	../../shared/src/sampler_cal.c:208: PU_F1N_S_E = 1;
+   DA35 90 00 5C           2440 	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_23
+   DA38 E0                 2441 	movx	a,@dptr
+   DA39 44 01              2442 	orl	a,#0x01
+   DA3B F0                 2443 	movx	@dptr,a
+                           2444 ;	../../shared/src/sampler_cal.c:209: PU_F1N_S_O = 1;
+   DA3C 90 00 60           2445 	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_24
+   DA3F E0                 2446 	movx	a,@dptr
+   DA40 44 10              2447 	orl	a,#0x10
+   DA42 F0                 2448 	movx	@dptr,a
+                           2449 ;	../../shared/src/sampler_cal.c:210: PU_OS = 1;
+   DA43 90 02 24           2450 	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+   DA46 E0                 2451 	movx	a,@dptr
+   DA47 44 10              2452 	orl	a,#0x10
+   DA49 F0                 2453 	movx	@dptr,a
+                           2454 ;	../../shared/src/sampler_cal.c:211: PU_VCM = 1;
+   DA4A 90 00 54           2455 	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_21
+   DA4D E0                 2456 	movx	a,@dptr
+   DA4E 44 10              2457 	orl	a,#0x10
+   DA50 F0                 2458 	movx	@dptr,a
+                           2459 ;	../../shared/src/sampler_cal.c:212: EOM_EN_D = 0;
+   DA51 90 00 58           2460 	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_22
+   DA54 E0                 2461 	movx	a,@dptr
+   DA55 54 DF              2462 	anl	a,#0xdf
+   DA57 F0                 2463 	movx	@dptr,a
+                           2464 ;	../../shared/src/sampler_cal.c:213: EOM_EN_S = 0;
+   DA58 90 00 58           2465 	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_22
+   DA5B E0                 2466 	movx	a,@dptr
+   DA5C 54 BF              2467 	anl	a,#0xbf
+   DA5E F0                 2468 	movx	@dptr,a
+                           2469 ;	../../shared/src/sampler_cal.c:214: OFST_RES = 0;
+   DA5F 90 02 24           2470 	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+   DA62 E0                 2471 	movx	a,@dptr
+   DA63 54 9F              2472 	anl	a,#0x9f
+   DA65 F0                 2473 	movx	@dptr,a
+                           2474 ;	../../shared/src/sampler_cal.c:215: reg_EN_DFE_F1TO3_LANE = 0;
+   DA66 90 00 54           2475 	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_21
+   DA69 E0                 2476 	movx	a,@dptr
+   DA6A 54 FB              2477 	anl	a,#0xfb
+   DA6C F0                 2478 	movx	@dptr,a
+                           2479 ;	../../shared/src/sampler_cal.c:218: CKCON = 0x07 ;  //MCU WAIT time the slowest
+   DA6D 75 8E 07           2480 	mov	_CKCON,#0x07
+                           2481 ;	../../shared/src/sampler_cal.c:219: reg_RESET_DFE_LANE = 0;
+   DA70 90 24 10           2482 	mov	dptr,#_RX_EQ_CLK_CTRL
+   DA73 E0                 2483 	movx	a,@dptr
+   DA74 54 FB              2484 	anl	a,#0xfb
+   DA76 F0                 2485 	movx	@dptr,a
+                           2486 ;	../../shared/src/sampler_cal.c:220: CKCON = 0x00 ; //MCU WAIT time setting back to normal.
+   DA77 75 8E 00           2487 	mov	_CKCON,#0x00
+                           2488 ;	../../shared/src/sampler_cal.c:221: reg_ANA_REG_DFEE_RST_LANE = 0;
+   DA7A 90 22 D0           2489 	mov	dptr,#_ANA_IF_DFEE_REG0
+   DA7D E0                 2490 	movx	a,@dptr
+   DA7E 54 7F              2491 	anl	a,#0x7f
+   DA80 F0                 2492 	movx	@dptr,a
+                           2493 ;	../../shared/src/sampler_cal.c:222: reg_ANA_REG_DFEO_RST_LANE = 0;
+   DA81 90 22 D4           2494 	mov	dptr,#_ANA_IF_DFEO_REG0
+   DA84 E0                 2495 	movx	a,@dptr
+   DA85 54 7F              2496 	anl	a,#0x7f
+   DA87 F0                 2497 	movx	@dptr,a
+                           2498 ;	../../shared/src/sampler_cal.c:223: reg_DFE_CLK_OFF_LANE = 1;		// First, disable DFE_CLK
+   DA88 90 24 10           2499 	mov	dptr,#_RX_EQ_CLK_CTRL
+   DA8B E0                 2500 	movx	a,@dptr
+   DA8C 44 01              2501 	orl	a,#0x01
+   DA8E F0                 2502 	movx	@dptr,a
+                           2503 ;	../../shared/src/sampler_cal.c:224: reg_DFE_MCU_CLK_EN_LANE = 1;	// Second, enable DFE_MCU_CLK
+                           2504 ;	../../shared/src/sampler_cal.c:225: reg_DFE_EN_LANE = 0; reg_DFE_DIS_LANE = 1;
+   DA8F 90 24 10           2505 	mov	dptr,#_RX_EQ_CLK_CTRL
+   DA92 E0                 2506 	movx	a,@dptr
+   DA93 44 02              2507 	orl	a,#0x02
+   DA95 F0                 2508 	movx	@dptr,a
+   DA96 E0                 2509 	movx	a,@dptr
+   DA97 54 EF              2510 	anl	a,#0xef
+   DA99 F0                 2511 	movx	@dptr,a
+   DA9A 90 24 0C           2512 	mov	dptr,#_DFE_CTRL_REG3
+   DA9D E0                 2513 	movx	a,@dptr
+   DA9E 44 40              2514 	orl	a,#0x40
+   DAA0 F0                 2515 	movx	@dptr,a
+                           2516 ;	../../shared/src/sampler_cal.c:227: delay01(10);
+   DAA1 90 00 0A           2517 	mov	dptr,#0x000A
+   DAA4 C0 02              2518 	push	ar2
+   DAA6 78 16              2519 	mov	r0,#_delay01
+   DAA8 79 BC              2520 	mov	r1,#(_delay01 >> 8)
+   DAAA 7A 02              2521 	mov	r2,#(_delay01 >> 16)
+   DAAC 12 00 B3           2522 	lcall	__sdcc_banked_call
+   DAAF D0 02              2523 	pop	ar2
+   DAB1                    2524 00102$:
+                           2525 ;	../../shared/src/sampler_cal.c:230: if( cmx_SAMPLER_CAL_EXT_EN ) {
+   DAB1 90 E6 0A           2526 	mov	dptr,#(_CONTROL_CONFIG1 + 0x0002)
+   DAB4 E0                 2527 	movx	a,@dptr
+   DAB5 20 E4 03           2528 	jb	acc.4,00238$
+   DAB8 02 DB 44           2529 	ljmp	00110$
+   DABB                    2530 00238$:
+                           2531 ;	../../shared/src/sampler_cal.c:231: OFST_RES = lnx_CAL_SAMPLER_RES_LANE_7_0;	
+   DABB 90 60 16           2532 	mov	dptr,#(_CAL_SAVE_DATA2_LANE + 0x0002)
+   DABE E0                 2533 	movx	a,@dptr
+   DABF 90 02 24           2534 	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+   DAC2 C4                 2535 	swap	a
+   DAC3 23                 2536 	rl	a
+   DAC4 54 60              2537 	anl	a,#(0xe0&0x60)
+   DAC6 F5 F0              2538 	mov	b,a
+   DAC8 E0                 2539 	movx	a,@dptr
+   DAC9 54 9F              2540 	anl	a,#0x9f
+   DACB 45 F0              2541 	orl	a,b
+   DACD F0                 2542 	movx	@dptr,a
+                           2543 ;	../../shared/src/sampler_cal.c:233: for(i=0; i<10; i++) {
+   DACE 7B 00              2544 	mov	r3,#0x00
+   DAD0                    2545 00169$:
+   DAD0 C3                 2546 	clr	c
+   DAD1 EB                 2547 	mov	a,r3
+   DAD2 64 80              2548 	xrl	a,#0x80
+   DAD4 94 8A              2549 	subb	a,#0x8a
+   DAD6 50 51              2550 	jnc	00172$
+                           2551 ;	../../shared/src/sampler_cal.c:234: sampler_sel(i);
+   DAD8 8B 82              2552 	mov	dpl,r3
+   DADA C0 02              2553 	push	ar2
+   DADC C0 03              2554 	push	ar3
+   DADE 78 3E              2555 	mov	r0,#_sampler_sel
+   DAE0 79 D8              2556 	mov	r1,#(_sampler_sel >> 8)
+   DAE2 7A 02              2557 	mov	r2,#(_sampler_sel >> 16)
+   DAE4 12 00 B3           2558 	lcall	__sdcc_banked_call
+   DAE7 D0 03              2559 	pop	ar3
+   DAE9 D0 02              2560 	pop	ar2
+                           2561 ;	../../shared/src/sampler_cal.c:237: if(offset >= 0)
+   DAEB EA                 2562 	mov	a,r2
+   DAEC 20 E7 0F           2563 	jb	acc.7,00104$
+                           2564 ;	../../shared/src/sampler_cal.c:238: *SAMPLER_CAL_SM_SAVE = offset | 0x40;
+   DAEF AC 2E              2565 	mov	r4,_SAMPLER_CAL_SM_SAVE
+   DAF1 AD 2F              2566 	mov	r5,(_SAMPLER_CAL_SM_SAVE + 1)
+   DAF3 74 40              2567 	mov	a,#0x40
+   DAF5 4A                 2568 	orl	a,r2
+   DAF6 FE                 2569 	mov	r6,a
+   DAF7 8C 82              2570 	mov	dpl,r4
+   DAF9 8D 83              2571 	mov	dph,r5
+   DAFB F0                 2572 	movx	@dptr,a
+   DAFC 80 0D              2573 	sjmp	00105$
+   DAFE                    2574 00104$:
+                           2575 ;	../../shared/src/sampler_cal.c:240: *SAMPLER_CAL_SM_SAVE = -offset;
+   DAFE AC 2E              2576 	mov	r4,_SAMPLER_CAL_SM_SAVE
+   DB00 AD 2F              2577 	mov	r5,(_SAMPLER_CAL_SM_SAVE + 1)
+   DB02 C3                 2578 	clr	c
+   DB03 E4                 2579 	clr	a
+   DB04 9A                 2580 	subb	a,r2
+   DB05 FE                 2581 	mov	r6,a
+   DB06 8C 82              2582 	mov	dpl,r4
+   DB08 8D 83              2583 	mov	dph,r5
+   DB0A F0                 2584 	movx	@dptr,a
+   DB0B                    2585 00105$:
+                           2586 ;	../../shared/src/sampler_cal.c:244: offset = *SAMPLER_CAL_SAVE;
+   DB0B 85 2A 82           2587 	mov	dpl,_SAMPLER_CAL_SAVE
+   DB0E 85 2B 83           2588 	mov	dph,(_SAMPLER_CAL_SAVE + 1)
+   DB11 E0                 2589 	movx	a,@dptr
+                           2590 ;	../../shared/src/sampler_cal.c:245: set_sampler(offset);
+   DB12 FA                 2591 	mov	r2,a
+   DB13 F5 82              2592 	mov	dpl,a
+   DB15 C0 02              2593 	push	ar2
+   DB17 C0 03              2594 	push	ar3
+   DB19 78 4E              2595 	mov	r0,#_set_sampler
+   DB1B 79 D9              2596 	mov	r1,#(_set_sampler >> 8)
+   DB1D 7A 02              2597 	mov	r2,#(_set_sampler >> 16)
+   DB1F 12 00 B3           2598 	lcall	__sdcc_banked_call
+   DB22 D0 03              2599 	pop	ar3
+   DB24 D0 02              2600 	pop	ar2
+                           2601 ;	../../shared/src/sampler_cal.c:233: for(i=0; i<10; i++) {
+   DB26 0B                 2602 	inc	r3
+   DB27 80 A7              2603 	sjmp	00169$
+   DB29                    2604 00172$:
+                           2605 ;	../../shared/src/sampler_cal.c:258: lnx_SAMPLER_RES_CAL_DONE_LANE = 1;
+   DB29 90 60 01           2606 	mov	dptr,#(_CAL_CTRL1_LANE + 0x0001)
+   DB2C E0                 2607 	movx	a,@dptr
+   DB2D 44 10              2608 	orl	a,#0x10
+   DB2F F0                 2609 	movx	@dptr,a
+                           2610 ;	../../shared/src/sampler_cal.c:259: lnx_SAMPLER_CAL_DONE_LANE = 1;
+   DB30 90 60 01           2611 	mov	dptr,#(_CAL_CTRL1_LANE + 0x0001)
+   DB33 E0                 2612 	movx	a,@dptr
+   DB34 44 08              2613 	orl	a,#0x08
+   DB36 F0                 2614 	movx	@dptr,a
+                           2615 ;	../../shared/src/sampler_cal.c:261: if(cal_start_on) return;
+   DB37 90 67 AF           2616 	mov	dptr,#_cal_start_on
+   DB3A E0                 2617 	movx	a,@dptr
+   DB3B FB                 2618 	mov	r3,a
+   DB3C 70 03              2619 	jnz	00241$
+   DB3E 02 DF 2B           2620 	ljmp	00168$
+   DB41                    2621 00241$:
+   DB41 02 DF 7F           2622 	ljmp	00189$
+                           2623 ;	../../shared/src/sampler_cal.c:262: else goto skip_out;
+   DB44                    2624 00110$:
+                           2625 ;	../../shared/src/sampler_cal.c:266: lnx_SAMPLER_CAL_PASS_LANE = 0;
+   DB44 90 60 05           2626 	mov	dptr,#(_CAL_CTRL2_LANE + 0x0001)
+   DB47 E0                 2627 	movx	a,@dptr
+   DB48 54 BF              2628 	anl	a,#0xbf
+   DB4A F0                 2629 	movx	@dptr,a
+                           2630 ;	../../shared/src/sampler_cal.c:270: ofst_res_f = 1;
+   DB4B 7B 01              2631 	mov	r3,#0x01
+                           2632 ;	../../shared/src/sampler_cal.c:271: j = 1;
+   DB4D 7C 01              2633 	mov	r4,#0x01
+                           2634 ;	../../shared/src/sampler_cal.c:272: for(i=0; i<10; i++)	{
+   DB4F A8 18              2635 	mov	r0,_bp
+   DB51 08                 2636 	inc	r0
+   DB52 76 00              2637 	mov	@r0,#0x00
+   DB54                    2638 00173$:
+   DB54 A8 18              2639 	mov	r0,_bp
+   DB56 08                 2640 	inc	r0
+   DB57 C3                 2641 	clr	c
+   DB58 E6                 2642 	mov	a,@r0
+   DB59 64 80              2643 	xrl	a,#0x80
+   DB5B 94 8A              2644 	subb	a,#0x8a
+   DB5D 40 03              2645 	jc	00242$
+   DB5F 02 DC A0           2646 	ljmp	00176$
+   DB62                    2647 00242$:
+                           2648 ;	../../shared/src/sampler_cal.c:274: sampler_sel(i);
+   DB62 A8 18              2649 	mov	r0,_bp
+   DB64 08                 2650 	inc	r0
+   DB65 86 82              2651 	mov	dpl,@r0
+   DB67 C0 03              2652 	push	ar3
+   DB69 C0 04              2653 	push	ar4
+   DB6B 78 3E              2654 	mov	r0,#_sampler_sel
+   DB6D 79 D8              2655 	mov	r1,#(_sampler_sel >> 8)
+   DB6F 7A 02              2656 	mov	r2,#(_sampler_sel >> 16)
+   DB71 12 00 B3           2657 	lcall	__sdcc_banked_call
+                           2658 ;	../../shared/src/sampler_cal.c:275: sampler_cal_sel(i);
+   DB74 A8 18              2659 	mov	r0,_bp
+   DB76 08                 2660 	inc	r0
+   DB77 86 82              2661 	mov	dpl,@r0
+   DB79 78 0D              2662 	mov	r0,#_sampler_cal_sel
+   DB7B 79 D9              2663 	mov	r1,#(_sampler_cal_sel >> 8)
+   DB7D 7A 02              2664 	mov	r2,#(_sampler_cal_sel >> 16)
+   DB7F 12 00 B3           2665 	lcall	__sdcc_banked_call
+   DB82 D0 04              2666 	pop	ar4
+   DB84 D0 03              2667 	pop	ar3
+                           2668 ;	../../shared/src/sampler_cal.c:277: while (j <= 3) {
+   DB86 8C 06              2669 	mov	ar6,r4
+   DB88                    2670 00129$:
+   DB88 C3                 2671 	clr	c
+   DB89 74 83              2672 	mov	a,#(0x03 ^ 0x80)
+   DB8B 8E F0              2673 	mov	b,r6
+   DB8D 63 F0 80           2674 	xrl	b,#0x80
+   DB90 95 F0              2675 	subb	a,b
+   DB92 50 03              2676 	jnc	00243$
+   DB94 02 DC 63           2677 	ljmp	00234$
+   DB97                    2678 00243$:
+                           2679 ;	../../shared/src/sampler_cal.c:278: OFST_RES = j;
+   DB97 C0 03              2680 	push	ar3
+   DB99 8E 07              2681 	mov	ar7,r6
+   DB9B 90 02 24           2682 	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+   DB9E EF                 2683 	mov	a,r7
+   DB9F C4                 2684 	swap	a
+   DBA0 23                 2685 	rl	a
+   DBA1 54 60              2686 	anl	a,#(0xe0&0x60)
+   DBA3 F5 F0              2687 	mov	b,a
+   DBA5 E0                 2688 	movx	a,@dptr
+   DBA6 54 9F              2689 	anl	a,#0x9f
+   DBA8 45 F0              2690 	orl	a,b
+   DBAA F0                 2691 	movx	@dptr,a
+                           2692 ;	../../shared/src/sampler_cal.c:279: offset = r_training_bound_tb[j]; //always use 80%
+   DBAB EE                 2693 	mov	a,r6
+   DBAC 90 E0 DC           2694 	mov	dptr,#_r_training_bound_tb
+   DBAF 93                 2695 	movc	a,@a+dptr
+   DBB0 FA                 2696 	mov	r2,a
+                           2697 ;	../../shared/src/sampler_cal.c:280: *SIGN_POS = 0x20 | offset;	
+   DBB1 AF 26              2698 	mov	r7,_SIGN_POS
+   DBB3 AB 27              2699 	mov	r3,(_SIGN_POS + 1)
+   DBB5 74 20              2700 	mov	a,#0x20
+   DBB7 4A                 2701 	orl	a,r2
+   DBB8 8F 82              2702 	mov	dpl,r7
+   DBBA 8B 83              2703 	mov	dph,r3
+   DBBC F0                 2704 	movx	@dptr,a
+                           2705 ;	../../shared/src/sampler_cal.c:281: *NEG = offset;	
+   DBBD 85 28 82           2706 	mov	dpl,_NEG
+   DBC0 85 29 83           2707 	mov	dph,(_NEG + 1)
+   DBC3 EA                 2708 	mov	a,r2
+   DBC4 F0                 2709 	movx	@dptr,a
+                           2710 ;	../../shared/src/sampler_cal.c:283: out_of_bound = 0;
+   DBC5 7C 00              2711 	mov	r4,#0x00
+                           2712 ;	../../shared/src/sampler_cal.c:284: delay01(20); // 2us, 4us, 8us and 16us programmable
+   DBC7 90 00 14           2713 	mov	dptr,#0x0014
+   DBCA C0 02              2714 	push	ar2
+   DBCC C0 03              2715 	push	ar3
+   DBCE C0 04              2716 	push	ar4
+   DBD0 C0 06              2717 	push	ar6
+   DBD2 78 16              2718 	mov	r0,#_delay01
+   DBD4 79 BC              2719 	mov	r1,#(_delay01 >> 8)
+   DBD6 7A 02              2720 	mov	r2,#(_delay01 >> 16)
+   DBD8 12 00 B3           2721 	lcall	__sdcc_banked_call
+   DBDB D0 06              2722 	pop	ar6
+   DBDD D0 04              2723 	pop	ar4
+   DBDF D0 03              2724 	pop	ar3
+   DBE1 D0 02              2725 	pop	ar2
+                           2726 ;	../../shared/src/sampler_cal.c:395: reg_DFE_EN_LANE = dfe_dis==0;  reg_DFE_DIS_LANE = dfe_dis;
+   DBE3 D0 03              2727 	pop	ar3
+                           2728 ;	../../shared/src/sampler_cal.c:285: for (k=1; k<=smpl_size; k++) {
+   DBE5 7D 01              2729 	mov	r5,#0x01
+   DBE7                    2730 00113$:
+   DBE7 C3                 2731 	clr	c
+   DBE8 74 84              2732 	mov	a,#(0x04 ^ 0x80)
+   DBEA 8D F0              2733 	mov	b,r5
+   DBEC 63 F0 80           2734 	xrl	b,#0x80
+   DBEF 95 F0              2735 	subb	a,b
+   DBF1 40 13              2736 	jc	00116$
+                           2737 ;	../../shared/src/sampler_cal.c:286: if (VOFF_POS == 1) {
+   DBF3 90 21 50           2738 	mov	dptr,#_RX_CALIBRATION_REG
+   DBF6 E0                 2739 	movx	a,@dptr
+   DBF7 C4                 2740 	swap	a
+   DBF8 23                 2741 	rl	a
+   DBF9 54 01              2742 	anl	a,#0x01
+   DBFB FF                 2743 	mov	r7,a
+   DBFC BF 01 04           2744 	cjne	r7,#0x01,00115$
+                           2745 ;	../../shared/src/sampler_cal.c:287: out_of_bound = 1;
+   DBFF 7C 01              2746 	mov	r4,#0x01
+                           2747 ;	../../shared/src/sampler_cal.c:288: break;
+   DC01 80 03              2748 	sjmp	00116$
+   DC03                    2749 00115$:
+                           2750 ;	../../shared/src/sampler_cal.c:285: for (k=1; k<=smpl_size; k++) {
+   DC03 0D                 2751 	inc	r5
+   DC04 80 E1              2752 	sjmp	00113$
+   DC06                    2753 00116$:
+                           2754 ;	../../shared/src/sampler_cal.c:292: *SIGN_POS = offset;
+   DC06 85 26 82           2755 	mov	dpl,_SIGN_POS
+   DC09 85 27 83           2756 	mov	dph,(_SIGN_POS + 1)
+   DC0C EA                 2757 	mov	a,r2
+   DC0D F0                 2758 	movx	@dptr,a
+                           2759 ;	../../shared/src/sampler_cal.c:293: delay01(20); // 2us, 4us, 8us and 16us programmable
+   DC0E 90 00 14           2760 	mov	dptr,#0x0014
+   DC11 C0 03              2761 	push	ar3
+   DC13 C0 04              2762 	push	ar4
+   DC15 C0 06              2763 	push	ar6
+   DC17 78 16              2764 	mov	r0,#_delay01
+   DC19 79 BC              2765 	mov	r1,#(_delay01 >> 8)
+   DC1B 7A 02              2766 	mov	r2,#(_delay01 >> 16)
+   DC1D 12 00 B3           2767 	lcall	__sdcc_banked_call
+   DC20 D0 06              2768 	pop	ar6
+   DC22 D0 04              2769 	pop	ar4
+   DC24 D0 03              2770 	pop	ar3
+                           2771 ;	../../shared/src/sampler_cal.c:294: for (k=1; k<=smpl_size; k++) {
+   DC26 7D 01              2772 	mov	r5,#0x01
+   DC28                    2773 00119$:
+   DC28 C3                 2774 	clr	c
+   DC29 74 84              2775 	mov	a,#(0x04 ^ 0x80)
+   DC2B 8D F0              2776 	mov	b,r5
+   DC2D 63 F0 80           2777 	xrl	b,#0x80
+   DC30 95 F0              2778 	subb	a,b
+   DC32 40 0E              2779 	jc	00122$
+                           2780 ;	../../shared/src/sampler_cal.c:295: if (VOFF_POS == 0) {
+   DC34 90 21 50           2781 	mov	dptr,#_RX_CALIBRATION_REG
+   DC37 E0                 2782 	movx	a,@dptr
+   DC38 20 E3 04           2783 	jb	acc.3,00121$
+                           2784 ;	../../shared/src/sampler_cal.c:296: out_of_bound = 1;
+   DC3B 7C 01              2785 	mov	r4,#0x01
+                           2786 ;	../../shared/src/sampler_cal.c:297: break;
+   DC3D 80 03              2787 	sjmp	00122$
+   DC3F                    2788 00121$:
+                           2789 ;	../../shared/src/sampler_cal.c:294: for (k=1; k<=smpl_size; k++) {
+   DC3F 0D                 2790 	inc	r5
+   DC40 80 E6              2791 	sjmp	00119$
+   DC42                    2792 00122$:
+                           2793 ;	../../shared/src/sampler_cal.c:301: if (out_of_bound == 0) { 
+   DC42 EC                 2794 	mov	a,r4
+   DC43 60 1E              2795 	jz	00234$
+                           2796 ;	../../shared/src/sampler_cal.c:305: if(j<3) {
+   DC45 C3                 2797 	clr	c
+   DC46 EE                 2798 	mov	a,r6
+   DC47 64 80              2799 	xrl	a,#0x80
+   DC49 94 83              2800 	subb	a,#0x83
+   DC4B 50 16              2801 	jnc	00234$
+                           2802 ;	../../shared/src/sampler_cal.c:306: j = j + 1;	OFST_RES = j;
+   DC4D 0E                 2803 	inc	r6
+   DC4E 8E 05              2804 	mov	ar5,r6
+   DC50 90 02 24           2805 	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+   DC53 ED                 2806 	mov	a,r5
+   DC54 C4                 2807 	swap	a
+   DC55 23                 2808 	rl	a
+   DC56 54 60              2809 	anl	a,#(0xe0&0x60)
+   DC58 F5 F0              2810 	mov	b,a
+   DC5A E0                 2811 	movx	a,@dptr
+   DC5B 54 9F              2812 	anl	a,#0x9f
+   DC5D 45 F0              2813 	orl	a,b
+   DC5F F0                 2814 	movx	@dptr,a
+                           2815 ;	../../shared/src/sampler_cal.c:308: else break;	
+   DC60 02 DB 88           2816 	ljmp	00129$
+   DC63                    2817 00234$:
+   DC63 8E 04              2818 	mov	ar4,r6
+                           2819 ;	../../shared/src/sampler_cal.c:312: if (ofst_res_f > OFST_RES) {
+   DC65 90 02 24           2820 	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+   DC68 E0                 2821 	movx	a,@dptr
+   DC69 C4                 2822 	swap	a
+   DC6A 03                 2823 	rr	a
+   DC6B 54 03              2824 	anl	a,#0x03
+   DC6D FD                 2825 	mov	r5,a
+   DC6E 8B 06              2826 	mov	ar6,r3
+   DC70 C3                 2827 	clr	c
+   DC71 ED                 2828 	mov	a,r5
+   DC72 64 80              2829 	xrl	a,#0x80
+   DC74 8E F0              2830 	mov	b,r6
+   DC76 63 F0 80           2831 	xrl	b,#0x80
+   DC79 95 F0              2832 	subb	a,b
+   DC7B 50 12              2833 	jnc	00133$
+                           2834 ;	../../shared/src/sampler_cal.c:313: OFST_RES = ofst_res_f;
+   DC7D 90 02 24           2835 	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+   DC80 EB                 2836 	mov	a,r3
+   DC81 C4                 2837 	swap	a
+   DC82 23                 2838 	rl	a
+   DC83 54 60              2839 	anl	a,#(0xe0&0x60)
+   DC85 F5 F0              2840 	mov	b,a
+   DC87 E0                 2841 	movx	a,@dptr
+   DC88 54 9F              2842 	anl	a,#0x9f
+   DC8A 45 F0              2843 	orl	a,b
+   DC8C F0                 2844 	movx	@dptr,a
+   DC8D 80 0A              2845 	sjmp	00175$
+   DC8F                    2846 00133$:
+                           2847 ;	../../shared/src/sampler_cal.c:316: ofst_res_f = OFST_RES;
+   DC8F 90 02 24           2848 	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+   DC92 E0                 2849 	movx	a,@dptr
+   DC93 C4                 2850 	swap	a
+   DC94 03                 2851 	rr	a
+   DC95 54 03              2852 	anl	a,#0x03
+   DC97 FD                 2853 	mov	r5,a
+   DC98 FB                 2854 	mov	r3,a
+   DC99                    2855 00175$:
+                           2856 ;	../../shared/src/sampler_cal.c:272: for(i=0; i<10; i++)	{
+   DC99 A8 18              2857 	mov	r0,_bp
+   DC9B 08                 2858 	inc	r0
+   DC9C 06                 2859 	inc	@r0
+   DC9D 02 DB 54           2860 	ljmp	00173$
+   DCA0                    2861 00176$:
+                           2862 ;	../../shared/src/sampler_cal.c:320: lnx_CAL_SAMPLER_RES_LANE_7_0 = OFST_RES;
+   DCA0 90 02 24           2863 	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+   DCA3 E0                 2864 	movx	a,@dptr
+   DCA4 C4                 2865 	swap	a
+   DCA5 03                 2866 	rr	a
+   DCA6 54 03              2867 	anl	a,#0x03
+   DCA8 90 60 16           2868 	mov	dptr,#(_CAL_SAVE_DATA2_LANE + 0x0002)
+   DCAB F0                 2869 	movx	@dptr,a
+                           2870 ;	../../shared/src/sampler_cal.c:321: ofst_bnd = r_training_bound_tb[OFST_RES]; ofst_bnd<<=1;
+   DCAC 90 02 24           2871 	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+   DCAF E0                 2872 	movx	a,@dptr
+   DCB0 C4                 2873 	swap	a
+   DCB1 03                 2874 	rr	a
+   DCB2 54 03              2875 	anl	a,#0x03
+   DCB4 90 E0 DC           2876 	mov	dptr,#_r_training_bound_tb
+   DCB7 93                 2877 	movc	a,@a+dptr
+   DCB8 FB                 2878 	mov	r3,a
+   DCB9 E5 18              2879 	mov	a,_bp
+   DCBB 24 07              2880 	add	a,#0x07
+   DCBD F8                 2881 	mov	r0,a
+   DCBE A6 03              2882 	mov	@r0,ar3
+   DCC0 E5 18              2883 	mov	a,_bp
+   DCC2 24 07              2884 	add	a,#0x07
+   DCC4 F8                 2885 	mov	r0,a
+   DCC5 E6                 2886 	mov	a,@r0
+   DCC6 25 E0              2887 	add	a,acc
+   DCC8 F6                 2888 	mov	@r0,a
+                           2889 ;	../../shared/src/sampler_cal.c:323: lnx_SAMPLER_RES_CAL_DONE_LANE = 1; 
+   DCC9 90 60 01           2890 	mov	dptr,#(_CAL_CTRL1_LANE + 0x0001)
+   DCCC E0                 2891 	movx	a,@dptr
+   DCCD 44 10              2892 	orl	a,#0x10
+   DCCF F0                 2893 	movx	@dptr,a
+                           2894 ;	../../shared/src/sampler_cal.c:328: if (n_programmable == 8) {ntimes_shft = 3;}
+   DCD0 90 60 0D           2895 	mov	dptr,#(_CAL_CTRL4_LANE + 0x0001)
+   DCD3 E0                 2896 	movx	a,@dptr
+   DCD4 FC                 2897 	mov	r4,a
+   DCD5 BC 08 08           2898 	cjne	r4,#0x08,00145$
+   DCD8 A8 18              2899 	mov	r0,_bp
+   DCDA 08                 2900 	inc	r0
+   DCDB 08                 2901 	inc	r0
+   DCDC 76 03              2902 	mov	@r0,#0x03
+   DCDE 80 3C              2903 	sjmp	00228$
+   DCE0                    2904 00145$:
+                           2905 ;	../../shared/src/sampler_cal.c:329: else if (n_programmable == 16) {ntimes_shft = 4;}
+   DCE0 90 60 0D           2906 	mov	dptr,#(_CAL_CTRL4_LANE + 0x0001)
+   DCE3 E0                 2907 	movx	a,@dptr
+   DCE4 FD                 2908 	mov	r5,a
+   DCE5 BD 10 08           2909 	cjne	r5,#0x10,00142$
+   DCE8 A8 18              2910 	mov	r0,_bp
+   DCEA 08                 2911 	inc	r0
+   DCEB 08                 2912 	inc	r0
+   DCEC 76 04              2913 	mov	@r0,#0x04
+   DCEE 80 2C              2914 	sjmp	00228$
+   DCF0                    2915 00142$:
+                           2916 ;	../../shared/src/sampler_cal.c:330: else if (n_programmable == 32) {ntimes_shft = 5;}
+   DCF0 90 60 0D           2917 	mov	dptr,#(_CAL_CTRL4_LANE + 0x0001)
+   DCF3 E0                 2918 	movx	a,@dptr
+   DCF4 FD                 2919 	mov	r5,a
+   DCF5 BD 20 08           2920 	cjne	r5,#0x20,00139$
+   DCF8 A8 18              2921 	mov	r0,_bp
+   DCFA 08                 2922 	inc	r0
+   DCFB 08                 2923 	inc	r0
+   DCFC 76 05              2924 	mov	@r0,#0x05
+   DCFE 80 1C              2925 	sjmp	00228$
+   DD00                    2926 00139$:
+                           2927 ;	../../shared/src/sampler_cal.c:331: else if (n_programmable == 64) {ntimes_shft = 6;}
+   DD00 90 60 0D           2928 	mov	dptr,#(_CAL_CTRL4_LANE + 0x0001)
+   DD03 E0                 2929 	movx	a,@dptr
+   DD04 FD                 2930 	mov	r5,a
+   DD05 BD 40 08           2931 	cjne	r5,#0x40,00136$
+   DD08 A8 18              2932 	mov	r0,_bp
+   DD0A 08                 2933 	inc	r0
+   DD0B 08                 2934 	inc	r0
+   DD0C 76 06              2935 	mov	@r0,#0x06
+   DD0E 80 0C              2936 	sjmp	00228$
+   DD10                    2937 00136$:
+                           2938 ;	../../shared/src/sampler_cal.c:332: else { n_programmable=1; ntimes_shft = 0;}
+   DD10 90 60 0D           2939 	mov	dptr,#(_CAL_CTRL4_LANE + 0x0001)
+   DD13 74 01              2940 	mov	a,#0x01
+   DD15 F0                 2941 	movx	@dptr,a
+   DD16 A8 18              2942 	mov	r0,_bp
+   DD18 08                 2943 	inc	r0
+   DD19 08                 2944 	inc	r0
+   DD1A 76 00              2945 	mov	@r0,#0x00
+                           2946 ;	../../shared/src/sampler_cal.c:334: for(i=0; i<10; i++) {
+   DD1C                    2947 00228$:
+   DD1C E5 18              2948 	mov	a,_bp
+   DD1E 24 07              2949 	add	a,#0x07
+   DD20 F8                 2950 	mov	r0,a
+   DD21 C3                 2951 	clr	c
+   DD22 E4                 2952 	clr	a
+   DD23 96                 2953 	subb	a,@r0
+   DD24 FD                 2954 	mov	r5,a
+   DD25 A8 18              2955 	mov	r0,_bp
+   DD27 08                 2956 	inc	r0
+   DD28 76 00              2957 	mov	@r0,#0x00
+   DD2A                    2958 00185$:
+   DD2A A8 18              2959 	mov	r0,_bp
+   DD2C 08                 2960 	inc	r0
+   DD2D C3                 2961 	clr	c
+   DD2E E6                 2962 	mov	a,@r0
+   DD2F 64 80              2963 	xrl	a,#0x80
+   DD31 94 8A              2964 	subb	a,#0x8a
+   DD33 40 03              2965 	jc	00260$
+   DD35 02 DF 24           2966 	ljmp	00188$
+   DD38                    2967 00260$:
+                           2968 ;	../../shared/src/sampler_cal.c:336: sampler_sel(i);
+   DD38 A8 18              2969 	mov	r0,_bp
+   DD3A 08                 2970 	inc	r0
+   DD3B 86 82              2971 	mov	dpl,@r0
+   DD3D C0 05              2972 	push	ar5
+   DD3F 78 3E              2973 	mov	r0,#_sampler_sel
+   DD41 79 D8              2974 	mov	r1,#(_sampler_sel >> 8)
+   DD43 7A 02              2975 	mov	r2,#(_sampler_sel >> 16)
+   DD45 12 00 B3           2976 	lcall	__sdcc_banked_call
+                           2977 ;	../../shared/src/sampler_cal.c:337: sampler_cal_sel(i);
+   DD48 A8 18              2978 	mov	r0,_bp
+   DD4A 08                 2979 	inc	r0
+   DD4B 86 82              2980 	mov	dpl,@r0
+   DD4D 78 0D              2981 	mov	r0,#_sampler_cal_sel
+   DD4F 79 D9              2982 	mov	r1,#(_sampler_cal_sel >> 8)
+   DD51 7A 02              2983 	mov	r2,#(_sampler_cal_sel >> 16)
+   DD53 12 00 B3           2984 	lcall	__sdcc_banked_call
+   DD56 D0 05              2985 	pop	ar5
+                           2986 ;	../../shared/src/sampler_cal.c:339: offset_sum_neg = 0;
+   DD58 E5 18              2987 	mov	a,_bp
+   DD5A 24 03              2988 	add	a,#0x03
+   DD5C F8                 2989 	mov	r0,a
+   DD5D 76 00              2990 	mov	@r0,#0x00
+   DD5F 08                 2991 	inc	r0
+   DD60 76 00              2992 	mov	@r0,#0x00
+                           2993 ;	../../shared/src/sampler_cal.c:340: for (ntimes=0; ntimes < n_programmable; ntimes++) {
+   DD62 7E 00              2994 	mov	r6,#0x00
+   DD64                    2995 00177$:
+   DD64 C0 05              2996 	push	ar5
+   DD66 90 60 0D           2997 	mov	dptr,#(_CAL_CTRL4_LANE + 0x0001)
+   DD69 E0                 2998 	movx	a,@dptr
+   DD6A FD                 2999 	mov	r5,a
+   DD6B EE                 3000 	mov	a,r6
+   DD6C B5 05 00           3001 	cjne	a,ar5,00261$
+   DD6F                    3002 00261$:
+   DD6F D0 05              3003 	pop	ar5
+   DD71 50 69              3004 	jnc	00180$
+                           3005 ;	../../shared/src/sampler_cal.c:341: for( offset=-ofst_bnd; offset<=ofst_bnd; offset++ ) { //80% sweep
+   DD73 8D 02              3006 	mov	ar2,r5
+   DD75 8A 03              3007 	mov	ar3,r2
+   DD77                    3008 00149$:
+   DD77 E5 18              3009 	mov	a,_bp
+   DD79 24 07              3010 	add	a,#0x07
+   DD7B F8                 3011 	mov	r0,a
+   DD7C C3                 3012 	clr	c
+   DD7D E6                 3013 	mov	a,@r0
+   DD7E 64 80              3014 	xrl	a,#0x80
+   DD80 8B F0              3015 	mov	b,r3
+   DD82 63 F0 80           3016 	xrl	b,#0x80
+   DD85 95 F0              3017 	subb	a,b
+   DD87 40 3A              3018 	jc	00152$
+                           3019 ;	../../shared/src/sampler_cal.c:342: set_sampler(offset);
+   DD89 C0 05              3020 	push	ar5
+   DD8B 8B 82              3021 	mov	dpl,r3
+   DD8D C0 03              3022 	push	ar3
+   DD8F C0 05              3023 	push	ar5
+   DD91 C0 06              3024 	push	ar6
+   DD93 78 4E              3025 	mov	r0,#_set_sampler
+   DD95 79 D9              3026 	mov	r1,#(_set_sampler >> 8)
+   DD97 7A 02              3027 	mov	r2,#(_set_sampler >> 16)
+   DD99 12 00 B3           3028 	lcall	__sdcc_banked_call
+                           3029 ;	../../shared/src/sampler_cal.c:343: delay01(5); // 250ns, 500ns, 1us and 2us programmable
+   DD9C 90 00 05           3030 	mov	dptr,#0x0005
+   DD9F 78 16              3031 	mov	r0,#_delay01
+   DDA1 79 BC              3032 	mov	r1,#(_delay01 >> 8)
+   DDA3 7A 02              3033 	mov	r2,#(_delay01 >> 16)
+   DDA5 12 00 B3           3034 	lcall	__sdcc_banked_call
+   DDA8 D0 06              3035 	pop	ar6
+   DDAA D0 05              3036 	pop	ar5
+   DDAC D0 03              3037 	pop	ar3
+                           3038 ;	../../shared/src/sampler_cal.c:344: if(VOFF_POS == 1) break; 
+   DDAE 90 21 50           3039 	mov	dptr,#_RX_CALIBRATION_REG
+   DDB1 E0                 3040 	movx	a,@dptr
+   DDB2 C4                 3041 	swap	a
+   DDB3 23                 3042 	rl	a
+   DDB4 54 01              3043 	anl	a,#0x01
+   DDB6 FD                 3044 	mov	r5,a
+   DDB7 BD 01 04           3045 	cjne	r5,#0x01,00264$
+   DDBA D0 05              3046 	pop	ar5
+   DDBC 80 05              3047 	sjmp	00152$
+   DDBE                    3048 00264$:
+   DDBE D0 05              3049 	pop	ar5
+                           3050 ;	../../shared/src/sampler_cal.c:341: for( offset=-ofst_bnd; offset<=ofst_bnd; offset++ ) { //80% sweep
+   DDC0 0B                 3051 	inc	r3
+   DDC1 80 B4              3052 	sjmp	00149$
+   DDC3                    3053 00152$:
+                           3054 ;	../../shared/src/sampler_cal.c:346: offset_sum_neg += offset;
+   DDC3 C0 05              3055 	push	ar5
+   DDC5 EB                 3056 	mov	a,r3
+   DDC6 FD                 3057 	mov	r5,a
+   DDC7 33                 3058 	rlc	a
+   DDC8 95 E0              3059 	subb	a,acc
+   DDCA FC                 3060 	mov	r4,a
+   DDCB E5 18              3061 	mov	a,_bp
+   DDCD 24 03              3062 	add	a,#0x03
+   DDCF F8                 3063 	mov	r0,a
+   DDD0 ED                 3064 	mov	a,r5
+   DDD1 26                 3065 	add	a,@r0
+   DDD2 F6                 3066 	mov	@r0,a
+   DDD3 EC                 3067 	mov	a,r4
+   DDD4 08                 3068 	inc	r0
+   DDD5 36                 3069 	addc	a,@r0
+   DDD6 F6                 3070 	mov	@r0,a
+                           3071 ;	../../shared/src/sampler_cal.c:340: for (ntimes=0; ntimes < n_programmable; ntimes++) {
+   DDD7 0E                 3072 	inc	r6
+   DDD8 D0 05              3073 	pop	ar5
+   DDDA 80 88              3074 	sjmp	00177$
+   DDDC                    3075 00180$:
+                           3076 ;	../../shared/src/sampler_cal.c:348: offset_sum_neg >>= ntimes_shft;
+   DDDC A8 18              3077 	mov	r0,_bp
+   DDDE 08                 3078 	inc	r0
+   DDDF 08                 3079 	inc	r0
+   DDE0 86 F0              3080 	mov	b,@r0
+   DDE2 05 F0              3081 	inc	b
+   DDE4 E5 18              3082 	mov	a,_bp
+   DDE6 24 03              3083 	add	a,#0x03
+   DDE8 F8                 3084 	mov	r0,a
+   DDE9 08                 3085 	inc	r0
+   DDEA E6                 3086 	mov	a,@r0
+   DDEB 33                 3087 	rlc	a
+   DDEC 92 D2              3088 	mov	ov,c
+   DDEE 18                 3089 	dec	r0
+   DDEF 80 0A              3090 	sjmp	00266$
+   DDF1                    3091 00265$:
+   DDF1 A2 D2              3092 	mov	c,ov
+   DDF3 08                 3093 	inc	r0
+   DDF4 E6                 3094 	mov	a,@r0
+   DDF5 13                 3095 	rrc	a
+   DDF6 F6                 3096 	mov	@r0,a
+   DDF7 18                 3097 	dec	r0
+   DDF8 E6                 3098 	mov	a,@r0
+   DDF9 13                 3099 	rrc	a
+   DDFA F6                 3100 	mov	@r0,a
+   DDFB                    3101 00266$:
+   DDFB D5 F0 F3           3102 	djnz	b,00265$
+                           3103 ;	../../shared/src/sampler_cal.c:350: offset_sum_pos = 0;
+   DDFE E5 18              3104 	mov	a,_bp
+   DE00 24 05              3105 	add	a,#0x05
+   DE02 F8                 3106 	mov	r0,a
+   DE03 76 00              3107 	mov	@r0,#0x00
+   DE05 08                 3108 	inc	r0
+   DE06 76 00              3109 	mov	@r0,#0x00
+                           3110 ;	../../shared/src/sampler_cal.c:351: for (ntimes=0; ntimes < n_programmable; ntimes++) {
+   DE08 7A 00              3111 	mov	r2,#0x00
+   DE0A                    3112 00181$:
+   DE0A C0 05              3113 	push	ar5
+   DE0C 90 60 0D           3114 	mov	dptr,#(_CAL_CTRL4_LANE + 0x0001)
+   DE0F E0                 3115 	movx	a,@dptr
+   DE10 FD                 3116 	mov	r5,a
+   DE11 EA                 3117 	mov	a,r2
+   DE12 B5 05 00           3118 	cjne	a,ar5,00267$
+   DE15                    3119 00267$:
+   DE15 D0 05              3120 	pop	ar5
+   DE17 50 75              3121 	jnc	00184$
+                           3122 ;	../../shared/src/sampler_cal.c:352: for( offset=ofst_bnd; offset>=-ofst_bnd; offset-- ) {
+   DE19 E5 18              3123 	mov	a,_bp
+   DE1B 24 07              3124 	add	a,#0x07
+   DE1D F8                 3125 	mov	r0,a
+   DE1E 86 04              3126 	mov	ar4,@r0
+   DE20                    3127 00155$:
+   DE20 C0 05              3128 	push	ar5
+   DE22 E5 18              3129 	mov	a,_bp
+   DE24 24 07              3130 	add	a,#0x07
+   DE26 F8                 3131 	mov	r0,a
+   DE27 86 06              3132 	mov	ar6,@r0
+   DE29 E6                 3133 	mov	a,@r0
+   DE2A 33                 3134 	rlc	a
+   DE2B 95 E0              3135 	subb	a,acc
+   DE2D FD                 3136 	mov	r5,a
+   DE2E C3                 3137 	clr	c
+   DE2F E4                 3138 	clr	a
+   DE30 9E                 3139 	subb	a,r6
+   DE31 FE                 3140 	mov	r6,a
+   DE32 E4                 3141 	clr	a
+   DE33 9D                 3142 	subb	a,r5
+   DE34 FD                 3143 	mov	r5,a
+   DE35 EC                 3144 	mov	a,r4
+   DE36 FF                 3145 	mov	r7,a
+   DE37 33                 3146 	rlc	a
+   DE38 95 E0              3147 	subb	a,acc
+   DE3A FB                 3148 	mov	r3,a
+   DE3B C3                 3149 	clr	c
+   DE3C EF                 3150 	mov	a,r7
+   DE3D 9E                 3151 	subb	a,r6
+   DE3E EB                 3152 	mov	a,r3
+   DE3F 64 80              3153 	xrl	a,#0x80
+   DE41 8D F0              3154 	mov	b,r5
+   DE43 63 F0 80           3155 	xrl	b,#0x80
+   DE46 95 F0              3156 	subb	a,b
+   DE48 D0 05              3157 	pop	ar5
+   DE4A 40 2D              3158 	jc	00158$
+                           3159 ;	../../shared/src/sampler_cal.c:353: set_sampler(offset);
+   DE4C 8C 82              3160 	mov	dpl,r4
+   DE4E C0 02              3161 	push	ar2
+   DE50 C0 04              3162 	push	ar4
+   DE52 C0 05              3163 	push	ar5
+   DE54 78 4E              3164 	mov	r0,#_set_sampler
+   DE56 79 D9              3165 	mov	r1,#(_set_sampler >> 8)
+   DE58 7A 02              3166 	mov	r2,#(_set_sampler >> 16)
+   DE5A 12 00 B3           3167 	lcall	__sdcc_banked_call
+                           3168 ;	../../shared/src/sampler_cal.c:354: delay01(5); // 250ns, 500ns, 1us and 2us programmable
+   DE5D 90 00 05           3169 	mov	dptr,#0x0005
+   DE60 78 16              3170 	mov	r0,#_delay01
+   DE62 79 BC              3171 	mov	r1,#(_delay01 >> 8)
+   DE64 7A 02              3172 	mov	r2,#(_delay01 >> 16)
+   DE66 12 00 B3           3173 	lcall	__sdcc_banked_call
+   DE69 D0 05              3174 	pop	ar5
+   DE6B D0 04              3175 	pop	ar4
+   DE6D D0 02              3176 	pop	ar2
+                           3177 ;	../../shared/src/sampler_cal.c:355: if(VOFF_POS == 0) break; 
+   DE6F 90 21 50           3178 	mov	dptr,#_RX_CALIBRATION_REG
+   DE72 E0                 3179 	movx	a,@dptr
+   DE73 30 E3 03           3180 	jnb	acc.3,00158$
+                           3181 ;	../../shared/src/sampler_cal.c:352: for( offset=ofst_bnd; offset>=-ofst_bnd; offset-- ) {
+   DE76 1C                 3182 	dec	r4
+   DE77 80 A7              3183 	sjmp	00155$
+   DE79                    3184 00158$:
+                           3185 ;	../../shared/src/sampler_cal.c:357: offset_sum_pos += offset;
+   DE79 EC                 3186 	mov	a,r4
+   DE7A 33                 3187 	rlc	a
+   DE7B 95 E0              3188 	subb	a,acc
+   DE7D FB                 3189 	mov	r3,a
+   DE7E E5 18              3190 	mov	a,_bp
+   DE80 24 05              3191 	add	a,#0x05
+   DE82 F8                 3192 	mov	r0,a
+   DE83 EC                 3193 	mov	a,r4
+   DE84 26                 3194 	add	a,@r0
+   DE85 F6                 3195 	mov	@r0,a
+   DE86 EB                 3196 	mov	a,r3
+   DE87 08                 3197 	inc	r0
+   DE88 36                 3198 	addc	a,@r0
+   DE89 F6                 3199 	mov	@r0,a
+                           3200 ;	../../shared/src/sampler_cal.c:351: for (ntimes=0; ntimes < n_programmable; ntimes++) {
+   DE8A 0A                 3201 	inc	r2
+   DE8B 02 DE 0A           3202 	ljmp	00181$
+   DE8E                    3203 00184$:
+                           3204 ;	../../shared/src/sampler_cal.c:359: offset_sum_pos >>= ntimes_shft;
+   DE8E A8 18              3205 	mov	r0,_bp
+   DE90 08                 3206 	inc	r0
+   DE91 08                 3207 	inc	r0
+   DE92 86 F0              3208 	mov	b,@r0
+   DE94 05 F0              3209 	inc	b
+   DE96 E5 18              3210 	mov	a,_bp
+   DE98 24 05              3211 	add	a,#0x05
+   DE9A F8                 3212 	mov	r0,a
+   DE9B 08                 3213 	inc	r0
+   DE9C E6                 3214 	mov	a,@r0
+   DE9D 33                 3215 	rlc	a
+   DE9E 92 D2              3216 	mov	ov,c
+   DEA0 18                 3217 	dec	r0
+   DEA1 80 0A              3218 	sjmp	00272$
+   DEA3                    3219 00271$:
+   DEA3 A2 D2              3220 	mov	c,ov
+   DEA5 08                 3221 	inc	r0
+   DEA6 E6                 3222 	mov	a,@r0
+   DEA7 13                 3223 	rrc	a
+   DEA8 F6                 3224 	mov	@r0,a
+   DEA9 18                 3225 	dec	r0
+   DEAA E6                 3226 	mov	a,@r0
+   DEAB 13                 3227 	rrc	a
+   DEAC F6                 3228 	mov	@r0,a
+   DEAD                    3229 00272$:
+   DEAD D5 F0 F3           3230 	djnz	b,00271$
+                           3231 ;	../../shared/src/sampler_cal.c:362: if( lnx_SAMPLER_CAL_AVG_MODE_LANE_7_0 == 0)		
+   DEB0 90 60 0C           3232 	mov	dptr,#_CAL_CTRL4_LANE
+   DEB3 E0                 3233 	movx	a,@dptr
+   DEB4 70 1C              3234 	jnz	00163$
+                           3235 ;	../../shared/src/sampler_cal.c:363: offset = (offset_sum_neg + offset_sum_pos) >> 1;
+   DEB6 E5 18              3236 	mov	a,_bp
+   DEB8 24 03              3237 	add	a,#0x03
+   DEBA F8                 3238 	mov	r0,a
+   DEBB E5 18              3239 	mov	a,_bp
+   DEBD 24 05              3240 	add	a,#0x05
+   DEBF F9                 3241 	mov	r1,a
+   DEC0 E7                 3242 	mov	a,@r1
+   DEC1 26                 3243 	add	a,@r0
+   DEC2 FB                 3244 	mov	r3,a
+   DEC3 09                 3245 	inc	r1
+   DEC4 E7                 3246 	mov	a,@r1
+   DEC5 08                 3247 	inc	r0
+   DEC6 36                 3248 	addc	a,@r0
+   DEC7 A2 E7              3249 	mov	c,acc.7
+   DEC9 13                 3250 	rrc	a
+   DECA CB                 3251 	xch	a,r3
+   DECB 13                 3252 	rrc	a
+   DECC CB                 3253 	xch	a,r3
+   DECD FC                 3254 	mov	r4,a
+   DECE 8B 02              3255 	mov	ar2,r3
+   DED0 80 18              3256 	sjmp	00164$
+   DED2                    3257 00163$:
+                           3258 ;	../../shared/src/sampler_cal.c:364: else if( lnx_SAMPLER_CAL_AVG_MODE_LANE_7_0 == 1) offset = offset_sum_pos;
+   DED2 90 60 0C           3259 	mov	dptr,#_CAL_CTRL4_LANE
+   DED5 E0                 3260 	movx	a,@dptr
+   DED6 FB                 3261 	mov	r3,a
+   DED7 BB 01 09           3262 	cjne	r3,#0x01,00160$
+   DEDA E5 18              3263 	mov	a,_bp
+   DEDC 24 05              3264 	add	a,#0x05
+   DEDE F8                 3265 	mov	r0,a
+   DEDF 86 02              3266 	mov	ar2,@r0
+   DEE1 80 07              3267 	sjmp	00164$
+   DEE3                    3268 00160$:
+                           3269 ;	../../shared/src/sampler_cal.c:365: else offset = offset_sum_neg;
+   DEE3 E5 18              3270 	mov	a,_bp
+   DEE5 24 03              3271 	add	a,#0x03
+   DEE7 F8                 3272 	mov	r0,a
+   DEE8 86 02              3273 	mov	ar2,@r0
+   DEEA                    3274 00164$:
+                           3275 ;	../../shared/src/sampler_cal.c:367: set_sampler(offset);
+   DEEA 8A 82              3276 	mov	dpl,r2
+   DEEC C0 02              3277 	push	ar2
+   DEEE C0 05              3278 	push	ar5
+   DEF0 78 4E              3279 	mov	r0,#_set_sampler
+   DEF2 79 D9              3280 	mov	r1,#(_set_sampler >> 8)
+   DEF4 7A 02              3281 	mov	r2,#(_set_sampler >> 16)
+   DEF6 12 00 B3           3282 	lcall	__sdcc_banked_call
+   DEF9 D0 05              3283 	pop	ar5
+   DEFB D0 02              3284 	pop	ar2
+                           3285 ;	../../shared/src/sampler_cal.c:369: if(offset >= 0)
+   DEFD EA                 3286 	mov	a,r2
+   DEFE 20 E7 0F           3287 	jb	acc.7,00166$
+                           3288 ;	../../shared/src/sampler_cal.c:370: *SAMPLER_CAL_SM_SAVE = offset | 0x40;
+   DF01 AB 2E              3289 	mov	r3,_SAMPLER_CAL_SM_SAVE
+   DF03 AC 2F              3290 	mov	r4,(_SAMPLER_CAL_SM_SAVE + 1)
+   DF05 74 40              3291 	mov	a,#0x40
+   DF07 4A                 3292 	orl	a,r2
+   DF08 FE                 3293 	mov	r6,a
+   DF09 8B 82              3294 	mov	dpl,r3
+   DF0B 8C 83              3295 	mov	dph,r4
+   DF0D F0                 3296 	movx	@dptr,a
+   DF0E 80 0D              3297 	sjmp	00187$
+   DF10                    3298 00166$:
+                           3299 ;	../../shared/src/sampler_cal.c:372: *SAMPLER_CAL_SM_SAVE = -offset;		
+   DF10 AB 2E              3300 	mov	r3,_SAMPLER_CAL_SM_SAVE
+   DF12 AC 2F              3301 	mov	r4,(_SAMPLER_CAL_SM_SAVE + 1)
+   DF14 C3                 3302 	clr	c
+   DF15 E4                 3303 	clr	a
+   DF16 9A                 3304 	subb	a,r2
+   DF17 FA                 3305 	mov	r2,a
+   DF18 8B 82              3306 	mov	dpl,r3
+   DF1A 8C 83              3307 	mov	dph,r4
+   DF1C F0                 3308 	movx	@dptr,a
+   DF1D                    3309 00187$:
+                           3310 ;	../../shared/src/sampler_cal.c:334: for(i=0; i<10; i++) {
+   DF1D A8 18              3311 	mov	r0,_bp
+   DF1F 08                 3312 	inc	r0
+   DF20 06                 3313 	inc	@r0
+   DF21 02 DD 2A           3314 	ljmp	00185$
+   DF24                    3315 00188$:
+                           3316 ;	../../shared/src/sampler_cal.c:379: lnx_SAMPLER_CAL_PASS_LANE = 1;
+   DF24 90 60 05           3317 	mov	dptr,#(_CAL_CTRL2_LANE + 0x0001)
+   DF27 E0                 3318 	movx	a,@dptr
+   DF28 44 40              3319 	orl	a,#0x40
+   DF2A F0                 3320 	movx	@dptr,a
+                           3321 ;	../../shared/src/sampler_cal.c:381: skip_out:
+   DF2B                    3322 00168$:
+                           3323 ;	../../shared/src/sampler_cal.c:386: SMPLR_CAL_EN = 0; 
+   DF2B 90 00 4C           3324 	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_19
+   DF2E E0                 3325 	movx	a,@dptr
+   DF2F 54 FE              3326 	anl	a,#0xfe
+   DF31 F0                 3327 	movx	@dptr,a
+                           3328 ;	../../shared/src/sampler_cal.c:387: reg_SMPLR_CAL_EN_DLY_LANE = 0;	
+   DF32 90 02 24           3329 	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+   DF35 E0                 3330 	movx	a,@dptr
+   DF36 54 7F              3331 	anl	a,#0x7f
+   DF38 F0                 3332 	movx	@dptr,a
+                           3333 ;	../../shared/src/sampler_cal.c:388: lnx_SAMPLER_CAL_DONE_LANE = 1;	
+   DF39 90 60 01           3334 	mov	dptr,#(_CAL_CTRL1_LANE + 0x0001)
+   DF3C E0                 3335 	movx	a,@dptr
+   DF3D 44 08              3336 	orl	a,#0x08
+   DF3F F0                 3337 	movx	@dptr,a
+                           3338 ;	../../shared/src/sampler_cal.c:390: reg_DFE_MCU_CLK_EN_LANE = 0;	
+   DF40 90 24 10           3339 	mov	dptr,#_RX_EQ_CLK_CTRL
+   DF43 E0                 3340 	movx	a,@dptr
+   DF44 54 FD              3341 	anl	a,#0xfd
+   DF46 F0                 3342 	movx	@dptr,a
+                           3343 ;	../../shared/src/sampler_cal.c:391: reg_ANA_PU_DFE_LANE = 1; 
+   DF47 90 21 01           3344 	mov	dptr,#(_PM_CTRL_RX_LANE_REG1_LANE + 0x0001)
+   DF4A E0                 3345 	movx	a,@dptr
+   DF4B 44 40              3346 	orl	a,#0x40
+   DF4D F0                 3347 	movx	@dptr,a
+                           3348 ;	../../shared/src/sampler_cal.c:392: reg_EN_DFE_F1TO3_LANE = 1;
+   DF4E 90 00 54           3349 	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_21
+   DF51 E0                 3350 	movx	a,@dptr
+   DF52 44 04              3351 	orl	a,#0x04
+   DF54 F0                 3352 	movx	@dptr,a
+                           3353 ;	../../shared/src/sampler_cal.c:393: reg_DFE_CTRL_ANA_BYPASS_LANE = 0;
+   DF55 90 24 1B           3354 	mov	dptr,#(_DFE_ANA_REG0 + 0x0003)
+   DF58 E0                 3355 	movx	a,@dptr
+   DF59 54 7F              3356 	anl	a,#0x7f
+   DF5B F0                 3357 	movx	@dptr,a
+                           3358 ;	../../shared/src/sampler_cal.c:394: reg_FFE_PULSE_EN_LANE = 1; //restore
+   DF5C 90 02 0C           3359 	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_131
+   DF5F E0                 3360 	movx	a,@dptr
+   DF60 44 80              3361 	orl	a,#0x80
+   DF62 F0                 3362 	movx	@dptr,a
+                           3363 ;	../../shared/src/sampler_cal.c:395: reg_DFE_EN_LANE = dfe_dis==0;  reg_DFE_DIS_LANE = dfe_dis;
+   DF63 90 66 F7           3364 	mov	dptr,#_dfe_dis
+   DF66 E0                 3365 	movx	a,@dptr
+   DF67 FA                 3366 	mov	r2,a
+   DF68 B4 01 00           3367 	cjne	a,#0x01,00277$
+   DF6B                    3368 00277$:
+   DF6B E4                 3369 	clr	a
+   DF6C 33                 3370 	rlc	a
+   DF6D FB                 3371 	mov	r3,a
+   DF6E 90 24 10           3372 	mov	dptr,#_RX_EQ_CLK_CTRL
+   DF71 13                 3373 	rrc	a
+   DF72 E0                 3374 	movx	a,@dptr
+   DF73 92 E4              3375 	mov	acc.4,c
+   DF75 F0                 3376 	movx	@dptr,a
+   DF76 90 24 0C           3377 	mov	dptr,#_DFE_CTRL_REG3
+   DF79 EA                 3378 	mov	a,r2
+   DF7A 13                 3379 	rrc	a
+   DF7B E0                 3380 	movx	a,@dptr
+   DF7C 92 E6              3381 	mov	acc.6,c
+   DF7E F0                 3382 	movx	@dptr,a
+   DF7F                    3383 00189$:
+   DF7F 85 18 81           3384 	mov	sp,_bp
+   DF82 D0 18              3385 	pop	_bp
+   DF84 02 00 C5           3386 	ljmp	__sdcc_banked_ret
+                           3387 ;------------------------------------------------------------
+                           3388 ;Allocation info for local variables in function 'get_sampler'
+                           3389 ;------------------------------------------------------------
+                           3390 ;dat                       Allocated to registers r2 
+                           3391 ;------------------------------------------------------------
+                           3392 ;	../../shared/src/sampler_cal.c:398: int8_t get_sampler(void) BANKING_CTRL {
+                           3393 ;	-----------------------------------------
+                           3394 ;	 function get_sampler
+                           3395 ;	-----------------------------------------
+   DF87                    3396 _get_sampler:
+                           3397 ;	../../shared/src/sampler_cal.c:401: dat = (int8_t)*NEG;	
+   DF87 85 28 82           3398 	mov	dpl,_NEG
+   DF8A 85 29 83           3399 	mov	dph,(_NEG + 1)
+   DF8D E0                 3400 	movx	a,@dptr
+   DF8E FA                 3401 	mov	r2,a
+                           3402 ;	../../shared/src/sampler_cal.c:402: dat += (int8_t)((*SIGN_POS) & 0x1f); 
+   DF8F 85 26 82           3403 	mov	dpl,_SIGN_POS
+   DF92 85 27 83           3404 	mov	dph,(_SIGN_POS + 1)
+   DF95 E0                 3405 	movx	a,@dptr
+   DF96 FB                 3406 	mov	r3,a
+   DF97 53 03 1F           3407 	anl	ar3,#0x1F
+   DF9A EB                 3408 	mov	a,r3
+   DF9B 2A                 3409 	add	a,r2
+   DF9C FA                 3410 	mov	r2,a
+                           3411 ;	../../shared/src/sampler_cal.c:403: if(*SIGN_POS & 0x20) dat = -dat;
+   DF9D 85 26 82           3412 	mov	dpl,_SIGN_POS
+   DFA0 85 27 83           3413 	mov	dph,(_SIGN_POS + 1)
+   DFA3 E0                 3414 	movx	a,@dptr
+   DFA4 FB                 3415 	mov	r3,a
+   DFA5 30 E5 04           3416 	jnb	acc.5,00102$
+   DFA8 C3                 3417 	clr	c
+   DFA9 E4                 3418 	clr	a
+   DFAA 9A                 3419 	subb	a,r2
+   DFAB FA                 3420 	mov	r2,a
+   DFAC                    3421 00102$:
+                           3422 ;	../../shared/src/sampler_cal.c:405: return dat;
+   DFAC 8A 82              3423 	mov	dpl,r2
+   DFAE 02 00 C5           3424 	ljmp	__sdcc_banked_ret
+                           3425 ;------------------------------------------------------------
+                           3426 ;Allocation info for local variables in function 'Edge_Sampler_Update'
+                           3427 ;------------------------------------------------------------
+                           3428 ;f1p_e                     Allocated to registers r3 
+                           3429 ;f1p_o                     Allocated to registers r4 
+                           3430 ;diff_e                    Allocated to registers r4 
+                           3431 ;diff_o                    Allocated to registers r6 
+                           3432 ;edge_e                    Allocated to registers 
+                           3433 ;edge_o                    Allocated to registers 
+                           3434 ;step_size                 Allocated to registers r2 
+                           3435 ;------------------------------------------------------------
+                           3436 ;	../../shared/src/sampler_cal.c:409: void Edge_Sampler_Update(void) BANKING_CTRL {
+                           3437 ;	-----------------------------------------
+                           3438 ;	 function Edge_Sampler_Update
+                           3439 ;	-----------------------------------------
+   DFB1                    3440 _Edge_Sampler_Update:
+                           3441 ;	../../shared/src/sampler_cal.c:414: if( tag_edge_sampler_adj == 0 ) return;
+   DFB1 90 60 70           3442 	mov	dptr,#_TRAIN_PARA_2
+   DFB4 E0                 3443 	movx	a,@dptr
+   DFB5 54 C0              3444 	anl	a,#0xc0
+   DFB7 70 03              3445 	jnz	00102$
+   DFB9 02 E0 A0           3446 	ljmp	00113$
+   DFBC                    3447 00102$:
+                           3448 ;	../../shared/src/sampler_cal.c:415: step_size = tag_edge_sampler_adj;	
+   DFBC 90 60 70           3449 	mov	dptr,#_TRAIN_PARA_2
+   DFBF E0                 3450 	movx	a,@dptr
+   DFC0 23                 3451 	rl	a
+   DFC1 23                 3452 	rl	a
+   DFC2 54 03              3453 	anl	a,#0x03
+   DFC4 FA                 3454 	mov	r2,a
+                           3455 ;	../../shared/src/sampler_cal.c:418: sampler_sel(OFST_F1P_D_E);
+   DFC5 75 82 00           3456 	mov	dpl,#0x00
+   DFC8 C0 02              3457 	push	ar2
+   DFCA 78 3E              3458 	mov	r0,#_sampler_sel
+   DFCC 79 D8              3459 	mov	r1,#(_sampler_sel >> 8)
+   DFCE 7A 02              3460 	mov	r2,#(_sampler_sel >> 16)
+   DFD0 12 00 B3           3461 	lcall	__sdcc_banked_call
+                           3462 ;	../../shared/src/sampler_cal.c:419: f1p_e = get_sampler();
+   DFD3 78 87              3463 	mov	r0,#_get_sampler
+   DFD5 79 DF              3464 	mov	r1,#(_get_sampler >> 8)
+   DFD7 7A 02              3465 	mov	r2,#(_get_sampler >> 16)
+   DFD9 12 00 B3           3466 	lcall	__sdcc_banked_call
+   DFDC AB 82              3467 	mov	r3,dpl
+   DFDE D0 02              3468 	pop	ar2
+                           3469 ;	../../shared/src/sampler_cal.c:420: diff_e = f1p_e - f1p_e_old;  
+   DFE0 90 66 3B           3470 	mov	dptr,#_f1p_e_old
+   DFE3 E0                 3471 	movx	a,@dptr
+   DFE4 FC                 3472 	mov	r4,a
+   DFE5 EB                 3473 	mov	a,r3
+   DFE6 C3                 3474 	clr	c
+   DFE7 9C                 3475 	subb	a,r4
+   DFE8 FC                 3476 	mov	r4,a
+                           3477 ;	../../shared/src/sampler_cal.c:424: if(step_size==1) diff_e >>= 1;
+   DFE9 E4                 3478 	clr	a
+   DFEA BA 01 01           3479 	cjne	r2,#0x01,00121$
+   DFED 04                 3480 	inc	a
+   DFEE                    3481 00121$:
+   DFEE FD                 3482 	mov	r5,a
+   DFEF 60 07              3483 	jz	00106$
+   DFF1 EC                 3484 	mov	a,r4
+   DFF2 A2 E7              3485 	mov	c,acc.7
+   DFF4 13                 3486 	rrc	a
+   DFF5 FC                 3487 	mov	r4,a
+   DFF6 80 06              3488 	sjmp	00107$
+   DFF8                    3489 00106$:
+                           3490 ;	../../shared/src/sampler_cal.c:425: else if(step_size==3) diff_e <<= 1;
+   DFF8 BA 03 03           3491 	cjne	r2,#0x03,00107$
+   DFFB EC                 3492 	mov	a,r4
+   DFFC 2C                 3493 	add	a,r4
+   DFFD FC                 3494 	mov	r4,a
+   DFFE                    3495 00107$:
+                           3496 ;	../../shared/src/sampler_cal.c:431: sampler_sel(OFST_EDGE_E);
+   DFFE 75 82 08           3497 	mov	dpl,#0x08
+   E001 C0 02              3498 	push	ar2
+   E003 C0 03              3499 	push	ar3
+   E005 C0 04              3500 	push	ar4
+   E007 C0 05              3501 	push	ar5
+   E009 78 3E              3502 	mov	r0,#_sampler_sel
+   E00B 79 D8              3503 	mov	r1,#(_sampler_sel >> 8)
+   E00D 7A 02              3504 	mov	r2,#(_sampler_sel >> 16)
+   E00F 12 00 B3           3505 	lcall	__sdcc_banked_call
+                           3506 ;	../../shared/src/sampler_cal.c:432: edge_e = get_sampler();	
+   E012 78 87              3507 	mov	r0,#_get_sampler
+   E014 79 DF              3508 	mov	r1,#(_get_sampler >> 8)
+   E016 7A 02              3509 	mov	r2,#(_get_sampler >> 16)
+   E018 12 00 B3           3510 	lcall	__sdcc_banked_call
+   E01B AE 82              3511 	mov	r6,dpl
+   E01D D0 05              3512 	pop	ar5
+   E01F D0 04              3513 	pop	ar4
+                           3514 ;	../../shared/src/sampler_cal.c:433: set_sampler(edge_e + diff_e);
+   E021 EC                 3515 	mov	a,r4
+   E022 2E                 3516 	add	a,r6
+   E023 F5 82              3517 	mov	dpl,a
+   E025 C0 05              3518 	push	ar5
+   E027 78 4E              3519 	mov	r0,#_set_sampler
+   E029 79 D9              3520 	mov	r1,#(_set_sampler >> 8)
+   E02B 7A 02              3521 	mov	r2,#(_set_sampler >> 16)
+   E02D 12 00 B3           3522 	lcall	__sdcc_banked_call
+                           3523 ;	../../shared/src/sampler_cal.c:440: sampler_sel(OFST_F1P_D_O);
+   E030 75 82 04           3524 	mov	dpl,#0x04
+   E033 78 3E              3525 	mov	r0,#_sampler_sel
+   E035 79 D8              3526 	mov	r1,#(_sampler_sel >> 8)
+   E037 7A 02              3527 	mov	r2,#(_sampler_sel >> 16)
+   E039 12 00 B3           3528 	lcall	__sdcc_banked_call
+                           3529 ;	../../shared/src/sampler_cal.c:441: f1p_o = get_sampler();
+   E03C 78 87              3530 	mov	r0,#_get_sampler
+   E03E 79 DF              3531 	mov	r1,#(_get_sampler >> 8)
+   E040 7A 02              3532 	mov	r2,#(_get_sampler >> 16)
+   E042 12 00 B3           3533 	lcall	__sdcc_banked_call
+   E045 AC 82              3534 	mov	r4,dpl
+   E047 D0 05              3535 	pop	ar5
+   E049 D0 03              3536 	pop	ar3
+   E04B D0 02              3537 	pop	ar2
+                           3538 ;	../../shared/src/sampler_cal.c:442: diff_o = f1p_o - f1p_o_old;  
+   E04D 90 66 3C           3539 	mov	dptr,#_f1p_o_old
+   E050 E0                 3540 	movx	a,@dptr
+   E051 FE                 3541 	mov	r6,a
+   E052 EC                 3542 	mov	a,r4
+   E053 C3                 3543 	clr	c
+   E054 9E                 3544 	subb	a,r6
+   E055 FE                 3545 	mov	r6,a
+                           3546 ;	../../shared/src/sampler_cal.c:443: if(step_size==1) diff_o >>= 1;
+   E056 ED                 3547 	mov	a,r5
+   E057 60 07              3548 	jz	00111$
+   E059 EE                 3549 	mov	a,r6
+   E05A A2 E7              3550 	mov	c,acc.7
+   E05C 13                 3551 	rrc	a
+   E05D FE                 3552 	mov	r6,a
+   E05E 80 06              3553 	sjmp	00112$
+   E060                    3554 00111$:
+                           3555 ;	../../shared/src/sampler_cal.c:444: else if(step_size==3) diff_o <<= 1;
+   E060 BA 03 03           3556 	cjne	r2,#0x03,00112$
+   E063 EE                 3557 	mov	a,r6
+   E064 2E                 3558 	add	a,r6
+   E065 FE                 3559 	mov	r6,a
+   E066                    3560 00112$:
+                           3561 ;	../../shared/src/sampler_cal.c:446: sampler_sel(OFST_EDGE_O);
+   E066 75 82 09           3562 	mov	dpl,#0x09
+   E069 C0 03              3563 	push	ar3
+   E06B C0 04              3564 	push	ar4
+   E06D C0 06              3565 	push	ar6
+   E06F 78 3E              3566 	mov	r0,#_sampler_sel
+   E071 79 D8              3567 	mov	r1,#(_sampler_sel >> 8)
+   E073 7A 02              3568 	mov	r2,#(_sampler_sel >> 16)
+   E075 12 00 B3           3569 	lcall	__sdcc_banked_call
+                           3570 ;	../../shared/src/sampler_cal.c:447: edge_o = get_sampler();	
+   E078 78 87              3571 	mov	r0,#_get_sampler
+   E07A 79 DF              3572 	mov	r1,#(_get_sampler >> 8)
+   E07C 7A 02              3573 	mov	r2,#(_get_sampler >> 16)
+   E07E 12 00 B3           3574 	lcall	__sdcc_banked_call
+   E081 AA 82              3575 	mov	r2,dpl
+   E083 D0 06              3576 	pop	ar6
+                           3577 ;	../../shared/src/sampler_cal.c:448: set_sampler(edge_o + diff_o);
+   E085 EE                 3578 	mov	a,r6
+   E086 2A                 3579 	add	a,r2
+   E087 F5 82              3580 	mov	dpl,a
+   E089 78 4E              3581 	mov	r0,#_set_sampler
+   E08B 79 D9              3582 	mov	r1,#(_set_sampler >> 8)
+   E08D 7A 02              3583 	mov	r2,#(_set_sampler >> 16)
+   E08F 12 00 B3           3584 	lcall	__sdcc_banked_call
+   E092 D0 04              3585 	pop	ar4
+   E094 D0 03              3586 	pop	ar3
+                           3587 ;	../../shared/src/sampler_cal.c:450: f1p_e_old = f1p_e;	f1p_o_old = f1p_o;
+   E096 90 66 3B           3588 	mov	dptr,#_f1p_e_old
+   E099 EB                 3589 	mov	a,r3
+   E09A F0                 3590 	movx	@dptr,a
+   E09B 90 66 3C           3591 	mov	dptr,#_f1p_o_old
+   E09E EC                 3592 	mov	a,r4
+   E09F F0                 3593 	movx	@dptr,a
+   E0A0                    3594 00113$:
+   E0A0 02 00 C5           3595 	ljmp	__sdcc_banked_ret
+                           3596 ;------------------------------------------------------------
+                           3597 ;Allocation info for local variables in function 'save_sampler_edge'
+                           3598 ;------------------------------------------------------------
+                           3599 ;------------------------------------------------------------
+                           3600 ;	../../shared/src/sampler_cal.c:454: void  save_sampler_edge(void) BANKING_CTRL{
+                           3601 ;	-----------------------------------------
+                           3602 ;	 function save_sampler_edge
+                           3603 ;	-----------------------------------------
+   E0A3                    3604 _save_sampler_edge:
+                           3605 ;	../../shared/src/sampler_cal.c:455: sampler_sel(OFST_F1P_D_E);
+   E0A3 75 82 00           3606 	mov	dpl,#0x00
+   E0A6 78 3E              3607 	mov	r0,#_sampler_sel
+   E0A8 79 D8              3608 	mov	r1,#(_sampler_sel >> 8)
+   E0AA 7A 02              3609 	mov	r2,#(_sampler_sel >> 16)
+   E0AC 12 00 B3           3610 	lcall	__sdcc_banked_call
+                           3611 ;	../../shared/src/sampler_cal.c:456: f1p_e_old = get_sampler();
+   E0AF 78 87              3612 	mov	r0,#_get_sampler
+   E0B1 79 DF              3613 	mov	r1,#(_get_sampler >> 8)
+   E0B3 7A 02              3614 	mov	r2,#(_get_sampler >> 16)
+   E0B5 12 00 B3           3615 	lcall	__sdcc_banked_call
+   E0B8 E5 82              3616 	mov	a,dpl
+   E0BA 90 66 3B           3617 	mov	dptr,#_f1p_e_old
+   E0BD F0                 3618 	movx	@dptr,a
+                           3619 ;	../../shared/src/sampler_cal.c:457: sampler_sel(OFST_F1P_D_O);
+   E0BE 75 82 04           3620 	mov	dpl,#0x04
+   E0C1 78 3E              3621 	mov	r0,#_sampler_sel
+   E0C3 79 D8              3622 	mov	r1,#(_sampler_sel >> 8)
+   E0C5 7A 02              3623 	mov	r2,#(_sampler_sel >> 16)
+   E0C7 12 00 B3           3624 	lcall	__sdcc_banked_call
+                           3625 ;	../../shared/src/sampler_cal.c:458: f1p_o_old = get_sampler();
+   E0CA 78 87              3626 	mov	r0,#_get_sampler
+   E0CC 79 DF              3627 	mov	r1,#(_get_sampler >> 8)
+   E0CE 7A 02              3628 	mov	r2,#(_get_sampler >> 16)
+   E0D0 12 00 B3           3629 	lcall	__sdcc_banked_call
+   E0D3 E5 82              3630 	mov	a,dpl
+   E0D5 90 66 3C           3631 	mov	dptr,#_f1p_o_old
+   E0D8 F0                 3632 	movx	@dptr,a
+   E0D9 02 00 C5           3633 	ljmp	__sdcc_banked_ret
+                           3634 	.area CSEG    (CODE)
+                           3635 	.area BANK2   (CODE)
+   E0DC                    3636 _r_training_bound_tb:
+   E0DC 13                 3637 	.db #0x13	; 19
+   E0DD 13                 3638 	.db #0x13	; 19
+   E0DE 16                 3639 	.db #0x16	; 22
+   E0DF 19                 3640 	.db #0x19	; 25
+   E0E0                    3641 _samper_cal_sel_tb:
+   E0E0 00                 3642 	.db #0x00	; 0
+   E0E1 00                 3643 	.db #0x00	; 0
+   E0E2 01                 3644 	.db #0x01	; 1
+   E0E3 01                 3645 	.db #0x01	; 1
+   E0E4 03                 3646 	.db #0x03	; 3
+   E0E5 03                 3647 	.db #0x03	; 3
+   E0E6 04                 3648 	.db #0x04	; 4
+   E0E7 04                 3649 	.db #0x04	; 4
+   E0E8 02                 3650 	.db #0x02	; 2
+   E0E9 05                 3651 	.db #0x05	; 5
+   E0EA                    3652 _sampler_f1_pol_tb:
+   E0EA 01                 3653 	.db #0x01	; 1
+   E0EB 00                 3654 	.db #0x00	; 0
+   E0EC 01                 3655 	.db #0x01	; 1
+   E0ED 00                 3656 	.db #0x00	; 0
+   E0EE 01                 3657 	.db #0x01	; 1
+   E0EF 00                 3658 	.db #0x00	; 0
+   E0F0 01                 3659 	.db #0x01	; 1
+   E0F1 00                 3660 	.db #0x00	; 0
+   E0F2 00                 3661 	.db #0x00	; 0
+   E0F3 00                 3662 	.db #0x00	; 0
+                           3663 	.area CABS    (ABS,CODE)

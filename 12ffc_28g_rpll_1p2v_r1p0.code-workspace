@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"name": "inc",
+			"path": "12FFC\\COMPHY_28G_PIPE4_RPLL_1P2V_R1P0\\shared\\inc"
+		},
+		{
+			"name": "src",
+			"path": "12FFC\\COMPHY_28G_PIPE4_RPLL_1P2V_R1P0\\shared\\src"
+		},
+		{
+			"name": "include",
+			"path": "include"
+		},
+		{
+			"path": "12FFC\\COMPHY_28G_PIPE4_RPLL_1P2V_R1P0\\1lane\\inc"
+		}
+	]
+}

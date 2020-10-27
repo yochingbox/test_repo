@@ -1,0 +1,5672 @@
+;--------------------------------------------------------
+; File Created by SDCC : free open source ANSI-C Compiler
+; Version 3.0.0 #6037 (May 26 2011) (Linux)
+; This file was generated Thu Oct 18 21:21:26 2018
+;--------------------------------------------------------
+	.module interrupt
+	.optsdcc -mmcs51 --model-small
+	
+;--------------------------------------------------------
+; Public variables in this module
+;--------------------------------------------------------
+	.globl _valid_coe_tbl
+	.globl _uart0_isr
+	.globl _int4_isr
+	.globl _int12_isr
+	.globl _int6_isr
+	.globl _int7_isr
+	.globl _int10_isr
+	.globl _int5_isr
+	.globl _int11_isr
+	.globl _int2_isr
+	.globl _int9_isr
+	.globl _int8_isr
+	.globl _int1_isr
+	.globl _int3_isr
+	.globl _int0_isr
+	.globl _timer2_isr
+	.globl _timer1_isr
+	.globl _timer0_isr
+	.globl _TF2
+	.globl _TI
+	.globl _RI
+	.globl _EX12
+	.globl _EX11
+	.globl _EX10
+	.globl _EX9
+	.globl _EX8
+	.globl _ES1
+	.globl _PS1
+	.globl _EX6
+	.globl _EX5
+	.globl _EX4
+	.globl _EX3
+	.globl _EX2
+	.globl _EX7
+	.globl _EA
+	.globl _WDT
+	.globl _ET2
+	.globl _ES
+	.globl _ET1
+	.globl _EX1
+	.globl _ET0
+	.globl _EX0
+	.globl _TF1
+	.globl _TR1
+	.globl _TF0
+	.globl _TR0
+	.globl _IE1
+	.globl _IT1
+	.globl _IE0
+	.globl _IT0
+	.globl _P3_7
+	.globl _P3_6
+	.globl _P3_5
+	.globl _P3_4
+	.globl _P3_3
+	.globl _P3_2
+	.globl _P3_1
+	.globl _P3_0
+	.globl _P2_7
+	.globl _P2_6
+	.globl _P2_5
+	.globl _P2_4
+	.globl _P2_3
+	.globl _P2_2
+	.globl _P2_1
+	.globl _P2_0
+	.globl _P1_7
+	.globl _P1_6
+	.globl _P1_5
+	.globl _P1_4
+	.globl _P1_3
+	.globl _P1_2
+	.globl _P1_1
+	.globl _P1_0
+	.globl _P0_7
+	.globl _P0_6
+	.globl _P0_5
+	.globl _P0_4
+	.globl _P0_3
+	.globl _P0_2
+	.globl _P0_1
+	.globl _P0_0
+	.globl _DMAC
+	.globl _DMATA
+	.globl _DMASA
+	.globl _TMR2
+	.globl _TMR1
+	.globl _TMR0
+	.globl _SRST
+	.globl _B
+	.globl _EIE
+	.globl _ACC
+	.globl _ADCON
+	.globl _PSW
+	.globl _TH2
+	.globl _TL2
+	.globl _RCAP2H
+	.globl _RCAP2L
+	.globl _T2CON
+	.globl _CCEN
+	.globl _IRCON
+	.globl _S0RELH
+	.globl _IP1
+	.globl _IEN1
+	.globl _DMAM1
+	.globl _DMAM0
+	.globl _DMASEL
+	.globl _DMAC2
+	.globl _DMAC1
+	.globl _DMAC0
+	.globl _P3
+	.globl _S0RELL
+	.globl _IP0
+	.globl _IEN0
+	.globl _DMAT2
+	.globl _DMAT1
+	.globl _DMAT0
+	.globl _DMAS2
+	.globl _DMAS1
+	.globl _DMAS0
+	.globl _P2
+	.globl _IEN2
+	.globl _SBUF
+	.globl _SCON
+	.globl _PSBANK
+	.globl _DPS
+	.globl _P1
+	.globl _CKCON
+	.globl _TH1
+	.globl _TH0
+	.globl _TL1
+	.globl _TL0
+	.globl _TMOD
+	.globl _TCON
+	.globl _PCON
+	.globl _WDTREL
+	.globl _DPH
+	.globl _DPL
+	.globl _P0
+	.globl _sq_thrs_ratio_tb
+	.globl _train_save_tb
+	.globl _tx_tb
+	.globl _UPHY_ANAREG_REV_0
+	.globl _dfe_sm_save
+	.globl _dfe_sm_dc
+	.globl _dfe_sm
+	.globl _cds28
+	.globl _lnx_calx_align90_gm
+	.globl _lnx_calx_align90_dac
+	.globl _lnx_calx_align90_dummy_clk
+	.globl _lnx_calx_eom_dpher
+	.globl _lnx_calx_vdda_dll_eom_sel
+	.globl _lnx_calx_dll_eom_gmsel
+	.globl _lnx_calx_vdda_dll_sel
+	.globl _lnx_calx_dll_gmsel
+	.globl _lnx_calx_rxdcc_dll_hg
+	.globl _lnx_calx_rxdcc_dll
+	.globl _lnx_calx_txdcc_hg
+	.globl _lnx_calx_txdcc
+	.globl _lnx_calx_txdcc_pdiv_hg
+	.globl _lnx_calx_txdcc_pdiv
+	.globl _lnx_spdoft_tx_preset_index_lane
+	.globl _lnx_cal_sellv_rxeomclk
+	.globl _lnx_cal_sellv_rxsampler
+	.globl _lnx_cal_sellv_txpre
+	.globl _lnx_cal_sellv_rxdataclk
+	.globl _lnx_cal_sellv_txclk
+	.globl _lnx_cal_sellv_txdata
+	.globl _lnx_cal_align90_gm
+	.globl _lnx_cal_align90_dac
+	.globl _lnx_cal_align90_dummy_clk
+	.globl _lnx_cal_eom_dpher
+	.globl _lnx_cal_vdda_dll_eom_sel
+	.globl _lnx_cal_dll_eom_gmsel
+	.globl _lnx_cal_vdda_dll_sel
+	.globl _lnx_cal_dll_gmsel
+	.globl _lnx_cal_rxdcc_eom_hg
+	.globl _lnx_cal_rxdcc_eom
+	.globl _lnx_cal_rxdcc_data_hg
+	.globl _lnx_cal_rxdcc_data
+	.globl _lnx_cal_rxdcc_dll_hg
+	.globl _lnx_cal_rxdcc_dll
+	.globl _lnx_cal_txdcc_hg
+	.globl _lnx_cal_txdcc
+	.globl _lnx_cal_txdcc_pdiv_hg
+	.globl _lnx_cal_txdcc_pdiv
+	.globl _cmx_cal_sllp_dac_fine_ring
+	.globl _cmx_cal_pll_sllp_dac_coarse_ring
+	.globl _cmx_cal_pll_speed_ring
+	.globl _cmx_cal_plldcc
+	.globl _cmx_cal_lccap_lsb
+	.globl _cmx_cal_lccap_msb
+	.globl _cmx_cal_lcvco_dac_msb
+	.globl _cmx_cal_lcvco_dac_lsb
+	.globl _cmx_cal_lcvco_dac
+	.globl _local_tx_preset_tb
+	.globl _train_g0_index
+	.globl _train_g1_index
+	.globl _train_gn1_index
+	.globl _phase_save
+	.globl _txffe_save
+	.globl _rc_save
+	.globl _phy_mode_lane_table
+	.globl _speedtable
+	.globl _min_gen
+	.globl _max_gen
+	.globl _phy_mode_cmn_table
+	.globl _ring_speedtable
+	.globl _lc_speedtable
+	.globl _TXTRAIN_IF_REG0
+	.globl _CDS_READ_MISC1
+	.globl _CDS_READ_MISC0
+	.globl _DFE_READ_F0D_RIGHT_ODD
+	.globl _DFE_READ_F0D_RIGHT_EVEN
+	.globl _DFE_READ_F0D_LEFT_ODD
+	.globl _DFE_READ_F0D_LEFT_EVEN
+	.globl _DFE_READ_F0D_ODD
+	.globl _DFE_READ_F0D_EVEN
+	.globl _DFE_READ_F0B_ODD
+	.globl _DFE_READ_F0B_EVEN
+	.globl _DFE_READ_F0A_ODD
+	.globl _DFE_READ_F0A_EVEN
+	.globl _DFE_READ_ODD_REG8
+	.globl _DFE_READ_EVEN_REG8
+	.globl _DFE_READ_ODD_REG7
+	.globl _DFE_READ_ODD_REG6
+	.globl _DFE_READ_ODD_REG5
+	.globl _DFE_READ_ODD_REG4
+	.globl _DFE_READ_ODD_REG3
+	.globl _DFE_READ_ODD_REG2
+	.globl _DFE_READ_ODD_REG1
+	.globl _DFE_READ_ODD_REG0
+	.globl _DFE_READ_EVEN_REG7
+	.globl _DFE_READ_EVEN_REG6
+	.globl _DFE_READ_EVEN_REG5
+	.globl _DFE_READ_EVEN_REG4
+	.globl _DFE_READ_EVEN_REG3
+	.globl _DFE_READ_EVEN_REG2
+	.globl _DFE_READ_EVEN_REG1
+	.globl _DFE_READ_EVEN_REG0
+	.globl _TX_TRAIN_IF_REG8
+	.globl _TX_TRAIN_CTRL_LANE
+	.globl _TX_TRAIN_IF_REG7
+	.globl _TX_TRAIN_IF_REG6
+	.globl _TX_TRAIN_IF_REG5
+	.globl _TX_TRAIN_IF_REG4
+	.globl _TRX_TRAIN_IF_INTERRUPT_CLEAR_LANE
+	.globl _TRX_TRAIN_IF_INTERRUPT_MASK0_LANE
+	.globl _TRX_TRAIN_IF_INTERRUPT_LANE
+	.globl _TX_AMP_CTRL_REG0
+	.globl _TX_DRV_RD_OUT_REG0
+	.globl _LINK_TRAIN_MODE0
+	.globl _TX_EMPH_CTRL_REG0
+	.globl _TX_TRAIN_DEFAULT_REG5
+	.globl _TX_TRAIN_DEFAULT_REG4
+	.globl _TX_TRAIN_DEFAULT_REG3
+	.globl _TX_TRAIN_DEFAULT_REG2
+	.globl _TX_TRAIN_DEFAULT_REG1
+	.globl _TX_TRAIN_DEFAULT_REG0
+	.globl _TX_TRAIN_DRIVER_REG2
+	.globl _TX_TRAIN_DRIVER_REG1
+	.globl _TX_TRAIN_DRIVER_REG0
+	.globl _TX_TRAIN_PATTTERN_REG0
+	.globl _TX_TRAIN_IF_REG3
+	.globl _TX_TRAIN_IF_REG2
+	.globl _TX_TRAIN_IF_REG1
+	.globl _TX_TRAIN_IF_REG0
+	.globl _DME_DEC_REG1
+	.globl _DME_DEC_REG0
+	.globl _DME_ENC_REG2
+	.globl _DME_ENC_REG1
+	.globl _DME_ENC_REG0
+	.globl _END_XDAT_CMN
+	.globl _MCU_INFO_13
+	.globl _MCU_INFO_12
+	.globl _MCU_INFO_5
+	.globl _MCU_INFO_4
+	.globl _SYNC_INFO
+	.globl _CDS_EYE_CLK_THR
+	.globl _TX_SAVE_4
+	.globl _TX_SAVE_3
+	.globl _TX_SAVE_2
+	.globl _TX_SAVE_1
+	.globl _TX_SAVE_0
+	.globl _ETH_PRESET1_TB
+	.globl _ETH_PRESET0_TB
+	.globl _SAS_PRESET2_TB
+	.globl _SAS_PRESET1_TB
+	.globl _SAS_PRESET0_TB
+	.globl _G_SELLV_RXSAMPLER
+	.globl _G_SELLV_RXDATACLK
+	.globl _G_SELLV_RXEOMCLK
+	.globl _G_SELLV_TXPRE
+	.globl _G_SELLV_TXDATA
+	.globl _G_SELLV_TXCLK
+	.globl _TIMER_SEL3
+	.globl _TIMER_SEL2
+	.globl _TIMER_SEL1
+	.globl _MCU_CONFIG1
+	.globl _LOOP_CNTS
+	.globl _CAL_DATA1
+	.globl _MCU_CONFIG
+	.globl _CAL_STATUS_READ
+	.globl _CAL_TIME_OUT_AND_DIS
+	.globl _CON_CAL_STEP_SIZE5
+	.globl _CON_CAL_STEP_SIZE4
+	.globl _CON_CAL_STEP_SIZE3
+	.globl _CON_CAL_STEP_SIZE2
+	.globl _CON_CAL_STEP_SIZE1
+	.globl _CONTROL_CONFIG9
+	.globl _CONTROL_CONFIG8
+	.globl _TRAIN_IF_CONFIG
+	.globl _CAL_DATA0
+	.globl _CONTROL_CONFIG7
+	.globl _CONTROL_CONFIG6
+	.globl _CONTROL_CONFIG5
+	.globl _CONTROL_CONFIG4
+	.globl _CONTROL_CONFIG3
+	.globl _CONTROL_CONFIG2
+	.globl _CONTROL_CONFIG1
+	.globl _CONTROL_CONFIG0
+	.globl _FW_REV
+	.globl _CID_REG1
+	.globl _CID_REG0
+	.globl _CMN_MCU_REG
+	.globl _SET_LANE_ISR
+	.globl _CMN_ISR_MASK_1
+	.globl _CMN_ISR_1
+	.globl _CMN_MCU_TIMER3_CONTROL
+	.globl _CMN_MCU_TIMER2_CONTROL
+	.globl _CMN_MCU_TIMER1_CONTROL
+	.globl _CMN_MCU_TIMER0_CONTROL
+	.globl _CMN_MCU_TIMER_CTRL_5_LANE
+	.globl _CMN_MCU_TIMER_CTRL_4_LANE
+	.globl _CMN_MCU_TIMER_CTRL_3_LANE
+	.globl _CMN_MCU_TIMER_CTRL_2_LANE
+	.globl _CMN_MCU_TIMER_CONTROL
+	.globl _CMN_CACHE_DEBUG1
+	.globl _CMN_MCU_GPIO
+	.globl _CMN_ISR_CLEAR_2
+	.globl _CMN_ISR_MASK_2
+	.globl _CMN_ISR_2
+	.globl _MCU_INT_ADDR
+	.globl _CMN_CACHE_DEBUG0
+	.globl _MCU_SDT_CMN
+	.globl _XDATA_MEM_CHECKSUM_CMN_2
+	.globl _XDATA_MEM_CHECKSUM_CMN_1
+	.globl _XDATA_MEM_CHECKSUM_CMN_0
+	.globl _TEST5
+	.globl _PM_CMN_REG2
+	.globl _INPUT_CMN_PIN_REG3
+	.globl __FIELDNAME_
+	.globl _CMN_CALIBRATION
+	.globl _OUTPUT_CMN_PIN_REG0
+	.globl _SPD_CMN_REG1
+	.globl _CLKGEN_CMN_REG1
+	.globl _PLLCAL_REG1
+	.globl _PLLCAL_REG0
+	.globl _ANA_TSEN_CONTROL
+	.globl _INPUT_CMN_PIN_REG2
+	.globl _INPUT_CMN_PIN_REG1
+	.globl _INPUT_CMN_PIN_REG0
+	.globl _PM_CMN_REG1
+	.globl _SYSTEM
+	.globl _TEST4
+	.globl _TEST3
+	.globl _TEST2
+	.globl _TEST1
+	.globl _TEST0
+	.globl _MCU_SYNC2
+	.globl _MCU_SYNC1
+	.globl _MEM_IRQ_CLEAR
+	.globl _APB_CONTROL_REG
+	.globl _ANA_IF_CMN_REG0
+	.globl _MEM_IRQ_MASK
+	.globl _MEM_IRQ
+	.globl _ANA_IF_CMN_REG1
+	.globl _MEM_CMN_ECC_ERR_ADDRESS0
+	.globl _MCU_INFO_3
+	.globl _MCU_INFO_2
+	.globl _MCU_INFO_1
+	.globl _MCU_INFO_0
+	.globl _MEMORY_CONTROL_4
+	.globl _MEMORY_CONTROL_3
+	.globl _MEMORY_CONTROL_2
+	.globl _MEMORY_CONTROL_1
+	.globl _MEMORY_CONTROL_0
+	.globl _MCU_DEBUG1
+	.globl _MCU_DEBUG0
+	.globl _MCU_CONTROL_4
+	.globl _MCU_CONTROL_3
+	.globl _MCU_CONTROL_2
+	.globl _MCU_CONTROL_1
+	.globl _MCU_CONTROL_0
+	.globl _GLOB_L1_SUBSTATES_CFG
+	.globl _GLOB_PIPE_REVISION
+	.globl _GLOB_BIST_DATA_HI
+	.globl _GLOB_BIST_SEQR_CFG
+	.globl _GLOB_BIST_RESULT
+	.globl _GLOB_BIST_MASK
+	.globl _GLOB_BIST_START
+	.globl _GLOB_BIST_LANE_TYPE
+	.globl _GLOB_BIST_CTRL
+	.globl _GLOB_DP_BAL_CFG4
+	.globl _GLOB_DP_BAL_CFG2
+	.globl _GLOB_DP_BAL_CFG0
+	.globl _GLOB_PM_DP_CTRL
+	.globl _GLOB_COUNTER_HI
+	.globl _GLOB_COUNTER_CTRL
+	.globl _GLOB_PM_CFG0
+	.globl _GLOB_DP_SAL_CFG5
+	.globl _GLOB_DP_SAL_CFG3
+	.globl _GLOB_DP_SAL_CFG1
+	.globl _GLOB_DP_SAL_CFG
+	.globl _GLOB_MISC_CTRL
+	.globl _GLOB_CLK_SRC_HI
+	.globl _GLOB_CLK_SRC_LO
+	.globl _GLOB_RST_CLK_CTRL
+	.globl _DFE_STATIC_REG6
+	.globl _DFE_STATIC_REG5
+	.globl _DFE_STATIC_REG4
+	.globl _DFE_STATIC_REG3
+	.globl _DFE_STATIC_REG1
+	.globl _DFE_STATIC_REG0
+	.globl _RX_CMN_0
+	.globl _SRIS_REG1
+	.globl _SRIS_REG0
+	.globl _DTX_PHY_ALIGN_REG2
+	.globl _DTX_PHY_ALIGN_REG1
+	.globl _DTX_PHY_ALIGN_REG0
+	.globl _DTX_REG4
+	.globl _DTX_REG3
+	.globl _DTX_REG2
+	.globl _DTX_REG1
+	.globl _DTX_REG0
+	.globl _TX_CMN_REG
+	.globl _END_XDAT_LANE
+	.globl _TRAIN_CONTROL_17
+	.globl _TRAIN_CONTROL_16
+	.globl _TRAIN_CONTROL_15
+	.globl _TRAIN_CONTROL_14
+	.globl _TRAIN_CONTROL_13
+	.globl _ESM_ERR_N_CNT_LOW_LANE
+	.globl _ESM_POP_N_CNT_LOW_LANE
+	.globl _TRAIN_CONTROL_12
+	.globl _TRAIN_CONTROL_11
+	.globl _TRAIN_CONTROL_10
+	.globl _TRAIN_CONTROL_9
+	.globl _TRAIN_CONTROL_8
+	.globl _TRAIN_CONTROL_7
+	.globl _TRAIN_CONTROL_6
+	.globl _TRAIN_CONTROL_5
+	.globl _TRAIN_CONTROL_4
+	.globl _TRAIN_CONTROL_3
+	.globl _ESM_ERR_POP_CNT_HIGH_LANE
+	.globl _ESM_ERR_P_CNT_LOW_LANE
+	.globl _ESM_POP_P_CNT_LOW_LANE
+	.globl _CDS_CTRL_REG1
+	.globl _CDS_CTRL_REG0
+	.globl _DFE_CONTROL_11
+	.globl _DFE_CONTROL_10
+	.globl _DFE_CONTROL_9
+	.globl _DFE_CONTROL_8
+	.globl _DFE_CONTROL_7
+	.globl _DFE_TEST_5
+	.globl _DFE_TEST_4
+	.globl _DFE_TEST_1
+	.globl _DFE_TEST_0
+	.globl _DFE_CONTROL_6
+	.globl _TRAIN_PARA_3
+	.globl _TRAIN_PARA_2
+	.globl _TRAIN_PARA_1
+	.globl _TRAIN_PARA_0
+	.globl _DLL_CAL
+	.globl _RPTA_CONFIG_1
+	.globl _RPTA_CONFIG_0
+	.globl _TRAIN_CONTROL_2
+	.globl _TRAIN_CONTROL_1
+	.globl _TRAIN_CONTROL_0
+	.globl _DFE_CONTROL_5
+	.globl _DFE_CONTROL_4
+	.globl _DFE_CONTROL_3
+	.globl _DFE_CONTROL_2
+	.globl _DFE_CONTROL_1
+	.globl _DFE_CONTROL_0
+	.globl _TRX_TRAIN_IF_TIMERS_ENABLE_LANE
+	.globl _TRX_TRAIN_IF_TIMERS2_LANE
+	.globl _TRX_TRAIN_IF_TIMERS1_LANE
+	.globl _PHY_LOCAL_VALUE_LANE
+	.globl _PHY_REMOTE_CTRL_VALUE_LANE
+	.globl _PHY_REMOTE_CTRL_COMMAND_LANE
+	.globl _CAL_SAVE_DATA3_LANE
+	.globl _CAL_SAVE_DATA2_LANE
+	.globl _CAL_SAVE_DATA1_LANE
+	.globl _CAL_CTRL4_LANE
+	.globl _CAL_CTRL3_LANE
+	.globl _CAL_CTRL2_LANE
+	.globl _CAL_CTRL1_LANE
+	.globl _LANE_MARGIN_REG0
+	.globl _EOM_VLD_REG4
+	.globl _EOM_REG0
+	.globl _EOM_ERR_REG3
+	.globl _EOM_ERR_REG2
+	.globl _EOM_ERR_REG1
+	.globl _EOM_ERR_REG0
+	.globl _EOM_VLD_REG3
+	.globl _EOM_VLD_REG2
+	.globl _EOM_VLD_REG1
+	.globl _EOM_VLD_REG0
+	.globl _DFE_STATIC_LANE_REG6
+	.globl _DFE_STATIC_LANE_REG5
+	.globl _DFE_STATIC_LANE_REG4
+	.globl _DFE_STATIC_LANE_REG3
+	.globl _DFE_STATIC_LANE_REG1
+	.globl _DFE_STATIC_LANE_REG0
+	.globl _DFE_DCE_REG0
+	.globl _CAL_OFST_REG2
+	.globl _CAL_OFST_REG1
+	.globl _CAL_OFST_REG0
+	.globl _DFE_READ_ODD_2C_REG8
+	.globl _DFE_READ_EVEN_2C_REG8
+	.globl _DFE_READ_ODD_2C_REG7
+	.globl _DFE_READ_ODD_2C_REG6
+	.globl _DFE_READ_ODD_2C_REG5
+	.globl _DFE_READ_ODD_2C_REG4
+	.globl _DFE_READ_ODD_2C_REG3
+	.globl _DFE_READ_ODD_2C_REG2
+	.globl _DFE_READ_ODD_2C_REG1
+	.globl _DFE_READ_ODD_2C_REG0
+	.globl _DFE_READ_EVEN_2C_REG7
+	.globl _DFE_READ_EVEN_2C_REG6
+	.globl _DFE_READ_EVEN_2C_REG5
+	.globl _DFE_READ_EVEN_2C_REG4
+	.globl _DFE_READ_EVEN_2C_REG3
+	.globl _DFE_READ_EVEN_2C_REG2
+	.globl _DFE_READ_EVEN_2C_REG1
+	.globl _DFE_READ_EVEN_2C_REG0
+	.globl _DFE_READ_ODD_SM_REG8
+	.globl _DFE_READ_EVEN_SM_REG8
+	.globl _DFE_READ_ODD_SM_REG7
+	.globl _DFE_READ_ODD_SM_REG6
+	.globl _DFE_READ_ODD_SM_REG5
+	.globl _DFE_READ_ODD_SM_REG4
+	.globl _DFE_READ_ODD_SM_REG3
+	.globl _DFE_READ_ODD_SM_REG2
+	.globl _DFE_READ_ODD_SM_REG1
+	.globl _DFE_READ_ODD_SM_REG0
+	.globl _DFE_READ_EVEN_SM_REG7
+	.globl _DFE_READ_EVEN_SM_REG6
+	.globl _DFE_READ_EVEN_SM_REG5
+	.globl _DFE_READ_EVEN_SM_REG4
+	.globl _DFE_READ_EVEN_SM_REG3
+	.globl _DFE_READ_EVEN_SM_REG2
+	.globl _DFE_READ_EVEN_SM_REG1
+	.globl _DFE_READ_EVEN_SM_REG0
+	.globl _DFE_FEXT_ODD_REG7
+	.globl _DFE_FEXT_ODD_REG6
+	.globl _DFE_FEXT_ODD_REG5
+	.globl _DFE_FEXT_ODD_REG4
+	.globl _DFE_FEXT_ODD_REG3
+	.globl _DFE_FEXT_ODD_REG2
+	.globl _DFE_FEXT_ODD_REG1
+	.globl _DFE_FEXT_ODD_REG0
+	.globl _DFE_FEXT_EVEN_REG7
+	.globl _DFE_FEXT_EVEN_REG6
+	.globl _DFE_FEXT_EVEN_REG5
+	.globl _DFE_FEXT_EVEN_REG4
+	.globl _DFE_FEXT_EVEN_REG3
+	.globl _DFE_FEXT_EVEN_REG2
+	.globl _DFE_FEXT_EVEN_REG1
+	.globl _DFE_FEXT_EVEN_REG0
+	.globl _DFE_DC_ODD_REG8
+	.globl _DFE_DC_EVEN_REG8
+	.globl _DFE_FEN_ODD_REG
+	.globl _DFE_FEN_EVEN_REG
+	.globl _DFE_STEP_REG1
+	.globl _DFE_STEP_REG0
+	.globl _DFE_ANA_REG1
+	.globl _DFE_ANA_REG0
+	.globl _DFE_CTRL_REG4
+	.globl _RX_EQ_CLK_CTRL
+	.globl _DFE_CTRL_REG3
+	.globl _DFE_CTRL_REG2
+	.globl _DFE_CTRL_REG1
+	.globl _DFE_CTRL_REG0
+	.globl _PT_COUNTER2
+	.globl _PT_COUNTER1
+	.globl _PT_COUNTER0
+	.globl _PT_USER_PATTERN2
+	.globl _PT_USER_PATTERN1
+	.globl _PT_USER_PATTERN0
+	.globl _PT_CONTROL1
+	.globl _PT_CONTROL0
+	.globl _XDATA_MEM_CHECKSUM_LANE1
+	.globl _XDATA_MEM_CHECKSUM_LANE0
+	.globl _MEM_ECC_ERR_ADDRESS0
+	.globl _MCU_COMMAND0
+	.globl _MCU_INT_CONTROL_13
+	.globl _MCU_WDT_LANE
+	.globl _MCU_IRQ_ISR_LANE
+	.globl _ANA_IF_DFEO_REG0
+	.globl _ANA_IF_DFEE_REG0
+	.globl _ANA_IF_TRX_REG0
+	.globl _EXT_INT_CONTROL
+	.globl _MCU_DEBUG_LANE
+	.globl _MCU_DEBUG3_LANE
+	.globl _MCU_DEBUG2_LANE
+	.globl _MCU_DEBUG1_LANE
+	.globl _MCU_DEBUG0_LANE
+	.globl _MCU_TIMER_CTRL_7_LANE
+	.globl _MCU_TIMER_CTRL_6_LANE
+	.globl _MCU_TIMER_CTRL_5_LANE
+	.globl _MCU_TIMER_CTRL_4_LANE
+	.globl _MCU_TIMER_CTRL_3_LANE
+	.globl _MCU_TIMER_CTRL_2_LANE
+	.globl _MCU_TIMER_CTRL_1_LANE
+	.globl _MCU_MEM_REG2_LANE
+	.globl _MCU_MEM_REG1_LANE
+	.globl _MCU_IRQ_MASK_LANE
+	.globl _MCU_IRQ_LANE
+	.globl _MCU_TIMER3_CONTROL
+	.globl _MCU_TIMER2_CONTROL
+	.globl _MCU_TIMER1_CONTROL
+	.globl _MCU_TIMER0_CONTROL
+	.globl _MCU_TIMER_CONTROL
+	.globl _MCU_INT12_CONTROL
+	.globl _MCU_INT11_CONTROL
+	.globl _MCU_INT10_CONTROL
+	.globl _MCU_INT9_CONTROL
+	.globl _MCU_INT8_CONTROL
+	.globl _MCU_INT7_CONTROL
+	.globl _MCU_INT6_CONTROL
+	.globl _MCU_INT5_CONTROL
+	.globl _MCU_INT4_CONTROL
+	.globl _MCU_INT3_CONTROL
+	.globl _MCU_INT2_CONTROL
+	.globl _MCU_INT1_CONTROL
+	.globl _MCU_INT0_CONTROL
+	.globl _MCU_STATUS3_LANE
+	.globl _MCU_STATUS2_LANE
+	.globl _MCU_STATUS1_LANE
+	.globl _MCU_STATUS0_LANE
+	.globl _LANE_SYSTEM0
+	.globl _CACHE_DEBUG1
+	.globl _CACHE_DEBUG0
+	.globl _MCU_GPIO
+	.globl _MCU_CONTROL_LANE
+	.globl _LANE_32G_PRESET_CFG16_LANE
+	.globl _LANE_32G_PRESET_CFG14_LANE
+	.globl _LANE_32G_PRESET_CFG12_LANE
+	.globl _LANE_32G_PRESET_CFG10_LANE
+	.globl _LANE_32G_PRESET_CFG8_LANE
+	.globl _LANE_32G_PRESET_CFG6_LANE
+	.globl _LANE_32G_PRESET_CFG4_LANE
+	.globl _LANE_32G_PRESET_CFG2_LANE
+	.globl _LANE_32G_PRESET_CFG0_LANE
+	.globl _LANE_EQ_32G_CFG0_LANE
+	.globl _LANE_16G_PRESET_CFG16_LANE
+	.globl _LANE_16G_PRESET_CFG14_LANE
+	.globl _LANE_16G_PRESET_CFG12_LANE
+	.globl _LANE_16G_PRESET_CFG10_LANE
+	.globl _LANE_16G_PRESET_CFG8_LANE
+	.globl _LANE_16G_PRESET_CFG6_LANE
+	.globl _LANE_16G_PRESET_CFG4_LANE
+	.globl _LANE_16G_PRESET_CFG2_LANE
+	.globl _LANE_16G_PRESET_CFG0_LANE
+	.globl _LANE_EQ_16G_CFG0_LANE
+	.globl _LANE_REMOTE_SET_LANE
+	.globl _LANE_COEFF_MAX0_LANE
+	.globl _LANE_PRESET_CFG16_LANE
+	.globl _LANE_PRESET_CFG14_LANE
+	.globl _LANE_PRESET_CFG12_LANE
+	.globl _LANE_PRESET_CFG10_LANE
+	.globl _LANE_PRESET_CFG8_LANE
+	.globl _LANE_PRESET_CFG6_LANE
+	.globl _LANE_PRESET_CFG4_LANE
+	.globl _LANE_PRESET_CFG2_LANE
+	.globl _LANE_PRESET_CFG0_LANE
+	.globl _LANE_EQ_CFG1_LANE
+	.globl _LANE_EQ_CFG0_LANE
+	.globl _LANE_USB_DP_CFG2_LANE
+	.globl _LANE_USB_DP_CFG1_LANE
+	.globl _LANE_DP_PIE8_CFG0_LANE
+	.globl _LANE_CFG_STATUS3_LANE
+	.globl _LANE_CFG4
+	.globl _LANE_CFG2_LANE
+	.globl _LANE_CFG_STATUS2_LANE
+	.globl _LANE_STATUS0
+	.globl _LANE_CFG0
+	.globl _SQ_REG0
+	.globl _DTL_REG3
+	.globl _DTL_REG2
+	.globl _DTL_REG1
+	.globl _DTL_REG0
+	.globl _RX_LANE_INTERRUPT_REG1
+	.globl _RX_CALIBRATION_REG
+	.globl _INPUT_RX_PIN_REG3_LANE
+	.globl _RX_DATA_PATH_REG
+	.globl _RX_LANE_INTERRUPT_MASK
+	.globl _RX_LANE_INTERRUPT
+	.globl _CDR_LOCK_REG
+	.globl _FRAME_SYNC_DET_REG6
+	.globl _FRAME_SYNC_DET_REG5
+	.globl _FRAME_SYNC_DET_REG4
+	.globl _FRAME_SYNC_DET_REG3
+	.globl _FRAME_SYNC_DET_REG2
+	.globl _FRAME_SYNC_DET_REG1
+	.globl _FRAME_SYNC_DET_REG0
+	.globl _CLKGEN_RX_LANE_REG1_LANE
+	.globl _DIG_RX_RSVD_REG0
+	.globl _SPD_CTRL_RX_LANE_REG1_LANE
+	.globl _INPUT_RX_PIN_REG2_LANE
+	.globl _INPUT_RX_PIN_REG1_LANE
+	.globl _INPUT_RX_PIN_REG0_LANE
+	.globl _RX_SYSTEM_LANE
+	.globl _PM_CTRL_RX_LANE_REG1_LANE
+	.globl _MON_TOP
+	.globl _ANALOG_TX_REALTIME_REG_1
+	.globl _SPD_CTRL_INTERRUPT_CLEAR_REG1_LANE
+	.globl _PM_CTRL_INTERRUPT_ISR_REG1_LANE
+	.globl __FIELDNAME__LANE
+	.globl _INPUT_TX_PIN_REG5_LANE
+	.globl _DIG_TX_RSVD_REG0
+	.globl _TX_CALIBRATION_LANE
+	.globl _INPUT_TX_PIN_REG4_LANE
+	.globl _TX_SYSTEM_LANE
+	.globl _SPD_CTRL_TX_LANE_REG1_LANE
+	.globl _SPD_CTRL_INTERRUPT_REG2
+	.globl _SPD_CTRL_INTERRUPT_REG1_LANE
+	.globl _TX_SPEED_CONVERT_LANE
+	.globl _CLKGEN_TX_LANE_REG1_LANE
+	.globl _PM_CTRL_INTERRUPT_REG2
+	.globl _PM_CTRL_INTERRUPT_REG1_LANE
+	.globl _INPUT_TX_PIN_REG3_LANE
+	.globl _INPUT_TX_PIN_REG2_LANE
+	.globl _INPUT_TX_PIN_REG1_LANE
+	.globl _INPUT_TX_PIN_REG0_LANE
+	.globl _PM_CTRL_TX_LANE_REG2_LANE
+	.globl _PM_CTRL_TX_LANE_REG1_LANE
+	.globl _UPHY14_CMN_ANAREG_TOP_214
+	.globl _UPHY14_CMN_ANAREG_TOP_213
+	.globl _UPHY14_CMN_ANAREG_TOP_212
+	.globl _UPHY14_CMN_ANAREG_TOP_211
+	.globl _UPHY14_CMN_ANAREG_TOP_210
+	.globl _UPHY14_CMN_ANAREG_TOP_209
+	.globl _UPHY14_CMN_ANAREG_TOP_208
+	.globl _UPHY14_CMN_ANAREG_TOP_207
+	.globl _UPHY14_CMN_ANAREG_TOP_206
+	.globl _UPHY14_CMN_ANAREG_TOP_205
+	.globl _UPHY14_CMN_ANAREG_TOP_204
+	.globl _UPHY14_CMN_ANAREG_TOP_203
+	.globl _UPHY14_CMN_ANAREG_TOP_202
+	.globl _UPHY14_CMN_ANAREG_TOP_201
+	.globl _UPHY14_CMN_ANAREG_TOP_200
+	.globl _UPHY14_CMN_ANAREG_TOP_199
+	.globl _UPHY14_CMN_ANAREG_TOP_198
+	.globl _UPHY14_CMN_ANAREG_TOP_197
+	.globl _UPHY14_CMN_ANAREG_TOP_196
+	.globl _UPHY14_CMN_ANAREG_TOP_195
+	.globl _UPHY14_CMN_ANAREG_TOP_194
+	.globl _UPHY14_CMN_ANAREG_TOP_193
+	.globl _UPHY14_CMN_ANAREG_TOP_192
+	.globl _UPHY14_CMN_ANAREG_TOP_191
+	.globl _UPHY14_CMN_ANAREG_TOP_190
+	.globl _UPHY14_CMN_ANAREG_TOP_189
+	.globl _UPHY14_CMN_ANAREG_TOP_188
+	.globl _UPHY14_CMN_ANAREG_TOP_187
+	.globl _UPHY14_CMN_ANAREG_TOP_186
+	.globl _UPHY14_CMN_ANAREG_TOP_185
+	.globl _UPHY14_CMN_ANAREG_TOP_184
+	.globl _UPHY14_CMN_ANAREG_TOP_183
+	.globl _UPHY14_CMN_ANAREG_TOP_182
+	.globl _UPHY14_CMN_ANAREG_TOP_181
+	.globl _UPHY14_CMN_ANAREG_TOP_180
+	.globl _UPHY14_CMN_ANAREG_TOP_179
+	.globl _UPHY14_CMN_ANAREG_TOP_178
+	.globl _UPHY14_CMN_ANAREG_TOP_177
+	.globl _UPHY14_CMN_ANAREG_TOP_176
+	.globl _UPHY14_CMN_ANAREG_TOP_175
+	.globl _UPHY14_CMN_ANAREG_TOP_174
+	.globl _UPHY14_CMN_ANAREG_TOP_173
+	.globl _UPHY14_CMN_ANAREG_TOP_172
+	.globl _UPHY14_CMN_ANAREG_TOP_171
+	.globl _UPHY14_CMN_ANAREG_TOP_170
+	.globl _UPHY14_CMN_ANAREG_TOP_169
+	.globl _UPHY14_CMN_ANAREG_TOP_168
+	.globl _UPHY14_CMN_ANAREG_TOP_167
+	.globl _UPHY14_CMN_ANAREG_TOP_166
+	.globl _UPHY14_CMN_ANAREG_TOP_165
+	.globl _UPHY14_CMN_ANAREG_TOP_164
+	.globl _UPHY14_CMN_ANAREG_TOP_163
+	.globl _UPHY14_CMN_ANAREG_TOP_162
+	.globl _UPHY14_CMN_ANAREG_TOP_161
+	.globl _UPHY14_CMN_ANAREG_TOP_160
+	.globl _UPHY14_CMN_ANAREG_TOP_159
+	.globl _UPHY14_CMN_ANAREG_TOP_158
+	.globl _UPHY14_CMN_ANAREG_TOP_157
+	.globl _UPHY14_CMN_ANAREG_TOP_156
+	.globl _UPHY14_CMN_ANAREG_TOP_155
+	.globl _UPHY14_CMN_ANAREG_TOP_154
+	.globl _UPHY14_CMN_ANAREG_TOP_153
+	.globl _UPHY14_CMN_ANAREG_TOP_152
+	.globl _UPHY14_CMN_ANAREG_TOP_151
+	.globl _UPHY14_CMN_ANAREG_TOP_150
+	.globl _UPHY14_CMN_ANAREG_TOP_149
+	.globl _UPHY14_CMN_ANAREG_TOP_148
+	.globl _UPHY14_CMN_ANAREG_TOP_147
+	.globl _UPHY14_CMN_ANAREG_TOP_146
+	.globl _UPHY14_CMN_ANAREG_TOP_145
+	.globl _UPHY14_CMN_ANAREG_TOP_144
+	.globl _UPHY14_CMN_ANAREG_TOP_143
+	.globl _UPHY14_CMN_ANAREG_TOP_142
+	.globl _UPHY14_CMN_ANAREG_TOP_141
+	.globl _UPHY14_CMN_ANAREG_TOP_140
+	.globl _UPHY14_CMN_ANAREG_TOP_139
+	.globl _UPHY14_CMN_ANAREG_TOP_138
+	.globl _UPHY14_CMN_ANAREG_TOP_137
+	.globl _UPHY14_CMN_ANAREG_TOP_136
+	.globl _UPHY14_CMN_ANAREG_TOP_135
+	.globl _UPHY14_CMN_ANAREG_TOP_134
+	.globl _UPHY14_CMN_ANAREG_TOP_133
+	.globl _UPHY14_CMN_ANAREG_TOP_132
+	.globl _UPHY14_CMN_ANAREG_TOP_131
+	.globl _UPHY14_CMN_ANAREG_TOP_130
+	.globl _UPHY14_CMN_ANAREG_TOP_129
+	.globl _UPHY14_CMN_ANAREG_TOP_128
+	.globl _ANA_DFEO_REG_0B
+	.globl _ANA_DFEO_REG_0A
+	.globl _ANA_DFEO_REG_09
+	.globl _ANA_DFEO_REG_08
+	.globl _ANA_DFEO_REG_07
+	.globl _ANA_DFEO_REG_06
+	.globl _ANA_DFEO_REG_05
+	.globl _ANA_DFEO_REG_04
+	.globl _ANA_DFEO_REG_03
+	.globl _ANA_DFEO_REG_02
+	.globl _ANA_DFEO_REG_01
+	.globl _ANA_DFEO_REG_00
+	.globl _ANA_DFEO_REG_27
+	.globl _ANA_DFEO_REG_26
+	.globl _ANA_DFEO_REG_25
+	.globl _ANA_DFEO_REG_24
+	.globl _ANA_DFEO_REG_23
+	.globl _ANA_DFEO_REG_22
+	.globl _ANA_DFEO_REG_21
+	.globl _ANA_DFEO_REG_20
+	.globl _ANA_DFEO_REG_1F
+	.globl _ANA_DFEO_REG_1E
+	.globl _ANA_DFEO_REG_1D
+	.globl _ANA_DFEO_REG_1C
+	.globl _ANA_DFEO_REG_1B
+	.globl _ANA_DFEO_REG_1A
+	.globl _ANA_DFEO_REG_19
+	.globl _ANA_DFEO_REG_18
+	.globl _ANA_DFEO_REG_17
+	.globl _ANA_DFEO_REG_16
+	.globl _ANA_DFEO_REG_15
+	.globl _ANA_DFEO_REG_14
+	.globl _ANA_DFEO_REG_13
+	.globl _ANA_DFEO_REG_12
+	.globl _ANA_DFEO_REG_11
+	.globl _ANA_DFEO_REG_10
+	.globl _ANA_DFEO_REG_0F
+	.globl _ANA_DFEO_REG_0E
+	.globl _ANA_DFEO_REG_0D
+	.globl _ANA_DFEO_REG_0C
+	.globl _ANA_DFEE_REG_1D
+	.globl _ANA_DFEE_REG_1C
+	.globl _ANA_DFEE_REG_1B
+	.globl _ANA_DFEE_REG_1A
+	.globl _ANA_DFEE_REG_19
+	.globl _ANA_DFEE_REG_18
+	.globl _ANA_DFEE_REG_17
+	.globl _ANA_DFEE_REG_16
+	.globl _ANA_DFEE_REG_15
+	.globl _ANA_DFEE_REG_14
+	.globl _ANA_DFEE_REG_13
+	.globl _ANA_DFEE_REG_12
+	.globl _ANA_DFEE_REG_11
+	.globl _ANA_DFEE_REG_10
+	.globl _ANA_DFEE_REG_0F
+	.globl _ANA_DFEE_REG_0E
+	.globl _ANA_DFEE_REG_0D
+	.globl _ANA_DFEE_REG_0C
+	.globl _ANA_DFEE_REG_0B
+	.globl _ANA_DFEE_REG_0A
+	.globl _ANA_DFEE_REG_09
+	.globl _ANA_DFEE_REG_08
+	.globl _ANA_DFEE_REG_07
+	.globl _ANA_DFEE_REG_06
+	.globl _ANA_DFEE_REG_05
+	.globl _ANA_DFEE_REG_04
+	.globl _ANA_DFEE_REG_03
+	.globl _ANA_DFEE_REG_02
+	.globl _ANA_DFEE_REG_01
+	.globl _ANA_DFEE_REG_00
+	.globl _ANA_DFEE_REG_27
+	.globl _ANA_DFEE_REG_26
+	.globl _ANA_DFEE_REG_25
+	.globl _ANA_DFEE_REG_24
+	.globl _ANA_DFEE_REG_23
+	.globl _ANA_DFEE_REG_22
+	.globl _ANA_DFEE_REG_21
+	.globl _ANA_DFEE_REG_20
+	.globl _ANA_DFEE_REG_1F
+	.globl _ANA_DFEE_REG_1E
+	.globl _UPHY14_TRX_ANAREG_BOT_32
+	.globl _UPHY14_TRX_ANAREG_BOT_31
+	.globl _UPHY14_TRX_ANAREG_BOT_30
+	.globl _UPHY14_TRX_ANAREG_BOT_29
+	.globl _UPHY14_TRX_ANAREG_BOT_28
+	.globl _UPHY14_TRX_ANAREG_BOT_27
+	.globl _UPHY14_TRX_ANAREG_BOT_26
+	.globl _UPHY14_TRX_ANAREG_BOT_25
+	.globl _UPHY14_TRX_ANAREG_BOT_24
+	.globl _UPHY14_TRX_ANAREG_BOT_23
+	.globl _UPHY14_TRX_ANAREG_BOT_22
+	.globl _UPHY14_TRX_ANAREG_BOT_21
+	.globl _UPHY14_TRX_ANAREG_BOT_20
+	.globl _UPHY14_TRX_ANAREG_BOT_19
+	.globl _UPHY14_TRX_ANAREG_BOT_18
+	.globl _UPHY14_TRX_ANAREG_BOT_17
+	.globl _UPHY14_TRX_ANAREG_BOT_16
+	.globl _UPHY14_TRX_ANAREG_BOT_15
+	.globl _UPHY14_TRX_ANAREG_BOT_14
+	.globl _UPHY14_TRX_ANAREG_BOT_13
+	.globl _UPHY14_TRX_ANAREG_BOT_12
+	.globl _UPHY14_TRX_ANAREG_BOT_11
+	.globl _UPHY14_TRX_ANAREG_BOT_10
+	.globl _UPHY14_TRX_ANAREG_BOT_9
+	.globl _UPHY14_TRX_ANAREG_BOT_8
+	.globl _UPHY14_TRX_ANAREG_BOT_7
+	.globl _UPHY14_TRX_ANAREG_BOT_6
+	.globl _UPHY14_TRX_ANAREG_BOT_5
+	.globl _UPHY14_TRX_ANAREG_BOT_4
+	.globl _UPHY14_TRX_ANAREG_BOT_3
+	.globl _UPHY14_TRX_ANAREG_BOT_2
+	.globl _UPHY14_TRX_ANAREG_BOT_1
+	.globl _UPHY14_TRX_ANAREG_BOT_0
+	.globl _UPHY14_TRX_ANAREG_TOP_157
+	.globl _UPHY14_TRX_ANAREG_TOP_156
+	.globl _UPHY14_TRX_ANAREG_TOP_155
+	.globl _UPHY14_TRX_ANAREG_TOP_154
+	.globl _UPHY14_TRX_ANAREG_TOP_153
+	.globl _UPHY14_TRX_ANAREG_TOP_152
+	.globl _UPHY14_TRX_ANAREG_TOP_151
+	.globl _UPHY14_TRX_ANAREG_TOP_150
+	.globl _UPHY14_TRX_ANAREG_TOP_149
+	.globl _UPHY14_TRX_ANAREG_TOP_148
+	.globl _UPHY14_TRX_ANAREG_TOP_147
+	.globl _UPHY14_TRX_ANAREG_TOP_146
+	.globl _UPHY14_TRX_ANAREG_TOP_145
+	.globl _UPHY14_TRX_ANAREG_TOP_144
+	.globl _UPHY14_TRX_ANAREG_TOP_143
+	.globl _UPHY14_TRX_ANAREG_TOP_142
+	.globl _UPHY14_TRX_ANAREG_TOP_141
+	.globl _UPHY14_TRX_ANAREG_TOP_140
+	.globl _UPHY14_TRX_ANAREG_TOP_139
+	.globl _UPHY14_TRX_ANAREG_TOP_138
+	.globl _UPHY14_TRX_ANAREG_TOP_137
+	.globl _UPHY14_TRX_ANAREG_TOP_136
+	.globl _UPHY14_TRX_ANAREG_TOP_135
+	.globl _UPHY14_TRX_ANAREG_TOP_134
+	.globl _UPHY14_TRX_ANAREG_TOP_133
+	.globl _UPHY14_TRX_ANAREG_TOP_132
+	.globl _UPHY14_TRX_ANAREG_TOP_131
+	.globl _UPHY14_TRX_ANAREG_TOP_130
+	.globl _UPHY14_TRX_ANAREG_TOP_129
+	.globl _UPHY14_TRX_ANAREG_TOP_128
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_143
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_142
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_141
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_140
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_139
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_138
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_137
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_136
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_135
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_134
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_133
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_132
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_131
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_130
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_129
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_128
+;--------------------------------------------------------
+; special function registers
+;--------------------------------------------------------
+	.area RSEG    (ABS,DATA)
+	.org 0x0000
+_P0	=	0x0080
+_DPL	=	0x0082
+_DPH	=	0x0083
+_WDTREL	=	0x0086
+_PCON	=	0x0087
+_TCON	=	0x0088
+_TMOD	=	0x0089
+_TL0	=	0x008a
+_TL1	=	0x008b
+_TH0	=	0x008c
+_TH1	=	0x008d
+_CKCON	=	0x008e
+_P1	=	0x0090
+_DPS	=	0x0092
+_PSBANK	=	0x0094
+_SCON	=	0x0098
+_SBUF	=	0x0099
+_IEN2	=	0x009a
+_P2	=	0x00a0
+_DMAS0	=	0x00a1
+_DMAS1	=	0x00a2
+_DMAS2	=	0x00a3
+_DMAT0	=	0x00a4
+_DMAT1	=	0x00a5
+_DMAT2	=	0x00a6
+_IEN0	=	0x00a8
+_IP0	=	0x00a9
+_S0RELL	=	0x00aa
+_P3	=	0x00b0
+_DMAC0	=	0x00b1
+_DMAC1	=	0x00b2
+_DMAC2	=	0x00b3
+_DMASEL	=	0x00b4
+_DMAM0	=	0x00b5
+_DMAM1	=	0x00b6
+_IEN1	=	0x00b8
+_IP1	=	0x00b9
+_S0RELH	=	0x00ba
+_IRCON	=	0x00c0
+_CCEN	=	0x00c1
+_T2CON	=	0x00c8
+_RCAP2L	=	0x00ca
+_RCAP2H	=	0x00cb
+_TL2	=	0x00cc
+_TH2	=	0x00cd
+_PSW	=	0x00d0
+_ADCON	=	0x00d8
+_ACC	=	0x00e0
+_EIE	=	0x00e8
+_B	=	0x00f0
+_SRST	=	0x00f7
+_TMR0	=	0x8c8a
+_TMR1	=	0x8d8b
+_TMR2	=	0xcdcc
+_DMASA	=	0xa2a1
+_DMATA	=	0xa5a4
+_DMAC	=	0xb2b1
+;--------------------------------------------------------
+; special function bits
+;--------------------------------------------------------
+	.area RSEG    (ABS,DATA)
+	.org 0x0000
+_P0_0	=	0x0080
+_P0_1	=	0x0081
+_P0_2	=	0x0082
+_P0_3	=	0x0083
+_P0_4	=	0x0084
+_P0_5	=	0x0085
+_P0_6	=	0x0086
+_P0_7	=	0x0087
+_P1_0	=	0x0090
+_P1_1	=	0x0091
+_P1_2	=	0x0092
+_P1_3	=	0x0093
+_P1_4	=	0x0094
+_P1_5	=	0x0095
+_P1_6	=	0x0096
+_P1_7	=	0x0097
+_P2_0	=	0x00a0
+_P2_1	=	0x00a1
+_P2_2	=	0x00a2
+_P2_3	=	0x00a3
+_P2_4	=	0x00a4
+_P2_5	=	0x00a5
+_P2_6	=	0x00a6
+_P2_7	=	0x00a7
+_P3_0	=	0x00b0
+_P3_1	=	0x00b1
+_P3_2	=	0x00b2
+_P3_3	=	0x00b3
+_P3_4	=	0x00b4
+_P3_5	=	0x00b5
+_P3_6	=	0x00b6
+_P3_7	=	0x00b7
+_IT0	=	0x0088
+_IE0	=	0x0089
+_IT1	=	0x008a
+_IE1	=	0x008b
+_TR0	=	0x008c
+_TF0	=	0x008d
+_TR1	=	0x008e
+_TF1	=	0x008f
+_EX0	=	0x00a8
+_ET0	=	0x00a9
+_EX1	=	0x00aa
+_ET1	=	0x00ab
+_ES	=	0x00ac
+_ET2	=	0x00ad
+_WDT	=	0x00ae
+_EA	=	0x00af
+_EX7	=	0x00b8
+_EX2	=	0x00b9
+_EX3	=	0x00ba
+_EX4	=	0x00bb
+_EX5	=	0x00bc
+_EX6	=	0x00bd
+_PS1	=	0x00be
+_ES1	=	0x009a
+_EX8	=	0x009b
+_EX9	=	0x009c
+_EX10	=	0x009d
+_EX11	=	0x009e
+_EX12	=	0x009f
+_RI	=	0x0098
+_TI	=	0x0099
+_TF2	=	0x00c6
+;--------------------------------------------------------
+; overlayable register banks
+;--------------------------------------------------------
+	.area REG_BANK_0	(REL,OVR,DATA)
+	.ds 8
+	.area REG_BANK_2	(REL,OVR,DATA)
+	.ds 8
+;--------------------------------------------------------
+; overlayable bit register bank
+;--------------------------------------------------------
+	.area BIT_BANK	(REL,OVR,DATA)
+bits:
+	.ds 1
+	b0 = bits[0]
+	b1 = bits[1]
+	b2 = bits[2]
+	b3 = bits[3]
+	b4 = bits[4]
+	b5 = bits[5]
+	b6 = bits[6]
+	b7 = bits[7]
+;--------------------------------------------------------
+; internal ram data
+;--------------------------------------------------------
+	.area DSEG    (DATA)
+;--------------------------------------------------------
+; overlayable items in internal ram 
+;--------------------------------------------------------
+	.area OSEG    (OVR,DATA)
+;--------------------------------------------------------
+; indirectly addressable internal ram data
+;--------------------------------------------------------
+	.area ISEG    (DATA)
+;--------------------------------------------------------
+; absolute internal ram data
+;--------------------------------------------------------
+	.area IABS    (ABS,DATA)
+	.area IABS    (ABS,DATA)
+;--------------------------------------------------------
+; bit data
+;--------------------------------------------------------
+	.area BSEG    (BIT)
+;--------------------------------------------------------
+; paged external ram data
+;--------------------------------------------------------
+	.area PSEG    (PAG,XDATA)
+;--------------------------------------------------------
+; external ram data
+;--------------------------------------------------------
+	.area XSEG    (XDATA)
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_128	=	0x1000
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_129	=	0x1004
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_130	=	0x1008
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_131	=	0x100c
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_132	=	0x1010
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_133	=	0x1014
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_134	=	0x1018
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_135	=	0x101c
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_136	=	0x1020
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_137	=	0x1024
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_138	=	0x1028
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_139	=	0x102c
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_140	=	0x1030
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_141	=	0x1034
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_142	=	0x1038
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_143	=	0x103c
+_UPHY14_TRX_ANAREG_TOP_128	=	0x0200
+_UPHY14_TRX_ANAREG_TOP_129	=	0x0204
+_UPHY14_TRX_ANAREG_TOP_130	=	0x0208
+_UPHY14_TRX_ANAREG_TOP_131	=	0x020c
+_UPHY14_TRX_ANAREG_TOP_132	=	0x0210
+_UPHY14_TRX_ANAREG_TOP_133	=	0x0214
+_UPHY14_TRX_ANAREG_TOP_134	=	0x0218
+_UPHY14_TRX_ANAREG_TOP_135	=	0x021c
+_UPHY14_TRX_ANAREG_TOP_136	=	0x0220
+_UPHY14_TRX_ANAREG_TOP_137	=	0x0224
+_UPHY14_TRX_ANAREG_TOP_138	=	0x0228
+_UPHY14_TRX_ANAREG_TOP_139	=	0x022c
+_UPHY14_TRX_ANAREG_TOP_140	=	0x0230
+_UPHY14_TRX_ANAREG_TOP_141	=	0x0234
+_UPHY14_TRX_ANAREG_TOP_142	=	0x0238
+_UPHY14_TRX_ANAREG_TOP_143	=	0x023c
+_UPHY14_TRX_ANAREG_TOP_144	=	0x0240
+_UPHY14_TRX_ANAREG_TOP_145	=	0x0244
+_UPHY14_TRX_ANAREG_TOP_146	=	0x0248
+_UPHY14_TRX_ANAREG_TOP_147	=	0x024c
+_UPHY14_TRX_ANAREG_TOP_148	=	0x0250
+_UPHY14_TRX_ANAREG_TOP_149	=	0x0254
+_UPHY14_TRX_ANAREG_TOP_150	=	0x0258
+_UPHY14_TRX_ANAREG_TOP_151	=	0x025c
+_UPHY14_TRX_ANAREG_TOP_152	=	0x0260
+_UPHY14_TRX_ANAREG_TOP_153	=	0x0264
+_UPHY14_TRX_ANAREG_TOP_154	=	0x0268
+_UPHY14_TRX_ANAREG_TOP_155	=	0x026c
+_UPHY14_TRX_ANAREG_TOP_156	=	0x0270
+_UPHY14_TRX_ANAREG_TOP_157	=	0x0274
+_UPHY14_TRX_ANAREG_BOT_0	=	0x0000
+_UPHY14_TRX_ANAREG_BOT_1	=	0x0004
+_UPHY14_TRX_ANAREG_BOT_2	=	0x0008
+_UPHY14_TRX_ANAREG_BOT_3	=	0x000c
+_UPHY14_TRX_ANAREG_BOT_4	=	0x0010
+_UPHY14_TRX_ANAREG_BOT_5	=	0x0014
+_UPHY14_TRX_ANAREG_BOT_6	=	0x0018
+_UPHY14_TRX_ANAREG_BOT_7	=	0x001c
+_UPHY14_TRX_ANAREG_BOT_8	=	0x0020
+_UPHY14_TRX_ANAREG_BOT_9	=	0x0024
+_UPHY14_TRX_ANAREG_BOT_10	=	0x0028
+_UPHY14_TRX_ANAREG_BOT_11	=	0x002c
+_UPHY14_TRX_ANAREG_BOT_12	=	0x0030
+_UPHY14_TRX_ANAREG_BOT_13	=	0x0034
+_UPHY14_TRX_ANAREG_BOT_14	=	0x0038
+_UPHY14_TRX_ANAREG_BOT_15	=	0x003c
+_UPHY14_TRX_ANAREG_BOT_16	=	0x0040
+_UPHY14_TRX_ANAREG_BOT_17	=	0x0044
+_UPHY14_TRX_ANAREG_BOT_18	=	0x0048
+_UPHY14_TRX_ANAREG_BOT_19	=	0x004c
+_UPHY14_TRX_ANAREG_BOT_20	=	0x0050
+_UPHY14_TRX_ANAREG_BOT_21	=	0x0054
+_UPHY14_TRX_ANAREG_BOT_22	=	0x0058
+_UPHY14_TRX_ANAREG_BOT_23	=	0x005c
+_UPHY14_TRX_ANAREG_BOT_24	=	0x0060
+_UPHY14_TRX_ANAREG_BOT_25	=	0x0064
+_UPHY14_TRX_ANAREG_BOT_26	=	0x0068
+_UPHY14_TRX_ANAREG_BOT_27	=	0x006c
+_UPHY14_TRX_ANAREG_BOT_28	=	0x0070
+_UPHY14_TRX_ANAREG_BOT_29	=	0x0074
+_UPHY14_TRX_ANAREG_BOT_30	=	0x0078
+_UPHY14_TRX_ANAREG_BOT_31	=	0x007c
+_UPHY14_TRX_ANAREG_BOT_32	=	0x0080
+_ANA_DFEE_REG_1E	=	0x0478
+_ANA_DFEE_REG_1F	=	0x047c
+_ANA_DFEE_REG_20	=	0x0480
+_ANA_DFEE_REG_21	=	0x0484
+_ANA_DFEE_REG_22	=	0x0488
+_ANA_DFEE_REG_23	=	0x048c
+_ANA_DFEE_REG_24	=	0x0490
+_ANA_DFEE_REG_25	=	0x0494
+_ANA_DFEE_REG_26	=	0x0498
+_ANA_DFEE_REG_27	=	0x049c
+_ANA_DFEE_REG_00	=	0x0400
+_ANA_DFEE_REG_01	=	0x0404
+_ANA_DFEE_REG_02	=	0x0408
+_ANA_DFEE_REG_03	=	0x040c
+_ANA_DFEE_REG_04	=	0x0410
+_ANA_DFEE_REG_05	=	0x0414
+_ANA_DFEE_REG_06	=	0x0418
+_ANA_DFEE_REG_07	=	0x041c
+_ANA_DFEE_REG_08	=	0x0420
+_ANA_DFEE_REG_09	=	0x0424
+_ANA_DFEE_REG_0A	=	0x0428
+_ANA_DFEE_REG_0B	=	0x042c
+_ANA_DFEE_REG_0C	=	0x0430
+_ANA_DFEE_REG_0D	=	0x0434
+_ANA_DFEE_REG_0E	=	0x0438
+_ANA_DFEE_REG_0F	=	0x043c
+_ANA_DFEE_REG_10	=	0x0440
+_ANA_DFEE_REG_11	=	0x0444
+_ANA_DFEE_REG_12	=	0x0448
+_ANA_DFEE_REG_13	=	0x044c
+_ANA_DFEE_REG_14	=	0x0450
+_ANA_DFEE_REG_15	=	0x0454
+_ANA_DFEE_REG_16	=	0x0458
+_ANA_DFEE_REG_17	=	0x045c
+_ANA_DFEE_REG_18	=	0x0460
+_ANA_DFEE_REG_19	=	0x0464
+_ANA_DFEE_REG_1A	=	0x0468
+_ANA_DFEE_REG_1B	=	0x046c
+_ANA_DFEE_REG_1C	=	0x0470
+_ANA_DFEE_REG_1D	=	0x0474
+_ANA_DFEO_REG_0C	=	0x0830
+_ANA_DFEO_REG_0D	=	0x0834
+_ANA_DFEO_REG_0E	=	0x0838
+_ANA_DFEO_REG_0F	=	0x083c
+_ANA_DFEO_REG_10	=	0x0840
+_ANA_DFEO_REG_11	=	0x0844
+_ANA_DFEO_REG_12	=	0x0848
+_ANA_DFEO_REG_13	=	0x084c
+_ANA_DFEO_REG_14	=	0x0850
+_ANA_DFEO_REG_15	=	0x0854
+_ANA_DFEO_REG_16	=	0x0858
+_ANA_DFEO_REG_17	=	0x085c
+_ANA_DFEO_REG_18	=	0x0860
+_ANA_DFEO_REG_19	=	0x0864
+_ANA_DFEO_REG_1A	=	0x0868
+_ANA_DFEO_REG_1B	=	0x086c
+_ANA_DFEO_REG_1C	=	0x0870
+_ANA_DFEO_REG_1D	=	0x0874
+_ANA_DFEO_REG_1E	=	0x0878
+_ANA_DFEO_REG_1F	=	0x087c
+_ANA_DFEO_REG_20	=	0x0880
+_ANA_DFEO_REG_21	=	0x0884
+_ANA_DFEO_REG_22	=	0x0888
+_ANA_DFEO_REG_23	=	0x088c
+_ANA_DFEO_REG_24	=	0x0890
+_ANA_DFEO_REG_25	=	0x0894
+_ANA_DFEO_REG_26	=	0x0898
+_ANA_DFEO_REG_27	=	0x089c
+_ANA_DFEO_REG_00	=	0x0800
+_ANA_DFEO_REG_01	=	0x0804
+_ANA_DFEO_REG_02	=	0x0808
+_ANA_DFEO_REG_03	=	0x080c
+_ANA_DFEO_REG_04	=	0x0810
+_ANA_DFEO_REG_05	=	0x0814
+_ANA_DFEO_REG_06	=	0x0818
+_ANA_DFEO_REG_07	=	0x081c
+_ANA_DFEO_REG_08	=	0x0820
+_ANA_DFEO_REG_09	=	0x0824
+_ANA_DFEO_REG_0A	=	0x0828
+_ANA_DFEO_REG_0B	=	0x082c
+_UPHY14_CMN_ANAREG_TOP_128	=	0x8200
+_UPHY14_CMN_ANAREG_TOP_129	=	0x8204
+_UPHY14_CMN_ANAREG_TOP_130	=	0x8208
+_UPHY14_CMN_ANAREG_TOP_131	=	0x820c
+_UPHY14_CMN_ANAREG_TOP_132	=	0x8210
+_UPHY14_CMN_ANAREG_TOP_133	=	0x8214
+_UPHY14_CMN_ANAREG_TOP_134	=	0x8218
+_UPHY14_CMN_ANAREG_TOP_135	=	0x821c
+_UPHY14_CMN_ANAREG_TOP_136	=	0x8220
+_UPHY14_CMN_ANAREG_TOP_137	=	0x8224
+_UPHY14_CMN_ANAREG_TOP_138	=	0x8228
+_UPHY14_CMN_ANAREG_TOP_139	=	0x822c
+_UPHY14_CMN_ANAREG_TOP_140	=	0x8230
+_UPHY14_CMN_ANAREG_TOP_141	=	0x8234
+_UPHY14_CMN_ANAREG_TOP_142	=	0x8238
+_UPHY14_CMN_ANAREG_TOP_143	=	0x823c
+_UPHY14_CMN_ANAREG_TOP_144	=	0x8240
+_UPHY14_CMN_ANAREG_TOP_145	=	0x8244
+_UPHY14_CMN_ANAREG_TOP_146	=	0x8248
+_UPHY14_CMN_ANAREG_TOP_147	=	0x824c
+_UPHY14_CMN_ANAREG_TOP_148	=	0x8250
+_UPHY14_CMN_ANAREG_TOP_149	=	0x8254
+_UPHY14_CMN_ANAREG_TOP_150	=	0x8258
+_UPHY14_CMN_ANAREG_TOP_151	=	0x825c
+_UPHY14_CMN_ANAREG_TOP_152	=	0x8260
+_UPHY14_CMN_ANAREG_TOP_153	=	0x8264
+_UPHY14_CMN_ANAREG_TOP_154	=	0x8268
+_UPHY14_CMN_ANAREG_TOP_155	=	0x826c
+_UPHY14_CMN_ANAREG_TOP_156	=	0x8270
+_UPHY14_CMN_ANAREG_TOP_157	=	0x8274
+_UPHY14_CMN_ANAREG_TOP_158	=	0x8278
+_UPHY14_CMN_ANAREG_TOP_159	=	0x827c
+_UPHY14_CMN_ANAREG_TOP_160	=	0x8280
+_UPHY14_CMN_ANAREG_TOP_161	=	0x8284
+_UPHY14_CMN_ANAREG_TOP_162	=	0x8288
+_UPHY14_CMN_ANAREG_TOP_163	=	0x828c
+_UPHY14_CMN_ANAREG_TOP_164	=	0x8290
+_UPHY14_CMN_ANAREG_TOP_165	=	0x8294
+_UPHY14_CMN_ANAREG_TOP_166	=	0x8298
+_UPHY14_CMN_ANAREG_TOP_167	=	0x829c
+_UPHY14_CMN_ANAREG_TOP_168	=	0x82a0
+_UPHY14_CMN_ANAREG_TOP_169	=	0x82a4
+_UPHY14_CMN_ANAREG_TOP_170	=	0x82a8
+_UPHY14_CMN_ANAREG_TOP_171	=	0x82ac
+_UPHY14_CMN_ANAREG_TOP_172	=	0x82b0
+_UPHY14_CMN_ANAREG_TOP_173	=	0x82b4
+_UPHY14_CMN_ANAREG_TOP_174	=	0x82b8
+_UPHY14_CMN_ANAREG_TOP_175	=	0x82bc
+_UPHY14_CMN_ANAREG_TOP_176	=	0x82c0
+_UPHY14_CMN_ANAREG_TOP_177	=	0x82c4
+_UPHY14_CMN_ANAREG_TOP_178	=	0x82c8
+_UPHY14_CMN_ANAREG_TOP_179	=	0x82cc
+_UPHY14_CMN_ANAREG_TOP_180	=	0x82d0
+_UPHY14_CMN_ANAREG_TOP_181	=	0x82d4
+_UPHY14_CMN_ANAREG_TOP_182	=	0x82d8
+_UPHY14_CMN_ANAREG_TOP_183	=	0x82dc
+_UPHY14_CMN_ANAREG_TOP_184	=	0x82e0
+_UPHY14_CMN_ANAREG_TOP_185	=	0x82e4
+_UPHY14_CMN_ANAREG_TOP_186	=	0x82e8
+_UPHY14_CMN_ANAREG_TOP_187	=	0x82ec
+_UPHY14_CMN_ANAREG_TOP_188	=	0x82f0
+_UPHY14_CMN_ANAREG_TOP_189	=	0x82f4
+_UPHY14_CMN_ANAREG_TOP_190	=	0x82f8
+_UPHY14_CMN_ANAREG_TOP_191	=	0x82fc
+_UPHY14_CMN_ANAREG_TOP_192	=	0x8300
+_UPHY14_CMN_ANAREG_TOP_193	=	0x8304
+_UPHY14_CMN_ANAREG_TOP_194	=	0x8308
+_UPHY14_CMN_ANAREG_TOP_195	=	0x830c
+_UPHY14_CMN_ANAREG_TOP_196	=	0x8310
+_UPHY14_CMN_ANAREG_TOP_197	=	0x8314
+_UPHY14_CMN_ANAREG_TOP_198	=	0x8318
+_UPHY14_CMN_ANAREG_TOP_199	=	0x831c
+_UPHY14_CMN_ANAREG_TOP_200	=	0x8320
+_UPHY14_CMN_ANAREG_TOP_201	=	0x8324
+_UPHY14_CMN_ANAREG_TOP_202	=	0x8328
+_UPHY14_CMN_ANAREG_TOP_203	=	0x832c
+_UPHY14_CMN_ANAREG_TOP_204	=	0x8330
+_UPHY14_CMN_ANAREG_TOP_205	=	0x8334
+_UPHY14_CMN_ANAREG_TOP_206	=	0x8338
+_UPHY14_CMN_ANAREG_TOP_207	=	0x833c
+_UPHY14_CMN_ANAREG_TOP_208	=	0x8340
+_UPHY14_CMN_ANAREG_TOP_209	=	0x8344
+_UPHY14_CMN_ANAREG_TOP_210	=	0x8348
+_UPHY14_CMN_ANAREG_TOP_211	=	0x834c
+_UPHY14_CMN_ANAREG_TOP_212	=	0x8350
+_UPHY14_CMN_ANAREG_TOP_213	=	0x8354
+_UPHY14_CMN_ANAREG_TOP_214	=	0x8358
+_PM_CTRL_TX_LANE_REG1_LANE	=	0x2000
+_PM_CTRL_TX_LANE_REG2_LANE	=	0x2004
+_INPUT_TX_PIN_REG0_LANE	=	0x2008
+_INPUT_TX_PIN_REG1_LANE	=	0x200c
+_INPUT_TX_PIN_REG2_LANE	=	0x2010
+_INPUT_TX_PIN_REG3_LANE	=	0x2014
+_PM_CTRL_INTERRUPT_REG1_LANE	=	0x2018
+_PM_CTRL_INTERRUPT_REG2	=	0x201c
+_CLKGEN_TX_LANE_REG1_LANE	=	0x2020
+_TX_SPEED_CONVERT_LANE	=	0x2024
+_SPD_CTRL_INTERRUPT_REG1_LANE	=	0x2028
+_SPD_CTRL_INTERRUPT_REG2	=	0x202c
+_SPD_CTRL_TX_LANE_REG1_LANE	=	0x2030
+_TX_SYSTEM_LANE	=	0x2034
+_INPUT_TX_PIN_REG4_LANE	=	0x203c
+_TX_CALIBRATION_LANE	=	0x2040
+_DIG_TX_RSVD_REG0	=	0x2044
+_INPUT_TX_PIN_REG5_LANE	=	0x2048
+__FIELDNAME__LANE	=	0x204c
+_PM_CTRL_INTERRUPT_ISR_REG1_LANE	=	0x2050
+_SPD_CTRL_INTERRUPT_CLEAR_REG1_LANE	=	0x2054
+_ANALOG_TX_REALTIME_REG_1	=	0x2058
+_MON_TOP	=	0x205c
+_PM_CTRL_RX_LANE_REG1_LANE	=	0x2100
+_RX_SYSTEM_LANE	=	0x2104
+_INPUT_RX_PIN_REG0_LANE	=	0x2108
+_INPUT_RX_PIN_REG1_LANE	=	0x210c
+_INPUT_RX_PIN_REG2_LANE	=	0x2110
+_SPD_CTRL_RX_LANE_REG1_LANE	=	0x2114
+_DIG_RX_RSVD_REG0	=	0x2118
+_CLKGEN_RX_LANE_REG1_LANE	=	0x211c
+_FRAME_SYNC_DET_REG0	=	0x2120
+_FRAME_SYNC_DET_REG1	=	0x2124
+_FRAME_SYNC_DET_REG2	=	0x2128
+_FRAME_SYNC_DET_REG3	=	0x212c
+_FRAME_SYNC_DET_REG4	=	0x2130
+_FRAME_SYNC_DET_REG5	=	0x2134
+_FRAME_SYNC_DET_REG6	=	0x2138
+_CDR_LOCK_REG	=	0x213c
+_RX_LANE_INTERRUPT	=	0x2140
+_RX_LANE_INTERRUPT_MASK	=	0x2144
+_RX_DATA_PATH_REG	=	0x2148
+_INPUT_RX_PIN_REG3_LANE	=	0x214c
+_RX_CALIBRATION_REG	=	0x2150
+_RX_LANE_INTERRUPT_REG1	=	0x2158
+_DTL_REG0	=	0x2160
+_DTL_REG1	=	0x2164
+_DTL_REG2	=	0x2168
+_DTL_REG3	=	0x216c
+_SQ_REG0	=	0x2170
+_LANE_CFG0	=	0x4000
+_LANE_STATUS0	=	0x4004
+_LANE_CFG_STATUS2_LANE	=	0x4008
+_LANE_CFG2_LANE	=	0x400c
+_LANE_CFG4	=	0x4010
+_LANE_CFG_STATUS3_LANE	=	0x4014
+_LANE_DP_PIE8_CFG0_LANE	=	0x4018
+_LANE_USB_DP_CFG1_LANE	=	0x401c
+_LANE_USB_DP_CFG2_LANE	=	0x4020
+_LANE_EQ_CFG0_LANE	=	0x4024
+_LANE_EQ_CFG1_LANE	=	0x4028
+_LANE_PRESET_CFG0_LANE	=	0x402c
+_LANE_PRESET_CFG2_LANE	=	0x4030
+_LANE_PRESET_CFG4_LANE	=	0x4034
+_LANE_PRESET_CFG6_LANE	=	0x4038
+_LANE_PRESET_CFG8_LANE	=	0x403c
+_LANE_PRESET_CFG10_LANE	=	0x4040
+_LANE_PRESET_CFG12_LANE	=	0x4044
+_LANE_PRESET_CFG14_LANE	=	0x4048
+_LANE_PRESET_CFG16_LANE	=	0x404c
+_LANE_COEFF_MAX0_LANE	=	0x4050
+_LANE_REMOTE_SET_LANE	=	0x4054
+_LANE_EQ_16G_CFG0_LANE	=	0x4058
+_LANE_16G_PRESET_CFG0_LANE	=	0x405c
+_LANE_16G_PRESET_CFG2_LANE	=	0x4060
+_LANE_16G_PRESET_CFG4_LANE	=	0x4064
+_LANE_16G_PRESET_CFG6_LANE	=	0x4068
+_LANE_16G_PRESET_CFG8_LANE	=	0x406c
+_LANE_16G_PRESET_CFG10_LANE	=	0x4070
+_LANE_16G_PRESET_CFG12_LANE	=	0x4074
+_LANE_16G_PRESET_CFG14_LANE	=	0x4078
+_LANE_16G_PRESET_CFG16_LANE	=	0x407c
+_LANE_EQ_32G_CFG0_LANE	=	0x4080
+_LANE_32G_PRESET_CFG0_LANE	=	0x4084
+_LANE_32G_PRESET_CFG2_LANE	=	0x4088
+_LANE_32G_PRESET_CFG4_LANE	=	0x408c
+_LANE_32G_PRESET_CFG6_LANE	=	0x4090
+_LANE_32G_PRESET_CFG8_LANE	=	0x4094
+_LANE_32G_PRESET_CFG10_LANE	=	0x4098
+_LANE_32G_PRESET_CFG12_LANE	=	0x409c
+_LANE_32G_PRESET_CFG14_LANE	=	0x40a0
+_LANE_32G_PRESET_CFG16_LANE	=	0x40a4
+_MCU_CONTROL_LANE	=	0x2200
+_MCU_GPIO	=	0x2204
+_CACHE_DEBUG0	=	0x2208
+_CACHE_DEBUG1	=	0x220c
+_LANE_SYSTEM0	=	0x2210
+_MCU_STATUS0_LANE	=	0x2230
+_MCU_STATUS1_LANE	=	0x2234
+_MCU_STATUS2_LANE	=	0x2238
+_MCU_STATUS3_LANE	=	0x223c
+_MCU_INT0_CONTROL	=	0x2240
+_MCU_INT1_CONTROL	=	0x2244
+_MCU_INT2_CONTROL	=	0x2248
+_MCU_INT3_CONTROL	=	0x224c
+_MCU_INT4_CONTROL	=	0x2250
+_MCU_INT5_CONTROL	=	0x2254
+_MCU_INT6_CONTROL	=	0x2258
+_MCU_INT7_CONTROL	=	0x225c
+_MCU_INT8_CONTROL	=	0x2260
+_MCU_INT9_CONTROL	=	0x2264
+_MCU_INT10_CONTROL	=	0x2268
+_MCU_INT11_CONTROL	=	0x226c
+_MCU_INT12_CONTROL	=	0x2270
+_MCU_TIMER_CONTROL	=	0x2274
+_MCU_TIMER0_CONTROL	=	0x2278
+_MCU_TIMER1_CONTROL	=	0x227c
+_MCU_TIMER2_CONTROL	=	0x2280
+_MCU_TIMER3_CONTROL	=	0x2284
+_MCU_IRQ_LANE	=	0x2288
+_MCU_IRQ_MASK_LANE	=	0x228c
+_MCU_MEM_REG1_LANE	=	0x2290
+_MCU_MEM_REG2_LANE	=	0x2294
+_MCU_TIMER_CTRL_1_LANE	=	0x2298
+_MCU_TIMER_CTRL_2_LANE	=	0x229c
+_MCU_TIMER_CTRL_3_LANE	=	0x22a0
+_MCU_TIMER_CTRL_4_LANE	=	0x22a4
+_MCU_TIMER_CTRL_5_LANE	=	0x22a8
+_MCU_TIMER_CTRL_6_LANE	=	0x22ac
+_MCU_TIMER_CTRL_7_LANE	=	0x22b0
+_MCU_DEBUG0_LANE	=	0x22b4
+_MCU_DEBUG1_LANE	=	0x22b8
+_MCU_DEBUG2_LANE	=	0x22bc
+_MCU_DEBUG3_LANE	=	0x22c0
+_MCU_DEBUG_LANE	=	0x22c4
+_EXT_INT_CONTROL	=	0x22c8
+_ANA_IF_TRX_REG0	=	0x22cc
+_ANA_IF_DFEE_REG0	=	0x22d0
+_ANA_IF_DFEO_REG0	=	0x22d4
+_MCU_IRQ_ISR_LANE	=	0x22d8
+_MCU_WDT_LANE	=	0x22dc
+_MCU_INT_CONTROL_13	=	0x22e0
+_MCU_COMMAND0	=	0x22e4
+_MEM_ECC_ERR_ADDRESS0	=	0x22f4
+_XDATA_MEM_CHECKSUM_LANE0	=	0x22f8
+_XDATA_MEM_CHECKSUM_LANE1	=	0x22fc
+_PT_CONTROL0	=	0x2300
+_PT_CONTROL1	=	0x2304
+_PT_USER_PATTERN0	=	0x2308
+_PT_USER_PATTERN1	=	0x230c
+_PT_USER_PATTERN2	=	0x2310
+_PT_COUNTER0	=	0x2314
+_PT_COUNTER1	=	0x2318
+_PT_COUNTER2	=	0x231c
+_DFE_CTRL_REG0	=	0x2400
+_DFE_CTRL_REG1	=	0x2404
+_DFE_CTRL_REG2	=	0x2408
+_DFE_CTRL_REG3	=	0x240c
+_RX_EQ_CLK_CTRL	=	0x2410
+_DFE_CTRL_REG4	=	0x2414
+_DFE_ANA_REG0	=	0x2418
+_DFE_ANA_REG1	=	0x241c
+_DFE_STEP_REG0	=	0x2420
+_DFE_STEP_REG1	=	0x2424
+_DFE_FEN_EVEN_REG	=	0x2430
+_DFE_FEN_ODD_REG	=	0x2434
+_DFE_DC_EVEN_REG8	=	0x2438
+_DFE_DC_ODD_REG8	=	0x243c
+_DFE_FEXT_EVEN_REG0	=	0x2440
+_DFE_FEXT_EVEN_REG1	=	0x2444
+_DFE_FEXT_EVEN_REG2	=	0x2448
+_DFE_FEXT_EVEN_REG3	=	0x244c
+_DFE_FEXT_EVEN_REG4	=	0x2450
+_DFE_FEXT_EVEN_REG5	=	0x2454
+_DFE_FEXT_EVEN_REG6	=	0x2458
+_DFE_FEXT_EVEN_REG7	=	0x245c
+_DFE_FEXT_ODD_REG0	=	0x2460
+_DFE_FEXT_ODD_REG1	=	0x2464
+_DFE_FEXT_ODD_REG2	=	0x2468
+_DFE_FEXT_ODD_REG3	=	0x246c
+_DFE_FEXT_ODD_REG4	=	0x2470
+_DFE_FEXT_ODD_REG5	=	0x2474
+_DFE_FEXT_ODD_REG6	=	0x2478
+_DFE_FEXT_ODD_REG7	=	0x247c
+_DFE_READ_EVEN_SM_REG0	=	0x2480
+_DFE_READ_EVEN_SM_REG1	=	0x2484
+_DFE_READ_EVEN_SM_REG2	=	0x2488
+_DFE_READ_EVEN_SM_REG3	=	0x248c
+_DFE_READ_EVEN_SM_REG4	=	0x2490
+_DFE_READ_EVEN_SM_REG5	=	0x2494
+_DFE_READ_EVEN_SM_REG6	=	0x2498
+_DFE_READ_EVEN_SM_REG7	=	0x249c
+_DFE_READ_ODD_SM_REG0	=	0x24a0
+_DFE_READ_ODD_SM_REG1	=	0x24a4
+_DFE_READ_ODD_SM_REG2	=	0x24a8
+_DFE_READ_ODD_SM_REG3	=	0x24ac
+_DFE_READ_ODD_SM_REG4	=	0x24b0
+_DFE_READ_ODD_SM_REG5	=	0x24b4
+_DFE_READ_ODD_SM_REG6	=	0x24b8
+_DFE_READ_ODD_SM_REG7	=	0x24bc
+_DFE_READ_EVEN_SM_REG8	=	0x24c0
+_DFE_READ_ODD_SM_REG8	=	0x24c4
+_DFE_READ_EVEN_2C_REG0	=	0x24d0
+_DFE_READ_EVEN_2C_REG1	=	0x24d4
+_DFE_READ_EVEN_2C_REG2	=	0x24d8
+_DFE_READ_EVEN_2C_REG3	=	0x24dc
+_DFE_READ_EVEN_2C_REG4	=	0x24e0
+_DFE_READ_EVEN_2C_REG5	=	0x24e4
+_DFE_READ_EVEN_2C_REG6	=	0x24e8
+_DFE_READ_EVEN_2C_REG7	=	0x24ec
+_DFE_READ_ODD_2C_REG0	=	0x24f0
+_DFE_READ_ODD_2C_REG1	=	0x24f4
+_DFE_READ_ODD_2C_REG2	=	0x24f8
+_DFE_READ_ODD_2C_REG3	=	0x24fc
+_DFE_READ_ODD_2C_REG4	=	0x2500
+_DFE_READ_ODD_2C_REG5	=	0x2504
+_DFE_READ_ODD_2C_REG6	=	0x2508
+_DFE_READ_ODD_2C_REG7	=	0x250c
+_DFE_READ_EVEN_2C_REG8	=	0x2510
+_DFE_READ_ODD_2C_REG8	=	0x2514
+_CAL_OFST_REG0	=	0x2518
+_CAL_OFST_REG1	=	0x251c
+_CAL_OFST_REG2	=	0x2520
+_DFE_DCE_REG0	=	0x2530
+_DFE_STATIC_LANE_REG0	=	0x2540
+_DFE_STATIC_LANE_REG1	=	0x2544
+_DFE_STATIC_LANE_REG3	=	0x2548
+_DFE_STATIC_LANE_REG4	=	0x254c
+_DFE_STATIC_LANE_REG5	=	0x2550
+_DFE_STATIC_LANE_REG6	=	0x2554
+_EOM_VLD_REG0	=	0x2560
+_EOM_VLD_REG1	=	0x2564
+_EOM_VLD_REG2	=	0x2568
+_EOM_VLD_REG3	=	0x256c
+_EOM_ERR_REG0	=	0x2570
+_EOM_ERR_REG1	=	0x2574
+_EOM_ERR_REG2	=	0x2578
+_EOM_ERR_REG3	=	0x257c
+_EOM_REG0	=	0x2580
+_EOM_VLD_REG4	=	0x25f0
+_LANE_MARGIN_REG0	=	0x25f4
+_CAL_CTRL1_LANE	=	0x6000
+_CAL_CTRL2_LANE	=	0x6004
+_CAL_CTRL3_LANE	=	0x6008
+_CAL_CTRL4_LANE	=	0x600c
+_CAL_SAVE_DATA1_LANE	=	0x6010
+_CAL_SAVE_DATA2_LANE	=	0x6014
+_CAL_SAVE_DATA3_LANE	=	0x6018
+_PHY_REMOTE_CTRL_COMMAND_LANE	=	0x601c
+_PHY_REMOTE_CTRL_VALUE_LANE	=	0x6020
+_PHY_LOCAL_VALUE_LANE	=	0x6024
+_TRX_TRAIN_IF_TIMERS1_LANE	=	0x6028
+_TRX_TRAIN_IF_TIMERS2_LANE	=	0x602c
+_TRX_TRAIN_IF_TIMERS_ENABLE_LANE	=	0x6030
+_DFE_CONTROL_0	=	0x6034
+_DFE_CONTROL_1	=	0x6038
+_DFE_CONTROL_2	=	0x6040
+_DFE_CONTROL_3	=	0x6044
+_DFE_CONTROL_4	=	0x6048
+_DFE_CONTROL_5	=	0x604c
+_TRAIN_CONTROL_0	=	0x6050
+_TRAIN_CONTROL_1	=	0x6054
+_TRAIN_CONTROL_2	=	0x6058
+_RPTA_CONFIG_0	=	0x605c
+_RPTA_CONFIG_1	=	0x6060
+_DLL_CAL	=	0x6064
+_TRAIN_PARA_0	=	0x6068
+_TRAIN_PARA_1	=	0x606c
+_TRAIN_PARA_2	=	0x6070
+_TRAIN_PARA_3	=	0x6074
+_DFE_CONTROL_6	=	0x6078
+_DFE_TEST_0	=	0x607c
+_DFE_TEST_1	=	0x6080
+_DFE_TEST_4	=	0x6084
+_DFE_TEST_5	=	0x6088
+_DFE_CONTROL_7	=	0x608c
+_DFE_CONTROL_8	=	0x6090
+_DFE_CONTROL_9	=	0x6094
+_DFE_CONTROL_10	=	0x6098
+_DFE_CONTROL_11	=	0x609c
+_CDS_CTRL_REG0	=	0x60a0
+_CDS_CTRL_REG1	=	0x60a4
+_ESM_POP_P_CNT_LOW_LANE	=	0x60a8
+_ESM_ERR_P_CNT_LOW_LANE	=	0x60ac
+_ESM_ERR_POP_CNT_HIGH_LANE	=	0x60b0
+_TRAIN_CONTROL_3	=	0x60b4
+_TRAIN_CONTROL_4	=	0x60b8
+_TRAIN_CONTROL_5	=	0x60bc
+_TRAIN_CONTROL_6	=	0x60c0
+_TRAIN_CONTROL_7	=	0x60c4
+_TRAIN_CONTROL_8	=	0x60c8
+_TRAIN_CONTROL_9	=	0x60cc
+_TRAIN_CONTROL_10	=	0x60d0
+_TRAIN_CONTROL_11	=	0x60d4
+_TRAIN_CONTROL_12	=	0x60d8
+_ESM_POP_N_CNT_LOW_LANE	=	0x60dc
+_ESM_ERR_N_CNT_LOW_LANE	=	0x60e0
+_TRAIN_CONTROL_13	=	0x60e4
+_TRAIN_CONTROL_14	=	0x60e8
+_TRAIN_CONTROL_15	=	0x60ec
+_TRAIN_CONTROL_16	=	0x60f0
+_TRAIN_CONTROL_17	=	0x60f4
+_END_XDAT_LANE	=	0x60f8
+_TX_CMN_REG	=	0xa000
+_DTX_REG0	=	0xa008
+_DTX_REG1	=	0xa00c
+_DTX_REG2	=	0xa010
+_DTX_REG3	=	0xa014
+_DTX_REG4	=	0xa018
+_DTX_PHY_ALIGN_REG0	=	0xa01c
+_DTX_PHY_ALIGN_REG1	=	0xa024
+_DTX_PHY_ALIGN_REG2	=	0xa028
+_SRIS_REG0	=	0xa02c
+_SRIS_REG1	=	0xa030
+_RX_CMN_0	=	0xa100
+_DFE_STATIC_REG0	=	0xa110
+_DFE_STATIC_REG1	=	0xa114
+_DFE_STATIC_REG3	=	0xa118
+_DFE_STATIC_REG4	=	0xa11c
+_DFE_STATIC_REG5	=	0xa120
+_DFE_STATIC_REG6	=	0xa124
+_GLOB_RST_CLK_CTRL	=	0x4200
+_GLOB_CLK_SRC_LO	=	0x4204
+_GLOB_CLK_SRC_HI	=	0x4208
+_GLOB_MISC_CTRL	=	0x420c
+_GLOB_DP_SAL_CFG	=	0x4210
+_GLOB_DP_SAL_CFG1	=	0x4214
+_GLOB_DP_SAL_CFG3	=	0x4218
+_GLOB_DP_SAL_CFG5	=	0x421c
+_GLOB_PM_CFG0	=	0x4220
+_GLOB_COUNTER_CTRL	=	0x4224
+_GLOB_COUNTER_HI	=	0x4228
+_GLOB_PM_DP_CTRL	=	0x422c
+_GLOB_DP_BAL_CFG0	=	0x4230
+_GLOB_DP_BAL_CFG2	=	0x4234
+_GLOB_DP_BAL_CFG4	=	0x4238
+_GLOB_BIST_CTRL	=	0x423c
+_GLOB_BIST_LANE_TYPE	=	0x4240
+_GLOB_BIST_START	=	0x4244
+_GLOB_BIST_MASK	=	0x4248
+_GLOB_BIST_RESULT	=	0x424c
+_GLOB_BIST_SEQR_CFG	=	0x4250
+_GLOB_BIST_DATA_HI	=	0x4254
+_GLOB_PIPE_REVISION	=	0x4258
+_GLOB_L1_SUBSTATES_CFG	=	0x425c
+_MCU_CONTROL_0	=	0xa200
+_MCU_CONTROL_1	=	0xa204
+_MCU_CONTROL_2	=	0xa208
+_MCU_CONTROL_3	=	0xa20c
+_MCU_CONTROL_4	=	0xa210
+_MCU_DEBUG0	=	0xa214
+_MCU_DEBUG1	=	0xa218
+_MEMORY_CONTROL_0	=	0xa21c
+_MEMORY_CONTROL_1	=	0xa220
+_MEMORY_CONTROL_2	=	0xa224
+_MEMORY_CONTROL_3	=	0xa228
+_MEMORY_CONTROL_4	=	0xa22c
+_MCU_INFO_0	=	0xa234
+_MCU_INFO_1	=	0xa238
+_MCU_INFO_2	=	0xa23c
+_MCU_INFO_3	=	0xa240
+_MEM_CMN_ECC_ERR_ADDRESS0	=	0xa244
+_ANA_IF_CMN_REG1	=	0xa2e0
+_MEM_IRQ	=	0xa2e4
+_MEM_IRQ_MASK	=	0xa2e8
+_ANA_IF_CMN_REG0	=	0xa2ec
+_APB_CONTROL_REG	=	0xa2f0
+_MEM_IRQ_CLEAR	=	0xa2f4
+_MCU_SYNC1	=	0xa2f8
+_MCU_SYNC2	=	0xa2fc
+_TEST0	=	0xa300
+_TEST1	=	0xa304
+_TEST2	=	0xa308
+_TEST3	=	0xa30c
+_TEST4	=	0xa310
+_SYSTEM	=	0xa314
+_PM_CMN_REG1	=	0xa318
+_INPUT_CMN_PIN_REG0	=	0xa31c
+_INPUT_CMN_PIN_REG1	=	0xa320
+_INPUT_CMN_PIN_REG2	=	0xa324
+_ANA_TSEN_CONTROL	=	0xa328
+_PLLCAL_REG0	=	0xa32c
+_PLLCAL_REG1	=	0xa330
+_CLKGEN_CMN_REG1	=	0xa334
+_SPD_CMN_REG1	=	0xa338
+_OUTPUT_CMN_PIN_REG0	=	0xa33c
+_CMN_CALIBRATION	=	0xa340
+__FIELDNAME_	=	0xa344
+_INPUT_CMN_PIN_REG3	=	0xa348
+_PM_CMN_REG2	=	0xa34c
+_TEST5	=	0xa354
+_XDATA_MEM_CHECKSUM_CMN_0	=	0xa358
+_XDATA_MEM_CHECKSUM_CMN_1	=	0xa35c
+_XDATA_MEM_CHECKSUM_CMN_2	=	0xa360
+_MCU_SDT_CMN	=	0xa364
+_CMN_CACHE_DEBUG0	=	0xa368
+_MCU_INT_ADDR	=	0xa36c
+_CMN_ISR_2	=	0xa370
+_CMN_ISR_MASK_2	=	0xa374
+_CMN_ISR_CLEAR_2	=	0xa378
+_CMN_MCU_GPIO	=	0xa37c
+_CMN_CACHE_DEBUG1	=	0xa380
+_CMN_MCU_TIMER_CONTROL	=	0xa384
+_CMN_MCU_TIMER_CTRL_2_LANE	=	0xa388
+_CMN_MCU_TIMER_CTRL_3_LANE	=	0xa38c
+_CMN_MCU_TIMER_CTRL_4_LANE	=	0xa390
+_CMN_MCU_TIMER_CTRL_5_LANE	=	0xa394
+_CMN_MCU_TIMER0_CONTROL	=	0xa398
+_CMN_MCU_TIMER1_CONTROL	=	0xa39c
+_CMN_MCU_TIMER2_CONTROL	=	0xa3a0
+_CMN_MCU_TIMER3_CONTROL	=	0xa3a4
+_CMN_ISR_1	=	0xa3a8
+_CMN_ISR_MASK_1	=	0xa3ac
+_SET_LANE_ISR	=	0xa3b0
+_CMN_MCU_REG	=	0xa3f4
+_CID_REG0	=	0xa3f8
+_CID_REG1	=	0xa3fc
+_FW_REV	=	0xe600
+_CONTROL_CONFIG0	=	0xe604
+_CONTROL_CONFIG1	=	0xe608
+_CONTROL_CONFIG2	=	0xe60c
+_CONTROL_CONFIG3	=	0xe610
+_CONTROL_CONFIG4	=	0xe614
+_CONTROL_CONFIG5	=	0xe618
+_CONTROL_CONFIG6	=	0xe61c
+_CONTROL_CONFIG7	=	0xe620
+_CAL_DATA0	=	0xe624
+_TRAIN_IF_CONFIG	=	0xe628
+_CONTROL_CONFIG8	=	0xe62c
+_CONTROL_CONFIG9	=	0xe630
+_CON_CAL_STEP_SIZE1	=	0xe634
+_CON_CAL_STEP_SIZE2	=	0xe638
+_CON_CAL_STEP_SIZE3	=	0xe63c
+_CON_CAL_STEP_SIZE4	=	0xe640
+_CON_CAL_STEP_SIZE5	=	0xe644
+_CAL_TIME_OUT_AND_DIS	=	0xe648
+_CAL_STATUS_READ	=	0xe64c
+_MCU_CONFIG	=	0xe650
+_CAL_DATA1	=	0xe654
+_LOOP_CNTS	=	0xe658
+_MCU_CONFIG1	=	0xe65c
+_TIMER_SEL1	=	0xe660
+_TIMER_SEL2	=	0xe664
+_TIMER_SEL3	=	0xe668
+_G_SELLV_TXCLK	=	0xe66c
+_G_SELLV_TXDATA	=	0xe670
+_G_SELLV_TXPRE	=	0xe674
+_G_SELLV_RXEOMCLK	=	0xe678
+_G_SELLV_RXDATACLK	=	0xe67c
+_G_SELLV_RXSAMPLER	=	0xe680
+_SAS_PRESET0_TB	=	0xe684
+_SAS_PRESET1_TB	=	0xe688
+_SAS_PRESET2_TB	=	0xe68c
+_ETH_PRESET0_TB	=	0xe690
+_ETH_PRESET1_TB	=	0xe694
+_TX_SAVE_0	=	0xe698
+_TX_SAVE_1	=	0xe69c
+_TX_SAVE_2	=	0xe6a0
+_TX_SAVE_3	=	0xe6a4
+_TX_SAVE_4	=	0xe6a8
+_CDS_EYE_CLK_THR	=	0xe6ac
+_SYNC_INFO	=	0xe6b0
+_MCU_INFO_4	=	0xe6b4
+_MCU_INFO_5	=	0xe6b8
+_MCU_INFO_12	=	0xe6bc
+_MCU_INFO_13	=	0xe6c0
+_END_XDAT_CMN	=	0xe6c4
+_DME_ENC_REG0	=	0x2600
+_DME_ENC_REG1	=	0x2604
+_DME_ENC_REG2	=	0x2608
+_DME_DEC_REG0	=	0x260c
+_DME_DEC_REG1	=	0x2610
+_TX_TRAIN_IF_REG0	=	0x2614
+_TX_TRAIN_IF_REG1	=	0x2618
+_TX_TRAIN_IF_REG2	=	0x261c
+_TX_TRAIN_IF_REG3	=	0x2620
+_TX_TRAIN_PATTTERN_REG0	=	0x2624
+_TX_TRAIN_DRIVER_REG0	=	0x2628
+_TX_TRAIN_DRIVER_REG1	=	0x262c
+_TX_TRAIN_DRIVER_REG2	=	0x2630
+_TX_TRAIN_DEFAULT_REG0	=	0x2634
+_TX_TRAIN_DEFAULT_REG1	=	0x2638
+_TX_TRAIN_DEFAULT_REG2	=	0x263c
+_TX_TRAIN_DEFAULT_REG3	=	0x2640
+_TX_TRAIN_DEFAULT_REG4	=	0x2644
+_TX_TRAIN_DEFAULT_REG5	=	0x2648
+_TX_EMPH_CTRL_REG0	=	0x264c
+_LINK_TRAIN_MODE0	=	0x2650
+_TX_DRV_RD_OUT_REG0	=	0x2654
+_TX_AMP_CTRL_REG0	=	0x2658
+_TRX_TRAIN_IF_INTERRUPT_LANE	=	0x265c
+_TRX_TRAIN_IF_INTERRUPT_MASK0_LANE	=	0x2660
+_TRX_TRAIN_IF_INTERRUPT_CLEAR_LANE	=	0x2664
+_TX_TRAIN_IF_REG4	=	0x2668
+_TX_TRAIN_IF_REG5	=	0x266c
+_TX_TRAIN_IF_REG6	=	0x2670
+_TX_TRAIN_IF_REG7	=	0x2674
+_TX_TRAIN_CTRL_LANE	=	0x2678
+_TX_TRAIN_IF_REG8	=	0x267c
+_DFE_READ_EVEN_REG0	=	0x6100
+_DFE_READ_EVEN_REG1	=	0x6104
+_DFE_READ_EVEN_REG2	=	0x6108
+_DFE_READ_EVEN_REG3	=	0x610c
+_DFE_READ_EVEN_REG4	=	0x6110
+_DFE_READ_EVEN_REG5	=	0x6114
+_DFE_READ_EVEN_REG6	=	0x6118
+_DFE_READ_EVEN_REG7	=	0x611c
+_DFE_READ_ODD_REG0	=	0x6120
+_DFE_READ_ODD_REG1	=	0x6124
+_DFE_READ_ODD_REG2	=	0x6128
+_DFE_READ_ODD_REG3	=	0x612c
+_DFE_READ_ODD_REG4	=	0x6130
+_DFE_READ_ODD_REG5	=	0x6134
+_DFE_READ_ODD_REG6	=	0x6138
+_DFE_READ_ODD_REG7	=	0x613c
+_DFE_READ_EVEN_REG8	=	0x6140
+_DFE_READ_ODD_REG8	=	0x6144
+_DFE_READ_F0A_EVEN	=	0x6148
+_DFE_READ_F0A_ODD	=	0x614c
+_DFE_READ_F0B_EVEN	=	0x6150
+_DFE_READ_F0B_ODD	=	0x6154
+_DFE_READ_F0D_EVEN	=	0x6158
+_DFE_READ_F0D_ODD	=	0x615c
+_DFE_READ_F0D_LEFT_EVEN	=	0x6160
+_DFE_READ_F0D_LEFT_ODD	=	0x6164
+_DFE_READ_F0D_RIGHT_EVEN	=	0x6168
+_DFE_READ_F0D_RIGHT_ODD	=	0x616c
+_CDS_READ_MISC0	=	0x6170
+_CDS_READ_MISC1	=	0x6174
+_TXTRAIN_IF_REG0	=	0x6214
+_lc_speedtable	=	0xe000
+_ring_speedtable	=	0xe1c0
+_phy_mode_cmn_table	=	0xe5c0
+_max_gen	=	0x6300
+_min_gen	=	0x6301
+_speedtable	=	0x6304
+_phy_mode_lane_table	=	0x65d4
+_rc_save	=	0x60b4
+_txffe_save	=	0x60d0
+_phase_save	=	0x60e4
+_train_gn1_index	=	0x6030
+_train_g1_index	=	0x6031
+_train_g0_index	=	0x6032
+_local_tx_preset_tb	=	0xe6b0
+_cmx_cal_lcvco_dac	=	0xe5c1
+_cmx_cal_lcvco_dac_lsb	=	0xe5c1
+_cmx_cal_lcvco_dac_msb	=	0xe5c4
+_cmx_cal_lccap_msb	=	0xe5ca
+_cmx_cal_lccap_lsb	=	0xe5c8
+_cmx_cal_plldcc	=	0xe5cc
+_cmx_cal_pll_speed_ring	=	0xe5d0
+_cmx_cal_pll_sllp_dac_coarse_ring	=	0xe5d4
+_cmx_cal_sllp_dac_fine_ring	=	0xe5d8
+_lnx_cal_txdcc_pdiv	=	0x65d4
+_lnx_cal_txdcc_pdiv_hg	=	0x65d8
+_lnx_cal_txdcc	=	0x65da
+_lnx_cal_txdcc_hg	=	0x65de
+_lnx_cal_rxdcc_dll	=	0x65e0
+_lnx_cal_rxdcc_dll_hg	=	0x65e4
+_lnx_cal_rxdcc_data	=	0x65e6
+_lnx_cal_rxdcc_data_hg	=	0x65f0
+_lnx_cal_rxdcc_eom	=	0x65f5
+_lnx_cal_rxdcc_eom_hg	=	0x65ff
+_lnx_cal_dll_gmsel	=	0x6604
+_lnx_cal_vdda_dll_sel	=	0x6606
+_lnx_cal_dll_eom_gmsel	=	0x660a
+_lnx_cal_vdda_dll_eom_sel	=	0x660c
+_lnx_cal_eom_dpher	=	0x6610
+_lnx_cal_align90_dummy_clk	=	0x6612
+_lnx_cal_align90_dac	=	0x661a
+_lnx_cal_align90_gm	=	0x6622
+_lnx_cal_sellv_txdata	=	0x662a
+_lnx_cal_sellv_txclk	=	0x6634
+_lnx_cal_sellv_rxdataclk	=	0x663e
+_lnx_cal_sellv_txpre	=	0x6648
+_lnx_cal_sellv_rxsampler	=	0x6652
+_lnx_cal_sellv_rxeomclk	=	0x665c
+_lnx_spdoft_tx_preset_index_lane	=	0x6666
+_lnx_calx_txdcc_pdiv	=	0x6490
+_lnx_calx_txdcc_pdiv_hg	=	0x6496
+_lnx_calx_txdcc	=	0x6499
+_lnx_calx_txdcc_hg	=	0x649f
+_lnx_calx_rxdcc_dll	=	0x64a2
+_lnx_calx_rxdcc_dll_hg	=	0x64a8
+_lnx_calx_dll_gmsel	=	0x64ab
+_lnx_calx_vdda_dll_sel	=	0x64ae
+_lnx_calx_dll_eom_gmsel	=	0x64b4
+_lnx_calx_vdda_dll_eom_sel	=	0x64b7
+_lnx_calx_eom_dpher	=	0x64bd
+_lnx_calx_align90_dummy_clk	=	0x64c0
+_lnx_calx_align90_dac	=	0x64cc
+_lnx_calx_align90_gm	=	0x64d8
+_cds28	=	0x6100
+_dfe_sm	=	0x6178
+_dfe_sm_dc	=	0x61b8
+_dfe_sm_save	=	0x61c0
+_UPHY_ANAREG_REV_0	=	0x03fc
+_tx_tb	=	0xe684
+_train_save_tb	=	0xe698
+_sq_thrs_ratio_tb	=	0x607c
+;--------------------------------------------------------
+; absolute external ram data
+;--------------------------------------------------------
+	.area XABS    (ABS,XDATA)
+;--------------------------------------------------------
+; external initialized ram data
+;--------------------------------------------------------
+	.area HOME    (CODE)
+	.area GSINIT0 (CODE)
+	.area GSINIT1 (CODE)
+	.area GSINIT2 (CODE)
+	.area GSINIT3 (CODE)
+	.area GSINIT4 (CODE)
+	.area GSINIT5 (CODE)
+	.area GSINIT  (CODE)
+	.area GSFINAL (CODE)
+	.area CSEG    (CODE)
+;--------------------------------------------------------
+; global & static initialisations
+;--------------------------------------------------------
+	.area HOME    (CODE)
+	.area GSINIT  (CODE)
+	.area GSFINAL (CODE)
+	.area GSINIT  (CODE)
+;--------------------------------------------------------
+; Home
+;--------------------------------------------------------
+	.area HOME    (CODE)
+	.area HOME    (CODE)
+;--------------------------------------------------------
+; code
+;--------------------------------------------------------
+	.area CSEG    (CODE)
+;------------------------------------------------------------
+;Allocation info for local variables in function 'short_delay_1p4s'
+;------------------------------------------------------------
+;i                         Allocated to registers r2 r3 
+;------------------------------------------------------------
+;	../../shared/src/interrupt.c:13: static inline void short_delay_1p4s(void) {
+;	-----------------------------------------
+;	 function short_delay_1p4s
+;	-----------------------------------------
+_short_delay_1p4s:
+	ar2 = 0x02
+	ar3 = 0x03
+	ar4 = 0x04
+	ar5 = 0x05
+	ar6 = 0x06
+	ar7 = 0x07
+	ar0 = 0x00
+	ar1 = 0x01
+;	../../shared/src/interrupt.c:16: for (i=0; i<14; i++) {
+	mov	r2,#0x0E
+	mov	r3,#0x00
+00103$:
+;	../../shared/src/interrupt.c:29: __endasm;
+	
+	  nop
+	  nop
+	  nop
+	  nop
+	  nop
+	  nop
+	  nop
+	  nop
+	  nop
+	  nop
+	 
+	dec	r2
+	cjne	r2,#0xff,00109$
+	dec	r3
+00109$:
+;	../../shared/src/interrupt.c:16: for (i=0; i<14; i++) {
+	mov	a,r2
+	orl	a,r3
+	jz	00110$
+	ljmp	00103$
+00110$:
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'mcu_reset'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	../../shared/src/interrupt.c:34: static inline void mcu_reset(void) {
+;	-----------------------------------------
+;	 function mcu_reset
+;	-----------------------------------------
+_mcu_reset:
+;	../../shared/src/interrupt.c:35: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:36: reg_INT_ENABLE_ALL_LANE = 0;
+	mov	dptr,#(_CACHE_DEBUG0 + 0x0003)
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:37: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:38: SRST = 1;
+	mov	_SRST,#0x01
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'sync_status_lane_en_0'
+;------------------------------------------------------------
+;lane_en                   Allocated to registers r2 
+;------------------------------------------------------------
+;	../../shared/src/interrupt.c:41: static inline void sync_status_lane_en_0(uint8_t lane_en) {
+;	-----------------------------------------
+;	 function sync_status_lane_en_0
+;	-----------------------------------------
+_sync_status_lane_en_0:
+	mov	r2,dpl
+;	../../shared/src/interrupt.c:42: SYNC_STATUS_LANE_EN = lane_en;
+	mov	dptr,#(_MCU_STATUS1_LANE + 0x0002)
+	mov	a,r2
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:43: if (mcuid == MCU_LANE0)
+	mov	dptr,#_MCU_CONTROL_LANE
+	movx	a,@dptr
+	jnz	00102$
+;	../../shared/src/interrupt.c:44: SYNC_STATUS_LANE0_EN = lane_en;
+	mov	dptr,#(_MCU_INFO_12 + 0x0002)
+	mov	a,r2
+	movx	@dptr,a
+	ret
+00102$:
+;	../../shared/src/interrupt.c:46: SYNC_STATUS_LANE1_EN = lane_en;
+	mov	dptr,#(_MCU_INFO_13 + 0x0002)
+	mov	a,r2
+	movx	@dptr,a
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'timer0_isr'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	../../shared/src/interrupt.c:49: void timer0_isr (void) __interrupt (1) __using (2)
+;	-----------------------------------------
+;	 function timer0_isr
+;	-----------------------------------------
+_timer0_isr:
+	ar2 = 0x12
+	ar3 = 0x13
+	ar4 = 0x14
+	ar5 = 0x15
+	ar6 = 0x16
+	ar7 = 0x17
+	ar0 = 0x10
+	ar1 = 0x11
+	push	acc
+	push	dpl
+	push	dph
+	push	psw
+	mov	psw,#0x10
+;	../../shared/src/interrupt.c:51: EA = 0;
+	clr	_EA
+;	../../shared/src/interrupt.c:52: PHY_INT_LANE = 0xF0;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xF0
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:53: TF0 = 0;
+	clr	_TF0
+;	../../shared/src/interrupt.c:54: TR0 = 0;
+	clr	_TR0
+;	../../shared/src/interrupt.c:67: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:68: EA = 1;
+	setb	_EA
+	pop	psw
+	pop	dph
+	pop	dpl
+	pop	acc
+	reti
+;	eliminated unneeded push/pop b
+;------------------------------------------------------------
+;Allocation info for local variables in function 'timer1_isr'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	../../shared/src/interrupt.c:71: void timer1_isr (void) __interrupt (3) __using (2)
+;	-----------------------------------------
+;	 function timer1_isr
+;	-----------------------------------------
+_timer1_isr:
+	push	psw
+	mov	psw,#0x10
+;	../../shared/src/interrupt.c:73: EA = 0;
+	clr	_EA
+;	../../shared/src/interrupt.c:74: TR1 = 0;
+	clr	_TR1
+;	../../shared/src/interrupt.c:75: TF1 = 0;
+	clr	_TF1
+;	../../shared/src/interrupt.c:76: timeout = 1;
+	setb	_timeout
+;	../../shared/src/interrupt.c:77: EA = 1;
+	setb	_EA
+	pop	psw
+	reti
+;	eliminated unneeded push/pop dpl
+;	eliminated unneeded push/pop dph
+;	eliminated unneeded push/pop b
+;	eliminated unneeded push/pop acc
+;------------------------------------------------------------
+;Allocation info for local variables in function 'timer2_isr'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	../../shared/src/interrupt.c:80: void timer2_isr (void) __interrupt (5) __using (2)
+;	-----------------------------------------
+;	 function timer2_isr
+;	-----------------------------------------
+_timer2_isr:
+	push	acc
+	push	b
+	push	dpl
+	push	dph
+	push	psw
+	mov	psw,#0x10
+;	../../shared/src/interrupt.c:82: EA = 0;
+	clr	_EA
+;	../../shared/src/interrupt.c:83: PHY_INT_LANE = 0xF2;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xF2
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:84: T2CON = 0x78;//60;
+	mov	_T2CON,#0x78
+;	../../shared/src/interrupt.c:85: TF2 = 0;
+	clr	_TF2
+;	../../shared/src/interrupt.c:86: timeout2 = 1;
+	setb	_timeout2
+;	../../shared/src/interrupt.c:88: if(lnx_TX_TRAIN_TIMER_ENABLE_LANE && do_train && train_timer_int) {
+	mov	dptr,#(_TRX_TRAIN_IF_TIMERS_ENABLE_LANE + 0x0003)
+	movx	a,@dptr
+	jb	acc.5,00134$
+	ljmp	00117$
+00134$:
+	jb	_do_train,00135$
+	ljmp	00117$
+00135$:
+	mov	dptr,#_train_timer_int
+	movx	a,@dptr
+	mov	r2,a
+	jnz	00136$
+	ljmp	00117$
+00136$:
+;	../../shared/src/interrupt.c:89: if(phy_mode<=SAS) {
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r2,a
+	clr	c
+	mov	a,#(0x01 ^ 0x80)
+	mov	b,r2
+	xrl	b,#0x80
+	subb	a,b
+	jc	00111$
+;	../../shared/src/interrupt.c:90: if(reg_LOCAL_TX_TRAIN_COMPLETE_LANE==0) {
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	jb	acc.4,00105$
+;	../../shared/src/interrupt.c:91: reg_TX_TRAIN_ERROR_LANE_1_0_b0 = 0; //2=MTTT timer expire for local phy
+	mov	dptr,#_TX_TRAIN_IF_REG2
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:92: reg_TX_TRAIN_ERROR_LANE_1_0_b1 = 1;
+	mov	dptr,#(_TX_TRAIN_IF_REG2 + 0x0001)
+	movx	a,@dptr
+	orl	a,#0x01
+	movx	@dptr,a
+	sjmp	00106$
+00105$:
+;	../../shared/src/interrupt.c:94: else if((reg_REMOTE_STATUS_FIELD_RD_LANE_15_0_b1&0x80)==0) {
+	mov	dptr,#(_TX_TRAIN_IF_REG6 + 0x0001)
+	movx	a,@dptr
+	mov	r2,a
+	jb	acc.7,00102$
+;	../../shared/src/interrupt.c:95: reg_TX_TRAIN_ERROR_LANE_1_0_b0 = 1; //3=does not get remote phy's complete status
+	mov	dptr,#_TX_TRAIN_IF_REG2
+	movx	a,@dptr
+	orl	a,#0x80
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:96: reg_TX_TRAIN_ERROR_LANE_1_0_b1 = 1;
+	mov	dptr,#(_TX_TRAIN_IF_REG2 + 0x0001)
+	movx	a,@dptr
+	orl	a,#0x01
+	movx	@dptr,a
+	sjmp	00106$
+00102$:
+;	../../shared/src/interrupt.c:99: reg_TX_TRAIN_ERROR_LANE_1_0_b0 = 1;
+	mov	dptr,#_TX_TRAIN_IF_REG2
+	movx	a,@dptr
+	orl	a,#0x80
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:100: reg_TX_TRAIN_ERROR_LANE_1_0_b1 = 0;
+	mov	dptr,#(_TX_TRAIN_IF_REG2 + 0x0001)
+	movx	a,@dptr
+	anl	a,#0xfe
+	movx	@dptr,a
+00106$:
+;	../../shared/src/interrupt.c:102: if(link_train_mode==0 && reg_FRAME_LOCK_LANE==0){
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	jb	acc.7,00111$
+	mov	dptr,#(_FRAME_SYNC_DET_REG1 + 0x0002)
+	movx	a,@dptr
+	jb	acc.2,00111$
+;	../../shared/src/interrupt.c:103: lnx_TX_TRAIN_FRAME_LOCK_DET_FAIL_INT_LANE = 1;
+	mov	dptr,#(_TRAIN_CONTROL_2 + 0x0002)
+	movx	a,@dptr
+	orl	a,#0x02
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:104: reg_TX_TRAIN_ERROR_LANE_1_0_b0 = 0; //0=framelock err
+	mov	dptr,#_TX_TRAIN_IF_REG2
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:105: reg_TX_TRAIN_ERROR_LANE_1_0_b1 = 0;
+	mov	dptr,#(_TX_TRAIN_IF_REG2 + 0x0001)
+	movx	a,@dptr
+	anl	a,#0xfe
+	movx	@dptr,a
+00111$:
+;	../../shared/src/interrupt.c:108: lnx_TX_TRAIN_FAIL_INT_LANE = 1;
+	mov	dptr,#(_TRAIN_CONTROL_2 + 0x0001)
+	movx	a,@dptr
+	orl	a,#0x80
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:109: reg_TX_TRAIN_FAILED_LANE = 1;
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	orl	a,#0x08
+	movx	@dptr,a
+	sjmp	00118$
+00117$:
+;	../../shared/src/interrupt.c:111: else if(reg_RX_TRAIN_COMPLETE_LANE==0 && do_rxtrain && train_timer_int) {
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	jb	acc.0,00118$
+	jnb	_do_rxtrain,00118$
+	mov	dptr,#_train_timer_int
+	movx	a,@dptr
+	mov	r2,a
+	jz	00118$
+;	../../shared/src/interrupt.c:112: reg_RX_TRAIN_FAILED_LANE = 1;
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0002)
+	movx	a,@dptr
+	orl	a,#0x80
+	movx	@dptr,a
+00118$:
+;	../../shared/src/interrupt.c:115: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:116: EA = 1;
+	setb	_EA
+	pop	psw
+	pop	dph
+	pop	dpl
+	pop	b
+	pop	acc
+	reti
+;------------------------------------------------------------
+;Allocation info for local variables in function 'int0_isr'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	../../shared/src/interrupt.c:119: void int0_isr (void) __interrupt (0)  __using (2)  
+;	-----------------------------------------
+;	 function int0_isr
+;	-----------------------------------------
+_int0_isr:
+	push	acc
+	push	dpl
+	push	dph
+	push	psw
+	mov	psw,#0x10
+;	../../shared/src/interrupt.c:121: PHY_INT_LANE = 13;
+;	../../shared/src/interrupt.c:125: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0x0D
+	movx	@dptr,a
+	mov	a,#0xFF
+	movx	@dptr,a
+	pop	psw
+	pop	dph
+	pop	dpl
+	pop	acc
+	reti
+;	eliminated unneeded push/pop b
+;------------------------------------------------------------
+;Allocation info for local variables in function 'int3_isr'
+;------------------------------------------------------------
+;__00042402                Allocated to registers 
+;lane_en                   Allocated to registers 
+;------------------------------------------------------------
+;	../../shared/src/interrupt.c:128: void int3_isr (void) __interrupt (10)  __using (2) //refclk_dis
+;	-----------------------------------------
+;	 function int3_isr
+;	-----------------------------------------
+_int3_isr:
+	push	acc
+	push	dpl
+	push	dph
+	push	psw
+	mov	psw,#0x10
+;	../../shared/src/interrupt.c:130: EA = 0;
+	clr	_EA
+;	../../shared/src/interrupt.c:131: PHY_INT_LANE = 3;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0x03
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:133: if( reg_INT_REFCLK_DIS_CHG_ISR_LANE ) {
+	mov	dptr,#(_PM_CTRL_INTERRUPT_REG1_LANE + 0x0003)
+	movx	a,@dptr
+	jnb	acc.1,00102$
+;	../../shared/src/interrupt.c:134: PM_CTRL_INTERRUPT_ISR_REG1_LANE.BT.B3 = 0x02;
+;	../../shared/src/interrupt.c:135: PM_CTRL_INTERRUPT_ISR_REG1_LANE.BT.B3 = 0;
+	mov	dptr,#(_PM_CTRL_INTERRUPT_ISR_REG1_LANE + 0x0003)
+	mov	a,#0x02
+	movx	@dptr,a
+	clr	a
+	movx	@dptr,a
+00102$:
+;	../../shared/src/interrupt.c:146: if( reg_INT_PU_IVREF_CHG_ISR_LANE ) {
+	mov	dptr,#(_PM_CTRL_INTERRUPT_REG1_LANE + 0x0003)
+	movx	a,@dptr
+	jnb	acc.2,00108$
+;	../../shared/src/interrupt.c:147: PM_CTRL_INTERRUPT_ISR_REG1_LANE.BT.B3 = 0x04;
+;	../../shared/src/interrupt.c:148: PM_CTRL_INTERRUPT_ISR_REG1_LANE.BT.B3 = 0;
+	mov	dptr,#(_PM_CTRL_INTERRUPT_ISR_REG1_LANE + 0x0003)
+	mov	a,#0x04
+	movx	@dptr,a
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:150: if(reg_PIN_PU_IVREF_RD==0 && reg_PIN_PU_PLL_RD_LANE==0 && mcuid== master_mcu ) {
+	mov	dptr,#(_PM_CMN_REG1 + 0x0003)
+	movx	a,@dptr
+	jb	acc.5,00108$
+	mov	dptr,#(_PM_CTRL_TX_LANE_REG2_LANE + 0x0003)
+	movx	a,@dptr
+	jb	acc.5,00108$
+	mov	dptr,#_MCU_CONTROL_LANE
+	movx	a,@dptr
+	mov	r2,a
+	mov	dptr,#_MCU_CONFIG
+	movx	a,@dptr
+	mov	r3,a
+	mov	a,r2
+	cjne	a,ar3,00108$
+;	../../shared/src/interrupt.c:151: PM_CMN_REG2.BT.B2 = 0x0e; //reg_ANA_PU_IVREF_DLY3 = 0;
+;	../../shared/src/interrupt.c:152: PM_CMN_REG2.BT.B2 = 0x0c; //reg_ANA_PU_IVREF_DLY2 = 0;
+;	../../shared/src/interrupt.c:153: PM_CMN_REG2.BT.B2 = 0x08; //reg_ANA_PU_IVREF_DLY1 = 0;
+;	../../shared/src/interrupt.c:154: PM_CMN_REG2.BT.B2 = 0;
+	mov	dptr,#(_PM_CMN_REG2 + 0x0002)
+	mov	a,#0x0E
+	movx	@dptr,a
+	mov	a,#0x0C
+	movx	@dptr,a
+	mov	a,#0x08
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:42: SYNC_STATUS_LANE_EN = lane_en;
+	clr	a
+	movx	@dptr,a
+	mov	dptr,#(_MCU_STATUS1_LANE + 0x0002)
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:43: if (mcuid == MCU_LANE0)
+	mov	dptr,#_MCU_CONTROL_LANE
+	movx	a,@dptr
+	jnz	00110$
+;	../../shared/src/interrupt.c:44: SYNC_STATUS_LANE0_EN = lane_en;
+	mov	dptr,#(_MCU_INFO_12 + 0x0002)
+	clr	a
+	movx	@dptr,a
+	sjmp	00108$
+00110$:
+;	../../shared/src/interrupt.c:46: SYNC_STATUS_LANE1_EN = lane_en;
+	mov	dptr,#(_MCU_INFO_13 + 0x0002)
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:155: sync_status_lane_en_0(0);
+00108$:
+;	../../shared/src/interrupt.c:159: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:161: EA = 1;
+	setb	_EA
+	pop	psw
+	pop	dph
+	pop	dpl
+	pop	acc
+	reti
+;	eliminated unneeded push/pop b
+;------------------------------------------------------------
+;Allocation info for local variables in function 'int1_isr'
+;------------------------------------------------------------
+;int_pll_or_chg            Allocated to stack - offset 1
+;__00032404                Allocated to registers 
+;lane_en                   Allocated to registers 
+;__00032406                Allocated to registers 
+;lane_en                   Allocated to registers 
+;------------------------------------------------------------
+;	../../shared/src/interrupt.c:164: void int1_isr (void) __interrupt (2)  __using (2) //pcie
+;	-----------------------------------------
+;	 function int1_isr
+;	-----------------------------------------
+_int1_isr:
+	push	acc
+	push	dpl
+	push	dph
+	push	psw
+	mov	psw,#0x10
+	push	_bp
+	mov	_bp,sp
+	inc	sp
+;	../../shared/src/interrupt.c:169: EA = 0;
+	clr	_EA
+;	../../shared/src/interrupt.c:172: PHY_INT_LANE = 1;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0x01
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:175: if(reg_DPHY_ANA_LANE_DISABLE_ISR_LANE) {
+	mov	dptr,#(_PM_CTRL_INTERRUPT_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	jb	acc.1,00193$
+	ljmp	00111$
+00193$:
+;	../../shared/src/interrupt.c:176: PM_CTRL_INTERRUPT_ISR_REG1_LANE.BT.B2 = 0x02;
+;	../../shared/src/interrupt.c:177: PM_CTRL_INTERRUPT_ISR_REG1_LANE.BT.B2 = 0;
+	mov	dptr,#(_PM_CTRL_INTERRUPT_ISR_REG1_LANE + 0x0002)
+	mov	a,#0x02
+	movx	@dptr,a
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:179: switch(mcuid) {
+	mov	dptr,#_MCU_CONTROL_LANE
+	movx	a,@dptr
+	mov	r2,a
+	jz	00101$
+;	../../shared/src/interrupt.c:180: case MCU_LANE0:
+	cjne	r2,#0x01,00103$
+	sjmp	00102$
+00101$:
+;	../../shared/src/interrupt.c:181: cmx_LANE_DIS_LANE0_7_0 = reg_LANE_DISABLE_RD_LANE;
+	mov	dptr,#_TX_SYSTEM_LANE
+	movx	a,@dptr
+	anl	a,#0x01
+	mov	r2,a
+	mov	dptr,#(_MCU_CONFIG + 0x0001)
+	mov	a,r2
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:182: break;
+;	../../shared/src/interrupt.c:183: case MCU_LANE1:
+	sjmp	00103$
+00102$:
+;	../../shared/src/interrupt.c:184: cmx_LANE_DIS_LANE1_7_0 = reg_LANE_DISABLE_RD_LANE;
+	mov	dptr,#_TX_SYSTEM_LANE
+	movx	a,@dptr
+	anl	a,#0x01
+	mov	r2,a
+	mov	dptr,#(_MCU_CONFIG + 0x0002)
+	mov	a,r2
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:194: }
+00103$:
+;	../../shared/src/interrupt.c:196: if(reg_LANE_DISABLE_RD_LANE==0) {
+	mov	dptr,#_TX_SYSTEM_LANE
+	movx	a,@dptr
+	jb	acc.0,00108$
+;	../../shared/src/interrupt.c:197: reg_LANE_ALIGN_READY_OUT = 0;
+	mov	dptr,#(_SRIS_REG0 + 0x0003)
+	movx	a,@dptr
+	anl	a,#0xef
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:198: reg_LANE_ALIGN_READY_OUT_FORCE = 0;
+	mov	dptr,#(_SRIS_REG0 + 0x0003)
+	movx	a,@dptr
+	anl	a,#0xdf
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:199: reg_TXCLK_SYNC_START_OUT = 0;
+	mov	dptr,#(_INPUT_CMN_PIN_REG2 + 0x0003)
+	movx	a,@dptr
+	anl	a,#0xf7
+	movx	@dptr,a
+	sjmp	00111$
+00108$:
+;	../../shared/src/interrupt.c:202: if ( cmx_LANE_DIS_LANE0_7_0 && cmx_LANE_DIS_LANE1_7_0
+	mov	dptr,#(_MCU_CONFIG + 0x0001)
+	movx	a,@dptr
+	jz	00111$
+	mov	dptr,#(_MCU_CONFIG + 0x0002)
+	movx	a,@dptr
+	jz	00111$
+;	../../shared/src/interrupt.c:207: reg_LANE_ALIGN_READY_OUT = 1; //control sequence to de-glitch
+	mov	dptr,#(_SRIS_REG0 + 0x0003)
+	movx	a,@dptr
+	orl	a,#0x10
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:208: reg_LANE_ALIGN_READY_OUT_FORCE = 1;
+	mov	dptr,#(_SRIS_REG0 + 0x0003)
+	movx	a,@dptr
+	orl	a,#0x20
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:209: reg_TXCLK_SYNC_START_OUT = 1;
+	mov	dptr,#(_INPUT_CMN_PIN_REG2 + 0x0003)
+	movx	a,@dptr
+	orl	a,#0x08
+	movx	@dptr,a
+00111$:
+;	../../shared/src/interrupt.c:215: if( reg_INT_PU_PLL_OR_CHG_ISR_LANE && mcuid== master_mcu) {
+	mov	dptr,#(_PM_CTRL_INTERRUPT_REG1_LANE + 0x0003)
+	movx	a,@dptr
+	jnb	acc.0,00113$
+	mov	dptr,#_MCU_CONTROL_LANE
+	movx	a,@dptr
+	mov	r2,a
+	mov	dptr,#_MCU_CONFIG
+	movx	a,@dptr
+	mov	r3,a
+	mov	a,r2
+	cjne	a,ar3,00113$
+;	../../shared/src/interrupt.c:216: int_pll_or_chg = 1;
+	mov	r2,#0x01
+00113$:
+;	../../shared/src/interrupt.c:224: if(reg_INT_POWER_STATE_VALID_RISE_ISR_LANE) {
+	mov	dptr,#(_PM_CTRL_INTERRUPT_REG1_LANE + 0x0003)
+	movx	a,@dptr
+	jb	acc.4,00202$
+	ljmp	00149$
+00202$:
+;	../../shared/src/interrupt.c:225: PM_CTRL_INTERRUPT_ISR_REG1_LANE.BT.B3 = 0x1b; // clear reg_INT_POWER_STATE_VALID_RISE_ISR_CLEAR_LANE, reg_INT_PU_PLL_OR_CHG_ISR_CLEAR_LANE, reg_INT_RX_INIT_RISE_ISR_LANE, INT_REFCLK_DIS_CHG_ISR_CLEAR_LANE
+;	../../shared/src/interrupt.c:226: PM_CTRL_INTERRUPT_ISR_REG1_LANE.BT.B3 = 0;
+	mov	dptr,#(_PM_CTRL_INTERRUPT_ISR_REG1_LANE + 0x0003)
+	mov	a,#0x1B
+	movx	@dptr,a
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:228: if( reg_PIN_PU_PLL_RD_LANE == 1 )
+	mov	dptr,#(_PM_CTRL_TX_LANE_REG2_LANE + 0x0003)
+	movx	a,@dptr
+	swap	a
+	rr	a
+	anl	a,#0x01
+	mov	r3,a
+	cjne	r3,#0x01,00116$
+;	../../shared/src/interrupt.c:42: SYNC_STATUS_LANE_EN = lane_en;
+	mov	dptr,#(_MCU_STATUS1_LANE + 0x0002)
+	mov	a,#0x01
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:43: if (mcuid == MCU_LANE0)
+	mov	dptr,#_MCU_CONTROL_LANE
+	movx	a,@dptr
+	jnz	00151$
+;	../../shared/src/interrupt.c:44: SYNC_STATUS_LANE0_EN = lane_en;
+	mov	dptr,#(_MCU_INFO_12 + 0x0002)
+	mov	a,#0x01
+	movx	@dptr,a
+	sjmp	00117$
+00151$:
+;	../../shared/src/interrupt.c:46: SYNC_STATUS_LANE1_EN = lane_en;
+	mov	dptr,#(_MCU_INFO_13 + 0x0002)
+	mov	a,#0x01
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:229: sync_status_lane_en_0(1);
+	sjmp	00117$
+00116$:
+;	../../shared/src/interrupt.c:42: SYNC_STATUS_LANE_EN = lane_en;
+	mov	dptr,#(_MCU_STATUS1_LANE + 0x0002)
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:43: if (mcuid == MCU_LANE0)
+	mov	dptr,#_MCU_CONTROL_LANE
+	movx	a,@dptr
+	jnz	00155$
+;	../../shared/src/interrupt.c:44: SYNC_STATUS_LANE0_EN = lane_en;
+	mov	dptr,#(_MCU_INFO_12 + 0x0002)
+	clr	a
+	movx	@dptr,a
+	sjmp	00117$
+00155$:
+;	../../shared/src/interrupt.c:46: SYNC_STATUS_LANE1_EN = lane_en;
+	mov	dptr,#(_MCU_INFO_13 + 0x0002)
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:231: sync_status_lane_en_0(0);
+00117$:
+;	../../shared/src/interrupt.c:233: switch(PHY_STATUS) {
+	mov	dptr,#_MCU_STATUS0_LANE
+	movx	a,@dptr
+	mov	r3,a
+	cjne	r3,#0x1B,00207$
+	sjmp	00119$
+00207$:
+	cjne	r3,#0x20,00208$
+	sjmp	00128$
+00208$:
+	cjne	r3,#0x21,00209$
+	sjmp	00119$
+00209$:
+	cjne	r3,#0x22,00210$
+	sjmp	00133$
+00210$:
+	cjne	r3,#0x23,00211$
+	sjmp	00133$
+00211$:
+	cjne	r3,#0x24,00212$
+	sjmp	00128$
+00212$:
+	cjne	r3,#0x25,00213$
+	sjmp	00128$
+00213$:
+	cjne	r3,#0x26,00214$
+	sjmp	00128$
+00214$:
+	cjne	r3,#0x33,00215$
+	sjmp	00133$
+00215$:
+	ljmp	00140$
+;	../../shared/src/interrupt.c:235: case ST_P2_WK:
+00119$:
+;	../../shared/src/interrupt.c:236: if( reg_PIN_PU_PLL_RD_LANE == 1 ) {
+	mov	dptr,#(_PM_CTRL_TX_LANE_REG2_LANE + 0x0003)
+	movx	a,@dptr
+	swap	a
+	rr	a
+	anl	a,#0x01
+	mov	r3,a
+	cjne	r3,#0x01,00123$
+;	../../shared/src/interrupt.c:237: do_wake = 1; //p2->p1 or p0
+	setb	_do_wake
+;	../../shared/src/interrupt.c:238: SYNC_SATUS_P2_2_P1_ON = 1; // request to check tx alignment
+	mov	dptr,#(_SYNC_INFO + 0x0002)
+	mov	a,#0x01
+	movx	@dptr,a
+	ljmp	00149$
+00123$:
+;	../../shared/src/interrupt.c:241: else if( int_pll_or_chg ) { //already P2, but need to turn on/off pu_pll/dtx
+	mov	a,r2
+	jnz	00218$
+	ljmp	00149$
+00218$:
+;	../../shared/src/interrupt.c:242: PHY_NS = ST_P2;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0001)
+	mov	a,#0x21
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:35: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:36: reg_INT_ENABLE_ALL_LANE = 0;
+	mov	dptr,#(_CACHE_DEBUG0 + 0x0003)
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:37: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:38: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:245: break;
+	ljmp	00149$
+;	../../shared/src/interrupt.c:249: case ST_P1OFF_WK:
+00128$:
+;	../../shared/src/interrupt.c:250: if( reg_PIN_PU_PLL_RD_LANE == 1 ) {
+	mov	dptr,#(_PM_CTRL_TX_LANE_REG2_LANE + 0x0003)
+	movx	a,@dptr
+	swap	a
+	rr	a
+	anl	a,#0x01
+	mov	r2,a
+	cjne	r2,#0x01,00219$
+	sjmp	00220$
+00219$:
+	ljmp	00149$
+00220$:
+;	../../shared/src/interrupt.c:251: do_wake = 1; //p2->p1 or p0
+	setb	_do_wake
+;	../../shared/src/interrupt.c:254: break;
+	ljmp	00149$
+;	../../shared/src/interrupt.c:257: case ST_P1_TXDETRX:
+00133$:
+;	../../shared/src/interrupt.c:258: if(reg_PIN_PU_PLL_RD_LANE == 0) {
+	mov	dptr,#(_PM_CTRL_TX_LANE_REG2_LANE + 0x0003)
+	movx	a,@dptr
+	jb	acc.5,00138$
+;	../../shared/src/interrupt.c:259: reg_PIN_PLL_READY_TX_LANE = 0;
+	mov	dptr,#(_PM_CTRL_TX_LANE_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	anl	a,#0xfb
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:260: PHY_NS = ST_P2; //p1->p2, p1->p2->p1.clkreq
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0001)
+	mov	a,#0x21
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:35: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:36: reg_INT_ENABLE_ALL_LANE = 0;
+	mov	dptr,#(_CACHE_DEBUG0 + 0x0003)
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:37: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:38: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:262: mcu_reset();
+	ljmp	00149$
+00138$:
+;	../../shared/src/interrupt.c:264: else if(reg_PIN_PU_RX_RD_LANE == 1){
+	mov	dptr,#(_PM_CTRL_RX_LANE_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	rr	a
+	rr	a
+	anl	a,#0x01
+	mov	r2,a
+	cjne	r2,#0x01,00135$
+;	../../shared/src/interrupt.c:265: do_wake = 1; //p1->p0
+	setb	_do_wake
+	sjmp	00149$
+00135$:
+;	../../shared/src/interrupt.c:270: PHY_NS = ST_P1;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0001)
+	mov	a,#0x22
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:35: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:36: reg_INT_ENABLE_ALL_LANE = 0;
+	mov	dptr,#(_CACHE_DEBUG0 + 0x0003)
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:37: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:38: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:273: break;
+;	../../shared/src/interrupt.c:274: default:
+	sjmp	00149$
+00140$:
+;	../../shared/src/interrupt.c:276: if( reg_PIN_PU_PLL_RD_LANE==0 || reg_PIN_PU_TX_RD_LANE==0 ) {
+	mov	dptr,#(_PM_CTRL_TX_LANE_REG2_LANE + 0x0003)
+	movx	a,@dptr
+	jnb	acc.5,00143$
+	mov	dptr,#(_PM_CTRL_TX_LANE_REG2_LANE + 0x0003)
+	movx	a,@dptr
+	jb	acc.4,00144$
+00143$:
+;	../../shared/src/interrupt.c:277: reg_PIN_PLL_READY_TX_LANE = 0;
+	mov	dptr,#(_PM_CTRL_TX_LANE_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	anl	a,#0xfb
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:278: reg_PIN_PLL_READY_RX_LANE = 0;
+	mov	dptr,#(_PM_CTRL_RX_LANE_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	anl	a,#0xbf
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:279: PHY_NS = ST_P2;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0001)
+	mov	a,#0x21
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:35: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:36: reg_INT_ENABLE_ALL_LANE = 0;
+	mov	dptr,#(_CACHE_DEBUG0 + 0x0003)
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:37: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:38: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:280: mcu_reset();
+	sjmp	00149$
+00144$:
+;	../../shared/src/interrupt.c:282: else if( reg_PIN_PU_RX_RD_LANE==0 ) {
+	mov	dptr,#(_PM_CTRL_RX_LANE_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	jb	acc.2,00149$
+;	../../shared/src/interrupt.c:283: reg_PIN_PLL_READY_RX_LANE = 0;
+	mov	dptr,#(_PM_CTRL_RX_LANE_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	anl	a,#0xbf
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:284: PHY_NS = ST_P1;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0001)
+	mov	a,#0x22
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:35: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:36: reg_INT_ENABLE_ALL_LANE = 0;
+	mov	dptr,#(_CACHE_DEBUG0 + 0x0003)
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:37: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:38: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:290: }
+00149$:
+;	../../shared/src/interrupt.c:293: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:295: EA = 1;
+	setb	_EA
+	mov	sp,_bp
+	pop	_bp
+	pop	psw
+	pop	dph
+	pop	dpl
+	pop	acc
+	reti
+;	eliminated unneeded push/pop b
+;------------------------------------------------------------
+;Allocation info for local variables in function 'int8_isr'
+;------------------------------------------------------------
+;__00042416                Allocated to registers 
+;lane_en                   Allocated to registers 
+;------------------------------------------------------------
+;	../../shared/src/interrupt.c:299: void int8_isr (void) __interrupt (17)  __using (2)
+;	-----------------------------------------
+;	 function int8_isr
+;	-----------------------------------------
+_int8_isr:
+	push	acc
+	push	dpl
+	push	dph
+	push	psw
+	mov	psw,#0x10
+;	../../shared/src/interrupt.c:303: EA = 0;
+	clr	_EA
+;	../../shared/src/interrupt.c:304: EX8 = 0; //reg_INT_ENABLE_ALL_LANE = 0;
+	clr	_EX8
+;	../../shared/src/interrupt.c:305: PHY_INT_LANE = 8;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0x08
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:307: if(reg_INT_TXDETRX_EN_CHG_ISR_LANE ) {
+	mov	dptr,#(_PM_CTRL_INTERRUPT_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	jb	acc.7,00137$
+	ljmp	00110$
+00137$:
+;	../../shared/src/interrupt.c:310: PM_CTRL_INTERRUPT_ISR_REG1_LANE.BT.B2 = 0x80;
+;	../../shared/src/interrupt.c:311: PM_CTRL_INTERRUPT_ISR_REG1_LANE.BT.B2 = 0;
+	mov	dptr,#(_PM_CTRL_INTERRUPT_ISR_REG1_LANE + 0x0002)
+	mov	a,#0x80
+	movx	@dptr,a
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:312: if( reg_PIN_TXDETRX_EN_RD_LANE == 1) {
+	mov	dptr,#(_PM_CTRL_TX_LANE_REG2_LANE + 0x0003)
+	movx	a,@dptr
+	anl	a,#0x01
+	mov	r2,a
+	cjne	r2,#0x01,00110$
+;	../../shared/src/interrupt.c:313: switch(PHY_STATUS) {
+	mov	dptr,#_MCU_STATUS0_LANE
+	movx	a,@dptr
+	mov	r2,a
+	cjne	r2,#0x1B,00140$
+	sjmp	00102$
+00140$:
+	cjne	r2,#0x21,00141$
+	sjmp	00102$
+00141$:
+	cjne	r2,#0x22,00142$
+	sjmp	00104$
+00142$:
+;	../../shared/src/interrupt.c:315: case ST_P2_WK: PHY_NS = ST_P2_TXDETRX;	EX8 = 1;  mcu_reset(); break;
+	cjne	r2,#0x23,00105$
+	sjmp	00104$
+00102$:
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0001)
+	mov	a,#0x20
+	movx	@dptr,a
+	setb	_EX8
+;	../../shared/src/interrupt.c:35: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:36: reg_INT_ENABLE_ALL_LANE = 0;
+	mov	dptr,#(_CACHE_DEBUG0 + 0x0003)
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:37: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:38: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:315: case ST_P2_WK: PHY_NS = ST_P2_TXDETRX;	EX8 = 1;  mcu_reset(); break;
+;	../../shared/src/interrupt.c:317: case ST_P1_WK: PHY_NS = ST_P1_TXDETRX;	EX8 = 1;  mcu_reset(); break;
+	sjmp	00106$
+00104$:
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0001)
+	mov	a,#0x33
+	movx	@dptr,a
+	setb	_EX8
+;	../../shared/src/interrupt.c:35: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:36: reg_INT_ENABLE_ALL_LANE = 0;
+	mov	dptr,#(_CACHE_DEBUG0 + 0x0003)
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:37: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:38: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:317: case ST_P1_WK: PHY_NS = ST_P1_TXDETRX;	EX8 = 1;  mcu_reset(); break;
+;	../../shared/src/interrupt.c:318: default: PHY_NS = ST_TXDETRX; break; //P0
+	sjmp	00106$
+00105$:
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0001)
+	mov	a,#0x1F
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:319: }
+00106$:
+;	../../shared/src/interrupt.c:322: EX8 = 1; mcu_reset();
+	setb	_EX8
+;	../../shared/src/interrupt.c:35: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:36: reg_INT_ENABLE_ALL_LANE = 0;
+	mov	dptr,#(_CACHE_DEBUG0 + 0x0003)
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:37: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:38: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:322: EX8 = 1; mcu_reset();
+00110$:
+;	../../shared/src/interrupt.c:326: if( reg_INT_BEACON_TX_EN_CHG_ISR_LANE ) {
+	mov	dptr,#(_PM_CTRL_INTERRUPT_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	jnb	acc.6,00117$
+;	../../shared/src/interrupt.c:329: PM_CTRL_INTERRUPT_ISR_REG1_LANE.BT.B2 = 0x40;
+;	../../shared/src/interrupt.c:330: PM_CTRL_INTERRUPT_ISR_REG1_LANE.BT.B2 = 0;
+	mov	dptr,#(_PM_CTRL_INTERRUPT_ISR_REG1_LANE + 0x0002)
+	mov	a,#0x40
+	movx	@dptr,a
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:332: if( reg_PIN_PU_PLL_RD_LANE==0 ) { //P2
+	mov	dptr,#(_PM_CTRL_TX_LANE_REG2_LANE + 0x0003)
+	movx	a,@dptr
+	jb	acc.5,00115$
+;	../../shared/src/interrupt.c:42: SYNC_STATUS_LANE_EN = lane_en;
+	mov	dptr,#(_MCU_STATUS1_LANE + 0x0002)
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:43: if (mcuid == MCU_LANE0)
+	mov	dptr,#_MCU_CONTROL_LANE
+	movx	a,@dptr
+	jnz	00122$
+;	../../shared/src/interrupt.c:44: SYNC_STATUS_LANE0_EN = lane_en;
+	mov	dptr,#(_MCU_INFO_12 + 0x0002)
+	clr	a
+	movx	@dptr,a
+	sjmp	00124$
+00122$:
+;	../../shared/src/interrupt.c:46: SYNC_STATUS_LANE1_EN = lane_en;
+	mov	dptr,#(_MCU_INFO_13 + 0x0002)
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:333: sync_status_lane_en_0(0);
+00124$:
+;	../../shared/src/interrupt.c:334: if( reg_PIN_TX_ACJTAG_EN_RD_LANE==1 ) {
+	mov	dptr,#(_PM_CTRL_TX_LANE_REG2_LANE + 0x0002)
+	movx	a,@dptr
+	rl	a
+	anl	a,#0x01
+	mov	r2,a
+	cjne	r2,#0x01,00147$
+	sjmp	00115$
+00147$:
+;	../../shared/src/interrupt.c:339: do_wake = 1;
+	setb	_do_wake
+00115$:
+;	../../shared/src/interrupt.c:343: reg_ANA_BEACON_EN_LANE = reg_PIN_TX_ACJTAG_EN_RD_LANE;
+	mov	dptr,#(_PM_CTRL_TX_LANE_REG2_LANE + 0x0002)
+	movx	a,@dptr
+	rl	a
+	anl	a,#0x01
+	mov	r2,a
+	mov	dptr,#_PM_CTRL_TX_LANE_REG1_LANE
+	rrc	a
+	movx	a,@dptr
+	mov	acc.6,c
+	movx	@dptr,a
+00117$:
+;	../../shared/src/interrupt.c:346: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:347: EX8 = 1; //reg_INT_ENABLE_ALL_LANE = 1;
+	setb	_EX8
+;	../../shared/src/interrupt.c:348: EA = 1;
+	setb	_EA
+	pop	psw
+	pop	dph
+	pop	dpl
+	pop	acc
+	reti
+;	eliminated unneeded push/pop b
+;------------------------------------------------------------
+;Allocation info for local variables in function 'int9_isr'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	../../shared/src/interrupt.c:354: void int9_isr (void) __interrupt (18)  __using (2)// sata_sas pm ctrl
+;	-----------------------------------------
+;	 function int9_isr
+;	-----------------------------------------
+_int9_isr:
+	push	psw
+	mov	psw,#0x10
+;	../../shared/src/interrupt.c:450: }
+	pop	psw
+	reti
+;	eliminated unneeded push/pop dpl
+;	eliminated unneeded push/pop dph
+;	eliminated unneeded push/pop b
+;	eliminated unneeded push/pop acc
+;------------------------------------------------------------
+;Allocation info for local variables in function 'int2_isr'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	../../shared/src/interrupt.c:453: void int2_isr (void) __interrupt (9) __using (2) //gen
+;	-----------------------------------------
+;	 function int2_isr
+;	-----------------------------------------
+_int2_isr:
+	push	acc
+	push	dpl
+	push	dph
+	push	psw
+	mov	psw,#0x10
+;	../../shared/src/interrupt.c:455: EA = 0;
+	clr	_EA
+;	../../shared/src/interrupt.c:457: PHY_INT_LANE = 0x2;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0x02
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:459: if(reg_INT_PHY_GEN_RX_CHG_ISR_LANE) {
+	mov	dptr,#(_SPD_CTRL_INTERRUPT_REG1_LANE + 0x0003)
+	movx	a,@dptr
+	jnb	acc.6,00102$
+;	../../shared/src/interrupt.c:462: SPD_CTRL_INTERRUPT_CLEAR_REG1_LANE.BT.B3 = 0x40;
+;	../../shared/src/interrupt.c:463: SPD_CTRL_INTERRUPT_CLEAR_REG1_LANE.BT.B3 = 0;
+	mov	dptr,#(_SPD_CTRL_INTERRUPT_CLEAR_REG1_LANE + 0x0003)
+	mov	a,#0x40
+	movx	@dptr,a
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:464: reg_PIN_PLL_READY_RX_LANE = 0;
+	mov	dptr,#(_PM_CTRL_RX_LANE_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	anl	a,#0xbf
+	movx	@dptr,a
+00102$:
+;	../../shared/src/interrupt.c:466: if(reg_INT_PHY_GEN_TX_CHG_ISR_LANE) {
+	mov	dptr,#(_SPD_CTRL_INTERRUPT_REG1_LANE + 0x0003)
+	movx	a,@dptr
+	jnb	acc.7,00104$
+;	../../shared/src/interrupt.c:469: SPD_CTRL_INTERRUPT_CLEAR_REG1_LANE.BT.B3 = 0x80;
+;	../../shared/src/interrupt.c:470: SPD_CTRL_INTERRUPT_CLEAR_REG1_LANE.BT.B3 = 0;
+	mov	dptr,#(_SPD_CTRL_INTERRUPT_CLEAR_REG1_LANE + 0x0003)
+	mov	a,#0x80
+	movx	@dptr,a
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:471: reg_PIN_PLL_READY_TX_LANE = 0;
+	mov	dptr,#(_PM_CTRL_TX_LANE_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	anl	a,#0xfb
+	movx	@dptr,a
+00104$:
+;	../../shared/src/interrupt.c:474: if(reg_ANA_RX_PU_DLY2_LANE && reg_ANA_PU_TX_LANE) {
+	mov	dptr,#_INPUT_RX_PIN_REG3_LANE
+	movx	a,@dptr
+	jnb	acc.0,00109$
+	mov	dptr,#(_PM_CTRL_TX_LANE_REG1_LANE + 0x0003)
+	movx	a,@dptr
+	jnb	acc.6,00109$
+;	../../shared/src/interrupt.c:475: if(phy_mode == SERDES) { PHY_NS = ST_CAL; PHY_STATUS_INT |= SPDCHG_ON;}
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r2,a
+	cjne	r2,#0x04,00106$
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0001)
+	mov	a,#0x03
+	movx	@dptr,a
+	mov	dptr,#_MCU_STATUS2_LANE
+	movx	a,@dptr
+	mov	r2,a
+	orl	ar2,#0x01
+	mov	dptr,#_MCU_STATUS2_LANE
+	mov	a,r2
+	movx	@dptr,a
+	sjmp	00107$
+00106$:
+;	../../shared/src/interrupt.c:476: else PHY_NS = ST_SPDCHG;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0001)
+	mov	a,#0x19
+	movx	@dptr,a
+00107$:
+;	../../shared/src/interrupt.c:35: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:36: reg_INT_ENABLE_ALL_LANE = 0;
+	mov	dptr,#(_CACHE_DEBUG0 + 0x0003)
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:37: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:38: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:479: mcu_reset();
+00109$:
+;	../../shared/src/interrupt.c:482: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:483: EA = 1;
+	setb	_EA
+	pop	psw
+	pop	dph
+	pop	dpl
+	pop	acc
+	reti
+;	eliminated unneeded push/pop b
+;------------------------------------------------------------
+;Allocation info for local variables in function 'int11_isr'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	../../shared/src/interrupt.c:486: void int11_isr (void) __interrupt (20)  __using (2)  //rx_train
+;	-----------------------------------------
+;	 function int11_isr
+;	-----------------------------------------
+_int11_isr:
+	push	acc
+	push	dpl
+	push	dph
+	push	psw
+	mov	psw,#0x10
+;	../../shared/src/interrupt.c:488: EA = 0;
+	clr	_EA
+;	../../shared/src/interrupt.c:489: EX11 = 0 ;//reg_INT_ENABLE_ALL_LANE = 0;
+	clr	_EX11
+;	../../shared/src/interrupt.c:490: PHY_INT_LANE = 11;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0x0B
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:492: if( reg_PIN_RX_TRAIN_ENABLE_ISR_LANE ) {
+	mov	dptr,#_TRX_TRAIN_IF_INTERRUPT_LANE
+	movx	a,@dptr
+	jb	acc.0,00130$
+	ljmp	00111$
+00130$:
+;	../../shared/src/interrupt.c:495: TRX_TRAIN_IF_INTERRUPT_CLEAR_LANE.BT.B0 = 0x01;
+;	../../shared/src/interrupt.c:496: TRX_TRAIN_IF_INTERRUPT_CLEAR_LANE.BT.B0 = 0;
+	mov	dptr,#_TRX_TRAIN_IF_INTERRUPT_CLEAR_LANE
+	mov	a,#0x01
+	movx	@dptr,a
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:498: reg_MCU_DEBUG0_LANE_7_0 = do_rxtrain;
+	mov	c,_do_rxtrain
+	clr	a
+	rlc	a
+	mov	r2,a
+	mov	dptr,#_MCU_DEBUG0_LANE
+	mov	a,r2
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:500: if(reg_PIN_PLL_READY_TX_LANE) {
+	mov	dptr,#(_PM_CTRL_TX_LANE_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	jnb	acc.2,00111$
+;	../../shared/src/interrupt.c:501: if( !do_rxtrain ) {
+	jb	_do_rxtrain,00106$
+;	../../shared/src/interrupt.c:502: if(reg_PIN_RX_TRAIN_ENABLE_RD_LANE) { //train start
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0001)
+	movx	a,@dptr
+	jnb	acc.5,00111$
+;	../../shared/src/interrupt.c:503: reg_RX_TRAIN_ON_LANE = 1;
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	orl	a,#0x04
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:504: do_rxtrain = 1;
+	setb	_do_rxtrain
+;	../../shared/src/interrupt.c:505: train_timer_int = 0;
+	mov	dptr,#_train_timer_int
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:506: timeout = 0;
+	clr	_timeout
+;	../../shared/src/interrupt.c:507: timeout_stop2;
+	mov	_T2CON,#0x60
+	clr	_TF2
+;	../../shared/src/interrupt.c:508: PHY_NS = ST_TRXTRAIN;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0001)
+	mov	a,#0x28
+	movx	@dptr,a
+	sjmp	00111$
+00106$:
+;	../../shared/src/interrupt.c:516: if(PHY_NS == ST_TXTRAIN) {
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0001)
+	movx	a,@dptr
+	mov	r2,a
+	cjne	r2,#0x29,00104$
+;	../../shared/src/interrupt.c:517: do_rxtrain = 0;
+	clr	_do_rxtrain
+;	../../shared/src/interrupt.c:518: reg_RX_TRAIN_COMPLETE_LANE = 0;
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	anl	a,#0xfe
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:519: reg_RX_TRAIN_ON_LANE = 0;
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	anl	a,#0xfb
+	movx	@dptr,a
+00104$:
+;	../../shared/src/interrupt.c:522: PHY_NS = ST_RXTRAIN;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0001)
+	mov	a,#0x2A
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:523: EX11 = 1; mcu_reset();
+	setb	_EX11
+;	../../shared/src/interrupt.c:35: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:36: reg_INT_ENABLE_ALL_LANE = 0;
+	mov	dptr,#(_CACHE_DEBUG0 + 0x0003)
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:37: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:38: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:523: EX11 = 1; mcu_reset();
+00111$:
+;	../../shared/src/interrupt.c:528: if(reg_FRAME_UNLOCK_ISR_LANE) {
+	mov	dptr,#(_RX_LANE_INTERRUPT + 0x0003)
+	movx	a,@dptr
+	jnb	acc.5,00117$
+;	../../shared/src/interrupt.c:529: reg_FRAME_UNLOCK_ISR_CLEAR_LANE = 1;
+;	../../shared/src/interrupt.c:530: reg_FRAME_UNLOCK_ISR_CLEAR_LANE = 0;
+	mov	dptr,#(_RX_LANE_INTERRUPT_REG1 + 0x0003)
+	movx	a,@dptr
+	orl	a,#0x20
+	movx	@dptr,a
+	movx	a,@dptr
+	anl	a,#0xdf
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:532: if(link_train_mode==0 && reg_PIN_TX_TRAIN_ENABLE_MUX_RD_LANE && reg_FRAME_LOCK_LANE==0) {
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	jb	acc.7,00117$
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0001)
+	movx	a,@dptr
+	jnb	acc.6,00117$
+	mov	dptr,#(_FRAME_SYNC_DET_REG1 + 0x0002)
+	movx	a,@dptr
+	jb	acc.2,00117$
+;	../../shared/src/interrupt.c:533: reg_TIMER_3_EN_LANE = 0;
+;	../../shared/src/interrupt.c:534: reg_TIMER_3_EN_LANE = 1;
+	mov	dptr,#_MCU_TIMER_CONTROL
+	movx	a,@dptr
+	anl	a,#0xf7
+	movx	@dptr,a
+	movx	a,@dptr
+	orl	a,#0x08
+	movx	@dptr,a
+00117$:
+;	../../shared/src/interrupt.c:538: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:540: EX11 = 1; //reg_INT_ENABLE_ALL_LANE = 1;
+	setb	_EX11
+;	../../shared/src/interrupt.c:541: EA = 1;
+	setb	_EA
+	pop	psw
+	pop	dph
+	pop	dpl
+	pop	acc
+	reti
+;	eliminated unneeded push/pop b
+;------------------------------------------------------------
+;Allocation info for local variables in function 'int5_isr'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	../../shared/src/interrupt.c:545: void int5_isr (void) __interrupt (12) __using (2) //txtrain
+;	-----------------------------------------
+;	 function int5_isr
+;	-----------------------------------------
+_int5_isr:
+	push	acc
+	push	dpl
+	push	dph
+	push	psw
+	mov	psw,#0x10
+;	../../shared/src/interrupt.c:547: EA = 0;
+	clr	_EA
+;	../../shared/src/interrupt.c:548: PHY_INT_LANE = 5;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0x05
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:552: TRX_TRAIN_IF_INTERRUPT_CLEAR_LANE.BT.B0 = 0x02;
+;	../../shared/src/interrupt.c:553: TRX_TRAIN_IF_INTERRUPT_CLEAR_LANE.BT.B0 = 0;
+	mov	dptr,#_TRX_TRAIN_IF_INTERRUPT_CLEAR_LANE
+	mov	a,#0x02
+	movx	@dptr,a
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:555: reg_MCU_DEBUG0_LANE_7_0 = do_train;
+	mov	c,_do_train
+	clr	a
+	rlc	a
+	mov	r2,a
+	mov	dptr,#_MCU_DEBUG0_LANE
+	mov	a,r2
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:558: if(reg_PIN_TX_TRAIN_ENABLE_MUX_RD_LANE && do_train==0) {
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0001)
+	movx	a,@dptr
+	jb	acc.6,00143$
+	ljmp	00122$
+00143$:
+	jnb	_do_train,00144$
+	ljmp	00122$
+00144$:
+;	../../shared/src/interrupt.c:562: reg_TX_TRAIN_ON_LANE = 1;// for internal hardware tx-train design
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	orl	a,#0x02
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:564: PHY_NS = ST_TRXTRAIN;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0001)
+	mov	a,#0x28
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:565: do_train = 1;
+	setb	_do_train
+;	../../shared/src/interrupt.c:566: if((phy_mode != PCIE) && (cmx_TX_TRAIN_MODE == 1))
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r2,a
+	cjne	r2,#0x03,00145$
+	sjmp	00102$
+00145$:
+	mov	dptr,#_TRAIN_IF_CONFIG
+	movx	a,@dptr
+	rr	a
+	anl	a,#0x01
+	mov	r2,a
+	cjne	r2,#0x01,00102$
+;	../../shared/src/interrupt.c:567: reg_ANA_TX_EM_PEAK_EN_LANE = 1;
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0002)
+	movx	a,@dptr
+	orl	a,#0x80
+	movx	@dptr,a
+00102$:
+;	../../shared/src/interrupt.c:568: train_comp = 0;
+	mov	dptr,#_train_comp
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:570: timeout = 0;
+	clr	_timeout
+;	../../shared/src/interrupt.c:571: timeout_stop2;
+	mov	_T2CON,#0x60
+	clr	_TF2
+;	../../shared/src/interrupt.c:572: reg_INT4_TIMER3_INT_EN_LANE = 0;
+	mov	dptr,#_MCU_INT4_CONTROL
+	movx	a,@dptr
+	anl	a,#0xdf
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:573: train_timer_int = 0;
+	mov	dptr,#_train_timer_int
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:574: reg_FRAME_UNLOCK_ISR_LANE = 0;
+	mov	dptr,#(_RX_LANE_INTERRUPT + 0x0003)
+	movx	a,@dptr
+	anl	a,#0xdf
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:575: reg_FRAME_LOCK_ISR_LANE = 0;
+	mov	dptr,#(_RX_LANE_INTERRUPT + 0x0003)
+	movx	a,@dptr
+	anl	a,#0xbf
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:576: reg_INT_TIMER3_ISR_CLEAR_LANE = 1;
+;	../../shared/src/interrupt.c:577: reg_INT_TIMER3_ISR_CLEAR_LANE = 0;
+	mov	dptr,#_MCU_IRQ_ISR_LANE
+	movx	a,@dptr
+	orl	a,#0x08
+	movx	@dptr,a
+	movx	a,@dptr
+	anl	a,#0xf7
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:580: if(link_train_mode) {
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	jnb	acc.7,00105$
+;	../../shared/src/interrupt.c:581: reg_LOCAL_STATUS_FIELD_LANE_15_0 = 0;
+	mov	dptr,#_DME_ENC_REG1
+	clr	a
+	movx	@dptr,a
+	inc	dptr
+	movx	@dptr,a
+00105$:
+;	../../shared/src/interrupt.c:605: reg_LOCAL_STATUS_FIELD_VALID_LANE = 1;
+;	../../shared/src/interrupt.c:606: reg_LOCAL_STATUS_FIELD_VALID_LANE = 0;
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0002)
+	movx	a,@dptr
+	orl	a,#0x20
+	movx	@dptr,a
+	movx	a,@dptr
+	anl	a,#0xdf
+	movx	@dptr,a
+	ljmp	00123$
+00122$:
+;	../../shared/src/interrupt.c:608: else if( reg_PIN_TX_TRAIN_ENABLE_MUX_RD_LANE && do_train && reg_LOCAL_TX_TRAIN_COMPLETE_LANE==1) {
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0001)
+	movx	a,@dptr
+	jnb	acc.6,00117$
+	jnb	_do_train,00117$
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x01
+	mov	r2,a
+	cjne	r2,#0x01,00117$
+;	../../shared/src/interrupt.c:609: PHY_NS = ST_TRXTRAIN;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0001)
+	mov	a,#0x28
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:610: train_comp = 0;
+	mov	dptr,#_train_comp
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:611: timeout = 0;
+	clr	_timeout
+;	../../shared/src/interrupt.c:612: timeout_stop2;
+	mov	_T2CON,#0x60
+	clr	_TF2
+;	../../shared/src/interrupt.c:613: reg_REMOTE_TX_TRAIN_COMPLETE_LANE = 0;
+	mov	dptr,#_TX_TRAIN_CTRL_LANE
+	movx	a,@dptr
+	anl	a,#0xfb
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:614: reg_LOCAL_TX_TRAIN_COMPLETE_LANE = 0;
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	anl	a,#0xef
+	movx	@dptr,a
+	ljmp	00123$
+00117$:
+;	../../shared/src/interrupt.c:617: else if ( reg_PIN_TX_TRAIN_ENABLE_MUX_RD_LANE==0 && do_train && reg_LOCAL_TX_TRAIN_COMPLETE_LANE==0){ //abort
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0001)
+	movx	a,@dptr
+	jb	acc.6,00112$
+	jnb	_do_train,00112$
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	jb	acc.4,00112$
+;	../../shared/src/interrupt.c:618: if(PHY_NS == ST_RXTRAIN) {
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0001)
+	movx	a,@dptr
+	mov	r2,a
+	cjne	r2,#0x2A,00107$
+;	../../shared/src/interrupt.c:619: do_train = 0;
+	clr	_do_train
+;	../../shared/src/interrupt.c:620: reg_REMOTE_TX_TRAIN_COMPLETE_LANE = 0;
+	mov	dptr,#_TX_TRAIN_CTRL_LANE
+	movx	a,@dptr
+	anl	a,#0xfb
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:621: reg_LOCAL_TX_TRAIN_COMPLETE_LANE = 0;
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	anl	a,#0xef
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:622: reg_TX_TRAIN_ON_LANE = 0;
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	anl	a,#0xfd
+	movx	@dptr,a
+00107$:
+;	../../shared/src/interrupt.c:629: PHY_NS = ST_TXTRAIN;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0001)
+	mov	a,#0x29
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:35: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:36: reg_INT_ENABLE_ALL_LANE = 0;
+	mov	dptr,#(_CACHE_DEBUG0 + 0x0003)
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:37: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:38: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:630: mcu_reset();
+	sjmp	00123$
+00112$:
+;	../../shared/src/interrupt.c:633: else if (reg_PIN_TX_TRAIN_ENABLE_MUX_RD_LANE && do_train==1) {//reg_LOCAL_TX_TRAIN_COMPLETE_LANE==0 ////assume H->L->H  restart
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0001)
+	movx	a,@dptr
+	jnb	acc.6,00123$
+	jnb	_do_train,00123$
+;	../../shared/src/interrupt.c:634: train_comp = 0;
+	mov	dptr,#_train_comp
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:635: timeout = 0;
+	clr	_timeout
+;	../../shared/src/interrupt.c:636: timeout_stop2;
+	mov	_T2CON,#0x60
+	clr	_TF2
+;	../../shared/src/interrupt.c:637: reg_INT4_TIMER3_INT_EN_LANE = 0;
+	mov	dptr,#_MCU_INT4_CONTROL
+	movx	a,@dptr
+	anl	a,#0xdf
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:638: reg_TIMER_3_EN_LANE = 0;
+	mov	dptr,#_MCU_TIMER_CONTROL
+	movx	a,@dptr
+	anl	a,#0xf7
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:639: reg_REMOTE_TX_TRAIN_COMPLETE_LANE = 0;
+	mov	dptr,#_TX_TRAIN_CTRL_LANE
+	movx	a,@dptr
+	anl	a,#0xfb
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:640: reg_LOCAL_TX_TRAIN_COMPLETE_LANE = 0;
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	anl	a,#0xef
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:641: reg_TX_TRAIN_ON_LANE = 0;
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	anl	a,#0xfd
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:645: tx_init_bit = 1;
+	mov	dptr,#_tx_init_bit
+	mov	a,#0x01
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:646: PHY_NS = ST_TXTRAIN;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0001)
+	mov	a,#0x29
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:35: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:36: reg_INT_ENABLE_ALL_LANE = 0;
+	mov	dptr,#(_CACHE_DEBUG0 + 0x0003)
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:37: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:38: SRST = 1;
+	mov	_SRST,#0x01
+;	../../shared/src/interrupt.c:647: mcu_reset();
+00123$:
+;	../../shared/src/interrupt.c:651: PHY_INT_LANE = 0xff;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:652: EA = 1;
+	setb	_EA
+	pop	psw
+	pop	dph
+	pop	dpl
+	pop	acc
+	reti
+;	eliminated unneeded push/pop b
+;------------------------------------------------------------
+;Allocation info for local variables in function 'int10_isr'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	../../shared/src/interrupt.c:655: void int10_isr (void) __interrupt (19)  __using (2) //rx_init
+;	-----------------------------------------
+;	 function int10_isr
+;	-----------------------------------------
+_int10_isr:
+	push	acc
+	push	dpl
+	push	dph
+	push	psw
+	mov	psw,#0x10
+;	../../shared/src/interrupt.c:657: EA = 0;
+	clr	_EA
+;	../../shared/src/interrupt.c:659: reg_RX_INIT_DONE_LANE = 0;
+	mov	dptr,#(_PM_CTRL_RX_LANE_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	anl	a,#0xf7
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:660: PHY_INT_LANE = 10;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0x0A
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:666: if(SKIP_RX_INIT) {
+	mov	dptr,#(_MCU_STATUS2_LANE + 0x0002)
+	movx	a,@dptr
+	jz	00102$
+;	../../shared/src/interrupt.c:667: SKIP_RX_INIT = 0;
+	mov	dptr,#(_MCU_STATUS2_LANE + 0x0002)
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:669: reg_RX_INIT_DONE_LANE = 1;
+	mov	dptr,#(_PM_CTRL_RX_LANE_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	orl	a,#0x08
+	movx	@dptr,a
+	sjmp	00103$
+00102$:
+;	../../shared/src/interrupt.c:672: do_rxinit = 1;
+	setb	_do_rxinit
+;	../../shared/src/interrupt.c:673: PHY_NS = ST_DTL;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0001)
+	mov	a,#0x2C
+	movx	@dptr,a
+00103$:
+;	../../shared/src/interrupt.c:678: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:680: EA = 1;
+	setb	_EA
+	pop	psw
+	pop	dph
+	pop	dpl
+	pop	acc
+	reti
+;	eliminated unneeded push/pop b
+;------------------------------------------------------------
+;Allocation info for local variables in function 'int7_isr'
+;------------------------------------------------------------
+;n                         Allocated to registers r4 
+;rm_stat                   Allocated to stack - offset 1
+;error_code                Allocated to registers r2 
+;c0                        Allocated to stack - offset 2
+;c1                        Allocated to stack - offset 3
+;cn1                       Allocated to stack - offset 4
+;ce                        Allocated to stack - offset 5
+;remote_ctrl_h             Allocated to registers r6 
+;remote_ctrl_l             Allocated to registers r7 
+;remote_status_h           Allocated to registers r3 
+;remote_ctrl_16            Allocated to registers r4 r5 
+;remote_status_16          Allocated to stack - offset 6
+;dual_arg                  Allocated to registers 
+;single_arg                Allocated to stack - offset 8
+;i                         Allocated to registers r2 r3 
+;------------------------------------------------------------
+;	../../shared/src/interrupt.c:694: void int7_isr (void) __interrupt (8)  __using (2) // remote ctrl valid
+;	-----------------------------------------
+;	 function int7_isr
+;	-----------------------------------------
+_int7_isr:
+	push	bits
+	push	acc
+	push	b
+	push	dpl
+	push	dph
+	push	psw
+	mov	psw,#0x10
+	push	_bp
+	mov	a,sp
+	mov	_bp,a
+	add	a,#0x08
+	mov	sp,a
+;	../../shared/src/interrupt.c:703: error_code = 0;
+	mov	r2,#0x00
+;	../../shared/src/interrupt.c:705: single_arg = 0;
+	mov	a,_bp
+	add	a,#0x08
+	mov	r0,a
+	mov	@r0,#0x00
+;	../../shared/src/interrupt.c:707: EA = 0;
+	clr	_EA
+;	../../shared/src/interrupt.c:709: PHY_INT_LANE = 7;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0x07
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:711: if(reg_REMOTE_CTRL_VALID_ISR_LANE) 
+	mov	dptr,#(_TRX_TRAIN_IF_INTERRUPT_LANE + 0x0001)
+	movx	a,@dptr
+	jb	acc.1,00389$
+	ljmp	00291$
+00389$:
+;	../../shared/src/interrupt.c:713: reg_REMOTE_CTRL_VALID_ISR_CLEAR_LANE = 1;
+;	../../shared/src/interrupt.c:714: reg_REMOTE_CTRL_VALID_ISR_CLEAR_LANE = 0;
+	mov	dptr,#(_TRX_TRAIN_IF_INTERRUPT_CLEAR_LANE + 0x0001)
+	movx	a,@dptr
+	orl	a,#0x02
+	movx	@dptr,a
+	movx	a,@dptr
+	anl	a,#0xfd
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:716: EA = 1; //for nested int
+	setb	_EA
+;	../../shared/src/interrupt.c:718: if( reg_TX_TRAIN_ON_LANE || reg_PIN_PAPTA_TRAIN_ENABLE_RD_LANE) {
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	jb	acc.1,00287$
+	mov	dptr,#_TX_TRAIN_CTRL_LANE
+	movx	a,@dptr
+	jb	acc.0,00391$
+	ljmp	00291$
+00391$:
+00287$:
+;	../../shared/src/interrupt.c:720: remote_ctrl_16 = device_remote_control_bits;
+	mov	dptr,#(_TX_TRAIN_IF_REG6 + 0x0002)
+	movx	a,@dptr
+	mov	r4,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r5,a
+;	../../shared/src/interrupt.c:721: remote_status_16 = device_remote_status_bits;
+	mov	dptr,#_TX_TRAIN_IF_REG6
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	a,_bp
+	add	a,#0x06
+	mov	r0,a
+	mov	@r0,ar6
+	inc	r0
+	mov	@r0,ar7
+;	../../shared/src/interrupt.c:722: if( remote_ctrl_16 != device_remote_control_bits || remote_status_16 != device_remote_status_bits) {
+	mov	dptr,#(_TX_TRAIN_IF_REG6 + 0x0002)
+	movx	a,@dptr
+	mov	r3,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r6,a
+	mov	a,r4
+	cjne	a,ar3,00101$
+	mov	a,r5
+	cjne	a,ar6,00101$
+	mov	dptr,#_TX_TRAIN_IF_REG6
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	a,_bp
+	add	a,#0x06
+	mov	r0,a
+	mov	a,@r0
+	cjne	a,ar6,00394$
+	inc	r0
+	mov	a,@r0
+	cjne	a,ar7,00394$
+	sjmp	00102$
+00394$:
+00101$:
+;	../../shared/src/interrupt.c:723: remote_ctrl_16 = device_remote_control_bits;
+	mov	dptr,#(_TX_TRAIN_IF_REG6 + 0x0002)
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	ar4,r6
+	mov	ar5,r7
+;	../../shared/src/interrupt.c:724: remote_status_16 = device_remote_status_bits;
+	mov	dptr,#_TX_TRAIN_IF_REG6
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	a,_bp
+	add	a,#0x06
+	mov	r0,a
+	mov	@r0,ar6
+	inc	r0
+	mov	@r0,ar7
+00102$:
+;	../../shared/src/interrupt.c:726: remote_ctrl_h = (uint8_t)(remote_ctrl_16>>8);
+	mov	ar6,r5
+;	../../shared/src/interrupt.c:727: remote_ctrl_l = (uint8_t)(remote_ctrl_16);
+	mov	ar7,r4
+;	../../shared/src/interrupt.c:728: remote_status_h = (uint8_t)(remote_status_16>>8);
+	mov	a,_bp
+	add	a,#0x06
+	mov	r0,a
+	inc	r0
+	mov	ar3,@r0
+;	../../shared/src/interrupt.c:781: if( (do_train && reg_PIN_TX_TRAIN_ENABLE_MUX_RD_LANE==1) ||
+	jnb	_do_train,00286$
+	push	ar3
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0001)
+	movx	a,@dptr
+	rl	a
+	rl	a
+	anl	a,#0x01
+	mov	r3,a
+	cjne	r3,#0x01,00396$
+	pop	ar3
+	sjmp	00281$
+00396$:
+	pop	ar3
+00286$:
+;	../../shared/src/interrupt.c:782: (do_tx_apta && reg_PIN_TX_TRAIN_ENABLE_MUX_RD_LANE==0 &&
+	jb	_do_tx_apta,00397$
+	ljmp	00291$
+00397$:
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0001)
+	movx	a,@dptr
+	jnb	acc.6,00398$
+	ljmp	00291$
+00398$:
+;	../../shared/src/interrupt.c:783: reg_PIN_PAPTA_TRAIN_ENABLE_RD_LANE==1)) {
+	push	ar3
+	mov	dptr,#_TX_TRAIN_CTRL_LANE
+	movx	a,@dptr
+	anl	a,#0x01
+	mov	r3,a
+	cjne	r3,#0x01,00399$
+	sjmp	00400$
+00399$:
+	pop	ar3
+	ljmp	00291$
+00400$:
+	pop	ar3
+00281$:
+;	../../shared/src/interrupt.c:791: c1 = (remote_ctrl_l>>4)&03;
+	push	ar3
+	mov	a,r7
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,#0x03
+	anl	a,r3
+	mov	@r0,a
+;	../../shared/src/interrupt.c:792: c0 = (remote_ctrl_l>>2)&03;
+	mov	a,r7
+	rr	a
+	rr	a
+	anl	a,#0x3f
+	mov	r3,a
+	mov	r0,_bp
+	inc	r0
+	inc	r0
+	mov	a,#0x03
+	anl	a,r3
+	mov	@r0,a
+;	../../shared/src/interrupt.c:793: cn1 = remote_ctrl_l&03;
+	mov	a,_bp
+	add	a,#0x04
+	mov	r0,a
+	mov	a,#0x03
+	anl	a,r7
+	mov	@r0,a
+;	../../shared/src/interrupt.c:795: rm_stat = READY;
+	mov	r0,_bp
+	inc	r0
+	mov	@r0,#0x00
+;	../../shared/src/interrupt.c:807: if(phy_mode == 4) { //ethernet
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r3,a
+	cjne	r3,#0x04,00401$
+	sjmp	00402$
+00401$:
+	pop	ar3
+	sjmp	00140$
+00402$:
+;	../../shared/src/interrupt.c:808: ce = (uint8_t)((remote_ctrl_h>>4) & 0x03);
+	mov	a,r6
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,#0x03
+	anl	a,r3
+	mov	@r0,a
+;	../../shared/src/interrupt.c:809: if(ce&0x1) ce = 4;
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,@r0
+	pop	ar3
+	jnb	acc.0,00107$
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	@r0,#0x04
+	ljmp	00141$
+00107$:
+;	../../shared/src/interrupt.c:810: else if(ce&0x2) ce = 5;
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,@r0
+	jb	acc.1,00404$
+	ljmp	00141$
+00404$:
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	@r0,#0x05
+	ljmp	00141$
+00140$:
+;	../../shared/src/interrupt.c:813: if( (remote_ctrl_h&0xe0) == 0) { //pattern check
+	mov	a,r6
+	anl	a,#0xE0
+	jz	00114$
+;	../../shared/src/interrupt.c:816: else if( (remote_ctrl_h&0xe0) == 0xe0) { //error code coming, do nothing
+	push	ar7
+	mov	a,#0xE0
+	anl	a,r6
+	mov	r7,a
+	cjne	r7,#0xE0,00406$
+	pop	ar7
+	ljmp	00291$
+00406$:
+	pop	ar7
+;	../../shared/src/interrupt.c:820: lnx_TX_TRAIN_REMOTE_PATTERN_ERROR_INT_LANE = 1;
+	mov	dptr,#(_TRAIN_CONTROL_2 + 0x0002)
+	movx	a,@dptr
+	orl	a,#0x08
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:821: error_code = RESERVED_PATTERN_TYPE;
+	mov	r2,#0x02
+;	../../shared/src/interrupt.c:822: goto ext_int;
+	ljmp	00266$
+00114$:
+;	../../shared/src/interrupt.c:826: if( (((remote_ctrl_h&0xe0)==0)&&((remote_ctrl_16 & 0x13c0) ||  //0001 0011 1100 0000
+	mov	a,r6
+	anl	a,#0xE0
+	jnz	00121$
+	mov	a,r4
+	anl	a,#0xC0
+	jnz	00409$
+	mov	a,r5
+	anl	a,#0x13
+	jz	00410$
+00409$:
+	sjmp	00115$
+00410$:
+;	../../shared/src/interrupt.c:827: (remote_status_16 & 0x1fc0))) || //0001 1111 1100 0000
+	mov	a,_bp
+	add	a,#0x06
+	mov	r0,a
+	mov	a,@r0
+	anl	a,#0xC0
+	jnz	00411$
+	inc	r0
+	mov	a,@r0
+	anl	a,#0x1F
+	jz	00412$
+00411$:
+	sjmp	00115$
+00412$:
+00121$:
+;	../../shared/src/interrupt.c:828: (((remote_ctrl_h&0xe0)==0xe0)&&((remote_ctrl_16 & 0x13c0) ||  //0001 0011 1100 0000
+	push	ar3
+	mov	a,#0xE0
+	anl	a,r6
+	mov	r3,a
+	cjne	r3,#0xE0,00413$
+	sjmp	00414$
+00413$:
+	pop	ar3
+	sjmp	00116$
+00414$:
+	pop	ar3
+	mov	a,r4
+	anl	a,#0xC0
+	jnz	00415$
+	mov	a,r5
+	anl	a,#0x13
+	jz	00416$
+00415$:
+	sjmp	00115$
+00416$:
+;	../../shared/src/interrupt.c:829: (remote_status_16 & 0xdfc0))) //1101 1111 1100 0000 
+	mov	a,_bp
+	add	a,#0x06
+	mov	r0,a
+	mov	a,@r0
+	anl	a,#0xC0
+	jnz	00417$
+	inc	r0
+	mov	a,@r0
+	anl	a,#0xDF
+	jz	00116$
+00417$:
+00115$:
+;	../../shared/src/interrupt.c:831: error_code = RESERVED_TTIU_BIT_SET_TO_ONE;
+	mov	r2,#0x03
+;	../../shared/src/interrupt.c:832: goto ext_int;
+	ljmp	00266$
+00116$:
+;	../../shared/src/interrupt.c:835: ce = (uint8_t)((remote_ctrl_h>>2) & 0x03);
+	mov	a,r6
+	rr	a
+	rr	a
+	anl	a,#0x3f
+	mov	r4,a
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,#0x03
+	anl	a,r4
+	mov	@r0,a
+;	../../shared/src/interrupt.c:837: if((ce>0) && (remote_ctrl_l&0x3f) != 0) {
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,@r0
+	jz	00123$
+	mov	a,r7
+	anl	a,#0x3F
+	jz	00123$
+;	../../shared/src/interrupt.c:838: error_code = RESERVED_COMB_COE_REQ;
+	mov	r2,#0x1A
+;	../../shared/src/interrupt.c:839: goto ext_int;
+	ljmp	00266$
+00123$:
+;	../../shared/src/interrupt.c:842: ce = remote_ctrl_l & 0x3f;
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,#0x3F
+	anl	a,r7
+	mov	@r0,a
+;	../../shared/src/interrupt.c:843: if((ce&0x03)==0x03) error_code = RESERVED_COE_1_REQ;
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,#0x03
+	anl	a,@r0
+	mov	r5,a
+	cjne	r5,#0x03,00126$
+	mov	r2,#0x11
+00126$:
+;	../../shared/src/interrupt.c:844: if((ce&0x0c)==0x0c) {
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,#0x0C
+	anl	a,@r0
+	mov	r5,a
+	cjne	r5,#0x0C,00131$
+;	../../shared/src/interrupt.c:845: if(error_code==0) error_code = RESERVED_COE_2_REQ;
+	mov	a,r2
+	jnz	00128$
+	mov	r2,#0x13
+	sjmp	00131$
+00128$:
+;	../../shared/src/interrupt.c:846: else error_code = MULTI_RESERVED_COE_REQ;
+	mov	r2,#0x10
+00131$:
+;	../../shared/src/interrupt.c:848: if((ce&0x30)==0x30) {
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,#0x30
+	anl	a,@r0
+	mov	r5,a
+	cjne	r5,#0x30,00136$
+;	../../shared/src/interrupt.c:849: if(error_code==0) error_code = RESERVED_COE_3_REQ;
+	mov	a,r2
+	jnz	00133$
+	mov	r2,#0x15
+	sjmp	00136$
+00133$:
+;	../../shared/src/interrupt.c:850: else error_code = MULTI_RESERVED_COE_REQ;
+	mov	r2,#0x10
+00136$:
+;	../../shared/src/interrupt.c:852: if(error_code>0) goto ext_int;
+	mov	a,r2
+	jz	00428$
+	ljmp	00266$
+00428$:
+;	../../shared/src/interrupt.c:855: ce = (uint8_t)((remote_ctrl_h>>2) & 0x03);
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,#0x03
+	anl	a,r4
+	mov	@r0,a
+00141$:
+;	../../shared/src/interrupt.c:858: if(ce > 0) {	//ref1, ref2, no_eq
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,@r0
+	jnz	00429$
+	ljmp	00264$
+00429$:
+;	../../shared/src/interrupt.c:861: if(remote_status_h&0x80) goto ext_int0; //if tx_comp=1, do nothing 
+	mov	a,r3
+	jnb	acc.7,00430$
+	ljmp	00291$
+00430$:
+;	../../shared/src/interrupt.c:862: if( (remote_status_h&0x40) && phy_mode!=SERDES) goto ext_int0;	//if tx_init=1, do nothing
+	mov	a,r3
+	jnb	acc.6,00145$
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r4,a
+	cjne	r4,#0x04,00432$
+	sjmp	00433$
+00432$:
+	ljmp	00291$
+00433$:
+00145$:
+;	../../shared/src/interrupt.c:867: if(txffe_force_en==0) {
+	mov	dptr,#_txffe_force_en
+	movx	a,@dptr
+	mov	r4,a
+	jz	00434$
+	ljmp	00266$
+00434$:
+;	../../shared/src/interrupt.c:871: LINK_TRAIN_MODE0.BT.B0 = local_tx_preset_tb[ce][0]; //tx_em_po
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,@r0
+	add	a,acc
+	mov	r4,a
+	add	a,#_local_tx_preset_tb
+	mov	dpl,a
+	clr	a
+	addc	a,#(_local_tx_preset_tb >> 8)
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_LINK_TRAIN_MODE0
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:872: LINK_TRAIN_MODE0.BT.B1 = local_tx_preset_tb[ce][1]; //tx_em_pre, tx_em_peak
+	mov	a,r4
+	add	a,#_local_tx_preset_tb
+	mov	r4,a
+	clr	a
+	addc	a,#(_local_tx_preset_tb >> 8)
+	mov	r5,a
+	mov	dpl,r4
+	mov	dph,r5
+	inc	dptr
+	movx	a,@dptr
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:874: if(tx_emph1_index >= tx_emph1_max)  rm_stat = C1_is_min;
+	mov	dptr,#_LINK_TRAIN_MODE0
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r4,a
+	mov	dptr,#(_CAL_CTRL4_LANE + 0x0003)
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r5,a
+	mov	a,r4
+	cjne	a,ar5,00435$
+00435$:
+	jc	00151$
+	mov	r0,_bp
+	inc	r0
+	mov	@r0,#0x20
+	sjmp	00152$
+00151$:
+;	../../shared/src/interrupt.c:875: else if(tx_emph1_index <= tx_emph1_min)  rm_stat = C1_is_max;
+	mov	dptr,#_LINK_TRAIN_MODE0
+	movx	a,@dptr
+	anl	a,#0xf0
+	jnz	00148$
+	mov	r0,_bp
+	inc	r0
+	mov	@r0,#0x30
+	sjmp	00152$
+00148$:
+;	../../shared/src/interrupt.c:876: else  rm_stat = C1_updated;
+	mov	r0,_bp
+	inc	r0
+	mov	@r0,#0x10
+00152$:
+;	../../shared/src/interrupt.c:878: if(tx_amp_index >= tx_amp_max)  rm_stat |= C0_is_min;
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r4,a
+	mov	dptr,#(_CAL_CTRL4_LANE + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r5,a
+	mov	a,r4
+	cjne	a,ar5,00438$
+00438$:
+	jc	00157$
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	orl	a,#0x08
+	mov	@r0,a
+	sjmp	00158$
+00157$:
+;	../../shared/src/interrupt.c:879: else if(tx_amp_index <= tx_amp_min)  rm_stat |= C0_is_max;
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	anl	a,#0xf0
+	jnz	00154$
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	orl	a,#0x0C
+	mov	@r0,a
+	sjmp	00158$
+00154$:
+;	../../shared/src/interrupt.c:880: else  rm_stat |= C0_updated;
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	orl	a,#0x04
+	mov	@r0,a
+00158$:
+;	../../shared/src/interrupt.c:882: if(tx_emph0_index >= tx_emph0_max)  rm_stat |= Cn1_is_min;
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r4,a
+	mov	dptr,#(_CAL_CTRL4_LANE + 0x0003)
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r5,a
+	mov	a,r4
+	cjne	a,ar5,00441$
+00441$:
+	jc	00163$
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	orl	a,#0x02
+	mov	@r0,a
+	ljmp	00266$
+00163$:
+;	../../shared/src/interrupt.c:883: else if(tx_emph0_index <= tx_emph0_min)  rm_stat |= Cn1_is_max;
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	anl	a,#0x0f
+	jnz	00160$
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	orl	a,#0x03
+	mov	@r0,a
+	ljmp	00266$
+00160$:
+;	../../shared/src/interrupt.c:884: else  rm_stat |= Cn1_updated;
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	orl	a,#0x01
+	mov	@r0,a
+	ljmp	00266$
+00264$:
+;	../../shared/src/interrupt.c:892: ce = remote_ctrl_l & 0x3f;
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,#0x3F
+	anl	a,r7
+	mov	@r0,a
+;	../../shared/src/interrupt.c:893: if( ce != 0 ) {
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,@r0
+	jnz	00444$
+	ljmp	00266$
+00444$:
+;	../../shared/src/interrupt.c:895: for(n=0; n<11; n++) {
+	mov	r4,#0x00
+00169$:
+	cjne	r4,#0x0B,00445$
+00445$:
+	jnc	00172$
+;	../../shared/src/interrupt.c:896: if (ce == valid_coe_tbl[n] ) break;
+	mov	a,r4
+	mov	dptr,#_valid_coe_tbl
+	movc	a,@a+dptr
+	mov	r5,a
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,@r0
+	cjne	a,ar5,00447$
+	sjmp	00172$
+00447$:
+;	../../shared/src/interrupt.c:895: for(n=0; n<11; n++) {
+	inc	r4
+	sjmp	00169$
+00172$:
+;	../../shared/src/interrupt.c:899: if(n>=11) {
+	cjne	r4,#0x0B,00448$
+00448$:
+	jc	00259$
+;	../../shared/src/interrupt.c:915: lnx_REMOTE_MULTI_RSV_COE_REQ_ERR_INT_LANE = 1;
+	mov	dptr,#(_TRAIN_CONTROL_2 + 0x0002)
+	movx	a,@dptr
+	orl	a,#0x10
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:916: error_code = RESERVED_COMB_COE_REQ;
+	mov	r2,#0x1A
+;	../../shared/src/interrupt.c:917: goto ext_int;
+	ljmp	00266$
+00259$:
+;	../../shared/src/interrupt.c:922: if(remote_status_h&0x80) goto ext_int0; //if tx_comp=1, do nothing ==> No need to check remote TRAIN_COMP in firmware
+	mov	a,r3
+	jnb	acc.7,00450$
+	ljmp	00291$
+00450$:
+;	../../shared/src/interrupt.c:923: if( (remote_status_h&0x40) && phy_mode!=SERDES) goto ext_int0;	//if tx_init=1, do nothing
+	mov	a,r3
+	jnb	acc.6,00176$
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r3,a
+	cjne	r3,#0x04,00452$
+	sjmp	00453$
+00452$:
+	ljmp	00291$
+00453$:
+00176$:
+;	../../shared/src/interrupt.c:924: if(txffe_force_en==0) {
+	mov	dptr,#_txffe_force_en
+	movx	a,@dptr
+	mov	r3,a
+	jz	00454$
+	ljmp	00218$
+00454$:
+;	../../shared/src/interrupt.c:925: tx_amp_is_max = (tx_amp_index >= tx_amp_max);
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	mov	dptr,#(_CAL_CTRL4_LANE + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r4,a
+	mov	a,r3
+	cjne	a,ar4,00455$
+00455$:
+	mov  b0,c
+	cpl	c
+	mov	_tx_amp_is_max,c
+;	../../shared/src/interrupt.c:926: tx_amp_is_min = (tx_amp_index <= tx_amp_min);
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	cjne	a,#0x01,00456$
+00456$:
+	mov	_tx_amp_is_min,c
+;	../../shared/src/interrupt.c:927: tx_emph0_is_max = (tx_emph0_index >= tx_emph0_max);
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r3,a
+	mov	dptr,#(_CAL_CTRL4_LANE + 0x0003)
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r4,a
+	mov	a,r3
+	cjne	a,ar4,00457$
+00457$:
+	mov  b0,c
+	cpl	c
+	mov	_tx_emph0_is_max,c
+;	../../shared/src/interrupt.c:928: tx_emph0_is_min = (tx_emph0_index <= tx_emph0_min);
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r3,a
+	cjne	a,#0x01,00458$
+00458$:
+	mov	_tx_emph0_is_min,c
+;	../../shared/src/interrupt.c:929: tx_emph1_is_max = (tx_emph1_index >= tx_emph1_max);
+	mov	dptr,#_LINK_TRAIN_MODE0
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	mov	dptr,#(_CAL_CTRL4_LANE + 0x0003)
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r4,a
+	mov	a,r3
+	cjne	a,ar4,00459$
+00459$:
+	mov  b0,c
+	cpl	c
+	mov	_tx_emph1_is_max,c
+;	../../shared/src/interrupt.c:930: tx_emph1_is_min = (tx_emph1_index <= tx_emph1_min);
+	mov	dptr,#_LINK_TRAIN_MODE0
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	cjne	a,#0x01,00460$
+00460$:
+	mov	_tx_emph1_is_min,c
+;	../../shared/src/interrupt.c:933: switch (ce) {
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	cjne	@r0,#0x01,00461$
+	ljmp	00201$
+00461$:
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	cjne	@r0,#0x02,00462$
+	ljmp	00196$
+00462$:
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	cjne	@r0,#0x04,00463$
+	ljmp	00193$
+00463$:
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	cjne	@r0,#0x05,00464$
+	sjmp	00181$
+00464$:
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	cjne	@r0,#0x08,00465$
+	ljmp	00190$
+00465$:
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	cjne	@r0,#0x0A,00466$
+	sjmp	00178$
+00466$:
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	cjne	@r0,#0x10,00467$
+	ljmp	00211$
+00467$:
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	cjne	@r0,#0x14,00468$
+	ljmp	00187$
+00468$:
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	cjne	@r0,#0x20,00469$
+	ljmp	00206$
+00469$:
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	cjne	@r0,#0x28,00470$
+	sjmp	00184$
+00470$:
+	ljmp	00218$
+;	../../shared/src/interrupt.c:934: case 0x0a: if(tx_emph0_is_max==0) tx_emph0_index++; single_arg = 1; break;
+00178$:
+	jb	_tx_emph0_is_max,00180$
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r3,a
+	inc	r3
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	mov	a,r3
+	anl	a,#0x0f
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf0
+	orl	a,b
+	movx	@dptr,a
+00180$:
+	mov	a,_bp
+	add	a,#0x08
+	mov	r0,a
+	mov	@r0,#0x01
+	ljmp	00218$
+;	../../shared/src/interrupt.c:935: case 0x05: if(tx_emph0_is_min==0) tx_emph0_index--; single_arg = 1; break;
+00181$:
+	jb	_tx_emph0_is_min,00183$
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r3,a
+	dec	r3
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	mov	a,r3
+	anl	a,#0x0f
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf0
+	orl	a,b
+	movx	@dptr,a
+00183$:
+	mov	a,_bp
+	add	a,#0x08
+	mov	r0,a
+	mov	@r0,#0x01
+	ljmp	00218$
+;	../../shared/src/interrupt.c:936: case 0x28: if(tx_emph1_is_max==0) tx_emph1_index++; single_arg = 2; break;
+00184$:
+	jb	_tx_emph1_is_max,00186$
+	mov	dptr,#_LINK_TRAIN_MODE0
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	inc	r3
+	mov	dptr,#_LINK_TRAIN_MODE0
+	mov	a,r3
+	swap	a
+	anl	a,#(0xf0&0xf0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x0f
+	orl	a,b
+	movx	@dptr,a
+00186$:
+	mov	a,_bp
+	add	a,#0x08
+	mov	r0,a
+	mov	@r0,#0x02
+	ljmp	00218$
+;	../../shared/src/interrupt.c:937: case 0x14: if(tx_emph1_is_min==0) tx_emph1_index--; single_arg = 2; break;
+00187$:
+	jb	_tx_emph1_is_min,00189$
+	mov	dptr,#_LINK_TRAIN_MODE0
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	dec	r3
+	mov	dptr,#_LINK_TRAIN_MODE0
+	mov	a,r3
+	swap	a
+	anl	a,#(0xf0&0xf0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x0f
+	orl	a,b
+	movx	@dptr,a
+00189$:
+	mov	a,_bp
+	add	a,#0x08
+	mov	r0,a
+	mov	@r0,#0x02
+	ljmp	00218$
+;	../../shared/src/interrupt.c:938: case 0x08: if(tx_amp_is_max==0)   tx_amp_index++;   break;
+00190$:
+	jnb	_tx_amp_is_max,00475$
+	ljmp	00218$
+00475$:
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	inc	r3
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	mov	a,r3
+	swap	a
+	anl	a,#(0xf0&0xf0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x0f
+	orl	a,b
+	movx	@dptr,a
+	ljmp	00218$
+;	../../shared/src/interrupt.c:939: case 0x04: if(tx_amp_is_min==0)   tx_amp_index--;   break;
+00193$:
+	jnb	_tx_amp_is_min,00476$
+	ljmp	00218$
+00476$:
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	dec	r3
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	mov	a,r3
+	swap	a
+	anl	a,#(0xf0&0xf0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x0f
+	orl	a,b
+	movx	@dptr,a
+	ljmp	00218$
+;	../../shared/src/interrupt.c:940: case 0x02: if( tx_emph0_is_max==0) {
+00196$:
+	jnb	_tx_emph0_is_max,00477$
+	ljmp	00218$
+00477$:
+;	../../shared/src/interrupt.c:941: if(tx_amp_is_min==0)tx_amp_index--;
+	jb	_tx_amp_is_min,00198$
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	dec	r3
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	mov	a,r3
+	swap	a
+	anl	a,#(0xf0&0xf0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x0f
+	orl	a,b
+	movx	@dptr,a
+00198$:
+;	../../shared/src/interrupt.c:942: tx_emph0_index++;
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r3,a
+	inc	r3
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	mov	a,r3
+	anl	a,#0x0f
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf0
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:945: break;
+	ljmp	00218$
+;	../../shared/src/interrupt.c:946: case 0x01: if(tx_emph0_is_min==0) {
+00201$:
+	jnb	_tx_emph0_is_min,00479$
+	ljmp	00218$
+00479$:
+;	../../shared/src/interrupt.c:947: if(tx_amp_is_max==0) tx_amp_index++; 
+	jb	_tx_amp_is_max,00203$
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	inc	r3
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	mov	a,r3
+	swap	a
+	anl	a,#(0xf0&0xf0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x0f
+	orl	a,b
+	movx	@dptr,a
+00203$:
+;	../../shared/src/interrupt.c:948: tx_emph0_index--;
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r3,a
+	dec	r3
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	mov	a,r3
+	anl	a,#0x0f
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf0
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:951: break;
+;	../../shared/src/interrupt.c:952: case 0x20: if(tx_emph1_is_max==0) {
+	sjmp	00218$
+00206$:
+	jb	_tx_emph1_is_max,00218$
+;	../../shared/src/interrupt.c:953: tx_emph1_index++;
+	mov	dptr,#_LINK_TRAIN_MODE0
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	inc	r3
+	mov	dptr,#_LINK_TRAIN_MODE0
+	mov	a,r3
+	swap	a
+	anl	a,#(0xf0&0xf0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x0f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:954: if(tx_amp_is_min==0) tx_amp_index--;   
+	jb	_tx_amp_is_min,00218$
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	dec	r3
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	mov	a,r3
+	swap	a
+	anl	a,#(0xf0&0xf0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x0f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:957: break;
+;	../../shared/src/interrupt.c:958: case 0x10: if(tx_emph1_is_min==0) {
+	sjmp	00218$
+00211$:
+	jb	_tx_emph1_is_min,00218$
+;	../../shared/src/interrupt.c:959: tx_emph1_index--; 
+	mov	dptr,#_LINK_TRAIN_MODE0
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	dec	r3
+	mov	dptr,#_LINK_TRAIN_MODE0
+	mov	a,r3
+	swap	a
+	anl	a,#(0xf0&0xf0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x0f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:960: if(tx_amp_is_max==0) tx_amp_index++;
+	jb	_tx_amp_is_max,00218$
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	inc	r3
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	mov	a,r3
+	swap	a
+	anl	a,#(0xf0&0xf0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x0f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:964: }
+00218$:
+;	../../shared/src/interrupt.c:967: tx_amp_is_max = (tx_amp_index >= tx_amp_max);
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	mov	dptr,#(_CAL_CTRL4_LANE + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r4,a
+	mov	a,r3
+	cjne	a,ar4,00485$
+00485$:
+	mov  b0,c
+	cpl	c
+	mov	_tx_amp_is_max,c
+;	../../shared/src/interrupt.c:968: tx_amp_is_min = (tx_amp_index <= tx_amp_min);
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	cjne	a,#0x01,00486$
+00486$:
+	mov	_tx_amp_is_min,c
+;	../../shared/src/interrupt.c:969: tx_emph0_is_max = (tx_emph0_index >= tx_emph0_max);
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r3,a
+	mov	dptr,#(_CAL_CTRL4_LANE + 0x0003)
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r4,a
+	mov	a,r3
+	cjne	a,ar4,00487$
+00487$:
+	mov  b0,c
+	cpl	c
+	mov	_tx_emph0_is_max,c
+;	../../shared/src/interrupt.c:970: tx_emph0_is_min = (tx_emph0_index <= tx_emph0_min);
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0001)
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r3,a
+	cjne	a,#0x01,00488$
+00488$:
+	mov	_tx_emph0_is_min,c
+;	../../shared/src/interrupt.c:971: tx_emph1_is_max = (tx_emph1_index >= tx_emph1_max);
+	mov	dptr,#_LINK_TRAIN_MODE0
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	mov	dptr,#(_CAL_CTRL4_LANE + 0x0003)
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r4,a
+	mov	a,r3
+	cjne	a,ar4,00489$
+00489$:
+	mov  b0,c
+	cpl	c
+	mov	_tx_emph1_is_max,c
+;	../../shared/src/interrupt.c:972: tx_emph1_is_min = (tx_emph1_index <= tx_emph1_min);
+	mov	dptr,#_LINK_TRAIN_MODE0
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	cjne	a,#0x01,00490$
+00490$:
+	mov	_tx_emph1_is_min,c
+;	../../shared/src/interrupt.c:975: if( c1 == INC ) {
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	cjne	@r0,#0x01,00228$
+;	../../shared/src/interrupt.c:976: if(tx_emph1_is_min) rm_stat |= C1_is_max;
+	jnb	_tx_emph1_is_min,00220$
+	mov	r0,_bp
+	inc	r0
+	mov	@r0,#0x30
+	sjmp	00229$
+00220$:
+;	../../shared/src/interrupt.c:977: else rm_stat |= C1_updated;
+	mov	r0,_bp
+	inc	r0
+	mov	@r0,#0x10
+	sjmp	00229$
+00228$:
+;	../../shared/src/interrupt.c:979: else if( c1 == DEC ) {
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	cjne	@r0,#0x02,00229$
+;	../../shared/src/interrupt.c:980: if (tx_emph1_is_max) rm_stat |= C1_is_min;
+	jnb	_tx_emph1_is_max,00223$
+	mov	r0,_bp
+	inc	r0
+	mov	@r0,#0x20
+	sjmp	00229$
+00223$:
+;	../../shared/src/interrupt.c:981: else rm_stat |= C1_updated;
+	mov	r0,_bp
+	inc	r0
+	mov	@r0,#0x10
+00229$:
+;	../../shared/src/interrupt.c:984: if( single_arg == 0 ) {
+	mov	a,_bp
+	add	a,#0x08
+	mov	r0,a
+	mov	a,@r0
+	jnz	00242$
+;	../../shared/src/interrupt.c:985: if( c0 == INC ) {
+	mov	r0,_bp
+	inc	r0
+	inc	r0
+	cjne	@r0,#0x01,00239$
+;	../../shared/src/interrupt.c:986: if(tx_amp_is_min ) rm_stat |= C0_is_max;
+	jnb	_tx_amp_is_min,00231$
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	orl	a,#0x0C
+	mov	@r0,a
+	sjmp	00242$
+00231$:
+;	../../shared/src/interrupt.c:987: else rm_stat |= C0_updated;
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	orl	a,#0x04
+	mov	@r0,a
+	sjmp	00242$
+00239$:
+;	../../shared/src/interrupt.c:989: else if( c0 == DEC ) {
+	mov	r0,_bp
+	inc	r0
+	inc	r0
+	cjne	@r0,#0x02,00242$
+;	../../shared/src/interrupt.c:990: if(tx_amp_is_max ) rm_stat |= C0_is_min;
+	jnb	_tx_amp_is_max,00234$
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	orl	a,#0x08
+	mov	@r0,a
+	sjmp	00242$
+00234$:
+;	../../shared/src/interrupt.c:991: else rm_stat |= C0_updated;
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	orl	a,#0x04
+	mov	@r0,a
+00242$:
+;	../../shared/src/interrupt.c:995: if( cn1 == INC ) {
+	mov	a,_bp
+	add	a,#0x04
+	mov	r0,a
+	cjne	@r0,#0x01,00252$
+;	../../shared/src/interrupt.c:996: if(tx_emph0_is_min) rm_stat |= Cn1_is_max;
+	jnb	_tx_emph0_is_min,00244$
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	orl	a,#0x03
+	mov	@r0,a
+	sjmp	00253$
+00244$:
+;	../../shared/src/interrupt.c:997: else rm_stat |= Cn1_updated;
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	orl	a,#0x01
+	mov	@r0,a
+	sjmp	00253$
+00252$:
+;	../../shared/src/interrupt.c:999: else if( cn1 == DEC ) {
+	mov	a,_bp
+	add	a,#0x04
+	mov	r0,a
+	cjne	@r0,#0x02,00253$
+;	../../shared/src/interrupt.c:1000: if(tx_emph0_is_max) rm_stat |= Cn1_is_min;
+	jnb	_tx_emph0_is_max,00247$
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	orl	a,#0x02
+	mov	@r0,a
+	sjmp	00253$
+00247$:
+;	../../shared/src/interrupt.c:1001: else rm_stat |= Cn1_updated;
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	orl	a,#0x01
+	mov	@r0,a
+00253$:
+;	../../shared/src/interrupt.c:1004: if( single_arg == 1 ) rm_stat |= (rm_stat<<2);
+	mov	a,_bp
+	add	a,#0x08
+	mov	r0,a
+	cjne	@r0,#0x01,00255$
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	add	a,acc
+	add	a,acc
+	mov	r3,a
+	mov	r0,_bp
+	inc	r0
+	mov	a,r3
+	orl	a,@r0
+	mov	@r0,a
+00255$:
+;	../../shared/src/interrupt.c:1005: if( single_arg == 2 ) rm_stat |= (rm_stat>>2);
+	mov	a,_bp
+	add	a,#0x08
+	mov	r0,a
+	cjne	@r0,#0x02,00266$
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	rr	a
+	rr	a
+	anl	a,#0x3f
+	mov	r3,a
+	mov	r0,_bp
+	inc	r0
+	mov	a,r3
+	orl	a,@r0
+	mov	@r0,a
+;	../../shared/src/interrupt.c:1016: ext_int:
+00266$:
+;	../../shared/src/interrupt.c:1018: if(error_code>0 && phy_mode<=SAS) { //send error code  
+	mov	a,r2
+	jnz	00514$
+	ljmp	00277$
+00514$:
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r3,a
+	clr	c
+	mov	a,#(0x01 ^ 0x80)
+	mov	b,r3
+	xrl	b,#0x80
+	subb	a,b
+	jnc	00515$
+	ljmp	00277$
+00515$:
+;	../../shared/src/interrupt.c:1021: reg_LOCAL_CTRL_FIELD_LANE_15_0_b1 = (remote_ctrl_h&0x0c)|0xe0 ; //(rm_ctrl.v&0x1fff)|0xe000;
+	mov	a,#0x0C
+	anl	a,r6
+	orl	a,#0xE0
+	mov	dptr,#(_DME_ENC_REG1 + 0x0003)
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:1022: reg_LOCAL_CTRL_FIELD_LANE_15_0_b0 = remote_ctrl_l&0x3f;
+	anl	ar7,#0x3F
+	mov	dptr,#(_DME_ENC_REG1 + 0x0002)
+	mov	a,r7
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:1024: reg_LOCAL_STATUS_FIELD_LANE_15_0 = error_code;
+	mov	r3,#0x00
+	mov	dptr,#_DME_ENC_REG1
+	mov	a,r2
+	movx	@dptr,a
+	inc	dptr
+	mov	a,r3
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:1025: reg_LOCAL_ERROR_FIELD_VALID_LANE = 1; reg_LOCAL_ERROR_FIELD_VALID_LANE = 0;
+	mov	dptr,#_DME_ENC_REG0
+	movx	a,@dptr
+	orl	a,#0x20
+	movx	@dptr,a
+	movx	a,@dptr
+	anl	a,#0xdf
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:1026: lnx_ERROR_TTIU_DETECTED_LANE = 1;
+	mov	dptr,#(_CAL_CTRL3_LANE + 0x0002)
+	movx	a,@dptr
+	orl	a,#0x01
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:16: for (i=0; i<14; i++) {
+	mov	r2,#0x0E
+	mov	r3,#0x00
+00295$:
+;	../../shared/src/interrupt.c:29: __endasm;
+	
+	  nop
+	  nop
+	  nop
+	  nop
+	  nop
+	  nop
+	  nop
+	  nop
+	  nop
+	  nop
+	 
+	dec	r2
+	cjne	r2,#0xff,00516$
+	dec	r3
+00516$:
+;	../../shared/src/interrupt.c:16: for (i=0; i<14; i++) {
+	mov	a,r2
+	orl	a,r3
+	jz	00517$
+	ljmp	00295$
+00517$:
+;	../../shared/src/interrupt.c:1030: reg_LOCAL_CTRL_FIELD_LANE_15_0 = pre_local_ctrl;
+	mov	dptr,#_pre_local_ctrl
+	movx	a,@dptr
+	mov	r2,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r3,a
+	mov	dptr,#(_DME_ENC_REG1 + 0x0002)
+	mov	a,r2
+	movx	@dptr,a
+	inc	dptr
+	mov	a,r3
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:1031: reg_LOCAL_STATUS_FIELD_LANE_15_0 = 0;
+	mov	dptr,#_DME_ENC_REG1
+	clr	a
+	movx	@dptr,a
+	inc	dptr
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:1032: reg_LOCAL_CTRL_FIELD_VALID_LANE = 1; reg_LOCAL_CTRL_FIELD_VALID_LANE = 0;
+;	../../shared/src/interrupt.c:1033: reg_LOCAL_STATUS_FIELD_VALID_LANE = 1; reg_LOCAL_STATUS_FIELD_VALID_LANE = 0;
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0002)
+	movx	a,@dptr
+	orl	a,#0x40
+	movx	@dptr,a
+	movx	a,@dptr
+	anl	a,#0xbf
+	movx	@dptr,a
+	movx	a,@dptr
+	orl	a,#0x20
+	movx	@dptr,a
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0002)
+	movx	a,@dptr
+	anl	a,#0xdf
+	movx	@dptr,a
+	sjmp	00291$
+00277$:
+;	../../shared/src/interrupt.c:1049: reg_LOCAL_STATUS_FIELD_LANE_15_0 = (uint16_t)rm_stat;
+	mov	r0,_bp
+	inc	r0
+	mov	ar2,@r0
+	mov	r3,#0x00
+	mov	dptr,#_DME_ENC_REG1
+	mov	a,r2
+	movx	@dptr,a
+	inc	dptr
+	mov	a,r3
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:1050: if( link_train_mode==0 && do_tx_apta==0) {
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	jb	acc.7,00274$
+	jb	_do_tx_apta,00274$
+;	../../shared/src/interrupt.c:1051: if( train_comp ) reg_LOCAL_STATUS_FIELD_LANE_15_0_b1 |= 0x80;
+	mov	dptr,#_train_comp
+	movx	a,@dptr
+	mov	r2,a
+	jz	00271$
+	mov	dptr,#(_DME_ENC_REG1 + 0x0001)
+	movx	a,@dptr
+	mov	r2,a
+	orl	ar2,#0x80
+	mov	dptr,#(_DME_ENC_REG1 + 0x0001)
+	mov	a,r2
+	movx	@dptr,a
+	sjmp	00274$
+00271$:
+;	../../shared/src/interrupt.c:1052: else if( tx_init_bit && phy_mode<=SAS)
+	mov	dptr,#_tx_init_bit
+	movx	a,@dptr
+	mov	r2,a
+	jz	00274$
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r2,a
+	clr	c
+	mov	a,#(0x01 ^ 0x80)
+	mov	b,r2
+	xrl	b,#0x80
+	subb	a,b
+	jc	00274$
+;	../../shared/src/interrupt.c:1053: reg_LOCAL_STATUS_FIELD_LANE_15_0_b1 |= 0x40;
+	mov	dptr,#(_DME_ENC_REG1 + 0x0001)
+	movx	a,@dptr
+	mov	r2,a
+	orl	ar2,#0x40
+	mov	dptr,#(_DME_ENC_REG1 + 0x0001)
+	mov	a,r2
+	movx	@dptr,a
+00274$:
+;	../../shared/src/interrupt.c:1060: reg_LOCAL_STATUS_FIELD_VALID_LANE = 1; reg_LOCAL_STATUS_FIELD_VALID_LANE = 0;
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0002)
+	movx	a,@dptr
+	orl	a,#0x20
+	movx	@dptr,a
+	movx	a,@dptr
+	anl	a,#0xdf
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:1061: lnx_ERROR_TTIU_DETECTED_LANE = 0;
+	mov	dptr,#(_CAL_CTRL3_LANE + 0x0002)
+	movx	a,@dptr
+	anl	a,#0xfe
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:1070: ext_int0:
+00291$:
+;	../../shared/src/interrupt.c:1080: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:1082: EA = 1;
+	setb	_EA
+	mov	sp,_bp
+	pop	_bp
+	pop	psw
+	pop	dph
+	pop	dpl
+	pop	b
+	pop	acc
+	pop	bits
+	reti
+;------------------------------------------------------------
+;Allocation info for local variables in function 'int6_isr'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	../../shared/src/interrupt.c:1085: void int6_isr (void) __interrupt (13) __using (2) 
+;	-----------------------------------------
+;	 function int6_isr
+;	-----------------------------------------
+_int6_isr:
+	push	psw
+	mov	psw,#0x10
+;	../../shared/src/interrupt.c:1088: EA = 0;
+	clr	_EA
+;	../../shared/src/interrupt.c:1115: EA = 1;
+	setb	_EA
+	pop	psw
+	reti
+;	eliminated unneeded push/pop dpl
+;	eliminated unneeded push/pop dph
+;	eliminated unneeded push/pop b
+;	eliminated unneeded push/pop acc
+;------------------------------------------------------------
+;Allocation info for local variables in function 'int12_isr'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	../../shared/src/interrupt.c:1119: void int12_isr (void) __interrupt (21)  __using (2) 
+;	-----------------------------------------
+;	 function int12_isr
+;	-----------------------------------------
+_int12_isr:
+	push	psw
+	mov	psw,#0x10
+;	../../shared/src/interrupt.c:1121: EA = 0;
+	clr	_EA
+;	../../shared/src/interrupt.c:1122: EX12 = 0; //reg_INT_ENABLE_ALL_LANE = 0;
+	clr	_EX12
+;	../../shared/src/interrupt.c:1155: EX12 = 1; //reg_INT_ENABLE_ALL_LANE = 1;
+	setb	_EX12
+;	../../shared/src/interrupt.c:1156: EA = 1;
+	setb	_EA
+	pop	psw
+	reti
+;	eliminated unneeded push/pop dpl
+;	eliminated unneeded push/pop dph
+;	eliminated unneeded push/pop b
+;	eliminated unneeded push/pop acc
+;------------------------------------------------------------
+;Allocation info for local variables in function 'int4_isr'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	../../shared/src/interrupt.c:1159: void int4_isr (void) __interrupt (11)  __using (2) 
+;	-----------------------------------------
+;	 function int4_isr
+;	-----------------------------------------
+_int4_isr:
+	push	acc
+	push	b
+	push	dpl
+	push	dph
+	push	psw
+	mov	psw,#0x10
+;	../../shared/src/interrupt.c:1161: EA = 0;
+	clr	_EA
+;	../../shared/src/interrupt.c:1162: EX4 = 4; //reg_INT_ENABLE_ALL_LANE = 0;
+	setb	_EX4
+;	../../shared/src/interrupt.c:1164: PHY_INT_LANE = 4;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0x04
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:1167: if(reg_INT_TIMER3_ISR_LANE) {
+	mov	dptr,#_MCU_IRQ_LANE
+	movx	a,@dptr
+	jnb	acc.3,00110$
+;	../../shared/src/interrupt.c:1168: reg_INT_TIMER3_ISR_CLEAR_LANE = 1;
+;	../../shared/src/interrupt.c:1169: reg_INT_TIMER3_ISR_CLEAR_LANE = 0;
+	mov	dptr,#_MCU_IRQ_ISR_LANE
+	movx	a,@dptr
+	orl	a,#0x08
+	movx	@dptr,a
+	movx	a,@dptr
+	anl	a,#0xf7
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:1171: if(lnx_TX_TRAIN_FRAME_DET_TIMER_ENABLE_LANE && do_train && train_timer_int && link_train_mode==0 && reg_FRAME_LOCK_LANE==0) {
+	mov	dptr,#(_TRX_TRAIN_IF_TIMERS_ENABLE_LANE + 0x0003)
+	movx	a,@dptr
+	jnb	acc.4,00110$
+	jnb	_do_train,00110$
+	mov	dptr,#_train_timer_int
+	movx	a,@dptr
+	mov	r2,a
+	jz	00110$
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	jb	acc.7,00110$
+	mov	dptr,#(_FRAME_SYNC_DET_REG1 + 0x0002)
+	movx	a,@dptr
+	jb	acc.2,00110$
+;	../../shared/src/interrupt.c:1172: if(phy_mode<=SAS) {
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r2,a
+	clr	c
+	mov	a,#(0x01 ^ 0x80)
+	mov	b,r2
+	xrl	b,#0x80
+	subb	a,b
+	jc	00102$
+;	../../shared/src/interrupt.c:1173: lnx_TX_TRAIN_FRAME_LOCK_DET_FAIL_INT_LANE = 1;
+	mov	dptr,#(_TRAIN_CONTROL_2 + 0x0002)
+	movx	a,@dptr
+	orl	a,#0x02
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:1174: reg_TX_TRAIN_ERROR_LANE_1_0_b0 = 0; //0=framelock err
+	mov	dptr,#_TX_TRAIN_IF_REG2
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:1175: reg_TX_TRAIN_ERROR_LANE_1_0_b1 = 0;
+	mov	dptr,#(_TX_TRAIN_IF_REG2 + 0x0001)
+	movx	a,@dptr
+	anl	a,#0xfe
+	movx	@dptr,a
+00102$:
+;	../../shared/src/interrupt.c:1177: reg_TX_TRAIN_FAILED_LANE = 1;
+	mov	dptr,#(_TX_TRAIN_CTRL_LANE + 0x0003)
+	movx	a,@dptr
+	orl	a,#0x08
+	movx	@dptr,a
+00110$:
+;	../../shared/src/interrupt.c:1183: if(reg_PHY_MCU_REMOTE_REQ_ISR_LANE) {
+	mov	dptr,#_MCU_IRQ_LANE
+	movx	a,@dptr
+	jnb	acc.5,00114$
+;	../../shared/src/interrupt.c:1184: reg_PHY_MCU_REMOTE_REQ_ISR_CLEAR_LANE = 1;
+;	../../shared/src/interrupt.c:1185: reg_PHY_MCU_REMOTE_REQ_ISR_CLEAR_LANE = 0;
+	mov	dptr,#_MCU_IRQ_ISR_LANE
+	movx	a,@dptr
+	orl	a,#0x20
+	movx	@dptr,a
+	movx	a,@dptr
+	anl	a,#0xdf
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:1187: if(PHY_MCU_REMOTE_REQ_LANE==0) 
+	mov	dptr,#_MCU_COMMAND0
+	movx	a,@dptr
+	jb	acc.0,00114$
+;	../../shared/src/interrupt.c:1188: lnx_PHY_MCU_LOCAL_ACK_LANE = 0;
+	mov	dptr,#(_TRX_TRAIN_IF_TIMERS_ENABLE_LANE + 0x0003)
+	movx	a,@dptr
+	anl	a,#0xfe
+	movx	@dptr,a
+00114$:
+;	../../shared/src/interrupt.c:1198: if( reg_MCU_REMOTE_REQ_ISR ) {
+	mov	dptr,#_MEM_IRQ
+	movx	a,@dptr
+	jb	acc.2,00163$
+	ljmp	00134$
+00163$:
+;	../../shared/src/interrupt.c:1199: reg_MCU_REMOTE_REQ_ISR_CLEAR = 1;
+;	../../shared/src/interrupt.c:1200: reg_MCU_REMOTE_REQ_ISR_CLEAR = 0;
+	mov	dptr,#_MEM_IRQ_CLEAR
+	movx	a,@dptr
+	orl	a,#0x04
+	movx	@dptr,a
+	movx	a,@dptr
+	anl	a,#0xfb
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:1202: if(reg_MCU_REMOTE_COMMAND_RD_7_0 == CHECK_CLEAR ) reg_MCU_LOCAL_STATUS_7_0 = 0;
+	mov	dptr,#_MCU_SYNC2
+	movx	a,@dptr
+	jnz	00128$
+	mov	dptr,#(_MCU_SYNC1 + 0x0002)
+	clr	a
+	movx	@dptr,a
+	sjmp	00129$
+00128$:
+;	../../shared/src/interrupt.c:1203: else if((reg_MCU_REMOTE_COMMAND_RD_7_0 == CHECK_MP_PU_PLL_ON && reg_ANA_PU_PLL) ||
+	mov	dptr,#_MCU_SYNC2
+	movx	a,@dptr
+	mov	r2,a
+	cjne	r2,#0x02,00120$
+	mov	dptr,#(_PM_CMN_REG1 + 0x0003)
+	movx	a,@dptr
+	jb	acc.2,00115$
+00120$:
+;	../../shared/src/interrupt.c:1204: ((reg_MCU_REMOTE_COMMAND_RD_7_0 == CHECK_MP_PLL_CLK_READY_ON) && reg_ANA_PLL_CLK_READY) ||
+	mov	dptr,#_MCU_SYNC2
+	movx	a,@dptr
+	mov	r2,a
+	cjne	r2,#0x03,00122$
+	mov	dptr,#(_PM_CMN_REG2 + 0x0003)
+	movx	a,@dptr
+	jb	acc.0,00115$
+00122$:
+;	../../shared/src/interrupt.c:1205: ((reg_MCU_REMOTE_COMMAND_RD_7_0 == CHECK_MP_PLL_LOCK_ON) && reg_ANA_PLL_LOCK_RD) ||
+	mov	dptr,#_MCU_SYNC2
+	movx	a,@dptr
+	mov	r2,a
+	cjne	r2,#0x04,00124$
+	mov	dptr,#(_PM_CMN_REG1 + 0x0001)
+	movx	a,@dptr
+	jb	acc.6,00115$
+00124$:
+;	../../shared/src/interrupt.c:1207: ((reg_MCU_REMOTE_COMMAND_RD_7_0 == CHECK_MP_PLL_CLK_READY_RING_ON) && reg_ANA_PLL_CLK_READY_RING) ||
+	mov	dptr,#_MCU_SYNC2
+	movx	a,@dptr
+	mov	r2,a
+	cjne	r2,#0x05,00126$
+	mov	dptr,#(_PM_CMN_REG2 + 0x0002)
+	movx	a,@dptr
+	jb	acc.5,00115$
+00126$:
+;	../../shared/src/interrupt.c:1208: ((reg_MCU_REMOTE_COMMAND_RD_7_0 == CHECK_MP_PLL_CAL_LOOP_DONE) && (PHY_STATUS_INT&LCPLL_CAL_LOOP_DONE)) )
+	mov	dptr,#_MCU_SYNC2
+	movx	a,@dptr
+	mov	r2,a
+	cjne	r2,#0x06,00116$
+	mov	dptr,#_MCU_STATUS2_LANE
+	movx	a,@dptr
+	mov	r2,a
+	jnb	acc.1,00116$
+00115$:
+;	../../shared/src/interrupt.c:1209: reg_MCU_LOCAL_STATUS_7_0 = reg_MCU_REMOTE_COMMAND_RD_7_0;
+	mov	dptr,#_MCU_SYNC2
+	movx	a,@dptr
+	mov	r2,a
+	mov	dptr,#(_MCU_SYNC1 + 0x0002)
+	mov	a,r2
+	movx	@dptr,a
+	sjmp	00129$
+00116$:
+;	../../shared/src/interrupt.c:1210: else 	reg_MCU_LOCAL_STATUS_7_0 = CHECK_WAIT;
+	mov	dptr,#(_MCU_SYNC1 + 0x0002)
+	mov	a,#0x01
+	movx	@dptr,a
+00129$:
+;	../../shared/src/interrupt.c:1212: if(reg_MCU_REMOTE_COMMAND_RD_7_0) {
+	mov	dptr,#_MCU_SYNC2
+	movx	a,@dptr
+	jz	00131$
+;	../../shared/src/interrupt.c:1213: reg_MCU_LOCAL_ACK = 1;
+	mov	dptr,#(_MCU_SYNC1 + 0x0003)
+	movx	a,@dptr
+	orl	a,#0x01
+	movx	@dptr,a
+	sjmp	00134$
+00131$:
+;	../../shared/src/interrupt.c:1216: reg_MCU_LOCAL_ACK = 0;
+	mov	dptr,#(_MCU_SYNC1 + 0x0003)
+	movx	a,@dptr
+	anl	a,#0xfe
+	movx	@dptr,a
+00134$:
+;	../../shared/src/interrupt.c:1219: PHY_INT_LANE = 0xFF;
+	mov	dptr,#(_MCU_STATUS0_LANE + 0x0003)
+	mov	a,#0xFF
+	movx	@dptr,a
+;	../../shared/src/interrupt.c:1221: EX4 = 1; //reg_INT_ENABLE_ALL_LANE = 1;
+	setb	_EX4
+;	../../shared/src/interrupt.c:1222: EA = 1;
+	setb	_EA
+	pop	psw
+	pop	dph
+	pop	dpl
+	pop	b
+	pop	acc
+	reti
+;------------------------------------------------------------
+;Allocation info for local variables in function 'uart0_isr'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	../../shared/src/interrupt.c:1225: void uart0_isr(void) __interrupt(4) __using (2)
+;	-----------------------------------------
+;	 function uart0_isr
+;	-----------------------------------------
+_uart0_isr:
+	push	psw
+	mov	psw,#0x10
+;	../../shared/src/interrupt.c:1227: EA = 0;
+	clr	_EA
+;	../../shared/src/interrupt.c:1228: if(RI) {
+;	../../shared/src/interrupt.c:1229: RI = 0;
+	jbc	_RI,00109$
+	sjmp	00102$
+00109$:
+00102$:
+;	../../shared/src/interrupt.c:1237: if(TI) {
+;	../../shared/src/interrupt.c:1238: TI = 0;
+	jbc	_TI,00110$
+	sjmp	00104$
+00110$:
+00104$:
+;	../../shared/src/interrupt.c:1244: EA = 1;
+	setb	_EA
+	pop	psw
+	reti
+;	eliminated unneeded push/pop dpl
+;	eliminated unneeded push/pop dph
+;	eliminated unneeded push/pop b
+;	eliminated unneeded push/pop acc
+	.area CSEG    (CODE)
+	.area CSEG    (CODE)
+_valid_coe_tbl:
+	.db #0x00	; 0
+	.db #0x04	; 4
+	.db #0x05	; 5
+	.db #0x08	; 8
+	.db #0x0A	; 10
+	.db #0x14	; 20
+	.db #0x28	; 40
+	.db #0x02	; 2
+	.db #0x01	; 1
+	.db #0x20	; 32
+	.db #0x10	; 16
+	.area CABS    (ABS,CODE)

@@ -1,0 +1,969 @@
+#	MIDAS Excel Spreadsheet Template for Automated Register Generation					
+#	R1.0.1					
+#	Frank Palazzolo, pal.com, x29209					
+#	Jingming Wang, jingming.com, x28003					
+#						
+#	# in the first column stands for a comment row					
+#						
+#	Bus Header					
+#	Base Address	0x0000_0000				
+#	Bus Type	AHB/APB				
+#	Bus Width	8/16/32-bit				
+#	Register Width	8/16/32-bit				
+#	Address Unit (byte)	01-02-04				
+#						
+#	Parameter Header					
+#	Parameter	Para Name1	Default Value1	Parameter Description		
+#	Parameter	Para Name2	Default Value2	Parameter Description		
+#						
+#	Actual Register Definition					
+#	#addr=Offset Address 			Register Name	Register Description	Register Feature Set
+#					Detailed register description (OPTIONAL).	
+#					Span as many rows as necessary. 	
+#					Each row becomes a new paragraph.	
+#	[msb_bit:lsb_bit]	Default Value	R/W Property	Register field name	Register field Description	Register field feature set
+#					Detailed register field description (OPTIONAL).	
+#					Span as many rows as necessary. 	
+#					Each row becomes a new paragraph.	
+#					Vaue1: Enumeration description of Value1	
+#					Vaue2: Enumeration description of Value2	
+						
+#	Cell Description					
+#	Cell Name	Cell Description			Example	
+#	Base Address	Base address of this entire address map, must be in C style hexadecimal format.			0x00000000, 0x10001010 ('Verilog-like' style is also supported such as 0x0000_0000, 0x1000_1010)	
+#	Bus Type	Type of bus			Only AHB and APB bus are supported at this time	
+#	Bus Width	Bit width of the bus			8, 16, 32 	
+#	Register Width	Bit width of the register (can be different from Bus Width)			8, 16, 32	
+#	Address Unit	# of bytes represented by LSB of address, in bytes. This provide flexibility in the address increment unit and should not exceed (Register Width)/8. It is recommended to use 1byte as the address unit, i.e. all offset addresses should increment on byte basis 1/2/4. For Register Width=16, the possible address units are 1 (recommended) and 2 byte. When address unit=1byte, the address should increment by 16/(1*8)=2 for adjacent registers, i.e. 0x80, 0x82, 0x84, etc. When address unit=2byte, the address should increment by 16/(2*8)=1, i.e. 0x80, 0x81, 0x82, etc. For Register Width=32, the possible address units are 1/2/4bytes, and the offset address increment unit is 4/2/1, respectively.				
+#	#addr=Offset Address 	Offset address of current register; must be in C style hexadecimal format; all address are byte-based			#addr=0x80 #addr=0x74 #addr=0x73 is not allowed for 16/32-bit bus	 
+#	Parameter	Reserved keyword for special features of certain register			Features can be 'internal', 'ecc'; Default value applies to undefined feature set cell, and must be boolean, i.e. 'TRUE' or 'FALSE'; Parameter Description is a short description of the function of the feature.	
+#	Parameter Name	Name of the parameter feature			internal, ecc	
+#	Parameter Default Value	Default parameter value for unspecified parameter cell.			TRUE, FALSE, 3, 10	
+#	Parameter Description	A short description of the parametered feature			Internal-use only register and not shown in datasheet.	
+#	Register Name	Short name for the current register			oob_ctrl_reg, fsm_ctrl_reg	
+#	Register Description	Full description of current register			OOB control register, FSM control register	
+#	Register feature set	Boolean equation for the feature set of entire current register			feature1&&feature2, feature1, feature1&&(feature2==2)	
+#	Detailed register description	Detailed description of the current register with additional comments. This can span as many rows as necessary and each row becomes a separate paragraph.			Finite state machine control register used in debug mode, can be enabled when fsm_ctrl_ext=1.	
+#	[msb_bit:lsb_bit]	Bit position in current register			[31:0], [31:24], [7:7] is the same as 7	
+#	Default Value	Binary/Decimal/Hex representation in Verilog format are all accepted.			'h1A, 'b1011, 'd92, 37 	
+#	R/W Property	Read and Write 			r: read only r/w: read and write (default if left unfilled)	
+#	Register field name	Name for the register field, used in actual generated RTL with prefix 'reg_' as register inputs/outputs			reg_fsm_en, reg_soft_en, reg_fsm_status, RESERVED, UNUSED, INTERNAL (see   below for detailed information)	
+#	Register field description	A short description of the register field			FSM enable, register issued soft enable, FSM status	
+#	Detailed register field description (OPTIONAL)	Detailed description of the functionality of the register field. This can span as many rows as necessary and each row becomes a separate paragraph.			A rising edge (0->1 transition) forces FSM state to force_state[6:0] (R0x80[14:8])  	
+#	Enumeration Description	Enumeration description of each register value			7'h0: state upon power-on-reset	
+#	Register field feature set	Boolean equation for the feature set of current register field			feature1&&feature2, feature1, feature1&&(feature2==2)	
+#						
+#	Additional Notes					
+#	1	All address should be in C style hexadecimal format, such as 0x000abcde ('Verilog-like' style such as 0x000a_bcde is also supported)				
+#	2	All data should be verilog style binary/decimal/hexadecimal format, such as 3'b010, 32, 7'd70, 17'h10bc				
+#	3	All unfilled register fields are default as RESERVED, r/w				
+#						
+#	Reserved Register Field Name					
+#		RESERVED	UNUSED	INTERNAL		
+#	Register Existence	No	Yes	Yes		
+#	Circuit Logic Connection	No	No	Yes		
+#	Access Type Specified  	No	Yes	Yes		
+#	Return Reliable Value upon POR	No	Yes	Yes		
+#	Return Reliable Value in Normal Operation	No	Yes (same as POR value)	Yes		
+#	Software R/W	Write 0 and ignore the read value	Write POR value only	Should not write if entire register is internal; otherwise, only write POR value to the field that is internal		
+#						
+#	RESERVED	If implemented in the future, the POR value must be 0 to maintain software backward compatibility. This is the DEFAULT type if the register bits are left undefined.				
+#	UNUSED	This is physically available, but not functional registers that might be of use in the future.				
+#	INTERNAL	Registers for internal use only. Return value may not be constant depending on circuit logic, such as variable read back register. Normally read-only.				
+#						
+#	Example					
+#	If specify "lane" in the lane specific field, this field will appear in the lane module, not the common register module.					
+						
+	Base Address	0x0000_0000				
+	Bus Type	APB				
+	Bus Width	4				
+	Register Width	32				
+	Address Unit (byte)	1				
+						
+	Parameter	internal		Register for internal use and not shown in datasheet.		
+	Parameter	ecc		Register with ECC.		
+						
+#	Register Address 	Default Value	R/W Property	Register Name	Register Description	Feature Set
+						
+						
+						
+						
+						
+	# addr = 0x0000			cal_ctrl1_lane	Calibration Control Lane 1	
+						
+	[31:26]	0	r/w	RESERVED		internal
+	25	0	r	rx_init_done_int_lane	RX_INIT_DONE Int For Debug	internal
+						
+	24	0	r	cal_done_lane	Calibration Done 	internal
+						
+	[23:22]	0	r/w	RXDCLK_NT_SEL_LANE[1:0]	PIN_RXDCLK_NT Selection	
+					2'b00: output 8T	
+					2'b01: output 32T	
+					2'b10: output 33T	
+					2'b11: output 34T	
+	[21:20]	0	r/w	TXDCLK_NT_SEL_LANE[1:0]	PIN_TXDCLK_NT Selection	
+					2'b00: output 8T	
+					2'b01: output 32T	
+					2'b10: output 33T	
+					2'b11: output 34T	
+	19	0	r	align90_comp_cal_done_lane	Align90 Comparator Calibration Done.	internal
+					0: Align90 Comparator Calibration is in progress or has not started. 	
+					1: Align90 Comparator Calibration is done. 	
+						
+	18	0	r	sq_cal_done_lane	Squelch Calibration Done.	internal
+					0: Squelch calibration is in progress or has not started. 	
+					1: Squelch calibration is done.	
+						
+	17	0	r	txdcc_pdiv_cal_done_lane	Tx DCC Post Divider Calibration Done Indicator. 	internal
+					0: TX DCC PDIV calibration is in progress or has not started. 	
+					1: TX DCC PDIV calibration is done.	
+						
+	16	0	r	txdcc_cal_done_lane	Tx DCC Calibration Done Indicator. 	internal
+					0: TX DCC calibration is in progress or has not started. 	
+					1: TX DCC calibration is done.	
+						
+	15	0	r	vdd_cal_done_lane	VDD Calibration Done Indicator. 	internal
+					0: VDD calibration is in progress or has not started. 	
+					1: VDD calibration is done.	
+						
+	14	0	r	rximp_cal_done_lane	Rx Impedance Calibration Done. 	internal
+					0: Rx impedance calibration is in progress or has not started. 	
+					1: Rx impedance calibration is done.	
+						
+	13	0	r	tximp_cal_done_lane	Tx Impedance Calibration Done.	internal
+					0: Tx impedance calibration is in progress or has not started. 	
+					1: Tx impedance calibration is done.	
+						
+	12	0	r	sampler_res_cal_done_lane	Sampler Resolution Calibration Done.	internal
+					0: Sampler resolution calibration is in progress or has not started. 	
+					1: Sampler resolution calibration is done.	
+						
+	11	0	r	sampler_cal_done_lane	Sampler Calibration Done.	internal
+					0: Sampler calibration is in progress or has not started. 	
+					1: Sampler calibration is done.	
+						
+	10	0	r	eom_align_cal_done_lane	Eom Alignment Calibration Done.	internal
+					0: EOM alignment calibration is in progress or has not started. 	
+					1: EOM alignment calibration is done.	
+						
+	9	0	r	rxalign90_cal_done_lane	Rx Align90 Calibration Done.	internal
+					0: Rx align90 calibration is in progress or has not started. 	
+					1: Rx align90 calibration is done.	
+						
+	8	0	r	rxdcc_eom_cal_done_lane	RX DCC EOM Calibration Done.	internal
+					0: Rx DCC EOM calibration is in progress or has not started. 	
+					1: Rx DCC EOM calibration is done.	
+						
+	7	0	r	rxdcc_data_cal_done_lane	Rx DCC Center Calibration Done.	internal
+					0: Rx DCC center calibration is in progress or has not started. 	
+					1: Rx DCC center calibration is done.	
+						
+	6	0	r	rxdcc_dll_cal_done_lane	RX DCC DLL Calibration Done.	internal
+					0: Rx DCC DLL calibration is in progress or has not started. 	
+					1: Rx DCC DLL calibration is done.	
+						
+	5	0	r	txdetect_cal_done_lane	Tx Timing Detect Calibration Done.	internal
+					0: Tx timing detect calibration is in progress or has not started. 	
+					1: Tx timing detect calibration is done.	
+						
+	4	0	r	dll_eom_vdata_cal_done_lane	DLL EOM VDATA Calibration Done.	internal
+					0: DLL EOM VDATA calibration is in progress or has not started. 	
+					1: DLL EOM VDATA calibration is done.	
+						
+	3	0	r	dll_eom_gm_cal_done_lane	DLL EOM Gm Calibration Done.	internal
+					0: DLL EOM gm calibration is in progress or has not started. 	
+					1: DLL EOM gm calibration is done.	
+						
+	2	0	r	dll_vdata_cal_done_lane	DLL VDATA Calibration Done.	internal
+					0: DLL VDATA calibration is in progress or has not started. 	
+					1: DLL VDATA calibration is done.	
+						
+	1	0	r	dll_gm_cal_done_lane	DLL Gm Calibration Done.	internal
+					0: DLL gm calibration is in progress or has not started. 	
+					1: DLL gm calibration is done.	
+						
+	0	0	r	dll_comp_cal_done_lane	DLL Comparator Calibration Done.	internal
+					0: DLL comparator calibration is in progress or has not started. 	
+					1: DLL comparator calibration is done.	
+						
+	# addr = 0x0004			cal_ctrl2_lane	Calibration Control Lane 2	
+						
+	31	0	r/w	RESERVED		internal
+	30	0	r/w	RESERVED		internal
+	29	0	r	txdcc_pdiv_cal_pass_lane	TXDCC Post Divider Calibration Pass Indicator.	internal
+	28	0	r	sellv_rxsampler_pass_lane	VDD Calibration SELLV_RXSAMPLER Pass Indicator.	internal
+	27	0	r	sellv_rxeomclk_pass_lane	VDD Calibration SELLV_RXEOMCLK Pass Indicator.	internal
+	26	0	r	sellv_rxdataclk_pass_lane	VDD Calibration SELLV_RXDATACLK Pass Indicator.	internal
+	25	0	r	sellv_rxintp_pass_lane	VDD Calibration SELLV_RXINTP Pass Indicator.	internal
+	24	0	r	sellv_txpre_pass_lane	VDD Calibration SELLV_TXPRE Pass Indicator.	internal
+	23	0	r	sellv_txdata_pass_lane	VDD Calibration SELLV_TXDATA Pass Indicator.	internal
+	22	0	r	sellv_txclk_pass_lane	VDD Calibration SELLV_TXCLK Pass Indicator.	internal
+	21	0	r	sq_cal_pass_lane	Squelch Calibration Pass	internal
+	20	0	r	txdcc_cal_pass_lane	Tx DCC Calibration Pass Indicator.	internal
+	19	0	r	align90_tracking_pass_lane	Rx Align90 Phaseshifter Tracking Pass Indicator.	internal
+	18	0	r	align90_comp_pass_lane	Rx Align90 Comparator Calibration Pass Indicator.	internal
+	17	0	r	vdd_cal_pass_lane	VDD Calibration Pass Indicator.	internal
+	16	0	r	rximp_cal_pass_lane	Rx Impedance Calibration Pass Indicator.	internal
+	15	0	r	tximp_cal_pass_lane	Tx Impedance Calibration Pass Indicator.	internal
+	14	0	r	sampler_cal_pass_lane	Sampler Calibration Pass Indicator.	internal
+	13	0	r	eom_eomdat_cal_pass_lane	EOM Alignment Data And EOM Clock Phase Calibration Pass Indicator.	internal
+	12	0	r	eom_eomedg_fine_cal_pass_lane	EOM Alignment Edge And EOM Clock Phase Fine Calibration Pass Indicator.	internal
+	11	0	r	eom_eomedg_coarse_cal_pass_lane	EOM Alignment Edge And EOM Clock Coarse Calibration Pass Indicator.	internal
+	10	0	r	eom_dac_cal_pass_lane	EOM Alignment Comparator Offset Calibration Pass Indicator.	internal
+	9	0	r	rxalign90_cal_pass_lane	Rx Align90 Calibration Pass Indicator.	internal
+	8	0	r	rxdcc_eom_cal_pass_lane	Rx DCC EOM Calibration Pass Indicator.	internal
+	7	0	r	rxdcc_data_cal_pass_lane	Rx DCC Center Calibration Pass Indicator.	internal
+	6	0	r	rxdcc_dll_cal_pass_lane	Rx DCC DLL Calibration Pass Indicator.	internal
+	5	0	r	txdetect_cal_pass_lane	Tx Timing Detect Calibration Pass Indicator.	internal
+	4	0	r	dll_eom_vdata_cal_pass_lane	DLL EOM VDATA Calibration Pass Indicator.	internal
+	3	0	r	dll_eom_gm_cal_pass_lane	DLL EOM Gm Calibration Pass Indicator.	internal
+	2	0	r	dll_vdata_cal_pass_lane	DLL VDATA Calibration Pass Indicator.	internal
+	1	0	r	dll_gm_cal_pass_lane	DLL Gm Calibration Pass Indicator.	internal
+	0	0	r	dll_comp_cal_pass_lane	DLL Comparator Calibration Pass Indicator.	internal
+						
+	# addr = 0x0008			cal_ctrl3_lane	Calibration Control Lane 3	
+						
+	[31:24]	0	r/w	RESERVED		
+						
+	23	0	r	rximp_cal_timeout_lane	Rx Impedance Calibration Timeout Indicator.	internal
+						
+	22	0	r	tximp_cal_timeout_lane	Tx Impedance Calibration Timeout Indicator.	internal
+						
+	21	0	r/w	dll_vdda_tracking_on_lane	DLL VDDA Tracking On.	internal
+					0: DLL VDDA tracking off.	
+					1: DLL VDDA tracking on.	
+	20	0	r/w	gain_train_with_sampler_lane	Gain Train With Sampler Option	internal
+	19	0	r/w	cal_vdd_continuous_mode_en_lane	VDD Calibration Continuous Mode Enable.	internal
+					0: VDD calibration continuous mode is disabled.	
+					1: VDD calibration continuous mode is enabled. 	
+	18	1	r/w	tx_f0t_eo_based_lane	Tx F0t Eye Open Based Mode	internal
+	17	1	r/w	rx_min_boost_mode_lane	Rx Min Boost Mode	internal
+	16	0	r	ERROR_RESPONSE_TTIU_DETECTED_LANE	Indicator For Local Phy Received Error Response TTIU 	
+	[15:8]	8'h0	r	APTA_TERMINATE_REASON_LANE[7:0]	Indicator For The Reason Of Local Phy Send APTA_ADJUST(Terminate) Message	
+					0: Normal	
+					1: Local PHY received wrong remote control request	
+					2: Local PHY received APTA_ADJUST(START) control after enter coefficient adjust stage	
+					3: Local PHY received wrong remote status	
+						
+	[7:0]	8'h0	r	load_cal_on_lane[7:0]	Indicator For Speed Change Ongoing For MCU Debug	internal
+						
+						
+	# addr = 0x000C			cal_ctrl4_lane	Calibration Control Lane 4	
+						
+	[31:28]	4'hf	r/w	TX_EM_PRE_MAX_LANE[3:0]	Tx Pre Emphasis Maximum 	
+	[27:24]	4'hf	r/w	TX_EM_PO_MAX_LANE[3:0]	Tx Post Emphasis Maximum 	
+	[23:20]	4'h0	r/w	TX_EM_PEAK_MIN_LANE[3:0]	Tx Peak Emphasis Minimum 	
+	[19:16]	4'he	r/w	TX_EM_PEAK_MAX_LANE[3:0]	Tx Peak Emphasis Maximum 	
+	[15:8]	8'h3	r/w	sampler_sample_size_lane[7:0]	Sampler Sample Size Option (2^N)	internal
+					 0: 2^0	
+					 1:  2^1	
+					 2:  2^2	
+					 3:  2^3	
+					 4: 2^4	
+					 5: 2^5	
+					 6: 2^6	
+					All Others : N.A	
+						
+	[7:0]	8'h0	r/w	sampler_cal_avg_mode_lane[7:0]	Sampler Cal Result Average Option For Debug.	internal
+					0= Average sum of POS values average and NEG  values average.(default:0).	
+					1= POS average only.	
+					2= NEG average only.	
+						
+	# addr = 0x0010			cal_save_data1_lane	Calibration Result 1	
+						
+	[31:24]	8'h0	r/w	cal_sq_thresh_lane[7:0]	Squelch Calibration Threshold Result.	internal
+	[23:16]	8'h0	r/w	cal_sq_offset_lane[7:0]	Squelch Calibration Offset Result.	internal
+	[15:8]	8'h0	r/w	cal_eom_align_comp_ofstdac_lane[7:0]	EOM Alignment Comparator Offset Calibration Result.	internal
+	[7:0]	8'h0	r/w	cal_dll_cmp_offset_lane[7:0]	Rx DLL Comparator Calibration Result.	internal
+						
+	# addr = 0x0014			cal_save_data2_lane	Calibration Result 4	
+						
+	[31:28]	4'h0	r/w	TX_EM_PO_MIN_LANE[3:0]	Tx Post Emphasis Minimum  	
+	[27:24]	4'h0	r/w	TX_EM_PRE_MIN_LANE[3:0]	Tx Pre Emphasis Minimum 	
+	[23:16]	8'h0	r/w	cal_sampler_res_lane[7:0]	Sampler Resolution Result.	internal
+	[15:8]	8'hc	r/w	cal_rx_imp_lane[7:0]	Rx Impedance Calibration Result.	internal
+	[7:0]	8'h0	r/w	cal_align90_cmp_offset_lane[7:0]	ALIGN90 Calibration Compartor Offset Result.	internal
+						
+	# addr = 0x0018			cal_save_data3_lane	Calibration Result 5	
+						
+	[31:24]	8'h0	r/w	cal_tximp_tunep0_lane[7:0]	Tx Impedance Cal Result For PMOS Side.	internal
+	[23:16]	8'h7	r/w	cal_tximp_tunep_lane[7:0]	Tx Impedance Cal Result For PMOS Side.	internal
+	[15:8]	8'h0	r/w	cal_tximp_tunen0_lane[7:0]	Tx Impedance Cal Result For NMOS Side.	internal
+	[7:0]	8'h8	r/w	cal_tximp_tunen_lane[7:0]	Tx Impedance Cal Result For NMOS Side.	internal
+						
+	# addr = 0x001C			PHY_REMOTE_CTRL_COMMAND_LANE		
+						
+	[31:24]	8'h0	r/w	PHY_REMOTE_CTRL_COMMAND_TYPE_LANE[7:0]	PHY Remote Control Command Type For Command Interface	
+	[23:16]	8'h0	r/w	RESERVED		
+	[15:0]	16'h0	r/w	PHY_REMOTE_CTRL_COMMAND_CODE_LANE[15:0]	PHY Remote Control Command Code For Command Interface	
+						
+	# addr = 0x0020			PHY_REMOTE_CTRL_VALUE_LANE		
+						
+	[31:0]	32'h0	r/w	PHY_REMOTE_CTRL_VALUE_LANE[31:0]	PHY Remote Control Value For Command Interface	
+						
+	# addr = 0x0024			PHY_LOCAL_VALUE_LANE		
+						
+	[31:0]	32'h0	r	PHY_LOCAL_VALUE_LANE[31:0]	PHY Local Value For Command Interface	
+						
+	# addr = 0x0028			trx_train_if_timers1_lane		
+						
+	[31:24]	8'h03	r/w	tx_train_status_det_timer_lane[7:0]	Status Detection Maximum Time.	internal
+					Unit is 0.5ms, use (n+1)/2 ms.	
+						
+	[23:16]	8'h1	r/w	TX_TRAIN_FRAME_DET_TIMER_LANE[7:0]	Frame Marker Detection Maximum Wait During TRx Training.	
+					Unit is 0.5ms, timeout duration is (n+1)*0.5ms.	
+						
+	[15:0]	16'h1f3	r/w	RX_TRAIN_TIMER_LANE[15:0]	Rx Train Maximum Time.	
+					Unit is 1ms, timeout duration is (n+1)*1mSec.	
+						
+	# addr = 0x002c			trx_train_if_timers2_lane		
+						
+	[31:24]	8'h32	r/w	DFE_RES_F0A_HIGH_THRES_INIT_LANE[7:0]	DFE Resolution F0a High Threshold For Train Initial Stage	
+	[23:16]	8'h0	r	PHY_LOCAL_STATUS_LANE[7:0]	PHY Local Status For Command Interface	
+						
+	[15:0]	16'h1f3	r/w	TRX_TRAIN_TIMER_LANE[15:0]	Tx Trainning Maximum Time.	
+					Unit is 1ms, timeout duration is (n+1)*1mSec.	
+						
+	# addr = 0x0030			trx_train_if_timers_enable_lane		
+						
+	31	1'b1	r/w	tx_train_status_det_timer_enable_lane	Tx Train Status Detection Timeout Enable.	internal
+	30	1'b1	r/w	RX_TRAIN_TIMER_ENABLE_LANE	Rx Train Timeout Enable.	
+	29	1'b1	r/w	TX_TRAIN_TIMER_ENABLE_LANE	Tx Train Timeout Enable.	
+	28	1'b1	r/w	TX_TRAIN_FRAME_DET_TIMER_ENABLE_LANE	Tx Train Frame Detection Timeout Enable.	
+						
+	27	1'b0	r/w	frame_lock_sel_timeout_lane	Frame Lock Select Timeout Signals.	internal
+					0: Use internal generated frame lock signal to start TRx train frame detection timers.	
+					1: Use PIN_Tx_TRAIN_ENABLE as frame_lock to start TRx train frame detection timers.	
+	26	0	r	tx_train_status_det_timeout_int_lane	Tx Train Status Detect Timeout Out Indicator From MCU	internal
+	25	1	r/w	TX_G1_MIDPOINT_EN_LANE	TX G1 Midpoint Train Enable	
+	24	0	r/w	PHY_MCU_LOCAL_ACK_LANE	PHY MCU Local Acknowledge	
+	[23:16]	8'h0	r/w	TRAIN_G0_LANE[7:0]	Tx Train G0 Value	
+	[15:8]	8'h0	r/w	TRAIN_G1_LANE[7:0]	Tx Train G1 Value	
+	[7:0]	8'h0	r/w	TRAIN_GN1_LANE[7:0]	Tx Train GN1 Value	
+						
+						
+	# addr = 0x0034			dfe_control_0		
+						
+	[31:24]	8'h0	r/w	dfe_dbg_step_mode_lane[7:0]	DFE Debug Step By Step Mode Enable	internal
+	[23:16]	8'h0	r/w	dfe_force_zero_lane[7:0]	Firmware Use Only.	internal
+	[15:0]	16'h0	r/w	dfe_adapt_lp_num_load1_lane[15:0]	DFE Adapt Loop Number Load Value1 During Training (Value+1).	internal
+						
+	# addr = 0x0038			dfe_control_1		
+						
+	[31:24]	8'hc	r/w	phase_adapt_temp_thr_lane[7:0]	Phase Adapt  Temperature Enable Threshold (5 Degree = 12 Code)	internal
+	23	1'b0	r/w	rx_train_only_dfe_lane	Run Rx Train Only DFE Mode For Debug	internal
+	22	1'h0	r/w	sq_auto_train_lane	SQ Auto TxTrain Enable	internal
+	21	1'h0	r/w	phase_adapt_temp_auto_en_lane	Phase Adapt Auto Eanble By Phase Adapt Temperature Threshold(phase_adapt_temp_thr)	internal
+	20	1'h0	r	phase_adapt_sat_detect_lane	Detected F0/F1 Saturation During Phase Adapt	internal
+	19	1'h0	r/w	dfe_init_reg_lane	Decision Feedback Equalization (DFE) Initial Register.	internal
+					0: DFE uses the F0-F5 values from the previous training result	
+					1: DFE uses the default values for F0-F5	
+					This control selects which DFE tap values are used as a starting point after PIN_RX_INIT is pulsed. Pulsing PIN_RX_INIT starts the initialization state machines for the receiver that locks the CDR, and trains the DFE.	
+	18	1'h1	r/w	gain_train_init_en_lane	Gain Train Init Enable	internal
+	17	1'h1	r/w	gain_train_end_en_lane	Gain Train Init Enable	internal
+	16	1	r/w	GAIN_TRAIN_WITH_C_LANE	Gain Train With Cap Enable	
+	[15:8]	8'h0	r/w	ESM_VOLTAGE_LANE[7:0]	Eye Shape Monitor Voltage Value	
+	7	1'b0	r	dfe_cal_done_lane	DFE Adaptation Calculation Done Indicator From MCU	internal
+	6	0	r/w	dfe_core_bypass_lane	Bypass DFE Logic	internal
+	5	1'b1	r/w	TX_GN1_MIDPOINT_EN_LANE	TX GN1 Midpoint Train Enable	
+	4	1'b0	r/w	EOM_DFE_CALL_LANE	DFE Call Enable For Eye Shape Monitor	
+	3	1'b0	r/w	EOM_READY_LANE	Eye Monitor Drawing Ready 	
+	2	1'b0	r/w	phase_control_func_en_lane	Enable Call Phase Control Function During RxTrain DFE Only Mode	internal
+	1	0	r/w	dfe_res_f5to15_max_spd_en_lane	Force To Load DFE RES F5-F15 Maximum Resolution During Speed Change	internal
+	0	1	r/w	CDR_MIDPOINT_EN_LANE	CDR Midpoint Train Enable	
+						
+	# addr = 0x0040			dfe_control_2		
+						
+	[31:24]	8'h0	r/w	adapt_slicer_en_lane[7:0]	DFE Slicer Sampler Enable For DFE Only Mode	internal
+	[23:16]	8'h0	r/w	adapt_data_en_lane[7:0]	DFE Data Sampler Enable For DFE Only Mode	internal
+	[15:8]	8'h0	r/w	adapt_phase_offset_data_lane[7:0]	Adapted Phase Offset Data.	internal
+	[7:0]	8'h0	r/w	dfe_dbg_step_lane[7:0]	DFE Debug Step By Step	internal
+						
+						
+	# addr = 0x0044			dfe_control_3		
+						
+	[31:28]	4'h4	r/w	thres_k_shift_lane[3:0]	Threshold K Shift	internal
+	27	0	r/w	same_set_always_update_lane	Train Update Selection For Same Set Always Update Option	internal
+	26	0	r/w	same_set_no_update_lane	Train Update Selection For Same Set No Update Option	internal
+	25	0	r/w	cdr_dfe_f0d_norm_adapt_en_lane	Enable F0d Measurement When DFE_ADAPT_NORMAL_FORCE_SKIP_LANE=0 During Data Tracking Mode	internal
+	24	0	r/w	force_phase_train_offset_en_lane	Force Phase Train Result To FORCE_PHASE_TRAIN_OFFSET_2C_LANE[7:0] For Test	internal
+	[23:16]	8'h0	r/w	cal_phase_lane[7:0]	Align90_Ref Calibration Save For Current PLL Rate.	internal
+	[15:8]	8'h0	r/w	cal_eom_dpher_lane[7:0]	EOM Align Calibration Save For Current PLL Rate.	internal
+	7	1'h0	r/w	train_use_s_lane	Enable Train Use Slice Clock Path.	internal
+	6	1'h0	r/w	train_use_d_lane	Enable Train Use Data Clock Path.	internal
+	[5:4]	2'h0	r/w	train_ph_control_mode_lane[1:0]	Train Phase Control Mode.	internal
+	3	1'h1	r/w	TX_TRAIN_P2P_HOLD_LANE	TX Train Peak To Peak Hold Enable	
+	2	0	r/w	f0d_measure_done_lane	Fod Measure Done Indicator For Debug Only	internal
+	1	0	r/w	force_phase_offset_data_en_lane	Force Phase Offset Data Enable For F0d Measurement, Debug Only	internal
+	0	0	r/w	f0d_accap_sel_refclk_lane	Select ACCAP To REFCLK Path During F0d Measurement	internal
+						
+	# addr = 0x0048			dfe_control_4		
+						
+	[31:24]	8'h0	r/w	train_f0b_lane[7:0]	Train F0b	internal
+	[23:16]	8'h0	r/w	train_f0a_max_lane[7:0]	Tran_F0a Max.	internal
+	[15:8]	8'h0	r/w	train_f0a_lane[7:0]	Train F0a.	internal
+	[7:0]	8'h0	r/w	train_f0d_lane[7:0]	Train F0d.	internal
+						
+						
+	# addr = 0x004c			dfe_control_5		
+						
+	31	1'b0	r/w	fast_dfe_timer_en_lane	Fast DFE Timer Enable.	internal
+	30	1'b0	r/w	eye_check_bypass_lane	Eye Check Bypass Enable.	internal
+	[29:24]	6'h3f	r/w	thre_excellent_lane[5:0]	DFE Level Check Threshold For Excellent.	internal
+	23	1'b0	r/w	maxeo_adapt_normal_mode_en_lane	Enable MAXEO Mode DFE Algorithm In Normal Mode After RxTrain	internal
+	22	1'h0	r/w	pattern_protect_en_lane	Enable Pattern Protection	internal
+	21	1'h0	r	eom_phase_ui_align_failed_lane	Debug For During Phase Adapt	internal
+	20	1'h0	r/w	ctle_set_sel_lane	Select CAP Table	internal
+	19	1'h0	r/w	phase_adapt_ui_align_skip_lane	UI Align Skip Enable During Phase Adapt	internal
+	[18:16]	3'h1	r/w	thre_poor_lane[2:0]	DFE Level Check Threshold For Poor.	internal
+	15	1'b1	r/w	cdrphase_opt_en_lane	CDR Phase OPT Enable.	internal
+	14	1'b0	r/w	saturate_disable_lane	DFE Saturate Disable.	internal
+	13	1'b1	r/w	edge_sampler_normal_en_lane	1=Enable Edge Sampler Update Normal Mode	internal
+	[12:8]	5'h2	r/w	thre_good_lane[4:0]	DFE Level Check Threshold For Good.	internal
+	7	1'h0	r/w	f1_align_skip_lane	EOM F1 Aligment Skip	internal
+	6	1'b0	r/w	phase_adapt_mode_lane	1=Enable Eye Height Phase Adapt Mode, 0=Enable Eye Width Phase Adapt Mode	internal
+	5	1'b0	r/w	phase_adapt_enable_lane	1=Enable Phase Adapt	internal
+	4	1'b0	r/w	dfe_adapt_normal_soft_cont_en_lane	1=Enable Software Contious Mode 	internal
+	3	1'b0	r/w	dfe_adapt_normal_force_skip_lane	1=Disable DFE Adaptation During Normal Mode	internal
+	2	1'b0	r/w	TX_NO_INIT_LANE	No TX Init During TxTrain	
+	1	1'b0	r/w	RX_NO_INIT_LANE	No RX Init During RxTrain	
+	0	1'b0	r/w	ckfw_en_lane	Enable ACCap CKFW Clock During Normal Mode	internal
+						
+	# addr = 0x0050			train_control_0		
+						
+	[31:28]	4'h9	r/w	midpoint_large_thres_k_lane[3:0]	MIDPOINT_LARGE_THRES_K	internal
+	[27:24]	4'h2	r/w	midpoint_large_thres_c_lane[3:0]	MIDPOINT_LARGE_THRES_C	internal
+	[23:20]	4'hf	r/w	midpoint_small_thres_k_lane[3:0]	MIDPOINT_SMALL_THRES_K	internal
+	[19:16]	4'h0	r/w	midpoint_small_thres_c_lane[3:0]	MIDPOINT_SMALL_THRES_C	internal
+	[15:8]	8'hf	r/w	tx_gn1_midpoint_thres_k_lane[7:0]	Tx Gn1 Midpoint Threshold K	internal
+	[7:0]	8'hfd	r/w	tx_gn1_midpoint_thres_c_lane[7:0]	Tx Gn1 Midpoint Threshold C (2's Complement)	internal
+						
+	# addr = 0x0054			train_control_1		
+						
+	[31:24]	8'h0	r/w	SUMF_BOOST_TARGET_K_LANE[7:0]	SUMF_BOOST_TARGET_K	
+	[23:16]	8'hc4	r/w	SUMF_BOOST_TARGET_C_LANE[7:0]	SUMF_BOOST_TARGET_C (2's Complement)	
+	[15:8]	8'h0	r/w	midpoint_phase_os_lane[7:0]	MIDPOINT_PHASE_OS	internal
+	[7:0]	8'h0	r/w	ini_phase_offset_lane[7:0]	Initial Phase Offset For Train	internal
+						
+	# addr = 0x0058			train_control_2		
+						
+	[31:28]	4'h4	r/w	rx_rxffe_r_ini_lane[3:0]	RX_RXFFE_R_INI	internal
+	[27:24]	4'h4	r/w	rxffe_r_gain_train_lane[3:0]	RXFFE_R_GAIN_TRAIN	internal
+	23	1'h0	r/w	TX_ADAPT_G0_EN_LANE	1-Enable TX FFE Adapt G0	
+	22	1'h0	r/w	TX_ADAPT_GN1_EN_LANE	1-Enable TX FFE Adapt GN1	
+	21	1'h0	r/w	TX_ADAPT_G1_EN_LANE	1-Enable TX FFE Adapt G1	
+	20	1'h0	r/w	RESERVED		
+	19	1'h0	r/w	RESERVED		
+	18	1'h0	r/w	ESM_EN_LANE	1-Enable EOM_EN	
+	17	1'h0	r/w	RESERVED		
+	16	1'b1	r/w	ESM_PATH_SEL_LANE	1-Select EOM Slice Path, 0-Select EOM Data Path	
+	15	1'h0	r/w	RESERVED		
+	14	1'h0	r/w	RESERVED		
+	[13:10]	4'hc	r/w	ESM_DFE_ADAPT_SPLR_EN_LANE[3:0]	DFE Adapt Sampler Enable During EOM Draw	
+	[9:0]	10'h0	r/w	ESM_PHASE_LANE[9:0]	Eye Shape Monitor Phase Value(-512 ~ +512)	
+						
+	# addr = 0x005c			rpta_config_0		
+						
+	[31:24]	8'h0	r/w	eom_clk_offset_2c_lane[7:0]	EOM Adapt Initial Offset For Debug	internal
+	[23:16]	8'h7	r/w	eom_adapt_step_size_lane[7:0]	EOM Adapt Step Size For EOM Clock Alignment	internal
+	[15:0]	16'h400	r/w	eom_conv_num_lane[15:0]	Number Of EOM Converge 	internal
+						
+	# addr = 0x0060			rpta_config_1		
+						
+	[31:24]	8'h4	r/w	ph_conv_num_lane[7:0] 	Number Of Data Clock Phase Converge	internal
+	[23:16]	8'h6	r/w	ph_adapt_step_size_lane[7:0] 	Data Path Adapt Step Size	internal
+	[15:8]	8'h4	r/w	f0d_thre_lane[7:0]	F0d Threshold For Data Path Adapt	internal
+	[7:0]	8'h0	r/w	data_clk_offset_2c_lane[7:0]	Data Path Adapt Initial Offset For Debug	internal
+						
+	# addr = 0x0064			dll_cal	DLL Calibration	
+						
+	[31:24]	8'h3d	r/w	DFE_F0_SAT_THRES_LANE[7:0]	DFE F0 Saturation Threshold (0~63)	
+	[23:16]	8'h1e	r/w	dfe_f1_sat_thres_lane[7:0]	DFE F1 Saturation Threshold	internal
+	[15:12]	4'h4	r/w	thres_k_base_lane[3:0]	Threshold K Base 	internal
+	[11:8]	4'h3	r/w	dll_gmsel_min_lane[3:0]	DLL_GM_SEL Minimum Value	internal
+	[7:4]	4'h3	r/w	dll_eom_gmsel_min_lane[3:0]	DLL_EOM_GM_SEL Minimum Value	internal
+	[3:2]	2'h1	r/w	dll_sellv_rxdll_final_step_num_sel_lane[1:0]	DLL_SELLV_RXDLL Final Step Number Selection	internal
+					2'b00: 16 steps	
+					2'b01: 24 steps	
+					2'b10: 32 steps	
+					2'b11: 48 steps	
+	[1:0]	2'h1	r/w	dll_sellv_rxeomdll_final_step_num_sel_lane[1:0]	DLL_SELLV_RXEOMDLL Final Step Number Selection	internal
+					2'b00: 16 steps	
+					2'b01: 24 steps	
+					2'b10: 32 steps	
+					2'b11: 48 steps	
+						
+	# addr = 0x0068			train_para_0	Train Parameters 0	
+						
+						
+	[31:24]	8'h0	r/w	train_ph_os_data_2c_lane[7:0]	Phase_Offset_Data Input For Phase Control Function Test	internal
+	[23:16]	8'h0	r/w	train_ph_os_esm_2c_lane[7:0]	Phase_Offset_ESM Input For Phase Control Function Test	internal
+	[15:8]	8'h0	r/w	avg_f1_lane[7:0]	Phase Train Adv Clock Alignment F1 Average For Test	internal
+	[7:0]	8'hfc	r/w	tx_gn1_midpoint_index_os_lane[7:0]	TX GN1 Midpoint Index Offset 	internal
+						
+						
+	# addr = 0x006c			train_para_1	Train Parameters 1	
+						
+	[31:24]	8'h1e	r/w	dfe_f2_sat_thres_lane[7:0]	DFE F2 Saturation Threshold	internal
+	[23:16]	8'h3d	r/w	dfe_f0_sat_protect_thres_lane[7:0]	DFE F0 Saturation Protect Threshold	internal
+	[15:8]	8'h0	r/w	dfe_fx_sum_sat_thres_lane[7:0]	DFE Fx SUM Saturate Threshold	internal
+	[7:0]	8'h32	r/w	DFE_RES_F0A_HIGH_THRES_END_LANE[7:0]	DFE Resolution F0a High Threshold For Train End Stage	
+						
+	# addr = 0x0070			train_para_2	Train Parameters 2	
+						
+	[31:24]	8'h0	r	eye_left_2c_lane[7:0]	Phase Train/RTPA Eye Left Phase Offset Result For Test	internal
+	[23:16]	8'h0	r	eye_right_2c_lane[7:0]	Phase Train/RTPA Eye Right Phase Offset Reseult For Test	internal
+	[15:8]	8'h0	r	eye_ph_2c_lane[7:0]	Phase Train Eye Midpoint Opt Phase Offset/RTPA Phase_Offset_ESM Reseult For Test	internal
+	[7:6]	2'h0	r/w	edge_sampler_adj_lane[1:0]	Edge Sampler Adjust Size 	internal
+					0 : Disable	
+					1 : 1/2 times of Sampler changes	
+					2: 1 times of Sampler changes	
+					3: 2 times of Sampler Changes	
+	5	0	r/w	RESERVED		
+	4	0	r/w	SUMF_BOOST_TARGET_C_FORCE_EN_LANE	Force SUMF_BOOST_TARGET_C Control Enable	
+						
+	[3:0]	4'h3	r/w	rx_ffe_overboost_thres_lane[3:0]	Rx FFE Overboost Threshold	internal
+						
+	# addr = 0x0074			train_para_3	Train Parameters 3	
+						
+	[31:24]	8'h0	r/w	rpta_f0d_offset_lane[7:0]	F0d Offset From MAX_F0D(2) And MIN_F0D(1) For Real Time Phase Adaptation, Debug Only	internal
+	23	0	r/w	RESERVED		
+	22	0	r/w	RESERVED		
+	21	0	r/w	bypass_ffe_c_ctrl_lane	Bypass FFE C Control For Debug	internal
+	20	0	r/w	bypass_ffe_r_ctrl_lane	Bypass FFE R Control For Debug	internal
+	19	1	r/w	pcie_rxtrain_on_before_dir_lane	Enable RxTrain Run Before DIR Mode Enter For PCIe FOM/DIR Mode	internal
+	[18:16]	3'h0	r/w	cdr_midpoint_step_num_lane[2:0]	2^Number Of CDR_Midpoint Loop In Phase Train For Test	internal
+	[15:8]	8'h1e	r/w	DFE_RES_F0A_LOW_THRES_3_END_LANE[7:0]	DFE Resolution F0a Low Threshold 2 For Gain Train In Train End Stage	
+	[7:0]	8'h1e	r/w	DFE_RES_F0A_LOW_THRES_2_END_LANE[7:0]	DFE Resolution F0a Low Threshold 1 For Gain Train In Train End Stage	
+						
+	# addr = 0x0078			dfe_control_6		
+						
+	[31:24]	8'h1e	r/w	DFE_RES_F0A_LOW_THRES_01_END_LANE[7:0]	DFE Resolution F0a Low Threshold 01 For Gain Train In Train End Stage	
+	[23:16]	8'h14	r/w	DFE_RES_F0A_LOW_THRES_3_INIT_LANE[7:0]	DFE Resolution F0a Low Threshold 3 For Gain Train In Train Initial Stage	
+	[15:8]	8'h14	r/w	DFE_RES_F0A_LOW_THRES_2_INIT_LANE[7:0]	DFE Resolution F0a Low Threshold 2 For Gain Train In Train Initial Stage	
+	[7:0]	8'h14	r/w	DFE_RES_F0A_LOW_THRES_01_INIT_LANE[7:0]	DFE Resolution F0a Low Threshold 01 For Gain Train In Train Initial Stage	
+						
+	# addr = 0x007c			dfe_test_0		
+						
+	[31:24]	8'h0	r/w	sq_thresh_ratio_g3_lane[7:0]	TBD	internal
+	[23:16]	8'h0	r/w	sq_thresh_ratio_g2_lane[7:0]	TBD	internal
+	[15:8]	8'h0	r/w	sq_thresh_ratio_g1_lane[7:0]	TBD	internal
+	[7:0]	8'h0	r/w	sq_thresh_ratio_g0_lane[7:0]	TBD	internal
+						
+	# addr = 0x0080			dfe_test_1		
+						
+	31	1'h0	r	tx_train_frame_lock_det_fail_int_lane	TX Train Frame Lock Detect Fail Indicator From MCU For SAS, Ethernet Mode	internal
+	30	1'b0	r	TX_TRAIN_FAIL_INT_LANE	TX Train Fail Indicator From MCU	
+	29	1'b0	r	RX_TRAIN_FAIL_INT_LANE	RX Train Fail Indicator From MCU	
+	28	0	r	RX_TRAIN_COMPLETE_INT_LANE	Rx Train Complete Indicator	
+					0: Rx training is not completed	
+					1: Rx training is completed.  If RX training is failed, this indicator is also asserted.	
+	27	0	r	TX_TRAIN_COMPLETE_INT_LANE	Tx Train Complete Indicator	
+					0: TRX training is not completed	
+					1: TRX training is completed.  If TX training is failed, this indicator is also asserted.	
+	26	0	r	TRX_TRAIN_DONE_INT_LANE	TRX Train Done Indicator	
+					0: TRX training is not complete	
+					1: TRX training state machine is finished.	
+	25	0	r	TX_TRAIN_TIMEOUT_LANE	Tx Train Timeout Indicator	
+	24	0	r	RX_TRAIN_TIMEOUT_LANE	Rx Train Timeout Indicator	
+	[23:21]	0	r/w	RESERVED		
+	20	0	r/w	dfe_en_g4_lane	DFE Enable For CMD_IF G4	internal
+	19	0	r/w	dfe_en_g3_lane	DFE Enable For CMD_IF G3	internal
+	18	0	r/w	dfe_en_g2_lane	DFE Enable For CMD_IF G2	internal
+	17	0	r/w	dfe_en_g1_lane	DFE Enable For CMD_IF G1	internal
+	16	0	r/w	dfe_en_g0_lane	DFE Enable For CMD_IF G0	internal
+	[15:13]	0	r/w	RESERVED		
+	12	0	r/w	dfe_en_sel_g4_lane	DFE Enable Select For G4 (0:PIN_DFE_EN, 1:From Command Interface)	internal
+	11	0	r/w	dfe_en_sel_g3_lane	DFE Enable Select For G3 (0:PIN_DFE_EN, 1:From Command Interface)	internal
+	10	0	r/w	dfe_en_sel_g2_lane	DFE Enable Select For G2 (0:PIN_DFE_EN, 1:From Command Interface)	internal
+	9	0	r/w	dfe_en_sel_g1_lane	DFE Enable Select For G1 (0:PIN_DFE_EN, 1:From Command Interface)	internal
+	8	0	r/w	dfe_en_sel_g0_lane	DFE Enable Select For G0 (0:PIN_DFE_EN, 1:From Command Interface)	internal
+	[7:0]	8'h0	r/w	sq_thresh_ratio_g4_lane[7:0]	TBD	internal
+						
+						
+	# addr = 0x0084			dfe_test_4		
+						
+	[31:29]	0	r/w	RESERVED		
+	28	0	r/w	dfe_f_tap_en_g4_lane	DFE F TAP En For CMD_IF G4	internal
+	27	0	r/w	dfe_f_tap_en_g3_lane	DFE F TAP En For CMD_IF G3	internal
+	26	0	r/w	dfe_f_tap_en_g2_lane	DFE F TAP En For CMD_IF G2	internal
+	25	0	r/w	dfe_f_tap_en_g1_lane	DFE F TAP En For CMD_IF G1	internal
+	24	0	r/w	dfe_f_tap_en_g0_lane	DFE F TAP En For CMD_IF G0	internal
+	[23:16]	0	r	gain_train_index_rd_lane[7:0]	Gain Train Index Read	internal
+	[15:8]	8'hf	r/w	tx_g1_midpoint_thres_k_lane[7:0]	Tx G1 Midpoint Threshold K	internal
+	[7:0]	8'hfc	r/w	tx_g1_midpoint_thres_c_lane[7:0]	Tx G1 Midpoint Threshold C (2's Complement)	internal
+						
+	# addr = 0x0088			dfe_test_5		
+						
+	[31:24]	8'h28	r/w	f0a_sat_thr_g3_lane[7:0]	F0a Saturation Threshold Or Less For DFE Stop After Train Done For PCIe GEN4	internal
+	[23:16]	8'h32	r/w	dfe_res_f0a_high_thres_init_g2_lane[7:0]	DFE Resolution F0a High Threshold For Train Initial Stage For G2	
+	15	0	r/w	sumftap_sign_7_lane	SUMFTAP_SIGN_7 For Train Debug	internal
+	14	0	r/w	sumftap_sign_6_lane	SUMFTAP_SIGN_6 For Train Debug	internal
+	13	1	r/w	sumftap_sign_5_lane	SUMFTAP_SIGN_5 For Train Debug	internal
+	12	1	r/w	sumftap_sign_4_lane	SUMFTAP_SIGN_4 For Train Debug	internal
+	11	1	r/w	sumftap_sign_3_lane	SUMFTAP_SIGN_3 For Train Debug	internal
+	10	1	r/w	sumftap_sign_2_lane	SUMFTAP_SIGN_2 For Train Debug	internal
+	9	1	r/w	sumftap_sign_1_lane	SUMFTAP_SIGN_1 For Train Debug	internal
+	8	0	r/w	sumftap_sign_0_lane	SUMFTAP_SIGN_0 For Train Debug	internal
+	7	0	r/w	sumftap_en_7_lane	SUMFTAP_EN_7 For Train Debug	internal
+	6	0	r/w	sumftap_en_6_lane	SUMFTAP_EN_6 For Train Debug	internal
+	5	1	r/w	sumftap_en_5_lane	SUMFTAP_EN_5 For Train Debug	internal
+	4	1	r/w	sumftap_en_4_lane	SUMFTAP_EN_4 For Train Debug	internal
+	3	1	r/w	sumftap_en_3_lane	SUMFTAP_EN_3 For Train Debug	internal
+	2	1	r/w	sumftap_en_2_lane	SUMFTAP_EN_2 For Train Debug	internal
+	1	1	r/w	sumftap_en_1_lane	SUMFTAP_EN_1 For Train Debug	internal
+	0	0	r/w	sumftap_en_0_lane	SUMFTAP_EN_0 For Train Debug	internal
+						
+	# addr = 0x008c			dfe_control_7		
+						
+	[31:28]	4'hf	r/w	rx_rxffe_c_ini_lane[3:0]	RX_RXFFE_C_INI For Train Debug	internal
+	[27:24]	4'h4	r/w	rxffe_c_gain_train_lane[3:0]	RXFFE_C_GAIN_TRAIN For Train Debug	internal
+	[23:22]	2'h3	r/w	force_dfe_res_f0_lane[1:0]	Force DFE RES F0 Value For Train Debug	internal
+	21	0	r/w	rx_cap_final_adjust_en_lane	RX_CAP_FINAL_ADJUST_EN For Train Debug	internal
+	20	1	r/w	adjust_ffe_r2_lane	ADJUST_FFE_R2 For Train Debug	internal
+	19	1	r/w	dfe_isi_res_adapt_en_lane	DFE_ISI_RES_ADAPT_EN For Train Debug	internal
+	18	0	r/w	ofst_dis_lane	Forced To Disable OFST Adapt In CDS For Train Debug	internal
+	17	0	r/w	force_ini_phase_offset_en_lane	Forced To Enable Initial Phase Adaptation Phase Offset For Train Debug	internal
+	16	0	r/w	ofst_align_adv_clk_align_en_lane	Use OFST Alignment During Advanced Clock Alignment For Train Debug	internal
+	[15:8]	8'h4	r/w	pcie_g1_step_num_lane[7:0]	PCIe G1 Decrese Step Number For Train Test	internal
+	[7:3]	5'h8	r/w	TX_G1_STEP_NUM_LANE[4:0]	Tx G1 Step Number	
+	2	0	r/w	RESERVED		
+	1	0	r/w	RESERVED		
+	0	0	r/w	dis_bypass_rxtrain_in_fom_lane	Disbale Bypass RxTrain During TxTrain In PCIe FOM Mode	internal
+						
+	# addr = 0x0090			dfe_control_8		
+						
+	[31:24]	8'h4	r/w	pcie_gn1_step_num_lane[7:0]	PCIe GN1 Decrese Step Number For Train Test	internal
+	[23:16]	8'h5	r/w	pcie_gn1_fn1_thre_lane[7:0]	PCIe GN1 Fn1 Threshold For Train Test	internal
+	[15:8]	8'h0	r/w	ini_phase_adapt_offset_2c_lane[7:0]	Forced Initail Phase Adapt Phase Offset From Cal_align90 For Test, It is valid when INI_PHASE_ADAPT_OFFSET_2C_LANE=1 For Train Debug	internal
+	[7:0]	8'h0	r/w	force_phase_train_offset_2c_lane[7:0]	Forced Phase Train Phase Offset From Cal_align90 For Test, It is valid when FORCE_PHASE_TRAIN_OFFSET_EN_LANE=1 For Train Debug	 
+						
+	# addr = 0x0094			dfe_control_9		
+	[31:24]	8'h0	r	eye_left_rtpa_2c_lane[7:0]	RTPA Eye Right Phase ESM Offset Result For Test	internal
+	[23:16]	8'h0	r	eye_right_rtpa_2c_lane[7:0]	RTPA Eye Left Phase ESM Offset Reseult For Test	internal
+	[15:8]	8'h0	r	eye_mid_rtpa_2c_lane[7:0]	RTPA Eye Midpoint Phase ESM Offset Reseult For Test	internal
+	[7:0]	8'h0	r	eye_mid_2c_lane[7:0]	Phase Train Eye Midpoint Phase ESM Offset Reseult For Test	internal
+						
+	# addr = 0x0098			dfe_control_10		
+						
+	[31:24]	8'h4	r/w	dfe_adapt_lp_num_f0b_accu_lane[7:0]	DFE_ADAPT_LP_NUM For CDS DFE Adapt F0B ACCU	internal
+	[23:16]	8'h4	r/w	pol_tb_lp_num_f0b_accu_lane[7:0]	POL_TB_LP_NUM For CDS DFE Adapt F0B ACCU	internal
+	[15:8]	8'h0	r/w	cli_cmd_lane[7:0]	CLI Command For Test	internal
+	7	0	r/w	RESERVED		
+	6	0	r/w	bypass_rxtrain_lane	Bypass RxTrain During TxTrain For Test	internal
+	5	0	r/w	skip_dfe_adapt_cdr_midpoint_lane	Skip DFE Adapt During CDR Midpoint In Phase Train For Debug 	internal
+	4	0	r/w	bypass_dfe_hang_check_lane	Bypass DFE Hang Check Timeout	internal
+	3	0	r/w	f1_adj_en_lane	F1/OFST Adjust During EOM Alignment In Real Time Phase Adaptation	internal
+	2	0	r/w	force_cds_state_lane	CDR DFE SCHEME State Force Control For Test (0=Train, 1=Normal)	internal
+	1	0	r/w	force_cds_ctrl_en_lane	CDR DFE SCHEME Step Force Control Enable For Test	internal
+	0	0	r/w	cli_start_lane	CLI Start For Test	internal
+						
+	# addr = 0x009C			dfe_control_11		
+						
+	[31:24]	8'h8	r/w	dfe_adapt_lp_num_f0d_coarse_lane[7:0]	DFE_ADAPT_LP_NUM For CDS DFE Adapt F0D COARSE	internal
+	[23:16]	8'h2	r/w	pol_tb_lp_num_f0d_coarse_lane[7:0]	POL_TB_LP_NUM For CDS DFE Adapt F0D ACCU COARSE	internal
+	[15:0]	16'h0	r/w	force_cds_ctrl_lane[15:0]	CDR DFE SCHEME Step Force Control For Test 	internal
+					[0] reset_bypass	
+					[1] coarse_dtl_bypass  	
+					[2] phase_move_with_dfe_en	
+					[3] ee_os_adapt_en (Not Used)	  
+					[4] dfe_adapt_en	
+					[5] dfe_adapt_f0a_en  	
+					[6] coarse_dfe_en	
+					[7] dis_adapt_f1	
+					[8] fine_dfe_en	
+					[9] accu_dfe_en 	
+					[10] f0b_adapt_en	
+					[11] f0d_adapt_en	
+					[12] vh_eo_mode REG	
+					[13] eye_check_bypass 	
+					[14] ofst_adapt_en	
+					[15] lock_dfe_on	
+						
+						
+	# addr = 0x00a0			cds_ctrl_reg0		
+	[31:24]	0	r/w	cds_err_code_lane[7:0]	CDS Error Code	internal
+	[23:16]	0	r/w	cds_state_lane[7:0]	CDS State	internal
+	[15:8]	8'h0	r	rd_dfe_f0d_lane[7:0]	F0d Value Read	internal
+	7	0	r/w	RESERVED		
+	6	1	r/w	CDR_MAXF0P_EN_LANE	CDR MaxF0p Train Enable	
+	5	0	r/w	RESERVED		
+	4	1	r/w	eo_based_lane	TBD	internal
+	3	0	r/w	vh_eo_mode_lane	TBD	internal
+	2	0	r/w	lock_dfe_on_lane	TBD	internal
+	1	1	r/w	dfe_save_en_lane	TBD	internal
+	0	1	r/w	reset_ph_en_dtl_lane	TBD	internal
+						
+	# addr = 0x00a4			cds_ctrl_reg1		
+	31	0	r/w	RESERVED		
+	[30:26]	5'h10	r/w	TX_GN1_STEP_NUM_LANE[4:0]	Tx Gn1 Step Number	
+	[25:24]	2'h1	r/w	TX_G1_STEP_SIZE_LANE[1:0]	Tx G1 Step Size	
+	[23:22]	2'h1	r/w	TX_G0_STEP_SIZE_LANE[1:0]	Tx G0 Step Size	
+	[21:20]	2'h1	r/w	TX_GN1_STEP_SIZE_LANE[1:0]	Tx Gn1 Step Size	
+	[19:16]	4'h8	r/w	TX_G0_STEP_NUM_LANE[3:0]	Tx G0 Step Number	
+	[15:12]	4'h8	r/w	CDR_STEP_NUM_LANE[3:0]	CDR Step Number	
+	[11:8]	4'h4	r/w	EOM_BER_LANE[3:0]	EOM Population Target	
+	7	1	r/w	TX_G1_MAXF0T_EN_LANE	Tx G1 Max F0t Train Enable	
+	6	1	r/w	TX_GN1_MAXF0T_EN_LANE	Tx GN1 Max F0t Train Enable	
+	5	0	r/w	cds_update_f_dis_lane	DFE Update Disable For Floating Taps	internal
+	4	0	r/w	cds_update_odd_dis_lane	DFE Update Disable For Odd Taps	internal
+	[3:0]	4'h0	r/w	cds_adapt_splr_dis_lane[3:0]	DFE Sampler Adapt Disable	internal
+						
+						
+	# addr = 0x00a8			esm_pop_p_cnt_low_lane		
+	[31:0]	0	r/w	EOM_POP_P_CNT_LANE[31:0]	EOM POP P Count Lower 32 Bits	internal
+						
+	# addr = 0x00ac			esm_err_p_cnt_low_lane		
+	[31:0]	0	r/w	EOM_ERR_P_CNT_LANE[31:0]	EOM ERR P Count Lower 32 Bits	internal
+						
+	# addr = 0x00b0			esm_err_pop_cnt_high_lane		
+	[31:24]	0	r/w	EOM_POP_N_CNT_LANE[39:32]	EOM POP N Count Higher 8 Bits	
+	[23:16]	0	r/w	EOM_POP_P_CNT_LANE[39:32]	EOM POP P Count Higher 8 Bits	
+	[15:8]	0	r/w	EOM_ERR_N_CNT_LANE[39:32]	EOM ERR N Count Higher 8 Bits	
+	[7:0]	0	r/w	EOM_ERR_P_CNT_LANE[39:32]	EOM ERR P Count Higher 8 Bits	
+						
+	# addr = 0x00b4			train_control_3		
+	[31:28]	4'h0	r/w	rxffe_res2_sel_e_g0_lane[3:0]	RXFFE RES2 Select Even For G0	internal
+	[27:24]	4'hf	r/w	rxffe_cap2_sel_e_g0_lane[3:0]	RXFFE CAP2 Select Even For G0	internal
+	[23:20]	4'h0	r/w	rxffe_res2_sel_o_g0_lane[3:0]	RXFFE RES2 Select Odd For G0	internal
+	[19:16]	4'hf	r/w	rxffe_cap2_sel_o_g0_lane[3:0]	RXFFE CAP2 Select Odd For G0	internal
+	[15:12]	4'h6	r/w	rxffe_res1_sel_g0_lane[3:0]	RXFFE RES1 Select Odd For G0	internal
+	[11:8]	4'hc	r/w	rxffe_cap1_sel_g0_lane[3:0]	RXFFE CAP1 Select Odd For G0	internal
+	7	1	r/w	dfe_res_f567_g0_lane	RX DFE RES F5/6/7 Save For G0	internal
+	6	0	r/w	dfe_res_f8to15_g0_lane	RX DFE RES F8to15 Save For G0	internal
+	5	0	r/w	dfe_res_floating_g0_lane	RX DFE RES Floating Save For G0	internal
+	[4:3]	2'h3	r/w	dfe_res_f0_g0_lane[1:0]	RX DFE RES F0 Save For G0	internal
+	[2:1]	2'h3	r/w	dfe_res_f1_g0_lane[1:0]	RX DFE RES F1 Save For G0	internal
+	0	1	r/w	dfe_res_f234_g0_lane	RX DFE RES F2/3/4 Save For G0	internal
+						
+	# addr = 0x00b8			train_control_4		
+	[31:28]	4'h0	r/w	rxffe_res2_sel_e_g1_lane[3:0]	RXFFE RES2 Select Even For G1	internal
+	[27:24]	4'hf	r/w	rxffe_cap2_sel_e_g1_lane[3:0]	RXFFE CAP2 Select Even For G1	internal
+	[23:20]	4'h0	r/w	rxffe_res2_sel_o_g1_lane[3:0]	RXFFE RES2 Select Odd For G1	internal
+	[19:16]	4'hf	r/w	rxffe_cap2_sel_o_g1_lane[3:0]	RXFFE CAP2 Select Odd For G1	internal
+	[15:12]	4'h6	r/w	rxffe_res1_sel_g1_lane[3:0]	RXFFE RES1 Select Odd For G1	internal
+	[11:8]	4'hc	r/w	rxffe_cap1_sel_g1_lane[3:0]	RXFFE CAP1 Select Odd For G1	internal
+	7	1	r/w	dfe_res_f567_g1_lane	RX DFE RES F5/6/7 Save For G1	internal
+	6	0	r/w	dfe_res_f8to15_g1_lane	RX DFE RES F8to15 Save For G1	internal
+	5	0	r/w	dfe_res_floating_g1_lane	RX DFE RES Floating Save For G1	internal
+	[4:3]	2'h3	r/w	dfe_res_f0_g1_lane[1:0]	RX DFE RES F0 Save For G1	internal
+	[2:1]	2'h3	r/w	dfe_res_f1_g1_lane[1:0]	RX DFE RES F1 Save For G1	internal
+	0	1	r/w	dfe_res_f234_g1_lane	RX DFE RES F2/3/4 Save For G1	internal
+						
+	# addr = 0x00bc			train_control_5		
+	[31:28]	4'h0	r/w	rxffe_res2_sel_e_g2_lane[3:0]	RXFFE RES2 Select Even For G2	internal
+	[27:24]	4'hf	r/w	rxffe_cap2_sel_e_g2_lane[3:0]	RXFFE CAP2 Select Even For G2	internal
+	[23:20]	4'h0	r/w	rxffe_res2_sel_o_g2_lane[3:0]	RXFFE RES2 Select Odd For G2	internal
+	[19:16]	4'hf	r/w	rxffe_cap2_sel_o_g2_lane[3:0]	RXFFE CAP2 Select Odd For G2	internal
+	[15:12]	4'h6	r/w	rxffe_res1_sel_g2_lane[3:0]	RXFFE RES1 Select Odd For G2	internal
+	[11:8]	4'hc	r/w	rxffe_cap1_sel_g2_lane[3:0]	RXFFE CAP1 Select Odd For G2	internal
+	7	1	r/w	dfe_res_f567_g2_lane	RX DFE RES F5/6/7 Save For G2	internal
+	6	0	r/w	dfe_res_f8to15_g2_lane	RX DFE RES F8to15 Save For G2	internal
+	5	0	r/w	dfe_res_floating_g2_lane	RX DFE RES Floating Save For G2	internal
+	[4:3]	2'h3	r/w	dfe_res_f0_g2_lane[1:0]	RX DFE RES F0 Save For G2	internal
+	[2:1]	2'h3	r/w	dfe_res_f1_g2_lane[1:0]	RX DFE RES F1 Save For G2	internal
+	0	1	r/w	dfe_res_f234_g2_lane	RX DFE RES F2/3/4 Save For G2	internal
+						
+	# addr = 0x00c0			train_control_6		
+	[31:28]	4'h0	r/w	rxffe_res2_sel_e_g3_lane[3:0]	RXFFE RES2 Select Even For G3	internal
+	[27:24]	4'hf	r/w	rxffe_cap2_sel_e_g3_lane[3:0]	RXFFE CAP2 Select Even For G3	internal
+	[23:20]	4'h0	r/w	rxffe_res2_sel_o_g3_lane[3:0]	RXFFE RES2 Select Odd For G3	internal
+	[19:16]	4'hf	r/w	rxffe_cap2_sel_o_g3_lane[3:0]	RXFFE CAP2 Select Odd For G3	internal
+	[15:12]	4'h6	r/w	rxffe_res1_sel_g3_lane[3:0]	RXFFE RES1 Select Odd For G3	internal
+	[11:8]	4'hc	r/w	rxffe_cap1_sel_g3_lane[3:0]	RXFFE CAP1 Select Odd For G3	internal
+	7	1	r/w	dfe_res_f567_g3_lane	RX DFE RES F5/6/7 Save For G3	internal
+	6	0	r/w	dfe_res_f8to15_g3_lane	RX DFE RES F8to15 Save For G3	internal
+	5	0	r/w	dfe_res_floating_g3_lane	RX DFE RES Floating Save For G3	internal
+	[4:3]	2'h3	r/w	dfe_res_f0_g3_lane[1:0]	RX DFE RES F0 Save For G3	internal
+	[2:1]	2'h3	r/w	dfe_res_f1_g3_lane[1:0]	RX DFE RES F1 Save For G3	internal
+	0	1	r/w	dfe_res_f234_g3_lane	RX DFE RES F2/3/4 Save For G3	internal
+						
+	# addr = 0x00c4			train_control_7		
+	[31:28]	4'h0	r/w	rxffe_res2_sel_e_g4_lane[3:0]	RXFFE RES2 Select Even For G4	internal
+	[27:24]	4'hf	r/w	rxffe_cap2_sel_e_g4_lane[3:0]	RXFFE CAP2 Select Even For G4	internal
+	[23:20]	4'h0	r/w	rxffe_res2_sel_o_g4_lane[3:0]	RXFFE RES2 Select Odd For G4	internal
+	[19:16]	4'hf	r/w	rxffe_cap2_sel_o_g4_lane[3:0]	RXFFE CAP2 Select Odd For G4	internal
+	[15:12]	4'h6	r/w	rxffe_res1_sel_g4_lane[3:0]	RXFFE RES1 Select Odd For G4	internal
+	[11:8]	4'hc	r/w	rxffe_cap1_sel_g4_lane[3:0]	RXFFE CAP1 Select Odd For G4	internal
+	7	1	r/w	dfe_res_f567_g4_lane	RX DFE RES F5/6/7 Save For G4	internal
+	6	0	r/w	dfe_res_f8to15_g4_lane	RX DFE RES F8to15 Save For G4	internal
+	5	0	r/w	dfe_res_floating_g4_lane	RX DFE RES Floating Save For G4	internal
+	[4:3]	2'h3	r/w	dfe_res_f0_g4_lane[1:0]	RX DFE RES F0 Save For G4	internal
+	[2:1]	2'h3	r/w	dfe_res_f1_g4_lane[1:0]	RX DFE RES F1 Save For G4	internal
+	0	1	r/w	dfe_res_f234_g4_lane	RX DFE RES F2/3/4 Save For G4	internal
+						
+	# addr = 0x00c8			train_control_8		
+	[31:29]	0	r/w	RESERVED		
+	28	1	r/w	tx_em_peak_en_g4_lane	TXFFE Peak Enable Select UCI For G4	internal
+	27	1	r/w	tx_em_peak_en_g3_lane	TXFFE Peak Enable Select UCI For G3	internal
+	26	1	r/w	tx_em_peak_en_g2_lane	TXFFE Peak Enable Select UCI For G2	internal
+	25	1	r/w	tx_em_peak_en_g1_lane	TXFFE Peak Enable Select UCI For G1	internal
+	24	1	r/w	tx_em_peak_en_g0_lane	TXFFE Peak Enable Select UCI For G0	internal
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h0	r/w	tx_em_peak_ctrl_g4_lane[3:0]	TXFFE Peak Select UCI For G4	internal
+	[15:12]	4'h0	r/w	tx_em_peak_ctrl_g3_lane[3:0]	TXFFE Peak Select UCI For G3	internal
+	[11:8]	4'h0	r/w	tx_em_peak_ctrl_g2_lane[3:0]	TXFFE Peak Select UCI For G2	internal
+	[7:4]	4'h0	r/w	tx_em_peak_ctrl_g1_lane[3:0]	TXFFE Peak Select UCI For G1	internal
+	[3:0]	4'h0	r/w	tx_em_peak_ctrl_g0_lane[3:0]	TXFFE Peak Select UCI For G0	internal
+						
+	# addr = 0x00cc			train_control_9		
+	[31:29]	0	r/w	RESERVED		
+	28	0	r	tx_train_pass_g4_lane	TX TRAIN Pass Save For G4	internal
+	27	0	r	tx_train_pass_g3_lane	TX TRAIN Pass Save For G3	internal
+	26	0	r	tx_train_pass_g2_lane	TX TRAIN Pass Save For G2	internal
+	25	0	r	tx_train_pass_g1_lane	TX TRAIN Pass Save For G1	internal
+	24	0	r	tx_train_pass_g0_lane	TX TRAIN Pass Save For G0	internal
+	23	0	r/w	RESERVED		
+	22	0	r/w	RESERVED		
+	21	0	r/w	RESERVED		
+	20	0	r/w	rxffe_force_en_g4_lane	RXFFE Force Enable For G4	internal
+	19	0	r/w	rxffe_force_en_g3_lane	RXFFE Force Enable For G3	internal
+	18	0	r/w	rxffe_force_en_g2_lane	RXFFE Force Enable For G2	internal
+	17	0	r/w	rxffe_force_en_g1_lane	RXFFE Force Enable For G1	internal
+	16	0	r/w	rxffe_force_en_g0_lane	RXFFE Force Enable For G0	internal
+	[15:13]	0	r/w	RESERVED		
+	12	0	r	rx_train_pass_g4_lane	RX TRAIN Pass Save For G4	internal
+	11	0	r	rx_train_pass_g3_lane	RX TRAIN Pass Save For G3	internal
+	10	0	r	rx_train_pass_g2_lane	RX TRAIN Pass Save For G2	internal
+	9	0	r	rx_train_pass_g1_lane	RX TRAIN Pass Save For G1	internal
+	8	0	r	rx_train_pass_g0_lane	RX TRAIN Pass Save For G0	internal
+	[7:4]	4'h8	r/w	gaintrain_cap1_thr_g3_lane[3:0]	Gain Train CAP1 Threshold For G3	internal
+	[3:0]	4'h3	r/w	gaintrain_cap1_thr_g2_lane[3:0]	Gain Train CAP1 Threshold For G2	internal
+						
+	# addr = 0x00d0			train_control_10		
+						
+	[31:28]	4'h0	r/w	txffe_em_peak_ctrl_g1_lane[3:0]	TXFFE Peak Select For G1	internal
+	[27:24]	4'h0	r/w	txffe_em_pre_ctrl_g1_lane[3:0]	TXFFE Pre Emphasis Select For G1	internal
+	[23:20]	4'h0	r/w	txffe_em_po_ctrl_g1_lane[3:0]	TXFFE Post Emphasis Select For G1	internal
+	19	0	r/w	txffe_em_peak_en_g1_lane	TXFFE Peak Enable For G1	internal
+	18	0	r/w	txffe_em_pre_en_g1_lane	TXFFE Pre Emphasis Enable For G1	internal
+	17	0	r/w	txffe_em_po_en_g1_lane	TXFFE Post Emphasis Enable For G1	internal
+	16	0	r/w	txffe_force_en_g1_lane	TXFFE Force Enable For G1	internal
+	[15:12]	4'h0	r/w	txffe_em_peak_ctrl_g0_lane[3:0]	TXFFE Peak Select For G0	internal
+	[11:8]	4'h0	r/w	txffe_em_pre_ctrl_g0_lane[3:0]	TXFFE Pre Emphasis Select For G0	internal
+	[7:4]	4'h0	r/w	txffe_em_po_ctrl_g0_lane[3:0]	TXFFE Post Emphasis Select For G0	internal
+	3	0	r/w	txffe_em_peak_en_g0_lane	TXFFE Peak Enable For G0	internal
+	2	0	r/w	txffe_em_pre_en_g0_lane	TXFFE Pre Emphasis Enable For G0	internal
+	1	0	r/w	txffe_em_po_en_g0_lane	TXFFE Post Emphasis Enable For G0	internal
+	0	0	r/w	txffe_force_en_g0_lane	TXFFE Force Enable For G0	internal
+						
+	# addr = 0x00d4			train_control_11		
+						
+	[31:28]	4'h0	r/w	txffe_em_peak_ctrl_g3_lane[3:0]	TXFFE Peak Select For G3	internal
+	[27:24]	4'h0	r/w	txffe_em_pre_ctrl_g3_lane[3:0]	TXFFE Pre Emphasis Select For G3	internal
+	[23:20]	4'h0	r/w	txffe_em_po_ctrl_g3_lane[3:0]	TXFFE Post Emphasis Select For G3	internal
+	19	0	r/w	txffe_em_peak_en_g3_lane	TXFFE Peak Enable For G3	internal
+	18	0	r/w	txffe_em_pre_en_g3_lane	TXFFE Pre Emphasis Enable For G3	internal
+	17	0	r/w	txffe_em_po_en_g3_lane	TXFFE Post Emphasis Enable For G3	internal
+	16	0	r/w	txffe_force_en_g3_lane	TXFFE Force Enable For G3	internal
+	[15:12]	4'h0	r/w	txffe_em_peak_ctrl_g2_lane[3:0]	TXFFE Peak Select For G2	internal
+	[11:8]	4'h0	r/w	txffe_em_pre_ctrl_g2_lane[3:0]	TXFFE Pre Emphasis Select For G2	internal
+	[7:4]	4'h0	r/w	txffe_em_po_ctrl_g2_lane[3:0]	TXFFE Post Emphasis Select For G2	internal
+	3	0	r/w	txffe_em_peak_en_g2_lane	TXFFE Peak Enable For G2	internal
+	2	0	r/w	txffe_em_pre_en_g2_lane	TXFFE Pre Emphasis Enable For G2	internal
+	1	0	r/w	txffe_em_po_en_g2_lane	TXFFE Post Emphasis Enable For G2	internal
+	0	0	r/w	txffe_force_en_g2_lane	TXFFE Force Enable For G2	internal
+						
+	# addr = 0x00d8			train_control_12		
+						
+	[31:24]	8'h32	r/w	f0a_sat_thr_g2_lane[7:0]	F0a Saturation Threshold When CAP1 Value Is 3 Or Less For DFE Stop After Train Done For PCIe GEN3	internal
+	23	0	r/w	RESERVED		
+	22	0	r/w	RESERVED		
+	21	0	r/w	RESERVED		
+	20	0	r/w	txffe_cmd_if_on_g4_lane	TXFFE Command Interface Data On For G4	internal
+	19	0	r/w	txffe_cmd_if_on_g3_lane	TXFFE Command Interface Data On For G3	internal
+	18	0	r/w	txffe_cmd_if_on_g2_lane	TXFFE Command Interface Data On For G2	internal
+	17	0	r/w	txffe_cmd_if_on_g1_lane	TXFFE Command Interface Data On For G1	internal
+	16	0	r/w	txffe_cmd_if_on_g0_lane	TXFFE Command Interface Data On For G0	internal
+	[15:12]	4'h0	r/w	txffe_em_peak_ctrl_g4_lane[3:0]	TXFFE Peak Select For G4	internal
+	[11:8]	4'h0	r/w	txffe_em_pre_ctrl_g4_lane[3:0]	TXFFE Pre Emphasis Select For G4	internal
+	[7:4]	4'h0	r/w	txffe_em_po_ctrl_g4_lane[3:0]	TXFFE Post Emphasis Select For G4	internal
+	3	0	r/w	txffe_em_peak_en_g4_lane	TXFFE Peak Enable For G4	internal
+	2	0	r/w	txffe_em_pre_en_g4_lane	TXFFE Pre Emphasis Enable For G4	internal
+	1	0	r/w	txffe_em_po_en_g4_lane	TXFFE Post Emphasis Enable For G4	internal
+	0	0	r/w	txffe_force_en_g4_lane	TXFFE Force Enable For G4	internal
+						
+	# addr = 0x00dc			esm_pop_n_cnt_low_lane		
+	[31:0]	0	r/w	EOM_POP_N_CNT_LANE[31:0]	EOM POP N Count Lower 32 Bits	internal
+						
+	# addr = 0x00e0			esm_err_n_cnt_low_lane		
+	[31:0]	0	r/w	EOM_ERR_N_CNT_LANE[31:0]	EOM ERR N Count Lower 32 Bits	internal
+						
+	# addr = 0x00e4			train_control_13		
+	[31:28]	4'h9	r/w	rxffe_r_gain_train_g3_lane[3:0]	RXFFE_R_GAIN_TRAIN For PCIe G3 	internal
+	[27:24]	4'h4	r/w	rxffe_r_gain_train_g2_lane[3:0]	RXFFE_R_GAIN_TRAIN For PCIe G2	internal
+	[23:16]	8'h0	r	tx_g1_maxf0t_g1_index_result_lane[7:0]	Tx Train G1 Max F0t G1 Index Train Result	internal
+	[15:8]	8'h0	r	tx_gn1_maxf0t_gn1_index_result_lane[7:0]	Tx Train Gn1 Max F0t Gn1 Index Train Result	internal
+	[7:5]	0	r/w	RESERVED		
+	4	0	r/w	dfe_f8to15_en_g4_lane	DFE F8to15 TAP En For G4	internal
+	3	0	r/w	dfe_f8to15_en_g3_lane	DFE F8to15 TAP En For G3	internal
+	2	0	r/w	dfe_f8to15_en_g2_lane	DFE F8to15 TAP En For G2	internal
+	1	0	r/w	dfe_f8to15_en_g1_lane	DFE F8to15 TAP En For G1	internal
+	0	0	r/w	dfe_f8to15_en_g0_lane	DFE F8to15 TAP En For G0	internal
+						
+	# addr = 0x00e8			train_control_14		
+						
+	[31:24]	8'h2d	r/w	dfe_res_f0a_high_thres_init_g3_lane[7:0]	DFE Resolution F0a High Threshold For Train Initial Stage For PCIe G3	internal
+	23	0	r/w	RESERVED		
+	22	0	r/w	RESERVED		
+	[21:16]	6'h0	r/w	RESERVED		
+	15	0	r/w	RESERVED		
+	[14:12]	3'h0	r/w	RESERVED		
+	[11:8]	4'h0	r/w	RESERVED		
+	[7:0]	8'h0	r/w	RESERVED		
+						
+	# addr = 0x00ec			train_control_15		
+						
+	31	0	r	g2_trxtrain_success_lane	G2 TRxtrain Success 	internal
+	30	0	r	g2_trxtrain_comp_lane	G2 TRxtrain Complete 	internal
+	29	0	r	g2_trxtrain_trig_lane	G2 TRxtrain Triggered 	internal
+	28	0	r	g2_rxtrain_success_lane	G2 Rxtrain Success 	internal
+	27	0	r	g2_rxtrain_comp_lane	G2 Rxtrain Complete 	internal
+	26	0	r	g2_rxtrain_trig_lane	G2 Rxtrain Triggered 	internal
+	25	0	r	g2_rxinit_done_lane	G2 Rxinit_done Complete 	internal
+	24	0	r	g2_spdchg_comp_lane	G2 Speed Change Complete	internal
+	23	0	r/w	RESERVED		
+	22	0	r/w	align90_dummy_clk_g2_lane	Align90_dm Train Save For G2	internal
+	[21:16]	6'h0	r/w	align90_dac_g2_lane[5:0]	Align90_dac Train Save For G2	internal
+	15	0	r/w	RESERVED		
+	[14:12]	3'h0	r/w	align90_gm_g2_lane[2:0]	Align90_gm Train Save For G2	internal
+	[11:8]	4'h0	r/w	RESERVED		
+	[7:0]	8'h0	r/w	align90_ref_g2_lane[7:0]	Align90_Ref Train Save For G2	internal
+						
+	# addr = 0x00f0			train_control_16		
+						
+	31	0	r	g3_trxtrain_success_lane	G3 TRxtrain Success 	internal
+	30	0	r	g3_trxtrain_comp_lane	G3 TRxtrain Complete 	internal
+	29	0	r	g3_trxtrain_trig_lane	G3 TRxtrain Triggered 	internal
+	28	0	r	g3_rxtrain_success_lane	G3 Rxtrain Success 	internal
+	27	0	r	g3_rxtrain_comp_lane	G3 Rxtrain Complete 	internal
+	26	0	r	g3_rxtrain_trig_lane	G3 Rxtrain Triggered 	internal
+	25	0	r	g3_rxinit_done_lane	G3 Rxinit_done Complete 	internal
+	24	0	r	g3_spdchg_comp_lane	G3 Speed Change Complete	internal
+	23	0	r/w	RESERVED		
+	22	0	r/w	align90_dummy_clk_g3_lane	Align90_dm Train Save For G3	internal
+	[21:16]	6'h0	r/w	align90_dac_g3_lane[5:0]	Align90_dac Train Save For G3	internal
+	15	0	r/w	RESERVED		
+	[14:12]	3'h0	r/w	align90_gm_g3_lane[2:0]	Align90_gm Train Save For G3	internal
+	[11:8]	4'h0	r/w	RESERVED		
+	[7:0]	8'h0	r/w	align90_ref_g3_lane[7:0]	Align90_Ref Train Save For G3	internal
+						
+	# addr = 0x00f4			train_control_17		
+						
+	[31:29]	0	r/w	RESERVED		
+	28	0	r/w	bypass_ctle_train_g4_lane	Bypass CTLE Train G4 For Test	internal
+	27	0	r/w	bypass_ctle_train_g3_lane	Bypass CTLE Train G3 For Test	internal
+	26	0	r/w	bypass_ctle_train_g2_lane	Bypass CTLE Train G2 For Test	internal
+	25	0	r/w	bypass_ctle_train_g1_lane	Bypass CTLE Train G1 For Test	internal
+	24	0	r/w	bypass_ctle_train_g0_lane	Bypass CTLE Train G0 For Test	internal
+	23	0	r/w	RESERVED		
+	22	0	r/w	align90_dummy_clk_g4_lane	Align90_dm Train Save For G4	internal
+	[21:16]	6'h0	r/w	align90_dac_g4_lane[5:0]	Align90_dac Train Save For G4	internal
+	15	0	r/w	RESERVED		
+	[14:12]	3'h0	r/w	align90_gm_g4_lane[2:0]	Align90_gm Train Save For G4	internal
+	[11:8]	4'h0	r/w	RESERVED		
+	[7:0]	8'h0	r/w	align90_ref_g4_lane[7:0]	Align90_Ref Train Save For G4	internal
+						
+	# addr = 0x00f8			end_xdat_lane		
+	[31:8]	0	r/w	RESERVED		
+	[7:0]	8'haa	r/w	end_xdat_lane[7:0]	End Of XDATA Lane For Firmware Only	internal

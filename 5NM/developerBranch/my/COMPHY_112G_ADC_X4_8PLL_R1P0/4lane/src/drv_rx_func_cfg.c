@@ -1,0 +1,472 @@
+#include "common.h"
+#include "driver.h"
+// Code banking configuration, do not remove
+#ifdef USE_BANKING
+#pragma codeseg BANK3
+#endif
+
+void drv_rx_misc_cfg(void) BANKING_CTRL {
+	reg_PT_RX_PRBS_LOAD_LANE = 0;
+        reg_ANA_RX_RXCLK_EN_FORCE_LANE =1;
+        reg_ANA_RX_RXCLK_EN_LANE =1;
+}
+
+void drv_rx_train_if_cfg(void) BANKING_CTRL {
+
+// pam2 based on 5nm tx_train_if design spec. section 11.5
+	if(reg_ETHERNET_MODE_LANE_1_0 == 0x1) {
+		reg_TRAIN_PAT_NUM_LANE_9_0_b0 = 0x88;
+		reg_TRAIN_PAT_NUM_LANE_9_0_b1 = 0x0;
+                reg_TX_AMP_DEFAULT1_LANE_6_0 = 0x2f;
+                reg_TX_EMPH0_DEFAULT1_LANE_4_0 = 0x3;
+                reg_TX_EMPH1_DEFAULT1_LANE_4_0 = 0x12;
+
+                reg_TX_AMP_DEFAULT2_LANE_6_0 = 0x3f;
+                reg_TX_EMPH0_DEFAULT2_LANE_4_0 = 0x0;
+                reg_TX_EMPH1_DEFAULT2_LANE_4_0 = 0x0;
+
+                reg_TX_AMP_DEFAULT3_LANE_6_0 = 0x3f;
+                reg_TX_EMPH0_DEFAULT3_LANE_4_0 = 0x0;
+                reg_TX_EMPH1_DEFAULT3_LANE_4_0 = 0x0;
+
+                reg_TX_EMPH0_MAX_LANE_4_0 = 0x16;
+                reg_TX_EMPH1_MAX_LANE_4_0 = 0x10;
+                reg_TX_EMPH2_MAX_LANE_4_0 = 0x0;
+
+                reg_TRX_TRAIN_TIMER_LANE_12_0_b0 = 0xf4;
+                reg_TRX_TRAIN_TIMER_LANE_12_0_b1 = 0x1; 
+                reg_INT_TX_PRESET_INDEX_LANE_3_0 = 0x1;
+                reg_TX_TRAIN_PAT_CODING_SEL_LANE_1_0 = 0x1;
+
+// 56G pam4 on 5nm tx_train_if design spec. section 11.5
+	} else if(reg_ETHERNET_MODE_LANE_1_0 == 0x2) {
+		reg_TRAIN_PAT_NUM_LANE_9_0_b0 = 0x8;
+		reg_TRAIN_PAT_NUM_LANE_9_0_b1 = 0x2;
+                reg_TX_AMP_DEFAULT1_LANE_6_0 = 0x3f;
+                reg_TX_EMPH0_DEFAULT1_LANE_4_0 = 0x0;
+                reg_TX_EMPH1_DEFAULT1_LANE_4_0 = 0x0;
+
+                reg_TX_AMP_DEFAULT2_LANE_6_0 = 0x2f;
+                reg_TX_EMPH0_DEFAULT2_LANE_4_0 = 0xa;
+                reg_TX_EMPH1_DEFAULT2_LANE_4_0 = 0x6;
+
+                reg_TX_AMP_DEFAULT3_LANE_6_0 = 0x2f;
+                reg_TX_EMPH0_DEFAULT3_LANE_4_0 = 0x10;
+                reg_TX_EMPH1_DEFAULT3_LANE_4_0 = 0x0;
+
+                reg_TX_EMPH0_MAX_LANE_4_0 = 0x16;
+                reg_TX_EMPH1_MAX_LANE_4_0 = 0x10;
+                reg_TX_EMPH2_MAX_LANE_4_0 = 0x9;
+
+                reg_TRX_TRAIN_TIMER_LANE_12_0_b0 = 0xb7;
+                reg_TRX_TRAIN_TIMER_LANE_12_0_b1 = 0x0b;
+                reg_INT_TX_PRESET_INDEX_LANE_3_0 = 0x1;
+                reg_TX_TRAIN_PAT_CODING_SEL_LANE_1_0 = 0x0;
+
+// 100G pam4, no spec. for default value based on Peng's input. 
+        } else if(reg_ETHERNET_MODE_LANE_1_0 == 0x3) { 
+                reg_TRAIN_PAT_NUM_LANE_9_0_b0 = 0x4;
+                reg_TRAIN_PAT_NUM_LANE_9_0_b1 = 0x1;
+                reg_TX_AMP_DEFAULT1_LANE_6_0 = 0x3f;
+                reg_TX_EMPH0_DEFAULT1_LANE_4_0 = 0x0;
+                reg_TX_EMPH1_DEFAULT1_LANE_4_0 = 0x0;
+
+                reg_TX_AMP_DEFAULT2_LANE_6_0 = 0x3f;
+                reg_TX_EMPH0_DEFAULT2_LANE_4_0 = 0x0;
+                reg_TX_EMPH1_DEFAULT2_LANE_4_0 = 0x0;
+
+                reg_TX_AMP_DEFAULT3_LANE_6_0 = 0x3f;
+                reg_TX_EMPH0_DEFAULT3_LANE_4_0 = 0x00;
+                reg_TX_EMPH1_DEFAULT3_LANE_4_0 = 0x0;
+
+                reg_TX_EMPH0_MAX_LANE_4_0 = 0x16;
+                reg_TX_EMPH1_MAX_LANE_4_0 = 0x10;
+                reg_TX_EMPH2_MAX_LANE_4_0 = 0x9;
+
+                reg_TRX_TRAIN_TIMER_LANE_12_0_b0 = 0xff;
+                reg_TRX_TRAIN_TIMER_LANE_12_0_b1 = 0x1f;
+                reg_INT_TX_PRESET_INDEX_LANE_3_0 = 0x1;
+                reg_TX_TRAIN_PAT_CODING_SEL_LANE_1_0 = 0x0;
+
+
+              }
+
+
+         else if (reg_ETHERNET_MODE_LANE_1_0 == 0x0) {
+                reg_TRX_TRAIN_TIMER_LANE_12_0_b0 = 0xf4;
+                reg_TRX_TRAIN_TIMER_LANE_12_0_b1 = 0x1;
+
+        }
+        reg_DET_BYPASS_LANE = 0x1;
+	reg_TRAIN_PAT_NUM_RX_LANE_9_0_b0 = reg_TRAIN_PAT_NUM_LANE_9_0_b0;
+	reg_TRAIN_PAT_NUM_RX_LANE_9_0_b1 = reg_TRAIN_PAT_NUM_LANE_9_0_b1;
+
+}
+
+
+
+
+void drv_rx_eq_cfg (void) BANKING_CTRL {
+
+        reg_RX_SKEW_CAL_SQ_FREZ_EN_LANE = 1; //change default to on
+        reg_RX_SKEW_CAL_PAT_FREZ_EN_LANE = 1;
+        reg_RX_DP_LMS_BLW_PAT_FREZ_EN_LANE = 1;
+        reg_RX_DTL_LMS_BLW_PAT_FREZ_EN_LANE = 1;
+
+	if((reg_RX_TH_SEL_LANE_1_0 == 3) & (reg_RX_RATE_MODE_LANE_1_0 == 0)) {
+		reg_RX_DTL_BUF_CLK_EN_LANE = 1;
+		reg_RX_DTL_LMS_BLW_CLK_EN_LANE = 1;
+		reg_RX_DTL_LMS_GAIN_CLK_EN_LANE = 1;
+		reg_RX_DTL_LMS_FFE_PRE_CLK_EN_LANE_2_0 = 7;
+		reg_RX_DTL_LMS_FFE_PST_CLK_EN_LANE_2_0 = 7;
+		reg_RX_DTL_LMS_BLW_EN_LANE = 1;
+		reg_RX_DTL_LMS_GAIN_EN_LANE = 1;
+		reg_RX_DTL_LMS_FFE_PRE_EN_LANE_2_0 = 7;
+		reg_RX_DTL_LMS_FFE_PST_EN_LANE_2_0 = 7;
+		reg_RX_DP_BUF_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_DFE_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_BLW_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_GAIN_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_FFE_PRE_CLK_EN_LANE_5_0 = 0x3f;
+		reg_RX_DP_LMS_FFE_PST_CLK_EN_LANE_15_0_b0 = 0xff;
+		reg_RX_DP_LMS_FFE_PST_CLK_EN_LANE_15_0_b1 = 0xff;
+		reg_RX_DP_LMS_FFE_FLT_B0_CLK_EN_LANE_3_0 = 0xf;
+		reg_RX_DP_LMS_FFE_FLT_B1_CLK_EN_LANE_3_0 = 0xf;
+		reg_RX_DP_LMS_DFE_EN_LANE = 1;
+		reg_RX_DP_LMS_BLW_EN_LANE = 1;
+		reg_RX_DP_LMS_GAIN_EN_LANE = 1;
+		reg_RX_DP_LMS_FFE_PRE_EN_LANE_5_0 = 0x3f;
+		reg_RX_DP_LMS_FFE_PST_EN_LANE_15_0_b0 = 0xff;
+		reg_RX_DP_LMS_FFE_PST_EN_LANE_15_0_b1 = 0xff;
+		reg_RX_DP_LMS_FFE_FLT_B0_EN_LANE_3_0 = 0xf;
+		reg_RX_DP_LMS_FFE_FLT_B1_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_GAIN_CTRL_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_OFST_CTRL_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_GAIN_TH_SEL_LANE_2_0 = 0x0;
+		reg_RX_ADC_IF_DAT_GAIN_TH_EN_LANE_15_0_b0 = 0xff;
+		reg_RX_ADC_IF_DAT_GAIN_TH_EN_LANE_15_0_b1 = 0xff;
+		reg_RX_ADC_IF_DAT_OFST_TH_EN_LANE_15_0_b0 = 0xff;
+		reg_RX_ADC_IF_DAT_OFST_TH_EN_LANE_15_0_b1 = 0xff;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b0 = 0xff;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b1 = 0xff;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b2 = 0xff;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b3 = 0xff;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b0 = 0xff;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b1 = 0xff;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b2 = 0xff;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b3 = 0xff;
+		reg_RX_DP_DAT_CLK_EN_LANE_5_0 = 0x3f;	
+	} else if((reg_RX_TH_SEL_LANE_1_0 == 2) & (reg_RX_RATE_MODE_LANE_1_0 == 0)) {
+		reg_RX_DTL_BUF_CLK_EN_LANE = 1;
+		reg_RX_DTL_LMS_BLW_CLK_EN_LANE = 1;
+		reg_RX_DTL_LMS_GAIN_CLK_EN_LANE = 1;
+		reg_RX_DTL_LMS_FFE_PRE_CLK_EN_LANE_2_0 = 7;
+		reg_RX_DTL_LMS_FFE_PST_CLK_EN_LANE_2_0 = 7;
+		reg_RX_DTL_LMS_BLW_EN_LANE = 1;
+		reg_RX_DTL_LMS_GAIN_EN_LANE = 1;
+		reg_RX_DTL_LMS_FFE_PRE_EN_LANE_2_0 = 7;
+		reg_RX_DTL_LMS_FFE_PST_EN_LANE_2_0 = 7;
+		reg_RX_DP_BUF_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_DFE_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_BLW_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_GAIN_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_FFE_PRE_CLK_EN_LANE_5_0 = 0x3f;
+		reg_RX_DP_LMS_FFE_PST_CLK_EN_LANE_15_0_b0 = 0xff;
+		reg_RX_DP_LMS_FFE_PST_CLK_EN_LANE_15_0_b1 = 0xff;
+		reg_RX_DP_LMS_FFE_FLT_B0_CLK_EN_LANE_3_0 = 0xf;
+		reg_RX_DP_LMS_FFE_FLT_B1_CLK_EN_LANE_3_0 = 0xf;
+		reg_RX_DP_LMS_DFE_EN_LANE = 1;
+		reg_RX_DP_LMS_BLW_EN_LANE = 1;
+		reg_RX_DP_LMS_GAIN_EN_LANE = 1;
+		reg_RX_DP_LMS_FFE_PRE_EN_LANE_5_0 = 0x3f;
+		reg_RX_DP_LMS_FFE_PST_EN_LANE_15_0_b0 = 0xff;
+		reg_RX_DP_LMS_FFE_PST_EN_LANE_15_0_b1 = 0xff;
+		reg_RX_DP_LMS_FFE_FLT_B0_EN_LANE_3_0 = 0xf;
+		reg_RX_DP_LMS_FFE_FLT_B1_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_GAIN_CTRL_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_OFST_CTRL_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_GAIN_TH_SEL_LANE_2_0 = 0x1;
+		reg_RX_ADC_IF_DAT_GAIN_TH_EN_LANE_15_0_b0 = 0x55;
+		reg_RX_ADC_IF_DAT_GAIN_TH_EN_LANE_15_0_b1 = 0x55;
+		reg_RX_ADC_IF_DAT_OFST_TH_EN_LANE_15_0_b0 = 0x55;
+		reg_RX_ADC_IF_DAT_OFST_TH_EN_LANE_15_0_b1 = 0x55;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b0 = 0x55;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b1 = 0x55;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b2 = 0x55;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b3 = 0x55;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b0 = 0x55;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b1 = 0x55;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b2 = 0x55;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b3 = 0x55;
+		reg_RX_DP_DAT_CLK_EN_LANE_5_0 = 0x1f;	
+	} else if((reg_RX_TH_SEL_LANE_1_0 == 2) & (reg_RX_RATE_MODE_LANE_1_0 == 1)) {
+		reg_RX_DTL_BUF_CLK_EN_LANE = 1;
+		reg_RX_DTL_LMS_BLW_CLK_EN_LANE = 1;
+		reg_RX_DTL_LMS_GAIN_CLK_EN_LANE = 1;
+		reg_RX_DTL_LMS_FFE_PRE_CLK_EN_LANE_2_0 = 7;
+		reg_RX_DTL_LMS_FFE_PST_CLK_EN_LANE_2_0 = 7;
+		reg_RX_DTL_LMS_BLW_EN_LANE = 1;
+		reg_RX_DTL_LMS_GAIN_EN_LANE = 1;
+		reg_RX_DTL_LMS_FFE_PRE_EN_LANE_2_0 = 7;
+		reg_RX_DTL_LMS_FFE_PST_EN_LANE_2_0 = 7;
+		reg_RX_DP_BUF_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_DFE_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_BLW_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_GAIN_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_FFE_PRE_CLK_EN_LANE_5_0 = 0xf;
+		reg_RX_DP_LMS_FFE_PST_CLK_EN_LANE_15_0_b0 = 0xff;
+		reg_RX_DP_LMS_FFE_PST_CLK_EN_LANE_15_0_b1 = 0x3;
+		reg_RX_DP_LMS_FFE_FLT_B0_CLK_EN_LANE_3_0 = 0xf;
+		reg_RX_DP_LMS_FFE_FLT_B1_CLK_EN_LANE_3_0 = 0xf;
+		reg_RX_DP_LMS_DFE_EN_LANE = 1;
+		reg_RX_DP_LMS_BLW_EN_LANE = 1;
+		reg_RX_DP_LMS_GAIN_EN_LANE = 1;
+		reg_RX_DP_LMS_FFE_PRE_EN_LANE_5_0 = 0xf;
+		reg_RX_DP_LMS_FFE_PST_EN_LANE_15_0_b0 = 0xff;
+		reg_RX_DP_LMS_FFE_PST_EN_LANE_15_0_b1 = 0x3;
+		reg_RX_DP_LMS_FFE_FLT_B0_EN_LANE_3_0 = 0xf;
+		reg_RX_DP_LMS_FFE_FLT_B1_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_GAIN_CTRL_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_OFST_CTRL_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_GAIN_TH_SEL_LANE_2_0 = 0x2;
+		reg_RX_ADC_IF_DAT_GAIN_TH_EN_LANE_15_0_b0 = 0x11;
+		reg_RX_ADC_IF_DAT_GAIN_TH_EN_LANE_15_0_b1 = 0x11;
+		reg_RX_ADC_IF_DAT_OFST_TH_EN_LANE_15_0_b0 = 0x55;
+		reg_RX_ADC_IF_DAT_OFST_TH_EN_LANE_15_0_b1 = 0x55;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b0 = 0x55;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b1 = 0x55;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b2 = 0x55;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b3 = 0x55;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b0 = 0x55;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b1 = 0x55;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b2 = 0x55;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b3 = 0x55;
+		reg_RX_DP_DAT_CLK_EN_LANE_5_0 = 0xf;	
+	} else if((reg_RX_TH_SEL_LANE_1_0 == 1) & (reg_RX_RATE_MODE_LANE_1_0 == 0)) {
+		reg_RX_DTL_BUF_CLK_EN_LANE = 1;
+		reg_RX_DTL_LMS_BLW_CLK_EN_LANE = 1;
+		reg_RX_DTL_LMS_GAIN_CLK_EN_LANE = 1;
+		reg_RX_DTL_LMS_FFE_PRE_CLK_EN_LANE_2_0 = 7;
+		reg_RX_DTL_LMS_FFE_PST_CLK_EN_LANE_2_0 = 7;
+		reg_RX_DTL_LMS_BLW_EN_LANE = 1;
+		reg_RX_DTL_LMS_GAIN_EN_LANE = 1;
+		reg_RX_DTL_LMS_FFE_PRE_EN_LANE_2_0 = 7;
+		reg_RX_DTL_LMS_FFE_PST_EN_LANE_2_0 = 7;
+		reg_RX_DP_BUF_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_DFE_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_BLW_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_GAIN_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_FFE_PRE_CLK_EN_LANE_5_0 = 0xf;
+		reg_RX_DP_LMS_FFE_PST_CLK_EN_LANE_15_0_b0 = 0xff;
+		reg_RX_DP_LMS_FFE_PST_CLK_EN_LANE_15_0_b1 = 0x3;
+		reg_RX_DP_LMS_FFE_FLT_B0_CLK_EN_LANE_3_0 = 0xf;
+		reg_RX_DP_LMS_FFE_FLT_B1_CLK_EN_LANE_3_0 = 0xf;
+		reg_RX_DP_LMS_DFE_EN_LANE = 1;
+		reg_RX_DP_LMS_BLW_EN_LANE = 1;
+		reg_RX_DP_LMS_GAIN_EN_LANE = 1;
+		reg_RX_DP_LMS_FFE_PRE_EN_LANE_5_0 = 0xf;
+		reg_RX_DP_LMS_FFE_PST_EN_LANE_15_0_b0 = 0xff;
+		reg_RX_DP_LMS_FFE_PST_EN_LANE_15_0_b1 = 0x3;
+		reg_RX_DP_LMS_FFE_FLT_B0_EN_LANE_3_0 = 0xf;
+		reg_RX_DP_LMS_FFE_FLT_B1_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_GAIN_CTRL_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_OFST_CTRL_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_GAIN_TH_SEL_LANE_2_0 = 0x2;
+		reg_RX_ADC_IF_DAT_GAIN_TH_EN_LANE_15_0_b0 = 0x11;
+		reg_RX_ADC_IF_DAT_GAIN_TH_EN_LANE_15_0_b1 = 0x11;
+		reg_RX_ADC_IF_DAT_OFST_TH_EN_LANE_15_0_b0 = 0x11;
+		reg_RX_ADC_IF_DAT_OFST_TH_EN_LANE_15_0_b1 = 0x11;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b0 = 0x11;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b1 = 0x11;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b2 = 0x11;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b3 = 0x11;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b0 = 0x11;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b1 = 0x11;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b2 = 0x11;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b3 = 0x11;
+		reg_RX_DP_DAT_CLK_EN_LANE_5_0 = 0xf;	
+	} else if((reg_RX_TH_SEL_LANE_1_0 == 1) & (reg_RX_RATE_MODE_LANE_1_0 == 1)) {
+		reg_RX_DTL_BUF_CLK_EN_LANE = 1;
+		reg_RX_DTL_LMS_BLW_CLK_EN_LANE = 1;
+		reg_RX_DTL_LMS_GAIN_CLK_EN_LANE = 1;
+		reg_RX_DTL_LMS_FFE_PRE_CLK_EN_LANE_2_0 = 3;
+		reg_RX_DTL_LMS_FFE_PST_CLK_EN_LANE_2_0 = 7;
+		reg_RX_DTL_LMS_BLW_EN_LANE = 1;
+		reg_RX_DTL_LMS_GAIN_EN_LANE = 1;
+		reg_RX_DTL_LMS_FFE_PRE_EN_LANE_2_0 = 3;
+		reg_RX_DTL_LMS_FFE_PST_EN_LANE_2_0 = 7;
+		reg_RX_DP_BUF_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_DFE_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_BLW_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_GAIN_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_FFE_PRE_CLK_EN_LANE_5_0 = 0x3;
+		reg_RX_DP_LMS_FFE_PST_CLK_EN_LANE_15_0_b0 = 0x1f;
+		reg_RX_DP_LMS_FFE_PST_CLK_EN_LANE_15_0_b1 = 0;
+		reg_RX_DP_LMS_FFE_FLT_B0_CLK_EN_LANE_3_0 = 0xf;
+		reg_RX_DP_LMS_FFE_FLT_B1_CLK_EN_LANE_3_0 = 0xf;
+		reg_RX_DP_LMS_DFE_EN_LANE = 1;
+		reg_RX_DP_LMS_BLW_EN_LANE = 1;
+		reg_RX_DP_LMS_GAIN_EN_LANE = 1;
+		reg_RX_DP_LMS_FFE_PRE_EN_LANE_5_0 = 0x3;
+		reg_RX_DP_LMS_FFE_PST_EN_LANE_15_0_b0 = 0x1f;
+		reg_RX_DP_LMS_FFE_PST_EN_LANE_15_0_b1 = 0;
+		reg_RX_DP_LMS_FFE_FLT_B0_EN_LANE_3_0 = 0xf;
+		reg_RX_DP_LMS_FFE_FLT_B1_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_GAIN_CTRL_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_OFST_CTRL_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_GAIN_TH_SEL_LANE_2_0 = 0x3;
+		reg_RX_ADC_IF_DAT_GAIN_TH_EN_LANE_15_0_b0 = 0x01;
+		reg_RX_ADC_IF_DAT_GAIN_TH_EN_LANE_15_0_b1 = 0x01;
+		reg_RX_ADC_IF_DAT_OFST_TH_EN_LANE_15_0_b0 = 0x11;
+		reg_RX_ADC_IF_DAT_OFST_TH_EN_LANE_15_0_b1 = 0x11;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b0 = 0x11;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b1 = 0x11;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b2 = 0x11;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b3 = 0x11;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b0 = 0x11;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b1 = 0x11;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b2 = 0x11;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b3 = 0x11;
+		reg_RX_DP_DAT_CLK_EN_LANE_5_0 = 0x7;	
+	} else if((reg_RX_TH_SEL_LANE_1_0 == 0) & (reg_RX_RATE_MODE_LANE_1_0 == 0)) {
+		reg_RX_DTL_BUF_CLK_EN_LANE = 1;
+		reg_RX_DTL_LMS_BLW_CLK_EN_LANE = 1;
+		reg_RX_DTL_LMS_GAIN_CLK_EN_LANE = 1;
+		reg_RX_DTL_LMS_FFE_PRE_CLK_EN_LANE_2_0 = 3;
+		reg_RX_DTL_LMS_FFE_PST_CLK_EN_LANE_2_0 = 7;
+		reg_RX_DTL_LMS_BLW_EN_LANE = 1;
+		reg_RX_DTL_LMS_GAIN_EN_LANE = 1;
+		reg_RX_DTL_LMS_FFE_PRE_EN_LANE_2_0 = 3;
+		reg_RX_DTL_LMS_FFE_PST_EN_LANE_2_0 = 7;
+		reg_RX_DP_BUF_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_DFE_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_BLW_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_GAIN_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_FFE_PRE_CLK_EN_LANE_5_0 = 0x3;
+		reg_RX_DP_LMS_FFE_PST_CLK_EN_LANE_15_0_b0 = 0x1f;
+		reg_RX_DP_LMS_FFE_PST_CLK_EN_LANE_15_0_b1 = 0;
+		reg_RX_DP_LMS_FFE_FLT_B0_CLK_EN_LANE_3_0 = 0xf;
+		reg_RX_DP_LMS_FFE_FLT_B1_CLK_EN_LANE_3_0 = 0xf;
+		reg_RX_DP_LMS_DFE_EN_LANE = 1;
+		reg_RX_DP_LMS_BLW_EN_LANE = 1;
+		reg_RX_DP_LMS_GAIN_EN_LANE = 1;
+		reg_RX_DP_LMS_FFE_PRE_EN_LANE_5_0 = 0x3;
+		reg_RX_DP_LMS_FFE_PST_EN_LANE_15_0_b0 = 0x1f;
+		reg_RX_DP_LMS_FFE_PST_EN_LANE_15_0_b1 = 0;
+		reg_RX_DP_LMS_FFE_FLT_B0_EN_LANE_3_0 = 0xf;
+		reg_RX_DP_LMS_FFE_FLT_B1_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_GAIN_CTRL_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_OFST_CTRL_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_GAIN_TH_SEL_LANE_2_0 = 0x3;
+		reg_RX_ADC_IF_DAT_GAIN_TH_EN_LANE_15_0_b0 = 0x01;
+		reg_RX_ADC_IF_DAT_GAIN_TH_EN_LANE_15_0_b1 = 0x01;
+		reg_RX_ADC_IF_DAT_OFST_TH_EN_LANE_15_0_b0 = 0x01;
+		reg_RX_ADC_IF_DAT_OFST_TH_EN_LANE_15_0_b1 = 0x01;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b0 = 0x01;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b1 = 0x01;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b2 = 0x01;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b3 = 0x01;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b0 = 0x01;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b1 = 0x01;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b2 = 0x01;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b3 = 0x01;
+		reg_RX_DP_DAT_CLK_EN_LANE_5_0 = 0x7;	
+	} else if((reg_RX_TH_SEL_LANE_1_0 == 0) & (reg_RX_RATE_MODE_LANE_1_0 == 1)) {
+		reg_RX_DTL_BUF_CLK_EN_LANE = 0;
+		reg_RX_DTL_LMS_BLW_CLK_EN_LANE = 0;
+		reg_RX_DTL_LMS_GAIN_CLK_EN_LANE = 0;
+		reg_RX_DTL_LMS_FFE_PRE_CLK_EN_LANE_2_0 = 0;
+		reg_RX_DTL_LMS_FFE_PST_CLK_EN_LANE_2_0 = 0;
+		reg_RX_DTL_LMS_BLW_EN_LANE = 0;
+		reg_RX_DTL_LMS_GAIN_EN_LANE = 0;
+		reg_RX_DTL_LMS_FFE_PRE_EN_LANE_2_0 = 0;
+		reg_RX_DTL_LMS_FFE_PST_EN_LANE_2_0 = 0;
+		reg_RX_DP_BUF_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_DFE_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_BLW_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_GAIN_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_FFE_PRE_CLK_EN_LANE_5_0 = 0x1;
+		reg_RX_DP_LMS_FFE_PST_CLK_EN_LANE_15_0_b0 = 0x3;
+		reg_RX_DP_LMS_FFE_PST_CLK_EN_LANE_15_0_b1 = 0;
+		reg_RX_DP_LMS_FFE_FLT_B0_CLK_EN_LANE_3_0 = 0;
+		reg_RX_DP_LMS_FFE_FLT_B1_CLK_EN_LANE_3_0 = 0;
+		reg_RX_DP_LMS_DFE_EN_LANE = 1;
+		reg_RX_DP_LMS_BLW_EN_LANE = 1;
+		reg_RX_DP_LMS_GAIN_EN_LANE = 1;
+		reg_RX_DP_LMS_FFE_PRE_EN_LANE_5_0 = 0x1;
+		reg_RX_DP_LMS_FFE_PST_EN_LANE_15_0_b0 = 0x3;
+		reg_RX_DP_LMS_FFE_PST_EN_LANE_15_0_b1 = 0;
+		reg_RX_DP_LMS_FFE_FLT_B0_EN_LANE_3_0 = 0;
+		reg_RX_DP_LMS_FFE_FLT_B1_EN_LANE_3_0 = 0;
+		reg_RX_ADC_IF_DAT_GAIN_CTRL_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_OFST_CTRL_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_GAIN_TH_SEL_LANE_2_0 = 0x4;
+		reg_RX_ADC_IF_DAT_GAIN_TH_EN_LANE_15_0_b0 = 0x01;
+		reg_RX_ADC_IF_DAT_GAIN_TH_EN_LANE_15_0_b1 = 0x00;
+		reg_RX_ADC_IF_DAT_OFST_TH_EN_LANE_15_0_b0 = 0x01;
+		reg_RX_ADC_IF_DAT_OFST_TH_EN_LANE_15_0_b1 = 0x01;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b0 = 0x01;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b1 = 0x01;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b2 = 0x01;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b3 = 0x01;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b0 = 0x01;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b1 = 0x01;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b2 = 0x01;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b3 = 0x01;
+		reg_RX_DP_DAT_CLK_EN_LANE_5_0 = 0x3;	
+	} else if((reg_RX_TH_SEL_LANE_1_0 == 0) & (reg_RX_RATE_MODE_LANE_1_0 == 2)) {
+		reg_RX_DTL_BUF_CLK_EN_LANE = 0;
+		reg_RX_DTL_LMS_BLW_CLK_EN_LANE = 0;
+		reg_RX_DTL_LMS_GAIN_CLK_EN_LANE = 0;
+		reg_RX_DTL_LMS_FFE_PRE_CLK_EN_LANE_2_0 = 0;
+		reg_RX_DTL_LMS_FFE_PST_CLK_EN_LANE_2_0 = 0;
+		reg_RX_DTL_LMS_BLW_EN_LANE = 0;
+		reg_RX_DTL_LMS_GAIN_EN_LANE = 0;
+		reg_RX_DTL_LMS_FFE_PRE_EN_LANE_2_0 = 0;
+		reg_RX_DTL_LMS_FFE_PST_EN_LANE_2_0 = 0;
+		reg_RX_DP_BUF_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_DFE_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_BLW_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_GAIN_CLK_EN_LANE = 1;
+		reg_RX_DP_LMS_FFE_PRE_CLK_EN_LANE_5_0 = 0x1;
+		reg_RX_DP_LMS_FFE_PST_CLK_EN_LANE_15_0_b0 = 0x3;
+		reg_RX_DP_LMS_FFE_PST_CLK_EN_LANE_15_0_b1 = 0;
+		reg_RX_DP_LMS_FFE_FLT_B0_CLK_EN_LANE_3_0 = 0;
+		reg_RX_DP_LMS_FFE_FLT_B1_CLK_EN_LANE_3_0 = 0;
+		reg_RX_DP_LMS_DFE_EN_LANE = 1;
+		reg_RX_DP_LMS_BLW_EN_LANE = 1;
+		reg_RX_DP_LMS_GAIN_EN_LANE = 1;
+		reg_RX_DP_LMS_FFE_PRE_EN_LANE_5_0 = 0x1;
+		reg_RX_DP_LMS_FFE_PST_EN_LANE_15_0_b0 = 0x3;
+		reg_RX_DP_LMS_FFE_PST_EN_LANE_15_0_b1 = 0;
+		reg_RX_DP_LMS_FFE_FLT_B0_EN_LANE_3_0 = 0;
+		reg_RX_DP_LMS_FFE_FLT_B1_EN_LANE_3_0 = 0;
+		reg_RX_ADC_IF_DAT_GAIN_CTRL_EN_LANE_3_0 = 0x5;
+		reg_RX_ADC_IF_DAT_OFST_CTRL_EN_LANE_3_0 = 0xf;
+		reg_RX_ADC_IF_DAT_GAIN_TH_SEL_LANE_2_0 = 0x5;
+		reg_RX_ADC_IF_DAT_GAIN_TH_EN_LANE_15_0_b0 = 0x01;
+		reg_RX_ADC_IF_DAT_GAIN_TH_EN_LANE_15_0_b1 = 0x00;
+		reg_RX_ADC_IF_DAT_OFST_TH_EN_LANE_15_0_b0 = 0x01;
+		reg_RX_ADC_IF_DAT_OFST_TH_EN_LANE_15_0_b1 = 0x00;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b0 = 0x01;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b1 = 0x00;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b2 = 0x01;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_63_32_b3 = 0x00;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b0 = 0x01;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b1 = 0x00;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b2 = 0x01;
+		reg_RX_ADC_IF_DP_DAT_CLK_EN_LANE_31_0_b3 = 0x00;
+		reg_RX_DP_DAT_CLK_EN_LANE_5_0 = 0x1;	
+	}
+
+}
+
+//Call it after speed table load
+void drv_rx_func_cfg(void) BANKING_CTRL {
+
+	drv_rx_misc_cfg();
+	drv_rx_train_if_cfg();
+	drv_rx_eq_cfg();
+        drv_nt_decoder_rx();
+
+}

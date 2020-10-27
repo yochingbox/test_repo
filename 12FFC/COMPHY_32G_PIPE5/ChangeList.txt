@@ -1,0 +1,371 @@
+//*********************************************************************
+//	    COMPHY_32G_PIPE5_X2 Firmware Change History			
+//
+//   Copyright (c) 2016 Marvell Semiconductor, Inc. All rights reserved
+//*********************************************************************
+ 10/19/2020 Minh Tran 0.12.0.20
+ 1. PHY failed to recover from lane re-enable after previously disabled
+    Who request - Minh Tran
+    why - It takes 32G PHY a little longer during the power state transitions because FW need to start/stop the unified calibrations. This caused FW not handle the two consecutive power state changes properly.
+    What - commented out the 28G code to handle lane disable in cal_top.c
+    Test - simulation
+ 10/09/2020 Minh Tran 0.12.0.19
+ - CEAMSDV-1526: it takes too long (~5.2uSec) from reg_pin_pll_ready_rx=0 to reg_ana_pu_rx=0
+    Who request - Minh Tran
+    Why - During the 32G test chip bringup, there are some issue with the PHY power after reset on with some MBs. FW added some delay in main.c to get the 32G power up reliable. For the new 32G PIPE5_X2_1P2V, FW started with the 32G test chip code and this extra delay does not needed for the new IP.
+    What - Removed the extra delay
+    Test - simulation
+ 09/28/2020 Minh Tran 0.12.0.18
+ - CEAMSDV-1523: PIN_RXDATA is mistmatch when send prbs7 to PIN_RXP/N
+    Who - Lisa Wang 
+    What - Updated the following fields in rx speed table
+    DTL_CLK_MODE_LANE[1:0]
+    RX_FOFFSET_EXTRA_M_LANE[13:0]
+    Why - The new recent analog design change to fix the sampler issue result in some DTL_CLK freq change for some data rate like 2.5G,
+    so that means previously "all DTL_CLK are ¼ of PLL clock" is not true anymor.
+    It is to fix speed table issue that for some low data rate and large frequency offset data may have error
+    Test - simulation
+ 08/25/2020 Minh Tran 0.12.0.17
+  - run spdcks_gen.csh to add checksum to speed tables
+ 08/24/2020 Bin Sheng 0.12.0.16
+  - Reverted Tx speed table, updated Rx speed table to use Ring PLL
+ 08/23/2020 Bin Sheng 0.12.0.15
+  - Updated Tx speed table for PCIe to only use LC PLL
+  - Updated phy_init.c to support PCIe soft reset in L1 substates
+ 08/21/2020 Minh Tran 0.12.0.14
+  - Changed ANA_RSVD9 control using ANA_RSVD9[1] instead of ANA_RSVD9[0]
+ 08/19/2020 Minh Tran 0.12.0.13
+  - Changed ANA_RSVD9 control:  
+        Gen               ANA_RSVD9[7]      ANA_RSVD9[0]     ANA_RSVD9[3]
+        0                 1                 0                1 
+        Other gen         RX_SPEED_DIV[1]   RX_SPEED_DIV[0]  0
+ 08/19/2020 Minh Tran 0.12.0.12
+  - https://ceproject.marvell.com/index.html#/task/1553/subtask/36421
+	reg_TXDETRX_VTH_LANE_1_0 = 2;
+	reg_HIZ_HOLD_CUR_LANE_1_0 = 3;
+ 08/14/2020 Minh Tran 0.12.0.11
+  - updated speed table (changes from Analog designer Mahendra and Jane)
+  - Added ECC Enable control
+	https://ceproject.marvell.com/index.html#/task/2308/subtask/45993
+ 08/12/2020 Minh Tran 0.12.0.10
+  - updated new speed table (PLL_REG_SEL[2:0] 0 --> 4 at PCIE 8G mode on PLL PI enabled table)
+  - added checksum to FW and speed tables
+  - supported 4K xdata lane; added padding to xdata lane speed table
+ 07/07/2020 Heejeong Ryu 0.12.0.9
+  - added PCIe Dummy train
+ 06/19/2020 Minh Tran 0.12.0.8
+  - improved simulation fast power on time requested by Bin.
+	delay01() - check for BYPASS_POWERON_DELAY at the beginning
+	Calibration() - check for force_exit_cal before tsen setup
+ 06/09/2020 Minh Tran 0.12.0.7
+  - enabled back features
+  - compiled all PHY modes (PCIe, SAS, SERDES)
+  - set Ttimeout_timer back to 1000 in pll_cal_rom.c
+  - all PHY mode ROM images have the same size
+ 05/11/2020 Bin Sheng 0.12.0.6
+  - updated the latest MIDAS cmn_cmn.h mcu_cmn.h mcu_lane.h tx_cmn.h
+    tx_lane.h tx_train_if_lane.h
+  - updated shared/src/trx_train.c by moving the macro "read_sq()" to
+    outside of "#ifdef NO_REDUCE_CODE"
+ 05/11/2020 Minh Tran 0.12.0.5
+  - updated ROM code files with the latest code
+  - built new FW image included ROM code files.
+ 12/10/2019 Yashwanth Villari 0.12.0.4
+  - PIPE Interface Flow Update
+ 12/10/2019 Minh Tran 0.12.0.3
+  - remapped P1.0 workaround code back to ROM
+ 11/25/2019 Bin Sheng 0.12.0.2
+  - [S-1882-7] Fixed the bug of wrongly restoring the saved DFE F0 coefficients after lane margin call is done
+ 10/17/2019 Andrew Danilovic 0.12.0.1
+  - [S-1849-6] Program ffe_pulse_div_lane to 1 during normal mode tracking, and program
+    ffe_pw_sel_lane to 2 during initialization, to reduce a resistor value in the
+    Rx data path which reduces system level BER on marginal parts by accommodating larger leakage
+    current.
+ 10/02/2019 Minh Tran
+  - Fixed test case pcie_l1_substate_perstn_g3
+ 09/16/2019 Minh Tran 0.12.0.0
+  - Updated R2P0 Midas register header files
+
+*** 9/16/2019 - copy the file from COMPHY_32G_PIPE5_X2_R1P0
+
+ 07/25/2019 Heejeong Ryu 0.12.10.62
+  - updated all dfe_res update bypass when BYPASS_PCIE_GEN5_DFE_RES_TRAIN_LANE = 1 in gen5
+ 07/15/2019 Heejeong Ryu 0.12.10.61
+  - added BYPASS_PCIE_GEN5_DFE_RES_TRAIN_LANE register
+ 07/3/2019 Heejeong Ryu 0.12.10.60
+  - updated gain train dfe_res for gen4 to always 3
+ 06/27/2019 Minh Tran 0.12.10.58
+  - -	Initialize the align90 MSB (GM) to min value (1)
+ 06/26/2019 Minh Tran 0.12.10.57
+  - apply reg_SHRTR assertion during speed change (between load cal results and start cont cal)
+  - start cont cal after tx align
+  - use default cal results for gen1 and gen2 align90 cal (skip align90 cal)
+ 06/26/2019 Minh Tran 0.12.10.56
+  - run ALIGN90 and DLL_VDDA in single and continuous modes during power on calibration
+  - asserted reg_SHRTR during the unified power on calibration
+  - added 100usec delay to allow unified continuous cal to settle in power on calibration
+ 06/25/2019 Minh Tran 0.12.10.55
+  - run cont calibrations during power on
+  - allow disable cont cal using the following flags:
+	cmx_RXDCC_DATA_CAL_CONT_EN	0 - disable DCC; 1 - enable DCC
+	cmx_RXDLL_CAL_CONT_EN		0 - disable DLL; 1 - enable DLL
+	cmx_ALIGN90_CAL_CONT_EN		0 - disable ALIGN90; 1 - enable ALIGN90
+  - using reg_MCU_DEBUG8_LANE_7_0 (in usec) to delay PIN_PLL_READY_RX/TX assertion
+ 06/24/2019 Heejeong Ryu 0.12.10.54
+  - updated train for long trace
+ 06/21/2019 Minh Tran 0.12.10.53
+  - Save cont calibration results when calibrations stopped
+ 06/20/2019 Minh Tran 0.12.10.52
+  - When TX_DCC_CAL_POST_DIV is not running, load the default value (0x20)
+ 06/17/2019 Minh Tran 0.12.10.51
+  - Initialize the unified DLL VDDA and ALIGN90 sample pulse div
+  - Update DCC and DLL cal based on the update top cal pseudo code
+ 06/14/2019 Minh Tran 0.12.10.50
+  - Initialize the unified cal sample clock
+ 06/14/2019 Minh Tran 0.12.10.49
+  - Fixed logic compare in align90
+ 06/14/2019 Minh Tran 0.12.10.48
+  - no load calibration results from dll continuous (the results are loaded in spd_chg
+  - start Cal_Cont() before Unified_Cal_Cont()
+ 06/12/2019 Minh Tran 0.12.10.46
+  - no load calibration results from align90 continuous (the results are loaded in spd_chg
+  - add more load/store dcc cal related registers from 28G
+ 06/12/2019 Minh Tran 0.12.10.42
+  - reduce more calibration results load time; not loading dll and align90 offset cal results
+  - move turn_off_cont_cal down after PLL_READY_RX/TX=0
+ 06/12/2019 Minh Tran 0.12.10.41
+  - enable Unified_Cal_Cont() in main.c
+  - reduce calibration results load time
+ 06/11/2019 Minh Tran 0.12.10.40
+  - typo; changed "reg_ALIGN90_CMP_CAL_EN_LANE = 0" to "reg_ALIGN90_CAL_SINGLE_EN_LANE = 0" 
+ 06/10/2019 Minh Tran 0.12.10.39
+  - Fixed speed change calibration results load
+ 06/10/2019 Minh Tran 0.12.10.38
+  - Make all power on calibrations run in single mode (changes in dll and align90)
+  - Unified continuous calibrations are not running. (FW only load the results from power on calibrations)
+ 06/10/2019 Marc Yu 0.12.10.34
+  - Added 4 short_delays during transition of PHY_STATUS for cold boot issue WA
+ 06/07/2019 Minh Tran 0.12.10.33
+  - fixed dcc and dll initial calibration values load
+  - separated DLL GM + VDDA cal into two functions dll_gm_cal() and dll_vdda_cal()
+  - fixed issue of continuous cal not running after power on in gen5
+ 06/07/2019 Heejeong Ryu 0.12.10.32
+  - added align90 dummy clk control
+  - fixed calibration save value wrong
+  - added align90_cmp_offset, dll_cmp_offset, removed txddc_pdiv_hg in phy_mode_lane
+  - comment out GEN5 force CTLE  
+ 06/06/2019 Minh Tran 0.12.10.31
+  - Fully implemented unified calibration results load sequence
+  - Updated calibration sequence to store cont calibration results
+  - Updated DLL GM calibration
+  - Added some missing calibration results store/load
+ 06/06/2019 Heejeong Ryu 0.12.10.30
+  - removed duplicated rxdcc_data_gen2 in phy_mode_lane chart
+ 06/06/2019 Heejeong Ryu 0.12.10.29
+  - updated phy_mode_lane base address = 0x6534, removed lane_calx_**  
+ 06/06/2019 Heejeong Ryu 0.12.10.28
+  - updated gaintrain, gaintrain_end = 0 for GEN5, 
+  - changed tag_edge_sampler_normal_en to 0
+ 06/05/2019 Heejeong Ryu 0.12.10.27
+  - enabled gain train end to 1 for gen5
+  - temporary merged Marc's cal patch
+ 06/03/2019 Heejeong Ryu 0.12.10.26
+  - updated gen5 train
+  - optimized FW for pmem overflow  
+ 06/03/2019 Minh Tran 0.12.10.24
+  - included the last two regs cmx_PCIE_G1_OPT_TRAIN_EN_GEN3 and cmx_PCIE_G1_OPT_TRAIN_EN_GEN4 to xdata
+ 06/03/2019 Minh Tran 0.12.10.23
+  - Reduced mem size to fit in 64K
+ 05/31/2019 Minh Tran 0.12.10.22
+  - Fixed simulation Gen5 speed change
+ 05/31/2019 Minh Tran 0.12.10.21
+  - updated xdat_lane and xdat_cmn to sycn with 28G
+ 05/31/2019 Heejeong Ryu 0.12.10.20
+  - fixed dcc_cal hang
+  - updated unified cal stop, resume
+  - updated gain train, trxtrain to sync with 28G  
+ 05/29/2019 Heejeong Ryu 0.12.10.19
+  - added missing RXDCC_EN_* in spdchg
+  - sync with 28G train  
+ 05/29/2019 Minh Tran 0.12.10.18
+  - Fixed the typo in 0.12.10.17
+  - Added back Forced FW to use the default Rx CTLE parameters for PCIe gen5
+ 05/29/2019 Minh Tran 0.12.10.17
+  - Fixed the save/restore_train() to use the correct align90 cal results registers
+  - commemted out code that used the default Rx CTLE parameters for PCIe gen5
+  - disable/enable unified cal during spd_chg
+ 05/29/2019 Minh Tran 0.12.10.16
+  - Marc reset workaround
+ 05/29/2019 Heejeong Ryu 0.12.10.15
+  - updated to sync with 28G
+ 05/28/2019 Minh Tran 0.12.10.14
+  - Fixed PCIe speed change to gen5
+  - Forced FW to use the default Rx CTLE parameters for PCIe gen5
+ 05/16/2019 Minh Tran 0.12.10.08
+  - Change initial values of registers
+      dfe_res_f0_lane[1:0]
+      dfe_res_f1_lane[1:0]
+      dfe_res_f234_lane
+      dfe_res_f567_lane
+    from 3/3/1/1 to 2/2/0/0 for PCIe Gen5 (requested by Jian)
+ 05/15/2019 Minh Tran 0.12.10.07
+  - Match FW with register change list between 28G and 28G RPLL
+ 05/09/2019 Minh Tran 0.12.10.06
+  - Removed rx_cmn header file
+ 05/07/2019 Marc Yu 0.12.10.05
+  - Root caused and fixed Rx training/DFE continuous adaptation issue
+  - Removed workaround from 0.12.10.04
+ 05/03/2019 Minh Tran 0.12.10.04
+  - Workaround Rx train exit error
+ 05/01/2019 Minh Tran 0.12.10.03
+  - Fixed typo; enable dcc cal cont
+ 04/26/2019 Minh Tran 0.12.10.02
+  - M-1677 LCPLL TEMPC Calibration doesn't Work
+  - Merge Sampler Cal fix from 28G 
+ 04/12/2019 Minh Tran 0.12.10.01
+  - Increase LC PLL Cal timeout so PLL Cal can pass in the PCIe normal mode
+ 04/09/2019 Minh Tran 0.12.10.00
+  - Release to IPDOC
+  - set rxdcc_cal_en_lane=1 at power up cal per designer requested
+ 04/05/2019 Minh Tran 0.12.9.05
+  - Support PCIe binary in 64K internal PRAM
+    Note: only PCIe binary fit in 64K; SAS and SERDES binarise are not fit
+ 03/29/2019 Minh Tran 0.12.9.02
+  - Rename all EXT_MEM functions with extension _ram
+ 03/12/2019 Minh Tran 0.12.9.01
+  - Fixed nightly regression t_tx_train_if failures
+  - The t_tx_train_if failures caused by the Midas registers synced up
+ 03/08/2019 Minh Tran 0.12.9.00
+  - New binaries include unified calibrations
+  - Clean up unused code
+ 03/06/2019 Minh Tran 0.12.8.42
+  - Fixed Ring PLL cal lock issue
+ 02/25/2019 Minh Tran 0.12.8.41
+  - Add Unified calibrations support
+  - Synced up SharePoint Midas registers
+  - Support EXT_MEM banks (4 and 5)
+ 10/25/2018 Minh Tran 0.12.8.40
+  - Sync up with 28G_X2 tx/rx training changes rev 2535
+ 10/15/2018 Heejeong Ryu 
+  - Fixed SQ Threshold ratio calculation
+ 10/12/2018 Minh Tran 0.12.8.39
+  - CEAMSDV-293: [pwr_normal_pcie] There are signals hanged in t_pu_tx_fall_pcie and t_fast_startup_2
+	1. Resolved the first issue.
+ 10/5/2018 Minh Tran 0.12.8.38
+  - Supported SYNC_STATUS_LANE and SYNC_STATUS_LANE_EN.
+  - Moved sampler_cal to ROM.
+ 10/4/2018 Minh Tran 0.12.8.37
+  - Fixed spd_chg hung caused by sync status typo in cal_top.c
+ 10/3/2018 Minh Tran 0.12.8.36
+  - Added CMN XDATA registers to sync status between MCU.
+  - Fixed nightly regression PM test case failures.
+ 10/1/2018 Minh Tran 0.12.8.35
+  - Typo during the merge with 28G_X2 and clean up.
+ 9/27/2018 Minh Tran 0.12.8.34
+  - Update new speed table
+	1. Removed tx_em_pre_ctrl_lane[3:0] and tx_em_po_ctrl_lane[3:0].
+	2. Added tx_em_peak_en_lane.
+ 9/27/2018 Minh Tran 0.12.8.33
+  - Designer asked FW not to change the following registers in ASIC mode:
+	reg_tx_em_peak_en
+	reg_tx_em_peak_ctrl
+	reg_tx_em_pre_en
+	reg_tx_em_pre_ctrl
+	reg_tx_em_post_en
+	reg_tx_em_post_ctrl
+
+ 9/27/2018 Minh Tran 0.12.8.32
+  - Fixed the tx_train_if test case failures by using the SERDES tx_preset_index = 2
+ 9/26/2018 Minh Tran 0.12.8.31
+  - Merged changes from 28G_X2
+  - Speed table updated
+ 9/21/2018 Minh Tran 0.12.8.30
+  - Fixed SERDES spd_chg failures.
+  - New speed tables
+ 9/20/2018 Minh Tran 0.12.8.29
+  - Build binaries with Train Timeout Stuck fix.
+  - Fixed RPLL build
+ 9/19/2018 Heejeong Ryu 
+  - Fixed Train Timeout Stuck
+ 9/17/2018 Minh Tran 0.12.8.28
+  - Fixed nightly regression pm_ctrl_pcie.
+ 9/17/2018 Minh Tran 0.12.8.27
+  - Fixed nightly regression USB spd_chg failures.
+ 9/17/2018 Minh Tran 0.12.8.26
+  - Designer requested FW to remove init reg_REMOTE_COMP_FM_REG_EN_LANE = 1
+  - Added MCU_COMMAND_ALL0_LANE register to xdat_cmn
+  - CESD-375: ANA_TX0_PU_TX is not correct in PHY state Tx partial slumber enter
+  - CESD-376: Reference clock disable sequence fails
+ 9/14/2018 Minh Tran 0.12.8.25
+  - PIN_RESET_CORE now reset Lane MCU
+ 9/12/2018 Minh Tran 0.12.8.24
+  - Designer requested to program reg_ethernet_mode_lane to 1 when PHY mode is SerDes
+ 9/10/2018 Minh Tran 0.12.8.23
+  - Added _lane to TX speed table pcie_gen12_sel and tx_coe_fm_pipe fields
+ 9/10/2018 Minh Tran 0.12.8.22
+  - Updated speed tables from Sharepoint
+ 9/06/2018 Minh Tran 0.12.8.21
+  - Added new register tx_train_mode_lane (0=ASIC, 1=MCU); Default = 1
+  - Support new Tx training IF; Rename some tx_train_if related registers and init registers.
+  - Updated speed tables
+ 8/17/2018 Minh Tran 0.12.8.20
+  - Fixed problem of loading bad ring PLL speed tables
+ 8/17/2018 Minh Tran 0.12.8.19
+  - Updated new speed table to support PCIE GEN5
+ 8/15/2018 Minh Tran 0.12.8.18
+  - Only master MCU needs to access common Ring PLL registers
+  - Merged CESD-359: Add condition for eom_ui_align function for phase control mode 1.
+  - Merged r2290 changes.
+ 8/14/2018 Minh Tran 0.12.8.17
+  - Updated xdata lane default values
+ 8/13/2018 Minh Tran 0.12.8.16
+  - Build FW binaries with latest merge (28G_PIPE4_X2 r2280)
+ 8/10/2018 Minh Tran
+  - Check in 32G_PIPE5_X2's specific files to compile with 28G_PIPE4_X2 r2280 merged
+ 8/08/2018 Minh Tran 0.12.8.15
+  - Build FW binaries include fix for CESD-354
+
+*** 8/08/2018 - copy the file from COMPHY_28G_PIPE4_RPLL since the codes are shared
+
+ 8/07/2018 Minh Tran 0.12.8.13i
+  - Merged from 28G_PIPE4_X2 upto r2224
+ 7/24/2018 Minh Tran 0.12.8.12
+  - Removed local variables warning
+  - Merged with 16FFC_COMPHY_28G_PIPE4_X2 upto r2189
+ 7/23/2018 Minh Tran 0.12.8.11
+  - Added compiler option _LANE_RPLL and initial support of common RPLL
+ 7/20/2018 Minh Tran 0.12.8.10
+  - Clean up _28G_X2 compiler option
+  - CESD-337: clear the interrupt enable bits in the SW reset
+ 7/13/2018 Minh Tran 0.12.8.9
+  - Updated tx_lane header file from share point
+  - Fixed FW not taking rpll_lane out of reset properly, plus typo
+ 7/13/2018 X.Su
+  - CESD-302: Watch Dog Timer not enabled in all 28G PHY. (Applied change. No build)
+ 7/10/2018 Minh Tran 0.12.8.8
+  - Merged with 16FFC_COMPHY_28G_PIPE4_X2 upto r2107
+  - Fixed issues reported by Wei.
+	reg_ssc_step_125ppm_tx_ring_lane mapping
+	L1.1 entry latency exceeds spec (fixed from merge)
+ 7/10/2018 Minh Tran 0.12.8.7
+  - Fixed the tx alignment issue
+ 7/06/2018 Minh Tran 0.12.8.6
+  - Fixed the PCIe P1CLKREQ_WK hung issue
+ 7/06/2018 Minh Tran 0.12.8.5
+  - Sync up from X2 changes. Optimized fast calibration performance; changed "wait time" from 4us to 3us
+  - Updated RPLL remapped register reg_ANA_TX_PLL_LOCK_RING_RD_LANE
+ 7/05/2018 Minh Tran 0.12.8.4
+  - Fixed lane 1 (none master) load wrong data from Ring PLL speed table
+ 7/03/2018 Minh Tran 0.12.8.3
+    Updated to latest reg files from share point
+    Fixed lane 1 hung in calibration and more registers remapped changes
+    New RPLL binaries
+ 7/01/2018 Minh Tran 0.12.8.2
+  - Initial RPLL support 
+    New reg files from share point
+    New registers remapped with compiled code
+ 6/21/2018 X.Su 0.12.8.1
+  - Applied CESD-299 (PCIe link training issue) fix from 28G_PIPE4 FW.
+ 6/18/2018 X.Su 0.12.8.0
+  - First revision copied from 28G_PIPE4 R2.0 firmware with 2lane and shared folders
+//********************************************************************* 

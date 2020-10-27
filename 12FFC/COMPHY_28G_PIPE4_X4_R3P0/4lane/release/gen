@@ -1,0 +1,24 @@
+#!/bin/tcsh -f
+#rm ../inc/*.SVM
+#rm ../src/*.SVM
+#rm *.SVM
+chmod +w ../inc/*.h 
+chmod +w ../src/*.c
+chmod +w -R ../../shared/ ../../2lane/ ../../ChangeList.txt 
+chmod +w ~/28G_FFC/R2P0/2lane/release/reg.midas
+cp -f ../../../DOC/reg.midas ~/28G_FFC/R2P0/2lane/release/.
+cp -f ../inc/phy_reg_c_*.h ~/28G_FFC/R2P0/2lane/inc/.
+cp -f ~/28G_FFC/R2P0/2lane/src/*.c ../src/.
+cp -f ~/28G_FFC/R2P0/2lane/inc/*.h ../inc/.
+cp -f ~/28G_FFC/R2P0/shared/src/*.c ../../shared/src/.
+cp -f ~/28G_FFC/R2P0/shared/inc/*.h ../../shared/inc/.
+cp -f ~/28G_FFC/R2P0/ChangeList.txt ../../.
+./fw_gen.csh
+#cp main.mem quick.fw
+cp -f ../compile/serdes/main.mem ../compile/serdes/main.map ~/28G_FFC/R2P0/2lane/compile/serdes/.
+cp -f ../compile/sas/main.mem ../compile/sas/main.map ~/28G_FFC/R2P0/2lane/compile/sas/.
+cp -f ../compile/pcie/main.mem ../compile/pcie/main.map ~/28G_FFC/R2P0/2lane/compile/pcie/.
+#cp ../compile/sas/*.lst ~/28G_FFC/R2P0/2lane/compile/sas/.
+cp -f sas/main*.* ~/28G_FFC/R2P0/2lane/release/sas/.
+cp -f pcie/main*.* ~/28G_FFC/R2P0/2lane/release/pcie/.
+cp -f serdes/main*.* ~/28G_FFC/R2P0/2lane/release/serdes/.

@@ -1,0 +1,2198 @@
+#	Register Address 	Default Value	R/W Property	Register Name	Register Description	Feature Set
+						
+	# addr = 0x0000			AutoSpeed0	AutoSpeed0
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	fbdiv_pioff_rate0[9:8]	fbdiv_pioff_rate0[9:8] speed value	
+	[23:16]	8'h40	r/w	fbdiv_pioff_rate0[7:0]	fbdiv_pioff_rate0[7:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h0	r/w	pll_rate_sel_pioff_rate0[3:0]	pll_rate_sel_pioff_rate0[3:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h0	r/w	pll_reg_sel_pioff_rate0[2:0]	pll_reg_sel_pioff_rate0[2:0] speed value	
+						
+	# addr = 0x0004			AutoSpeed1	AutoSpeed1
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	vind_band_sel_pioff_rate0	vind_band_sel_pioff_rate0 speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h1	r/w	refdiv_pioff_rate0[3:0]	refdiv_pioff_rate0[3:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	fbdiv_cal_pioff_rate0[9:8]	fbdiv_cal_pioff_rate0[9:8] speed value	
+	[7:0]	8'h14	r/w	fbdiv_cal_pioff_rate0[7:0]	fbdiv_cal_pioff_rate0[7:0] speed value	
+						
+	# addr = 0x0008			AutoSpeed2	AutoSpeed2
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	div_1g_fbck_pioff_rate0[9:8]	div_1g_fbck_pioff_rate0[9:8] speed value	
+	[23:16]	8'ha	r/w	div_1g_fbck_pioff_rate0[7:0]	div_1g_fbck_pioff_rate0[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	div_1g_pioff_rate0[9:8]	div_1g_pioff_rate0[9:8] speed value	
+	[7:0]	8'h28	r/w	div_1g_pioff_rate0[7:0]	div_1g_pioff_rate0[7:0] speed value	
+						
+	# addr = 0x000c			AutoSpeed3	AutoSpeed3
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h4	r/w	intpi_lcpll_pioff_rate0[3:0]	intpi_lcpll_pioff_rate0[3:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	pll_lpfc_pioff_rate0[1:0]	pll_lpfc_pioff_rate0[1:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpfr_pioff_rate0[1:0]	pll_lpfr_pioff_rate0[1:0] speed value	
+	[7:5]	0	r/w	RESERVED		
+	[4:0]	5'h9	r/w	icp_lc_pioff_rate0[4:0]	icp_lc_pioff_rate0[4:0] speed value	
+						
+	# addr = 0x0010			AutoSpeed4	AutoSpeed4
+	[31:24]	8'hda	r/w	speed_thresh_pioff_rate0[7:0]	speed_thresh_pioff_rate0[7:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_pioff_rate0[9:8]	init_txfoffs_pioff_rate0[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_pioff_rate0[7:0]	init_txfoffs_pioff_rate0[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h2	r/w	tx_intpr_pioff_rate0[1:0]	tx_intpr_pioff_rate0[1:0] speed value	
+						
+	# addr = 0x0014			AutoSpeed5	AutoSpeed5
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h0	r/w	ssc_step_125ppm_pioff_rate0[3:0]	ssc_step_125ppm_pioff_rate0[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	ssc_acc_factor_pioff_rate0	ssc_acc_factor_pioff_rate0 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	lccap_usb_pioff_rate0	lccap_usb_pioff_rate0 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h7	r/w	speed_thresh_pioff_rate0[11:8]	speed_thresh_pioff_rate0[11:8] speed value	
+						
+	# addr = 0x0018			AutoSpeed6	AutoSpeed6
+	[31:16]	0	r/w	RESERVED		
+	[15:13]	0	r/w	RESERVED		
+	[12:8]	5'h9	r/w	ssc_m_pioff_rate0[12:8]	ssc_m_pioff_rate0[12:8] speed value	
+	[7:0]	8'haf	r/w	ssc_m_pioff_rate0[7:0]	ssc_m_pioff_rate0[7:0] speed value	
+						
+	# addr = 0x001c			AutoSpeed7	TBD
+						
+	# addr = 0x0020			AutoSpeed8	AutoSpeed8
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	fbdiv_pioff_rate1[9:8]	fbdiv_pioff_rate1[9:8] speed value	
+	[23:16]	8'h84	r/w	fbdiv_pioff_rate1[7:0]	fbdiv_pioff_rate1[7:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h1	r/w	pll_rate_sel_pioff_rate1[3:0]	pll_rate_sel_pioff_rate1[3:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h0	r/w	pll_reg_sel_pioff_rate1[2:0]	pll_reg_sel_pioff_rate1[2:0] speed value	
+						
+	# addr = 0x0024			AutoSpeed9	AutoSpeed9
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	vind_band_sel_pioff_rate1	vind_band_sel_pioff_rate1 speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h2	r/w	refdiv_pioff_rate1[3:0]	refdiv_pioff_rate1[3:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	fbdiv_cal_pioff_rate1[9:8]	fbdiv_cal_pioff_rate1[9:8] speed value	
+	[7:0]	8'h15	r/w	fbdiv_cal_pioff_rate1[7:0]	fbdiv_cal_pioff_rate1[7:0] speed value	
+						
+	# addr = 0x0028			AutoSpeed10	AutoSpeed10
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	div_1g_fbck_pioff_rate1[9:8]	div_1g_fbck_pioff_rate1[9:8] speed value	
+	[23:16]	8'ha	r/w	div_1g_fbck_pioff_rate1[7:0]	div_1g_fbck_pioff_rate1[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	div_1g_pioff_rate1[9:8]	div_1g_pioff_rate1[9:8] speed value	
+	[7:0]	8'h29	r/w	div_1g_pioff_rate1[7:0]	div_1g_pioff_rate1[7:0] speed value	
+						
+	# addr = 0x002c			AutoSpeed11	AutoSpeed11
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h4	r/w	intpi_lcpll_pioff_rate1[3:0]	intpi_lcpll_pioff_rate1[3:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	pll_lpfc_pioff_rate1[1:0]	pll_lpfc_pioff_rate1[1:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpfr_pioff_rate1[1:0]	pll_lpfr_pioff_rate1[1:0] speed value	
+	[7:5]	0	r/w	RESERVED		
+	[4:0]	5'hc	r/w	icp_lc_pioff_rate1[4:0]	icp_lc_pioff_rate1[4:0] speed value	
+						
+	# addr = 0x0030			AutoSpeed12	AutoSpeed12
+	[31:24]	8'hb6	r/w	speed_thresh_pioff_rate1[7:0]	speed_thresh_pioff_rate1[7:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_pioff_rate1[9:8]	init_txfoffs_pioff_rate1[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_pioff_rate1[7:0]	init_txfoffs_pioff_rate1[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h2	r/w	tx_intpr_pioff_rate1[1:0]	tx_intpr_pioff_rate1[1:0] speed value	
+						
+	# addr = 0x0034			AutoSpeed13	AutoSpeed13
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h0	r/w	ssc_step_125ppm_pioff_rate1[3:0]	ssc_step_125ppm_pioff_rate1[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	ssc_acc_factor_pioff_rate1	ssc_acc_factor_pioff_rate1 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	lccap_usb_pioff_rate1	lccap_usb_pioff_rate1 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h7	r/w	speed_thresh_pioff_rate1[11:8]	speed_thresh_pioff_rate1[11:8] speed value	
+						
+	# addr = 0x0038			AutoSpeed14	AutoSpeed14
+	[31:16]	0	r/w	RESERVED		
+	[15:13]	0	r/w	RESERVED		
+	[12:8]	5'h9	r/w	ssc_m_pioff_rate1[12:8]	ssc_m_pioff_rate1[12:8] speed value	
+	[7:0]	8'hfb	r/w	ssc_m_pioff_rate1[7:0]	ssc_m_pioff_rate1[7:0] speed value	
+						
+	# addr = 0x003c			AutoSpeed15	TBD
+						
+	# addr = 0x0040			AutoSpeed16	AutoSpeed16
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	fbdiv_pioff_rate2[9:8]	fbdiv_pioff_rate2[9:8] speed value	
+	[23:16]	8'h4e	r/w	fbdiv_pioff_rate2[7:0]	fbdiv_pioff_rate2[7:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h2	r/w	pll_rate_sel_pioff_rate2[3:0]	pll_rate_sel_pioff_rate2[3:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h3	r/w	pll_reg_sel_pioff_rate2[2:0]	pll_reg_sel_pioff_rate2[2:0] speed value	
+						
+	# addr = 0x0044			AutoSpeed17	AutoSpeed17
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	vind_band_sel_pioff_rate2	vind_band_sel_pioff_rate2 speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h1	r/w	refdiv_pioff_rate2[3:0]	refdiv_pioff_rate2[3:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	fbdiv_cal_pioff_rate2[9:8]	fbdiv_cal_pioff_rate2[9:8] speed value	
+	[7:0]	8'h18	r/w	fbdiv_cal_pioff_rate2[7:0]	fbdiv_cal_pioff_rate2[7:0] speed value	
+						
+	# addr = 0x0048			AutoSpeed18	AutoSpeed18
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	div_1g_fbck_pioff_rate2[9:8]	div_1g_fbck_pioff_rate2[9:8] speed value	
+	[23:16]	8'hc	r/w	div_1g_fbck_pioff_rate2[7:0]	div_1g_fbck_pioff_rate2[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	div_1g_pioff_rate2[9:8]	div_1g_pioff_rate2[9:8] speed value	
+	[7:0]	8'h31	r/w	div_1g_pioff_rate2[7:0]	div_1g_pioff_rate2[7:0] speed value	
+						
+	# addr = 0x004c			AutoSpeed19	AutoSpeed19
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h6	r/w	intpi_lcpll_pioff_rate2[3:0]	intpi_lcpll_pioff_rate2[3:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	pll_lpfc_pioff_rate2[1:0]	pll_lpfc_pioff_rate2[1:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpfr_pioff_rate2[1:0]	pll_lpfr_pioff_rate2[1:0] speed value	
+	[7:5]	0	r/w	RESERVED		
+	[4:0]	5'h8	r/w	icp_lc_pioff_rate2[4:0]	icp_lc_pioff_rate2[4:0] speed value	
+						
+	# addr = 0x0050			AutoSpeed20	AutoSpeed20
+	[31:24]	8'hf9	r/w	speed_thresh_pioff_rate2[7:0]	speed_thresh_pioff_rate2[7:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_pioff_rate2[9:8]	init_txfoffs_pioff_rate2[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_pioff_rate2[7:0]	init_txfoffs_pioff_rate2[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h2	r/w	tx_intpr_pioff_rate2[1:0]	tx_intpr_pioff_rate2[1:0] speed value	
+						
+	# addr = 0x0054			AutoSpeed21	AutoSpeed21
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h0	r/w	ssc_step_125ppm_pioff_rate2[3:0]	ssc_step_125ppm_pioff_rate2[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	ssc_acc_factor_pioff_rate2	ssc_acc_factor_pioff_rate2 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	lccap_usb_pioff_rate2	lccap_usb_pioff_rate2 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h7	r/w	speed_thresh_pioff_rate2[11:8]	speed_thresh_pioff_rate2[11:8] speed value	
+						
+	# addr = 0x0058			AutoSpeed22	AutoSpeed22
+	[31:16]	0	r/w	RESERVED		
+	[15:13]	0	r/w	RESERVED		
+	[12:8]	5'hb	r/w	ssc_m_pioff_rate2[12:8]	ssc_m_pioff_rate2[12:8] speed value	
+	[7:0]	8'hcd	r/w	ssc_m_pioff_rate2[7:0]	ssc_m_pioff_rate2[7:0] speed value	
+						
+	# addr = 0x005c			AutoSpeed23	TBD
+						
+	# addr = 0x0060			AutoSpeed24	AutoSpeed24
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	fbdiv_pioff_rate3[9:8]	fbdiv_pioff_rate3[9:8] speed value	
+	[23:16]	8'h50	r/w	fbdiv_pioff_rate3[7:0]	fbdiv_pioff_rate3[7:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h3	r/w	pll_rate_sel_pioff_rate3[3:0]	pll_rate_sel_pioff_rate3[3:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h3	r/w	pll_reg_sel_pioff_rate3[2:0]	pll_reg_sel_pioff_rate3[2:0] speed value	
+						
+	# addr = 0x0064			AutoSpeed25	AutoSpeed25
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	vind_band_sel_pioff_rate3	vind_band_sel_pioff_rate3 speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h1	r/w	refdiv_pioff_rate3[3:0]	refdiv_pioff_rate3[3:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	fbdiv_cal_pioff_rate3[9:8]	fbdiv_cal_pioff_rate3[9:8] speed value	
+	[7:0]	8'h19	r/w	fbdiv_cal_pioff_rate3[7:0]	fbdiv_cal_pioff_rate3[7:0] speed value	
+						
+	# addr = 0x0068			AutoSpeed26	AutoSpeed26
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	div_1g_fbck_pioff_rate3[9:8]	div_1g_fbck_pioff_rate3[9:8] speed value	
+	[23:16]	8'hd	r/w	div_1g_fbck_pioff_rate3[7:0]	div_1g_fbck_pioff_rate3[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	div_1g_pioff_rate3[9:8]	div_1g_pioff_rate3[9:8] speed value	
+	[7:0]	8'h32	r/w	div_1g_pioff_rate3[7:0]	div_1g_pioff_rate3[7:0] speed value	
+						
+	# addr = 0x006c			AutoSpeed27	AutoSpeed27
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h6	r/w	intpi_lcpll_pioff_rate3[3:0]	intpi_lcpll_pioff_rate3[3:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	pll_lpfc_pioff_rate3[1:0]	pll_lpfc_pioff_rate3[1:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpfr_pioff_rate3[1:0]	pll_lpfr_pioff_rate3[1:0] speed value	
+	[7:5]	0	r/w	RESERVED		
+	[4:0]	5'h6	r/w	icp_lc_pioff_rate3[4:0]	icp_lc_pioff_rate3[4:0] speed value	
+						
+	# addr = 0x0070			AutoSpeed28	AutoSpeed28
+	[31:24]	8'hda	r/w	speed_thresh_pioff_rate3[7:0]	speed_thresh_pioff_rate3[7:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_pioff_rate3[9:8]	init_txfoffs_pioff_rate3[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_pioff_rate3[7:0]	init_txfoffs_pioff_rate3[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h2	r/w	tx_intpr_pioff_rate3[1:0]	tx_intpr_pioff_rate3[1:0] speed value	
+						
+	# addr = 0x0074			AutoSpeed29	AutoSpeed29
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h0	r/w	ssc_step_125ppm_pioff_rate3[3:0]	ssc_step_125ppm_pioff_rate3[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	ssc_acc_factor_pioff_rate3	ssc_acc_factor_pioff_rate3 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	lccap_usb_pioff_rate3	lccap_usb_pioff_rate3 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h7	r/w	speed_thresh_pioff_rate3[11:8]	speed_thresh_pioff_rate3[11:8] speed value	
+						
+	# addr = 0x0078			AutoSpeed30	AutoSpeed30
+	[31:16]	0	r/w	RESERVED		
+	[15:13]	0	r/w	RESERVED		
+	[12:8]	5'hc	r/w	ssc_m_pioff_rate3[12:8]	ssc_m_pioff_rate3[12:8] speed value	
+	[7:0]	8'h1b	r/w	ssc_m_pioff_rate3[7:0]	ssc_m_pioff_rate3[7:0] speed value	
+						
+	# addr = 0x007c			AutoSpeed31	TBD
+						
+	# addr = 0x0080			AutoSpeed32	AutoSpeed32
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	fbdiv_pioff_rate4[9:8]	fbdiv_pioff_rate4[9:8] speed value	
+	[23:16]	8'ha5	r/w	fbdiv_pioff_rate4[7:0]	fbdiv_pioff_rate4[7:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h4	r/w	pll_rate_sel_pioff_rate4[3:0]	pll_rate_sel_pioff_rate4[3:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h3	r/w	pll_reg_sel_pioff_rate4[2:0]	pll_reg_sel_pioff_rate4[2:0] speed value	
+						
+	# addr = 0x0084			AutoSpeed33	AutoSpeed33
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	vind_band_sel_pioff_rate4	vind_band_sel_pioff_rate4 speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h2	r/w	refdiv_pioff_rate4[3:0]	refdiv_pioff_rate4[3:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	fbdiv_cal_pioff_rate4[9:8]	fbdiv_cal_pioff_rate4[9:8] speed value	
+	[7:0]	8'h1a	r/w	fbdiv_cal_pioff_rate4[7:0]	fbdiv_cal_pioff_rate4[7:0] speed value	
+						
+	# addr = 0x0088			AutoSpeed34	AutoSpeed34
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	div_1g_fbck_pioff_rate4[9:8]	div_1g_fbck_pioff_rate4[9:8] speed value	
+	[23:16]	8'hd	r/w	div_1g_fbck_pioff_rate4[7:0]	div_1g_fbck_pioff_rate4[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	div_1g_pioff_rate4[9:8]	div_1g_pioff_rate4[9:8] speed value	
+	[7:0]	8'h34	r/w	div_1g_pioff_rate4[7:0]	div_1g_pioff_rate4[7:0] speed value	
+						
+	# addr = 0x008c			AutoSpeed35	AutoSpeed35
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h6	r/w	intpi_lcpll_pioff_rate4[3:0]	intpi_lcpll_pioff_rate4[3:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	pll_lpfc_pioff_rate4[1:0]	pll_lpfc_pioff_rate4[1:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpfr_pioff_rate4[1:0]	pll_lpfr_pioff_rate4[1:0] speed value	
+	[7:5]	0	r/w	RESERVED		
+	[4:0]	5'h9	r/w	icp_lc_pioff_rate4[4:0]	icp_lc_pioff_rate4[4:0] speed value	
+						
+	# addr = 0x0090			AutoSpeed36	AutoSpeed36
+	[31:24]	8'hc9	r/w	speed_thresh_pioff_rate4[7:0]	speed_thresh_pioff_rate4[7:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_pioff_rate4[9:8]	init_txfoffs_pioff_rate4[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_pioff_rate4[7:0]	init_txfoffs_pioff_rate4[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h1	r/w	tx_intpr_pioff_rate4[1:0]	tx_intpr_pioff_rate4[1:0] speed value	
+						
+	# addr = 0x0094			AutoSpeed37	AutoSpeed37
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h0	r/w	ssc_step_125ppm_pioff_rate4[3:0]	ssc_step_125ppm_pioff_rate4[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	ssc_acc_factor_pioff_rate4	ssc_acc_factor_pioff_rate4 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	lccap_usb_pioff_rate4	lccap_usb_pioff_rate4 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h7	r/w	speed_thresh_pioff_rate4[11:8]	speed_thresh_pioff_rate4[11:8] speed value	
+						
+	# addr = 0x0098			AutoSpeed38	AutoSpeed38
+	[31:16]	0	r/w	RESERVED		
+	[15:13]	0	r/w	RESERVED		
+	[12:8]	5'hc	r/w	ssc_m_pioff_rate4[12:8]	ssc_m_pioff_rate4[12:8] speed value	
+	[7:0]	8'h7b	r/w	ssc_m_pioff_rate4[7:0]	ssc_m_pioff_rate4[7:0] speed value	
+						
+	# addr = 0x009c			AutoSpeed39	TBD
+						
+	# addr = 0x00a0			AutoSpeed40	AutoSpeed40
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	fbdiv_pioff_rate5[9:8]	fbdiv_pioff_rate5[9:8] speed value	
+	[23:16]	8'hb0	r/w	fbdiv_pioff_rate5[7:0]	fbdiv_pioff_rate5[7:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h5	r/w	pll_rate_sel_pioff_rate5[3:0]	pll_rate_sel_pioff_rate5[3:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h4	r/w	pll_reg_sel_pioff_rate5[2:0]	pll_reg_sel_pioff_rate5[2:0] speed value	
+						
+	# addr = 0x00a4			AutoSpeed41	AutoSpeed41
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	vind_band_sel_pioff_rate5	vind_band_sel_pioff_rate5 speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h2	r/w	refdiv_pioff_rate5[3:0]	refdiv_pioff_rate5[3:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	fbdiv_cal_pioff_rate5[9:8]	fbdiv_cal_pioff_rate5[9:8] speed value	
+	[7:0]	8'h1c	r/w	fbdiv_cal_pioff_rate5[7:0]	fbdiv_cal_pioff_rate5[7:0] speed value	
+						
+	# addr = 0x00a8			AutoSpeed42	AutoSpeed42
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	div_1g_fbck_pioff_rate5[9:8]	div_1g_fbck_pioff_rate5[9:8] speed value	
+	[23:16]	8'he	r/w	div_1g_fbck_pioff_rate5[7:0]	div_1g_fbck_pioff_rate5[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	div_1g_pioff_rate5[9:8]	div_1g_pioff_rate5[9:8] speed value	
+	[7:0]	8'h37	r/w	div_1g_pioff_rate5[7:0]	div_1g_pioff_rate5[7:0] speed value	
+						
+	# addr = 0x00ac			AutoSpeed43	AutoSpeed43
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h6	r/w	intpi_lcpll_pioff_rate5[3:0]	intpi_lcpll_pioff_rate5[3:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	pll_lpfc_pioff_rate5[1:0]	pll_lpfc_pioff_rate5[1:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpfr_pioff_rate5[1:0]	pll_lpfr_pioff_rate5[1:0] speed value	
+	[7:5]	0	r/w	RESERVED		
+	[4:0]	5'h9	r/w	icp_lc_pioff_rate5[4:0]	icp_lc_pioff_rate5[4:0] speed value	
+						
+	# addr = 0x00b0			AutoSpeed44	AutoSpeed44
+	[31:24]	8'hb6	r/w	speed_thresh_pioff_rate5[7:0]	speed_thresh_pioff_rate5[7:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_pioff_rate5[9:8]	init_txfoffs_pioff_rate5[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_pioff_rate5[7:0]	init_txfoffs_pioff_rate5[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h1	r/w	tx_intpr_pioff_rate5[1:0]	tx_intpr_pioff_rate5[1:0] speed value	
+						
+	# addr = 0x00b4			AutoSpeed45	AutoSpeed45
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h0	r/w	ssc_step_125ppm_pioff_rate5[3:0]	ssc_step_125ppm_pioff_rate5[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	ssc_acc_factor_pioff_rate5	ssc_acc_factor_pioff_rate5 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	lccap_usb_pioff_rate5	lccap_usb_pioff_rate5 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h7	r/w	speed_thresh_pioff_rate5[11:8]	speed_thresh_pioff_rate5[11:8] speed value	
+						
+	# addr = 0x00b8			AutoSpeed46	AutoSpeed46
+	[31:16]	0	r/w	RESERVED		
+	[15:13]	0	r/w	RESERVED		
+	[12:8]	5'hd	r/w	ssc_m_pioff_rate5[12:8]	ssc_m_pioff_rate5[12:8] speed value	
+	[7:0]	8'h51	r/w	ssc_m_pioff_rate5[7:0]	ssc_m_pioff_rate5[7:0] speed value	
+						
+	# addr = 0x00bc			AutoSpeed47	TBD
+						
+	# addr = 0x00c0			AutoSpeed48	AutoSpeed48
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	fbdiv_pioff_rate6[9:8]	fbdiv_pioff_rate6[9:8] speed value	
+	[23:16]	8'hb4	r/w	fbdiv_pioff_rate6[7:0]	fbdiv_pioff_rate6[7:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h6	r/w	pll_rate_sel_pioff_rate6[3:0]	pll_rate_sel_pioff_rate6[3:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h4	r/w	pll_reg_sel_pioff_rate6[2:0]	pll_reg_sel_pioff_rate6[2:0] speed value	
+						
+	# addr = 0x00c4			AutoSpeed49	AutoSpeed49
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	vind_band_sel_pioff_rate6	vind_band_sel_pioff_rate6 speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h2	r/w	refdiv_pioff_rate6[3:0]	refdiv_pioff_rate6[3:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	fbdiv_cal_pioff_rate6[9:8]	fbdiv_cal_pioff_rate6[9:8] speed value	
+	[7:0]	8'h1c	r/w	fbdiv_cal_pioff_rate6[7:0]	fbdiv_cal_pioff_rate6[7:0] speed value	
+						
+	# addr = 0x00c8			AutoSpeed50	AutoSpeed50
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	div_1g_fbck_pioff_rate6[9:8]	div_1g_fbck_pioff_rate6[9:8] speed value	
+	[23:16]	8'he	r/w	div_1g_fbck_pioff_rate6[7:0]	div_1g_fbck_pioff_rate6[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	div_1g_pioff_rate6[9:8]	div_1g_pioff_rate6[9:8] speed value	
+	[7:0]	8'h38	r/w	div_1g_pioff_rate6[7:0]	div_1g_pioff_rate6[7:0] speed value	
+						
+	# addr = 0x00cc			AutoSpeed51	AutoSpeed51
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h6	r/w	intpi_lcpll_pioff_rate6[3:0]	intpi_lcpll_pioff_rate6[3:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	pll_lpfc_pioff_rate6[1:0]	pll_lpfc_pioff_rate6[1:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpfr_pioff_rate6[1:0]	pll_lpfr_pioff_rate6[1:0] speed value	
+	[7:5]	0	r/w	RESERVED		
+	[4:0]	5'h9	r/w	icp_lc_pioff_rate6[4:0]	icp_lc_pioff_rate6[4:0] speed value	
+						
+	# addr = 0x00d0			AutoSpeed52	AutoSpeed52
+	[31:24]	8'he3	r/w	speed_thresh_pioff_rate6[7:0]	speed_thresh_pioff_rate6[7:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_pioff_rate6[9:8]	init_txfoffs_pioff_rate6[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_pioff_rate6[7:0]	init_txfoffs_pioff_rate6[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	tx_intpr_pioff_rate6[1:0]	tx_intpr_pioff_rate6[1:0] speed value	
+						
+	# addr = 0x00d4			AutoSpeed53	AutoSpeed53
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h0	r/w	ssc_step_125ppm_pioff_rate6[3:0]	ssc_step_125ppm_pioff_rate6[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	ssc_acc_factor_pioff_rate6	ssc_acc_factor_pioff_rate6 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	lccap_usb_pioff_rate6	lccap_usb_pioff_rate6 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h7	r/w	speed_thresh_pioff_rate6[11:8]	speed_thresh_pioff_rate6[11:8] speed value	
+						
+	# addr = 0x00d8			AutoSpeed54	AutoSpeed54
+	[31:16]	0	r/w	RESERVED		
+	[15:13]	0	r/w	RESERVED		
+	[12:8]	5'hd	r/w	ssc_m_pioff_rate6[12:8]	ssc_m_pioff_rate6[12:8] speed value	
+	[7:0]	8'h9d	r/w	ssc_m_pioff_rate6[7:0]	ssc_m_pioff_rate6[7:0] speed value	
+						
+	# addr = 0x00dc			AutoSpeed55	TBD
+						
+	# addr = 0x00e0			AutoSpeed56	AutoSpeed56
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	fbdiv_pion_rate0[9:8]	fbdiv_pion_rate0[9:8] speed value	
+	[23:16]	8'h20	r/w	fbdiv_pion_rate0[7:0]	fbdiv_pion_rate0[7:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h0	r/w	pll_rate_sel_pion_rate0[3:0]	pll_rate_sel_pion_rate0[3:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h0	r/w	pll_reg_sel_pion_rate0[2:0]	pll_reg_sel_pion_rate0[2:0] speed value	
+						
+	# addr = 0x00e4			AutoSpeed57	AutoSpeed57
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	vind_band_sel_pion_rate0	vind_band_sel_pion_rate0 speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h2	r/w	refdiv_pion_rate0[3:0]	refdiv_pion_rate0[3:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	fbdiv_cal_pion_rate0[9:8]	fbdiv_cal_pion_rate0[9:8] speed value	
+	[7:0]	8'h14	r/w	fbdiv_cal_pion_rate0[7:0]	fbdiv_cal_pion_rate0[7:0] speed value	
+						
+	# addr = 0x00e8			AutoSpeed58	AutoSpeed58
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	div_1g_fbck_pion_rate0[9:8]	div_1g_fbck_pion_rate0[9:8] speed value	
+	[23:16]	8'ha	r/w	div_1g_fbck_pion_rate0[7:0]	div_1g_fbck_pion_rate0[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	div_1g_pion_rate0[9:8]	div_1g_pion_rate0[9:8] speed value	
+	[7:0]	8'h28	r/w	div_1g_pion_rate0[7:0]	div_1g_pion_rate0[7:0] speed value	
+						
+	# addr = 0x00ec			AutoSpeed59	AutoSpeed59
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h4	r/w	intpi_lcpll_pion_rate0[3:0]	intpi_lcpll_pion_rate0[3:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	pll_lpfc_pion_rate0[1:0]	pll_lpfc_pion_rate0[1:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpfr_pion_rate0[1:0]	pll_lpfr_pion_rate0[1:0] speed value	
+	[7:5]	0	r/w	RESERVED		
+	[4:0]	5'hc	r/w	icp_lc_pion_rate0[4:0]	icp_lc_pion_rate0[4:0] speed value	
+						
+	# addr = 0x00f0			AutoSpeed60	AutoSpeed60
+	[31:24]	8'hda	r/w	speed_thresh_pion_rate0[7:0]	speed_thresh_pion_rate0[7:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_pion_rate0[9:8]	init_txfoffs_pion_rate0[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_pion_rate0[7:0]	init_txfoffs_pion_rate0[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h2	r/w	tx_intpr_pion_rate0[1:0]	tx_intpr_pion_rate0[1:0] speed value	
+						
+	# addr = 0x00f4			AutoSpeed61	AutoSpeed61
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h3	r/w	ssc_step_125ppm_pion_rate0[3:0]	ssc_step_125ppm_pion_rate0[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	ssc_acc_factor_pion_rate0	ssc_acc_factor_pion_rate0 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	lccap_usb_pion_rate0	lccap_usb_pion_rate0 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h7	r/w	speed_thresh_pion_rate0[11:8]	speed_thresh_pion_rate0[11:8] speed value	
+						
+	# addr = 0x00f8			AutoSpeed62	AutoSpeed62
+	[31:16]	0	r/w	RESERVED		
+	[15:13]	0	r/w	RESERVED		
+	[12:8]	5'h9	r/w	ssc_m_pion_rate0[12:8]	ssc_m_pion_rate0[12:8] speed value	
+	[7:0]	8'haf	r/w	ssc_m_pion_rate0[7:0]	ssc_m_pion_rate0[7:0] speed value	
+						
+	# addr = 0x00fc			AutoSpeed63	TBD
+						
+	# addr = 0x0100			AutoSpeed64	AutoSpeed64
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	fbdiv_pion_rate1[9:8]	fbdiv_pion_rate1[9:8] speed value	
+	[23:16]	8'h21	r/w	fbdiv_pion_rate1[7:0]	fbdiv_pion_rate1[7:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h1	r/w	pll_rate_sel_pion_rate1[3:0]	pll_rate_sel_pion_rate1[3:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h3	r/w	pll_reg_sel_pion_rate1[2:0]	pll_reg_sel_pion_rate1[2:0] speed value	
+						
+	# addr = 0x0104			AutoSpeed65	AutoSpeed65
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	vind_band_sel_pion_rate1	vind_band_sel_pion_rate1 speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h2	r/w	refdiv_pion_rate1[3:0]	refdiv_pion_rate1[3:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	fbdiv_cal_pion_rate1[9:8]	fbdiv_cal_pion_rate1[9:8] speed value	
+	[7:0]	8'h15	r/w	fbdiv_cal_pion_rate1[7:0]	fbdiv_cal_pion_rate1[7:0] speed value	
+						
+	# addr = 0x0108			AutoSpeed66	AutoSpeed66
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	div_1g_fbck_pion_rate1[9:8]	div_1g_fbck_pion_rate1[9:8] speed value	
+	[23:16]	8'ha	r/w	div_1g_fbck_pion_rate1[7:0]	div_1g_fbck_pion_rate1[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	div_1g_pion_rate1[9:8]	div_1g_pion_rate1[9:8] speed value	
+	[7:0]	8'h29	r/w	div_1g_pion_rate1[7:0]	div_1g_pion_rate1[7:0] speed value	
+						
+	# addr = 0x010c			AutoSpeed67	AutoSpeed67
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h4	r/w	intpi_lcpll_pion_rate1[3:0]	intpi_lcpll_pion_rate1[3:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	pll_lpfc_pion_rate1[1:0]	pll_lpfc_pion_rate1[1:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpfr_pion_rate1[1:0]	pll_lpfr_pion_rate1[1:0] speed value	
+	[7:5]	0	r/w	RESERVED		
+	[4:0]	5'hc	r/w	icp_lc_pion_rate1[4:0]	icp_lc_pion_rate1[4:0] speed value	
+						
+	# addr = 0x0110			AutoSpeed68	AutoSpeed68
+	[31:24]	8'hb6	r/w	speed_thresh_pion_rate1[7:0]	speed_thresh_pion_rate1[7:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_pion_rate1[9:8]	init_txfoffs_pion_rate1[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_pion_rate1[7:0]	init_txfoffs_pion_rate1[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h2	r/w	tx_intpr_pion_rate1[1:0]	tx_intpr_pion_rate1[1:0] speed value	
+						
+	# addr = 0x0114			AutoSpeed69	AutoSpeed69
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h3	r/w	ssc_step_125ppm_pion_rate1[3:0]	ssc_step_125ppm_pion_rate1[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	ssc_acc_factor_pion_rate1	ssc_acc_factor_pion_rate1 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	lccap_usb_pion_rate1	lccap_usb_pion_rate1 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h7	r/w	speed_thresh_pion_rate1[11:8]	speed_thresh_pion_rate1[11:8] speed value	
+						
+	# addr = 0x0118			AutoSpeed70	AutoSpeed70
+	[31:16]	0	r/w	RESERVED		
+	[15:13]	0	r/w	RESERVED		
+	[12:8]	5'h9	r/w	ssc_m_pion_rate1[12:8]	ssc_m_pion_rate1[12:8] speed value	
+	[7:0]	8'hfb	r/w	ssc_m_pion_rate1[7:0]	ssc_m_pion_rate1[7:0] speed value	
+						
+	# addr = 0x011c			AutoSpeed71	TBD
+						
+	# addr = 0x0120			AutoSpeed72	AutoSpeed72
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	fbdiv_pion_rate2[9:8]	fbdiv_pion_rate2[9:8] speed value	
+	[23:16]	8'h27	r/w	fbdiv_pion_rate2[7:0]	fbdiv_pion_rate2[7:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h2	r/w	pll_rate_sel_pion_rate2[3:0]	pll_rate_sel_pion_rate2[3:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h3	r/w	pll_reg_sel_pion_rate2[2:0]	pll_reg_sel_pion_rate2[2:0] speed value	
+						
+	# addr = 0x0124			AutoSpeed73	AutoSpeed73
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	vind_band_sel_pion_rate2	vind_band_sel_pion_rate2 speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h2	r/w	refdiv_pion_rate2[3:0]	refdiv_pion_rate2[3:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	fbdiv_cal_pion_rate2[9:8]	fbdiv_cal_pion_rate2[9:8] speed value	
+	[7:0]	8'h18	r/w	fbdiv_cal_pion_rate2[7:0]	fbdiv_cal_pion_rate2[7:0] speed value	
+						
+	# addr = 0x0128			AutoSpeed74	AutoSpeed74
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	div_1g_fbck_pion_rate2[9:8]	div_1g_fbck_pion_rate2[9:8] speed value	
+	[23:16]	8'hc	r/w	div_1g_fbck_pion_rate2[7:0]	div_1g_fbck_pion_rate2[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	div_1g_pion_rate2[9:8]	div_1g_pion_rate2[9:8] speed value	
+	[7:0]	8'h31	r/w	div_1g_pion_rate2[7:0]	div_1g_pion_rate2[7:0] speed value	
+						
+	# addr = 0x012c			AutoSpeed75	AutoSpeed75
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h6	r/w	intpi_lcpll_pion_rate2[3:0]	intpi_lcpll_pion_rate2[3:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	pll_lpfc_pion_rate2[1:0]	pll_lpfc_pion_rate2[1:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpfr_pion_rate2[1:0]	pll_lpfr_pion_rate2[1:0] speed value	
+	[7:5]	0	r/w	RESERVED		
+	[4:0]	5'hc	r/w	icp_lc_pion_rate2[4:0]	icp_lc_pion_rate2[4:0] speed value	
+						
+	# addr = 0x0130			AutoSpeed76	AutoSpeed76
+	[31:24]	8'hf9	r/w	speed_thresh_pion_rate2[7:0]	speed_thresh_pion_rate2[7:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_pion_rate2[9:8]	init_txfoffs_pion_rate2[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_pion_rate2[7:0]	init_txfoffs_pion_rate2[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h2	r/w	tx_intpr_pion_rate2[1:0]	tx_intpr_pion_rate2[1:0] speed value	
+						
+	# addr = 0x0134			AutoSpeed77	AutoSpeed77
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h3	r/w	ssc_step_125ppm_pion_rate2[3:0]	ssc_step_125ppm_pion_rate2[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	ssc_acc_factor_pion_rate2	ssc_acc_factor_pion_rate2 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	lccap_usb_pion_rate2	lccap_usb_pion_rate2 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h7	r/w	speed_thresh_pion_rate2[11:8]	speed_thresh_pion_rate2[11:8] speed value	
+						
+	# addr = 0x0138			AutoSpeed78	AutoSpeed78
+	[31:16]	0	r/w	RESERVED		
+	[15:13]	0	r/w	RESERVED		
+	[12:8]	5'hb	r/w	ssc_m_pion_rate2[12:8]	ssc_m_pion_rate2[12:8] speed value	
+	[7:0]	8'hcd	r/w	ssc_m_pion_rate2[7:0]	ssc_m_pion_rate2[7:0] speed value	
+						
+	# addr = 0x013c			AutoSpeed79	TBD
+						
+	# addr = 0x0140			AutoSpeed80	AutoSpeed80
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	fbdiv_pion_rate3[9:8]	fbdiv_pion_rate3[9:8] speed value	
+	[23:16]	8'h14	r/w	fbdiv_pion_rate3[7:0]	fbdiv_pion_rate3[7:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h3	r/w	pll_rate_sel_pion_rate3[3:0]	pll_rate_sel_pion_rate3[3:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h3	r/w	pll_reg_sel_pion_rate3[2:0]	pll_reg_sel_pion_rate3[2:0] speed value	
+						
+	# addr = 0x0144			AutoSpeed81	AutoSpeed81
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	vind_band_sel_pion_rate3	vind_band_sel_pion_rate3 speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h1	r/w	refdiv_pion_rate3[3:0]	refdiv_pion_rate3[3:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	fbdiv_cal_pion_rate3[9:8]	fbdiv_cal_pion_rate3[9:8] speed value	
+	[7:0]	8'h19	r/w	fbdiv_cal_pion_rate3[7:0]	fbdiv_cal_pion_rate3[7:0] speed value	
+						
+	# addr = 0x0148			AutoSpeed82	AutoSpeed82
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	div_1g_fbck_pion_rate3[9:8]	div_1g_fbck_pion_rate3[9:8] speed value	
+	[23:16]	8'hd	r/w	div_1g_fbck_pion_rate3[7:0]	div_1g_fbck_pion_rate3[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	div_1g_pion_rate3[9:8]	div_1g_pion_rate3[9:8] speed value	
+	[7:0]	8'h32	r/w	div_1g_pion_rate3[7:0]	div_1g_pion_rate3[7:0] speed value	
+						
+	# addr = 0x014c			AutoSpeed83	AutoSpeed83
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h6	r/w	intpi_lcpll_pion_rate3[3:0]	intpi_lcpll_pion_rate3[3:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	pll_lpfc_pion_rate3[1:0]	pll_lpfc_pion_rate3[1:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpfr_pion_rate3[1:0]	pll_lpfr_pion_rate3[1:0] speed value	
+	[7:5]	0	r/w	RESERVED		
+	[4:0]	5'h6	r/w	icp_lc_pion_rate3[4:0]	icp_lc_pion_rate3[4:0] speed value	
+						
+	# addr = 0x0150			AutoSpeed84	AutoSpeed84
+	[31:24]	8'hda	r/w	speed_thresh_pion_rate3[7:0]	speed_thresh_pion_rate3[7:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_pion_rate3[9:8]	init_txfoffs_pion_rate3[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_pion_rate3[7:0]	init_txfoffs_pion_rate3[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h2	r/w	tx_intpr_pion_rate3[1:0]	tx_intpr_pion_rate3[1:0] speed value	
+						
+	# addr = 0x0154			AutoSpeed85	AutoSpeed85
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h3	r/w	ssc_step_125ppm_pion_rate3[3:0]	ssc_step_125ppm_pion_rate3[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	ssc_acc_factor_pion_rate3	ssc_acc_factor_pion_rate3 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	lccap_usb_pion_rate3	lccap_usb_pion_rate3 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h7	r/w	speed_thresh_pion_rate3[11:8]	speed_thresh_pion_rate3[11:8] speed value	
+						
+	# addr = 0x0158			AutoSpeed86	AutoSpeed86
+	[31:16]	0	r/w	RESERVED		
+	[15:13]	0	r/w	RESERVED		
+	[12:8]	5'hc	r/w	ssc_m_pion_rate3[12:8]	ssc_m_pion_rate3[12:8] speed value	
+	[7:0]	8'h1b	r/w	ssc_m_pion_rate3[7:0]	ssc_m_pion_rate3[7:0] speed value	
+						
+	# addr = 0x015c			AutoSpeed87	TBD
+						
+	# addr = 0x0160			AutoSpeed88	AutoSpeed88
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	fbdiv_pion_rate4[9:8]	fbdiv_pion_rate4[9:8] speed value	
+	[23:16]	8'h3e	r/w	fbdiv_pion_rate4[7:0]	fbdiv_pion_rate4[7:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h4	r/w	pll_rate_sel_pion_rate4[3:0]	pll_rate_sel_pion_rate4[3:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h3	r/w	pll_reg_sel_pion_rate4[2:0]	pll_reg_sel_pion_rate4[2:0] speed value	
+						
+	# addr = 0x0164			AutoSpeed89	AutoSpeed89
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	vind_band_sel_pion_rate4	vind_band_sel_pion_rate4 speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h3	r/w	refdiv_pion_rate4[3:0]	refdiv_pion_rate4[3:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	fbdiv_cal_pion_rate4[9:8]	fbdiv_cal_pion_rate4[9:8] speed value	
+	[7:0]	8'h1a	r/w	fbdiv_cal_pion_rate4[7:0]	fbdiv_cal_pion_rate4[7:0] speed value	
+						
+	# addr = 0x0168			AutoSpeed90	AutoSpeed90
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	div_1g_fbck_pion_rate4[9:8]	div_1g_fbck_pion_rate4[9:8] speed value	
+	[23:16]	8'hd	r/w	div_1g_fbck_pion_rate4[7:0]	div_1g_fbck_pion_rate4[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	div_1g_pion_rate4[9:8]	div_1g_pion_rate4[9:8] speed value	
+	[7:0]	8'h34	r/w	div_1g_pion_rate4[7:0]	div_1g_pion_rate4[7:0] speed value	
+						
+	# addr = 0x016c			AutoSpeed91	AutoSpeed91
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h6	r/w	intpi_lcpll_pion_rate4[3:0]	intpi_lcpll_pion_rate4[3:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	pll_lpfc_pion_rate4[1:0]	pll_lpfc_pion_rate4[1:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpfr_pion_rate4[1:0]	pll_lpfr_pion_rate4[1:0] speed value	
+	[7:5]	0	r/w	RESERVED		
+	[4:0]	5'hc	r/w	icp_lc_pion_rate4[4:0]	icp_lc_pion_rate4[4:0] speed value	
+						
+	# addr = 0x0170			AutoSpeed92	AutoSpeed92
+	[31:24]	8'hc9	r/w	speed_thresh_pion_rate4[7:0]	speed_thresh_pion_rate4[7:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_pion_rate4[9:8]	init_txfoffs_pion_rate4[9:8] speed value	
+	[15:8]	8'h42	r/w	init_txfoffs_pion_rate4[7:0]	init_txfoffs_pion_rate4[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h1	r/w	tx_intpr_pion_rate4[1:0]	tx_intpr_pion_rate4[1:0] speed value	
+						
+	# addr = 0x0174			AutoSpeed93	AutoSpeed93
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h3	r/w	ssc_step_125ppm_pion_rate4[3:0]	ssc_step_125ppm_pion_rate4[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	ssc_acc_factor_pion_rate4	ssc_acc_factor_pion_rate4 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	lccap_usb_pion_rate4	lccap_usb_pion_rate4 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h7	r/w	speed_thresh_pion_rate4[11:8]	speed_thresh_pion_rate4[11:8] speed value	
+						
+	# addr = 0x0178			AutoSpeed94	AutoSpeed94
+	[31:16]	0	r/w	RESERVED		
+	[15:13]	0	r/w	RESERVED		
+	[12:8]	5'hc	r/w	ssc_m_pion_rate4[12:8]	ssc_m_pion_rate4[12:8] speed value	
+	[7:0]	8'h7b	r/w	ssc_m_pion_rate4[7:0]	ssc_m_pion_rate4[7:0] speed value	
+						
+	# addr = 0x017c			AutoSpeed95	TBD
+						
+	# addr = 0x0180			AutoSpeed96	AutoSpeed96
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	fbdiv_pion_rate5[9:8]	fbdiv_pion_rate5[9:8] speed value	
+	[23:16]	8'h2c	r/w	fbdiv_pion_rate5[7:0]	fbdiv_pion_rate5[7:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h5	r/w	pll_rate_sel_pion_rate5[3:0]	pll_rate_sel_pion_rate5[3:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h4	r/w	pll_reg_sel_pion_rate5[2:0]	pll_reg_sel_pion_rate5[2:0] speed value	
+						
+	# addr = 0x0184			AutoSpeed97	AutoSpeed97
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	vind_band_sel_pion_rate5	vind_band_sel_pion_rate5 speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h2	r/w	refdiv_pion_rate5[3:0]	refdiv_pion_rate5[3:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	fbdiv_cal_pion_rate5[9:8]	fbdiv_cal_pion_rate5[9:8] speed value	
+	[7:0]	8'h1c	r/w	fbdiv_cal_pion_rate5[7:0]	fbdiv_cal_pion_rate5[7:0] speed value	
+						
+	# addr = 0x0188			AutoSpeed98	AutoSpeed98
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	div_1g_fbck_pion_rate5[9:8]	div_1g_fbck_pion_rate5[9:8] speed value	
+	[23:16]	8'he	r/w	div_1g_fbck_pion_rate5[7:0]	div_1g_fbck_pion_rate5[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	div_1g_pion_rate5[9:8]	div_1g_pion_rate5[9:8] speed value	
+	[7:0]	8'h37	r/w	div_1g_pion_rate5[7:0]	div_1g_pion_rate5[7:0] speed value	
+						
+	# addr = 0x018c			AutoSpeed99	AutoSpeed99
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h6	r/w	intpi_lcpll_pion_rate5[3:0]	intpi_lcpll_pion_rate5[3:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	pll_lpfc_pion_rate5[1:0]	pll_lpfc_pion_rate5[1:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpfr_pion_rate5[1:0]	pll_lpfr_pion_rate5[1:0] speed value	
+	[7:5]	0	r/w	RESERVED		
+	[4:0]	5'h9	r/w	icp_lc_pion_rate5[4:0]	icp_lc_pion_rate5[4:0] speed value	
+						
+	# addr = 0x0190			AutoSpeed100	AutoSpeed100
+	[31:24]	8'hb6	r/w	speed_thresh_pion_rate5[7:0]	speed_thresh_pion_rate5[7:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_pion_rate5[9:8]	init_txfoffs_pion_rate5[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_pion_rate5[7:0]	init_txfoffs_pion_rate5[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h1	r/w	tx_intpr_pion_rate5[1:0]	tx_intpr_pion_rate5[1:0] speed value	
+						
+	# addr = 0x0194			AutoSpeed101	AutoSpeed101
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h2	r/w	ssc_step_125ppm_pion_rate5[3:0]	ssc_step_125ppm_pion_rate5[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	ssc_acc_factor_pion_rate5	ssc_acc_factor_pion_rate5 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	lccap_usb_pion_rate5	lccap_usb_pion_rate5 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h7	r/w	speed_thresh_pion_rate5[11:8]	speed_thresh_pion_rate5[11:8] speed value	
+						
+	# addr = 0x0198			AutoSpeed102	AutoSpeed102
+	[31:16]	0	r/w	RESERVED		
+	[15:13]	0	r/w	RESERVED		
+	[12:8]	5'hd	r/w	ssc_m_pion_rate5[12:8]	ssc_m_pion_rate5[12:8] speed value	
+	[7:0]	8'h51	r/w	ssc_m_pion_rate5[7:0]	ssc_m_pion_rate5[7:0] speed value	
+						
+	# addr = 0x019c			AutoSpeed103	TBD
+						
+	# addr = 0x01a0			AutoSpeed104	AutoSpeed104
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	fbdiv_pion_rate6[9:8]	fbdiv_pion_rate6[9:8] speed value	
+	[23:16]	8'h2d	r/w	fbdiv_pion_rate6[7:0]	fbdiv_pion_rate6[7:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h6	r/w	pll_rate_sel_pion_rate6[3:0]	pll_rate_sel_pion_rate6[3:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h4	r/w	pll_reg_sel_pion_rate6[2:0]	pll_reg_sel_pion_rate6[2:0] speed value	
+						
+	# addr = 0x01a4			AutoSpeed105	AutoSpeed105
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	vind_band_sel_pion_rate6	vind_band_sel_pion_rate6 speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h2	r/w	refdiv_pion_rate6[3:0]	refdiv_pion_rate6[3:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	fbdiv_cal_pion_rate6[9:8]	fbdiv_cal_pion_rate6[9:8] speed value	
+	[7:0]	8'h1c	r/w	fbdiv_cal_pion_rate6[7:0]	fbdiv_cal_pion_rate6[7:0] speed value	
+						
+	# addr = 0x01a8			AutoSpeed106	AutoSpeed106
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	div_1g_fbck_pion_rate6[9:8]	div_1g_fbck_pion_rate6[9:8] speed value	
+	[23:16]	8'he	r/w	div_1g_fbck_pion_rate6[7:0]	div_1g_fbck_pion_rate6[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	div_1g_pion_rate6[9:8]	div_1g_pion_rate6[9:8] speed value	
+	[7:0]	8'h38	r/w	div_1g_pion_rate6[7:0]	div_1g_pion_rate6[7:0] speed value	
+						
+	# addr = 0x01ac			AutoSpeed107	AutoSpeed107
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h6	r/w	intpi_lcpll_pion_rate6[3:0]	intpi_lcpll_pion_rate6[3:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	pll_lpfc_pion_rate6[1:0]	pll_lpfc_pion_rate6[1:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpfr_pion_rate6[1:0]	pll_lpfr_pion_rate6[1:0] speed value	
+	[7:5]	0	r/w	RESERVED		
+	[4:0]	5'h9	r/w	icp_lc_pion_rate6[4:0]	icp_lc_pion_rate6[4:0] speed value	
+						
+	# addr = 0x01b0			AutoSpeed108	AutoSpeed108
+	[31:24]	8'he3	r/w	speed_thresh_pion_rate6[7:0]	speed_thresh_pion_rate6[7:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_pion_rate6[9:8]	init_txfoffs_pion_rate6[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_pion_rate6[7:0]	init_txfoffs_pion_rate6[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	tx_intpr_pion_rate6[1:0]	tx_intpr_pion_rate6[1:0] speed value	
+						
+	# addr = 0x01b4			AutoSpeed109	AutoSpeed109
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h2	r/w	ssc_step_125ppm_pion_rate6[3:0]	ssc_step_125ppm_pion_rate6[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	ssc_acc_factor_pion_rate6	ssc_acc_factor_pion_rate6 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	lccap_usb_pion_rate6	lccap_usb_pion_rate6 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h7	r/w	speed_thresh_pion_rate6[11:8]	speed_thresh_pion_rate6[11:8] speed value	
+						
+	# addr = 0x01b8			AutoSpeed110	AutoSpeed110
+	[31:16]	0	r/w	RESERVED		
+	[15:13]	0	r/w	RESERVED		
+	[12:8]	5'hd	r/w	ssc_m_pion_rate6[12:8]	ssc_m_pion_rate6[12:8] speed value	
+	[7:0]	8'h9d	r/w	ssc_m_pion_rate6[7:0]	ssc_m_pion_rate6[7:0] speed value	
+						
+	# addr = 0x01bc			AutoSpeed111	TBD
+						
+	# addr = 0x01c0			AutoSpeed112	AutoSpeed112
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h1	r/w	pll_refdiv_ring_pioff_rate0[3:0]	pll_refdiv_ring_pioff_rate0[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	clk1g_refclk_sel_pioff_rate0	clk1g_refclk_sel_pioff_rate0 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	ref_clk_ring_sel_pioff_rate0	ref_clk_ring_sel_pioff_rate0 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h0	r/w	pll_rate_sel_rpll_pioff_rate0[3:0]	pll_rate_sel_rpll_pioff_rate0[3:0] speed value	
+						
+	# addr = 0x01c4			AutoSpeed113	AutoSpeed113
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	pll_fbdiv_ring_fbck_pioff_rate0[9:8]	pll_fbdiv_ring_fbck_pioff_rate0[9:8] speed value	
+	[23:16]	8'h40	r/w	pll_fbdiv_ring_fbck_pioff_rate0[7:0]	pll_fbdiv_ring_fbck_pioff_rate0[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_fbdiv_ring_pioff_rate0[9:8]	pll_fbdiv_ring_pioff_rate0[9:8] speed value	
+	[7:0]	8'h40	r/w	pll_fbdiv_ring_pioff_rate0[7:0]	pll_fbdiv_ring_pioff_rate0[7:0] speed value	
+						
+	# addr = 0x01c8			AutoSpeed114	AutoSpeed114
+	[31:24]	8'h28	r/w	fbdiv_cal_ring_pioff_rate0[7:0]	fbdiv_cal_ring_pioff_rate0[7:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pll_speed_thresh_ring_pioff_rate0[8]	pll_speed_thresh_ring_pioff_rate0[8] speed value	
+	[15:8]	8'hfb	r/w	pll_speed_thresh_ring_pioff_rate0[7:0]	pll_speed_thresh_ring_pioff_rate0[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'hc	r/w	icp_ring_pioff_rate0[3:0]	icp_ring_pioff_rate0[3:0] speed value	
+						
+	# addr = 0x01cc			AutoSpeed115	AutoSpeed115
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	pll_band_sel_ring_pioff_rate0	pll_band_sel_ring_pioff_rate0 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h2	r/w	tx_intpr_ring_pioff_rate0[1:0]	tx_intpr_ring_pioff_rate0[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h5	r/w	intpi_ring_pioff_rate0[3:0]	intpi_ring_pioff_rate0[3:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	fbdiv_cal_ring_pioff_rate0[9:8]	fbdiv_cal_ring_pioff_rate0[9:8] speed value	
+						
+	# addr = 0x01d0			AutoSpeed116	AutoSpeed116
+	[31:24]	8'h0	r/w	init_txfoffs_ring_pioff_rate0[7:0]	init_txfoffs_ring_pioff_rate0[7:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h4	r/w	pll_lpf_r1_sel_ring_pioff_rate0[2:0]	pll_lpf_r1_sel_ring_pioff_rate0[2:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpf_c2_sel_ring_pioff_rate0[1:0]	pll_lpf_c2_sel_ring_pioff_rate0[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h3	r/w	pll_lpf_c1_sel_ring_pioff_rate0[1:0]	pll_lpf_c1_sel_ring_pioff_rate0[1:0] speed value	
+						
+	# addr = 0x01d4			AutoSpeed117	AutoSpeed117
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	ssc_acc_factor_ring_pioff_rate0	ssc_acc_factor_ring_pioff_rate0 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_ring_fbck_pioff_rate0[9:8]	init_txfoffs_ring_fbck_pioff_rate0[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_ring_fbck_pioff_rate0[7:0]	init_txfoffs_ring_fbck_pioff_rate0[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	init_txfoffs_ring_pioff_rate0[9:8]	init_txfoffs_ring_pioff_rate0[9:8] speed value	
+						
+	# addr = 0x01d8			AutoSpeed118	AutoSpeed118
+	[31:24]	0	r/w	RESERVED		
+	[23:21]	0	r/w	RESERVED		
+	[20:16]	5'h9	r/w	ssc_m_ring_pioff_rate0[12:8]	ssc_m_ring_pioff_rate0[12:8] speed value	
+	[15:8]	8'haf	r/w	ssc_m_ring_pioff_rate0[7:0]	ssc_m_ring_pioff_rate0[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h0	r/w	ssc_step_125ppm_ring_pioff_rate0[3:0]	ssc_step_125ppm_ring_pioff_rate0[3:0] speed value	
+						
+	# addr = 0x01dc			AutoSpeed119	TBD
+						
+	# addr = 0x01e0			AutoSpeed120	TBD
+						
+	# addr = 0x01e4			AutoSpeed121	AutoSpeed121
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h1	r/w	pll_refdiv_ring_pioff_rate1[3:0]	pll_refdiv_ring_pioff_rate1[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	clk1g_refclk_sel_pioff_rate1	clk1g_refclk_sel_pioff_rate1 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	ref_clk_ring_sel_pioff_rate1	ref_clk_ring_sel_pioff_rate1 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h1	r/w	pll_rate_sel_rpll_pioff_rate1[3:0]	pll_rate_sel_rpll_pioff_rate1[3:0] speed value	
+						
+	# addr = 0x01e8			AutoSpeed122	AutoSpeed122
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	pll_fbdiv_ring_fbck_pioff_rate1[9:8]	pll_fbdiv_ring_fbck_pioff_rate1[9:8] speed value	
+	[23:16]	8'h42	r/w	pll_fbdiv_ring_fbck_pioff_rate1[7:0]	pll_fbdiv_ring_fbck_pioff_rate1[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_fbdiv_ring_pioff_rate1[9:8]	pll_fbdiv_ring_pioff_rate1[9:8] speed value	
+	[7:0]	8'h42	r/w	pll_fbdiv_ring_pioff_rate1[7:0]	pll_fbdiv_ring_pioff_rate1[7:0] speed value	
+						
+	# addr = 0x01ec			AutoSpeed123	AutoSpeed123
+	[31:24]	8'h29	r/w	fbdiv_cal_ring_pioff_rate1[7:0]	fbdiv_cal_ring_pioff_rate1[7:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pll_speed_thresh_ring_pioff_rate1[8]	pll_speed_thresh_ring_pioff_rate1[8] speed value	
+	[15:8]	8'hfd	r/w	pll_speed_thresh_ring_pioff_rate1[7:0]	pll_speed_thresh_ring_pioff_rate1[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'hc	r/w	icp_ring_pioff_rate1[3:0]	icp_ring_pioff_rate1[3:0] speed value	
+						
+	# addr = 0x01f0			AutoSpeed124	AutoSpeed124
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	pll_band_sel_ring_pioff_rate1	pll_band_sel_ring_pioff_rate1 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h2	r/w	tx_intpr_ring_pioff_rate1[1:0]	tx_intpr_ring_pioff_rate1[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h5	r/w	intpi_ring_pioff_rate1[3:0]	intpi_ring_pioff_rate1[3:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	fbdiv_cal_ring_pioff_rate1[9:8]	fbdiv_cal_ring_pioff_rate1[9:8] speed value	
+						
+	# addr = 0x01f4			AutoSpeed125	AutoSpeed125
+	[31:24]	8'h0	r/w	init_txfoffs_ring_pioff_rate1[7:0]	init_txfoffs_ring_pioff_rate1[7:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h4	r/w	pll_lpf_r1_sel_ring_pioff_rate1[2:0]	pll_lpf_r1_sel_ring_pioff_rate1[2:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpf_c2_sel_ring_pioff_rate1[1:0]	pll_lpf_c2_sel_ring_pioff_rate1[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h3	r/w	pll_lpf_c1_sel_ring_pioff_rate1[1:0]	pll_lpf_c1_sel_ring_pioff_rate1[1:0] speed value	
+						
+	# addr = 0x01f8			AutoSpeed126	AutoSpeed126
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	ssc_acc_factor_ring_pioff_rate1	ssc_acc_factor_ring_pioff_rate1 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_ring_fbck_pioff_rate1[9:8]	init_txfoffs_ring_fbck_pioff_rate1[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_ring_fbck_pioff_rate1[7:0]	init_txfoffs_ring_fbck_pioff_rate1[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	init_txfoffs_ring_pioff_rate1[9:8]	init_txfoffs_ring_pioff_rate1[9:8] speed value	
+						
+	# addr = 0x01fc			AutoSpeed127	AutoSpeed127
+	[31:24]	0	r/w	RESERVED		
+	[23:21]	0	r/w	RESERVED		
+	[20:16]	5'h9	r/w	ssc_m_ring_pioff_rate1[12:8]	ssc_m_ring_pioff_rate1[12:8] speed value	
+	[15:8]	8'hfb	r/w	ssc_m_ring_pioff_rate1[7:0]	ssc_m_ring_pioff_rate1[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h0	r/w	ssc_step_125ppm_ring_pioff_rate1[3:0]	ssc_step_125ppm_ring_pioff_rate1[3:0] speed value	
+						
+	# addr = 0x0200			AutoSpeed128	TBD
+						
+	# addr = 0x0204			AutoSpeed129	TBD
+						
+	# addr = 0x0208			AutoSpeed130	AutoSpeed130
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h1	r/w	pll_refdiv_ring_pioff_rate2[3:0]	pll_refdiv_ring_pioff_rate2[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	clk1g_refclk_sel_pioff_rate2	clk1g_refclk_sel_pioff_rate2 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	ref_clk_ring_sel_pioff_rate2	ref_clk_ring_sel_pioff_rate2 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h2	r/w	pll_rate_sel_rpll_pioff_rate2[3:0]	pll_rate_sel_rpll_pioff_rate2[3:0] speed value	
+						
+	# addr = 0x020c			AutoSpeed131	AutoSpeed131
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	pll_fbdiv_ring_fbck_pioff_rate2[9:8]	pll_fbdiv_ring_fbck_pioff_rate2[9:8] speed value	
+	[23:16]	8'h4e	r/w	pll_fbdiv_ring_fbck_pioff_rate2[7:0]	pll_fbdiv_ring_fbck_pioff_rate2[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_fbdiv_ring_pioff_rate2[9:8]	pll_fbdiv_ring_pioff_rate2[9:8] speed value	
+	[7:0]	8'h4e	r/w	pll_fbdiv_ring_pioff_rate2[7:0]	pll_fbdiv_ring_pioff_rate2[7:0] speed value	
+						
+	# addr = 0x0210			AutoSpeed132	AutoSpeed132
+	[31:24]	8'h31	r/w	fbdiv_cal_ring_pioff_rate2[7:0]	fbdiv_cal_ring_pioff_rate2[7:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pll_speed_thresh_ring_pioff_rate2[8]	pll_speed_thresh_ring_pioff_rate2[8] speed value	
+	[15:8]	8'hfa	r/w	pll_speed_thresh_ring_pioff_rate2[7:0]	pll_speed_thresh_ring_pioff_rate2[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'he	r/w	icp_ring_pioff_rate2[3:0]	icp_ring_pioff_rate2[3:0] speed value	
+						
+	# addr = 0x0214			AutoSpeed133	AutoSpeed133
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	pll_band_sel_ring_pioff_rate2	pll_band_sel_ring_pioff_rate2 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	tx_intpr_ring_pioff_rate2[1:0]	tx_intpr_ring_pioff_rate2[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h7	r/w	intpi_ring_pioff_rate2[3:0]	intpi_ring_pioff_rate2[3:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	fbdiv_cal_ring_pioff_rate2[9:8]	fbdiv_cal_ring_pioff_rate2[9:8] speed value	
+						
+	# addr = 0x0218			AutoSpeed134	AutoSpeed134
+	[31:24]	8'h0	r/w	init_txfoffs_ring_pioff_rate2[7:0]	init_txfoffs_ring_pioff_rate2[7:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h5	r/w	pll_lpf_r1_sel_ring_pioff_rate2[2:0]	pll_lpf_r1_sel_ring_pioff_rate2[2:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpf_c2_sel_ring_pioff_rate2[1:0]	pll_lpf_c2_sel_ring_pioff_rate2[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h2	r/w	pll_lpf_c1_sel_ring_pioff_rate2[1:0]	pll_lpf_c1_sel_ring_pioff_rate2[1:0] speed value	
+						
+	# addr = 0x021c			AutoSpeed135	AutoSpeed135
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	ssc_acc_factor_ring_pioff_rate2	ssc_acc_factor_ring_pioff_rate2 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_ring_fbck_pioff_rate2[9:8]	init_txfoffs_ring_fbck_pioff_rate2[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_ring_fbck_pioff_rate2[7:0]	init_txfoffs_ring_fbck_pioff_rate2[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	init_txfoffs_ring_pioff_rate2[9:8]	init_txfoffs_ring_pioff_rate2[9:8] speed value	
+						
+	# addr = 0x0220			AutoSpeed136	AutoSpeed136
+	[31:24]	0	r/w	RESERVED		
+	[23:21]	0	r/w	RESERVED		
+	[20:16]	5'hb	r/w	ssc_m_ring_pioff_rate2[12:8]	ssc_m_ring_pioff_rate2[12:8] speed value	
+	[15:8]	8'hcd	r/w	ssc_m_ring_pioff_rate2[7:0]	ssc_m_ring_pioff_rate2[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h0	r/w	ssc_step_125ppm_ring_pioff_rate2[3:0]	ssc_step_125ppm_ring_pioff_rate2[3:0] speed value	
+						
+	# addr = 0x0224			AutoSpeed137	TBD
+						
+	# addr = 0x0228			AutoSpeed138	TBD
+						
+	# addr = 0x022c			AutoSpeed139	AutoSpeed139
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h1	r/w	pll_refdiv_ring_pioff_rate3[3:0]	pll_refdiv_ring_pioff_rate3[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	clk1g_refclk_sel_pioff_rate3	clk1g_refclk_sel_pioff_rate3 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	ref_clk_ring_sel_pioff_rate3	ref_clk_ring_sel_pioff_rate3 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h3	r/w	pll_rate_sel_rpll_pioff_rate3[3:0]	pll_rate_sel_rpll_pioff_rate3[3:0] speed value	
+						
+	# addr = 0x0230			AutoSpeed140	AutoSpeed140
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	pll_fbdiv_ring_fbck_pioff_rate3[9:8]	pll_fbdiv_ring_fbck_pioff_rate3[9:8] speed value	
+	[23:16]	8'h50	r/w	pll_fbdiv_ring_fbck_pioff_rate3[7:0]	pll_fbdiv_ring_fbck_pioff_rate3[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_fbdiv_ring_pioff_rate3[9:8]	pll_fbdiv_ring_pioff_rate3[9:8] speed value	
+	[7:0]	8'h50	r/w	pll_fbdiv_ring_pioff_rate3[7:0]	pll_fbdiv_ring_pioff_rate3[7:0] speed value	
+						
+	# addr = 0x0234			AutoSpeed141	AutoSpeed141
+	[31:24]	8'h32	r/w	fbdiv_cal_ring_pioff_rate3[7:0]	fbdiv_cal_ring_pioff_rate3[7:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pll_speed_thresh_ring_pioff_rate3[8]	pll_speed_thresh_ring_pioff_rate3[8] speed value	
+	[15:8]	8'hfb	r/w	pll_speed_thresh_ring_pioff_rate3[7:0]	pll_speed_thresh_ring_pioff_rate3[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'he	r/w	icp_ring_pioff_rate3[3:0]	icp_ring_pioff_rate3[3:0] speed value	
+						
+	# addr = 0x0238			AutoSpeed142	AutoSpeed142
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	pll_band_sel_ring_pioff_rate3	pll_band_sel_ring_pioff_rate3 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	tx_intpr_ring_pioff_rate3[1:0]	tx_intpr_ring_pioff_rate3[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h7	r/w	intpi_ring_pioff_rate3[3:0]	intpi_ring_pioff_rate3[3:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	fbdiv_cal_ring_pioff_rate3[9:8]	fbdiv_cal_ring_pioff_rate3[9:8] speed value	
+						
+	# addr = 0x023c			AutoSpeed143	AutoSpeed143
+	[31:24]	8'h0	r/w	init_txfoffs_ring_pioff_rate3[7:0]	init_txfoffs_ring_pioff_rate3[7:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h5	r/w	pll_lpf_r1_sel_ring_pioff_rate3[2:0]	pll_lpf_r1_sel_ring_pioff_rate3[2:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpf_c2_sel_ring_pioff_rate3[1:0]	pll_lpf_c2_sel_ring_pioff_rate3[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h2	r/w	pll_lpf_c1_sel_ring_pioff_rate3[1:0]	pll_lpf_c1_sel_ring_pioff_rate3[1:0] speed value	
+						
+	# addr = 0x0240			AutoSpeed144	AutoSpeed144
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	ssc_acc_factor_ring_pioff_rate3	ssc_acc_factor_ring_pioff_rate3 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_ring_fbck_pioff_rate3[9:8]	init_txfoffs_ring_fbck_pioff_rate3[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_ring_fbck_pioff_rate3[7:0]	init_txfoffs_ring_fbck_pioff_rate3[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	init_txfoffs_ring_pioff_rate3[9:8]	init_txfoffs_ring_pioff_rate3[9:8] speed value	
+						
+	# addr = 0x0244			AutoSpeed145	AutoSpeed145
+	[31:24]	0	r/w	RESERVED		
+	[23:21]	0	r/w	RESERVED		
+	[20:16]	5'hc	r/w	ssc_m_ring_pioff_rate3[12:8]	ssc_m_ring_pioff_rate3[12:8] speed value	
+	[15:8]	8'h1b	r/w	ssc_m_ring_pioff_rate3[7:0]	ssc_m_ring_pioff_rate3[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h0	r/w	ssc_step_125ppm_ring_pioff_rate3[3:0]	ssc_step_125ppm_ring_pioff_rate3[3:0] speed value	
+						
+	# addr = 0x0248			AutoSpeed146	TBD
+						
+	# addr = 0x024c			AutoSpeed147	TBD
+						
+	# addr = 0x0250			AutoSpeed148	AutoSpeed148
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h1	r/w	pll_refdiv_ring_pion_rate0[3:0]	pll_refdiv_ring_pion_rate0[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	clk1g_refclk_sel_pion_rate0	clk1g_refclk_sel_pion_rate0 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	ref_clk_ring_sel_pion_rate0	ref_clk_ring_sel_pion_rate0 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h0	r/w	pll_rate_sel_rpll_pion_rate0[3:0]	pll_rate_sel_rpll_pion_rate0[3:0] speed value	
+						
+	# addr = 0x0254			AutoSpeed149	AutoSpeed149
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	pll_fbdiv_ring_fbck_pion_rate0[9:8]	pll_fbdiv_ring_fbck_pion_rate0[9:8] speed value	
+	[23:16]	8'h10	r/w	pll_fbdiv_ring_fbck_pion_rate0[7:0]	pll_fbdiv_ring_fbck_pion_rate0[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_fbdiv_ring_pion_rate0[9:8]	pll_fbdiv_ring_pion_rate0[9:8] speed value	
+	[7:0]	8'h10	r/w	pll_fbdiv_ring_pion_rate0[7:0]	pll_fbdiv_ring_pion_rate0[7:0] speed value	
+						
+	# addr = 0x0258			AutoSpeed150	AutoSpeed150
+	[31:24]	8'h28	r/w	fbdiv_cal_ring_pion_rate0[7:0]	fbdiv_cal_ring_pion_rate0[7:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pll_speed_thresh_ring_pion_rate0[8]	pll_speed_thresh_ring_pion_rate0[8] speed value	
+	[15:8]	8'hfb	r/w	pll_speed_thresh_ring_pion_rate0[7:0]	pll_speed_thresh_ring_pion_rate0[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'hd	r/w	icp_ring_pion_rate0[3:0]	icp_ring_pion_rate0[3:0] speed value	
+						
+	# addr = 0x025c			AutoSpeed151	AutoSpeed151
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	pll_band_sel_ring_pion_rate0	pll_band_sel_ring_pion_rate0 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h2	r/w	tx_intpr_ring_pion_rate0[1:0]	tx_intpr_ring_pion_rate0[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h5	r/w	intpi_ring_pion_rate0[3:0]	intpi_ring_pion_rate0[3:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	fbdiv_cal_ring_pion_rate0[9:8]	fbdiv_cal_ring_pion_rate0[9:8] speed value	
+						
+	# addr = 0x0260			AutoSpeed152	AutoSpeed152
+	[31:24]	8'h0	r/w	init_txfoffs_ring_pion_rate0[7:0]	init_txfoffs_ring_pion_rate0[7:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h5	r/w	pll_lpf_r1_sel_ring_pion_rate0[2:0]	pll_lpf_r1_sel_ring_pion_rate0[2:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpf_c2_sel_ring_pion_rate0[1:0]	pll_lpf_c2_sel_ring_pion_rate0[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h3	r/w	pll_lpf_c1_sel_ring_pion_rate0[1:0]	pll_lpf_c1_sel_ring_pion_rate0[1:0] speed value	
+						
+	# addr = 0x0264			AutoSpeed153	AutoSpeed153
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	ssc_acc_factor_ring_pion_rate0	ssc_acc_factor_ring_pion_rate0 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_ring_fbck_pion_rate0[9:8]	init_txfoffs_ring_fbck_pion_rate0[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_ring_fbck_pion_rate0[7:0]	init_txfoffs_ring_fbck_pion_rate0[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	init_txfoffs_ring_pion_rate0[9:8]	init_txfoffs_ring_pion_rate0[9:8] speed value	
+						
+	# addr = 0x0268			AutoSpeed154	AutoSpeed154
+	[31:24]	0	r/w	RESERVED		
+	[23:21]	0	r/w	RESERVED		
+	[20:16]	5'h9	r/w	ssc_m_ring_pion_rate0[12:8]	ssc_m_ring_pion_rate0[12:8] speed value	
+	[15:8]	8'haf	r/w	ssc_m_ring_pion_rate0[7:0]	ssc_m_ring_pion_rate0[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h3	r/w	ssc_step_125ppm_ring_pion_rate0[3:0]	ssc_step_125ppm_ring_pion_rate0[3:0] speed value	
+						
+	# addr = 0x026c			AutoSpeed155	TBD
+						
+	# addr = 0x0270			AutoSpeed156	TBD
+						
+	# addr = 0x0274			AutoSpeed157	AutoSpeed157
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h2	r/w	pll_refdiv_ring_pion_rate1[3:0]	pll_refdiv_ring_pion_rate1[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	clk1g_refclk_sel_pion_rate1	clk1g_refclk_sel_pion_rate1 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	ref_clk_ring_sel_pion_rate1	ref_clk_ring_sel_pion_rate1 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h1	r/w	pll_rate_sel_rpll_pion_rate1[3:0]	pll_rate_sel_rpll_pion_rate1[3:0] speed value	
+						
+	# addr = 0x0278			AutoSpeed158	AutoSpeed158
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	pll_fbdiv_ring_fbck_pion_rate1[9:8]	pll_fbdiv_ring_fbck_pion_rate1[9:8] speed value	
+	[23:16]	8'h21	r/w	pll_fbdiv_ring_fbck_pion_rate1[7:0]	pll_fbdiv_ring_fbck_pion_rate1[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_fbdiv_ring_pion_rate1[9:8]	pll_fbdiv_ring_pion_rate1[9:8] speed value	
+	[7:0]	8'h21	r/w	pll_fbdiv_ring_pion_rate1[7:0]	pll_fbdiv_ring_pion_rate1[7:0] speed value	
+						
+	# addr = 0x027c			AutoSpeed159	AutoSpeed159
+	[31:24]	8'h29	r/w	fbdiv_cal_ring_pion_rate1[7:0]	fbdiv_cal_ring_pion_rate1[7:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pll_speed_thresh_ring_pion_rate1[8]	pll_speed_thresh_ring_pion_rate1[8] speed value	
+	[15:8]	8'hfd	r/w	pll_speed_thresh_ring_pion_rate1[7:0]	pll_speed_thresh_ring_pion_rate1[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'he	r/w	icp_ring_pion_rate1[3:0]	icp_ring_pion_rate1[3:0] speed value	
+						
+	# addr = 0x0280			AutoSpeed160	AutoSpeed160
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	pll_band_sel_ring_pion_rate1	pll_band_sel_ring_pion_rate1 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h2	r/w	tx_intpr_ring_pion_rate1[1:0]	tx_intpr_ring_pion_rate1[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h5	r/w	intpi_ring_pion_rate1[3:0]	intpi_ring_pion_rate1[3:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	fbdiv_cal_ring_pion_rate1[9:8]	fbdiv_cal_ring_pion_rate1[9:8] speed value	
+						
+	# addr = 0x0284			AutoSpeed161	AutoSpeed161
+	[31:24]	8'h0	r/w	init_txfoffs_ring_pion_rate1[7:0]	init_txfoffs_ring_pion_rate1[7:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h4	r/w	pll_lpf_r1_sel_ring_pion_rate1[2:0]	pll_lpf_r1_sel_ring_pion_rate1[2:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpf_c2_sel_ring_pion_rate1[1:0]	pll_lpf_c2_sel_ring_pion_rate1[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h3	r/w	pll_lpf_c1_sel_ring_pion_rate1[1:0]	pll_lpf_c1_sel_ring_pion_rate1[1:0] speed value	
+						
+	# addr = 0x0288			AutoSpeed162	AutoSpeed162
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	ssc_acc_factor_ring_pion_rate1	ssc_acc_factor_ring_pion_rate1 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_ring_fbck_pion_rate1[9:8]	init_txfoffs_ring_fbck_pion_rate1[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_ring_fbck_pion_rate1[7:0]	init_txfoffs_ring_fbck_pion_rate1[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	init_txfoffs_ring_pion_rate1[9:8]	init_txfoffs_ring_pion_rate1[9:8] speed value	
+						
+	# addr = 0x028c			AutoSpeed163	AutoSpeed163
+	[31:24]	0	r/w	RESERVED		
+	[23:21]	0	r/w	RESERVED		
+	[20:16]	5'h9	r/w	ssc_m_ring_pion_rate1[12:8]	ssc_m_ring_pion_rate1[12:8] speed value	
+	[15:8]	8'hfb	r/w	ssc_m_ring_pion_rate1[7:0]	ssc_m_ring_pion_rate1[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h3	r/w	ssc_step_125ppm_ring_pion_rate1[3:0]	ssc_step_125ppm_ring_pion_rate1[3:0] speed value	
+						
+	# addr = 0x0290			AutoSpeed164	TBD
+						
+	# addr = 0x0294			AutoSpeed165	TBD
+						
+	# addr = 0x0298			AutoSpeed166	AutoSpeed166
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h2	r/w	pll_refdiv_ring_pion_rate2[3:0]	pll_refdiv_ring_pion_rate2[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	clk1g_refclk_sel_pion_rate2	clk1g_refclk_sel_pion_rate2 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	ref_clk_ring_sel_pion_rate2	ref_clk_ring_sel_pion_rate2 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h2	r/w	pll_rate_sel_rpll_pion_rate2[3:0]	pll_rate_sel_rpll_pion_rate2[3:0] speed value	
+						
+	# addr = 0x029c			AutoSpeed167	AutoSpeed167
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	pll_fbdiv_ring_fbck_pion_rate2[9:8]	pll_fbdiv_ring_fbck_pion_rate2[9:8] speed value	
+	[23:16]	8'h27	r/w	pll_fbdiv_ring_fbck_pion_rate2[7:0]	pll_fbdiv_ring_fbck_pion_rate2[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_fbdiv_ring_pion_rate2[9:8]	pll_fbdiv_ring_pion_rate2[9:8] speed value	
+	[7:0]	8'h27	r/w	pll_fbdiv_ring_pion_rate2[7:0]	pll_fbdiv_ring_pion_rate2[7:0] speed value	
+						
+	# addr = 0x02a0			AutoSpeed168	AutoSpeed168
+	[31:24]	8'h31	r/w	fbdiv_cal_ring_pion_rate2[7:0]	fbdiv_cal_ring_pion_rate2[7:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pll_speed_thresh_ring_pion_rate2[8]	pll_speed_thresh_ring_pion_rate2[8] speed value	
+	[15:8]	8'hfa	r/w	pll_speed_thresh_ring_pion_rate2[7:0]	pll_speed_thresh_ring_pion_rate2[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'hf	r/w	icp_ring_pion_rate2[3:0]	icp_ring_pion_rate2[3:0] speed value	
+						
+	# addr = 0x02a4			AutoSpeed169	AutoSpeed169
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	pll_band_sel_ring_pion_rate2	pll_band_sel_ring_pion_rate2 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	tx_intpr_ring_pion_rate2[1:0]	tx_intpr_ring_pion_rate2[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h7	r/w	intpi_ring_pion_rate2[3:0]	intpi_ring_pion_rate2[3:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	fbdiv_cal_ring_pion_rate2[9:8]	fbdiv_cal_ring_pion_rate2[9:8] speed value	
+						
+	# addr = 0x02a8			AutoSpeed170	AutoSpeed170
+	[31:24]	8'h0	r/w	init_txfoffs_ring_pion_rate2[7:0]	init_txfoffs_ring_pion_rate2[7:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h4	r/w	pll_lpf_r1_sel_ring_pion_rate2[2:0]	pll_lpf_r1_sel_ring_pion_rate2[2:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpf_c2_sel_ring_pion_rate2[1:0]	pll_lpf_c2_sel_ring_pion_rate2[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h3	r/w	pll_lpf_c1_sel_ring_pion_rate2[1:0]	pll_lpf_c1_sel_ring_pion_rate2[1:0] speed value	
+						
+	# addr = 0x02ac			AutoSpeed171	AutoSpeed171
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	ssc_acc_factor_ring_pion_rate2	ssc_acc_factor_ring_pion_rate2 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_ring_fbck_pion_rate2[9:8]	init_txfoffs_ring_fbck_pion_rate2[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_ring_fbck_pion_rate2[7:0]	init_txfoffs_ring_fbck_pion_rate2[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	init_txfoffs_ring_pion_rate2[9:8]	init_txfoffs_ring_pion_rate2[9:8] speed value	
+						
+	# addr = 0x02b0			AutoSpeed172	AutoSpeed172
+	[31:24]	0	r/w	RESERVED		
+	[23:21]	0	r/w	RESERVED		
+	[20:16]	5'hb	r/w	ssc_m_ring_pion_rate2[12:8]	ssc_m_ring_pion_rate2[12:8] speed value	
+	[15:8]	8'hcd	r/w	ssc_m_ring_pion_rate2[7:0]	ssc_m_ring_pion_rate2[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h3	r/w	ssc_step_125ppm_ring_pion_rate2[3:0]	ssc_step_125ppm_ring_pion_rate2[3:0] speed value	
+						
+	# addr = 0x02b4			AutoSpeed173	TBD
+						
+	# addr = 0x02b8			AutoSpeed174	TBD
+						
+	# addr = 0x02bc			AutoSpeed175	AutoSpeed175
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h1	r/w	pll_refdiv_ring_pion_rate3[3:0]	pll_refdiv_ring_pion_rate3[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	clk1g_refclk_sel_pion_rate3	clk1g_refclk_sel_pion_rate3 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	ref_clk_ring_sel_pion_rate3	ref_clk_ring_sel_pion_rate3 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h3	r/w	pll_rate_sel_rpll_pion_rate3[3:0]	pll_rate_sel_rpll_pion_rate3[3:0] speed value	
+						
+	# addr = 0x02c0			AutoSpeed176	AutoSpeed176
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	pll_fbdiv_ring_fbck_pion_rate3[9:8]	pll_fbdiv_ring_fbck_pion_rate3[9:8] speed value	
+	[23:16]	8'h14	r/w	pll_fbdiv_ring_fbck_pion_rate3[7:0]	pll_fbdiv_ring_fbck_pion_rate3[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_fbdiv_ring_pion_rate3[9:8]	pll_fbdiv_ring_pion_rate3[9:8] speed value	
+	[7:0]	8'h14	r/w	pll_fbdiv_ring_pion_rate3[7:0]	pll_fbdiv_ring_pion_rate3[7:0] speed value	
+						
+	# addr = 0x02c4			AutoSpeed177	AutoSpeed177
+	[31:24]	8'h32	r/w	fbdiv_cal_ring_pion_rate3[7:0]	fbdiv_cal_ring_pion_rate3[7:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pll_speed_thresh_ring_pion_rate3[8]	pll_speed_thresh_ring_pion_rate3[8] speed value	
+	[15:8]	8'hfb	r/w	pll_speed_thresh_ring_pion_rate3[7:0]	pll_speed_thresh_ring_pion_rate3[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'hf	r/w	icp_ring_pion_rate3[3:0]	icp_ring_pion_rate3[3:0] speed value	
+						
+	# addr = 0x02c8			AutoSpeed178	AutoSpeed178
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	pll_band_sel_ring_pion_rate3	pll_band_sel_ring_pion_rate3 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	tx_intpr_ring_pion_rate3[1:0]	tx_intpr_ring_pion_rate3[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h7	r/w	intpi_ring_pion_rate3[3:0]	intpi_ring_pion_rate3[3:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	fbdiv_cal_ring_pion_rate3[9:8]	fbdiv_cal_ring_pion_rate3[9:8] speed value	
+						
+	# addr = 0x02cc			AutoSpeed179	AutoSpeed179
+	[31:24]	8'h0	r/w	init_txfoffs_ring_pion_rate3[7:0]	init_txfoffs_ring_pion_rate3[7:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h6	r/w	pll_lpf_r1_sel_ring_pion_rate3[2:0]	pll_lpf_r1_sel_ring_pion_rate3[2:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpf_c2_sel_ring_pion_rate3[1:0]	pll_lpf_c2_sel_ring_pion_rate3[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h3	r/w	pll_lpf_c1_sel_ring_pion_rate3[1:0]	pll_lpf_c1_sel_ring_pion_rate3[1:0] speed value	
+						
+	# addr = 0x02d0			AutoSpeed180	AutoSpeed180
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	ssc_acc_factor_ring_pion_rate3	ssc_acc_factor_ring_pion_rate3 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_ring_fbck_pion_rate3[9:8]	init_txfoffs_ring_fbck_pion_rate3[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_ring_fbck_pion_rate3[7:0]	init_txfoffs_ring_fbck_pion_rate3[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	init_txfoffs_ring_pion_rate3[9:8]	init_txfoffs_ring_pion_rate3[9:8] speed value	
+						
+	# addr = 0x02d4			AutoSpeed181	AutoSpeed181
+	[31:24]	0	r/w	RESERVED		
+	[23:21]	0	r/w	RESERVED		
+	[20:16]	5'hc	r/w	ssc_m_ring_pion_rate3[12:8]	ssc_m_ring_pion_rate3[12:8] speed value	
+	[15:8]	8'h1b	r/w	ssc_m_ring_pion_rate3[7:0]	ssc_m_ring_pion_rate3[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h3	r/w	ssc_step_125ppm_ring_pion_rate3[3:0]	ssc_step_125ppm_ring_pion_rate3[3:0] speed value	
+						
+	# addr = 0x02d8			AutoSpeed182	TBD
+						
+	# addr = 0x02dc			AutoSpeed183	TBD
+						
+	# addr = 0x02e0			AutoSpeed184	AutoSpeed184
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h1	r/w	pll_refdiv_ring_250m_pioff_rate0[3:0]	pll_refdiv_ring_250m_pioff_rate0[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	clk1g_refclk_sel_250m_pioff_rate0	clk1g_refclk_sel_250m_pioff_rate0 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	ref_clk_ring_sel_250m_pioff_rate0	ref_clk_ring_sel_250m_pioff_rate0 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h0	r/w	pll_rate_sel_250m_pioff_rate0[3:0]	pll_rate_sel_250m_pioff_rate0[3:0] speed value	
+						
+	# addr = 0x02e4			AutoSpeed185	AutoSpeed185
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	pll_fbdiv_ring_fbck_250m_pioff_rate0[9:8]	pll_fbdiv_ring_fbck_250m_pioff_rate0[9:8] speed value	
+	[23:16]	8'h28	r/w	pll_fbdiv_ring_fbck_250m_pioff_rate0[7:0]	pll_fbdiv_ring_fbck_250m_pioff_rate0[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_fbdiv_ring_250m_pioff_rate0[9:8]	pll_fbdiv_ring_250m_pioff_rate0[9:8] speed value	
+	[7:0]	8'h28	r/w	pll_fbdiv_ring_250m_pioff_rate0[7:0]	pll_fbdiv_ring_250m_pioff_rate0[7:0] speed value	
+						
+	# addr = 0x02e8			AutoSpeed186	AutoSpeed186
+	[31:24]	8'h28	r/w	fbdiv_cal_ring_250m_pioff_rate0[7:0]	fbdiv_cal_ring_250m_pioff_rate0[7:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pll_speed_thresh_ring_250m_pioff_rate0[8]	pll_speed_thresh_ring_250m_pioff_rate0[8] speed value	
+	[15:8]	8'hfa	r/w	pll_speed_thresh_ring_250m_pioff_rate0[7:0]	pll_speed_thresh_ring_250m_pioff_rate0[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'hf	r/w	icp_ring_250m_pioff_rate0[3:0]	icp_ring_250m_pioff_rate0[3:0] speed value	
+						
+	# addr = 0x02ec			AutoSpeed187	AutoSpeed187
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	pll_band_sel_ring_250m_pioff_rate0	pll_band_sel_ring_250m_pioff_rate0 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h2	r/w	tx_intpr_ring_250m_pioff_rate0[1:0]	tx_intpr_ring_250m_pioff_rate0[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h5	r/w	intpi_ring_250m_pioff_rate0[3:0]	intpi_ring_250m_pioff_rate0[3:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	fbdiv_cal_ring_250m_pioff_rate0[9:8]	fbdiv_cal_ring_250m_pioff_rate0[9:8] speed value	
+						
+	# addr = 0x02f0			AutoSpeed188	AutoSpeed188
+	[31:24]	8'h0	r/w	init_txfoffs_ring_250m_pioff_rate0[7:0]	init_txfoffs_ring_250m_pioff_rate0[7:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h6	r/w	pll_lpf_r1_sel_ring_250m_pioff_rate0[2:0]	pll_lpf_r1_sel_ring_250m_pioff_rate0[2:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpf_c2_sel_ring_250m_pioff_rate0[1:0]	pll_lpf_c2_sel_ring_250m_pioff_rate0[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h1	r/w	pll_lpf_c1_sel_ring_250m_pioff_rate0[1:0]	pll_lpf_c1_sel_ring_250m_pioff_rate0[1:0] speed value	
+						
+	# addr = 0x02f4			AutoSpeed189	AutoSpeed189
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	ssc_acc_factor_ring_250m_pioff_rate0	ssc_acc_factor_ring_250m_pioff_rate0 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_ring_fbck_250m_pioff_rate0[9:8]	init_txfoffs_ring_fbck_250m_pioff_rate0[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_ring_fbck_250m_pioff_rate0[7:0]	init_txfoffs_ring_fbck_250m_pioff_rate0[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	init_txfoffs_ring_250m_pioff_rate0[9:8]	init_txfoffs_ring_250m_pioff_rate0[9:8] speed value	
+						
+	# addr = 0x02f8			AutoSpeed190	AutoSpeed190
+	[31:24]	0	r/w	RESERVED		
+	[23:21]	0	r/w	RESERVED		
+	[20:16]	5'h9	r/w	ssc_m_ring_250m_pioff_rate0[12:8]	ssc_m_ring_250m_pioff_rate0[12:8] speed value	
+	[15:8]	8'haf	r/w	ssc_m_ring_250m_pioff_rate0[7:0]	ssc_m_ring_250m_pioff_rate0[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h0	r/w	ssc_step_125ppm_ring_250m_pioff_rate0[3:0]	ssc_step_125ppm_ring_250m_pioff_rate0[3:0] speed value	
+						
+	# addr = 0x02fc			AutoSpeed191	TBD
+						
+	# addr = 0x0300			AutoSpeed192	TBD
+						
+	# addr = 0x0304			AutoSpeed193	AutoSpeed193
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h4	r/w	pll_refdiv_ring_250m_pioff_rate1[3:0]	pll_refdiv_ring_250m_pioff_rate1[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	clk1g_refclk_sel_250m_pioff_rate1	clk1g_refclk_sel_250m_pioff_rate1 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	ref_clk_ring_sel_250m_pioff_rate1	ref_clk_ring_sel_250m_pioff_rate1 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h1	r/w	pll_rate_sel_250m_pioff_rate1[3:0]	pll_rate_sel_250m_pioff_rate1[3:0] speed value	
+						
+	# addr = 0x0308			AutoSpeed194	AutoSpeed194
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	pll_fbdiv_ring_fbck_250m_pioff_rate1[9:8]	pll_fbdiv_ring_fbck_250m_pioff_rate1[9:8] speed value	
+	[23:16]	8'ha5	r/w	pll_fbdiv_ring_fbck_250m_pioff_rate1[7:0]	pll_fbdiv_ring_fbck_250m_pioff_rate1[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_fbdiv_ring_250m_pioff_rate1[9:8]	pll_fbdiv_ring_250m_pioff_rate1[9:8] speed value	
+	[7:0]	8'ha5	r/w	pll_fbdiv_ring_250m_pioff_rate1[7:0]	pll_fbdiv_ring_250m_pioff_rate1[7:0] speed value	
+						
+	# addr = 0x030c			AutoSpeed195	AutoSpeed195
+	[31:24]	8'h29	r/w	fbdiv_cal_ring_250m_pioff_rate1[7:0]	fbdiv_cal_ring_250m_pioff_rate1[7:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pll_speed_thresh_ring_250m_pioff_rate1[8]	pll_speed_thresh_ring_250m_pioff_rate1[8] speed value	
+	[15:8]	8'hfc	r/w	pll_speed_thresh_ring_250m_pioff_rate1[7:0]	pll_speed_thresh_ring_250m_pioff_rate1[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'hf	r/w	icp_ring_250m_pioff_rate1[3:0]	icp_ring_250m_pioff_rate1[3:0] speed value	
+						
+	# addr = 0x0310			AutoSpeed196	AutoSpeed196
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	pll_band_sel_ring_250m_pioff_rate1	pll_band_sel_ring_250m_pioff_rate1 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h2	r/w	tx_intpr_ring_250m_pioff_rate1[1:0]	tx_intpr_ring_250m_pioff_rate1[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h5	r/w	intpi_ring_250m_pioff_rate1[3:0]	intpi_ring_250m_pioff_rate1[3:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	fbdiv_cal_ring_250m_pioff_rate1[9:8]	fbdiv_cal_ring_250m_pioff_rate1[9:8] speed value	
+						
+	# addr = 0x0314			AutoSpeed197	AutoSpeed197
+	[31:24]	8'h0	r/w	init_txfoffs_ring_250m_pioff_rate1[7:0]	init_txfoffs_ring_250m_pioff_rate1[7:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h3	r/w	pll_lpf_r1_sel_ring_250m_pioff_rate1[2:0]	pll_lpf_r1_sel_ring_250m_pioff_rate1[2:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpf_c2_sel_ring_250m_pioff_rate1[1:0]	pll_lpf_c2_sel_ring_250m_pioff_rate1[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h3	r/w	pll_lpf_c1_sel_ring_250m_pioff_rate1[1:0]	pll_lpf_c1_sel_ring_250m_pioff_rate1[1:0] speed value	
+						
+	# addr = 0x0318			AutoSpeed198	AutoSpeed198
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	ssc_acc_factor_ring_250m_pioff_rate1	ssc_acc_factor_ring_250m_pioff_rate1 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_ring_fbck_250m_pioff_rate1[9:8]	init_txfoffs_ring_fbck_250m_pioff_rate1[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_ring_fbck_250m_pioff_rate1[7:0]	init_txfoffs_ring_fbck_250m_pioff_rate1[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	init_txfoffs_ring_250m_pioff_rate1[9:8]	init_txfoffs_ring_250m_pioff_rate1[9:8] speed value	
+						
+	# addr = 0x031c			AutoSpeed199	AutoSpeed199
+	[31:24]	0	r/w	RESERVED		
+	[23:21]	0	r/w	RESERVED		
+	[20:16]	5'h9	r/w	ssc_m_ring_250m_pioff_rate1[12:8]	ssc_m_ring_250m_pioff_rate1[12:8] speed value	
+	[15:8]	8'hfb	r/w	ssc_m_ring_250m_pioff_rate1[7:0]	ssc_m_ring_250m_pioff_rate1[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h0	r/w	ssc_step_125ppm_ring_250m_pioff_rate1[3:0]	ssc_step_125ppm_ring_250m_pioff_rate1[3:0] speed value	
+						
+	# addr = 0x0320			AutoSpeed200	TBD
+						
+	# addr = 0x0324			AutoSpeed201	TBD
+						
+	# addr = 0x0328			AutoSpeed202	AutoSpeed202
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h4	r/w	pll_refdiv_ring_250m_pioff_rate2[3:0]	pll_refdiv_ring_250m_pioff_rate2[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	clk1g_refclk_sel_250m_pioff_rate2	clk1g_refclk_sel_250m_pioff_rate2 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	ref_clk_ring_sel_250m_pioff_rate2	ref_clk_ring_sel_250m_pioff_rate2 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h2	r/w	pll_rate_sel_250m_pioff_rate2[3:0]	pll_rate_sel_250m_pioff_rate2[3:0] speed value	
+						
+	# addr = 0x032c			AutoSpeed203	AutoSpeed203
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	pll_fbdiv_ring_fbck_250m_pioff_rate2[9:8]	pll_fbdiv_ring_fbck_250m_pioff_rate2[9:8] speed value	
+	[23:16]	8'hc3	r/w	pll_fbdiv_ring_fbck_250m_pioff_rate2[7:0]	pll_fbdiv_ring_fbck_250m_pioff_rate2[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_fbdiv_ring_250m_pioff_rate2[9:8]	pll_fbdiv_ring_250m_pioff_rate2[9:8] speed value	
+	[7:0]	8'hc3	r/w	pll_fbdiv_ring_250m_pioff_rate2[7:0]	pll_fbdiv_ring_250m_pioff_rate2[7:0] speed value	
+						
+	# addr = 0x0330			AutoSpeed204	AutoSpeed204
+	[31:24]	8'h31	r/w	fbdiv_cal_ring_250m_pioff_rate2[7:0]	fbdiv_cal_ring_250m_pioff_rate2[7:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pll_speed_thresh_ring_250m_pioff_rate2[8]	pll_speed_thresh_ring_250m_pioff_rate2[8] speed value	
+	[15:8]	8'hf9	r/w	pll_speed_thresh_ring_250m_pioff_rate2[7:0]	pll_speed_thresh_ring_250m_pioff_rate2[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'hf	r/w	icp_ring_250m_pioff_rate2[3:0]	icp_ring_250m_pioff_rate2[3:0] speed value	
+						
+	# addr = 0x0334			AutoSpeed205	AutoSpeed205
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	pll_band_sel_ring_250m_pioff_rate2	pll_band_sel_ring_250m_pioff_rate2 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	tx_intpr_ring_250m_pioff_rate2[1:0]	tx_intpr_ring_250m_pioff_rate2[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h7	r/w	intpi_ring_250m_pioff_rate2[3:0]	intpi_ring_250m_pioff_rate2[3:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	fbdiv_cal_ring_250m_pioff_rate2[9:8]	fbdiv_cal_ring_250m_pioff_rate2[9:8] speed value	
+						
+	# addr = 0x0338			AutoSpeed206	AutoSpeed206
+	[31:24]	8'h0	r/w	init_txfoffs_ring_250m_pioff_rate2[7:0]	init_txfoffs_ring_250m_pioff_rate2[7:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h3	r/w	pll_lpf_r1_sel_ring_250m_pioff_rate2[2:0]	pll_lpf_r1_sel_ring_250m_pioff_rate2[2:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpf_c2_sel_ring_250m_pioff_rate2[1:0]	pll_lpf_c2_sel_ring_250m_pioff_rate2[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h3	r/w	pll_lpf_c1_sel_ring_250m_pioff_rate2[1:0]	pll_lpf_c1_sel_ring_250m_pioff_rate2[1:0] speed value	
+						
+	# addr = 0x033c			AutoSpeed207	AutoSpeed207
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	ssc_acc_factor_ring_250m_pioff_rate2	ssc_acc_factor_ring_250m_pioff_rate2 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_ring_fbck_250m_pioff_rate2[9:8]	init_txfoffs_ring_fbck_250m_pioff_rate2[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_ring_fbck_250m_pioff_rate2[7:0]	init_txfoffs_ring_fbck_250m_pioff_rate2[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	init_txfoffs_ring_250m_pioff_rate2[9:8]	init_txfoffs_ring_250m_pioff_rate2[9:8] speed value	
+						
+	# addr = 0x0340			AutoSpeed208	AutoSpeed208
+	[31:24]	0	r/w	RESERVED		
+	[23:21]	0	r/w	RESERVED		
+	[20:16]	5'hb	r/w	ssc_m_ring_250m_pioff_rate2[12:8]	ssc_m_ring_250m_pioff_rate2[12:8] speed value	
+	[15:8]	8'hcd	r/w	ssc_m_ring_250m_pioff_rate2[7:0]	ssc_m_ring_250m_pioff_rate2[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h0	r/w	ssc_step_125ppm_ring_250m_pioff_rate2[3:0]	ssc_step_125ppm_ring_250m_pioff_rate2[3:0] speed value	
+						
+	# addr = 0x0344			AutoSpeed209	TBD
+						
+	# addr = 0x0348			AutoSpeed210	TBD
+						
+	# addr = 0x034c			AutoSpeed211	AutoSpeed211
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h1	r/w	pll_refdiv_ring_250m_pioff_rate3[3:0]	pll_refdiv_ring_250m_pioff_rate3[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	clk1g_refclk_sel_250m_pioff_rate3	clk1g_refclk_sel_250m_pioff_rate3 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	ref_clk_ring_sel_250m_pioff_rate3	ref_clk_ring_sel_250m_pioff_rate3 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h3	r/w	pll_rate_sel_250m_pioff_rate3[3:0]	pll_rate_sel_250m_pioff_rate3[3:0] speed value	
+						
+	# addr = 0x0350			AutoSpeed212	AutoSpeed212
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	pll_fbdiv_ring_fbck_250m_pioff_rate3[9:8]	pll_fbdiv_ring_fbck_250m_pioff_rate3[9:8] speed value	
+	[23:16]	8'h32	r/w	pll_fbdiv_ring_fbck_250m_pioff_rate3[7:0]	pll_fbdiv_ring_fbck_250m_pioff_rate3[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_fbdiv_ring_250m_pioff_rate3[9:8]	pll_fbdiv_ring_250m_pioff_rate3[9:8] speed value	
+	[7:0]	8'h32	r/w	pll_fbdiv_ring_250m_pioff_rate3[7:0]	pll_fbdiv_ring_250m_pioff_rate3[7:0] speed value	
+						
+	# addr = 0x0354			AutoSpeed213	AutoSpeed213
+	[31:24]	8'h32	r/w	fbdiv_cal_ring_250m_pioff_rate3[7:0]	fbdiv_cal_ring_250m_pioff_rate3[7:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pll_speed_thresh_ring_250m_pioff_rate3[8]	pll_speed_thresh_ring_250m_pioff_rate3[8] speed value	
+	[15:8]	8'hfa	r/w	pll_speed_thresh_ring_250m_pioff_rate3[7:0]	pll_speed_thresh_ring_250m_pioff_rate3[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'hf	r/w	icp_ring_250m_pioff_rate3[3:0]	icp_ring_250m_pioff_rate3[3:0] speed value	
+						
+	# addr = 0x0358			AutoSpeed214	AutoSpeed214
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	pll_band_sel_ring_250m_pioff_rate3	pll_band_sel_ring_250m_pioff_rate3 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	tx_intpr_ring_250m_pioff_rate3[1:0]	tx_intpr_ring_250m_pioff_rate3[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h7	r/w	intpi_ring_250m_pioff_rate3[3:0]	intpi_ring_250m_pioff_rate3[3:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	fbdiv_cal_ring_250m_pioff_rate3[9:8]	fbdiv_cal_ring_250m_pioff_rate3[9:8] speed value	
+						
+	# addr = 0x035c			AutoSpeed215	AutoSpeed215
+	[31:24]	8'h0	r/w	init_txfoffs_ring_250m_pioff_rate3[7:0]	init_txfoffs_ring_250m_pioff_rate3[7:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h6	r/w	pll_lpf_r1_sel_ring_250m_pioff_rate3[2:0]	pll_lpf_r1_sel_ring_250m_pioff_rate3[2:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpf_c2_sel_ring_250m_pioff_rate3[1:0]	pll_lpf_c2_sel_ring_250m_pioff_rate3[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h1	r/w	pll_lpf_c1_sel_ring_250m_pioff_rate3[1:0]	pll_lpf_c1_sel_ring_250m_pioff_rate3[1:0] speed value	
+						
+	# addr = 0x0360			AutoSpeed216	AutoSpeed216
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	ssc_acc_factor_ring_250m_pioff_rate3	ssc_acc_factor_ring_250m_pioff_rate3 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_ring_fbck_250m_pioff_rate3[9:8]	init_txfoffs_ring_fbck_250m_pioff_rate3[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_ring_fbck_250m_pioff_rate3[7:0]	init_txfoffs_ring_fbck_250m_pioff_rate3[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	init_txfoffs_ring_250m_pioff_rate3[9:8]	init_txfoffs_ring_250m_pioff_rate3[9:8] speed value	
+						
+	# addr = 0x0364			AutoSpeed217	AutoSpeed217
+	[31:24]	0	r/w	RESERVED		
+	[23:21]	0	r/w	RESERVED		
+	[20:16]	5'hc	r/w	ssc_m_ring_250m_pioff_rate3[12:8]	ssc_m_ring_250m_pioff_rate3[12:8] speed value	
+	[15:8]	8'h1b	r/w	ssc_m_ring_250m_pioff_rate3[7:0]	ssc_m_ring_250m_pioff_rate3[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h0	r/w	ssc_step_125ppm_ring_250m_pioff_rate3[3:0]	ssc_step_125ppm_ring_250m_pioff_rate3[3:0] speed value	
+						
+	# addr = 0x0368			AutoSpeed218	TBD
+						
+	# addr = 0x036c			AutoSpeed219	TBD
+						
+	# addr = 0x0370			AutoSpeed220	AutoSpeed220
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h4	r/w	pll_refdiv_ring_250m_pion_rate0[3:0]	pll_refdiv_ring_250m_pion_rate0[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	clk1g_refclk_sel_250m_pion_rate0	clk1g_refclk_sel_250m_pion_rate0 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	ref_clk_ring_sel_250m_pion_rate0	ref_clk_ring_sel_250m_pion_rate0 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h0	r/w	pll_rate_sel_250m_pion_rate0[3:0]	pll_rate_sel_250m_pion_rate0[3:0] speed value	
+						
+	# addr = 0x0374			AutoSpeed221	AutoSpeed221
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	pll_fbdiv_ring_fbck_250m_pion_rate0[9:8]	pll_fbdiv_ring_fbck_250m_pion_rate0[9:8] speed value	
+	[23:16]	8'h28	r/w	pll_fbdiv_ring_fbck_250m_pion_rate0[7:0]	pll_fbdiv_ring_fbck_250m_pion_rate0[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_fbdiv_ring_250m_pion_rate0[9:8]	pll_fbdiv_ring_250m_pion_rate0[9:8] speed value	
+	[7:0]	8'h28	r/w	pll_fbdiv_ring_250m_pion_rate0[7:0]	pll_fbdiv_ring_250m_pion_rate0[7:0] speed value	
+						
+	# addr = 0x0378			AutoSpeed222	AutoSpeed222
+	[31:24]	8'h28	r/w	fbdiv_cal_ring_250m_pion_rate0[7:0]	fbdiv_cal_ring_250m_pion_rate0[7:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pll_speed_thresh_ring_250m_pion_rate0[8]	pll_speed_thresh_ring_250m_pion_rate0[8] speed value	
+	[15:8]	8'hfa	r/w	pll_speed_thresh_ring_250m_pion_rate0[7:0]	pll_speed_thresh_ring_250m_pion_rate0[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'hf	r/w	icp_ring_250m_pion_rate0[3:0]	icp_ring_250m_pion_rate0[3:0] speed value	
+						
+	# addr = 0x037c			AutoSpeed223	AutoSpeed223
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	pll_band_sel_ring_250m_pion_rate0	pll_band_sel_ring_250m_pion_rate0 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h2	r/w	tx_intpr_ring_250m_pion_rate0[1:0]	tx_intpr_ring_250m_pion_rate0[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h5	r/w	intpi_ring_250m_pion_rate0[3:0]	intpi_ring_250m_pion_rate0[3:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	fbdiv_cal_ring_250m_pion_rate0[9:8]	fbdiv_cal_ring_250m_pion_rate0[9:8] speed value	
+						
+	# addr = 0x0380			AutoSpeed224	AutoSpeed224
+	[31:24]	8'h0	r/w	init_txfoffs_ring_250m_pion_rate0[7:0]	init_txfoffs_ring_250m_pion_rate0[7:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h4	r/w	pll_lpf_r1_sel_ring_250m_pion_rate0[2:0]	pll_lpf_r1_sel_ring_250m_pion_rate0[2:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpf_c2_sel_ring_250m_pion_rate0[1:0]	pll_lpf_c2_sel_ring_250m_pion_rate0[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h3	r/w	pll_lpf_c1_sel_ring_250m_pion_rate0[1:0]	pll_lpf_c1_sel_ring_250m_pion_rate0[1:0] speed value	
+						
+	# addr = 0x0384			AutoSpeed225	AutoSpeed225
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	ssc_acc_factor_ring_250m_pion_rate0	ssc_acc_factor_ring_250m_pion_rate0 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_ring_fbck_250m_pion_rate0[9:8]	init_txfoffs_ring_fbck_250m_pion_rate0[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_ring_fbck_250m_pion_rate0[7:0]	init_txfoffs_ring_fbck_250m_pion_rate0[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	init_txfoffs_ring_250m_pion_rate0[9:8]	init_txfoffs_ring_250m_pion_rate0[9:8] speed value	
+						
+	# addr = 0x0388			AutoSpeed226	AutoSpeed226
+	[31:24]	0	r/w	RESERVED		
+	[23:21]	0	r/w	RESERVED		
+	[20:16]	5'h9	r/w	ssc_m_ring_250m_pion_rate0[12:8]	ssc_m_ring_250m_pion_rate0[12:8] speed value	
+	[15:8]	8'haf	r/w	ssc_m_ring_250m_pion_rate0[7:0]	ssc_m_ring_250m_pion_rate0[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h3	r/w	ssc_step_125ppm_ring_250m_pion_rate0[3:0]	ssc_step_125ppm_ring_250m_pion_rate0[3:0] speed value	
+						
+	# addr = 0x038c			AutoSpeed227	TBD
+						
+	# addr = 0x0390			AutoSpeed228	TBD
+						
+	# addr = 0x0394			AutoSpeed229	AutoSpeed229
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h4	r/w	pll_refdiv_ring_250m_pion_rate1[3:0]	pll_refdiv_ring_250m_pion_rate1[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	clk1g_refclk_sel_250m_pion_rate1	clk1g_refclk_sel_250m_pion_rate1 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	ref_clk_ring_sel_250m_pion_rate1	ref_clk_ring_sel_250m_pion_rate1 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h1	r/w	pll_rate_sel_250m_pion_rate1[3:0]	pll_rate_sel_250m_pion_rate1[3:0] speed value	
+						
+	# addr = 0x0398			AutoSpeed230	AutoSpeed230
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	pll_fbdiv_ring_fbck_250m_pion_rate1[9:8]	pll_fbdiv_ring_fbck_250m_pion_rate1[9:8] speed value	
+	[23:16]	8'h29	r/w	pll_fbdiv_ring_fbck_250m_pion_rate1[7:0]	pll_fbdiv_ring_fbck_250m_pion_rate1[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_fbdiv_ring_250m_pion_rate1[9:8]	pll_fbdiv_ring_250m_pion_rate1[9:8] speed value	
+	[7:0]	8'h29	r/w	pll_fbdiv_ring_250m_pion_rate1[7:0]	pll_fbdiv_ring_250m_pion_rate1[7:0] speed value	
+						
+	# addr = 0x039c			AutoSpeed231	AutoSpeed231
+	[31:24]	8'h29	r/w	fbdiv_cal_ring_250m_pion_rate1[7:0]	fbdiv_cal_ring_250m_pion_rate1[7:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pll_speed_thresh_ring_250m_pion_rate1[8]	pll_speed_thresh_ring_250m_pion_rate1[8] speed value	
+	[15:8]	8'hfc	r/w	pll_speed_thresh_ring_250m_pion_rate1[7:0]	pll_speed_thresh_ring_250m_pion_rate1[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'hf	r/w	icp_ring_250m_pion_rate1[3:0]	icp_ring_250m_pion_rate1[3:0] speed value	
+						
+	# addr = 0x03a0			AutoSpeed232	AutoSpeed232
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	pll_band_sel_ring_250m_pion_rate1	pll_band_sel_ring_250m_pion_rate1 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h2	r/w	tx_intpr_ring_250m_pion_rate1[1:0]	tx_intpr_ring_250m_pion_rate1[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h5	r/w	intpi_ring_250m_pion_rate1[3:0]	intpi_ring_250m_pion_rate1[3:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	fbdiv_cal_ring_250m_pion_rate1[9:8]	fbdiv_cal_ring_250m_pion_rate1[9:8] speed value	
+						
+	# addr = 0x03a4			AutoSpeed233	AutoSpeed233
+	[31:24]	8'h39	r/w	init_txfoffs_ring_250m_pion_rate1[7:0]	init_txfoffs_ring_250m_pion_rate1[7:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h3	r/w	pll_lpf_r1_sel_ring_250m_pion_rate1[2:0]	pll_lpf_r1_sel_ring_250m_pion_rate1[2:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpf_c2_sel_ring_250m_pion_rate1[1:0]	pll_lpf_c2_sel_ring_250m_pion_rate1[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h3	r/w	pll_lpf_c1_sel_ring_250m_pion_rate1[1:0]	pll_lpf_c1_sel_ring_250m_pion_rate1[1:0] speed value	
+						
+	# addr = 0x03a8			AutoSpeed234	AutoSpeed234
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	ssc_acc_factor_ring_250m_pion_rate1	ssc_acc_factor_ring_250m_pion_rate1 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h3	r/w	init_txfoffs_ring_fbck_250m_pion_rate1[9:8]	init_txfoffs_ring_fbck_250m_pion_rate1[9:8] speed value	
+	[15:8]	8'h39	r/w	init_txfoffs_ring_fbck_250m_pion_rate1[7:0]	init_txfoffs_ring_fbck_250m_pion_rate1[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h3	r/w	init_txfoffs_ring_250m_pion_rate1[9:8]	init_txfoffs_ring_250m_pion_rate1[9:8] speed value	
+						
+	# addr = 0x03ac			AutoSpeed235	AutoSpeed235
+	[31:24]	0	r/w	RESERVED		
+	[23:21]	0	r/w	RESERVED		
+	[20:16]	5'h9	r/w	ssc_m_ring_250m_pion_rate1[12:8]	ssc_m_ring_250m_pion_rate1[12:8] speed value	
+	[15:8]	8'hfb	r/w	ssc_m_ring_250m_pion_rate1[7:0]	ssc_m_ring_250m_pion_rate1[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h3	r/w	ssc_step_125ppm_ring_250m_pion_rate1[3:0]	ssc_step_125ppm_ring_250m_pion_rate1[3:0] speed value	
+						
+	# addr = 0x03b0			AutoSpeed236	TBD
+						
+	# addr = 0x03b4			AutoSpeed237	TBD
+						
+	# addr = 0x03b8			AutoSpeed238	AutoSpeed238
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h4	r/w	pll_refdiv_ring_250m_pion_rate2[3:0]	pll_refdiv_ring_250m_pion_rate2[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	clk1g_refclk_sel_250m_pion_rate2	clk1g_refclk_sel_250m_pion_rate2 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	ref_clk_ring_sel_250m_pion_rate2	ref_clk_ring_sel_250m_pion_rate2 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h2	r/w	pll_rate_sel_250m_pion_rate2[3:0]	pll_rate_sel_250m_pion_rate2[3:0] speed value	
+						
+	# addr = 0x03bc			AutoSpeed239	AutoSpeed239
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	pll_fbdiv_ring_fbck_250m_pion_rate2[9:8]	pll_fbdiv_ring_fbck_250m_pion_rate2[9:8] speed value	
+	[23:16]	8'h31	r/w	pll_fbdiv_ring_fbck_250m_pion_rate2[7:0]	pll_fbdiv_ring_fbck_250m_pion_rate2[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_fbdiv_ring_250m_pion_rate2[9:8]	pll_fbdiv_ring_250m_pion_rate2[9:8] speed value	
+	[7:0]	8'h31	r/w	pll_fbdiv_ring_250m_pion_rate2[7:0]	pll_fbdiv_ring_250m_pion_rate2[7:0] speed value	
+						
+	# addr = 0x03c0			AutoSpeed240	AutoSpeed240
+	[31:24]	8'h31	r/w	fbdiv_cal_ring_250m_pion_rate2[7:0]	fbdiv_cal_ring_250m_pion_rate2[7:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pll_speed_thresh_ring_250m_pion_rate2[8]	pll_speed_thresh_ring_250m_pion_rate2[8] speed value	
+	[15:8]	8'hf9	r/w	pll_speed_thresh_ring_250m_pion_rate2[7:0]	pll_speed_thresh_ring_250m_pion_rate2[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'hf	r/w	icp_ring_250m_pion_rate2[3:0]	icp_ring_250m_pion_rate2[3:0] speed value	
+						
+	# addr = 0x03c4			AutoSpeed241	AutoSpeed241
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	pll_band_sel_ring_250m_pion_rate2	pll_band_sel_ring_250m_pion_rate2 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	tx_intpr_ring_250m_pion_rate2[1:0]	tx_intpr_ring_250m_pion_rate2[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h7	r/w	intpi_ring_250m_pion_rate2[3:0]	intpi_ring_250m_pion_rate2[3:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	fbdiv_cal_ring_250m_pion_rate2[9:8]	fbdiv_cal_ring_250m_pion_rate2[9:8] speed value	
+						
+	# addr = 0x03c8			AutoSpeed242	AutoSpeed242
+	[31:24]	8'ha8	r/w	init_txfoffs_ring_250m_pion_rate2[7:0]	init_txfoffs_ring_250m_pion_rate2[7:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h4	r/w	pll_lpf_r1_sel_ring_250m_pion_rate2[2:0]	pll_lpf_r1_sel_ring_250m_pion_rate2[2:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpf_c2_sel_ring_250m_pion_rate2[1:0]	pll_lpf_c2_sel_ring_250m_pion_rate2[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h3	r/w	pll_lpf_c1_sel_ring_250m_pion_rate2[1:0]	pll_lpf_c1_sel_ring_250m_pion_rate2[1:0] speed value	
+						
+	# addr = 0x03cc			AutoSpeed243	AutoSpeed243
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	ssc_acc_factor_ring_250m_pion_rate2	ssc_acc_factor_ring_250m_pion_rate2 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_ring_fbck_250m_pion_rate2[9:8]	init_txfoffs_ring_fbck_250m_pion_rate2[9:8] speed value	
+	[15:8]	8'ha8	r/w	init_txfoffs_ring_fbck_250m_pion_rate2[7:0]	init_txfoffs_ring_fbck_250m_pion_rate2[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	init_txfoffs_ring_250m_pion_rate2[9:8]	init_txfoffs_ring_250m_pion_rate2[9:8] speed value	
+						
+	# addr = 0x03d0			AutoSpeed244	AutoSpeed244
+	[31:24]	0	r/w	RESERVED		
+	[23:21]	0	r/w	RESERVED		
+	[20:16]	5'hb	r/w	ssc_m_ring_250m_pion_rate2[12:8]	ssc_m_ring_250m_pion_rate2[12:8] speed value	
+	[15:8]	8'hcd	r/w	ssc_m_ring_250m_pion_rate2[7:0]	ssc_m_ring_250m_pion_rate2[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h3	r/w	ssc_step_125ppm_ring_250m_pion_rate2[3:0]	ssc_step_125ppm_ring_250m_pion_rate2[3:0] speed value	
+						
+	# addr = 0x03d4			AutoSpeed245	TBD
+						
+	# addr = 0x03d8			AutoSpeed246	TBD
+						
+	# addr = 0x03dc			AutoSpeed247	AutoSpeed247
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h4	r/w	pll_refdiv_ring_250m_pion_rate3[3:0]	pll_refdiv_ring_250m_pion_rate3[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	clk1g_refclk_sel_250m_pion_rate3	clk1g_refclk_sel_250m_pion_rate3 speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	ref_clk_ring_sel_250m_pion_rate3	ref_clk_ring_sel_250m_pion_rate3 speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h3	r/w	pll_rate_sel_250m_pion_rate3[3:0]	pll_rate_sel_250m_pion_rate3[3:0] speed value	
+						
+	# addr = 0x03e0			AutoSpeed248	AutoSpeed248
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h0	r/w	pll_fbdiv_ring_fbck_250m_pion_rate3[9:8]	pll_fbdiv_ring_fbck_250m_pion_rate3[9:8] speed value	
+	[23:16]	8'h32	r/w	pll_fbdiv_ring_fbck_250m_pion_rate3[7:0]	pll_fbdiv_ring_fbck_250m_pion_rate3[7:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_fbdiv_ring_250m_pion_rate3[9:8]	pll_fbdiv_ring_250m_pion_rate3[9:8] speed value	
+	[7:0]	8'h32	r/w	pll_fbdiv_ring_250m_pion_rate3[7:0]	pll_fbdiv_ring_250m_pion_rate3[7:0] speed value	
+						
+	# addr = 0x03e4			AutoSpeed249	AutoSpeed249
+	[31:24]	8'h32	r/w	fbdiv_cal_ring_250m_pion_rate3[7:0]	fbdiv_cal_ring_250m_pion_rate3[7:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pll_speed_thresh_ring_250m_pion_rate3[8]	pll_speed_thresh_ring_250m_pion_rate3[8] speed value	
+	[15:8]	8'hfa	r/w	pll_speed_thresh_ring_250m_pion_rate3[7:0]	pll_speed_thresh_ring_250m_pion_rate3[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'hf	r/w	icp_ring_250m_pion_rate3[3:0]	icp_ring_250m_pion_rate3[3:0] speed value	
+						
+	# addr = 0x03e8			AutoSpeed250	AutoSpeed250
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	pll_band_sel_ring_250m_pion_rate3	pll_band_sel_ring_250m_pion_rate3 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	tx_intpr_ring_250m_pion_rate3[1:0]	tx_intpr_ring_250m_pion_rate3[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h7	r/w	intpi_ring_250m_pion_rate3[3:0]	intpi_ring_250m_pion_rate3[3:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	fbdiv_cal_ring_250m_pion_rate3[9:8]	fbdiv_cal_ring_250m_pion_rate3[9:8] speed value	
+						
+	# addr = 0x03ec			AutoSpeed251	AutoSpeed251
+	[31:24]	8'h0	r/w	init_txfoffs_ring_250m_pion_rate3[7:0]	init_txfoffs_ring_250m_pion_rate3[7:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h4	r/w	pll_lpf_r1_sel_ring_250m_pion_rate3[2:0]	pll_lpf_r1_sel_ring_250m_pion_rate3[2:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	pll_lpf_c2_sel_ring_250m_pion_rate3[1:0]	pll_lpf_c2_sel_ring_250m_pion_rate3[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h3	r/w	pll_lpf_c1_sel_ring_250m_pion_rate3[1:0]	pll_lpf_c1_sel_ring_250m_pion_rate3[1:0] speed value	
+						
+	# addr = 0x03f0			AutoSpeed252	AutoSpeed252
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	ssc_acc_factor_ring_250m_pion_rate3	ssc_acc_factor_ring_250m_pion_rate3 speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_txfoffs_ring_fbck_250m_pion_rate3[9:8]	init_txfoffs_ring_fbck_250m_pion_rate3[9:8] speed value	
+	[15:8]	8'h0	r/w	init_txfoffs_ring_fbck_250m_pion_rate3[7:0]	init_txfoffs_ring_fbck_250m_pion_rate3[7:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	init_txfoffs_ring_250m_pion_rate3[9:8]	init_txfoffs_ring_250m_pion_rate3[9:8] speed value	
+						
+	# addr = 0x03f4			AutoSpeed253	AutoSpeed253
+	[31:24]	0	r/w	RESERVED		
+	[23:21]	0	r/w	RESERVED		
+	[20:16]	5'hc	r/w	ssc_m_ring_250m_pion_rate3[12:8]	ssc_m_ring_250m_pion_rate3[12:8] speed value	
+	[15:8]	8'h1b	r/w	ssc_m_ring_250m_pion_rate3[7:0]	ssc_m_ring_250m_pion_rate3[7:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h3	r/w	ssc_step_125ppm_ring_250m_pion_rate3[3:0]	ssc_step_125ppm_ring_250m_pion_rate3[3:0] speed value	
+						
+	# addr = 0x03f8			AutoSpeed254	TBD
+						
+	# addr = 0x03fc			AutoSpeed255	TBD
+						
+	# addr = 0x0400			AutoSpeed256	TBD
+						
+	# addr = 0x0404			AutoSpeed257	TBD
+						
+	# addr = 0x0408			AutoSpeed258	TBD
+						
+	# addr = 0x040c			AutoSpeed259	TBD
+						
+	# addr = 0x0410			AutoSpeed260	TBD
+						
+	# addr = 0x0414			AutoSpeed261	TBD
+						
+	# addr = 0x0418			AutoSpeed262	TBD
+						
+	# addr = 0x041c			AutoSpeed263	TBD
+						
+	# addr = 0x0420			AutoSpeed264	TBD
+						
+	# addr = 0x0424			AutoSpeed265	TBD
+						
+	# addr = 0x0428			AutoSpeed266	TBD
+						
+	# addr = 0x042c			AutoSpeed267	TBD
+						
+	# addr = 0x0430			AutoSpeed268	TBD
+						
+	# addr = 0x0434			AutoSpeed269	TBD
+						
+	# addr = 0x0438			AutoSpeed270	TBD
+						
+	# addr = 0x043c			AutoSpeed271	TBD
+						
+	# addr = 0x0440			AutoSpeed272	TBD
+						
+	# addr = 0x0444			AutoSpeed273	TBD
+						
+	# addr = 0x0448			AutoSpeed274	TBD
+						
+	# addr = 0x044c			AutoSpeed275	TBD
+						
+	# addr = 0x0450			AutoSpeed276	TBD
+						
+	# addr = 0x0454			AutoSpeed277	TBD
+						
+	# addr = 0x0458			AutoSpeed278	TBD
+						
+	# addr = 0x045c			AutoSpeed279	TBD
+						
+	# addr = 0x0460			AutoSpeed280	TBD
+						
+	# addr = 0x0464			AutoSpeed281	TBD
+						
+	# addr = 0x0468			AutoSpeed282	TBD
+						
+	# addr = 0x046c			AutoSpeed283	TBD
+						
+	# addr = 0x0470			AutoSpeed284	TBD
+						
+	# addr = 0x0474			AutoSpeed285	TBD
+						
+	# addr = 0x0478			AutoSpeed286	TBD
+						
+	# addr = 0x047c			AutoSpeed287	TBD
+						
+	# addr = 0x0480			AutoSpeed288	TBD
+						
+	# addr = 0x0484			AutoSpeed289	TBD
+						
+	# addr = 0x0488			AutoSpeed290	TBD
+						
+	# addr = 0x048c			AutoSpeed291	TBD
+						
+	# addr = 0x0490			AutoSpeed292	TBD
+						
+	# addr = 0x0494			AutoSpeed293	TBD
+						
+	# addr = 0x0498			AutoSpeed294	TBD
+						
+	# addr = 0x049c			AutoSpeed295	TBD
+						
+	# addr = 0x04a0			AutoSpeed296	TBD
+						
+	# addr = 0x04a4			AutoSpeed297	TBD
+						
+	# addr = 0x04a8			AutoSpeed298	TBD
+						
+	# addr = 0x04ac			AutoSpeed299	TBD
+						
+	# addr = 0x04b0			AutoSpeed300	TBD
+						
+	# addr = 0x04b4			AutoSpeed301	TBD
+						
+	# addr = 0x04b8			AutoSpeed302	TBD
+						
+	# addr = 0x04bc			AutoSpeed303	TBD
+						
+	# addr = 0x04c0			AutoSpeed304	TBD
+						
+	# addr = 0x04c4			AutoSpeed305	TBD
+						
+	# addr = 0x04c8			AutoSpeed306	TBD
+						
+	# addr = 0x04cc			AutoSpeed307	TBD
+						
+	# addr = 0x04d0			AutoSpeed308	TBD
+						
+	# addr = 0x04d4			AutoSpeed309	TBD
+						
+	# addr = 0x04d8			AutoSpeed310	TBD
+						
+	# addr = 0x04dc			AutoSpeed311	TBD
+						
+	# addr = 0x04e0			AutoSpeed312	TBD
+						
+	# addr = 0x04e4			AutoSpeed313	TBD
+						
+	# addr = 0x04e8			AutoSpeed314	TBD
+						
+	# addr = 0x04ec			AutoSpeed315	TBD
+						
+	# addr = 0x04f0			AutoSpeed316	TBD
+						
+	# addr = 0x04f4			AutoSpeed317	TBD
+						
+	# addr = 0x04f8			AutoSpeed318	TBD
+						
+	# addr = 0x04fc			AutoSpeed319	TBD
+						
+	# addr = 0x0500			AutoSpeed320	TBD
+						
+	# addr = 0x0504			AutoSpeed321	TBD
+						
+	# addr = 0x0508			AutoSpeed322	TBD
+						
+	# addr = 0x050c			AutoSpeed323	TBD
+						
+	# addr = 0x0510			AutoSpeed324	TBD
+						
+	# addr = 0x0514			AutoSpeed325	TBD
+						
+	# addr = 0x0518			AutoSpeed326	TBD
+						
+	# addr = 0x051c			AutoSpeed327	TBD
+						
+	# addr = 0x0520			AutoSpeed328	TBD
+						
+	# addr = 0x0524			AutoSpeed329	TBD
+						
+	# addr = 0x0528			AutoSpeed330	TBD
+						
+	# addr = 0x052c			AutoSpeed331	TBD
+						
+	# addr = 0x0530			AutoSpeed332	TBD
+						
+	# addr = 0x0534			AutoSpeed333	TBD
+						
+	# addr = 0x0538			AutoSpeed334	TBD
+						
+	# addr = 0x053c			AutoSpeed335	TBD
+						
+	# addr = 0x0540			AutoSpeed336	TBD
+						
+	# addr = 0x0544			AutoSpeed337	TBD
+						
+	# addr = 0x0548			AutoSpeed338	TBD
+						
+	# addr = 0x054c			AutoSpeed339	TBD
+						
+	# addr = 0x0550			AutoSpeed340	TBD
+						
+	# addr = 0x0554			AutoSpeed341	TBD
+						
+	# addr = 0x0558			AutoSpeed342	TBD
+						
+	# addr = 0x055c			AutoSpeed343	TBD
+						
+	# addr = 0x0560			AutoSpeed344	TBD
+						
+	# addr = 0x0564			AutoSpeed345	TBD
+						
+	# addr = 0x0568			AutoSpeed346	TBD
+						
+	# addr = 0x056c			AutoSpeed347	TBD
+						
+	# addr = 0x0570			AutoSpeed348	TBD
+						
+	# addr = 0x0574			AutoSpeed349	TBD
+						
+	# addr = 0x0578			AutoSpeed350	TBD
+						
+	# addr = 0x057c			AutoSpeed351	TBD
+						
+	# addr = 0x0580			AutoSpeed352	TBD
+						
+	# addr = 0x0584			AutoSpeed353	TBD
+						
+	# addr = 0x0588			AutoSpeed354	TBD
+						
+	# addr = 0x058c			AutoSpeed355	TBD
+						
+	# addr = 0x0590			AutoSpeed356	TBD
+						
+	# addr = 0x0594			AutoSpeed357	TBD
+						
+	# addr = 0x0598			AutoSpeed358	TBD
+						
+	# addr = 0x059c			AutoSpeed359	TBD
+						
+	# addr = 0x05a0			AutoSpeed360	TBD
+						
+	# addr = 0x05a4			AutoSpeed361	TBD
+						
+	# addr = 0x05a8			AutoSpeed362	TBD
+						
+	# addr = 0x05ac			AutoSpeed363	TBD
+						
+	# addr = 0x05b0			AutoSpeed364	TBD
+						
+	# addr = 0x05b4			AutoSpeed365	TBD
+						
+	# addr = 0x05b8			AutoSpeed366	TBD
+						
+	# addr = 0x05bc			AutoSpeed367	TBD
+						
+	# addr = 0x05c0			AutoSpeed368	AutoSpeed368
+	[31:24]	8'h1f	r/w	cal_lcvco_dac_lsb_cont_rate1[7:0]	cal_lcvco_dac_lsb_cont_rate1[7:0] speed value	
+	[23:16]	8'h1f	r/w	cal_lcvco_dac_lsb_rate1[7:0]	cal_lcvco_dac_lsb_rate1[7:0] speed value	
+	[15:8]	8'h1f	r/w	cal_lcvco_dac_lsb_rate0[7:0]	cal_lcvco_dac_lsb_rate0[7:0] speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	use_ring_refclk_250m	use_ring_refclk_250m speed value	
+						
+	# addr = 0x05c4			AutoSpeed369	AutoSpeed369
+	[31:24]	8'h20	r/w	cal_lcvco_dac_msb_cont_rate1[7:0]	cal_lcvco_dac_msb_cont_rate1[7:0] speed value	
+	[23:16]	8'h21	r/w	cal_lcvco_dac_msb_cont_rate0[7:0]	cal_lcvco_dac_msb_cont_rate0[7:0] speed value	
+	[15:8]	8'h20	r/w	cal_lcvco_dac_msb_rate1[7:0]	cal_lcvco_dac_msb_rate1[7:0] speed value	
+	[7:0]	8'h21	r/w	cal_lcvco_dac_msb_rate0[7:0]	cal_lcvco_dac_msb_rate0[7:0] speed value	
+						
+	# addr = 0x05c8			AutoSpeed370	AutoSpeed370
+	[31:24]	8'h1	r/w	cal_lccap_msb_rate1[7:0]	cal_lccap_msb_rate1[7:0] speed value	
+	[23:16]	8'h1	r/w	cal_lccap_msb_rate0[7:0]	cal_lccap_msb_rate0[7:0] speed value	
+	[15:8]	8'h10	r/w	cal_lccap_lsb_rate1[7:0]	cal_lccap_lsb_rate1[7:0] speed value	
+	[7:0]	8'h10	r/w	cal_lccap_lsb_rate0[7:0]	cal_lccap_lsb_rate0[7:0] speed value	
+						
+	# addr = 0x05cc			AutoSpeed371	AutoSpeed371
+	[31:24]	8'h20	r/w	cal_plldcc_cnt_cont_rate1[7:0]	cal_plldcc_cnt_cont_rate1[7:0] speed value	
+	[23:16]	8'h20	r/w	cal_plldcc_cnt_cont_rate0[7:0]	cal_plldcc_cnt_cont_rate0[7:0] speed value	
+	[15:8]	8'h20	r/w	cal_plldcc_cnt_rate1[7:0]	cal_plldcc_cnt_rate1[7:0] speed value	
+	[7:0]	8'h20	r/w	cal_plldcc_cnt_rate0[7:0]	cal_plldcc_cnt_rate0[7:0] speed value	
+						
+	# addr = 0x05d0			AutoSpeed372	AutoSpeed372
+	[31:24]	8'h0	r/w	cal_pll_speed_ring_cont_rate1[7:0]	cal_pll_speed_ring_cont_rate1[7:0] speed value	
+	[23:16]	8'h0	r/w	cal_pll_speed_ring_cont_rate0[7:0]	cal_pll_speed_ring_cont_rate0[7:0] speed value	
+	[15:8]	8'h0	r/w	cal_pll_speed_ring_rate1[7:0]	cal_pll_speed_ring_rate1[7:0] speed value	
+	[7:0]	8'h0	r/w	cal_pll_speed_ring_rate0[7:0]	cal_pll_speed_ring_rate0[7:0] speed value	
+						
+	# addr = 0x05d4			AutoSpeed373	AutoSpeed373
+	[31:24]	8'h0	r/w	cal_pll_sllp_dac_coarse_ring_cont_rate1[7:0]	cal_pll_sllp_dac_coarse_ring_cont_rate1[7:0] speed value	
+	[23:16]	8'h0	r/w	cal_pll_sllp_dac_coarse_ring_cont_rate0[7:0]	cal_pll_sllp_dac_coarse_ring_cont_rate0[7:0] speed value	
+	[15:8]	8'h0	r/w	cal_pll_sllp_dac_coarse_ring_rate1[7:0]	cal_pll_sllp_dac_coarse_ring_rate1[7:0] speed value	
+	[7:0]	8'h0	r/w	cal_pll_sllp_dac_coarse_ring_rate0[7:0]	cal_pll_sllp_dac_coarse_ring_rate0[7:0] speed value	
+						
+	# addr = 0x05d8			AutoSpeed374	AutoSpeed374
+	[31:24]	8'h4	r/w	cal_sllp_dac_fine_ring_rate1[15:8]	cal_sllp_dac_fine_ring_rate1[15:8] speed value	
+	[23:16]	8'h0	r/w	cal_sllp_dac_fine_ring_rate1[7:0]	cal_sllp_dac_fine_ring_rate1[7:0] speed value	
+	[15:8]	8'h4	r/w	cal_sllp_dac_fine_ring_rate0[15:8]	cal_sllp_dac_fine_ring_rate0[15:8] speed value	
+	[7:0]	8'h0	r/w	cal_sllp_dac_fine_ring_rate0[7:0]	cal_sllp_dac_fine_ring_rate0[7:0] speed value	
+						
+	# addr = 0x05dc			AutoSpeed375	AutoSpeed375
+	[31:24]	8'h4	r/w	cal_sllp_dac_fine_ring_cont_rate1[15:8]	cal_sllp_dac_fine_ring_cont_rate1[15:8] speed value	
+	[23:16]	8'h0	r/w	cal_sllp_dac_fine_ring_cont_rate1[7:0]	cal_sllp_dac_fine_ring_cont_rate1[7:0] speed value	
+	[15:8]	8'h4	r/w	cal_sllp_dac_fine_ring_cont_rate0[15:8]	cal_sllp_dac_fine_ring_cont_rate0[15:8] speed value	
+	[7:0]	8'h0	r/w	cal_sllp_dac_fine_ring_cont_rate0[7:0]	cal_sllp_dac_fine_ring_cont_rate0[7:0] speed value	

@@ -1,0 +1,17 @@
+//*********************************************************************
+//	    COMPHY_28G_PIPE4_RPLL Firmware Change History			
+//
+//   Copyright (c) 2016 Marvell Semiconductor, Inc. All rights reserved
+//*********************************************************************
+9/11/2020 Chun-Kang Chen 0.12.13.0
+The FW unit test has been verified by Remby.
+
+Quoted from email: 9/11/2020 11:31am
+"
+Kang,
+    hi, ok i think they are all ok.
+    please release in the ipdoc, then we'll inform the fabrico soc team so they can create their soc fw.
+
+    thnx,
+    remby taas
+"

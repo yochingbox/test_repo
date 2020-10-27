@@ -1,0 +1,174 @@
+//*********************************************************************
+//	    COMPHY_56G_X4 Firmware Change History			
+//
+//   Copyright (c) 2016 Marvell Semiconductor, Inc. All rights reserved
+//*********************************************************************
+ 09/12/2018 Enya Cheng 1.1.6.0
+ 	- Set F0A and Vref res threshold based on lab debugging data;
+ 	- Train for the Vref after gain train before the Trx train starts;
+ 	- Modify the printouts for data capture.
+ 09/11/2018 Tianchen Luo 1.1.4.1
+ 	- CDS Save Vref after DFE INIT1
+    - CDS Minor update for Full Rate
+ 08/08/2018 Enya Cheng 1.1.4.0
+ 	- Init the CDS timers in rx_init;
+	- Turn off debug and gpio registers.
+ 08/06/2018 Enya Cheng 1.1.3.0
+ 	- Use the new registers;
+	- count the CDS calls by debug4;
+	- set the phase train to disble aftre gain train;
+	- Do not train c if gain train includes train of c.
+ 08/02/2018 Tianchen Luo 1.1.2.0
+	- Add CDS timers to CDS register
+	- cds_init will initialize CDS timers
+    - Move txtrain_if registers to CDS Midas
+ 08/02/2018 Enya Cheng
+	- The latest speedtable;
+	- The multipliers for boost from DSP team. 
+ 07/23/2018 Enya Cheng 1.1.1.0
+	- Vref train;
+	- Boost targets from DSP team;
+ 06/29/2018 Tianchen Luo 1.0.9.0
+    - Change tag_EYE_CHK_THRESH_K to 3
+    - Change dfe_adaptation() to call cds with CDS_DEFAULT
+    - Change align90_phase_update to use rxalign90_cal
+    - Change cpu.c to set correct baud rate (57600)
+    - Change CDS_DEFAULT, turn on DFE_PM and EE, Update DFE_PM to ignore timeout
+	    Enya Cheng 1.1.0.0
+    - Use trained r for training of c;
+    - Compile flag for printous;
+    - To clear intterupt by the register isr_clear.
+ 06/07/2018 Tianchen Luo 1.0.7.0
+    - Add driver.h, define driver layer interface registers
+    - Replace lnx_ADAPT_DATA_EN_LANE_7_0 with drv_ADAPT_DATA_EN
+    - Replace lnx_ADAPT_SLICER_EN_LANE_7_0 with drv_ADAPT_SLICER_EN
+    - Replace calls to cds.c by cdr_dfe_scheme.c version
+    - Use reg_RESET_DTL_SYNC_LANE
+ 05/31/2018 Tianchen Luo 1.0.4.0
+	- Update CDS for sel_mu_f control for PAM2 when dfe init1/2 are bypassed
+ 05/04/2018 Enya Cheng 0.9.8.0
+	- Copy Changelist file from 56G R1P0;
+	- Recover lnx_ADAPT_DATA_EN_LANE_7_0 after EOM;
+	- Work arround for VDD calibration debuging.
+ 02/12/2018 Enya Cheng 0.9.6.0
+ 	- The temp ramping work arround to handle the case that phase out of range. 
+ 01/30/2018 Heejeong Ryu 0.9.5.0
+  - updated pam2 train_if
+ 01/10/2018 Enya Cheng 0.9.4.0
+ 	- Sampler calibration dac delay extension to cover calibration at low temperature;
+ 	- PLL temp calibration, limit the TEMPC_MUX_SEL and TEMPC_MUX_HOLD_SEL within valid range. 
+ 01/05/2018 Heejeong Ryu
+   - fixed PAM4 Train if reset DV issue
+ 12/20/2017 Enya Cheng 0.9.3.8
+ 	- temp workarround to change TRAIN_PH_OS_DATA_2C_LANE with temperature.
+ 	- temp workarround more control for the switch workaround.
+ 12/18/2017 Enya Cheng 0.9.3.7
+ 	- turn off code for debugging information.
+ 12/14/2017 Enya Cheng 0.9.3.6
+    - use the common toggle function in the tximp_calibration.
+ 12/08/2017 Enya Cheng 0.9.3.5
+ 	- Fixed a typo for the sync up in txlane_align.
+ 11/15/2017 Tianchen Luo 0.9.3.4
+ 	- Improve F2 protection logic
+ 11/15/2017 Enya Cheng 0.9.3.2
+ 	- exclude ring_pll calibration to resolve code overflow.
+ 11/10/2017 Enya Cheng 0.9.3.0
+	- added work around for DFE issue whenrampong temperature.
+	- added temporary workaround for EOM causing loopback error.
+            Tianchen Luo 0.9.3.2
+    - Update CDS with F2 protection
+ 10/27/2017 Heejeong Ryu 0.9.2.8
+   - added cli GPO toggle for measure time
+   			Enya Cheng 0.9.2.9
+    - Temporary workarround for EOM cause loopback error. The check in is based on version 1171 with local modification in the cds_dfe_scheme.  			
+ 10/20/2017 Heejeong Ryu
+   - R1P1: changed SSC_STEP control in spdchg
+ 10/17/2017 Heejeong Ryu
+   - updated tx_train_if pat ctrl
+ 10/16/2017 Enya Cheng 0.9.2.7
+   - Use the previous value for DLL VDDA calibration. The calibration value is within the range in the spec.
+ 10/12/2017 Tianchen Luo 0.9.2.6
+   - Updated CDS for ESM purpose
+ 10/10/2017 Heejeong Ryu 0.9.2.3
+   - Updated tx_train_if
+			Enya Cheng 0.9.2.4
+   - Check in code for EOM
+            Tianchen Luo 0.9.2.5
+    - Minor update CDS
+ 10/09/2017 Heejeong Ryu 0.9.2.2
+   - tx_train_if pam4 debug
+ 10/06/2017 Tianchen Luo 0.9.2.1
+   - Update CDS Implementation
+ 10/04/2017 Heejeong Ryu 0.9.1.a
+   - bug fix rxdll_cal vref_rxdll_sel calculation with temperature formula
+   - updated tempc mux sel initial table values
+ 10/02/2017 Tianchen Luo 0.9.1.9
+ 	- Fix cds address
+    - Update cli.c to include more functions
+ 10/02/2017 Heejeong Ryu 0.9.1.8
+    - updated rxtrain/txtrain interface with dummy
+ 10/02/2017 Tianchen Luo 0.9.1.7
+ 	- Fix cdr_dfe_scheme.c banking
+ 10/02/2017 Tianchen Luo 0.9.1.6
+ 	- Change cdr_dfe_scheme.c to bank1
+    - Move auto var to xdata in ph_ctrl.c
+ 9/29/2017 Tianchen Luo 0.9.1.5
+ 	- Update cdr_dfe_scheme, ph_ctrl, eom functions
+ 9/28/2017 Enya Cheng 0.9.1.4
+ 	- Added memcpy and memset0 functions based on 28G R2P0.
+ 9/27/2017 Heejeong Ryu 0.9.1.3
+   - Fixed compile error
+   - changed gen index- 56G:GEN14, 56.25G:GEN11
+   - changed spdchg group0: 0 1 2 4 13, group1:0 1 4 7 
+ 9/27/2017 Heejeong Ryu 0.9.1.2
+   - added 56.25G speed tbl
+ 9/26/2017 Enya Cheng 0.9.1.0
+ 	- Fixed protencial issue for RXDCC EOM and RXDCC DLL calibration;
+ 	- For PLL Temp initial value, modify the values obtained on silicon;
+ 	- Port CDR dfe scheme and Phase control from SVN repository 56G_R1P0.
+ 9/25/2017 Enya Cheng 0.9.0.9
+ 	- Ported CDS and Ph_ctrl from previous repository 56G_R1P0.
+ 9/20/2017 Enya Cheng 0.9.0.8
+ 	- Fixed an issue in temperature converting;
+ 	- Reorganized the rom_replacement.c to seperate files;
+ 	- TXimp toggling enhancement.
+ 9/19/2017 Heejeong Ryu 0.9.0.7
+        - changed speed table for 56G to use 14G PLLCLK - this is temp. 
+ 9/18/2017 Enya Cheng 0.9.0.5
+ 	- Skip set test pattern for VDD calibration in continuous mode;
+ 	- Set enable bit for VDDA DLL calibration;
+ 	- Change pass flag to avoid overwrite by load function;
+ 	- Fix a typo for RXDCC data clk calibration.
+ 9/15/2017 Enya Cheng 0.9.0.4i
+ 	- port and enable function to calculate reference of vdda for dll calibration using temperature.
+ 9/14/2017 Enya Cheng 0.9.0.2
+   - workaroud for tximp calibration;
+   - fix tsen issue;
+   - VDD calibration continuous mode clock toggle correctly.
+ 9/13/2017 Heejeong Ryu 0.9.0.0
+   - updated speed table structure; use 7 GEN, added CDS
+           Enya Cheng
+   - fix the plldcc power on calibration saturation issue.
+ 9/12/2017 Heejeong Ryu 0.8.0.8
+   - added ANA_CMN_IMPCAL_OUT_REQ=1 for every plldcc_cal, and use ROM.
+           Enya Cheng
+   - made rom_replacement.c for modified rom code, it currently includes vdd calibration;
+   - set register values based on spec and avoid confusion for AEs.
+ 9/12/2017 Heejeong Ryu 0.8.0.7
+   - added patch for PROM code not working; toggle ANA_CMN_IMPCAL_OUT_REQ, fixed cont_cal 
+   - added PLL_PWEXP_DIS_RING = 0 at pwr up
+ 9/11/2017 Heejeong Ryu
+    - fixed sampler_cal_ext bug
+ 9/10/2017 Enya Cheng
+ 	- set rx align90 cal pass to avoid confusion for AE.
+ 9/08/2017 Heejeong Ryu
+    - added sampler load reset in rx_init for temp, need to remove after CDS working
+           Enya Cheng
+    - use correct value for pll temp initialization.
+ 9/07/2017 Enya Cheng
+    - For lc pll calibration, to use correct speed table parameters.
+ 9/06/2017 Enya Cheng
+    - For release folder, copy reg.midas from SOS.
+ 9/05/2017 Enya Cheng
+    - Copy from the previous svn repository for 56G.
+//********************************************************************* 

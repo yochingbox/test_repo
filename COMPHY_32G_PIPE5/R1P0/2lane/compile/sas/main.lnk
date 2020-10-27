@@ -1,0 +1,83 @@
+-myux
+-i ./sas/main.ihx
+-Y
+-a 0x0100
+-v 0x0200
+-w 0x1ffff
+-b HOME = 0x0000
+-b DSEG = 0x0018
+-b XSEG = 0x6600
+-b PSEG = 0x6600
+-b ISEG = 0x0000
+-b BSEG = 0x0000
+-bCSEG=0x000000
+-bCONST=0x00000
+-bBANK1=0x018000
+-bBANK2=0x028000
+-r
+-k /proj/caesys/bin/linux64-rh7.1/../../share/sdcc/lib/small-stack-auto
+-k /proj/caesys/share/sdcc/lib/small-stack-auto
+-l mcs51
+-l libsdcc
+-l libint
+-l liblong
+-l libfloat
+./sas/align90_cal.rel
+./sas/align90_cal_rom.rel
+./sas/apta.rel
+./sas/cal_rom.rel
+./sas/cal_top.rel
+./sas/cdr_dfe_scheme.rel
+./sas/cds.rel
+./sas/cds_base.rel
+./sas/cli.rel
+./sas/cmd_if.rel
+./sas/cpu.rel
+./sas/dcc_cal.rel
+./sas/debug.rel
+./sas/dfe_adaptation.rel
+./sas/dll_cal.rel
+./sas/dll_cal_rom.rel
+./sas/eom.rel
+./sas/eom_align_cal.rel
+./sas/global.rel
+./sas/imp_cal.rel
+./sas/interrupt.rel
+./sas/lane_margin.rel
+./sas/main.rel
+./sas/mcu_sync.rel
+./sas/misc.rel
+./sas/misc_rom.rel
+./sas/ph_ctrl.rel
+./sas/phase_adaptation.rel
+./sas/phase_train.rel
+./sas/phy_init.rel
+./sas/pll_cal.rel
+./sas/pll_cal_rom.rel
+./sas/pll_dcc_cal.rel
+./sas/pll_temp_cal.rel
+./sas/power.rel
+./sas/power_pcie.rel
+./sas/power_rom.rel
+./sas/power_sata.rel
+./sas/printf.rel
+./sas/process_cal.rel
+./sas/ring_pll_cal.rel
+./sas/rx_init.rel
+./sas/rx_train.rel
+./sas/sampler_cal.rel
+./sas/spd_ctrl.rel
+./sas/spdtbl_pmem.rel
+./sas/squelch_cal.rel
+./sas/train_if.rel
+./sas/trx_train.rel
+./sas/tx_lane_align.rel
+./sas/tx_train.rel
+./sas/tx_train_if.rel
+./sas/tx_train_pcie.rel
+./sas/tx_train_sas.rel
+./sas/txdetect_cal.rel
+./sas/uart.rel
+./sas/vdd_cal.rel
+
+-e

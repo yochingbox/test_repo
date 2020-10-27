@@ -1,0 +1,304 @@
+//*********************************************************************
+//	    COMPHY_56G_PIPE5_2PLL_X4 Firmware Change History			
+//
+//   Copyright (c) 2019 Marvell Semiconductor, Inc. All rights reserved
+//*********************************************************************
+ 3/26/2020 Andrew Danilovic 0.1.0.54
+ - Optimize ST_P2 pcie power state transition for spd_cfg=2 to meet 16us spec requirnment
+ 3/26/2020 Bin Sheng 0.1.0.53
+ - Fix bug that lane_margin_start is called for falling edge interrupt.  
+ 3/26/2020 Andrew Danilovic 0.1.0.52
+ - Fix bug causing pcie power up hang waiting for reg_PIPE_SFT_RESET_LANE to be asserted
+ 3/25/2020 Lisa Wang  0.1.0.51
+ - New speed Serdes 10G added
+ 3/25/2020 Andrew Danilovic 0.1.0.50
+ - Add comon config update Lane MCU <-> Common MCU handshake to power up sequence
+ - Replace mcu_en with PIN_PU_PLL_RD_LANE*
+ 3/25/2020 Andrew Danilovic 0.1.0.49
+ - Allow MCUs1 and 3 to access the RS PLL during pcie power state transitions
+ 3/25/2020 Lisa Wang  0.1.0.48
+ - Moved nt decoder to driver and removed gen checking
+ 3/24/2020 Mo Yang 0.1.0.47
+ - CDS: update dfe_spd_init(), consistent with 7nm 56G
+ 3/24/2020 Andrew Danilovic 0.1.0.46
+ - Re-enable spd_cfg=3 support
+ 3/24/2020 Lisa Wang 0.1.0.45
+ - Added 32G Serdes in speed table
+ 3/20/2020 Bin Sheng 0.1.0.44
+ - Fix drv_cdr_dfe_scheme.c CSEG definition issue
+ - Speedup EOM_clock_analog_align for simulation
+ 3/18/2020 Jue Wang 0.1.0.43
+ - Add bypass dtx lane alignment to fast_power_on_en sequence.
+ 3/17/2020 Yung-Hung Chen 0.1.0.42
+ - Update speed table
+ 3/17/2020 Jue Wang 0.1.0.41
+ - Restore pwron_seq value in soft reset driver.
+ 3/16/2020 Andrew Danilovic 0.1.0.40
+ - Update SERDES speed table
+ 3/12/2020 Jue Wang 0.1.0.39
+ - Added TXPAM2_DUM_EN write in drv_tx_func_cfg() to match ana_tx model update.
+ 3/12/2020 Andrew Danilovic 0.1.0.38
+ - Remove check on pu_pll_or in ST_P2, which is not correct for spd_cfg=2.
+ 3/10/2020 Andrew Danilovic 0.1.0.37
+ - Update xdata cmn and lane memory map
+ 3/9/2020 Andrew Danilovic 0.1.0.36
+ - Add common calibration framework
+ 3/9/2020 Andrew Danilovic 0.1.0.35
+ - Disable spd_cfg=3 pll_sharing code.
+ 3/5/2020 Andrew Danilovic 0.1.0.34
+ - Add spd_cfg=3 pll_sharing code. Modified pcie power up, speed change, and calibration to use the pll master mcu to perform the pll accesses.
+ 3/5/2020 Jue Wang 0.1.0.33
+ - Changed power on driver to de-assert pwron_seq before PLL_READY_TX/RX assertion.
+ 3/5/2020 Andrew danilovic 0.1.0.32
+ - Update xdata lane and common memory map
+ 3/4/2020 Xinyu Yi 0.1.0.31
+ - Added F1 tune function in CLI.
+ 3/3/2020 Heejeong Ryu 0.1.0.30
+ - updated prbs train sel bit control
+ 3/2/2020 Heejeong Ryu 0.1.0.29
+ - added prbs train debug
+ 3/2/2020 Andrew Danilovic 0.1.0.28
+ - Clear reg_rx_sft_rst_chg_falling and rising interrupts during power up.
+ 3/2/2020 Andrew Danilovic 0.1.0.27
+ - Update xdata lane and cmn memory map
+ 2/24/2020 Andrew Danilovic 0.1.0.26
+ - Update xdata lane memory map
+ 2/20/2020 Mo Yang 0.1.0.25
+ - Copy dc_vref_adj from 7nm 56G.
+ 2/11/2020 Jue Wang 0.1.0.24
+ - Update soft reset clear drive to power up SQ after reset RX register banks.
+ 2/11/2020 Andrew Danilovic 0.1.0.23
+ - Update xdata common memory layout.
+ - Assert pipe_RX and pipe_TX soft reset registers in the soft reset sequence.
+ 2/5/2020 Andrew Danilovic 0.1.0.22
+ - Add drv_pll.c to encapsulate differences in pll lock registers between 5nm and 7nm
+ - Read common pll lock registers, since MCUs 1 and 3 cannot read lane pll registers per spd_cfg=3 design
+ 2/4/2020 Andrew Danilovic 0.1.0.21
+ - Added rx and tx vdd cal enable/disable control
+ 2/4/2020 Heejeong Ryu 0.1.0.20
+ - changed XDAT Base same as 7nm
+ 1/29/2020 Andrew Danilovic 0.1.0.19
+ - Update binaries from shared 7NM source code, to speed up rxeom cal to avoid simulation timeout.
+ 1/23/2020 Mo Yang 0.1.0.18
+ - turne on lane margin support
+ 1/23/2020 Mo Yang 0.1.0.17
+ - updated cds_lane midas address
+ 1/22/2020 Minh Tran 0.1.0.16
+ - fixed VDD cal compile error
+ 1/21/2020 Heejeong Ryu
+ -reversed train_sel_bit usage : CEAMSDV-818
+ 1/14/2020 Jue Wang 0.1.0.15
+ - Update PM ctrl driver to de-assert reset_tx_sync after TX FIR clock is ready
+ 1/14/2020 Andrew Danilovic 0.1.0.14
+ - Update FW header files to match latest register definitions
+ 1/13/2020 Mo Yang 0.1.0.13
+ - Updated structures in drv_cdr_dfe_scheme.h according to new register order
+ 1/13/2020 Jue Wang 0.1.0.12
+ - Updated P2_beacon function to resolve P2_beacon case failure
+ 1/13/2020 Heejeong Ryu 
+ - moved 5nm POWER Driver function prototype in driver.h
+ 1/13/2020 Andrew Danilovic 0.1.0.11
+ - Make mcu_enx dependent on PIN_PU_PLL
+ 1/9/2020 Xinyu Yi 0.1.0.10
+ - Added the soft reset hardware driver functions, just like 5nm 112G-D.
+ 1/3/2020 Mo Yang 0.1.0.9
+ - updated drv_cdr_dfe_scheme.h
+ 12/12/2019 Bin Yuan 0.1.0.8
+ - updated phytest registers
+ - updated Midas file header files
+ 11/20/2019 Heejeong Ryu 0.1.0.7
+ - fixed pm serdes regression hang
+ - updated pll amp cont cal
+ - added pcie cal load
+ - removed eom cal cont, no need 
+ - updated for 5nm register change, clean up
+ 11/18/2019 Heejeong Ryu 0.1.0.6
+ - added back p0off txdetrx
+ - fixed cmn mcu delay function
+ 11/15/2019 Heejeong Ryu 0.1.0.5
+ - updated CTLE lookup table
+ 11/14/2019 Heejeong Ryu 0.1.0.4
+ - moved pu_chgpump, master_reg control to pwr_drv
+ - updated PCIe power cal seq
+ 11/13/2019 Heejeong Ryu 0.1.0.3
+ - updated serdes spdchg cal sequence 
+ - updated sq_cal sign calculation
+ - added pll temp init 
+ - adeed pu_chgpump, master_reg control
+ - moved mcu_en to xdat_cmn
+ 11/12/2019 Heejeong Ryu 0.1.0.2
+ - updated process cal
+ - set fast_dfe_timer_en_lane =1 when train_sim_en=1
+ 11/11/2019 Heejeong Ryu 0.1.0.1
+ - updated cal top sequence
+ 11/8/2019 Heejeong Ryu
+ - updated train
+ 11/7/2019 Heejeong Ryu
+ - updated sampler cal to fix stuck simulation
+ 11/6/2019 Minh Tran
+ - re-initialize register default value requested by Analog designer
+ - loaded initial result value for pll vdda calibrations
+ - synced dcc_cal.c with 112G_ADC
+ 11/6/2019 Heejeong Ryu
+ - updated process cal according psuedo code update
+ - added cont_cal turn on/off for power and speed change
+ 11/5/2019 Heejeong Ryu
+ - updated process_cal for pseudo code change
+ - updated sft_rst FSM
+ - added pll_clk_ready, ana_reset toggle to fix CEAMSDV-489 
+ - updated pll ts/rs control 
+ - updated samppler_cal
+ 11/1/2019 Heejeong Ryu
+ - changed RXDCC_HG_DLLCLK to 0 during rxclk cal 
+ - sync up SQ_CAL to 112G-ADC
+ - updated for speed regression failure
+ 10/31/2019 Heejeong Ryu
+ - updated for co-sim speed up
+ - fixed speed regression
+ 10/30/2019 Heejeong Ryu
+ - CEAMSDV-665:removed reg_pll_rs/ts_*_bypass_en toggle before reg_pll_dcc_vdd_ts/rs_top_start_lane toggle
+ - CEAMSDV-662:added SQ_THRESH_CAL_EN_LANE=0 at the end of sq_thres_cal.
+ - fixed pm test case
+ 10/29/2019 Heejeong Ryu 
+ - updated delay function for cosim
+ - added set_mcu_command[0] to speed up for cosim 
+ - updated Sampler, plldcc, imp, calibration
+ 10/25/2019 Heejeong Ryu 
+ - upsated SQ CAL sync with 112G-ADC
+ - updated imp missing registers
+ - updated clr_isr and main scheduler
+ - fixed pipe testcase failure
+ 10/24/2019 Minh Tran
+ - updated process and imp calibrations to match the latest pseudo code
+ 10/23/2019 Heejeong Ryu
+ - changed pll ctrl function name
+ - updated SPD_CFG1/2 pll ctrl
+ - added isr clear functions
+ - updated serdes spdchg for combine case
+ 10/21/2019 Heejeong Ryu
+ - enabled dfe_spd_init() in power on cal
+ - removed RX_PAM2_EN_LANE ctrl in cds, it should be from speed table load.
+ 10/18/2019 Minh Tran
+ - Merged 112G_ADC calibration changes in r4553
+ - Applied the correct mask when to call Serdes_Power_Management()
+ 10/11/2019 Heejeong Ryu
+ - changed TXIMP call sequence; one lane by one lane.
+ - added Calibration Default value patch
+ - added cont_cal stop ar cal_top
+ 10/11/2019 Mo Yang 
+ - remove PU_SMPLR* and EN_DFE_VREF setting in set_dfe_mod
+ 10/7/2019 Heejeong Ryu 
+ - updated P0s_P1 state : JIRA:CEAMSDV-624
+ - updated for training sync up to r4171 (112G-A)
+ 10/3/2019 Heejeong Ryu JIRA:CEAMSDV-607
+ - updated P0 TxdetectRx 
+ 10/2/2019 Heejeong Ryu
+ - fixed lane reduced pcie test stuck
+ 10/1/2019 Heejeong Ryu
+ - fixed pm_pcie p1_p0 stuck
+ - updated pu_ivref ctrl
+ 10/1/2019 Mo Yang
+ - updated some register setting in CDS
+ - updated cli to test different CDS sequence 
+ 9/30/2019 Heeejong Ryu
+ - replaced pam4_en to Tx/RX_PAM2_EN_LANE
+ - updated pu_ivref ctrl
+ - updated adapt_data/slice_en ctrl
+ - added reg_CFG_PM_RXDLOZ_WAIT_LANE=1 when fast_power_on_en=1
+ 9/27/2019 Mo Yang
+ - updated CDS and cli to test CDS
+ 9/26/2019 Heeejong Ryu
+ - updated fast_power_on_en control
+ 9/23/2019 Mo Yang
+ - updated drv_cdr_dfe_scheme for cdr_pattern related settings
+ 9/23/2019 Heeejong Ryu
+ - fixed t_dtx testcase hang by waiting pin_pu_pll at pwron_seq
+ 9/6/2019 Heeejong Ryu
+ - added pll dcc vdda cal in pll_cal sync up to 112G-ADC
+ - updated for speed up pll co sim
+ 9/5/2019 Heeejong Ryu
+ - moved *_init.c to bank3
+ - updated pcie pm p2 case
+ 9/3/2019 Heeejong Ryu
+ - updated spd_cfg1 speed change flow
+ - added cli_args register
+ - fixed pcie speed change regression failure
+ - added sq_fw_filter ctrl in rxinit
+ 8/29/2019 Heeejong Ryu
+ - changed fast_power_on_en ctrl
+ 8/29/2019 Minh Tran
+ - added TX Align90 and DCC calibration
+ 8/29/2019 Heeejong Ryu
+ - added _56G_5NM compile option for 5nm support
+ - added SAS support for 5nm
+ 8/29/2019 Mo Yang
+  - Update update DFE DC bitwidth
+ 8/28/2019 Heeejong Ryu
+  - fixed p0/p2 regression failure
+  - added process_val check for temp
+ 8/21/2019 Heeejong Ryu
+  - updated xdat_init due to script fix
+  - added reset_dtx clear to fix speed testcase failure
+ 8/15/2019 Heeejong Ryu
+  - added pcie tx train
+  - fixed spdchg testcase failure for reset_dtx 
+ 8/14/2019 Heeejong Ryu
+  - added reset_ana for simulation stuck
+ 8/8/2019 Heeejong Ryu
+  - updated speed table
+  - updated DFE Adaptation F0a sum calculation for 56G
+  - updated to support SPD_CFG=1
+  - updated CTLE registers for 56G
+  - put CTLE_CAP1_SEL_LANE to gray code
+  - fixed typo
+ 8/7/2019 Mo Yang
+  - Added options in CDS reset stage. It is to choose between reset DFE taps to default value or previously saved values.
+ 8/5/2019 Heeejong Ryu
+  - added pll_sel_lane control in spdchg
+ 7/30/2019 Heeejong Ryu
+  - updated sampler_cal per pseudo code
+  - updated cds function name
+ 7/29/2019 Heeejong Ryu
+  - generated xdat*init, speed files
+  - added rxclk_cal  
+  - updated dfe adapt sync with 56G CDS structure
+ 7/26/2019 Heeejong Ryu
+  - ported serdes train from 112G-A
+  - added process_cal
+ 7/25/2019 Heeejong Ryu
+  - updated ana_tx_idle during calibration
+ 7/24/2019 Minh Tran
+  - updated TSEN cmn_ana_rsvdb register mapping
+ 7/18/2019 Heeejong Ryu
+  - added reset_ana signal control in pll_cal
+  - debug pll_cal LCCAP_LSB loop
+  - added cli
+ 7/1/2019 Heeejong Ryu
+  - updated pcie pm for refclk_dis
+ 6/28/2019 Heeejong Ryu
+  - updated pcie pm l1sub not to use mcu_stop
+ 6/26/2019 Heeejong Ryu
+  - fixed pcie pm regression failure
+ 6/13/2019 Heeejong Ryu
+  - fixed pll_lock hang after reset_dtx deassert
+  - fixed pcie speed change hang
+  - updated tx_train_if for pcie train hang
+ 6/13/2019 Heeejong Ryu
+  - updated pll_cal
+ 6/12/2019 Heeejong Ryu
+  - added pll_lock check before pin_pll_ready
+  - updated train_if to support pam4
+ 6/10/2019 Heeejong Ryu
+  - updated train_if_init call
+ 5/7/2019 Heejeong Ryu 0.1.0.0
+  - updated cal seq
+  - added xdat init
+  - updated scheduler for PCIe
+  - implemented power on LCPLL_CAL
+  - clean up bank selection in power driver 
+ 1/8/2020 Chuan Lyu
+  - Updated the SAS_speed.c PCIE_speed.c and SERDES_speed.c
+  - Recompiled
+//*********************************************************************
+
+

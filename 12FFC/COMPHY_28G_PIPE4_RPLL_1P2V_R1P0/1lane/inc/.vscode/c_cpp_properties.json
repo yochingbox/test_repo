@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/../../shared/inc/**",
+                "${workspaceFolder}/../../1lane/inc/**",
+                "C:/fw_repo/include/mcs51"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "intelliSenseMode": "msvc-x64",
+            "cStandard": "c99",
+            "forcedInclude": [
+                "C:\\fw_repo\\include\\mcs51\\lint.h"
+            ]
+        }
+    ],
+    "version": 4
+}

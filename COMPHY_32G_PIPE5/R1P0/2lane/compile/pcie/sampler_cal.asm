@@ -1,0 +1,3663 @@
+;--------------------------------------------------------
+; File Created by SDCC : free open source ANSI-C Compiler
+; Version 3.0.0 #6037 (May 26 2011) (Linux)
+; This file was generated Thu Oct 18 21:21:32 2018
+;--------------------------------------------------------
+	.module sampler_cal
+	.optsdcc -mmcs51 --model-small
+	
+;--------------------------------------------------------
+; Public variables in this module
+;--------------------------------------------------------
+	.globl _sampler_f1_pol_tb
+	.globl _samper_cal_sel_tb
+	.globl _r_training_bound_tb
+	.globl _sampler_cal_sel
+	.globl _TF2
+	.globl _TI
+	.globl _RI
+	.globl _EX12
+	.globl _EX11
+	.globl _EX10
+	.globl _EX9
+	.globl _EX8
+	.globl _ES1
+	.globl _PS1
+	.globl _EX6
+	.globl _EX5
+	.globl _EX4
+	.globl _EX3
+	.globl _EX2
+	.globl _EX7
+	.globl _EA
+	.globl _WDT
+	.globl _ET2
+	.globl _ES
+	.globl _ET1
+	.globl _EX1
+	.globl _ET0
+	.globl _EX0
+	.globl _TF1
+	.globl _TR1
+	.globl _TF0
+	.globl _TR0
+	.globl _IE1
+	.globl _IT1
+	.globl _IE0
+	.globl _IT0
+	.globl _P3_7
+	.globl _P3_6
+	.globl _P3_5
+	.globl _P3_4
+	.globl _P3_3
+	.globl _P3_2
+	.globl _P3_1
+	.globl _P3_0
+	.globl _P2_7
+	.globl _P2_6
+	.globl _P2_5
+	.globl _P2_4
+	.globl _P2_3
+	.globl _P2_2
+	.globl _P2_1
+	.globl _P2_0
+	.globl _P1_7
+	.globl _P1_6
+	.globl _P1_5
+	.globl _P1_4
+	.globl _P1_3
+	.globl _P1_2
+	.globl _P1_1
+	.globl _P1_0
+	.globl _P0_7
+	.globl _P0_6
+	.globl _P0_5
+	.globl _P0_4
+	.globl _P0_3
+	.globl _P0_2
+	.globl _P0_1
+	.globl _P0_0
+	.globl _DMAC
+	.globl _DMATA
+	.globl _DMASA
+	.globl _TMR2
+	.globl _TMR1
+	.globl _TMR0
+	.globl _SRST
+	.globl _B
+	.globl _EIE
+	.globl _ACC
+	.globl _ADCON
+	.globl _PSW
+	.globl _TH2
+	.globl _TL2
+	.globl _RCAP2H
+	.globl _RCAP2L
+	.globl _T2CON
+	.globl _CCEN
+	.globl _IRCON
+	.globl _S0RELH
+	.globl _IP1
+	.globl _IEN1
+	.globl _DMAM1
+	.globl _DMAM0
+	.globl _DMASEL
+	.globl _DMAC2
+	.globl _DMAC1
+	.globl _DMAC0
+	.globl _P3
+	.globl _S0RELL
+	.globl _IP0
+	.globl _IEN0
+	.globl _DMAT2
+	.globl _DMAT1
+	.globl _DMAT0
+	.globl _DMAS2
+	.globl _DMAS1
+	.globl _DMAS0
+	.globl _P2
+	.globl _IEN2
+	.globl _SBUF
+	.globl _SCON
+	.globl _PSBANK
+	.globl _DPS
+	.globl _P1
+	.globl _CKCON
+	.globl _TH1
+	.globl _TH0
+	.globl _TL1
+	.globl _TL0
+	.globl _TMOD
+	.globl _TCON
+	.globl _PCON
+	.globl _WDTREL
+	.globl _DPH
+	.globl _DPL
+	.globl _P0
+	.globl _sq_thrs_ratio_tb
+	.globl _train_save_tb
+	.globl _tx_tb
+	.globl _UPHY_ANAREG_REV_0
+	.globl _dfe_sm_save
+	.globl _dfe_sm_dc
+	.globl _dfe_sm
+	.globl _cds28
+	.globl _lnx_calx_align90_gm
+	.globl _lnx_calx_align90_dac
+	.globl _lnx_calx_align90_dummy_clk
+	.globl _lnx_calx_eom_dpher
+	.globl _lnx_calx_vdda_dll_eom_sel
+	.globl _lnx_calx_dll_eom_gmsel
+	.globl _lnx_calx_vdda_dll_sel
+	.globl _lnx_calx_dll_gmsel
+	.globl _lnx_calx_rxdcc_dll_hg
+	.globl _lnx_calx_rxdcc_dll
+	.globl _lnx_calx_txdcc_hg
+	.globl _lnx_calx_txdcc
+	.globl _lnx_calx_txdcc_pdiv_hg
+	.globl _lnx_calx_txdcc_pdiv
+	.globl _lnx_spdoft_tx_preset_index_lane
+	.globl _lnx_cal_sellv_rxeomclk
+	.globl _lnx_cal_sellv_rxsampler
+	.globl _lnx_cal_sellv_txpre
+	.globl _lnx_cal_sellv_rxdataclk
+	.globl _lnx_cal_sellv_txclk
+	.globl _lnx_cal_sellv_txdata
+	.globl _lnx_cal_align90_gm
+	.globl _lnx_cal_align90_dac
+	.globl _lnx_cal_align90_dummy_clk
+	.globl _lnx_cal_eom_dpher
+	.globl _lnx_cal_vdda_dll_eom_sel
+	.globl _lnx_cal_dll_eom_gmsel
+	.globl _lnx_cal_vdda_dll_sel
+	.globl _lnx_cal_dll_gmsel
+	.globl _lnx_cal_rxdcc_eom_hg
+	.globl _lnx_cal_rxdcc_eom
+	.globl _lnx_cal_rxdcc_data_hg
+	.globl _lnx_cal_rxdcc_data
+	.globl _lnx_cal_rxdcc_dll_hg
+	.globl _lnx_cal_rxdcc_dll
+	.globl _lnx_cal_txdcc_hg
+	.globl _lnx_cal_txdcc
+	.globl _lnx_cal_txdcc_pdiv_hg
+	.globl _lnx_cal_txdcc_pdiv
+	.globl _cmx_cal_sllp_dac_fine_ring
+	.globl _cmx_cal_pll_sllp_dac_coarse_ring
+	.globl _cmx_cal_pll_speed_ring
+	.globl _cmx_cal_plldcc
+	.globl _cmx_cal_lccap_lsb
+	.globl _cmx_cal_lccap_msb
+	.globl _cmx_cal_lcvco_dac_msb
+	.globl _cmx_cal_lcvco_dac_lsb
+	.globl _cmx_cal_lcvco_dac
+	.globl _local_tx_preset_tb
+	.globl _train_g0_index
+	.globl _train_g1_index
+	.globl _train_gn1_index
+	.globl _phase_save
+	.globl _txffe_save
+	.globl _rc_save
+	.globl _phy_mode_lane_table
+	.globl _speedtable
+	.globl _min_gen
+	.globl _max_gen
+	.globl _phy_mode_cmn_table
+	.globl _ring_speedtable
+	.globl _lc_speedtable
+	.globl _TXTRAIN_IF_REG0
+	.globl _CDS_READ_MISC1
+	.globl _CDS_READ_MISC0
+	.globl _DFE_READ_F0D_RIGHT_ODD
+	.globl _DFE_READ_F0D_RIGHT_EVEN
+	.globl _DFE_READ_F0D_LEFT_ODD
+	.globl _DFE_READ_F0D_LEFT_EVEN
+	.globl _DFE_READ_F0D_ODD
+	.globl _DFE_READ_F0D_EVEN
+	.globl _DFE_READ_F0B_ODD
+	.globl _DFE_READ_F0B_EVEN
+	.globl _DFE_READ_F0A_ODD
+	.globl _DFE_READ_F0A_EVEN
+	.globl _DFE_READ_ODD_REG8
+	.globl _DFE_READ_EVEN_REG8
+	.globl _DFE_READ_ODD_REG7
+	.globl _DFE_READ_ODD_REG6
+	.globl _DFE_READ_ODD_REG5
+	.globl _DFE_READ_ODD_REG4
+	.globl _DFE_READ_ODD_REG3
+	.globl _DFE_READ_ODD_REG2
+	.globl _DFE_READ_ODD_REG1
+	.globl _DFE_READ_ODD_REG0
+	.globl _DFE_READ_EVEN_REG7
+	.globl _DFE_READ_EVEN_REG6
+	.globl _DFE_READ_EVEN_REG5
+	.globl _DFE_READ_EVEN_REG4
+	.globl _DFE_READ_EVEN_REG3
+	.globl _DFE_READ_EVEN_REG2
+	.globl _DFE_READ_EVEN_REG1
+	.globl _DFE_READ_EVEN_REG0
+	.globl _TX_TRAIN_IF_REG8
+	.globl _TX_TRAIN_CTRL_LANE
+	.globl _TX_TRAIN_IF_REG7
+	.globl _TX_TRAIN_IF_REG6
+	.globl _TX_TRAIN_IF_REG5
+	.globl _TX_TRAIN_IF_REG4
+	.globl _TRX_TRAIN_IF_INTERRUPT_CLEAR_LANE
+	.globl _TRX_TRAIN_IF_INTERRUPT_MASK0_LANE
+	.globl _TRX_TRAIN_IF_INTERRUPT_LANE
+	.globl _TX_AMP_CTRL_REG0
+	.globl _TX_DRV_RD_OUT_REG0
+	.globl _LINK_TRAIN_MODE0
+	.globl _TX_EMPH_CTRL_REG0
+	.globl _TX_TRAIN_DEFAULT_REG5
+	.globl _TX_TRAIN_DEFAULT_REG4
+	.globl _TX_TRAIN_DEFAULT_REG3
+	.globl _TX_TRAIN_DEFAULT_REG2
+	.globl _TX_TRAIN_DEFAULT_REG1
+	.globl _TX_TRAIN_DEFAULT_REG0
+	.globl _TX_TRAIN_DRIVER_REG2
+	.globl _TX_TRAIN_DRIVER_REG1
+	.globl _TX_TRAIN_DRIVER_REG0
+	.globl _TX_TRAIN_PATTTERN_REG0
+	.globl _TX_TRAIN_IF_REG3
+	.globl _TX_TRAIN_IF_REG2
+	.globl _TX_TRAIN_IF_REG1
+	.globl _TX_TRAIN_IF_REG0
+	.globl _DME_DEC_REG1
+	.globl _DME_DEC_REG0
+	.globl _DME_ENC_REG2
+	.globl _DME_ENC_REG1
+	.globl _DME_ENC_REG0
+	.globl _END_XDAT_CMN
+	.globl _MCU_INFO_13
+	.globl _MCU_INFO_12
+	.globl _MCU_INFO_5
+	.globl _MCU_INFO_4
+	.globl _SYNC_INFO
+	.globl _CDS_EYE_CLK_THR
+	.globl _TX_SAVE_4
+	.globl _TX_SAVE_3
+	.globl _TX_SAVE_2
+	.globl _TX_SAVE_1
+	.globl _TX_SAVE_0
+	.globl _ETH_PRESET1_TB
+	.globl _ETH_PRESET0_TB
+	.globl _SAS_PRESET2_TB
+	.globl _SAS_PRESET1_TB
+	.globl _SAS_PRESET0_TB
+	.globl _G_SELLV_RXSAMPLER
+	.globl _G_SELLV_RXDATACLK
+	.globl _G_SELLV_RXEOMCLK
+	.globl _G_SELLV_TXPRE
+	.globl _G_SELLV_TXDATA
+	.globl _G_SELLV_TXCLK
+	.globl _TIMER_SEL3
+	.globl _TIMER_SEL2
+	.globl _TIMER_SEL1
+	.globl _MCU_CONFIG1
+	.globl _LOOP_CNTS
+	.globl _CAL_DATA1
+	.globl _MCU_CONFIG
+	.globl _CAL_STATUS_READ
+	.globl _CAL_TIME_OUT_AND_DIS
+	.globl _CON_CAL_STEP_SIZE5
+	.globl _CON_CAL_STEP_SIZE4
+	.globl _CON_CAL_STEP_SIZE3
+	.globl _CON_CAL_STEP_SIZE2
+	.globl _CON_CAL_STEP_SIZE1
+	.globl _CONTROL_CONFIG9
+	.globl _CONTROL_CONFIG8
+	.globl _TRAIN_IF_CONFIG
+	.globl _CAL_DATA0
+	.globl _CONTROL_CONFIG7
+	.globl _CONTROL_CONFIG6
+	.globl _CONTROL_CONFIG5
+	.globl _CONTROL_CONFIG4
+	.globl _CONTROL_CONFIG3
+	.globl _CONTROL_CONFIG2
+	.globl _CONTROL_CONFIG1
+	.globl _CONTROL_CONFIG0
+	.globl _FW_REV
+	.globl _CID_REG1
+	.globl _CID_REG0
+	.globl _CMN_MCU_REG
+	.globl _SET_LANE_ISR
+	.globl _CMN_ISR_MASK_1
+	.globl _CMN_ISR_1
+	.globl _CMN_MCU_TIMER3_CONTROL
+	.globl _CMN_MCU_TIMER2_CONTROL
+	.globl _CMN_MCU_TIMER1_CONTROL
+	.globl _CMN_MCU_TIMER0_CONTROL
+	.globl _CMN_MCU_TIMER_CTRL_5_LANE
+	.globl _CMN_MCU_TIMER_CTRL_4_LANE
+	.globl _CMN_MCU_TIMER_CTRL_3_LANE
+	.globl _CMN_MCU_TIMER_CTRL_2_LANE
+	.globl _CMN_MCU_TIMER_CONTROL
+	.globl _CMN_CACHE_DEBUG1
+	.globl _CMN_MCU_GPIO
+	.globl _CMN_ISR_CLEAR_2
+	.globl _CMN_ISR_MASK_2
+	.globl _CMN_ISR_2
+	.globl _MCU_INT_ADDR
+	.globl _CMN_CACHE_DEBUG0
+	.globl _MCU_SDT_CMN
+	.globl _XDATA_MEM_CHECKSUM_CMN_2
+	.globl _XDATA_MEM_CHECKSUM_CMN_1
+	.globl _XDATA_MEM_CHECKSUM_CMN_0
+	.globl _TEST5
+	.globl _PM_CMN_REG2
+	.globl _INPUT_CMN_PIN_REG3
+	.globl __FIELDNAME_
+	.globl _CMN_CALIBRATION
+	.globl _OUTPUT_CMN_PIN_REG0
+	.globl _SPD_CMN_REG1
+	.globl _CLKGEN_CMN_REG1
+	.globl _PLLCAL_REG1
+	.globl _PLLCAL_REG0
+	.globl _ANA_TSEN_CONTROL
+	.globl _INPUT_CMN_PIN_REG2
+	.globl _INPUT_CMN_PIN_REG1
+	.globl _INPUT_CMN_PIN_REG0
+	.globl _PM_CMN_REG1
+	.globl _SYSTEM
+	.globl _TEST4
+	.globl _TEST3
+	.globl _TEST2
+	.globl _TEST1
+	.globl _TEST0
+	.globl _MCU_SYNC2
+	.globl _MCU_SYNC1
+	.globl _MEM_IRQ_CLEAR
+	.globl _APB_CONTROL_REG
+	.globl _ANA_IF_CMN_REG0
+	.globl _MEM_IRQ_MASK
+	.globl _MEM_IRQ
+	.globl _ANA_IF_CMN_REG1
+	.globl _MEM_CMN_ECC_ERR_ADDRESS0
+	.globl _MCU_INFO_3
+	.globl _MCU_INFO_2
+	.globl _MCU_INFO_1
+	.globl _MCU_INFO_0
+	.globl _MEMORY_CONTROL_4
+	.globl _MEMORY_CONTROL_3
+	.globl _MEMORY_CONTROL_2
+	.globl _MEMORY_CONTROL_1
+	.globl _MEMORY_CONTROL_0
+	.globl _MCU_DEBUG1
+	.globl _MCU_DEBUG0
+	.globl _MCU_CONTROL_4
+	.globl _MCU_CONTROL_3
+	.globl _MCU_CONTROL_2
+	.globl _MCU_CONTROL_1
+	.globl _MCU_CONTROL_0
+	.globl _GLOB_L1_SUBSTATES_CFG
+	.globl _GLOB_PIPE_REVISION
+	.globl _GLOB_BIST_DATA_HI
+	.globl _GLOB_BIST_SEQR_CFG
+	.globl _GLOB_BIST_RESULT
+	.globl _GLOB_BIST_MASK
+	.globl _GLOB_BIST_START
+	.globl _GLOB_BIST_LANE_TYPE
+	.globl _GLOB_BIST_CTRL
+	.globl _GLOB_DP_BAL_CFG4
+	.globl _GLOB_DP_BAL_CFG2
+	.globl _GLOB_DP_BAL_CFG0
+	.globl _GLOB_PM_DP_CTRL
+	.globl _GLOB_COUNTER_HI
+	.globl _GLOB_COUNTER_CTRL
+	.globl _GLOB_PM_CFG0
+	.globl _GLOB_DP_SAL_CFG5
+	.globl _GLOB_DP_SAL_CFG3
+	.globl _GLOB_DP_SAL_CFG1
+	.globl _GLOB_DP_SAL_CFG
+	.globl _GLOB_MISC_CTRL
+	.globl _GLOB_CLK_SRC_HI
+	.globl _GLOB_CLK_SRC_LO
+	.globl _GLOB_RST_CLK_CTRL
+	.globl _DFE_STATIC_REG6
+	.globl _DFE_STATIC_REG5
+	.globl _DFE_STATIC_REG4
+	.globl _DFE_STATIC_REG3
+	.globl _DFE_STATIC_REG1
+	.globl _DFE_STATIC_REG0
+	.globl _RX_CMN_0
+	.globl _SRIS_REG1
+	.globl _SRIS_REG0
+	.globl _DTX_PHY_ALIGN_REG2
+	.globl _DTX_PHY_ALIGN_REG1
+	.globl _DTX_PHY_ALIGN_REG0
+	.globl _DTX_REG4
+	.globl _DTX_REG3
+	.globl _DTX_REG2
+	.globl _DTX_REG1
+	.globl _DTX_REG0
+	.globl _TX_CMN_REG
+	.globl _END_XDAT_LANE
+	.globl _TRAIN_CONTROL_17
+	.globl _TRAIN_CONTROL_16
+	.globl _TRAIN_CONTROL_15
+	.globl _TRAIN_CONTROL_14
+	.globl _TRAIN_CONTROL_13
+	.globl _ESM_ERR_N_CNT_LOW_LANE
+	.globl _ESM_POP_N_CNT_LOW_LANE
+	.globl _TRAIN_CONTROL_12
+	.globl _TRAIN_CONTROL_11
+	.globl _TRAIN_CONTROL_10
+	.globl _TRAIN_CONTROL_9
+	.globl _TRAIN_CONTROL_8
+	.globl _TRAIN_CONTROL_7
+	.globl _TRAIN_CONTROL_6
+	.globl _TRAIN_CONTROL_5
+	.globl _TRAIN_CONTROL_4
+	.globl _TRAIN_CONTROL_3
+	.globl _ESM_ERR_POP_CNT_HIGH_LANE
+	.globl _ESM_ERR_P_CNT_LOW_LANE
+	.globl _ESM_POP_P_CNT_LOW_LANE
+	.globl _CDS_CTRL_REG1
+	.globl _CDS_CTRL_REG0
+	.globl _DFE_CONTROL_11
+	.globl _DFE_CONTROL_10
+	.globl _DFE_CONTROL_9
+	.globl _DFE_CONTROL_8
+	.globl _DFE_CONTROL_7
+	.globl _DFE_TEST_5
+	.globl _DFE_TEST_4
+	.globl _DFE_TEST_1
+	.globl _DFE_TEST_0
+	.globl _DFE_CONTROL_6
+	.globl _TRAIN_PARA_3
+	.globl _TRAIN_PARA_2
+	.globl _TRAIN_PARA_1
+	.globl _TRAIN_PARA_0
+	.globl _DLL_CAL
+	.globl _RPTA_CONFIG_1
+	.globl _RPTA_CONFIG_0
+	.globl _TRAIN_CONTROL_2
+	.globl _TRAIN_CONTROL_1
+	.globl _TRAIN_CONTROL_0
+	.globl _DFE_CONTROL_5
+	.globl _DFE_CONTROL_4
+	.globl _DFE_CONTROL_3
+	.globl _DFE_CONTROL_2
+	.globl _DFE_CONTROL_1
+	.globl _DFE_CONTROL_0
+	.globl _TRX_TRAIN_IF_TIMERS_ENABLE_LANE
+	.globl _TRX_TRAIN_IF_TIMERS2_LANE
+	.globl _TRX_TRAIN_IF_TIMERS1_LANE
+	.globl _PHY_LOCAL_VALUE_LANE
+	.globl _PHY_REMOTE_CTRL_VALUE_LANE
+	.globl _PHY_REMOTE_CTRL_COMMAND_LANE
+	.globl _CAL_SAVE_DATA3_LANE
+	.globl _CAL_SAVE_DATA2_LANE
+	.globl _CAL_SAVE_DATA1_LANE
+	.globl _CAL_CTRL4_LANE
+	.globl _CAL_CTRL3_LANE
+	.globl _CAL_CTRL2_LANE
+	.globl _CAL_CTRL1_LANE
+	.globl _LANE_MARGIN_REG0
+	.globl _EOM_VLD_REG4
+	.globl _EOM_REG0
+	.globl _EOM_ERR_REG3
+	.globl _EOM_ERR_REG2
+	.globl _EOM_ERR_REG1
+	.globl _EOM_ERR_REG0
+	.globl _EOM_VLD_REG3
+	.globl _EOM_VLD_REG2
+	.globl _EOM_VLD_REG1
+	.globl _EOM_VLD_REG0
+	.globl _DFE_STATIC_LANE_REG6
+	.globl _DFE_STATIC_LANE_REG5
+	.globl _DFE_STATIC_LANE_REG4
+	.globl _DFE_STATIC_LANE_REG3
+	.globl _DFE_STATIC_LANE_REG1
+	.globl _DFE_STATIC_LANE_REG0
+	.globl _DFE_DCE_REG0
+	.globl _CAL_OFST_REG2
+	.globl _CAL_OFST_REG1
+	.globl _CAL_OFST_REG0
+	.globl _DFE_READ_ODD_2C_REG8
+	.globl _DFE_READ_EVEN_2C_REG8
+	.globl _DFE_READ_ODD_2C_REG7
+	.globl _DFE_READ_ODD_2C_REG6
+	.globl _DFE_READ_ODD_2C_REG5
+	.globl _DFE_READ_ODD_2C_REG4
+	.globl _DFE_READ_ODD_2C_REG3
+	.globl _DFE_READ_ODD_2C_REG2
+	.globl _DFE_READ_ODD_2C_REG1
+	.globl _DFE_READ_ODD_2C_REG0
+	.globl _DFE_READ_EVEN_2C_REG7
+	.globl _DFE_READ_EVEN_2C_REG6
+	.globl _DFE_READ_EVEN_2C_REG5
+	.globl _DFE_READ_EVEN_2C_REG4
+	.globl _DFE_READ_EVEN_2C_REG3
+	.globl _DFE_READ_EVEN_2C_REG2
+	.globl _DFE_READ_EVEN_2C_REG1
+	.globl _DFE_READ_EVEN_2C_REG0
+	.globl _DFE_READ_ODD_SM_REG8
+	.globl _DFE_READ_EVEN_SM_REG8
+	.globl _DFE_READ_ODD_SM_REG7
+	.globl _DFE_READ_ODD_SM_REG6
+	.globl _DFE_READ_ODD_SM_REG5
+	.globl _DFE_READ_ODD_SM_REG4
+	.globl _DFE_READ_ODD_SM_REG3
+	.globl _DFE_READ_ODD_SM_REG2
+	.globl _DFE_READ_ODD_SM_REG1
+	.globl _DFE_READ_ODD_SM_REG0
+	.globl _DFE_READ_EVEN_SM_REG7
+	.globl _DFE_READ_EVEN_SM_REG6
+	.globl _DFE_READ_EVEN_SM_REG5
+	.globl _DFE_READ_EVEN_SM_REG4
+	.globl _DFE_READ_EVEN_SM_REG3
+	.globl _DFE_READ_EVEN_SM_REG2
+	.globl _DFE_READ_EVEN_SM_REG1
+	.globl _DFE_READ_EVEN_SM_REG0
+	.globl _DFE_FEXT_ODD_REG7
+	.globl _DFE_FEXT_ODD_REG6
+	.globl _DFE_FEXT_ODD_REG5
+	.globl _DFE_FEXT_ODD_REG4
+	.globl _DFE_FEXT_ODD_REG3
+	.globl _DFE_FEXT_ODD_REG2
+	.globl _DFE_FEXT_ODD_REG1
+	.globl _DFE_FEXT_ODD_REG0
+	.globl _DFE_FEXT_EVEN_REG7
+	.globl _DFE_FEXT_EVEN_REG6
+	.globl _DFE_FEXT_EVEN_REG5
+	.globl _DFE_FEXT_EVEN_REG4
+	.globl _DFE_FEXT_EVEN_REG3
+	.globl _DFE_FEXT_EVEN_REG2
+	.globl _DFE_FEXT_EVEN_REG1
+	.globl _DFE_FEXT_EVEN_REG0
+	.globl _DFE_DC_ODD_REG8
+	.globl _DFE_DC_EVEN_REG8
+	.globl _DFE_FEN_ODD_REG
+	.globl _DFE_FEN_EVEN_REG
+	.globl _DFE_STEP_REG1
+	.globl _DFE_STEP_REG0
+	.globl _DFE_ANA_REG1
+	.globl _DFE_ANA_REG0
+	.globl _DFE_CTRL_REG4
+	.globl _RX_EQ_CLK_CTRL
+	.globl _DFE_CTRL_REG3
+	.globl _DFE_CTRL_REG2
+	.globl _DFE_CTRL_REG1
+	.globl _DFE_CTRL_REG0
+	.globl _PT_COUNTER2
+	.globl _PT_COUNTER1
+	.globl _PT_COUNTER0
+	.globl _PT_USER_PATTERN2
+	.globl _PT_USER_PATTERN1
+	.globl _PT_USER_PATTERN0
+	.globl _PT_CONTROL1
+	.globl _PT_CONTROL0
+	.globl _XDATA_MEM_CHECKSUM_LANE1
+	.globl _XDATA_MEM_CHECKSUM_LANE0
+	.globl _MEM_ECC_ERR_ADDRESS0
+	.globl _MCU_COMMAND0
+	.globl _MCU_INT_CONTROL_13
+	.globl _MCU_WDT_LANE
+	.globl _MCU_IRQ_ISR_LANE
+	.globl _ANA_IF_DFEO_REG0
+	.globl _ANA_IF_DFEE_REG0
+	.globl _ANA_IF_TRX_REG0
+	.globl _EXT_INT_CONTROL
+	.globl _MCU_DEBUG_LANE
+	.globl _MCU_DEBUG3_LANE
+	.globl _MCU_DEBUG2_LANE
+	.globl _MCU_DEBUG1_LANE
+	.globl _MCU_DEBUG0_LANE
+	.globl _MCU_TIMER_CTRL_7_LANE
+	.globl _MCU_TIMER_CTRL_6_LANE
+	.globl _MCU_TIMER_CTRL_5_LANE
+	.globl _MCU_TIMER_CTRL_4_LANE
+	.globl _MCU_TIMER_CTRL_3_LANE
+	.globl _MCU_TIMER_CTRL_2_LANE
+	.globl _MCU_TIMER_CTRL_1_LANE
+	.globl _MCU_MEM_REG2_LANE
+	.globl _MCU_MEM_REG1_LANE
+	.globl _MCU_IRQ_MASK_LANE
+	.globl _MCU_IRQ_LANE
+	.globl _MCU_TIMER3_CONTROL
+	.globl _MCU_TIMER2_CONTROL
+	.globl _MCU_TIMER1_CONTROL
+	.globl _MCU_TIMER0_CONTROL
+	.globl _MCU_TIMER_CONTROL
+	.globl _MCU_INT12_CONTROL
+	.globl _MCU_INT11_CONTROL
+	.globl _MCU_INT10_CONTROL
+	.globl _MCU_INT9_CONTROL
+	.globl _MCU_INT8_CONTROL
+	.globl _MCU_INT7_CONTROL
+	.globl _MCU_INT6_CONTROL
+	.globl _MCU_INT5_CONTROL
+	.globl _MCU_INT4_CONTROL
+	.globl _MCU_INT3_CONTROL
+	.globl _MCU_INT2_CONTROL
+	.globl _MCU_INT1_CONTROL
+	.globl _MCU_INT0_CONTROL
+	.globl _MCU_STATUS3_LANE
+	.globl _MCU_STATUS2_LANE
+	.globl _MCU_STATUS1_LANE
+	.globl _MCU_STATUS0_LANE
+	.globl _LANE_SYSTEM0
+	.globl _CACHE_DEBUG1
+	.globl _CACHE_DEBUG0
+	.globl _MCU_GPIO
+	.globl _MCU_CONTROL_LANE
+	.globl _LANE_32G_PRESET_CFG16_LANE
+	.globl _LANE_32G_PRESET_CFG14_LANE
+	.globl _LANE_32G_PRESET_CFG12_LANE
+	.globl _LANE_32G_PRESET_CFG10_LANE
+	.globl _LANE_32G_PRESET_CFG8_LANE
+	.globl _LANE_32G_PRESET_CFG6_LANE
+	.globl _LANE_32G_PRESET_CFG4_LANE
+	.globl _LANE_32G_PRESET_CFG2_LANE
+	.globl _LANE_32G_PRESET_CFG0_LANE
+	.globl _LANE_EQ_32G_CFG0_LANE
+	.globl _LANE_16G_PRESET_CFG16_LANE
+	.globl _LANE_16G_PRESET_CFG14_LANE
+	.globl _LANE_16G_PRESET_CFG12_LANE
+	.globl _LANE_16G_PRESET_CFG10_LANE
+	.globl _LANE_16G_PRESET_CFG8_LANE
+	.globl _LANE_16G_PRESET_CFG6_LANE
+	.globl _LANE_16G_PRESET_CFG4_LANE
+	.globl _LANE_16G_PRESET_CFG2_LANE
+	.globl _LANE_16G_PRESET_CFG0_LANE
+	.globl _LANE_EQ_16G_CFG0_LANE
+	.globl _LANE_REMOTE_SET_LANE
+	.globl _LANE_COEFF_MAX0_LANE
+	.globl _LANE_PRESET_CFG16_LANE
+	.globl _LANE_PRESET_CFG14_LANE
+	.globl _LANE_PRESET_CFG12_LANE
+	.globl _LANE_PRESET_CFG10_LANE
+	.globl _LANE_PRESET_CFG8_LANE
+	.globl _LANE_PRESET_CFG6_LANE
+	.globl _LANE_PRESET_CFG4_LANE
+	.globl _LANE_PRESET_CFG2_LANE
+	.globl _LANE_PRESET_CFG0_LANE
+	.globl _LANE_EQ_CFG1_LANE
+	.globl _LANE_EQ_CFG0_LANE
+	.globl _LANE_USB_DP_CFG2_LANE
+	.globl _LANE_USB_DP_CFG1_LANE
+	.globl _LANE_DP_PIE8_CFG0_LANE
+	.globl _LANE_CFG_STATUS3_LANE
+	.globl _LANE_CFG4
+	.globl _LANE_CFG2_LANE
+	.globl _LANE_CFG_STATUS2_LANE
+	.globl _LANE_STATUS0
+	.globl _LANE_CFG0
+	.globl _SQ_REG0
+	.globl _DTL_REG3
+	.globl _DTL_REG2
+	.globl _DTL_REG1
+	.globl _DTL_REG0
+	.globl _RX_LANE_INTERRUPT_REG1
+	.globl _RX_CALIBRATION_REG
+	.globl _INPUT_RX_PIN_REG3_LANE
+	.globl _RX_DATA_PATH_REG
+	.globl _RX_LANE_INTERRUPT_MASK
+	.globl _RX_LANE_INTERRUPT
+	.globl _CDR_LOCK_REG
+	.globl _FRAME_SYNC_DET_REG6
+	.globl _FRAME_SYNC_DET_REG5
+	.globl _FRAME_SYNC_DET_REG4
+	.globl _FRAME_SYNC_DET_REG3
+	.globl _FRAME_SYNC_DET_REG2
+	.globl _FRAME_SYNC_DET_REG1
+	.globl _FRAME_SYNC_DET_REG0
+	.globl _CLKGEN_RX_LANE_REG1_LANE
+	.globl _DIG_RX_RSVD_REG0
+	.globl _SPD_CTRL_RX_LANE_REG1_LANE
+	.globl _INPUT_RX_PIN_REG2_LANE
+	.globl _INPUT_RX_PIN_REG1_LANE
+	.globl _INPUT_RX_PIN_REG0_LANE
+	.globl _RX_SYSTEM_LANE
+	.globl _PM_CTRL_RX_LANE_REG1_LANE
+	.globl _MON_TOP
+	.globl _ANALOG_TX_REALTIME_REG_1
+	.globl _SPD_CTRL_INTERRUPT_CLEAR_REG1_LANE
+	.globl _PM_CTRL_INTERRUPT_ISR_REG1_LANE
+	.globl __FIELDNAME__LANE
+	.globl _INPUT_TX_PIN_REG5_LANE
+	.globl _DIG_TX_RSVD_REG0
+	.globl _TX_CALIBRATION_LANE
+	.globl _INPUT_TX_PIN_REG4_LANE
+	.globl _TX_SYSTEM_LANE
+	.globl _SPD_CTRL_TX_LANE_REG1_LANE
+	.globl _SPD_CTRL_INTERRUPT_REG2
+	.globl _SPD_CTRL_INTERRUPT_REG1_LANE
+	.globl _TX_SPEED_CONVERT_LANE
+	.globl _CLKGEN_TX_LANE_REG1_LANE
+	.globl _PM_CTRL_INTERRUPT_REG2
+	.globl _PM_CTRL_INTERRUPT_REG1_LANE
+	.globl _INPUT_TX_PIN_REG3_LANE
+	.globl _INPUT_TX_PIN_REG2_LANE
+	.globl _INPUT_TX_PIN_REG1_LANE
+	.globl _INPUT_TX_PIN_REG0_LANE
+	.globl _PM_CTRL_TX_LANE_REG2_LANE
+	.globl _PM_CTRL_TX_LANE_REG1_LANE
+	.globl _UPHY14_CMN_ANAREG_TOP_214
+	.globl _UPHY14_CMN_ANAREG_TOP_213
+	.globl _UPHY14_CMN_ANAREG_TOP_212
+	.globl _UPHY14_CMN_ANAREG_TOP_211
+	.globl _UPHY14_CMN_ANAREG_TOP_210
+	.globl _UPHY14_CMN_ANAREG_TOP_209
+	.globl _UPHY14_CMN_ANAREG_TOP_208
+	.globl _UPHY14_CMN_ANAREG_TOP_207
+	.globl _UPHY14_CMN_ANAREG_TOP_206
+	.globl _UPHY14_CMN_ANAREG_TOP_205
+	.globl _UPHY14_CMN_ANAREG_TOP_204
+	.globl _UPHY14_CMN_ANAREG_TOP_203
+	.globl _UPHY14_CMN_ANAREG_TOP_202
+	.globl _UPHY14_CMN_ANAREG_TOP_201
+	.globl _UPHY14_CMN_ANAREG_TOP_200
+	.globl _UPHY14_CMN_ANAREG_TOP_199
+	.globl _UPHY14_CMN_ANAREG_TOP_198
+	.globl _UPHY14_CMN_ANAREG_TOP_197
+	.globl _UPHY14_CMN_ANAREG_TOP_196
+	.globl _UPHY14_CMN_ANAREG_TOP_195
+	.globl _UPHY14_CMN_ANAREG_TOP_194
+	.globl _UPHY14_CMN_ANAREG_TOP_193
+	.globl _UPHY14_CMN_ANAREG_TOP_192
+	.globl _UPHY14_CMN_ANAREG_TOP_191
+	.globl _UPHY14_CMN_ANAREG_TOP_190
+	.globl _UPHY14_CMN_ANAREG_TOP_189
+	.globl _UPHY14_CMN_ANAREG_TOP_188
+	.globl _UPHY14_CMN_ANAREG_TOP_187
+	.globl _UPHY14_CMN_ANAREG_TOP_186
+	.globl _UPHY14_CMN_ANAREG_TOP_185
+	.globl _UPHY14_CMN_ANAREG_TOP_184
+	.globl _UPHY14_CMN_ANAREG_TOP_183
+	.globl _UPHY14_CMN_ANAREG_TOP_182
+	.globl _UPHY14_CMN_ANAREG_TOP_181
+	.globl _UPHY14_CMN_ANAREG_TOP_180
+	.globl _UPHY14_CMN_ANAREG_TOP_179
+	.globl _UPHY14_CMN_ANAREG_TOP_178
+	.globl _UPHY14_CMN_ANAREG_TOP_177
+	.globl _UPHY14_CMN_ANAREG_TOP_176
+	.globl _UPHY14_CMN_ANAREG_TOP_175
+	.globl _UPHY14_CMN_ANAREG_TOP_174
+	.globl _UPHY14_CMN_ANAREG_TOP_173
+	.globl _UPHY14_CMN_ANAREG_TOP_172
+	.globl _UPHY14_CMN_ANAREG_TOP_171
+	.globl _UPHY14_CMN_ANAREG_TOP_170
+	.globl _UPHY14_CMN_ANAREG_TOP_169
+	.globl _UPHY14_CMN_ANAREG_TOP_168
+	.globl _UPHY14_CMN_ANAREG_TOP_167
+	.globl _UPHY14_CMN_ANAREG_TOP_166
+	.globl _UPHY14_CMN_ANAREG_TOP_165
+	.globl _UPHY14_CMN_ANAREG_TOP_164
+	.globl _UPHY14_CMN_ANAREG_TOP_163
+	.globl _UPHY14_CMN_ANAREG_TOP_162
+	.globl _UPHY14_CMN_ANAREG_TOP_161
+	.globl _UPHY14_CMN_ANAREG_TOP_160
+	.globl _UPHY14_CMN_ANAREG_TOP_159
+	.globl _UPHY14_CMN_ANAREG_TOP_158
+	.globl _UPHY14_CMN_ANAREG_TOP_157
+	.globl _UPHY14_CMN_ANAREG_TOP_156
+	.globl _UPHY14_CMN_ANAREG_TOP_155
+	.globl _UPHY14_CMN_ANAREG_TOP_154
+	.globl _UPHY14_CMN_ANAREG_TOP_153
+	.globl _UPHY14_CMN_ANAREG_TOP_152
+	.globl _UPHY14_CMN_ANAREG_TOP_151
+	.globl _UPHY14_CMN_ANAREG_TOP_150
+	.globl _UPHY14_CMN_ANAREG_TOP_149
+	.globl _UPHY14_CMN_ANAREG_TOP_148
+	.globl _UPHY14_CMN_ANAREG_TOP_147
+	.globl _UPHY14_CMN_ANAREG_TOP_146
+	.globl _UPHY14_CMN_ANAREG_TOP_145
+	.globl _UPHY14_CMN_ANAREG_TOP_144
+	.globl _UPHY14_CMN_ANAREG_TOP_143
+	.globl _UPHY14_CMN_ANAREG_TOP_142
+	.globl _UPHY14_CMN_ANAREG_TOP_141
+	.globl _UPHY14_CMN_ANAREG_TOP_140
+	.globl _UPHY14_CMN_ANAREG_TOP_139
+	.globl _UPHY14_CMN_ANAREG_TOP_138
+	.globl _UPHY14_CMN_ANAREG_TOP_137
+	.globl _UPHY14_CMN_ANAREG_TOP_136
+	.globl _UPHY14_CMN_ANAREG_TOP_135
+	.globl _UPHY14_CMN_ANAREG_TOP_134
+	.globl _UPHY14_CMN_ANAREG_TOP_133
+	.globl _UPHY14_CMN_ANAREG_TOP_132
+	.globl _UPHY14_CMN_ANAREG_TOP_131
+	.globl _UPHY14_CMN_ANAREG_TOP_130
+	.globl _UPHY14_CMN_ANAREG_TOP_129
+	.globl _UPHY14_CMN_ANAREG_TOP_128
+	.globl _ANA_DFEO_REG_0B
+	.globl _ANA_DFEO_REG_0A
+	.globl _ANA_DFEO_REG_09
+	.globl _ANA_DFEO_REG_08
+	.globl _ANA_DFEO_REG_07
+	.globl _ANA_DFEO_REG_06
+	.globl _ANA_DFEO_REG_05
+	.globl _ANA_DFEO_REG_04
+	.globl _ANA_DFEO_REG_03
+	.globl _ANA_DFEO_REG_02
+	.globl _ANA_DFEO_REG_01
+	.globl _ANA_DFEO_REG_00
+	.globl _ANA_DFEO_REG_27
+	.globl _ANA_DFEO_REG_26
+	.globl _ANA_DFEO_REG_25
+	.globl _ANA_DFEO_REG_24
+	.globl _ANA_DFEO_REG_23
+	.globl _ANA_DFEO_REG_22
+	.globl _ANA_DFEO_REG_21
+	.globl _ANA_DFEO_REG_20
+	.globl _ANA_DFEO_REG_1F
+	.globl _ANA_DFEO_REG_1E
+	.globl _ANA_DFEO_REG_1D
+	.globl _ANA_DFEO_REG_1C
+	.globl _ANA_DFEO_REG_1B
+	.globl _ANA_DFEO_REG_1A
+	.globl _ANA_DFEO_REG_19
+	.globl _ANA_DFEO_REG_18
+	.globl _ANA_DFEO_REG_17
+	.globl _ANA_DFEO_REG_16
+	.globl _ANA_DFEO_REG_15
+	.globl _ANA_DFEO_REG_14
+	.globl _ANA_DFEO_REG_13
+	.globl _ANA_DFEO_REG_12
+	.globl _ANA_DFEO_REG_11
+	.globl _ANA_DFEO_REG_10
+	.globl _ANA_DFEO_REG_0F
+	.globl _ANA_DFEO_REG_0E
+	.globl _ANA_DFEO_REG_0D
+	.globl _ANA_DFEO_REG_0C
+	.globl _ANA_DFEE_REG_1D
+	.globl _ANA_DFEE_REG_1C
+	.globl _ANA_DFEE_REG_1B
+	.globl _ANA_DFEE_REG_1A
+	.globl _ANA_DFEE_REG_19
+	.globl _ANA_DFEE_REG_18
+	.globl _ANA_DFEE_REG_17
+	.globl _ANA_DFEE_REG_16
+	.globl _ANA_DFEE_REG_15
+	.globl _ANA_DFEE_REG_14
+	.globl _ANA_DFEE_REG_13
+	.globl _ANA_DFEE_REG_12
+	.globl _ANA_DFEE_REG_11
+	.globl _ANA_DFEE_REG_10
+	.globl _ANA_DFEE_REG_0F
+	.globl _ANA_DFEE_REG_0E
+	.globl _ANA_DFEE_REG_0D
+	.globl _ANA_DFEE_REG_0C
+	.globl _ANA_DFEE_REG_0B
+	.globl _ANA_DFEE_REG_0A
+	.globl _ANA_DFEE_REG_09
+	.globl _ANA_DFEE_REG_08
+	.globl _ANA_DFEE_REG_07
+	.globl _ANA_DFEE_REG_06
+	.globl _ANA_DFEE_REG_05
+	.globl _ANA_DFEE_REG_04
+	.globl _ANA_DFEE_REG_03
+	.globl _ANA_DFEE_REG_02
+	.globl _ANA_DFEE_REG_01
+	.globl _ANA_DFEE_REG_00
+	.globl _ANA_DFEE_REG_27
+	.globl _ANA_DFEE_REG_26
+	.globl _ANA_DFEE_REG_25
+	.globl _ANA_DFEE_REG_24
+	.globl _ANA_DFEE_REG_23
+	.globl _ANA_DFEE_REG_22
+	.globl _ANA_DFEE_REG_21
+	.globl _ANA_DFEE_REG_20
+	.globl _ANA_DFEE_REG_1F
+	.globl _ANA_DFEE_REG_1E
+	.globl _UPHY14_TRX_ANAREG_BOT_32
+	.globl _UPHY14_TRX_ANAREG_BOT_31
+	.globl _UPHY14_TRX_ANAREG_BOT_30
+	.globl _UPHY14_TRX_ANAREG_BOT_29
+	.globl _UPHY14_TRX_ANAREG_BOT_28
+	.globl _UPHY14_TRX_ANAREG_BOT_27
+	.globl _UPHY14_TRX_ANAREG_BOT_26
+	.globl _UPHY14_TRX_ANAREG_BOT_25
+	.globl _UPHY14_TRX_ANAREG_BOT_24
+	.globl _UPHY14_TRX_ANAREG_BOT_23
+	.globl _UPHY14_TRX_ANAREG_BOT_22
+	.globl _UPHY14_TRX_ANAREG_BOT_21
+	.globl _UPHY14_TRX_ANAREG_BOT_20
+	.globl _UPHY14_TRX_ANAREG_BOT_19
+	.globl _UPHY14_TRX_ANAREG_BOT_18
+	.globl _UPHY14_TRX_ANAREG_BOT_17
+	.globl _UPHY14_TRX_ANAREG_BOT_16
+	.globl _UPHY14_TRX_ANAREG_BOT_15
+	.globl _UPHY14_TRX_ANAREG_BOT_14
+	.globl _UPHY14_TRX_ANAREG_BOT_13
+	.globl _UPHY14_TRX_ANAREG_BOT_12
+	.globl _UPHY14_TRX_ANAREG_BOT_11
+	.globl _UPHY14_TRX_ANAREG_BOT_10
+	.globl _UPHY14_TRX_ANAREG_BOT_9
+	.globl _UPHY14_TRX_ANAREG_BOT_8
+	.globl _UPHY14_TRX_ANAREG_BOT_7
+	.globl _UPHY14_TRX_ANAREG_BOT_6
+	.globl _UPHY14_TRX_ANAREG_BOT_5
+	.globl _UPHY14_TRX_ANAREG_BOT_4
+	.globl _UPHY14_TRX_ANAREG_BOT_3
+	.globl _UPHY14_TRX_ANAREG_BOT_2
+	.globl _UPHY14_TRX_ANAREG_BOT_1
+	.globl _UPHY14_TRX_ANAREG_BOT_0
+	.globl _UPHY14_TRX_ANAREG_TOP_157
+	.globl _UPHY14_TRX_ANAREG_TOP_156
+	.globl _UPHY14_TRX_ANAREG_TOP_155
+	.globl _UPHY14_TRX_ANAREG_TOP_154
+	.globl _UPHY14_TRX_ANAREG_TOP_153
+	.globl _UPHY14_TRX_ANAREG_TOP_152
+	.globl _UPHY14_TRX_ANAREG_TOP_151
+	.globl _UPHY14_TRX_ANAREG_TOP_150
+	.globl _UPHY14_TRX_ANAREG_TOP_149
+	.globl _UPHY14_TRX_ANAREG_TOP_148
+	.globl _UPHY14_TRX_ANAREG_TOP_147
+	.globl _UPHY14_TRX_ANAREG_TOP_146
+	.globl _UPHY14_TRX_ANAREG_TOP_145
+	.globl _UPHY14_TRX_ANAREG_TOP_144
+	.globl _UPHY14_TRX_ANAREG_TOP_143
+	.globl _UPHY14_TRX_ANAREG_TOP_142
+	.globl _UPHY14_TRX_ANAREG_TOP_141
+	.globl _UPHY14_TRX_ANAREG_TOP_140
+	.globl _UPHY14_TRX_ANAREG_TOP_139
+	.globl _UPHY14_TRX_ANAREG_TOP_138
+	.globl _UPHY14_TRX_ANAREG_TOP_137
+	.globl _UPHY14_TRX_ANAREG_TOP_136
+	.globl _UPHY14_TRX_ANAREG_TOP_135
+	.globl _UPHY14_TRX_ANAREG_TOP_134
+	.globl _UPHY14_TRX_ANAREG_TOP_133
+	.globl _UPHY14_TRX_ANAREG_TOP_132
+	.globl _UPHY14_TRX_ANAREG_TOP_131
+	.globl _UPHY14_TRX_ANAREG_TOP_130
+	.globl _UPHY14_TRX_ANAREG_TOP_129
+	.globl _UPHY14_TRX_ANAREG_TOP_128
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_143
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_142
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_141
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_140
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_139
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_138
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_137
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_136
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_135
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_134
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_133
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_132
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_131
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_130
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_129
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_128
+	.globl _sampler_sel
+	.globl _set_sampler
+	.globl _sampler_cal
+	.globl _get_sampler
+	.globl _Edge_Sampler_Update
+	.globl _save_sampler_edge
+;--------------------------------------------------------
+; special function registers
+;--------------------------------------------------------
+	.area RSEG    (ABS,DATA)
+	.org 0x0000
+_P0	=	0x0080
+_DPL	=	0x0082
+_DPH	=	0x0083
+_WDTREL	=	0x0086
+_PCON	=	0x0087
+_TCON	=	0x0088
+_TMOD	=	0x0089
+_TL0	=	0x008a
+_TL1	=	0x008b
+_TH0	=	0x008c
+_TH1	=	0x008d
+_CKCON	=	0x008e
+_P1	=	0x0090
+_DPS	=	0x0092
+_PSBANK	=	0x0094
+_SCON	=	0x0098
+_SBUF	=	0x0099
+_IEN2	=	0x009a
+_P2	=	0x00a0
+_DMAS0	=	0x00a1
+_DMAS1	=	0x00a2
+_DMAS2	=	0x00a3
+_DMAT0	=	0x00a4
+_DMAT1	=	0x00a5
+_DMAT2	=	0x00a6
+_IEN0	=	0x00a8
+_IP0	=	0x00a9
+_S0RELL	=	0x00aa
+_P3	=	0x00b0
+_DMAC0	=	0x00b1
+_DMAC1	=	0x00b2
+_DMAC2	=	0x00b3
+_DMASEL	=	0x00b4
+_DMAM0	=	0x00b5
+_DMAM1	=	0x00b6
+_IEN1	=	0x00b8
+_IP1	=	0x00b9
+_S0RELH	=	0x00ba
+_IRCON	=	0x00c0
+_CCEN	=	0x00c1
+_T2CON	=	0x00c8
+_RCAP2L	=	0x00ca
+_RCAP2H	=	0x00cb
+_TL2	=	0x00cc
+_TH2	=	0x00cd
+_PSW	=	0x00d0
+_ADCON	=	0x00d8
+_ACC	=	0x00e0
+_EIE	=	0x00e8
+_B	=	0x00f0
+_SRST	=	0x00f7
+_TMR0	=	0x8c8a
+_TMR1	=	0x8d8b
+_TMR2	=	0xcdcc
+_DMASA	=	0xa2a1
+_DMATA	=	0xa5a4
+_DMAC	=	0xb2b1
+;--------------------------------------------------------
+; special function bits
+;--------------------------------------------------------
+	.area RSEG    (ABS,DATA)
+	.org 0x0000
+_P0_0	=	0x0080
+_P0_1	=	0x0081
+_P0_2	=	0x0082
+_P0_3	=	0x0083
+_P0_4	=	0x0084
+_P0_5	=	0x0085
+_P0_6	=	0x0086
+_P0_7	=	0x0087
+_P1_0	=	0x0090
+_P1_1	=	0x0091
+_P1_2	=	0x0092
+_P1_3	=	0x0093
+_P1_4	=	0x0094
+_P1_5	=	0x0095
+_P1_6	=	0x0096
+_P1_7	=	0x0097
+_P2_0	=	0x00a0
+_P2_1	=	0x00a1
+_P2_2	=	0x00a2
+_P2_3	=	0x00a3
+_P2_4	=	0x00a4
+_P2_5	=	0x00a5
+_P2_6	=	0x00a6
+_P2_7	=	0x00a7
+_P3_0	=	0x00b0
+_P3_1	=	0x00b1
+_P3_2	=	0x00b2
+_P3_3	=	0x00b3
+_P3_4	=	0x00b4
+_P3_5	=	0x00b5
+_P3_6	=	0x00b6
+_P3_7	=	0x00b7
+_IT0	=	0x0088
+_IE0	=	0x0089
+_IT1	=	0x008a
+_IE1	=	0x008b
+_TR0	=	0x008c
+_TF0	=	0x008d
+_TR1	=	0x008e
+_TF1	=	0x008f
+_EX0	=	0x00a8
+_ET0	=	0x00a9
+_EX1	=	0x00aa
+_ET1	=	0x00ab
+_ES	=	0x00ac
+_ET2	=	0x00ad
+_WDT	=	0x00ae
+_EA	=	0x00af
+_EX7	=	0x00b8
+_EX2	=	0x00b9
+_EX3	=	0x00ba
+_EX4	=	0x00bb
+_EX5	=	0x00bc
+_EX6	=	0x00bd
+_PS1	=	0x00be
+_ES1	=	0x009a
+_EX8	=	0x009b
+_EX9	=	0x009c
+_EX10	=	0x009d
+_EX11	=	0x009e
+_EX12	=	0x009f
+_RI	=	0x0098
+_TI	=	0x0099
+_TF2	=	0x00c6
+;--------------------------------------------------------
+; overlayable register banks
+;--------------------------------------------------------
+	.area REG_BANK_0	(REL,OVR,DATA)
+	.ds 8
+;--------------------------------------------------------
+; internal ram data
+;--------------------------------------------------------
+	.area DSEG    (DATA)
+;--------------------------------------------------------
+; overlayable items in internal ram 
+;--------------------------------------------------------
+	.area OSEG    (OVR,DATA)
+;--------------------------------------------------------
+; indirectly addressable internal ram data
+;--------------------------------------------------------
+	.area ISEG    (DATA)
+;--------------------------------------------------------
+; absolute internal ram data
+;--------------------------------------------------------
+	.area IABS    (ABS,DATA)
+	.area IABS    (ABS,DATA)
+;--------------------------------------------------------
+; bit data
+;--------------------------------------------------------
+	.area BSEG    (BIT)
+;--------------------------------------------------------
+; paged external ram data
+;--------------------------------------------------------
+	.area PSEG    (PAG,XDATA)
+;--------------------------------------------------------
+; external ram data
+;--------------------------------------------------------
+	.area XSEG    (XDATA)
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_128	=	0x1000
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_129	=	0x1004
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_130	=	0x1008
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_131	=	0x100c
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_132	=	0x1010
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_133	=	0x1014
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_134	=	0x1018
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_135	=	0x101c
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_136	=	0x1020
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_137	=	0x1024
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_138	=	0x1028
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_139	=	0x102c
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_140	=	0x1030
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_141	=	0x1034
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_142	=	0x1038
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_143	=	0x103c
+_UPHY14_TRX_ANAREG_TOP_128	=	0x0200
+_UPHY14_TRX_ANAREG_TOP_129	=	0x0204
+_UPHY14_TRX_ANAREG_TOP_130	=	0x0208
+_UPHY14_TRX_ANAREG_TOP_131	=	0x020c
+_UPHY14_TRX_ANAREG_TOP_132	=	0x0210
+_UPHY14_TRX_ANAREG_TOP_133	=	0x0214
+_UPHY14_TRX_ANAREG_TOP_134	=	0x0218
+_UPHY14_TRX_ANAREG_TOP_135	=	0x021c
+_UPHY14_TRX_ANAREG_TOP_136	=	0x0220
+_UPHY14_TRX_ANAREG_TOP_137	=	0x0224
+_UPHY14_TRX_ANAREG_TOP_138	=	0x0228
+_UPHY14_TRX_ANAREG_TOP_139	=	0x022c
+_UPHY14_TRX_ANAREG_TOP_140	=	0x0230
+_UPHY14_TRX_ANAREG_TOP_141	=	0x0234
+_UPHY14_TRX_ANAREG_TOP_142	=	0x0238
+_UPHY14_TRX_ANAREG_TOP_143	=	0x023c
+_UPHY14_TRX_ANAREG_TOP_144	=	0x0240
+_UPHY14_TRX_ANAREG_TOP_145	=	0x0244
+_UPHY14_TRX_ANAREG_TOP_146	=	0x0248
+_UPHY14_TRX_ANAREG_TOP_147	=	0x024c
+_UPHY14_TRX_ANAREG_TOP_148	=	0x0250
+_UPHY14_TRX_ANAREG_TOP_149	=	0x0254
+_UPHY14_TRX_ANAREG_TOP_150	=	0x0258
+_UPHY14_TRX_ANAREG_TOP_151	=	0x025c
+_UPHY14_TRX_ANAREG_TOP_152	=	0x0260
+_UPHY14_TRX_ANAREG_TOP_153	=	0x0264
+_UPHY14_TRX_ANAREG_TOP_154	=	0x0268
+_UPHY14_TRX_ANAREG_TOP_155	=	0x026c
+_UPHY14_TRX_ANAREG_TOP_156	=	0x0270
+_UPHY14_TRX_ANAREG_TOP_157	=	0x0274
+_UPHY14_TRX_ANAREG_BOT_0	=	0x0000
+_UPHY14_TRX_ANAREG_BOT_1	=	0x0004
+_UPHY14_TRX_ANAREG_BOT_2	=	0x0008
+_UPHY14_TRX_ANAREG_BOT_3	=	0x000c
+_UPHY14_TRX_ANAREG_BOT_4	=	0x0010
+_UPHY14_TRX_ANAREG_BOT_5	=	0x0014
+_UPHY14_TRX_ANAREG_BOT_6	=	0x0018
+_UPHY14_TRX_ANAREG_BOT_7	=	0x001c
+_UPHY14_TRX_ANAREG_BOT_8	=	0x0020
+_UPHY14_TRX_ANAREG_BOT_9	=	0x0024
+_UPHY14_TRX_ANAREG_BOT_10	=	0x0028
+_UPHY14_TRX_ANAREG_BOT_11	=	0x002c
+_UPHY14_TRX_ANAREG_BOT_12	=	0x0030
+_UPHY14_TRX_ANAREG_BOT_13	=	0x0034
+_UPHY14_TRX_ANAREG_BOT_14	=	0x0038
+_UPHY14_TRX_ANAREG_BOT_15	=	0x003c
+_UPHY14_TRX_ANAREG_BOT_16	=	0x0040
+_UPHY14_TRX_ANAREG_BOT_17	=	0x0044
+_UPHY14_TRX_ANAREG_BOT_18	=	0x0048
+_UPHY14_TRX_ANAREG_BOT_19	=	0x004c
+_UPHY14_TRX_ANAREG_BOT_20	=	0x0050
+_UPHY14_TRX_ANAREG_BOT_21	=	0x0054
+_UPHY14_TRX_ANAREG_BOT_22	=	0x0058
+_UPHY14_TRX_ANAREG_BOT_23	=	0x005c
+_UPHY14_TRX_ANAREG_BOT_24	=	0x0060
+_UPHY14_TRX_ANAREG_BOT_25	=	0x0064
+_UPHY14_TRX_ANAREG_BOT_26	=	0x0068
+_UPHY14_TRX_ANAREG_BOT_27	=	0x006c
+_UPHY14_TRX_ANAREG_BOT_28	=	0x0070
+_UPHY14_TRX_ANAREG_BOT_29	=	0x0074
+_UPHY14_TRX_ANAREG_BOT_30	=	0x0078
+_UPHY14_TRX_ANAREG_BOT_31	=	0x007c
+_UPHY14_TRX_ANAREG_BOT_32	=	0x0080
+_ANA_DFEE_REG_1E	=	0x0478
+_ANA_DFEE_REG_1F	=	0x047c
+_ANA_DFEE_REG_20	=	0x0480
+_ANA_DFEE_REG_21	=	0x0484
+_ANA_DFEE_REG_22	=	0x0488
+_ANA_DFEE_REG_23	=	0x048c
+_ANA_DFEE_REG_24	=	0x0490
+_ANA_DFEE_REG_25	=	0x0494
+_ANA_DFEE_REG_26	=	0x0498
+_ANA_DFEE_REG_27	=	0x049c
+_ANA_DFEE_REG_00	=	0x0400
+_ANA_DFEE_REG_01	=	0x0404
+_ANA_DFEE_REG_02	=	0x0408
+_ANA_DFEE_REG_03	=	0x040c
+_ANA_DFEE_REG_04	=	0x0410
+_ANA_DFEE_REG_05	=	0x0414
+_ANA_DFEE_REG_06	=	0x0418
+_ANA_DFEE_REG_07	=	0x041c
+_ANA_DFEE_REG_08	=	0x0420
+_ANA_DFEE_REG_09	=	0x0424
+_ANA_DFEE_REG_0A	=	0x0428
+_ANA_DFEE_REG_0B	=	0x042c
+_ANA_DFEE_REG_0C	=	0x0430
+_ANA_DFEE_REG_0D	=	0x0434
+_ANA_DFEE_REG_0E	=	0x0438
+_ANA_DFEE_REG_0F	=	0x043c
+_ANA_DFEE_REG_10	=	0x0440
+_ANA_DFEE_REG_11	=	0x0444
+_ANA_DFEE_REG_12	=	0x0448
+_ANA_DFEE_REG_13	=	0x044c
+_ANA_DFEE_REG_14	=	0x0450
+_ANA_DFEE_REG_15	=	0x0454
+_ANA_DFEE_REG_16	=	0x0458
+_ANA_DFEE_REG_17	=	0x045c
+_ANA_DFEE_REG_18	=	0x0460
+_ANA_DFEE_REG_19	=	0x0464
+_ANA_DFEE_REG_1A	=	0x0468
+_ANA_DFEE_REG_1B	=	0x046c
+_ANA_DFEE_REG_1C	=	0x0470
+_ANA_DFEE_REG_1D	=	0x0474
+_ANA_DFEO_REG_0C	=	0x0830
+_ANA_DFEO_REG_0D	=	0x0834
+_ANA_DFEO_REG_0E	=	0x0838
+_ANA_DFEO_REG_0F	=	0x083c
+_ANA_DFEO_REG_10	=	0x0840
+_ANA_DFEO_REG_11	=	0x0844
+_ANA_DFEO_REG_12	=	0x0848
+_ANA_DFEO_REG_13	=	0x084c
+_ANA_DFEO_REG_14	=	0x0850
+_ANA_DFEO_REG_15	=	0x0854
+_ANA_DFEO_REG_16	=	0x0858
+_ANA_DFEO_REG_17	=	0x085c
+_ANA_DFEO_REG_18	=	0x0860
+_ANA_DFEO_REG_19	=	0x0864
+_ANA_DFEO_REG_1A	=	0x0868
+_ANA_DFEO_REG_1B	=	0x086c
+_ANA_DFEO_REG_1C	=	0x0870
+_ANA_DFEO_REG_1D	=	0x0874
+_ANA_DFEO_REG_1E	=	0x0878
+_ANA_DFEO_REG_1F	=	0x087c
+_ANA_DFEO_REG_20	=	0x0880
+_ANA_DFEO_REG_21	=	0x0884
+_ANA_DFEO_REG_22	=	0x0888
+_ANA_DFEO_REG_23	=	0x088c
+_ANA_DFEO_REG_24	=	0x0890
+_ANA_DFEO_REG_25	=	0x0894
+_ANA_DFEO_REG_26	=	0x0898
+_ANA_DFEO_REG_27	=	0x089c
+_ANA_DFEO_REG_00	=	0x0800
+_ANA_DFEO_REG_01	=	0x0804
+_ANA_DFEO_REG_02	=	0x0808
+_ANA_DFEO_REG_03	=	0x080c
+_ANA_DFEO_REG_04	=	0x0810
+_ANA_DFEO_REG_05	=	0x0814
+_ANA_DFEO_REG_06	=	0x0818
+_ANA_DFEO_REG_07	=	0x081c
+_ANA_DFEO_REG_08	=	0x0820
+_ANA_DFEO_REG_09	=	0x0824
+_ANA_DFEO_REG_0A	=	0x0828
+_ANA_DFEO_REG_0B	=	0x082c
+_UPHY14_CMN_ANAREG_TOP_128	=	0x8200
+_UPHY14_CMN_ANAREG_TOP_129	=	0x8204
+_UPHY14_CMN_ANAREG_TOP_130	=	0x8208
+_UPHY14_CMN_ANAREG_TOP_131	=	0x820c
+_UPHY14_CMN_ANAREG_TOP_132	=	0x8210
+_UPHY14_CMN_ANAREG_TOP_133	=	0x8214
+_UPHY14_CMN_ANAREG_TOP_134	=	0x8218
+_UPHY14_CMN_ANAREG_TOP_135	=	0x821c
+_UPHY14_CMN_ANAREG_TOP_136	=	0x8220
+_UPHY14_CMN_ANAREG_TOP_137	=	0x8224
+_UPHY14_CMN_ANAREG_TOP_138	=	0x8228
+_UPHY14_CMN_ANAREG_TOP_139	=	0x822c
+_UPHY14_CMN_ANAREG_TOP_140	=	0x8230
+_UPHY14_CMN_ANAREG_TOP_141	=	0x8234
+_UPHY14_CMN_ANAREG_TOP_142	=	0x8238
+_UPHY14_CMN_ANAREG_TOP_143	=	0x823c
+_UPHY14_CMN_ANAREG_TOP_144	=	0x8240
+_UPHY14_CMN_ANAREG_TOP_145	=	0x8244
+_UPHY14_CMN_ANAREG_TOP_146	=	0x8248
+_UPHY14_CMN_ANAREG_TOP_147	=	0x824c
+_UPHY14_CMN_ANAREG_TOP_148	=	0x8250
+_UPHY14_CMN_ANAREG_TOP_149	=	0x8254
+_UPHY14_CMN_ANAREG_TOP_150	=	0x8258
+_UPHY14_CMN_ANAREG_TOP_151	=	0x825c
+_UPHY14_CMN_ANAREG_TOP_152	=	0x8260
+_UPHY14_CMN_ANAREG_TOP_153	=	0x8264
+_UPHY14_CMN_ANAREG_TOP_154	=	0x8268
+_UPHY14_CMN_ANAREG_TOP_155	=	0x826c
+_UPHY14_CMN_ANAREG_TOP_156	=	0x8270
+_UPHY14_CMN_ANAREG_TOP_157	=	0x8274
+_UPHY14_CMN_ANAREG_TOP_158	=	0x8278
+_UPHY14_CMN_ANAREG_TOP_159	=	0x827c
+_UPHY14_CMN_ANAREG_TOP_160	=	0x8280
+_UPHY14_CMN_ANAREG_TOP_161	=	0x8284
+_UPHY14_CMN_ANAREG_TOP_162	=	0x8288
+_UPHY14_CMN_ANAREG_TOP_163	=	0x828c
+_UPHY14_CMN_ANAREG_TOP_164	=	0x8290
+_UPHY14_CMN_ANAREG_TOP_165	=	0x8294
+_UPHY14_CMN_ANAREG_TOP_166	=	0x8298
+_UPHY14_CMN_ANAREG_TOP_167	=	0x829c
+_UPHY14_CMN_ANAREG_TOP_168	=	0x82a0
+_UPHY14_CMN_ANAREG_TOP_169	=	0x82a4
+_UPHY14_CMN_ANAREG_TOP_170	=	0x82a8
+_UPHY14_CMN_ANAREG_TOP_171	=	0x82ac
+_UPHY14_CMN_ANAREG_TOP_172	=	0x82b0
+_UPHY14_CMN_ANAREG_TOP_173	=	0x82b4
+_UPHY14_CMN_ANAREG_TOP_174	=	0x82b8
+_UPHY14_CMN_ANAREG_TOP_175	=	0x82bc
+_UPHY14_CMN_ANAREG_TOP_176	=	0x82c0
+_UPHY14_CMN_ANAREG_TOP_177	=	0x82c4
+_UPHY14_CMN_ANAREG_TOP_178	=	0x82c8
+_UPHY14_CMN_ANAREG_TOP_179	=	0x82cc
+_UPHY14_CMN_ANAREG_TOP_180	=	0x82d0
+_UPHY14_CMN_ANAREG_TOP_181	=	0x82d4
+_UPHY14_CMN_ANAREG_TOP_182	=	0x82d8
+_UPHY14_CMN_ANAREG_TOP_183	=	0x82dc
+_UPHY14_CMN_ANAREG_TOP_184	=	0x82e0
+_UPHY14_CMN_ANAREG_TOP_185	=	0x82e4
+_UPHY14_CMN_ANAREG_TOP_186	=	0x82e8
+_UPHY14_CMN_ANAREG_TOP_187	=	0x82ec
+_UPHY14_CMN_ANAREG_TOP_188	=	0x82f0
+_UPHY14_CMN_ANAREG_TOP_189	=	0x82f4
+_UPHY14_CMN_ANAREG_TOP_190	=	0x82f8
+_UPHY14_CMN_ANAREG_TOP_191	=	0x82fc
+_UPHY14_CMN_ANAREG_TOP_192	=	0x8300
+_UPHY14_CMN_ANAREG_TOP_193	=	0x8304
+_UPHY14_CMN_ANAREG_TOP_194	=	0x8308
+_UPHY14_CMN_ANAREG_TOP_195	=	0x830c
+_UPHY14_CMN_ANAREG_TOP_196	=	0x8310
+_UPHY14_CMN_ANAREG_TOP_197	=	0x8314
+_UPHY14_CMN_ANAREG_TOP_198	=	0x8318
+_UPHY14_CMN_ANAREG_TOP_199	=	0x831c
+_UPHY14_CMN_ANAREG_TOP_200	=	0x8320
+_UPHY14_CMN_ANAREG_TOP_201	=	0x8324
+_UPHY14_CMN_ANAREG_TOP_202	=	0x8328
+_UPHY14_CMN_ANAREG_TOP_203	=	0x832c
+_UPHY14_CMN_ANAREG_TOP_204	=	0x8330
+_UPHY14_CMN_ANAREG_TOP_205	=	0x8334
+_UPHY14_CMN_ANAREG_TOP_206	=	0x8338
+_UPHY14_CMN_ANAREG_TOP_207	=	0x833c
+_UPHY14_CMN_ANAREG_TOP_208	=	0x8340
+_UPHY14_CMN_ANAREG_TOP_209	=	0x8344
+_UPHY14_CMN_ANAREG_TOP_210	=	0x8348
+_UPHY14_CMN_ANAREG_TOP_211	=	0x834c
+_UPHY14_CMN_ANAREG_TOP_212	=	0x8350
+_UPHY14_CMN_ANAREG_TOP_213	=	0x8354
+_UPHY14_CMN_ANAREG_TOP_214	=	0x8358
+_PM_CTRL_TX_LANE_REG1_LANE	=	0x2000
+_PM_CTRL_TX_LANE_REG2_LANE	=	0x2004
+_INPUT_TX_PIN_REG0_LANE	=	0x2008
+_INPUT_TX_PIN_REG1_LANE	=	0x200c
+_INPUT_TX_PIN_REG2_LANE	=	0x2010
+_INPUT_TX_PIN_REG3_LANE	=	0x2014
+_PM_CTRL_INTERRUPT_REG1_LANE	=	0x2018
+_PM_CTRL_INTERRUPT_REG2	=	0x201c
+_CLKGEN_TX_LANE_REG1_LANE	=	0x2020
+_TX_SPEED_CONVERT_LANE	=	0x2024
+_SPD_CTRL_INTERRUPT_REG1_LANE	=	0x2028
+_SPD_CTRL_INTERRUPT_REG2	=	0x202c
+_SPD_CTRL_TX_LANE_REG1_LANE	=	0x2030
+_TX_SYSTEM_LANE	=	0x2034
+_INPUT_TX_PIN_REG4_LANE	=	0x203c
+_TX_CALIBRATION_LANE	=	0x2040
+_DIG_TX_RSVD_REG0	=	0x2044
+_INPUT_TX_PIN_REG5_LANE	=	0x2048
+__FIELDNAME__LANE	=	0x204c
+_PM_CTRL_INTERRUPT_ISR_REG1_LANE	=	0x2050
+_SPD_CTRL_INTERRUPT_CLEAR_REG1_LANE	=	0x2054
+_ANALOG_TX_REALTIME_REG_1	=	0x2058
+_MON_TOP	=	0x205c
+_PM_CTRL_RX_LANE_REG1_LANE	=	0x2100
+_RX_SYSTEM_LANE	=	0x2104
+_INPUT_RX_PIN_REG0_LANE	=	0x2108
+_INPUT_RX_PIN_REG1_LANE	=	0x210c
+_INPUT_RX_PIN_REG2_LANE	=	0x2110
+_SPD_CTRL_RX_LANE_REG1_LANE	=	0x2114
+_DIG_RX_RSVD_REG0	=	0x2118
+_CLKGEN_RX_LANE_REG1_LANE	=	0x211c
+_FRAME_SYNC_DET_REG0	=	0x2120
+_FRAME_SYNC_DET_REG1	=	0x2124
+_FRAME_SYNC_DET_REG2	=	0x2128
+_FRAME_SYNC_DET_REG3	=	0x212c
+_FRAME_SYNC_DET_REG4	=	0x2130
+_FRAME_SYNC_DET_REG5	=	0x2134
+_FRAME_SYNC_DET_REG6	=	0x2138
+_CDR_LOCK_REG	=	0x213c
+_RX_LANE_INTERRUPT	=	0x2140
+_RX_LANE_INTERRUPT_MASK	=	0x2144
+_RX_DATA_PATH_REG	=	0x2148
+_INPUT_RX_PIN_REG3_LANE	=	0x214c
+_RX_CALIBRATION_REG	=	0x2150
+_RX_LANE_INTERRUPT_REG1	=	0x2158
+_DTL_REG0	=	0x2160
+_DTL_REG1	=	0x2164
+_DTL_REG2	=	0x2168
+_DTL_REG3	=	0x216c
+_SQ_REG0	=	0x2170
+_LANE_CFG0	=	0x4000
+_LANE_STATUS0	=	0x4004
+_LANE_CFG_STATUS2_LANE	=	0x4008
+_LANE_CFG2_LANE	=	0x400c
+_LANE_CFG4	=	0x4010
+_LANE_CFG_STATUS3_LANE	=	0x4014
+_LANE_DP_PIE8_CFG0_LANE	=	0x4018
+_LANE_USB_DP_CFG1_LANE	=	0x401c
+_LANE_USB_DP_CFG2_LANE	=	0x4020
+_LANE_EQ_CFG0_LANE	=	0x4024
+_LANE_EQ_CFG1_LANE	=	0x4028
+_LANE_PRESET_CFG0_LANE	=	0x402c
+_LANE_PRESET_CFG2_LANE	=	0x4030
+_LANE_PRESET_CFG4_LANE	=	0x4034
+_LANE_PRESET_CFG6_LANE	=	0x4038
+_LANE_PRESET_CFG8_LANE	=	0x403c
+_LANE_PRESET_CFG10_LANE	=	0x4040
+_LANE_PRESET_CFG12_LANE	=	0x4044
+_LANE_PRESET_CFG14_LANE	=	0x4048
+_LANE_PRESET_CFG16_LANE	=	0x404c
+_LANE_COEFF_MAX0_LANE	=	0x4050
+_LANE_REMOTE_SET_LANE	=	0x4054
+_LANE_EQ_16G_CFG0_LANE	=	0x4058
+_LANE_16G_PRESET_CFG0_LANE	=	0x405c
+_LANE_16G_PRESET_CFG2_LANE	=	0x4060
+_LANE_16G_PRESET_CFG4_LANE	=	0x4064
+_LANE_16G_PRESET_CFG6_LANE	=	0x4068
+_LANE_16G_PRESET_CFG8_LANE	=	0x406c
+_LANE_16G_PRESET_CFG10_LANE	=	0x4070
+_LANE_16G_PRESET_CFG12_LANE	=	0x4074
+_LANE_16G_PRESET_CFG14_LANE	=	0x4078
+_LANE_16G_PRESET_CFG16_LANE	=	0x407c
+_LANE_EQ_32G_CFG0_LANE	=	0x4080
+_LANE_32G_PRESET_CFG0_LANE	=	0x4084
+_LANE_32G_PRESET_CFG2_LANE	=	0x4088
+_LANE_32G_PRESET_CFG4_LANE	=	0x408c
+_LANE_32G_PRESET_CFG6_LANE	=	0x4090
+_LANE_32G_PRESET_CFG8_LANE	=	0x4094
+_LANE_32G_PRESET_CFG10_LANE	=	0x4098
+_LANE_32G_PRESET_CFG12_LANE	=	0x409c
+_LANE_32G_PRESET_CFG14_LANE	=	0x40a0
+_LANE_32G_PRESET_CFG16_LANE	=	0x40a4
+_MCU_CONTROL_LANE	=	0x2200
+_MCU_GPIO	=	0x2204
+_CACHE_DEBUG0	=	0x2208
+_CACHE_DEBUG1	=	0x220c
+_LANE_SYSTEM0	=	0x2210
+_MCU_STATUS0_LANE	=	0x2230
+_MCU_STATUS1_LANE	=	0x2234
+_MCU_STATUS2_LANE	=	0x2238
+_MCU_STATUS3_LANE	=	0x223c
+_MCU_INT0_CONTROL	=	0x2240
+_MCU_INT1_CONTROL	=	0x2244
+_MCU_INT2_CONTROL	=	0x2248
+_MCU_INT3_CONTROL	=	0x224c
+_MCU_INT4_CONTROL	=	0x2250
+_MCU_INT5_CONTROL	=	0x2254
+_MCU_INT6_CONTROL	=	0x2258
+_MCU_INT7_CONTROL	=	0x225c
+_MCU_INT8_CONTROL	=	0x2260
+_MCU_INT9_CONTROL	=	0x2264
+_MCU_INT10_CONTROL	=	0x2268
+_MCU_INT11_CONTROL	=	0x226c
+_MCU_INT12_CONTROL	=	0x2270
+_MCU_TIMER_CONTROL	=	0x2274
+_MCU_TIMER0_CONTROL	=	0x2278
+_MCU_TIMER1_CONTROL	=	0x227c
+_MCU_TIMER2_CONTROL	=	0x2280
+_MCU_TIMER3_CONTROL	=	0x2284
+_MCU_IRQ_LANE	=	0x2288
+_MCU_IRQ_MASK_LANE	=	0x228c
+_MCU_MEM_REG1_LANE	=	0x2290
+_MCU_MEM_REG2_LANE	=	0x2294
+_MCU_TIMER_CTRL_1_LANE	=	0x2298
+_MCU_TIMER_CTRL_2_LANE	=	0x229c
+_MCU_TIMER_CTRL_3_LANE	=	0x22a0
+_MCU_TIMER_CTRL_4_LANE	=	0x22a4
+_MCU_TIMER_CTRL_5_LANE	=	0x22a8
+_MCU_TIMER_CTRL_6_LANE	=	0x22ac
+_MCU_TIMER_CTRL_7_LANE	=	0x22b0
+_MCU_DEBUG0_LANE	=	0x22b4
+_MCU_DEBUG1_LANE	=	0x22b8
+_MCU_DEBUG2_LANE	=	0x22bc
+_MCU_DEBUG3_LANE	=	0x22c0
+_MCU_DEBUG_LANE	=	0x22c4
+_EXT_INT_CONTROL	=	0x22c8
+_ANA_IF_TRX_REG0	=	0x22cc
+_ANA_IF_DFEE_REG0	=	0x22d0
+_ANA_IF_DFEO_REG0	=	0x22d4
+_MCU_IRQ_ISR_LANE	=	0x22d8
+_MCU_WDT_LANE	=	0x22dc
+_MCU_INT_CONTROL_13	=	0x22e0
+_MCU_COMMAND0	=	0x22e4
+_MEM_ECC_ERR_ADDRESS0	=	0x22f4
+_XDATA_MEM_CHECKSUM_LANE0	=	0x22f8
+_XDATA_MEM_CHECKSUM_LANE1	=	0x22fc
+_PT_CONTROL0	=	0x2300
+_PT_CONTROL1	=	0x2304
+_PT_USER_PATTERN0	=	0x2308
+_PT_USER_PATTERN1	=	0x230c
+_PT_USER_PATTERN2	=	0x2310
+_PT_COUNTER0	=	0x2314
+_PT_COUNTER1	=	0x2318
+_PT_COUNTER2	=	0x231c
+_DFE_CTRL_REG0	=	0x2400
+_DFE_CTRL_REG1	=	0x2404
+_DFE_CTRL_REG2	=	0x2408
+_DFE_CTRL_REG3	=	0x240c
+_RX_EQ_CLK_CTRL	=	0x2410
+_DFE_CTRL_REG4	=	0x2414
+_DFE_ANA_REG0	=	0x2418
+_DFE_ANA_REG1	=	0x241c
+_DFE_STEP_REG0	=	0x2420
+_DFE_STEP_REG1	=	0x2424
+_DFE_FEN_EVEN_REG	=	0x2430
+_DFE_FEN_ODD_REG	=	0x2434
+_DFE_DC_EVEN_REG8	=	0x2438
+_DFE_DC_ODD_REG8	=	0x243c
+_DFE_FEXT_EVEN_REG0	=	0x2440
+_DFE_FEXT_EVEN_REG1	=	0x2444
+_DFE_FEXT_EVEN_REG2	=	0x2448
+_DFE_FEXT_EVEN_REG3	=	0x244c
+_DFE_FEXT_EVEN_REG4	=	0x2450
+_DFE_FEXT_EVEN_REG5	=	0x2454
+_DFE_FEXT_EVEN_REG6	=	0x2458
+_DFE_FEXT_EVEN_REG7	=	0x245c
+_DFE_FEXT_ODD_REG0	=	0x2460
+_DFE_FEXT_ODD_REG1	=	0x2464
+_DFE_FEXT_ODD_REG2	=	0x2468
+_DFE_FEXT_ODD_REG3	=	0x246c
+_DFE_FEXT_ODD_REG4	=	0x2470
+_DFE_FEXT_ODD_REG5	=	0x2474
+_DFE_FEXT_ODD_REG6	=	0x2478
+_DFE_FEXT_ODD_REG7	=	0x247c
+_DFE_READ_EVEN_SM_REG0	=	0x2480
+_DFE_READ_EVEN_SM_REG1	=	0x2484
+_DFE_READ_EVEN_SM_REG2	=	0x2488
+_DFE_READ_EVEN_SM_REG3	=	0x248c
+_DFE_READ_EVEN_SM_REG4	=	0x2490
+_DFE_READ_EVEN_SM_REG5	=	0x2494
+_DFE_READ_EVEN_SM_REG6	=	0x2498
+_DFE_READ_EVEN_SM_REG7	=	0x249c
+_DFE_READ_ODD_SM_REG0	=	0x24a0
+_DFE_READ_ODD_SM_REG1	=	0x24a4
+_DFE_READ_ODD_SM_REG2	=	0x24a8
+_DFE_READ_ODD_SM_REG3	=	0x24ac
+_DFE_READ_ODD_SM_REG4	=	0x24b0
+_DFE_READ_ODD_SM_REG5	=	0x24b4
+_DFE_READ_ODD_SM_REG6	=	0x24b8
+_DFE_READ_ODD_SM_REG7	=	0x24bc
+_DFE_READ_EVEN_SM_REG8	=	0x24c0
+_DFE_READ_ODD_SM_REG8	=	0x24c4
+_DFE_READ_EVEN_2C_REG0	=	0x24d0
+_DFE_READ_EVEN_2C_REG1	=	0x24d4
+_DFE_READ_EVEN_2C_REG2	=	0x24d8
+_DFE_READ_EVEN_2C_REG3	=	0x24dc
+_DFE_READ_EVEN_2C_REG4	=	0x24e0
+_DFE_READ_EVEN_2C_REG5	=	0x24e4
+_DFE_READ_EVEN_2C_REG6	=	0x24e8
+_DFE_READ_EVEN_2C_REG7	=	0x24ec
+_DFE_READ_ODD_2C_REG0	=	0x24f0
+_DFE_READ_ODD_2C_REG1	=	0x24f4
+_DFE_READ_ODD_2C_REG2	=	0x24f8
+_DFE_READ_ODD_2C_REG3	=	0x24fc
+_DFE_READ_ODD_2C_REG4	=	0x2500
+_DFE_READ_ODD_2C_REG5	=	0x2504
+_DFE_READ_ODD_2C_REG6	=	0x2508
+_DFE_READ_ODD_2C_REG7	=	0x250c
+_DFE_READ_EVEN_2C_REG8	=	0x2510
+_DFE_READ_ODD_2C_REG8	=	0x2514
+_CAL_OFST_REG0	=	0x2518
+_CAL_OFST_REG1	=	0x251c
+_CAL_OFST_REG2	=	0x2520
+_DFE_DCE_REG0	=	0x2530
+_DFE_STATIC_LANE_REG0	=	0x2540
+_DFE_STATIC_LANE_REG1	=	0x2544
+_DFE_STATIC_LANE_REG3	=	0x2548
+_DFE_STATIC_LANE_REG4	=	0x254c
+_DFE_STATIC_LANE_REG5	=	0x2550
+_DFE_STATIC_LANE_REG6	=	0x2554
+_EOM_VLD_REG0	=	0x2560
+_EOM_VLD_REG1	=	0x2564
+_EOM_VLD_REG2	=	0x2568
+_EOM_VLD_REG3	=	0x256c
+_EOM_ERR_REG0	=	0x2570
+_EOM_ERR_REG1	=	0x2574
+_EOM_ERR_REG2	=	0x2578
+_EOM_ERR_REG3	=	0x257c
+_EOM_REG0	=	0x2580
+_EOM_VLD_REG4	=	0x25f0
+_LANE_MARGIN_REG0	=	0x25f4
+_CAL_CTRL1_LANE	=	0x6000
+_CAL_CTRL2_LANE	=	0x6004
+_CAL_CTRL3_LANE	=	0x6008
+_CAL_CTRL4_LANE	=	0x600c
+_CAL_SAVE_DATA1_LANE	=	0x6010
+_CAL_SAVE_DATA2_LANE	=	0x6014
+_CAL_SAVE_DATA3_LANE	=	0x6018
+_PHY_REMOTE_CTRL_COMMAND_LANE	=	0x601c
+_PHY_REMOTE_CTRL_VALUE_LANE	=	0x6020
+_PHY_LOCAL_VALUE_LANE	=	0x6024
+_TRX_TRAIN_IF_TIMERS1_LANE	=	0x6028
+_TRX_TRAIN_IF_TIMERS2_LANE	=	0x602c
+_TRX_TRAIN_IF_TIMERS_ENABLE_LANE	=	0x6030
+_DFE_CONTROL_0	=	0x6034
+_DFE_CONTROL_1	=	0x6038
+_DFE_CONTROL_2	=	0x6040
+_DFE_CONTROL_3	=	0x6044
+_DFE_CONTROL_4	=	0x6048
+_DFE_CONTROL_5	=	0x604c
+_TRAIN_CONTROL_0	=	0x6050
+_TRAIN_CONTROL_1	=	0x6054
+_TRAIN_CONTROL_2	=	0x6058
+_RPTA_CONFIG_0	=	0x605c
+_RPTA_CONFIG_1	=	0x6060
+_DLL_CAL	=	0x6064
+_TRAIN_PARA_0	=	0x6068
+_TRAIN_PARA_1	=	0x606c
+_TRAIN_PARA_2	=	0x6070
+_TRAIN_PARA_3	=	0x6074
+_DFE_CONTROL_6	=	0x6078
+_DFE_TEST_0	=	0x607c
+_DFE_TEST_1	=	0x6080
+_DFE_TEST_4	=	0x6084
+_DFE_TEST_5	=	0x6088
+_DFE_CONTROL_7	=	0x608c
+_DFE_CONTROL_8	=	0x6090
+_DFE_CONTROL_9	=	0x6094
+_DFE_CONTROL_10	=	0x6098
+_DFE_CONTROL_11	=	0x609c
+_CDS_CTRL_REG0	=	0x60a0
+_CDS_CTRL_REG1	=	0x60a4
+_ESM_POP_P_CNT_LOW_LANE	=	0x60a8
+_ESM_ERR_P_CNT_LOW_LANE	=	0x60ac
+_ESM_ERR_POP_CNT_HIGH_LANE	=	0x60b0
+_TRAIN_CONTROL_3	=	0x60b4
+_TRAIN_CONTROL_4	=	0x60b8
+_TRAIN_CONTROL_5	=	0x60bc
+_TRAIN_CONTROL_6	=	0x60c0
+_TRAIN_CONTROL_7	=	0x60c4
+_TRAIN_CONTROL_8	=	0x60c8
+_TRAIN_CONTROL_9	=	0x60cc
+_TRAIN_CONTROL_10	=	0x60d0
+_TRAIN_CONTROL_11	=	0x60d4
+_TRAIN_CONTROL_12	=	0x60d8
+_ESM_POP_N_CNT_LOW_LANE	=	0x60dc
+_ESM_ERR_N_CNT_LOW_LANE	=	0x60e0
+_TRAIN_CONTROL_13	=	0x60e4
+_TRAIN_CONTROL_14	=	0x60e8
+_TRAIN_CONTROL_15	=	0x60ec
+_TRAIN_CONTROL_16	=	0x60f0
+_TRAIN_CONTROL_17	=	0x60f4
+_END_XDAT_LANE	=	0x60f8
+_TX_CMN_REG	=	0xa000
+_DTX_REG0	=	0xa008
+_DTX_REG1	=	0xa00c
+_DTX_REG2	=	0xa010
+_DTX_REG3	=	0xa014
+_DTX_REG4	=	0xa018
+_DTX_PHY_ALIGN_REG0	=	0xa01c
+_DTX_PHY_ALIGN_REG1	=	0xa024
+_DTX_PHY_ALIGN_REG2	=	0xa028
+_SRIS_REG0	=	0xa02c
+_SRIS_REG1	=	0xa030
+_RX_CMN_0	=	0xa100
+_DFE_STATIC_REG0	=	0xa110
+_DFE_STATIC_REG1	=	0xa114
+_DFE_STATIC_REG3	=	0xa118
+_DFE_STATIC_REG4	=	0xa11c
+_DFE_STATIC_REG5	=	0xa120
+_DFE_STATIC_REG6	=	0xa124
+_GLOB_RST_CLK_CTRL	=	0x4200
+_GLOB_CLK_SRC_LO	=	0x4204
+_GLOB_CLK_SRC_HI	=	0x4208
+_GLOB_MISC_CTRL	=	0x420c
+_GLOB_DP_SAL_CFG	=	0x4210
+_GLOB_DP_SAL_CFG1	=	0x4214
+_GLOB_DP_SAL_CFG3	=	0x4218
+_GLOB_DP_SAL_CFG5	=	0x421c
+_GLOB_PM_CFG0	=	0x4220
+_GLOB_COUNTER_CTRL	=	0x4224
+_GLOB_COUNTER_HI	=	0x4228
+_GLOB_PM_DP_CTRL	=	0x422c
+_GLOB_DP_BAL_CFG0	=	0x4230
+_GLOB_DP_BAL_CFG2	=	0x4234
+_GLOB_DP_BAL_CFG4	=	0x4238
+_GLOB_BIST_CTRL	=	0x423c
+_GLOB_BIST_LANE_TYPE	=	0x4240
+_GLOB_BIST_START	=	0x4244
+_GLOB_BIST_MASK	=	0x4248
+_GLOB_BIST_RESULT	=	0x424c
+_GLOB_BIST_SEQR_CFG	=	0x4250
+_GLOB_BIST_DATA_HI	=	0x4254
+_GLOB_PIPE_REVISION	=	0x4258
+_GLOB_L1_SUBSTATES_CFG	=	0x425c
+_MCU_CONTROL_0	=	0xa200
+_MCU_CONTROL_1	=	0xa204
+_MCU_CONTROL_2	=	0xa208
+_MCU_CONTROL_3	=	0xa20c
+_MCU_CONTROL_4	=	0xa210
+_MCU_DEBUG0	=	0xa214
+_MCU_DEBUG1	=	0xa218
+_MEMORY_CONTROL_0	=	0xa21c
+_MEMORY_CONTROL_1	=	0xa220
+_MEMORY_CONTROL_2	=	0xa224
+_MEMORY_CONTROL_3	=	0xa228
+_MEMORY_CONTROL_4	=	0xa22c
+_MCU_INFO_0	=	0xa234
+_MCU_INFO_1	=	0xa238
+_MCU_INFO_2	=	0xa23c
+_MCU_INFO_3	=	0xa240
+_MEM_CMN_ECC_ERR_ADDRESS0	=	0xa244
+_ANA_IF_CMN_REG1	=	0xa2e0
+_MEM_IRQ	=	0xa2e4
+_MEM_IRQ_MASK	=	0xa2e8
+_ANA_IF_CMN_REG0	=	0xa2ec
+_APB_CONTROL_REG	=	0xa2f0
+_MEM_IRQ_CLEAR	=	0xa2f4
+_MCU_SYNC1	=	0xa2f8
+_MCU_SYNC2	=	0xa2fc
+_TEST0	=	0xa300
+_TEST1	=	0xa304
+_TEST2	=	0xa308
+_TEST3	=	0xa30c
+_TEST4	=	0xa310
+_SYSTEM	=	0xa314
+_PM_CMN_REG1	=	0xa318
+_INPUT_CMN_PIN_REG0	=	0xa31c
+_INPUT_CMN_PIN_REG1	=	0xa320
+_INPUT_CMN_PIN_REG2	=	0xa324
+_ANA_TSEN_CONTROL	=	0xa328
+_PLLCAL_REG0	=	0xa32c
+_PLLCAL_REG1	=	0xa330
+_CLKGEN_CMN_REG1	=	0xa334
+_SPD_CMN_REG1	=	0xa338
+_OUTPUT_CMN_PIN_REG0	=	0xa33c
+_CMN_CALIBRATION	=	0xa340
+__FIELDNAME_	=	0xa344
+_INPUT_CMN_PIN_REG3	=	0xa348
+_PM_CMN_REG2	=	0xa34c
+_TEST5	=	0xa354
+_XDATA_MEM_CHECKSUM_CMN_0	=	0xa358
+_XDATA_MEM_CHECKSUM_CMN_1	=	0xa35c
+_XDATA_MEM_CHECKSUM_CMN_2	=	0xa360
+_MCU_SDT_CMN	=	0xa364
+_CMN_CACHE_DEBUG0	=	0xa368
+_MCU_INT_ADDR	=	0xa36c
+_CMN_ISR_2	=	0xa370
+_CMN_ISR_MASK_2	=	0xa374
+_CMN_ISR_CLEAR_2	=	0xa378
+_CMN_MCU_GPIO	=	0xa37c
+_CMN_CACHE_DEBUG1	=	0xa380
+_CMN_MCU_TIMER_CONTROL	=	0xa384
+_CMN_MCU_TIMER_CTRL_2_LANE	=	0xa388
+_CMN_MCU_TIMER_CTRL_3_LANE	=	0xa38c
+_CMN_MCU_TIMER_CTRL_4_LANE	=	0xa390
+_CMN_MCU_TIMER_CTRL_5_LANE	=	0xa394
+_CMN_MCU_TIMER0_CONTROL	=	0xa398
+_CMN_MCU_TIMER1_CONTROL	=	0xa39c
+_CMN_MCU_TIMER2_CONTROL	=	0xa3a0
+_CMN_MCU_TIMER3_CONTROL	=	0xa3a4
+_CMN_ISR_1	=	0xa3a8
+_CMN_ISR_MASK_1	=	0xa3ac
+_SET_LANE_ISR	=	0xa3b0
+_CMN_MCU_REG	=	0xa3f4
+_CID_REG0	=	0xa3f8
+_CID_REG1	=	0xa3fc
+_FW_REV	=	0xe600
+_CONTROL_CONFIG0	=	0xe604
+_CONTROL_CONFIG1	=	0xe608
+_CONTROL_CONFIG2	=	0xe60c
+_CONTROL_CONFIG3	=	0xe610
+_CONTROL_CONFIG4	=	0xe614
+_CONTROL_CONFIG5	=	0xe618
+_CONTROL_CONFIG6	=	0xe61c
+_CONTROL_CONFIG7	=	0xe620
+_CAL_DATA0	=	0xe624
+_TRAIN_IF_CONFIG	=	0xe628
+_CONTROL_CONFIG8	=	0xe62c
+_CONTROL_CONFIG9	=	0xe630
+_CON_CAL_STEP_SIZE1	=	0xe634
+_CON_CAL_STEP_SIZE2	=	0xe638
+_CON_CAL_STEP_SIZE3	=	0xe63c
+_CON_CAL_STEP_SIZE4	=	0xe640
+_CON_CAL_STEP_SIZE5	=	0xe644
+_CAL_TIME_OUT_AND_DIS	=	0xe648
+_CAL_STATUS_READ	=	0xe64c
+_MCU_CONFIG	=	0xe650
+_CAL_DATA1	=	0xe654
+_LOOP_CNTS	=	0xe658
+_MCU_CONFIG1	=	0xe65c
+_TIMER_SEL1	=	0xe660
+_TIMER_SEL2	=	0xe664
+_TIMER_SEL3	=	0xe668
+_G_SELLV_TXCLK	=	0xe66c
+_G_SELLV_TXDATA	=	0xe670
+_G_SELLV_TXPRE	=	0xe674
+_G_SELLV_RXEOMCLK	=	0xe678
+_G_SELLV_RXDATACLK	=	0xe67c
+_G_SELLV_RXSAMPLER	=	0xe680
+_SAS_PRESET0_TB	=	0xe684
+_SAS_PRESET1_TB	=	0xe688
+_SAS_PRESET2_TB	=	0xe68c
+_ETH_PRESET0_TB	=	0xe690
+_ETH_PRESET1_TB	=	0xe694
+_TX_SAVE_0	=	0xe698
+_TX_SAVE_1	=	0xe69c
+_TX_SAVE_2	=	0xe6a0
+_TX_SAVE_3	=	0xe6a4
+_TX_SAVE_4	=	0xe6a8
+_CDS_EYE_CLK_THR	=	0xe6ac
+_SYNC_INFO	=	0xe6b0
+_MCU_INFO_4	=	0xe6b4
+_MCU_INFO_5	=	0xe6b8
+_MCU_INFO_12	=	0xe6bc
+_MCU_INFO_13	=	0xe6c0
+_END_XDAT_CMN	=	0xe6c4
+_DME_ENC_REG0	=	0x2600
+_DME_ENC_REG1	=	0x2604
+_DME_ENC_REG2	=	0x2608
+_DME_DEC_REG0	=	0x260c
+_DME_DEC_REG1	=	0x2610
+_TX_TRAIN_IF_REG0	=	0x2614
+_TX_TRAIN_IF_REG1	=	0x2618
+_TX_TRAIN_IF_REG2	=	0x261c
+_TX_TRAIN_IF_REG3	=	0x2620
+_TX_TRAIN_PATTTERN_REG0	=	0x2624
+_TX_TRAIN_DRIVER_REG0	=	0x2628
+_TX_TRAIN_DRIVER_REG1	=	0x262c
+_TX_TRAIN_DRIVER_REG2	=	0x2630
+_TX_TRAIN_DEFAULT_REG0	=	0x2634
+_TX_TRAIN_DEFAULT_REG1	=	0x2638
+_TX_TRAIN_DEFAULT_REG2	=	0x263c
+_TX_TRAIN_DEFAULT_REG3	=	0x2640
+_TX_TRAIN_DEFAULT_REG4	=	0x2644
+_TX_TRAIN_DEFAULT_REG5	=	0x2648
+_TX_EMPH_CTRL_REG0	=	0x264c
+_LINK_TRAIN_MODE0	=	0x2650
+_TX_DRV_RD_OUT_REG0	=	0x2654
+_TX_AMP_CTRL_REG0	=	0x2658
+_TRX_TRAIN_IF_INTERRUPT_LANE	=	0x265c
+_TRX_TRAIN_IF_INTERRUPT_MASK0_LANE	=	0x2660
+_TRX_TRAIN_IF_INTERRUPT_CLEAR_LANE	=	0x2664
+_TX_TRAIN_IF_REG4	=	0x2668
+_TX_TRAIN_IF_REG5	=	0x266c
+_TX_TRAIN_IF_REG6	=	0x2670
+_TX_TRAIN_IF_REG7	=	0x2674
+_TX_TRAIN_CTRL_LANE	=	0x2678
+_TX_TRAIN_IF_REG8	=	0x267c
+_DFE_READ_EVEN_REG0	=	0x6100
+_DFE_READ_EVEN_REG1	=	0x6104
+_DFE_READ_EVEN_REG2	=	0x6108
+_DFE_READ_EVEN_REG3	=	0x610c
+_DFE_READ_EVEN_REG4	=	0x6110
+_DFE_READ_EVEN_REG5	=	0x6114
+_DFE_READ_EVEN_REG6	=	0x6118
+_DFE_READ_EVEN_REG7	=	0x611c
+_DFE_READ_ODD_REG0	=	0x6120
+_DFE_READ_ODD_REG1	=	0x6124
+_DFE_READ_ODD_REG2	=	0x6128
+_DFE_READ_ODD_REG3	=	0x612c
+_DFE_READ_ODD_REG4	=	0x6130
+_DFE_READ_ODD_REG5	=	0x6134
+_DFE_READ_ODD_REG6	=	0x6138
+_DFE_READ_ODD_REG7	=	0x613c
+_DFE_READ_EVEN_REG8	=	0x6140
+_DFE_READ_ODD_REG8	=	0x6144
+_DFE_READ_F0A_EVEN	=	0x6148
+_DFE_READ_F0A_ODD	=	0x614c
+_DFE_READ_F0B_EVEN	=	0x6150
+_DFE_READ_F0B_ODD	=	0x6154
+_DFE_READ_F0D_EVEN	=	0x6158
+_DFE_READ_F0D_ODD	=	0x615c
+_DFE_READ_F0D_LEFT_EVEN	=	0x6160
+_DFE_READ_F0D_LEFT_ODD	=	0x6164
+_DFE_READ_F0D_RIGHT_EVEN	=	0x6168
+_DFE_READ_F0D_RIGHT_ODD	=	0x616c
+_CDS_READ_MISC0	=	0x6170
+_CDS_READ_MISC1	=	0x6174
+_TXTRAIN_IF_REG0	=	0x6214
+_lc_speedtable	=	0xe000
+_ring_speedtable	=	0xe1c0
+_phy_mode_cmn_table	=	0xe5c0
+_max_gen	=	0x6300
+_min_gen	=	0x6301
+_speedtable	=	0x6304
+_phy_mode_lane_table	=	0x65d4
+_rc_save	=	0x60b4
+_txffe_save	=	0x60d0
+_phase_save	=	0x60e4
+_train_gn1_index	=	0x6030
+_train_g1_index	=	0x6031
+_train_g0_index	=	0x6032
+_local_tx_preset_tb	=	0xe6b0
+_cmx_cal_lcvco_dac	=	0xe5c1
+_cmx_cal_lcvco_dac_lsb	=	0xe5c1
+_cmx_cal_lcvco_dac_msb	=	0xe5c4
+_cmx_cal_lccap_msb	=	0xe5ca
+_cmx_cal_lccap_lsb	=	0xe5c8
+_cmx_cal_plldcc	=	0xe5cc
+_cmx_cal_pll_speed_ring	=	0xe5d0
+_cmx_cal_pll_sllp_dac_coarse_ring	=	0xe5d4
+_cmx_cal_sllp_dac_fine_ring	=	0xe5d8
+_lnx_cal_txdcc_pdiv	=	0x65d4
+_lnx_cal_txdcc_pdiv_hg	=	0x65d8
+_lnx_cal_txdcc	=	0x65da
+_lnx_cal_txdcc_hg	=	0x65de
+_lnx_cal_rxdcc_dll	=	0x65e0
+_lnx_cal_rxdcc_dll_hg	=	0x65e4
+_lnx_cal_rxdcc_data	=	0x65e6
+_lnx_cal_rxdcc_data_hg	=	0x65f0
+_lnx_cal_rxdcc_eom	=	0x65f5
+_lnx_cal_rxdcc_eom_hg	=	0x65ff
+_lnx_cal_dll_gmsel	=	0x6604
+_lnx_cal_vdda_dll_sel	=	0x6606
+_lnx_cal_dll_eom_gmsel	=	0x660a
+_lnx_cal_vdda_dll_eom_sel	=	0x660c
+_lnx_cal_eom_dpher	=	0x6610
+_lnx_cal_align90_dummy_clk	=	0x6612
+_lnx_cal_align90_dac	=	0x661a
+_lnx_cal_align90_gm	=	0x6622
+_lnx_cal_sellv_txdata	=	0x662a
+_lnx_cal_sellv_txclk	=	0x6634
+_lnx_cal_sellv_rxdataclk	=	0x663e
+_lnx_cal_sellv_txpre	=	0x6648
+_lnx_cal_sellv_rxsampler	=	0x6652
+_lnx_cal_sellv_rxeomclk	=	0x665c
+_lnx_spdoft_tx_preset_index_lane	=	0x6666
+_lnx_calx_txdcc_pdiv	=	0x6490
+_lnx_calx_txdcc_pdiv_hg	=	0x6496
+_lnx_calx_txdcc	=	0x6499
+_lnx_calx_txdcc_hg	=	0x649f
+_lnx_calx_rxdcc_dll	=	0x64a2
+_lnx_calx_rxdcc_dll_hg	=	0x64a8
+_lnx_calx_dll_gmsel	=	0x64ab
+_lnx_calx_vdda_dll_sel	=	0x64ae
+_lnx_calx_dll_eom_gmsel	=	0x64b4
+_lnx_calx_vdda_dll_eom_sel	=	0x64b7
+_lnx_calx_eom_dpher	=	0x64bd
+_lnx_calx_align90_dummy_clk	=	0x64c0
+_lnx_calx_align90_dac	=	0x64cc
+_lnx_calx_align90_gm	=	0x64d8
+_cds28	=	0x6100
+_dfe_sm	=	0x6178
+_dfe_sm_dc	=	0x61b8
+_dfe_sm_save	=	0x61c0
+_UPHY_ANAREG_REV_0	=	0x03fc
+_tx_tb	=	0xe684
+_train_save_tb	=	0xe698
+_sq_thrs_ratio_tb	=	0x607c
+;--------------------------------------------------------
+; absolute external ram data
+;--------------------------------------------------------
+	.area XABS    (ABS,XDATA)
+;--------------------------------------------------------
+; external initialized ram data
+;--------------------------------------------------------
+	.area HOME    (CODE)
+	.area GSINIT0 (CODE)
+	.area GSINIT1 (CODE)
+	.area GSINIT2 (CODE)
+	.area GSINIT3 (CODE)
+	.area GSINIT4 (CODE)
+	.area GSINIT5 (CODE)
+	.area GSINIT  (CODE)
+	.area GSFINAL (CODE)
+	.area CSEG    (CODE)
+;--------------------------------------------------------
+; global & static initialisations
+;--------------------------------------------------------
+	.area HOME    (CODE)
+	.area GSINIT  (CODE)
+	.area GSFINAL (CODE)
+	.area GSINIT  (CODE)
+;--------------------------------------------------------
+; Home
+;--------------------------------------------------------
+	.area HOME    (CODE)
+	.area HOME    (CODE)
+;--------------------------------------------------------
+; code
+;--------------------------------------------------------
+	.area BANK2   (CODE)
+;------------------------------------------------------------
+;Allocation info for local variables in function 'sampler_sel'
+;------------------------------------------------------------
+;sw                        Allocated to registers r2 
+;------------------------------------------------------------
+;	../../shared/src/sampler_cal.c:94: void sampler_sel(uint8_t sw) BANKING_CTRL
+;	-----------------------------------------
+;	 function sampler_sel
+;	-----------------------------------------
+_sampler_sel:
+	ar2 = 0x02
+	ar3 = 0x03
+	ar4 = 0x04
+	ar5 = 0x05
+	ar6 = 0x06
+	ar7 = 0x07
+	ar0 = 0x00
+	ar1 = 0x01
+	mov	r2,dpl
+;	../../shared/src/sampler_cal.c:96: switch (sw) {
+	mov	a,#0x09
+	cjne	a,ar2,00115$
+00115$:
+	jnc	00116$
+	ljmp	00111$
+00116$:
+	mov	a,r2
+	add	a,r2
+	add	a,r2
+	mov	dptr,#00117$
+	jmp	@a+dptr
+00117$:
+	ljmp	00101$
+	ljmp	00102$
+	ljmp	00105$
+	ljmp	00106$
+	ljmp	00103$
+	ljmp	00104$
+	ljmp	00107$
+	ljmp	00108$
+	ljmp	00109$
+	ljmp	00110$
+;	../../shared/src/sampler_cal.c:97: case OFST_F1P_D_E:
+00101$:
+;	../../shared/src/sampler_cal.c:98: SIGN_POS = (uint8_t*)&ANA_DFEE_REG_1E;
+	mov	_SIGN_POS,#_ANA_DFEE_REG_1E
+	mov	(_SIGN_POS + 1),#(_ANA_DFEE_REG_1E >> 8)
+;	../../shared/src/sampler_cal.c:99: NEG = (uint8_t*)&ANA_DFEE_REG_1F;
+	mov	_NEG,#_ANA_DFEE_REG_1F
+	mov	(_NEG + 1),#(_ANA_DFEE_REG_1F >> 8)
+;	../../shared/src/sampler_cal.c:100: break;
+	ljmp	00111$
+;	../../shared/src/sampler_cal.c:101: case OFST_F1N_D_E:
+00102$:
+;	../../shared/src/sampler_cal.c:102: SIGN_POS = (uint8_t*)&ANA_DFEE_REG_20;
+	mov	_SIGN_POS,#_ANA_DFEE_REG_20
+	mov	(_SIGN_POS + 1),#(_ANA_DFEE_REG_20 >> 8)
+;	../../shared/src/sampler_cal.c:103: NEG = (uint8_t*)&ANA_DFEE_REG_21;
+	mov	_NEG,#_ANA_DFEE_REG_21
+	mov	(_NEG + 1),#(_ANA_DFEE_REG_21 >> 8)
+;	../../shared/src/sampler_cal.c:104: break;
+;	../../shared/src/sampler_cal.c:105: case OFST_F1P_D_O:
+	sjmp	00111$
+00103$:
+;	../../shared/src/sampler_cal.c:106: SIGN_POS = (uint8_t*)&ANA_DFEO_REG_1E;
+	mov	_SIGN_POS,#_ANA_DFEO_REG_1E
+	mov	(_SIGN_POS + 1),#(_ANA_DFEO_REG_1E >> 8)
+;	../../shared/src/sampler_cal.c:107: NEG = (uint8_t*)&ANA_DFEO_REG_1F;
+	mov	_NEG,#_ANA_DFEO_REG_1F
+	mov	(_NEG + 1),#(_ANA_DFEO_REG_1F >> 8)
+;	../../shared/src/sampler_cal.c:108: break;
+;	../../shared/src/sampler_cal.c:109: case OFST_F1N_D_O:
+	sjmp	00111$
+00104$:
+;	../../shared/src/sampler_cal.c:110: SIGN_POS = (uint8_t*)&ANA_DFEO_REG_20;
+	mov	_SIGN_POS,#_ANA_DFEO_REG_20
+	mov	(_SIGN_POS + 1),#(_ANA_DFEO_REG_20 >> 8)
+;	../../shared/src/sampler_cal.c:111: NEG = (uint8_t*)&ANA_DFEO_REG_21;
+	mov	_NEG,#_ANA_DFEO_REG_21
+	mov	(_NEG + 1),#(_ANA_DFEO_REG_21 >> 8)
+;	../../shared/src/sampler_cal.c:112: break;
+;	../../shared/src/sampler_cal.c:113: case OFST_F1P_S_E:
+	sjmp	00111$
+00105$:
+;	../../shared/src/sampler_cal.c:114: SIGN_POS = (uint8_t*)&ANA_DFEE_REG_22;
+	mov	_SIGN_POS,#_ANA_DFEE_REG_22
+	mov	(_SIGN_POS + 1),#(_ANA_DFEE_REG_22 >> 8)
+;	../../shared/src/sampler_cal.c:115: NEG = (uint8_t*)&ANA_DFEE_REG_23;
+	mov	_NEG,#_ANA_DFEE_REG_23
+	mov	(_NEG + 1),#(_ANA_DFEE_REG_23 >> 8)
+;	../../shared/src/sampler_cal.c:116: break;
+;	../../shared/src/sampler_cal.c:117: case OFST_F1N_S_E:
+	sjmp	00111$
+00106$:
+;	../../shared/src/sampler_cal.c:118: SIGN_POS = (uint8_t*)&ANA_DFEE_REG_24;
+	mov	_SIGN_POS,#_ANA_DFEE_REG_24
+	mov	(_SIGN_POS + 1),#(_ANA_DFEE_REG_24 >> 8)
+;	../../shared/src/sampler_cal.c:119: NEG = (uint8_t*)&ANA_DFEE_REG_25;
+	mov	_NEG,#_ANA_DFEE_REG_25
+	mov	(_NEG + 1),#(_ANA_DFEE_REG_25 >> 8)
+;	../../shared/src/sampler_cal.c:120: break;
+;	../../shared/src/sampler_cal.c:121: case OFST_F1P_S_O:
+	sjmp	00111$
+00107$:
+;	../../shared/src/sampler_cal.c:122: SIGN_POS = (uint8_t*)&ANA_DFEO_REG_22;
+	mov	_SIGN_POS,#_ANA_DFEO_REG_22
+	mov	(_SIGN_POS + 1),#(_ANA_DFEO_REG_22 >> 8)
+;	../../shared/src/sampler_cal.c:123: NEG = (uint8_t*)&ANA_DFEO_REG_23;
+	mov	_NEG,#_ANA_DFEO_REG_23
+	mov	(_NEG + 1),#(_ANA_DFEO_REG_23 >> 8)
+;	../../shared/src/sampler_cal.c:124: break;
+;	../../shared/src/sampler_cal.c:125: case OFST_F1N_S_O:
+	sjmp	00111$
+00108$:
+;	../../shared/src/sampler_cal.c:126: SIGN_POS = (uint8_t*)&ANA_DFEO_REG_24;
+	mov	_SIGN_POS,#_ANA_DFEO_REG_24
+	mov	(_SIGN_POS + 1),#(_ANA_DFEO_REG_24 >> 8)
+;	../../shared/src/sampler_cal.c:127: NEG = (uint8_t*)&ANA_DFEO_REG_25;
+	mov	_NEG,#_ANA_DFEO_REG_25
+	mov	(_NEG + 1),#(_ANA_DFEO_REG_25 >> 8)
+;	../../shared/src/sampler_cal.c:128: break;
+;	../../shared/src/sampler_cal.c:129: case OFST_EDGE_E:
+	sjmp	00111$
+00109$:
+;	../../shared/src/sampler_cal.c:130: SIGN_POS = (uint8_t*)&ANA_DFEE_REG_26;
+	mov	_SIGN_POS,#_ANA_DFEE_REG_26
+	mov	(_SIGN_POS + 1),#(_ANA_DFEE_REG_26 >> 8)
+;	../../shared/src/sampler_cal.c:131: NEG = (uint8_t*)&ANA_DFEE_REG_27;
+	mov	_NEG,#_ANA_DFEE_REG_27
+	mov	(_NEG + 1),#(_ANA_DFEE_REG_27 >> 8)
+;	../../shared/src/sampler_cal.c:132: break;
+;	../../shared/src/sampler_cal.c:133: case OFST_EDGE_O:
+	sjmp	00111$
+00110$:
+;	../../shared/src/sampler_cal.c:134: SIGN_POS = (uint8_t*)&ANA_DFEO_REG_26;
+	mov	_SIGN_POS,#_ANA_DFEO_REG_26
+	mov	(_SIGN_POS + 1),#(_ANA_DFEO_REG_26 >> 8)
+;	../../shared/src/sampler_cal.c:135: NEG = (uint8_t*)&ANA_DFEO_REG_27;
+	mov	_NEG,#_ANA_DFEO_REG_27
+	mov	(_NEG + 1),#(_ANA_DFEO_REG_27 >> 8)
+;	../../shared/src/sampler_cal.c:137: }
+00111$:
+;	../../shared/src/sampler_cal.c:140: SAMPLER_CAL_SM_SAVE = (uint8_t*)&CAL_OFST_REG0; SAMPLER_CAL_SM_SAVE+=sw; //sm
+	mov	_SAMPLER_CAL_SM_SAVE,#_CAL_OFST_REG0
+	mov	(_SAMPLER_CAL_SM_SAVE + 1),#(_CAL_OFST_REG0 >> 8)
+	mov	a,r2
+	add	a,_SAMPLER_CAL_SM_SAVE
+	mov	_SAMPLER_CAL_SM_SAVE,a
+	clr	a
+	addc	a,(_SAMPLER_CAL_SM_SAVE + 1)
+	mov	(_SAMPLER_CAL_SM_SAVE + 1),a
+	ljmp	__sdcc_banked_ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'sampler_cal_sel'
+;------------------------------------------------------------
+;sw                        Allocated to registers r2 
+;------------------------------------------------------------
+;	../../shared/src/sampler_cal.c:153: void sampler_cal_sel(uint8_t sw) BANKING_CTRL
+;	-----------------------------------------
+;	 function sampler_cal_sel
+;	-----------------------------------------
+_sampler_cal_sel:
+;	../../shared/src/sampler_cal.c:155: SAMPLER_CAL_SEL = samper_cal_sel_tb[sw];
+	mov	a,dpl
+	mov	r2,a
+	mov	dptr,#_samper_cal_sel_tb
+	movc	a,@a+dptr
+	mov	r3,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_20
+	swap	a
+	rl	a
+	anl	a,#(0xe0&0xe0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x1f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:156: if((sw&0x02)==0)  
+	mov	a,r2
+	jb	acc.1,00104$
+;	../../shared/src/sampler_cal.c:157: DFE_F1_POL_D = sampler_f1_pol_tb[sw];
+	mov	a,r2
+	mov	dptr,#_sampler_f1_pol_tb
+	movc	a,@a+dptr
+	mov	r3,a
+	mov	dptr,#(_DFE_ANA_REG0 + 0x0002)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.2,c
+	movx	@dptr,a
+	sjmp	00106$
+00104$:
+;	../../shared/src/sampler_cal.c:158: else if(sw < OFST_EDGE_E ) 	
+	cjne	r2,#0x08,00111$
+00111$:
+	jnc	00106$
+;	../../shared/src/sampler_cal.c:159: DFE_F1_POL_S = sampler_f1_pol_tb[sw];		
+	mov	a,r2
+	mov	dptr,#_sampler_f1_pol_tb
+	movc	a,@a+dptr
+	mov	r2,a
+	mov	dptr,#(_DFE_ANA_REG0 + 0x0002)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.3,c
+	movx	@dptr,a
+00106$:
+	ljmp	__sdcc_banked_ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'set_sampler'
+;------------------------------------------------------------
+;val                       Allocated to registers r2 
+;dat                       Allocated to registers r3 
+;------------------------------------------------------------
+;	../../shared/src/sampler_cal.c:162: void set_sampler(int8_t val) BANKING_CTRL {
+;	-----------------------------------------
+;	 function set_sampler
+;	-----------------------------------------
+_set_sampler:
+;	../../shared/src/sampler_cal.c:165: if (val>=0) {
+	mov	a,dpl
+	mov	r2,a
+	jb	acc.7,00102$
+;	../../shared/src/sampler_cal.c:166: dat = (uint8_t)(val>>1);
+	mov	a,r2
+	mov	c,acc.7
+	rrc	a
+;	../../shared/src/sampler_cal.c:167: *NEG = dat;	
+	mov	r3,a
+	mov	dpl,_NEG
+	mov	dph,(_NEG + 1)
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:168: *SIGN_POS = (uint8_t)(val-dat);	
+	mov	r4,_SIGN_POS
+	mov	r5,(_SIGN_POS + 1)
+	mov	a,r2
+	clr	c
+	subb	a,r3
+	mov	r6,a
+	mov	dpl,r4
+	mov	dph,r5
+	movx	@dptr,a
+	sjmp	00104$
+00102$:
+;	../../shared/src/sampler_cal.c:171: val = -val; 
+	clr	c
+	clr	a
+	subb	a,r2
+;	../../shared/src/sampler_cal.c:172: dat = (uint8_t)(val>>1);
+	mov	r2,a
+	mov	c,acc.7
+	rrc	a
+	mov	r3,a
+;	../../shared/src/sampler_cal.c:173: *SIGN_POS = 0x20 | dat;	
+	mov	r4,_SIGN_POS
+	mov	r5,(_SIGN_POS + 1)
+	mov	a,#0x20
+	orl	a,r3
+	mov	r6,a
+	mov	dpl,r4
+	mov	dph,r5
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:174: *NEG = (uint8_t)(val-dat);				
+	mov	r4,_NEG
+	mov	r5,(_NEG + 1)
+	mov	a,r2
+	clr	c
+	subb	a,r3
+	mov	r2,a
+	mov	dpl,r4
+	mov	dph,r5
+	movx	@dptr,a
+00104$:
+	ljmp	__sdcc_banked_ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'sampler_cal'
+;------------------------------------------------------------
+;i                         Allocated to stack - offset 1
+;j                         Allocated to registers r4 
+;k                         Allocated to registers r5 
+;ntimes                    Allocated to registers r6 
+;ntimes_shft               Allocated to stack - offset 2
+;out_of_bound              Allocated to registers r4 
+;offset                    Allocated to registers r2 
+;ofst_res_f                Allocated to registers r3 
+;offset_sum_neg            Allocated to stack - offset 3
+;offset_sum_pos            Allocated to stack - offset 5
+;ofst_bnd                  Allocated to stack - offset 7
+;sloc0                     Allocated to stack - offset 14
+;------------------------------------------------------------
+;	../../shared/src/sampler_cal.c:178: void sampler_cal() BANKING_CTRL {
+;	-----------------------------------------
+;	 function sampler_cal
+;	-----------------------------------------
+_sampler_cal:
+	push	_bp
+	mov	a,sp
+	mov	_bp,a
+	add	a,#0x07
+	mov	sp,a
+;	../../shared/src/sampler_cal.c:186: PHY_STATUS = ST_SAMPLER_CAL;
+	mov	dptr,#_MCU_STATUS0_LANE
+	mov	a,#0x13
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:187: lnx_SAMPLER_RES_CAL_DONE_LANE = 0;
+	mov	dptr,#(_CAL_CTRL1_LANE + 0x0001)
+	movx	a,@dptr
+	anl	a,#0xef
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:188: lnx_SAMPLER_CAL_DONE_LANE = 0;
+	mov	dptr,#(_CAL_CTRL1_LANE + 0x0001)
+	movx	a,@dptr
+	anl	a,#0xf7
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:191: offset = 0;
+	mov	r2,#0x00
+;	../../shared/src/sampler_cal.c:192: if(cal_start_on==0) {
+	mov	dptr,#_cal_start_on
+	movx	a,@dptr
+	mov	r3,a
+	jz	00237$
+	ljmp	00102$
+00237$:
+;	../../shared/src/sampler_cal.c:193: reg_DFE_CTRL_ANA_BYPASS_LANE = 1;
+	mov	dptr,#(_DFE_ANA_REG0 + 0x0003)
+	movx	a,@dptr
+	orl	a,#0x80
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:194: SMPLR_CAL_EN = 1; reg_SMPLR_CAL_EN_DLY_LANE = 1;
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_19
+	movx	a,@dptr
+	orl	a,#0x01
+	movx	@dptr,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+	movx	a,@dptr
+	orl	a,#0x80
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:195: DATA_SLICER_PATH_SWITCH_E = 0;
+	mov	dptr,#_DFE_ANA_REG0
+	movx	a,@dptr
+	anl	a,#0xef
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:196: DATA_SLICER_PATH_SWITCH_O = 0;
+	mov	dptr,#_DFE_ANA_REG0
+	movx	a,@dptr
+	anl	a,#0xdf
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:197: DFE_F1_POL_EN_D = 1;
+	mov	dptr,#(_DFE_ANA_REG0 + 0x0001)
+	movx	a,@dptr
+	orl	a,#0x04
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:198: DFE_F1_POL_EN_S = 1;
+	mov	dptr,#(_DFE_ANA_REG0 + 0x0001)
+	movx	a,@dptr
+	orl	a,#0x08
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:199: PU_DFE = 0;
+	mov	dptr,#(_PM_CTRL_RX_LANE_REG1_LANE + 0x0001)
+	movx	a,@dptr
+	anl	a,#0xbf
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:200: PU_LB = 0;	reg_PU_LB_DLY_LANE = 0; //should be 0.
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_130
+	movx	a,@dptr
+	anl	a,#0xf7
+	movx	@dptr,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_130
+	movx	a,@dptr
+	anl	a,#0xfb
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:201: FFE_PULSE_EN = 0;
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_131
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:202: PU_F1P_D_E = 1; //sequence
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_23
+	movx	a,@dptr
+	orl	a,#0x08
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:203: PU_F1P_D_O = 1;
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_24
+	movx	a,@dptr
+	orl	a,#0x80
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:204: PU_F1N_D_E = 1;
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_23
+	movx	a,@dptr
+	orl	a,#0x04
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:205: PU_F1N_D_O = 1;
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_24
+	movx	a,@dptr
+	orl	a,#0x40
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:206: PU_F1P_S_E = 1;
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_23
+	movx	a,@dptr
+	orl	a,#0x02
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:207: PU_F1P_S_O = 1;
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_24
+	movx	a,@dptr
+	orl	a,#0x20
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:208: PU_F1N_S_E = 1;
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_23
+	movx	a,@dptr
+	orl	a,#0x01
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:209: PU_F1N_S_O = 1;
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_24
+	movx	a,@dptr
+	orl	a,#0x10
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:210: PU_OS = 1;
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+	movx	a,@dptr
+	orl	a,#0x10
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:211: PU_VCM = 1;
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_21
+	movx	a,@dptr
+	orl	a,#0x10
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:212: EOM_EN_D = 0;
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_22
+	movx	a,@dptr
+	anl	a,#0xdf
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:213: EOM_EN_S = 0;
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_22
+	movx	a,@dptr
+	anl	a,#0xbf
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:214: OFST_RES = 0;
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+	movx	a,@dptr
+	anl	a,#0x9f
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:215: reg_EN_DFE_F1TO3_LANE = 0;
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_21
+	movx	a,@dptr
+	anl	a,#0xfb
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:218: CKCON = 0x07 ;  //MCU WAIT time the slowest
+	mov	_CKCON,#0x07
+;	../../shared/src/sampler_cal.c:219: reg_RESET_DFE_LANE = 0;
+	mov	dptr,#_RX_EQ_CLK_CTRL
+	movx	a,@dptr
+	anl	a,#0xfb
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:220: CKCON = 0x00 ; //MCU WAIT time setting back to normal.
+	mov	_CKCON,#0x00
+;	../../shared/src/sampler_cal.c:221: reg_ANA_REG_DFEE_RST_LANE = 0;
+	mov	dptr,#_ANA_IF_DFEE_REG0
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:222: reg_ANA_REG_DFEO_RST_LANE = 0;
+	mov	dptr,#_ANA_IF_DFEO_REG0
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:223: reg_DFE_CLK_OFF_LANE = 1;		// First, disable DFE_CLK
+	mov	dptr,#_RX_EQ_CLK_CTRL
+	movx	a,@dptr
+	orl	a,#0x01
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:224: reg_DFE_MCU_CLK_EN_LANE = 1;	// Second, enable DFE_MCU_CLK
+;	../../shared/src/sampler_cal.c:225: reg_DFE_EN_LANE = 0; reg_DFE_DIS_LANE = 1;
+	mov	dptr,#_RX_EQ_CLK_CTRL
+	movx	a,@dptr
+	orl	a,#0x02
+	movx	@dptr,a
+	movx	a,@dptr
+	anl	a,#0xef
+	movx	@dptr,a
+	mov	dptr,#_DFE_CTRL_REG3
+	movx	a,@dptr
+	orl	a,#0x40
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:227: delay01(10);
+	mov	dptr,#0x000A
+	push	ar2
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar2
+00102$:
+;	../../shared/src/sampler_cal.c:230: if( cmx_SAMPLER_CAL_EXT_EN ) {
+	mov	dptr,#(_CONTROL_CONFIG1 + 0x0002)
+	movx	a,@dptr
+	jb	acc.4,00238$
+	ljmp	00110$
+00238$:
+;	../../shared/src/sampler_cal.c:231: OFST_RES = lnx_CAL_SAMPLER_RES_LANE_7_0;	
+	mov	dptr,#(_CAL_SAVE_DATA2_LANE + 0x0002)
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+	swap	a
+	rl	a
+	anl	a,#(0xe0&0x60)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x9f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:233: for(i=0; i<10; i++) {
+	mov	r3,#0x00
+00169$:
+	clr	c
+	mov	a,r3
+	xrl	a,#0x80
+	subb	a,#0x8a
+	jnc	00172$
+;	../../shared/src/sampler_cal.c:234: sampler_sel(i);
+	mov	dpl,r3
+	push	ar2
+	push	ar3
+	mov	r0,#_sampler_sel
+	mov	r1,#(_sampler_sel >> 8)
+	mov	r2,#(_sampler_sel >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar3
+	pop	ar2
+;	../../shared/src/sampler_cal.c:237: if(offset >= 0)
+	mov	a,r2
+	jb	acc.7,00104$
+;	../../shared/src/sampler_cal.c:238: *SAMPLER_CAL_SM_SAVE = offset | 0x40;
+	mov	r4,_SAMPLER_CAL_SM_SAVE
+	mov	r5,(_SAMPLER_CAL_SM_SAVE + 1)
+	mov	a,#0x40
+	orl	a,r2
+	mov	r6,a
+	mov	dpl,r4
+	mov	dph,r5
+	movx	@dptr,a
+	sjmp	00105$
+00104$:
+;	../../shared/src/sampler_cal.c:240: *SAMPLER_CAL_SM_SAVE = -offset;
+	mov	r4,_SAMPLER_CAL_SM_SAVE
+	mov	r5,(_SAMPLER_CAL_SM_SAVE + 1)
+	clr	c
+	clr	a
+	subb	a,r2
+	mov	r6,a
+	mov	dpl,r4
+	mov	dph,r5
+	movx	@dptr,a
+00105$:
+;	../../shared/src/sampler_cal.c:244: offset = *SAMPLER_CAL_SAVE;
+	mov	dpl,_SAMPLER_CAL_SAVE
+	mov	dph,(_SAMPLER_CAL_SAVE + 1)
+	movx	a,@dptr
+;	../../shared/src/sampler_cal.c:245: set_sampler(offset);
+	mov	r2,a
+	mov	dpl,a
+	push	ar2
+	push	ar3
+	mov	r0,#_set_sampler
+	mov	r1,#(_set_sampler >> 8)
+	mov	r2,#(_set_sampler >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar3
+	pop	ar2
+;	../../shared/src/sampler_cal.c:233: for(i=0; i<10; i++) {
+	inc	r3
+	sjmp	00169$
+00172$:
+;	../../shared/src/sampler_cal.c:258: lnx_SAMPLER_RES_CAL_DONE_LANE = 1;
+	mov	dptr,#(_CAL_CTRL1_LANE + 0x0001)
+	movx	a,@dptr
+	orl	a,#0x10
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:259: lnx_SAMPLER_CAL_DONE_LANE = 1;
+	mov	dptr,#(_CAL_CTRL1_LANE + 0x0001)
+	movx	a,@dptr
+	orl	a,#0x08
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:261: if(cal_start_on) return;
+	mov	dptr,#_cal_start_on
+	movx	a,@dptr
+	mov	r3,a
+	jnz	00241$
+	ljmp	00168$
+00241$:
+	ljmp	00189$
+;	../../shared/src/sampler_cal.c:262: else goto skip_out;
+00110$:
+;	../../shared/src/sampler_cal.c:266: lnx_SAMPLER_CAL_PASS_LANE = 0;
+	mov	dptr,#(_CAL_CTRL2_LANE + 0x0001)
+	movx	a,@dptr
+	anl	a,#0xbf
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:270: ofst_res_f = 1;
+	mov	r3,#0x01
+;	../../shared/src/sampler_cal.c:271: j = 1;
+	mov	r4,#0x01
+;	../../shared/src/sampler_cal.c:272: for(i=0; i<10; i++)	{
+	mov	r0,_bp
+	inc	r0
+	mov	@r0,#0x00
+00173$:
+	mov	r0,_bp
+	inc	r0
+	clr	c
+	mov	a,@r0
+	xrl	a,#0x80
+	subb	a,#0x8a
+	jc	00242$
+	ljmp	00176$
+00242$:
+;	../../shared/src/sampler_cal.c:274: sampler_sel(i);
+	mov	r0,_bp
+	inc	r0
+	mov	dpl,@r0
+	push	ar3
+	push	ar4
+	mov	r0,#_sampler_sel
+	mov	r1,#(_sampler_sel >> 8)
+	mov	r2,#(_sampler_sel >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/sampler_cal.c:275: sampler_cal_sel(i);
+	mov	r0,_bp
+	inc	r0
+	mov	dpl,@r0
+	mov	r0,#_sampler_cal_sel
+	mov	r1,#(_sampler_cal_sel >> 8)
+	mov	r2,#(_sampler_cal_sel >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar4
+	pop	ar3
+;	../../shared/src/sampler_cal.c:277: while (j <= 3) {
+	mov	ar6,r4
+00129$:
+	clr	c
+	mov	a,#(0x03 ^ 0x80)
+	mov	b,r6
+	xrl	b,#0x80
+	subb	a,b
+	jnc	00243$
+	ljmp	00234$
+00243$:
+;	../../shared/src/sampler_cal.c:278: OFST_RES = j;
+	push	ar3
+	mov	ar7,r6
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+	mov	a,r7
+	swap	a
+	rl	a
+	anl	a,#(0xe0&0x60)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x9f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:279: offset = r_training_bound_tb[j]; //always use 80%
+	mov	a,r6
+	mov	dptr,#_r_training_bound_tb
+	movc	a,@a+dptr
+	mov	r2,a
+;	../../shared/src/sampler_cal.c:280: *SIGN_POS = 0x20 | offset;	
+	mov	r7,_SIGN_POS
+	mov	r3,(_SIGN_POS + 1)
+	mov	a,#0x20
+	orl	a,r2
+	mov	dpl,r7
+	mov	dph,r3
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:281: *NEG = offset;	
+	mov	dpl,_NEG
+	mov	dph,(_NEG + 1)
+	mov	a,r2
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:283: out_of_bound = 0;
+	mov	r4,#0x00
+;	../../shared/src/sampler_cal.c:284: delay01(20); // 2us, 4us, 8us and 16us programmable
+	mov	dptr,#0x0014
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar6
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar6
+	pop	ar4
+	pop	ar3
+	pop	ar2
+;	../../shared/src/sampler_cal.c:395: reg_DFE_EN_LANE = dfe_dis==0;  reg_DFE_DIS_LANE = dfe_dis;
+	pop	ar3
+;	../../shared/src/sampler_cal.c:285: for (k=1; k<=smpl_size; k++) {
+	mov	r5,#0x01
+00113$:
+	clr	c
+	mov	a,#(0x04 ^ 0x80)
+	mov	b,r5
+	xrl	b,#0x80
+	subb	a,b
+	jc	00116$
+;	../../shared/src/sampler_cal.c:286: if (VOFF_POS == 1) {
+	mov	dptr,#_RX_CALIBRATION_REG
+	movx	a,@dptr
+	swap	a
+	rl	a
+	anl	a,#0x01
+	mov	r7,a
+	cjne	r7,#0x01,00115$
+;	../../shared/src/sampler_cal.c:287: out_of_bound = 1;
+	mov	r4,#0x01
+;	../../shared/src/sampler_cal.c:288: break;
+	sjmp	00116$
+00115$:
+;	../../shared/src/sampler_cal.c:285: for (k=1; k<=smpl_size; k++) {
+	inc	r5
+	sjmp	00113$
+00116$:
+;	../../shared/src/sampler_cal.c:292: *SIGN_POS = offset;
+	mov	dpl,_SIGN_POS
+	mov	dph,(_SIGN_POS + 1)
+	mov	a,r2
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:293: delay01(20); // 2us, 4us, 8us and 16us programmable
+	mov	dptr,#0x0014
+	push	ar3
+	push	ar4
+	push	ar6
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar6
+	pop	ar4
+	pop	ar3
+;	../../shared/src/sampler_cal.c:294: for (k=1; k<=smpl_size; k++) {
+	mov	r5,#0x01
+00119$:
+	clr	c
+	mov	a,#(0x04 ^ 0x80)
+	mov	b,r5
+	xrl	b,#0x80
+	subb	a,b
+	jc	00122$
+;	../../shared/src/sampler_cal.c:295: if (VOFF_POS == 0) {
+	mov	dptr,#_RX_CALIBRATION_REG
+	movx	a,@dptr
+	jb	acc.3,00121$
+;	../../shared/src/sampler_cal.c:296: out_of_bound = 1;
+	mov	r4,#0x01
+;	../../shared/src/sampler_cal.c:297: break;
+	sjmp	00122$
+00121$:
+;	../../shared/src/sampler_cal.c:294: for (k=1; k<=smpl_size; k++) {
+	inc	r5
+	sjmp	00119$
+00122$:
+;	../../shared/src/sampler_cal.c:301: if (out_of_bound == 0) { 
+	mov	a,r4
+	jz	00234$
+;	../../shared/src/sampler_cal.c:305: if(j<3) {
+	clr	c
+	mov	a,r6
+	xrl	a,#0x80
+	subb	a,#0x83
+	jnc	00234$
+;	../../shared/src/sampler_cal.c:306: j = j + 1;	OFST_RES = j;
+	inc	r6
+	mov	ar5,r6
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+	mov	a,r5
+	swap	a
+	rl	a
+	anl	a,#(0xe0&0x60)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x9f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:308: else break;	
+	ljmp	00129$
+00234$:
+	mov	ar4,r6
+;	../../shared/src/sampler_cal.c:312: if (ofst_res_f > OFST_RES) {
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+	movx	a,@dptr
+	swap	a
+	rr	a
+	anl	a,#0x03
+	mov	r5,a
+	mov	ar6,r3
+	clr	c
+	mov	a,r5
+	xrl	a,#0x80
+	mov	b,r6
+	xrl	b,#0x80
+	subb	a,b
+	jnc	00133$
+;	../../shared/src/sampler_cal.c:313: OFST_RES = ofst_res_f;
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+	mov	a,r3
+	swap	a
+	rl	a
+	anl	a,#(0xe0&0x60)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x9f
+	orl	a,b
+	movx	@dptr,a
+	sjmp	00175$
+00133$:
+;	../../shared/src/sampler_cal.c:316: ofst_res_f = OFST_RES;
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+	movx	a,@dptr
+	swap	a
+	rr	a
+	anl	a,#0x03
+	mov	r5,a
+	mov	r3,a
+00175$:
+;	../../shared/src/sampler_cal.c:272: for(i=0; i<10; i++)	{
+	mov	r0,_bp
+	inc	r0
+	inc	@r0
+	ljmp	00173$
+00176$:
+;	../../shared/src/sampler_cal.c:320: lnx_CAL_SAMPLER_RES_LANE_7_0 = OFST_RES;
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+	movx	a,@dptr
+	swap	a
+	rr	a
+	anl	a,#0x03
+	mov	dptr,#(_CAL_SAVE_DATA2_LANE + 0x0002)
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:321: ofst_bnd = r_training_bound_tb[OFST_RES]; ofst_bnd<<=1;
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+	movx	a,@dptr
+	swap	a
+	rr	a
+	anl	a,#0x03
+	mov	dptr,#_r_training_bound_tb
+	movc	a,@a+dptr
+	mov	r3,a
+	mov	a,_bp
+	add	a,#0x07
+	mov	r0,a
+	mov	@r0,ar3
+	mov	a,_bp
+	add	a,#0x07
+	mov	r0,a
+	mov	a,@r0
+	add	a,acc
+	mov	@r0,a
+;	../../shared/src/sampler_cal.c:323: lnx_SAMPLER_RES_CAL_DONE_LANE = 1; 
+	mov	dptr,#(_CAL_CTRL1_LANE + 0x0001)
+	movx	a,@dptr
+	orl	a,#0x10
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:328: if (n_programmable == 8) {ntimes_shft = 3;}
+	mov	dptr,#(_CAL_CTRL4_LANE + 0x0001)
+	movx	a,@dptr
+	mov	r4,a
+	cjne	r4,#0x08,00145$
+	mov	r0,_bp
+	inc	r0
+	inc	r0
+	mov	@r0,#0x03
+	sjmp	00228$
+00145$:
+;	../../shared/src/sampler_cal.c:329: else if (n_programmable == 16) {ntimes_shft = 4;}
+	mov	dptr,#(_CAL_CTRL4_LANE + 0x0001)
+	movx	a,@dptr
+	mov	r5,a
+	cjne	r5,#0x10,00142$
+	mov	r0,_bp
+	inc	r0
+	inc	r0
+	mov	@r0,#0x04
+	sjmp	00228$
+00142$:
+;	../../shared/src/sampler_cal.c:330: else if (n_programmable == 32) {ntimes_shft = 5;}
+	mov	dptr,#(_CAL_CTRL4_LANE + 0x0001)
+	movx	a,@dptr
+	mov	r5,a
+	cjne	r5,#0x20,00139$
+	mov	r0,_bp
+	inc	r0
+	inc	r0
+	mov	@r0,#0x05
+	sjmp	00228$
+00139$:
+;	../../shared/src/sampler_cal.c:331: else if (n_programmable == 64) {ntimes_shft = 6;}
+	mov	dptr,#(_CAL_CTRL4_LANE + 0x0001)
+	movx	a,@dptr
+	mov	r5,a
+	cjne	r5,#0x40,00136$
+	mov	r0,_bp
+	inc	r0
+	inc	r0
+	mov	@r0,#0x06
+	sjmp	00228$
+00136$:
+;	../../shared/src/sampler_cal.c:332: else { n_programmable=1; ntimes_shft = 0;}
+	mov	dptr,#(_CAL_CTRL4_LANE + 0x0001)
+	mov	a,#0x01
+	movx	@dptr,a
+	mov	r0,_bp
+	inc	r0
+	inc	r0
+	mov	@r0,#0x00
+;	../../shared/src/sampler_cal.c:334: for(i=0; i<10; i++) {
+00228$:
+	mov	a,_bp
+	add	a,#0x07
+	mov	r0,a
+	clr	c
+	clr	a
+	subb	a,@r0
+	mov	r5,a
+	mov	r0,_bp
+	inc	r0
+	mov	@r0,#0x00
+00185$:
+	mov	r0,_bp
+	inc	r0
+	clr	c
+	mov	a,@r0
+	xrl	a,#0x80
+	subb	a,#0x8a
+	jc	00260$
+	ljmp	00188$
+00260$:
+;	../../shared/src/sampler_cal.c:336: sampler_sel(i);
+	mov	r0,_bp
+	inc	r0
+	mov	dpl,@r0
+	push	ar5
+	mov	r0,#_sampler_sel
+	mov	r1,#(_sampler_sel >> 8)
+	mov	r2,#(_sampler_sel >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/sampler_cal.c:337: sampler_cal_sel(i);
+	mov	r0,_bp
+	inc	r0
+	mov	dpl,@r0
+	mov	r0,#_sampler_cal_sel
+	mov	r1,#(_sampler_cal_sel >> 8)
+	mov	r2,#(_sampler_cal_sel >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar5
+;	../../shared/src/sampler_cal.c:339: offset_sum_neg = 0;
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	@r0,#0x00
+	inc	r0
+	mov	@r0,#0x00
+;	../../shared/src/sampler_cal.c:340: for (ntimes=0; ntimes < n_programmable; ntimes++) {
+	mov	r6,#0x00
+00177$:
+	push	ar5
+	mov	dptr,#(_CAL_CTRL4_LANE + 0x0001)
+	movx	a,@dptr
+	mov	r5,a
+	mov	a,r6
+	cjne	a,ar5,00261$
+00261$:
+	pop	ar5
+	jnc	00180$
+;	../../shared/src/sampler_cal.c:341: for( offset=-ofst_bnd; offset<=ofst_bnd; offset++ ) { //80% sweep
+	mov	ar2,r5
+	mov	ar3,r2
+00149$:
+	mov	a,_bp
+	add	a,#0x07
+	mov	r0,a
+	clr	c
+	mov	a,@r0
+	xrl	a,#0x80
+	mov	b,r3
+	xrl	b,#0x80
+	subb	a,b
+	jc	00152$
+;	../../shared/src/sampler_cal.c:342: set_sampler(offset);
+	push	ar5
+	mov	dpl,r3
+	push	ar3
+	push	ar5
+	push	ar6
+	mov	r0,#_set_sampler
+	mov	r1,#(_set_sampler >> 8)
+	mov	r2,#(_set_sampler >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/sampler_cal.c:343: delay01(5); // 250ns, 500ns, 1us and 2us programmable
+	mov	dptr,#0x0005
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar6
+	pop	ar5
+	pop	ar3
+;	../../shared/src/sampler_cal.c:344: if(VOFF_POS == 1) break; 
+	mov	dptr,#_RX_CALIBRATION_REG
+	movx	a,@dptr
+	swap	a
+	rl	a
+	anl	a,#0x01
+	mov	r5,a
+	cjne	r5,#0x01,00264$
+	pop	ar5
+	sjmp	00152$
+00264$:
+	pop	ar5
+;	../../shared/src/sampler_cal.c:341: for( offset=-ofst_bnd; offset<=ofst_bnd; offset++ ) { //80% sweep
+	inc	r3
+	sjmp	00149$
+00152$:
+;	../../shared/src/sampler_cal.c:346: offset_sum_neg += offset;
+	push	ar5
+	mov	a,r3
+	mov	r5,a
+	rlc	a
+	subb	a,acc
+	mov	r4,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,r5
+	add	a,@r0
+	mov	@r0,a
+	mov	a,r4
+	inc	r0
+	addc	a,@r0
+	mov	@r0,a
+;	../../shared/src/sampler_cal.c:340: for (ntimes=0; ntimes < n_programmable; ntimes++) {
+	inc	r6
+	pop	ar5
+	sjmp	00177$
+00180$:
+;	../../shared/src/sampler_cal.c:348: offset_sum_neg >>= ntimes_shft;
+	mov	r0,_bp
+	inc	r0
+	inc	r0
+	mov	b,@r0
+	inc	b
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	inc	r0
+	mov	a,@r0
+	rlc	a
+	mov	ov,c
+	dec	r0
+	sjmp	00266$
+00265$:
+	mov	c,ov
+	inc	r0
+	mov	a,@r0
+	rrc	a
+	mov	@r0,a
+	dec	r0
+	mov	a,@r0
+	rrc	a
+	mov	@r0,a
+00266$:
+	djnz	b,00265$
+;	../../shared/src/sampler_cal.c:350: offset_sum_pos = 0;
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	@r0,#0x00
+	inc	r0
+	mov	@r0,#0x00
+;	../../shared/src/sampler_cal.c:351: for (ntimes=0; ntimes < n_programmable; ntimes++) {
+	mov	r2,#0x00
+00181$:
+	push	ar5
+	mov	dptr,#(_CAL_CTRL4_LANE + 0x0001)
+	movx	a,@dptr
+	mov	r5,a
+	mov	a,r2
+	cjne	a,ar5,00267$
+00267$:
+	pop	ar5
+	jnc	00184$
+;	../../shared/src/sampler_cal.c:352: for( offset=ofst_bnd; offset>=-ofst_bnd; offset-- ) {
+	mov	a,_bp
+	add	a,#0x07
+	mov	r0,a
+	mov	ar4,@r0
+00155$:
+	push	ar5
+	mov	a,_bp
+	add	a,#0x07
+	mov	r0,a
+	mov	ar6,@r0
+	mov	a,@r0
+	rlc	a
+	subb	a,acc
+	mov	r5,a
+	clr	c
+	clr	a
+	subb	a,r6
+	mov	r6,a
+	clr	a
+	subb	a,r5
+	mov	r5,a
+	mov	a,r4
+	mov	r7,a
+	rlc	a
+	subb	a,acc
+	mov	r3,a
+	clr	c
+	mov	a,r7
+	subb	a,r6
+	mov	a,r3
+	xrl	a,#0x80
+	mov	b,r5
+	xrl	b,#0x80
+	subb	a,b
+	pop	ar5
+	jc	00158$
+;	../../shared/src/sampler_cal.c:353: set_sampler(offset);
+	mov	dpl,r4
+	push	ar2
+	push	ar4
+	push	ar5
+	mov	r0,#_set_sampler
+	mov	r1,#(_set_sampler >> 8)
+	mov	r2,#(_set_sampler >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/sampler_cal.c:354: delay01(5); // 250ns, 500ns, 1us and 2us programmable
+	mov	dptr,#0x0005
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar5
+	pop	ar4
+	pop	ar2
+;	../../shared/src/sampler_cal.c:355: if(VOFF_POS == 0) break; 
+	mov	dptr,#_RX_CALIBRATION_REG
+	movx	a,@dptr
+	jnb	acc.3,00158$
+;	../../shared/src/sampler_cal.c:352: for( offset=ofst_bnd; offset>=-ofst_bnd; offset-- ) {
+	dec	r4
+	sjmp	00155$
+00158$:
+;	../../shared/src/sampler_cal.c:357: offset_sum_pos += offset;
+	mov	a,r4
+	rlc	a
+	subb	a,acc
+	mov	r3,a
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	a,r4
+	add	a,@r0
+	mov	@r0,a
+	mov	a,r3
+	inc	r0
+	addc	a,@r0
+	mov	@r0,a
+;	../../shared/src/sampler_cal.c:351: for (ntimes=0; ntimes < n_programmable; ntimes++) {
+	inc	r2
+	ljmp	00181$
+00184$:
+;	../../shared/src/sampler_cal.c:359: offset_sum_pos >>= ntimes_shft;
+	mov	r0,_bp
+	inc	r0
+	inc	r0
+	mov	b,@r0
+	inc	b
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	inc	r0
+	mov	a,@r0
+	rlc	a
+	mov	ov,c
+	dec	r0
+	sjmp	00272$
+00271$:
+	mov	c,ov
+	inc	r0
+	mov	a,@r0
+	rrc	a
+	mov	@r0,a
+	dec	r0
+	mov	a,@r0
+	rrc	a
+	mov	@r0,a
+00272$:
+	djnz	b,00271$
+;	../../shared/src/sampler_cal.c:362: if( lnx_SAMPLER_CAL_AVG_MODE_LANE_7_0 == 0)		
+	mov	dptr,#_CAL_CTRL4_LANE
+	movx	a,@dptr
+	jnz	00163$
+;	../../shared/src/sampler_cal.c:363: offset = (offset_sum_neg + offset_sum_pos) >> 1;
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,_bp
+	add	a,#0x05
+	mov	r1,a
+	mov	a,@r1
+	add	a,@r0
+	mov	r3,a
+	inc	r1
+	mov	a,@r1
+	inc	r0
+	addc	a,@r0
+	mov	c,acc.7
+	rrc	a
+	xch	a,r3
+	rrc	a
+	xch	a,r3
+	mov	r4,a
+	mov	ar2,r3
+	sjmp	00164$
+00163$:
+;	../../shared/src/sampler_cal.c:364: else if( lnx_SAMPLER_CAL_AVG_MODE_LANE_7_0 == 1) offset = offset_sum_pos;
+	mov	dptr,#_CAL_CTRL4_LANE
+	movx	a,@dptr
+	mov	r3,a
+	cjne	r3,#0x01,00160$
+	mov	a,_bp
+	add	a,#0x05
+	mov	r0,a
+	mov	ar2,@r0
+	sjmp	00164$
+00160$:
+;	../../shared/src/sampler_cal.c:365: else offset = offset_sum_neg;
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	ar2,@r0
+00164$:
+;	../../shared/src/sampler_cal.c:367: set_sampler(offset);
+	mov	dpl,r2
+	push	ar2
+	push	ar5
+	mov	r0,#_set_sampler
+	mov	r1,#(_set_sampler >> 8)
+	mov	r2,#(_set_sampler >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar5
+	pop	ar2
+;	../../shared/src/sampler_cal.c:369: if(offset >= 0)
+	mov	a,r2
+	jb	acc.7,00166$
+;	../../shared/src/sampler_cal.c:370: *SAMPLER_CAL_SM_SAVE = offset | 0x40;
+	mov	r3,_SAMPLER_CAL_SM_SAVE
+	mov	r4,(_SAMPLER_CAL_SM_SAVE + 1)
+	mov	a,#0x40
+	orl	a,r2
+	mov	r6,a
+	mov	dpl,r3
+	mov	dph,r4
+	movx	@dptr,a
+	sjmp	00187$
+00166$:
+;	../../shared/src/sampler_cal.c:372: *SAMPLER_CAL_SM_SAVE = -offset;		
+	mov	r3,_SAMPLER_CAL_SM_SAVE
+	mov	r4,(_SAMPLER_CAL_SM_SAVE + 1)
+	clr	c
+	clr	a
+	subb	a,r2
+	mov	r2,a
+	mov	dpl,r3
+	mov	dph,r4
+	movx	@dptr,a
+00187$:
+;	../../shared/src/sampler_cal.c:334: for(i=0; i<10; i++) {
+	mov	r0,_bp
+	inc	r0
+	inc	@r0
+	ljmp	00185$
+00188$:
+;	../../shared/src/sampler_cal.c:379: lnx_SAMPLER_CAL_PASS_LANE = 1;
+	mov	dptr,#(_CAL_CTRL2_LANE + 0x0001)
+	movx	a,@dptr
+	orl	a,#0x40
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:381: skip_out:
+00168$:
+;	../../shared/src/sampler_cal.c:386: SMPLR_CAL_EN = 0; 
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_19
+	movx	a,@dptr
+	anl	a,#0xfe
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:387: reg_SMPLR_CAL_EN_DLY_LANE = 0;	
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_137
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:388: lnx_SAMPLER_CAL_DONE_LANE = 1;	
+	mov	dptr,#(_CAL_CTRL1_LANE + 0x0001)
+	movx	a,@dptr
+	orl	a,#0x08
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:390: reg_DFE_MCU_CLK_EN_LANE = 0;	
+	mov	dptr,#_RX_EQ_CLK_CTRL
+	movx	a,@dptr
+	anl	a,#0xfd
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:391: reg_ANA_PU_DFE_LANE = 1; 
+	mov	dptr,#(_PM_CTRL_RX_LANE_REG1_LANE + 0x0001)
+	movx	a,@dptr
+	orl	a,#0x40
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:392: reg_EN_DFE_F1TO3_LANE = 1;
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_21
+	movx	a,@dptr
+	orl	a,#0x04
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:393: reg_DFE_CTRL_ANA_BYPASS_LANE = 0;
+	mov	dptr,#(_DFE_ANA_REG0 + 0x0003)
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:394: reg_FFE_PULSE_EN_LANE = 1; //restore
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_131
+	movx	a,@dptr
+	orl	a,#0x80
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:395: reg_DFE_EN_LANE = dfe_dis==0;  reg_DFE_DIS_LANE = dfe_dis;
+	mov	dptr,#_dfe_dis
+	movx	a,@dptr
+	mov	r2,a
+	cjne	a,#0x01,00277$
+00277$:
+	clr	a
+	rlc	a
+	mov	r3,a
+	mov	dptr,#_RX_EQ_CLK_CTRL
+	rrc	a
+	movx	a,@dptr
+	mov	acc.4,c
+	movx	@dptr,a
+	mov	dptr,#_DFE_CTRL_REG3
+	mov	a,r2
+	rrc	a
+	movx	a,@dptr
+	mov	acc.6,c
+	movx	@dptr,a
+00189$:
+	mov	sp,_bp
+	pop	_bp
+	ljmp	__sdcc_banked_ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'get_sampler'
+;------------------------------------------------------------
+;dat                       Allocated to registers r2 
+;------------------------------------------------------------
+;	../../shared/src/sampler_cal.c:398: int8_t get_sampler(void) BANKING_CTRL {
+;	-----------------------------------------
+;	 function get_sampler
+;	-----------------------------------------
+_get_sampler:
+;	../../shared/src/sampler_cal.c:401: dat = (int8_t)*NEG;	
+	mov	dpl,_NEG
+	mov	dph,(_NEG + 1)
+	movx	a,@dptr
+	mov	r2,a
+;	../../shared/src/sampler_cal.c:402: dat += (int8_t)((*SIGN_POS) & 0x1f); 
+	mov	dpl,_SIGN_POS
+	mov	dph,(_SIGN_POS + 1)
+	movx	a,@dptr
+	mov	r3,a
+	anl	ar3,#0x1F
+	mov	a,r3
+	add	a,r2
+	mov	r2,a
+;	../../shared/src/sampler_cal.c:403: if(*SIGN_POS & 0x20) dat = -dat;
+	mov	dpl,_SIGN_POS
+	mov	dph,(_SIGN_POS + 1)
+	movx	a,@dptr
+	mov	r3,a
+	jnb	acc.5,00102$
+	clr	c
+	clr	a
+	subb	a,r2
+	mov	r2,a
+00102$:
+;	../../shared/src/sampler_cal.c:405: return dat;
+	mov	dpl,r2
+	ljmp	__sdcc_banked_ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'Edge_Sampler_Update'
+;------------------------------------------------------------
+;f1p_e                     Allocated to registers r3 
+;f1p_o                     Allocated to registers r4 
+;diff_e                    Allocated to registers r4 
+;diff_o                    Allocated to registers r6 
+;edge_e                    Allocated to registers 
+;edge_o                    Allocated to registers 
+;step_size                 Allocated to registers r2 
+;------------------------------------------------------------
+;	../../shared/src/sampler_cal.c:409: void Edge_Sampler_Update(void) BANKING_CTRL {
+;	-----------------------------------------
+;	 function Edge_Sampler_Update
+;	-----------------------------------------
+_Edge_Sampler_Update:
+;	../../shared/src/sampler_cal.c:414: if( tag_edge_sampler_adj == 0 ) return;
+	mov	dptr,#_TRAIN_PARA_2
+	movx	a,@dptr
+	anl	a,#0xc0
+	jnz	00102$
+	ljmp	00113$
+00102$:
+;	../../shared/src/sampler_cal.c:415: step_size = tag_edge_sampler_adj;	
+	mov	dptr,#_TRAIN_PARA_2
+	movx	a,@dptr
+	rl	a
+	rl	a
+	anl	a,#0x03
+	mov	r2,a
+;	../../shared/src/sampler_cal.c:418: sampler_sel(OFST_F1P_D_E);
+	mov	dpl,#0x00
+	push	ar2
+	mov	r0,#_sampler_sel
+	mov	r1,#(_sampler_sel >> 8)
+	mov	r2,#(_sampler_sel >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/sampler_cal.c:419: f1p_e = get_sampler();
+	mov	r0,#_get_sampler
+	mov	r1,#(_get_sampler >> 8)
+	mov	r2,#(_get_sampler >> 16)
+	lcall	__sdcc_banked_call
+	mov	r3,dpl
+	pop	ar2
+;	../../shared/src/sampler_cal.c:420: diff_e = f1p_e - f1p_e_old;  
+	mov	dptr,#_f1p_e_old
+	movx	a,@dptr
+	mov	r4,a
+	mov	a,r3
+	clr	c
+	subb	a,r4
+	mov	r4,a
+;	../../shared/src/sampler_cal.c:424: if(step_size==1) diff_e >>= 1;
+	clr	a
+	cjne	r2,#0x01,00121$
+	inc	a
+00121$:
+	mov	r5,a
+	jz	00106$
+	mov	a,r4
+	mov	c,acc.7
+	rrc	a
+	mov	r4,a
+	sjmp	00107$
+00106$:
+;	../../shared/src/sampler_cal.c:425: else if(step_size==3) diff_e <<= 1;
+	cjne	r2,#0x03,00107$
+	mov	a,r4
+	add	a,r4
+	mov	r4,a
+00107$:
+;	../../shared/src/sampler_cal.c:431: sampler_sel(OFST_EDGE_E);
+	mov	dpl,#0x08
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	mov	r0,#_sampler_sel
+	mov	r1,#(_sampler_sel >> 8)
+	mov	r2,#(_sampler_sel >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/sampler_cal.c:432: edge_e = get_sampler();	
+	mov	r0,#_get_sampler
+	mov	r1,#(_get_sampler >> 8)
+	mov	r2,#(_get_sampler >> 16)
+	lcall	__sdcc_banked_call
+	mov	r6,dpl
+	pop	ar5
+	pop	ar4
+;	../../shared/src/sampler_cal.c:433: set_sampler(edge_e + diff_e);
+	mov	a,r4
+	add	a,r6
+	mov	dpl,a
+	push	ar5
+	mov	r0,#_set_sampler
+	mov	r1,#(_set_sampler >> 8)
+	mov	r2,#(_set_sampler >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/sampler_cal.c:440: sampler_sel(OFST_F1P_D_O);
+	mov	dpl,#0x04
+	mov	r0,#_sampler_sel
+	mov	r1,#(_sampler_sel >> 8)
+	mov	r2,#(_sampler_sel >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/sampler_cal.c:441: f1p_o = get_sampler();
+	mov	r0,#_get_sampler
+	mov	r1,#(_get_sampler >> 8)
+	mov	r2,#(_get_sampler >> 16)
+	lcall	__sdcc_banked_call
+	mov	r4,dpl
+	pop	ar5
+	pop	ar3
+	pop	ar2
+;	../../shared/src/sampler_cal.c:442: diff_o = f1p_o - f1p_o_old;  
+	mov	dptr,#_f1p_o_old
+	movx	a,@dptr
+	mov	r6,a
+	mov	a,r4
+	clr	c
+	subb	a,r6
+	mov	r6,a
+;	../../shared/src/sampler_cal.c:443: if(step_size==1) diff_o >>= 1;
+	mov	a,r5
+	jz	00111$
+	mov	a,r6
+	mov	c,acc.7
+	rrc	a
+	mov	r6,a
+	sjmp	00112$
+00111$:
+;	../../shared/src/sampler_cal.c:444: else if(step_size==3) diff_o <<= 1;
+	cjne	r2,#0x03,00112$
+	mov	a,r6
+	add	a,r6
+	mov	r6,a
+00112$:
+;	../../shared/src/sampler_cal.c:446: sampler_sel(OFST_EDGE_O);
+	mov	dpl,#0x09
+	push	ar3
+	push	ar4
+	push	ar6
+	mov	r0,#_sampler_sel
+	mov	r1,#(_sampler_sel >> 8)
+	mov	r2,#(_sampler_sel >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/sampler_cal.c:447: edge_o = get_sampler();	
+	mov	r0,#_get_sampler
+	mov	r1,#(_get_sampler >> 8)
+	mov	r2,#(_get_sampler >> 16)
+	lcall	__sdcc_banked_call
+	mov	r2,dpl
+	pop	ar6
+;	../../shared/src/sampler_cal.c:448: set_sampler(edge_o + diff_o);
+	mov	a,r6
+	add	a,r2
+	mov	dpl,a
+	mov	r0,#_set_sampler
+	mov	r1,#(_set_sampler >> 8)
+	mov	r2,#(_set_sampler >> 16)
+	lcall	__sdcc_banked_call
+	pop	ar4
+	pop	ar3
+;	../../shared/src/sampler_cal.c:450: f1p_e_old = f1p_e;	f1p_o_old = f1p_o;
+	mov	dptr,#_f1p_e_old
+	mov	a,r3
+	movx	@dptr,a
+	mov	dptr,#_f1p_o_old
+	mov	a,r4
+	movx	@dptr,a
+00113$:
+	ljmp	__sdcc_banked_ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'save_sampler_edge'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	../../shared/src/sampler_cal.c:454: void  save_sampler_edge(void) BANKING_CTRL{
+;	-----------------------------------------
+;	 function save_sampler_edge
+;	-----------------------------------------
+_save_sampler_edge:
+;	../../shared/src/sampler_cal.c:455: sampler_sel(OFST_F1P_D_E);
+	mov	dpl,#0x00
+	mov	r0,#_sampler_sel
+	mov	r1,#(_sampler_sel >> 8)
+	mov	r2,#(_sampler_sel >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/sampler_cal.c:456: f1p_e_old = get_sampler();
+	mov	r0,#_get_sampler
+	mov	r1,#(_get_sampler >> 8)
+	mov	r2,#(_get_sampler >> 16)
+	lcall	__sdcc_banked_call
+	mov	a,dpl
+	mov	dptr,#_f1p_e_old
+	movx	@dptr,a
+;	../../shared/src/sampler_cal.c:457: sampler_sel(OFST_F1P_D_O);
+	mov	dpl,#0x04
+	mov	r0,#_sampler_sel
+	mov	r1,#(_sampler_sel >> 8)
+	mov	r2,#(_sampler_sel >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/sampler_cal.c:458: f1p_o_old = get_sampler();
+	mov	r0,#_get_sampler
+	mov	r1,#(_get_sampler >> 8)
+	mov	r2,#(_get_sampler >> 16)
+	lcall	__sdcc_banked_call
+	mov	a,dpl
+	mov	dptr,#_f1p_o_old
+	movx	@dptr,a
+	ljmp	__sdcc_banked_ret
+	.area CSEG    (CODE)
+	.area BANK2   (CODE)
+_r_training_bound_tb:
+	.db #0x13	; 19
+	.db #0x13	; 19
+	.db #0x16	; 22
+	.db #0x19	; 25
+_samper_cal_sel_tb:
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x01	; 1
+	.db #0x01	; 1
+	.db #0x03	; 3
+	.db #0x03	; 3
+	.db #0x04	; 4
+	.db #0x04	; 4
+	.db #0x02	; 2
+	.db #0x05	; 5
+_sampler_f1_pol_tb:
+	.db #0x01	; 1
+	.db #0x00	; 0
+	.db #0x01	; 1
+	.db #0x00	; 0
+	.db #0x01	; 1
+	.db #0x00	; 0
+	.db #0x01	; 1
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.area CABS    (ABS,CODE)

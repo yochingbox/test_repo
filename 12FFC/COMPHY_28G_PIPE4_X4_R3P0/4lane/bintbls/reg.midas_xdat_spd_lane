@@ -1,0 +1,1257 @@
+#	Register Address 	Default Value	R/W Property	Register Name	Register Description	Feature Set
+						
+	# addr = 0x0000			AutoSpeed376	AutoSpeed376
+	[31:27]	0	r/w	RESERVED		
+	[26:24]	3'h4	r/w	tx_speed_div_g0_lane[2:0]	tx_speed_div_g0_lane[2:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	tx_vddcal_rate_en_g0_lane	tx_vddcal_rate_en_g0_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	tx_ck_sel_g0_lane	tx_ck_sel_g0_lane speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h0	r/w	pll_rate_sel_tx_g0_lane[3:0]	pll_rate_sel_tx_g0_lane[3:0] speed value	
+						
+	# addr = 0x0004			AutoSpeed377	AutoSpeed377
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	tx_em_ctrl_pipe_sel_g0_lane	tx_em_ctrl_pipe_sel_g0_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	tx_em_ctrl_reg_en_g0_lane	tx_em_ctrl_reg_en_g0_lane speed value	
+	[15:11]	0	r/w	RESERVED		
+	[10:8]	3'h1	r/w	tx_reg_speed_trk_data_g0_lane[2:0]	tx_reg_speed_trk_data_g0_lane[2:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h1	r/w	tx_reg_speed_trk_clk_g0_lane[2:0]	tx_reg_speed_trk_clk_g0_lane[2:0] speed value	
+						
+	# addr = 0x0008			AutoSpeed378	AutoSpeed378
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'hf	r/w	tx_em_po_ctrl_g0_lane[3:0]	tx_em_po_ctrl_g0_lane[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	tx_em_po_en_g0_lane	tx_em_po_en_g0_lane speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'hf	r/w	tx_em_pre_ctrl_g0_lane[3:0]	tx_em_pre_ctrl_g0_lane[3:0] speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	tx_em_pre_en_g0_lane	tx_em_pre_en_g0_lane speed value	
+						
+	# addr = 0x000c			AutoSpeed379	AutoSpeed379
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h1	r/w	tx_train_pat_sel_g0_lane[1:0]	tx_train_pat_sel_g0_lane[1:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	slewctrl0_g0_lane[1:0]	slewctrl0_g0_lane[1:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	slewctrl1_g0_lane[1:0]	slewctrl1_g0_lane[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	slewrate_en_g0_lane[1:0]	slewrate_en_g0_lane[1:0] speed value	
+						
+	# addr = 0x0010			AutoSpeed380	AutoSpeed380
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	packet_sync_dis_g0_lane	packet_sync_dis_g0_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	tx_train_pat_toggle_g0_lane	tx_train_pat_toggle_g0_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	train_pat_num_g0_lane[8]	train_pat_num_g0_lane[8] speed value	
+	[7:0]	8'h88	r/w	train_pat_num_g0_lane[7:0]	train_pat_num_g0_lane[7:0] speed value	
+						
+	# addr = 0x0014			AutoSpeed381	AutoSpeed381
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	rx_vddcal_rate_en_g0_lane	rx_vddcal_rate_en_g0_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	rx_ck_sel_g0_lane	rx_ck_sel_g0_lane speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h0	r/w	pll_rate_sel_rx_g0_lane[3:0]	pll_rate_sel_rx_g0_lane[3:0] speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	sync_det_dis_g0_lane	sync_det_dis_g0_lane speed value	
+						
+	# addr = 0x0018			AutoSpeed382	AutoSpeed382
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h2	r/w	intpr_g0_lane[1:0]	intpr_g0_lane[1:0] speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h8	r/w	intpi_g0_lane[3:0]	intpi_g0_lane[3:0] speed value	
+	[15:11]	0	r/w	RESERVED		
+	[10:8]	3'h3	r/w	dtl_clk_speedup_g0_lane[2:0]	dtl_clk_speedup_g0_lane[2:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h7	r/w	rx_speed_div_g0_lane[2:0]	rx_speed_div_g0_lane[2:0] speed value	
+						
+	# addr = 0x001c			AutoSpeed383	AutoSpeed383
+	[31:27]	0	r/w	RESERVED		
+	[26:24]	3'h1	r/w	rx_reg0p9_speed_track_clk_g0_lane[2:0]	rx_reg0p9_speed_track_clk_g0_lane[2:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	align90_8g_en_g0_lane	align90_8g_en_g0_lane speed value	
+	[15:11]	0	r/w	RESERVED		
+	[10:8]	3'h4	r/w	eom_dll_freq_sel_g0_lane[2:0]	eom_dll_freq_sel_g0_lane[2:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h4	r/w	dll_freq_sel_g0_lane[2:0]	dll_freq_sel_g0_lane[2:0] speed value	
+						
+	# addr = 0x0020			AutoSpeed384	AutoSpeed384
+	[31:27]	0	r/w	RESERVED		
+	[26:24]	3'h5	r/w	rx_selmuff_g0_lane[2:0]	rx_selmuff_g0_lane[2:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h4	r/w	rx_selmufi_g0_lane[2:0]	rx_selmufi_g0_lane[2:0] speed value	
+	[15:11]	0	r/w	RESERVED		
+	[10:8]	3'h6	r/w	rx_reg0p9_speed_track_data_g0_lane[2:0]	rx_reg0p9_speed_track_data_g0_lane[2:0] speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h1	r/w	rx_reg0p9_speed_track_clk_half_g0_lane	rx_reg0p9_speed_track_clk_half_g0_lane speed value	
+						
+	# addr = 0x0024			AutoSpeed385	AutoSpeed385
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	rx_rxclk_25m_div1p5_en_g0_lane	rx_rxclk_25m_div1p5_en_g0_lane speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h3	r/w	rx_rxclk_25m_ctrl_g0_lane[1:0]	rx_rxclk_25m_ctrl_g0_lane[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h2	r/w	reg_selmupf_g0_lane[3:0]	reg_selmupf_g0_lane[3:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h3	r/w	reg_selmupi_g0_lane[3:0]	reg_selmupi_g0_lane[3:0] speed value	
+						
+	# addr = 0x0028			AutoSpeed386	AutoSpeed386
+	[31:24]	8'ha	r/w	rx_foffset_extra_m_g0_lane[7:0]	rx_foffset_extra_m_g0_lane[7:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h2	r/w	dtl_clk_mode_g0_lane[1:0]	dtl_clk_mode_g0_lane[1:0] speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	rx_rxclk_25m_fix_div_en_g0_lane	rx_rxclk_25m_fix_div_en_g0_lane speed value	
+	[7:0]	8'h32	r/w	rx_rxclk_25m_div_g0_lane[7:0]	rx_rxclk_25m_div_g0_lane[7:0] speed value	
+						
+	# addr = 0x002c			AutoSpeed387	AutoSpeed387
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	pu_f1p_d_e_g0_lane	pu_f1p_d_e_g0_lane speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_rxfoffs_g0_lane[9:8]	init_rxfoffs_g0_lane[9:8] speed value	
+	[15:8]	8'h0	r/w	init_rxfoffs_g0_lane[7:0]	init_rxfoffs_g0_lane[7:0] speed value	
+	[7:6]	0	r/w	RESERVED		
+	[5:0]	6'h15	r/w	rx_foffset_extra_m_g0_lane[13:8]	rx_foffset_extra_m_g0_lane[13:8] speed value	
+						
+	# addr = 0x0030			AutoSpeed388	AutoSpeed388
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	pu_f1p_d_o_g0_lane	pu_f1p_d_o_g0_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pu_f1n_s_e_g0_lane	pu_f1n_s_e_g0_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	pu_f1p_s_e_g0_lane	pu_f1p_s_e_g0_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	pu_f1n_d_e_g0_lane	pu_f1n_d_e_g0_lane speed value	
+						
+	# addr = 0x0034			AutoSpeed389	AutoSpeed389
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	path_disable_edge_g0_lane	path_disable_edge_g0_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pu_f1n_s_o_g0_lane	pu_f1n_s_o_g0_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	pu_f1p_s_o_g0_lane	pu_f1p_s_o_g0_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	pu_f1n_d_o_g0_lane	pu_f1n_d_o_g0_lane speed value	
+						
+	# addr = 0x0038			AutoSpeed390	AutoSpeed390
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	dfe_f1_pol_s_g0_lane	dfe_f1_pol_s_g0_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	dfe_f1_pol_d_g0_lane	dfe_f1_pol_d_g0_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	dfe_f1_pol_en_s_g0_lane	dfe_f1_pol_en_s_g0_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h1	r/w	dfe_f1_pol_en_d_g0_lane	dfe_f1_pol_en_d_g0_lane speed value	
+						
+	# addr = 0x003c			AutoSpeed391	AutoSpeed391
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	reg_ana_rx_dfe_f1_pol_s_force_g0_lane	reg_ana_rx_dfe_f1_pol_s_force_g0_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	reg_ana_rx_dfe_f1_pol_d_force_g0_lane	reg_ana_rx_dfe_f1_pol_d_force_g0_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	reg_ana_rx_dfe_f1_pol_en_s_force_g0_lane	reg_ana_rx_dfe_f1_pol_en_s_force_g0_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h1	r/w	reg_ana_rx_dfe_f1_pol_en_d_force_g0_lane	reg_ana_rx_dfe_f1_pol_en_d_force_g0_lane speed value	
+						
+	# addr = 0x0040			AutoSpeed392	AutoSpeed392
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h2	r/w	ffe_data_rate_g0_lane[3:0]	ffe_data_rate_g0_lane[3:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h3	r/w	reg_dfe_tap_settle_scale_g0_lane[1:0]	reg_dfe_tap_settle_scale_g0_lane[1:0] speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	reg_dfe_dis_g0_lane	reg_dfe_dis_g0_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h1	r/w	reg_dfe_full_rate_mode_g0_lane	reg_dfe_full_rate_mode_g0_lane speed value	
+						
+	# addr = 0x0044			AutoSpeed393	AutoSpeed393
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h0	r/w	ffe_res2_sel_o_g0_lane[3:0]	ffe_res2_sel_o_g0_lane[3:0] speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h0	r/w	ffe_res2_sel_e_g0_lane[3:0]	ffe_res2_sel_e_g0_lane[3:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'hc	r/w	ffe_cap1_sel_g0_lane[3:0]	ffe_cap1_sel_g0_lane[3:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h6	r/w	ffe_res1_sel_g0_lane[3:0]	ffe_res1_sel_g0_lane[3:0] speed value	
+						
+	# addr = 0x0048			AutoSpeed394	AutoSpeed394
+	[31:24]	8'ha0	r/w	rxdll_temp_b_g0_lane[7:0]	rxdll_temp_b_g0_lane[7:0] speed value	
+	[23:16]	8'h1b	r/w	rxdll_temp_a_g0_lane[7:0]	rxdll_temp_a_g0_lane[7:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'hf	r/w	ffe_cap2_sel_o_g0_lane[3:0]	ffe_cap2_sel_o_g0_lane[3:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'hf	r/w	ffe_cap2_sel_e_g0_lane[3:0]	ffe_cap2_sel_e_g0_lane[3:0] speed value	
+						
+	# addr = 0x004c			AutoSpeed395	TBD
+						
+	# addr = 0x0050			AutoSpeed396	AutoSpeed396
+	[31:27]	0	r/w	RESERVED		
+	[26:24]	3'h3	r/w	tx_speed_div_g1_lane[2:0]	tx_speed_div_g1_lane[2:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	tx_vddcal_rate_en_g1_lane	tx_vddcal_rate_en_g1_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	tx_ck_sel_g1_lane	tx_ck_sel_g1_lane speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h3	r/w	pll_rate_sel_tx_g1_lane[3:0]	pll_rate_sel_tx_g1_lane[3:0] speed value	
+						
+	# addr = 0x0054			AutoSpeed397	AutoSpeed397
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	tx_em_ctrl_pipe_sel_g1_lane	tx_em_ctrl_pipe_sel_g1_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	tx_em_ctrl_reg_en_g1_lane	tx_em_ctrl_reg_en_g1_lane speed value	
+	[15:11]	0	r/w	RESERVED		
+	[10:8]	3'h1	r/w	tx_reg_speed_trk_data_g1_lane[2:0]	tx_reg_speed_trk_data_g1_lane[2:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h1	r/w	tx_reg_speed_trk_clk_g1_lane[2:0]	tx_reg_speed_trk_clk_g1_lane[2:0] speed value	
+						
+	# addr = 0x0058			AutoSpeed398	AutoSpeed398
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'hf	r/w	tx_em_po_ctrl_g1_lane[3:0]	tx_em_po_ctrl_g1_lane[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	tx_em_po_en_g1_lane	tx_em_po_en_g1_lane speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'hb	r/w	tx_em_pre_ctrl_g1_lane[3:0]	tx_em_pre_ctrl_g1_lane[3:0] speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	tx_em_pre_en_g1_lane	tx_em_pre_en_g1_lane speed value	
+						
+	# addr = 0x005c			AutoSpeed399	AutoSpeed399
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h1	r/w	tx_train_pat_sel_g1_lane[1:0]	tx_train_pat_sel_g1_lane[1:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	slewctrl0_g1_lane[1:0]	slewctrl0_g1_lane[1:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h2	r/w	slewctrl1_g1_lane[1:0]	slewctrl1_g1_lane[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h3	r/w	slewrate_en_g1_lane[1:0]	slewrate_en_g1_lane[1:0] speed value	
+						
+	# addr = 0x0060			AutoSpeed400	AutoSpeed400
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	packet_sync_dis_g1_lane	packet_sync_dis_g1_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	tx_train_pat_toggle_g1_lane	tx_train_pat_toggle_g1_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	train_pat_num_g1_lane[8]	train_pat_num_g1_lane[8] speed value	
+	[7:0]	8'h88	r/w	train_pat_num_g1_lane[7:0]	train_pat_num_g1_lane[7:0] speed value	
+						
+	# addr = 0x0064			AutoSpeed401	AutoSpeed401
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	rx_vddcal_rate_en_g1_lane	rx_vddcal_rate_en_g1_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	rx_ck_sel_g1_lane	rx_ck_sel_g1_lane speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h3	r/w	pll_rate_sel_rx_g1_lane[3:0]	pll_rate_sel_rx_g1_lane[3:0] speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	sync_det_dis_g1_lane	sync_det_dis_g1_lane speed value	
+						
+	# addr = 0x0068			AutoSpeed402	AutoSpeed402
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h1	r/w	intpr_g1_lane[1:0]	intpr_g1_lane[1:0] speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'hb	r/w	intpi_g1_lane[3:0]	intpi_g1_lane[3:0] speed value	
+	[15:11]	0	r/w	RESERVED		
+	[10:8]	3'h2	r/w	dtl_clk_speedup_g1_lane[2:0]	dtl_clk_speedup_g1_lane[2:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h6	r/w	rx_speed_div_g1_lane[2:0]	rx_speed_div_g1_lane[2:0] speed value	
+						
+	# addr = 0x006c			AutoSpeed403	AutoSpeed403
+	[31:27]	0	r/w	RESERVED		
+	[26:24]	3'h3	r/w	rx_reg0p9_speed_track_clk_g1_lane[2:0]	rx_reg0p9_speed_track_clk_g1_lane[2:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	align90_8g_en_g1_lane	align90_8g_en_g1_lane speed value	
+	[15:11]	0	r/w	RESERVED		
+	[10:8]	3'h6	r/w	eom_dll_freq_sel_g1_lane[2:0]	eom_dll_freq_sel_g1_lane[2:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h6	r/w	dll_freq_sel_g1_lane[2:0]	dll_freq_sel_g1_lane[2:0] speed value	
+						
+	# addr = 0x0070			AutoSpeed404	AutoSpeed404
+	[31:27]	0	r/w	RESERVED		
+	[26:24]	3'h5	r/w	rx_selmuff_g1_lane[2:0]	rx_selmuff_g1_lane[2:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h4	r/w	rx_selmufi_g1_lane[2:0]	rx_selmufi_g1_lane[2:0] speed value	
+	[15:11]	0	r/w	RESERVED		
+	[10:8]	3'h6	r/w	rx_reg0p9_speed_track_data_g1_lane[2:0]	rx_reg0p9_speed_track_data_g1_lane[2:0] speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h1	r/w	rx_reg0p9_speed_track_clk_half_g1_lane	rx_reg0p9_speed_track_clk_half_g1_lane speed value	
+						
+	# addr = 0x0074			AutoSpeed405	AutoSpeed405
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	rx_rxclk_25m_div1p5_en_g1_lane	rx_rxclk_25m_div1p5_en_g1_lane speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	rx_rxclk_25m_ctrl_g1_lane[1:0]	rx_rxclk_25m_ctrl_g1_lane[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h2	r/w	reg_selmupf_g1_lane[3:0]	reg_selmupf_g1_lane[3:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h3	r/w	reg_selmupi_g1_lane[3:0]	reg_selmupi_g1_lane[3:0] speed value	
+						
+	# addr = 0x0078			AutoSpeed406	AutoSpeed406
+	[31:24]	8'h4d	r/w	rx_foffset_extra_m_g1_lane[7:0]	rx_foffset_extra_m_g1_lane[7:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h2	r/w	dtl_clk_mode_g1_lane[1:0]	dtl_clk_mode_g1_lane[1:0] speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	rx_rxclk_25m_fix_div_en_g1_lane	rx_rxclk_25m_fix_div_en_g1_lane speed value	
+	[7:0]	8'h7d	r/w	rx_rxclk_25m_div_g1_lane[7:0]	rx_rxclk_25m_div_g1_lane[7:0] speed value	
+						
+	# addr = 0x007c			AutoSpeed407	AutoSpeed407
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	pu_f1p_d_e_g1_lane	pu_f1p_d_e_g1_lane speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_rxfoffs_g1_lane[9:8]	init_rxfoffs_g1_lane[9:8] speed value	
+	[15:8]	8'h0	r/w	init_rxfoffs_g1_lane[7:0]	init_rxfoffs_g1_lane[7:0] speed value	
+	[7:6]	0	r/w	RESERVED		
+	[5:0]	6'h1a	r/w	rx_foffset_extra_m_g1_lane[13:8]	rx_foffset_extra_m_g1_lane[13:8] speed value	
+						
+	# addr = 0x0080			AutoSpeed408	AutoSpeed408
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	pu_f1p_d_o_g1_lane	pu_f1p_d_o_g1_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pu_f1n_s_e_g1_lane	pu_f1n_s_e_g1_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	pu_f1p_s_e_g1_lane	pu_f1p_s_e_g1_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	pu_f1n_d_e_g1_lane	pu_f1n_d_e_g1_lane speed value	
+						
+	# addr = 0x0084			AutoSpeed409	AutoSpeed409
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	path_disable_edge_g1_lane	path_disable_edge_g1_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pu_f1n_s_o_g1_lane	pu_f1n_s_o_g1_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	pu_f1p_s_o_g1_lane	pu_f1p_s_o_g1_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	pu_f1n_d_o_g1_lane	pu_f1n_d_o_g1_lane speed value	
+						
+	# addr = 0x0088			AutoSpeed410	AutoSpeed410
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	dfe_f1_pol_s_g1_lane	dfe_f1_pol_s_g1_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	dfe_f1_pol_d_g1_lane	dfe_f1_pol_d_g1_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	dfe_f1_pol_en_s_g1_lane	dfe_f1_pol_en_s_g1_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h1	r/w	dfe_f1_pol_en_d_g1_lane	dfe_f1_pol_en_d_g1_lane speed value	
+						
+	# addr = 0x008c			AutoSpeed411	AutoSpeed411
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	reg_ana_rx_dfe_f1_pol_s_force_g1_lane	reg_ana_rx_dfe_f1_pol_s_force_g1_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	reg_ana_rx_dfe_f1_pol_d_force_g1_lane	reg_ana_rx_dfe_f1_pol_d_force_g1_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	reg_ana_rx_dfe_f1_pol_en_s_force_g1_lane	reg_ana_rx_dfe_f1_pol_en_s_force_g1_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h1	r/w	reg_ana_rx_dfe_f1_pol_en_d_force_g1_lane	reg_ana_rx_dfe_f1_pol_en_d_force_g1_lane speed value	
+						
+	# addr = 0x0090			AutoSpeed412	AutoSpeed412
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h3	r/w	ffe_data_rate_g1_lane[3:0]	ffe_data_rate_g1_lane[3:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h3	r/w	reg_dfe_tap_settle_scale_g1_lane[1:0]	reg_dfe_tap_settle_scale_g1_lane[1:0] speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	reg_dfe_dis_g1_lane	reg_dfe_dis_g1_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h1	r/w	reg_dfe_full_rate_mode_g1_lane	reg_dfe_full_rate_mode_g1_lane speed value	
+						
+	# addr = 0x0094			AutoSpeed413	AutoSpeed413
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h0	r/w	ffe_res2_sel_o_g1_lane[3:0]	ffe_res2_sel_o_g1_lane[3:0] speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h0	r/w	ffe_res2_sel_e_g1_lane[3:0]	ffe_res2_sel_e_g1_lane[3:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'hc	r/w	ffe_cap1_sel_g1_lane[3:0]	ffe_cap1_sel_g1_lane[3:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h6	r/w	ffe_res1_sel_g1_lane[3:0]	ffe_res1_sel_g1_lane[3:0] speed value	
+						
+	# addr = 0x0098			AutoSpeed414	AutoSpeed414
+	[31:24]	8'ha0	r/w	rxdll_temp_b_g1_lane[7:0]	rxdll_temp_b_g1_lane[7:0] speed value	
+	[23:16]	8'h21	r/w	rxdll_temp_a_g1_lane[7:0]	rxdll_temp_a_g1_lane[7:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'hf	r/w	ffe_cap2_sel_o_g1_lane[3:0]	ffe_cap2_sel_o_g1_lane[3:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'hf	r/w	ffe_cap2_sel_e_g1_lane[3:0]	ffe_cap2_sel_e_g1_lane[3:0] speed value	
+						
+	# addr = 0x009c			AutoSpeed415	TBD
+						
+	# addr = 0x00a0			AutoSpeed416	AutoSpeed416
+	[31:27]	0	r/w	RESERVED		
+	[26:24]	3'h2	r/w	tx_speed_div_g2_lane[2:0]	tx_speed_div_g2_lane[2:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	tx_vddcal_rate_en_g2_lane	tx_vddcal_rate_en_g2_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	tx_ck_sel_g2_lane	tx_ck_sel_g2_lane speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h1	r/w	pll_rate_sel_tx_g2_lane[3:0]	pll_rate_sel_tx_g2_lane[3:0] speed value	
+						
+	# addr = 0x00a4			AutoSpeed417	AutoSpeed417
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	tx_em_ctrl_pipe_sel_g2_lane	tx_em_ctrl_pipe_sel_g2_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	tx_em_ctrl_reg_en_g2_lane	tx_em_ctrl_reg_en_g2_lane speed value	
+	[15:11]	0	r/w	RESERVED		
+	[10:8]	3'h3	r/w	tx_reg_speed_trk_data_g2_lane[2:0]	tx_reg_speed_trk_data_g2_lane[2:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h3	r/w	tx_reg_speed_trk_clk_g2_lane[2:0]	tx_reg_speed_trk_clk_g2_lane[2:0] speed value	
+						
+	# addr = 0x00a8			AutoSpeed418	AutoSpeed418
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h0	r/w	tx_em_po_ctrl_g2_lane[3:0]	tx_em_po_ctrl_g2_lane[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	tx_em_po_en_g2_lane	tx_em_po_en_g2_lane speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h0	r/w	tx_em_pre_ctrl_g2_lane[3:0]	tx_em_pre_ctrl_g2_lane[3:0] speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h1	r/w	tx_em_pre_en_g2_lane	tx_em_pre_en_g2_lane speed value	
+						
+	# addr = 0x00ac			AutoSpeed419	AutoSpeed419
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h1	r/w	tx_train_pat_sel_g2_lane[1:0]	tx_train_pat_sel_g2_lane[1:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	slewctrl0_g2_lane[1:0]	slewctrl0_g2_lane[1:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h2	r/w	slewctrl1_g2_lane[1:0]	slewctrl1_g2_lane[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h3	r/w	slewrate_en_g2_lane[1:0]	slewrate_en_g2_lane[1:0] speed value	
+						
+	# addr = 0x00b0			AutoSpeed420	AutoSpeed420
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	packet_sync_dis_g2_lane	packet_sync_dis_g2_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	tx_train_pat_toggle_g2_lane	tx_train_pat_toggle_g2_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	train_pat_num_g2_lane[8]	train_pat_num_g2_lane[8] speed value	
+	[7:0]	8'h88	r/w	train_pat_num_g2_lane[7:0]	train_pat_num_g2_lane[7:0] speed value	
+						
+	# addr = 0x00b4			AutoSpeed421	AutoSpeed421
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	rx_vddcal_rate_en_g2_lane	rx_vddcal_rate_en_g2_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	rx_ck_sel_g2_lane	rx_ck_sel_g2_lane speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h1	r/w	pll_rate_sel_rx_g2_lane[3:0]	pll_rate_sel_rx_g2_lane[3:0] speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	sync_det_dis_g2_lane	sync_det_dis_g2_lane speed value	
+						
+	# addr = 0x00b8			AutoSpeed422	AutoSpeed422
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h2	r/w	intpr_g2_lane[1:0]	intpr_g2_lane[1:0] speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h8	r/w	intpi_g2_lane[3:0]	intpi_g2_lane[3:0] speed value	
+	[15:11]	0	r/w	RESERVED		
+	[10:8]	3'h1	r/w	dtl_clk_speedup_g2_lane[2:0]	dtl_clk_speedup_g2_lane[2:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h5	r/w	rx_speed_div_g2_lane[2:0]	rx_speed_div_g2_lane[2:0] speed value	
+						
+	# addr = 0x00bc			AutoSpeed423	AutoSpeed423
+	[31:27]	0	r/w	RESERVED		
+	[26:24]	3'h1	r/w	rx_reg0p9_speed_track_clk_g2_lane[2:0]	rx_reg0p9_speed_track_clk_g2_lane[2:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	align90_8g_en_g2_lane	align90_8g_en_g2_lane speed value	
+	[15:11]	0	r/w	RESERVED		
+	[10:8]	3'h4	r/w	eom_dll_freq_sel_g2_lane[2:0]	eom_dll_freq_sel_g2_lane[2:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h4	r/w	dll_freq_sel_g2_lane[2:0]	dll_freq_sel_g2_lane[2:0] speed value	
+						
+	# addr = 0x00c0			AutoSpeed424	AutoSpeed424
+	[31:27]	0	r/w	RESERVED		
+	[26:24]	3'h5	r/w	rx_selmuff_g2_lane[2:0]	rx_selmuff_g2_lane[2:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h4	r/w	rx_selmufi_g2_lane[2:0]	rx_selmufi_g2_lane[2:0] speed value	
+	[15:11]	0	r/w	RESERVED		
+	[10:8]	3'h6	r/w	rx_reg0p9_speed_track_data_g2_lane[2:0]	rx_reg0p9_speed_track_data_g2_lane[2:0] speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h1	r/w	rx_reg0p9_speed_track_clk_half_g2_lane	rx_reg0p9_speed_track_clk_half_g2_lane speed value	
+						
+	# addr = 0x00c4			AutoSpeed425	AutoSpeed425
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	rx_rxclk_25m_div1p5_en_g2_lane	rx_rxclk_25m_div1p5_en_g2_lane speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	rx_rxclk_25m_ctrl_g2_lane[1:0]	rx_rxclk_25m_ctrl_g2_lane[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h2	r/w	reg_selmupf_g2_lane[3:0]	reg_selmupf_g2_lane[3:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h3	r/w	reg_selmupi_g2_lane[3:0]	reg_selmupi_g2_lane[3:0] speed value	
+						
+	# addr = 0x00c8			AutoSpeed426	AutoSpeed426
+	[31:24]	8'hb3	r/w	rx_foffset_extra_m_g2_lane[7:0]	rx_foffset_extra_m_g2_lane[7:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h2	r/w	dtl_clk_mode_g2_lane[1:0]	dtl_clk_mode_g2_lane[1:0] speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	rx_rxclk_25m_fix_div_en_g2_lane	rx_rxclk_25m_fix_div_en_g2_lane speed value	
+	[7:0]	8'h89	r/w	rx_rxclk_25m_div_g2_lane[7:0]	rx_rxclk_25m_div_g2_lane[7:0] speed value	
+						
+	# addr = 0x00cc			AutoSpeed427	AutoSpeed427
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	pu_f1p_d_e_g2_lane	pu_f1p_d_e_g2_lane speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_rxfoffs_g2_lane[9:8]	init_rxfoffs_g2_lane[9:8] speed value	
+	[15:8]	8'h0	r/w	init_rxfoffs_g2_lane[7:0]	init_rxfoffs_g2_lane[7:0] speed value	
+	[7:6]	0	r/w	RESERVED		
+	[5:0]	6'h15	r/w	rx_foffset_extra_m_g2_lane[13:8]	rx_foffset_extra_m_g2_lane[13:8] speed value	
+						
+	# addr = 0x00d0			AutoSpeed428	AutoSpeed428
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	pu_f1p_d_o_g2_lane	pu_f1p_d_o_g2_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pu_f1n_s_e_g2_lane	pu_f1n_s_e_g2_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	pu_f1p_s_e_g2_lane	pu_f1p_s_e_g2_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	pu_f1n_d_e_g2_lane	pu_f1n_d_e_g2_lane speed value	
+						
+	# addr = 0x00d4			AutoSpeed429	AutoSpeed429
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	path_disable_edge_g2_lane	path_disable_edge_g2_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	pu_f1n_s_o_g2_lane	pu_f1n_s_o_g2_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	pu_f1p_s_o_g2_lane	pu_f1p_s_o_g2_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	pu_f1n_d_o_g2_lane	pu_f1n_d_o_g2_lane speed value	
+						
+	# addr = 0x00d8			AutoSpeed430	AutoSpeed430
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	dfe_f1_pol_s_g2_lane	dfe_f1_pol_s_g2_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	dfe_f1_pol_d_g2_lane	dfe_f1_pol_d_g2_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	dfe_f1_pol_en_s_g2_lane	dfe_f1_pol_en_s_g2_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h1	r/w	dfe_f1_pol_en_d_g2_lane	dfe_f1_pol_en_d_g2_lane speed value	
+						
+	# addr = 0x00dc			AutoSpeed431	AutoSpeed431
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	reg_ana_rx_dfe_f1_pol_s_force_g2_lane	reg_ana_rx_dfe_f1_pol_s_force_g2_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	reg_ana_rx_dfe_f1_pol_d_force_g2_lane	reg_ana_rx_dfe_f1_pol_d_force_g2_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	reg_ana_rx_dfe_f1_pol_en_s_force_g2_lane	reg_ana_rx_dfe_f1_pol_en_s_force_g2_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h1	r/w	reg_ana_rx_dfe_f1_pol_en_d_force_g2_lane	reg_ana_rx_dfe_f1_pol_en_d_force_g2_lane speed value	
+						
+	# addr = 0x00e0			AutoSpeed432	AutoSpeed432
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h4	r/w	ffe_data_rate_g2_lane[3:0]	ffe_data_rate_g2_lane[3:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h2	r/w	reg_dfe_tap_settle_scale_g2_lane[1:0]	reg_dfe_tap_settle_scale_g2_lane[1:0] speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	reg_dfe_dis_g2_lane	reg_dfe_dis_g2_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h1	r/w	reg_dfe_full_rate_mode_g2_lane	reg_dfe_full_rate_mode_g2_lane speed value	
+						
+	# addr = 0x00e4			AutoSpeed433	AutoSpeed433
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h0	r/w	ffe_res2_sel_o_g2_lane[3:0]	ffe_res2_sel_o_g2_lane[3:0] speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h0	r/w	ffe_res2_sel_e_g2_lane[3:0]	ffe_res2_sel_e_g2_lane[3:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'hc	r/w	ffe_cap1_sel_g2_lane[3:0]	ffe_cap1_sel_g2_lane[3:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h6	r/w	ffe_res1_sel_g2_lane[3:0]	ffe_res1_sel_g2_lane[3:0] speed value	
+						
+	# addr = 0x00e8			AutoSpeed434	AutoSpeed434
+	[31:24]	8'ha0	r/w	rxdll_temp_b_g2_lane[7:0]	rxdll_temp_b_g2_lane[7:0] speed value	
+	[23:16]	8'h1b	r/w	rxdll_temp_a_g2_lane[7:0]	rxdll_temp_a_g2_lane[7:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'hf	r/w	ffe_cap2_sel_o_g2_lane[3:0]	ffe_cap2_sel_o_g2_lane[3:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'hf	r/w	ffe_cap2_sel_e_g2_lane[3:0]	ffe_cap2_sel_e_g2_lane[3:0] speed value	
+						
+	# addr = 0x00ec			AutoSpeed435	TBD
+						
+	# addr = 0x00f0			AutoSpeed436	AutoSpeed436
+	[31:27]	0	r/w	RESERVED		
+	[26:24]	3'h1	r/w	tx_speed_div_g3_lane[2:0]	tx_speed_div_g3_lane[2:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	tx_vddcal_rate_en_g3_lane	tx_vddcal_rate_en_g3_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	tx_ck_sel_g3_lane	tx_ck_sel_g3_lane speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h1	r/w	pll_rate_sel_tx_g3_lane[3:0]	pll_rate_sel_tx_g3_lane[3:0] speed value	
+						
+	# addr = 0x00f4			AutoSpeed437	AutoSpeed437
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	tx_em_ctrl_pipe_sel_g3_lane	tx_em_ctrl_pipe_sel_g3_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	tx_em_ctrl_reg_en_g3_lane	tx_em_ctrl_reg_en_g3_lane speed value	
+	[15:11]	0	r/w	RESERVED		
+	[10:8]	3'h3	r/w	tx_reg_speed_trk_data_g3_lane[2:0]	tx_reg_speed_trk_data_g3_lane[2:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h3	r/w	tx_reg_speed_trk_clk_g3_lane[2:0]	tx_reg_speed_trk_clk_g3_lane[2:0] speed value	
+						
+	# addr = 0x00f8			AutoSpeed438	AutoSpeed438
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h0	r/w	tx_em_po_ctrl_g3_lane[3:0]	tx_em_po_ctrl_g3_lane[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	tx_em_po_en_g3_lane	tx_em_po_en_g3_lane speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h0	r/w	tx_em_pre_ctrl_g3_lane[3:0]	tx_em_pre_ctrl_g3_lane[3:0] speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h1	r/w	tx_em_pre_en_g3_lane	tx_em_pre_en_g3_lane speed value	
+						
+	# addr = 0x00fc			AutoSpeed439	AutoSpeed439
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h1	r/w	tx_train_pat_sel_g3_lane[1:0]	tx_train_pat_sel_g3_lane[1:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	slewctrl0_g3_lane[1:0]	slewctrl0_g3_lane[1:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	slewctrl1_g3_lane[1:0]	slewctrl1_g3_lane[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	slewrate_en_g3_lane[1:0]	slewrate_en_g3_lane[1:0] speed value	
+						
+	# addr = 0x0100			AutoSpeed440	AutoSpeed440
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	packet_sync_dis_g3_lane	packet_sync_dis_g3_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	tx_train_pat_toggle_g3_lane	tx_train_pat_toggle_g3_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	train_pat_num_g3_lane[8]	train_pat_num_g3_lane[8] speed value	
+	[7:0]	8'h88	r/w	train_pat_num_g3_lane[7:0]	train_pat_num_g3_lane[7:0] speed value	
+						
+	# addr = 0x0104			AutoSpeed441	AutoSpeed441
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	rx_vddcal_rate_en_g3_lane	rx_vddcal_rate_en_g3_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	rx_ck_sel_g3_lane	rx_ck_sel_g3_lane speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h1	r/w	pll_rate_sel_rx_g3_lane[3:0]	pll_rate_sel_rx_g3_lane[3:0] speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	sync_det_dis_g3_lane	sync_det_dis_g3_lane speed value	
+						
+	# addr = 0x0108			AutoSpeed442	AutoSpeed442
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h2	r/w	intpr_g3_lane[1:0]	intpr_g3_lane[1:0] speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h8	r/w	intpi_g3_lane[3:0]	intpi_g3_lane[3:0] speed value	
+	[15:11]	0	r/w	RESERVED		
+	[10:8]	3'h0	r/w	dtl_clk_speedup_g3_lane[2:0]	dtl_clk_speedup_g3_lane[2:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h4	r/w	rx_speed_div_g3_lane[2:0]	rx_speed_div_g3_lane[2:0] speed value	
+						
+	# addr = 0x010c			AutoSpeed443	AutoSpeed443
+	[31:27]	0	r/w	RESERVED		
+	[26:24]	3'h1	r/w	rx_reg0p9_speed_track_clk_g3_lane[2:0]	rx_reg0p9_speed_track_clk_g3_lane[2:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	align90_8g_en_g3_lane	align90_8g_en_g3_lane speed value	
+	[15:11]	0	r/w	RESERVED		
+	[10:8]	3'h4	r/w	eom_dll_freq_sel_g3_lane[2:0]	eom_dll_freq_sel_g3_lane[2:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h4	r/w	dll_freq_sel_g3_lane[2:0]	dll_freq_sel_g3_lane[2:0] speed value	
+						
+	# addr = 0x0110			AutoSpeed444	AutoSpeed444
+	[31:27]	0	r/w	RESERVED		
+	[26:24]	3'h5	r/w	rx_selmuff_g3_lane[2:0]	rx_selmuff_g3_lane[2:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h4	r/w	rx_selmufi_g3_lane[2:0]	rx_selmufi_g3_lane[2:0] speed value	
+	[15:11]	0	r/w	RESERVED		
+	[10:8]	3'h6	r/w	rx_reg0p9_speed_track_data_g3_lane[2:0]	rx_reg0p9_speed_track_data_g3_lane[2:0] speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h1	r/w	rx_reg0p9_speed_track_clk_half_g3_lane	rx_reg0p9_speed_track_clk_half_g3_lane speed value	
+						
+	# addr = 0x0114			AutoSpeed445	AutoSpeed445
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	rx_rxclk_25m_div1p5_en_g3_lane	rx_rxclk_25m_div1p5_en_g3_lane speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	rx_rxclk_25m_ctrl_g3_lane[1:0]	rx_rxclk_25m_ctrl_g3_lane[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h4	r/w	reg_selmupf_g3_lane[3:0]	reg_selmupf_g3_lane[3:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h3	r/w	reg_selmupi_g3_lane[3:0]	reg_selmupi_g3_lane[3:0] speed value	
+						
+	# addr = 0x0118			AutoSpeed446	AutoSpeed446
+	[31:24]	8'hb3	r/w	rx_foffset_extra_m_g3_lane[7:0]	rx_foffset_extra_m_g3_lane[7:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h2	r/w	dtl_clk_mode_g3_lane[1:0]	dtl_clk_mode_g3_lane[1:0] speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	rx_rxclk_25m_fix_div_en_g3_lane	rx_rxclk_25m_fix_div_en_g3_lane speed value	
+	[7:0]	8'h89	r/w	rx_rxclk_25m_div_g3_lane[7:0]	rx_rxclk_25m_div_g3_lane[7:0] speed value	
+						
+	# addr = 0x011c			AutoSpeed447	AutoSpeed447
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	pu_f1p_d_e_g3_lane	pu_f1p_d_e_g3_lane speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_rxfoffs_g3_lane[9:8]	init_rxfoffs_g3_lane[9:8] speed value	
+	[15:8]	8'h0	r/w	init_rxfoffs_g3_lane[7:0]	init_rxfoffs_g3_lane[7:0] speed value	
+	[7:6]	0	r/w	RESERVED		
+	[5:0]	6'h15	r/w	rx_foffset_extra_m_g3_lane[13:8]	rx_foffset_extra_m_g3_lane[13:8] speed value	
+						
+	# addr = 0x0120			AutoSpeed448	AutoSpeed448
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	pu_f1p_d_o_g3_lane	pu_f1p_d_o_g3_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	pu_f1n_s_e_g3_lane	pu_f1n_s_e_g3_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	pu_f1p_s_e_g3_lane	pu_f1p_s_e_g3_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h1	r/w	pu_f1n_d_e_g3_lane	pu_f1n_d_e_g3_lane speed value	
+						
+	# addr = 0x0124			AutoSpeed449	AutoSpeed449
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	path_disable_edge_g3_lane	path_disable_edge_g3_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	pu_f1n_s_o_g3_lane	pu_f1n_s_o_g3_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	pu_f1p_s_o_g3_lane	pu_f1p_s_o_g3_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h1	r/w	pu_f1n_d_o_g3_lane	pu_f1n_d_o_g3_lane speed value	
+						
+	# addr = 0x0128			AutoSpeed450	AutoSpeed450
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	dfe_f1_pol_s_g3_lane	dfe_f1_pol_s_g3_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	dfe_f1_pol_d_g3_lane	dfe_f1_pol_d_g3_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	dfe_f1_pol_en_s_g3_lane	dfe_f1_pol_en_s_g3_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	dfe_f1_pol_en_d_g3_lane	dfe_f1_pol_en_d_g3_lane speed value	
+						
+	# addr = 0x012c			AutoSpeed451	AutoSpeed451
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	reg_ana_rx_dfe_f1_pol_s_force_g3_lane	reg_ana_rx_dfe_f1_pol_s_force_g3_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	reg_ana_rx_dfe_f1_pol_d_force_g3_lane	reg_ana_rx_dfe_f1_pol_d_force_g3_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	reg_ana_rx_dfe_f1_pol_en_s_force_g3_lane	reg_ana_rx_dfe_f1_pol_en_s_force_g3_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	reg_ana_rx_dfe_f1_pol_en_d_force_g3_lane	reg_ana_rx_dfe_f1_pol_en_d_force_g3_lane speed value	
+						
+	# addr = 0x0130			AutoSpeed452	AutoSpeed452
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h7	r/w	ffe_data_rate_g3_lane[3:0]	ffe_data_rate_g3_lane[3:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	reg_dfe_tap_settle_scale_g3_lane[1:0]	reg_dfe_tap_settle_scale_g3_lane[1:0] speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	reg_dfe_dis_g3_lane	reg_dfe_dis_g3_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	reg_dfe_full_rate_mode_g3_lane	reg_dfe_full_rate_mode_g3_lane speed value	
+						
+	# addr = 0x0134			AutoSpeed453	AutoSpeed453
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h0	r/w	ffe_res2_sel_o_g3_lane[3:0]	ffe_res2_sel_o_g3_lane[3:0] speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h0	r/w	ffe_res2_sel_e_g3_lane[3:0]	ffe_res2_sel_e_g3_lane[3:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'hc	r/w	ffe_cap1_sel_g3_lane[3:0]	ffe_cap1_sel_g3_lane[3:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h6	r/w	ffe_res1_sel_g3_lane[3:0]	ffe_res1_sel_g3_lane[3:0] speed value	
+						
+	# addr = 0x0138			AutoSpeed454	AutoSpeed454
+	[31:24]	8'ha0	r/w	rxdll_temp_b_g3_lane[7:0]	rxdll_temp_b_g3_lane[7:0] speed value	
+	[23:16]	8'h1b	r/w	rxdll_temp_a_g3_lane[7:0]	rxdll_temp_a_g3_lane[7:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'hf	r/w	ffe_cap2_sel_o_g3_lane[3:0]	ffe_cap2_sel_o_g3_lane[3:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'hf	r/w	ffe_cap2_sel_e_g3_lane[3:0]	ffe_cap2_sel_e_g3_lane[3:0] speed value	
+						
+	# addr = 0x013c			AutoSpeed455	TBD
+						
+	# addr = 0x0140			AutoSpeed456	AutoSpeed456
+	[31:27]	0	r/w	RESERVED		
+	[26:24]	3'h0	r/w	tx_speed_div_g4_lane[2:0]	tx_speed_div_g4_lane[2:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	tx_vddcal_rate_en_g4_lane	tx_vddcal_rate_en_g4_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	tx_ck_sel_g4_lane	tx_ck_sel_g4_lane speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h1	r/w	pll_rate_sel_tx_g4_lane[3:0]	pll_rate_sel_tx_g4_lane[3:0] speed value	
+						
+	# addr = 0x0144			AutoSpeed457	AutoSpeed457
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	tx_em_ctrl_pipe_sel_g4_lane	tx_em_ctrl_pipe_sel_g4_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	tx_em_ctrl_reg_en_g4_lane	tx_em_ctrl_reg_en_g4_lane speed value	
+	[15:11]	0	r/w	RESERVED		
+	[10:8]	3'h6	r/w	tx_reg_speed_trk_data_g4_lane[2:0]	tx_reg_speed_trk_data_g4_lane[2:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h6	r/w	tx_reg_speed_trk_clk_g4_lane[2:0]	tx_reg_speed_trk_clk_g4_lane[2:0] speed value	
+						
+	# addr = 0x0148			AutoSpeed458	AutoSpeed458
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h0	r/w	tx_em_po_ctrl_g4_lane[3:0]	tx_em_po_ctrl_g4_lane[3:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	tx_em_po_en_g4_lane	tx_em_po_en_g4_lane speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h0	r/w	tx_em_pre_ctrl_g4_lane[3:0]	tx_em_pre_ctrl_g4_lane[3:0] speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h1	r/w	tx_em_pre_en_g4_lane	tx_em_pre_en_g4_lane speed value	
+						
+	# addr = 0x014c			AutoSpeed459	AutoSpeed459
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h2	r/w	tx_train_pat_sel_g4_lane[1:0]	tx_train_pat_sel_g4_lane[1:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	slewctrl0_g4_lane[1:0]	slewctrl0_g4_lane[1:0] speed value	
+	[15:10]	0	r/w	RESERVED		
+	[9:8]	2'h0	r/w	slewctrl1_g4_lane[1:0]	slewctrl1_g4_lane[1:0] speed value	
+	[7:2]	0	r/w	RESERVED		
+	[1:0]	2'h0	r/w	slewrate_en_g4_lane[1:0]	slewrate_en_g4_lane[1:0] speed value	
+						
+	# addr = 0x0150			AutoSpeed460	AutoSpeed460
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	packet_sync_dis_g4_lane	packet_sync_dis_g4_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	tx_train_pat_toggle_g4_lane	tx_train_pat_toggle_g4_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	train_pat_num_g4_lane[8]	train_pat_num_g4_lane[8] speed value	
+	[7:0]	8'h88	r/w	train_pat_num_g4_lane[7:0]	train_pat_num_g4_lane[7:0] speed value	
+						
+	# addr = 0x0154			AutoSpeed461	AutoSpeed461
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	rx_vddcal_rate_en_g4_lane	rx_vddcal_rate_en_g4_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	rx_ck_sel_g4_lane	rx_ck_sel_g4_lane speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h1	r/w	pll_rate_sel_rx_g4_lane[3:0]	pll_rate_sel_rx_g4_lane[3:0] speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	sync_det_dis_g4_lane	sync_det_dis_g4_lane speed value	
+						
+	# addr = 0x0158			AutoSpeed462	AutoSpeed462
+	[31:26]	0	r/w	RESERVED		
+	[25:24]	2'h2	r/w	intpr_g4_lane[1:0]	intpr_g4_lane[1:0] speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h8	r/w	intpi_g4_lane[3:0]	intpi_g4_lane[3:0] speed value	
+	[15:11]	0	r/w	RESERVED		
+	[10:8]	3'h4	r/w	dtl_clk_speedup_g4_lane[2:0]	dtl_clk_speedup_g4_lane[2:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h0	r/w	rx_speed_div_g4_lane[2:0]	rx_speed_div_g4_lane[2:0] speed value	
+						
+	# addr = 0x015c			AutoSpeed463	AutoSpeed463
+	[31:27]	0	r/w	RESERVED		
+	[26:24]	3'h1	r/w	rx_reg0p9_speed_track_clk_g4_lane[2:0]	rx_reg0p9_speed_track_clk_g4_lane[2:0] speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	align90_8g_en_g4_lane	align90_8g_en_g4_lane speed value	
+	[15:11]	0	r/w	RESERVED		
+	[10:8]	3'h4	r/w	eom_dll_freq_sel_g4_lane[2:0]	eom_dll_freq_sel_g4_lane[2:0] speed value	
+	[7:3]	0	r/w	RESERVED		
+	[2:0]	3'h4	r/w	dll_freq_sel_g4_lane[2:0]	dll_freq_sel_g4_lane[2:0] speed value	
+						
+	# addr = 0x0160			AutoSpeed464	AutoSpeed464
+	[31:27]	0	r/w	RESERVED		
+	[26:24]	3'h5	r/w	rx_selmuff_g4_lane[2:0]	rx_selmuff_g4_lane[2:0] speed value	
+	[23:19]	0	r/w	RESERVED		
+	[18:16]	3'h4	r/w	rx_selmufi_g4_lane[2:0]	rx_selmufi_g4_lane[2:0] speed value	
+	[15:11]	0	r/w	RESERVED		
+	[10:8]	3'h6	r/w	rx_reg0p9_speed_track_data_g4_lane[2:0]	rx_reg0p9_speed_track_data_g4_lane[2:0] speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	rx_reg0p9_speed_track_clk_half_g4_lane	rx_reg0p9_speed_track_clk_half_g4_lane speed value	
+						
+	# addr = 0x0164			AutoSpeed465	AutoSpeed465
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	rx_rxclk_25m_div1p5_en_g4_lane	rx_rxclk_25m_div1p5_en_g4_lane speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h1	r/w	rx_rxclk_25m_ctrl_g4_lane[1:0]	rx_rxclk_25m_ctrl_g4_lane[1:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'h4	r/w	reg_selmupf_g4_lane[3:0]	reg_selmupf_g4_lane[3:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h3	r/w	reg_selmupi_g4_lane[3:0]	reg_selmupi_g4_lane[3:0] speed value	
+						
+	# addr = 0x0168			AutoSpeed466	AutoSpeed466
+	[31:24]	8'hb3	r/w	rx_foffset_extra_m_g4_lane[7:0]	rx_foffset_extra_m_g4_lane[7:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h2	r/w	dtl_clk_mode_g4_lane[1:0]	dtl_clk_mode_g4_lane[1:0] speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	rx_rxclk_25m_fix_div_en_g4_lane	rx_rxclk_25m_fix_div_en_g4_lane speed value	
+	[7:0]	8'h89	r/w	rx_rxclk_25m_div_g4_lane[7:0]	rx_rxclk_25m_div_g4_lane[7:0] speed value	
+						
+	# addr = 0x016c			AutoSpeed467	AutoSpeed467
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	pu_f1p_d_e_g4_lane	pu_f1p_d_e_g4_lane speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	init_rxfoffs_g4_lane[9:8]	init_rxfoffs_g4_lane[9:8] speed value	
+	[15:8]	8'h0	r/w	init_rxfoffs_g4_lane[7:0]	init_rxfoffs_g4_lane[7:0] speed value	
+	[7:6]	0	r/w	RESERVED		
+	[5:0]	6'h15	r/w	rx_foffset_extra_m_g4_lane[13:8]	rx_foffset_extra_m_g4_lane[13:8] speed value	
+						
+	# addr = 0x0170			AutoSpeed468	AutoSpeed468
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	pu_f1p_d_o_g4_lane	pu_f1p_d_o_g4_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	pu_f1n_s_e_g4_lane	pu_f1n_s_e_g4_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	pu_f1p_s_e_g4_lane	pu_f1p_s_e_g4_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h1	r/w	pu_f1n_d_e_g4_lane	pu_f1n_d_e_g4_lane speed value	
+						
+	# addr = 0x0174			AutoSpeed469	AutoSpeed469
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	path_disable_edge_g4_lane	path_disable_edge_g4_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	pu_f1n_s_o_g4_lane	pu_f1n_s_o_g4_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h1	r/w	pu_f1p_s_o_g4_lane	pu_f1p_s_o_g4_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h1	r/w	pu_f1n_d_o_g4_lane	pu_f1n_d_o_g4_lane speed value	
+						
+	# addr = 0x0178			AutoSpeed470	AutoSpeed470
+	[31:25]	0	r/w	RESERVED		
+	24	1'h1	r/w	dfe_f1_pol_s_g4_lane	dfe_f1_pol_s_g4_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h1	r/w	dfe_f1_pol_d_g4_lane	dfe_f1_pol_d_g4_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	dfe_f1_pol_en_s_g4_lane	dfe_f1_pol_en_s_g4_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	dfe_f1_pol_en_d_g4_lane	dfe_f1_pol_en_d_g4_lane speed value	
+						
+	# addr = 0x017c			AutoSpeed471	AutoSpeed471
+	[31:25]	0	r/w	RESERVED		
+	24	1'h0	r/w	reg_ana_rx_dfe_f1_pol_s_force_g4_lane	reg_ana_rx_dfe_f1_pol_s_force_g4_lane speed value	
+	[23:17]	0	r/w	RESERVED		
+	16	1'h0	r/w	reg_ana_rx_dfe_f1_pol_d_force_g4_lane	reg_ana_rx_dfe_f1_pol_d_force_g4_lane speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	reg_ana_rx_dfe_f1_pol_en_s_force_g4_lane	reg_ana_rx_dfe_f1_pol_en_s_force_g4_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	reg_ana_rx_dfe_f1_pol_en_d_force_g4_lane	reg_ana_rx_dfe_f1_pol_en_d_force_g4_lane speed value	
+						
+	# addr = 0x0180			AutoSpeed472	AutoSpeed472
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'hb	r/w	ffe_data_rate_g4_lane[3:0]	ffe_data_rate_g4_lane[3:0] speed value	
+	[23:18]	0	r/w	RESERVED		
+	[17:16]	2'h0	r/w	reg_dfe_tap_settle_scale_g4_lane[1:0]	reg_dfe_tap_settle_scale_g4_lane[1:0] speed value	
+	[15:9]	0	r/w	RESERVED		
+	8	1'h0	r/w	reg_dfe_dis_g4_lane	reg_dfe_dis_g4_lane speed value	
+	[7:1]	0	r/w	RESERVED		
+	0	1'h0	r/w	reg_dfe_full_rate_mode_g4_lane	reg_dfe_full_rate_mode_g4_lane speed value	
+						
+	# addr = 0x0184			AutoSpeed473	AutoSpeed473
+	[31:28]	0	r/w	RESERVED		
+	[27:24]	4'h0	r/w	ffe_res2_sel_o_g4_lane[3:0]	ffe_res2_sel_o_g4_lane[3:0] speed value	
+	[23:20]	0	r/w	RESERVED		
+	[19:16]	4'h0	r/w	ffe_res2_sel_e_g4_lane[3:0]	ffe_res2_sel_e_g4_lane[3:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'hc	r/w	ffe_cap1_sel_g4_lane[3:0]	ffe_cap1_sel_g4_lane[3:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'h6	r/w	ffe_res1_sel_g4_lane[3:0]	ffe_res1_sel_g4_lane[3:0] speed value	
+						
+	# addr = 0x0188			AutoSpeed474	AutoSpeed474
+	[31:24]	8'ha0	r/w	rxdll_temp_b_g4_lane[7:0]	rxdll_temp_b_g4_lane[7:0] speed value	
+	[23:16]	8'h1b	r/w	rxdll_temp_a_g4_lane[7:0]	rxdll_temp_a_g4_lane[7:0] speed value	
+	[15:12]	0	r/w	RESERVED		
+	[11:8]	4'hf	r/w	ffe_cap2_sel_o_g4_lane[3:0]	ffe_cap2_sel_o_g4_lane[3:0] speed value	
+	[7:4]	0	r/w	RESERVED		
+	[3:0]	4'hf	r/w	ffe_cap2_sel_e_g4_lane[3:0]	ffe_cap2_sel_e_g4_lane[3:0] speed value	
+						
+	# addr = 0x018c			AutoSpeed475	TBD
+						
+	# addr = 0x0190			AutoSpeed476	TBD
+						
+	# addr = 0x0194			AutoSpeed477	TBD
+						
+	# addr = 0x0198			AutoSpeed478	TBD
+						
+	# addr = 0x019c			AutoSpeed479	TBD
+						
+	# addr = 0x01a0			AutoSpeed480	TBD
+						
+	# addr = 0x01a4			AutoSpeed481	TBD
+						
+	# addr = 0x01a8			AutoSpeed482	TBD
+						
+	# addr = 0x01ac			AutoSpeed483	TBD
+						
+	# addr = 0x01b0			AutoSpeed484	TBD
+						
+	# addr = 0x01b4			AutoSpeed485	TBD
+						
+	# addr = 0x01b8			AutoSpeed486	TBD
+						
+	# addr = 0x01bc			AutoSpeed487	TBD
+						
+	# addr = 0x01c0			AutoSpeed488	TBD
+						
+	# addr = 0x01c4			AutoSpeed489	TBD
+						
+	# addr = 0x01c8			AutoSpeed490	TBD
+						
+	# addr = 0x01cc			AutoSpeed491	TBD
+						
+	# addr = 0x01d0			AutoSpeed492	TBD
+						
+	# addr = 0x01d4			AutoSpeed493	TBD
+						
+	# addr = 0x01d8			AutoSpeed494	TBD
+						
+	# addr = 0x01dc			AutoSpeed495	TBD
+						
+	# addr = 0x01e0			AutoSpeed496	TBD
+						
+	# addr = 0x01e4			AutoSpeed497	TBD
+						
+	# addr = 0x01e8			AutoSpeed498	TBD
+						
+	# addr = 0x01ec			AutoSpeed499	TBD
+						
+	# addr = 0x01f0			AutoSpeed500	TBD
+						
+	# addr = 0x01f4			AutoSpeed501	TBD
+						
+	# addr = 0x01f8			AutoSpeed502	TBD
+						
+	# addr = 0x01fc			AutoSpeed503	TBD
+						
+	# addr = 0x0200			AutoSpeed504	TBD
+						
+	# addr = 0x0204			AutoSpeed505	TBD
+						
+	# addr = 0x0208			AutoSpeed506	TBD
+						
+	# addr = 0x020c			AutoSpeed507	TBD
+						
+	# addr = 0x0210			AutoSpeed508	TBD
+						
+	# addr = 0x0214			AutoSpeed509	TBD
+						
+	# addr = 0x0218			AutoSpeed510	TBD
+						
+	# addr = 0x021c			AutoSpeed511	TBD
+						
+	# addr = 0x0220			AutoSpeed512	TBD
+						
+	# addr = 0x0224			AutoSpeed513	TBD
+						
+	# addr = 0x0228			AutoSpeed514	TBD
+						
+	# addr = 0x022c			AutoSpeed515	TBD
+						
+	# addr = 0x0230			AutoSpeed516	TBD
+						
+	# addr = 0x0234			AutoSpeed517	TBD
+						
+	# addr = 0x0238			AutoSpeed518	TBD
+						
+	# addr = 0x023c			AutoSpeed519	TBD
+						
+	# addr = 0x0240			AutoSpeed520	TBD
+						
+	# addr = 0x0244			AutoSpeed521	TBD
+						
+	# addr = 0x0248			AutoSpeed522	TBD
+						
+	# addr = 0x024c			AutoSpeed523	TBD
+						
+	# addr = 0x0250			AutoSpeed524	TBD
+						
+	# addr = 0x0254			AutoSpeed525	TBD
+						
+	# addr = 0x0258			AutoSpeed526	TBD
+						
+	# addr = 0x025c			AutoSpeed527	TBD
+						
+	# addr = 0x0260			AutoSpeed528	AutoSpeed528
+	[31:24]	8'h20	r/w	cal_txdcc_pdiv_cont_rate1_lane[7:0]	cal_txdcc_pdiv_cont_rate1_lane[7:0] speed value	
+	[23:16]	8'h20	r/w	cal_txdcc_pdiv_cont_rate0_lane[7:0]	cal_txdcc_pdiv_cont_rate0_lane[7:0] speed value	
+	[15:8]	8'h20	r/w	cal_txdcc_pdiv_rate1_lane[7:0]	cal_txdcc_pdiv_rate1_lane[7:0] speed value	
+	[7:0]	8'h20	r/w	cal_txdcc_pdiv_rate0_lane[7:0]	cal_txdcc_pdiv_rate0_lane[7:0] speed value	
+						
+	# addr = 0x0264			AutoSpeed529	AutoSpeed529
+	[31:24]	8'h20	r/w	cal_txdcc_rate1_lane[7:0]	cal_txdcc_rate1_lane[7:0] speed value	
+	[23:16]	8'h20	r/w	cal_txdcc_rate0_lane[7:0]	cal_txdcc_rate0_lane[7:0] speed value	
+	[15:8]	8'h0	r/w	cal_txdcc_pdiv_hg_rate1_lane[7:0]	cal_txdcc_pdiv_hg_rate1_lane[7:0] speed value	
+	[7:0]	8'h0	r/w	cal_txdcc_pdiv_hg_rate0_lane[7:0]	cal_txdcc_pdiv_hg_rate0_lane[7:0] speed value	
+						
+	# addr = 0x0268			AutoSpeed530	AutoSpeed530
+	[31:24]	8'h0	r/w	cal_txdcc_hg_rate1_lane[7:0]	cal_txdcc_hg_rate1_lane[7:0] speed value	
+	[23:16]	8'h0	r/w	cal_txdcc_hg_rate0_lane[7:0]	cal_txdcc_hg_rate0_lane[7:0] speed value	
+	[15:8]	8'h20	r/w	cal_txdcc_cont_rate1_lane[7:0]	cal_txdcc_cont_rate1_lane[7:0] speed value	
+	[7:0]	8'h20	r/w	cal_txdcc_cont_rate0_lane[7:0]	cal_txdcc_cont_rate0_lane[7:0] speed value	
+						
+	# addr = 0x026c			AutoSpeed531	AutoSpeed531
+	[31:24]	8'h20	r/w	cal_rxdcc_dll_cont_rate1_lane[7:0]	cal_rxdcc_dll_cont_rate1_lane[7:0] speed value	
+	[23:16]	8'h20	r/w	cal_rxdcc_dll_cont_rate0_lane[7:0]	cal_rxdcc_dll_cont_rate0_lane[7:0] speed value	
+	[15:8]	8'h20	r/w	cal_rxdcc_dll_rate1_lane[7:0]	cal_rxdcc_dll_rate1_lane[7:0] speed value	
+	[7:0]	8'h20	r/w	cal_rxdcc_dll_rate0_lane[7:0]	cal_rxdcc_dll_rate0_lane[7:0] speed value	
+						
+	# addr = 0x0270			AutoSpeed532	AutoSpeed532
+	[31:24]	8'h20	r/w	cal_rxdcc_data_gen1_lane[7:0]	cal_rxdcc_data_gen1_lane[7:0] speed value	
+	[23:16]	8'h20	r/w	cal_rxdcc_data_gen0_lane[7:0]	cal_rxdcc_data_gen0_lane[7:0] speed value	
+	[15:8]	8'h0	r/w	cal_rxdcc_dll_hg_rate1_lane[7:0]	cal_rxdcc_dll_hg_rate1_lane[7:0] speed value	
+	[7:0]	8'h0	r/w	cal_rxdcc_dll_hg_rate0_lane[7:0]	cal_rxdcc_dll_hg_rate0_lane[7:0] speed value	
+						
+	# addr = 0x0274			AutoSpeed533	AutoSpeed533
+	[31:24]	8'h20	r/w	cal_rxdcc_data_cont_gen0_lane[7:0]	cal_rxdcc_data_cont_gen0_lane[7:0] speed value	
+	[23:16]	8'h20	r/w	cal_rxdcc_data_gen4_lane[7:0]	cal_rxdcc_data_gen4_lane[7:0] speed value	
+	[15:8]	8'h20	r/w	cal_rxdcc_data_gen3_lane[7:0]	cal_rxdcc_data_gen3_lane[7:0] speed value	
+	[7:0]	8'h20	r/w	cal_rxdcc_data_gen2_lane[7:0]	cal_rxdcc_data_gen2_lane[7:0] speed value	
+						
+	# addr = 0x0278			AutoSpeed534	AutoSpeed534
+	[31:24]	8'h20	r/w	cal_rxdcc_data_cont_gen4_lane[7:0]	cal_rxdcc_data_cont_gen4_lane[7:0] speed value	
+	[23:16]	8'h20	r/w	cal_rxdcc_data_cont_gen3_lane[7:0]	cal_rxdcc_data_cont_gen3_lane[7:0] speed value	
+	[15:8]	8'h20	r/w	cal_rxdcc_data_cont_gen2_lane[7:0]	cal_rxdcc_data_cont_gen2_lane[7:0] speed value	
+	[7:0]	8'h20	r/w	cal_rxdcc_data_cont_gen1_lane[7:0]	cal_rxdcc_data_cont_gen1_lane[7:0] speed value	
+						
+	# addr = 0x027c			AutoSpeed535	AutoSpeed535
+	[31:24]	8'h0	r/w	cal_rxdcc_data_hg_gen3_lane[7:0]	cal_rxdcc_data_hg_gen3_lane[7:0] speed value	
+	[23:16]	8'h0	r/w	cal_rxdcc_data_hg_gen2_lane[7:0]	cal_rxdcc_data_hg_gen2_lane[7:0] speed value	
+	[15:8]	8'h0	r/w	cal_rxdcc_data_hg_gen1_lane[7:0]	cal_rxdcc_data_hg_gen1_lane[7:0] speed value	
+	[7:0]	8'h0	r/w	cal_rxdcc_data_hg_gen0_lane[7:0]	cal_rxdcc_data_hg_gen0_lane[7:0] speed value	
+						
+	# addr = 0x0280			AutoSpeed536	AutoSpeed536
+	[31:24]	8'h20	r/w	cal_rxdcc_eom_rate2_lane[7:0]	cal_rxdcc_eom_rate2_lane[7:0] speed value	
+	[23:16]	8'h20	r/w	cal_rxdcc_eom_rate1_lane[7:0]	cal_rxdcc_eom_rate1_lane[7:0] speed value	
+	[15:8]	8'h20	r/w	cal_rxdcc_eom_rate0_lane[7:0]	cal_rxdcc_eom_rate0_lane[7:0] speed value	
+	[7:0]	8'h0	r/w	cal_rxdcc_data_hg_gen4_lane[7:0]	cal_rxdcc_data_hg_gen4_lane[7:0] speed value	
+						
+	# addr = 0x0284			AutoSpeed537	AutoSpeed537
+	[31:24]	8'h20	r/w	cal_rxdcc_eom_cont_rate1_lane[7:0]	cal_rxdcc_eom_cont_rate1_lane[7:0] speed value	
+	[23:16]	8'h20	r/w	cal_rxdcc_eom_cont_rate0_lane[7:0]	cal_rxdcc_eom_cont_rate0_lane[7:0] speed value	
+	[15:8]	8'h20	r/w	cal_rxdcc_eom_rate4_lane[7:0]	cal_rxdcc_eom_rate4_lane[7:0] speed value	
+	[7:0]	8'h20	r/w	cal_rxdcc_eom_rate3_lane[7:0]	cal_rxdcc_eom_rate3_lane[7:0] speed value	
+						
+	# addr = 0x0288			AutoSpeed538	AutoSpeed538
+	[31:24]	8'h0	r/w	cal_rxdcc_eom_hg_rate0_lane[7:0]	cal_rxdcc_eom_hg_rate0_lane[7:0] speed value	
+	[23:16]	8'h20	r/w	cal_rxdcc_eom_cont_rate4_lane[7:0]	cal_rxdcc_eom_cont_rate4_lane[7:0] speed value	
+	[15:8]	8'h20	r/w	cal_rxdcc_eom_cont_rate3_lane[7:0]	cal_rxdcc_eom_cont_rate3_lane[7:0] speed value	
+	[7:0]	8'h20	r/w	cal_rxdcc_eom_cont_rate2_lane[7:0]	cal_rxdcc_eom_cont_rate2_lane[7:0] speed value	
+						
+	# addr = 0x028c			AutoSpeed539	AutoSpeed539
+	[31:24]	8'h0	r/w	cal_rxdcc_eom_hg_rate4_lane[7:0]	cal_rxdcc_eom_hg_rate4_lane[7:0] speed value	
+	[23:16]	8'h0	r/w	cal_rxdcc_eom_hg_rate3_lane[7:0]	cal_rxdcc_eom_hg_rate3_lane[7:0] speed value	
+	[15:8]	8'h0	r/w	cal_rxdcc_eom_hg_rate2_lane[7:0]	cal_rxdcc_eom_hg_rate2_lane[7:0] speed value	
+	[7:0]	8'h0	r/w	cal_rxdcc_eom_hg_rate1_lane[7:0]	cal_rxdcc_eom_hg_rate1_lane[7:0] speed value	
+						
+	# addr = 0x0290			AutoSpeed540	AutoSpeed540
+	[31:24]	8'h16	r/w	cal_vdda_dll_sel_rate1_lane[7:0]	cal_vdda_dll_sel_rate1_lane[7:0] speed value	
+	[23:16]	8'h16	r/w	cal_vdda_dll_sel_rate0_lane[7:0]	cal_vdda_dll_sel_rate0_lane[7:0] speed value	
+	[15:8]	8'h4	r/w	cal_dll_gmsel_rate1_lane[7:0]	cal_dll_gmsel_rate1_lane[7:0] speed value	
+	[7:0]	8'h4	r/w	cal_dll_gmsel_rate0_lane[7:0]	cal_dll_gmsel_rate0_lane[7:0] speed value	
+						
+	# addr = 0x0294			AutoSpeed541	AutoSpeed541
+	[31:24]	8'h4	r/w	cal_dll_eom_gmsel_rate1_lane[7:0]	cal_dll_eom_gmsel_rate1_lane[7:0] speed value	
+	[23:16]	8'h4	r/w	cal_dll_eom_gmsel_rate0_lane[7:0]	cal_dll_eom_gmsel_rate0_lane[7:0] speed value	
+	[15:8]	8'h16	r/w	cal_vdda_dll_sel_cont_rate1_lane[7:0]	cal_vdda_dll_sel_cont_rate1_lane[7:0] speed value	
+	[7:0]	8'h16	r/w	cal_vdda_dll_sel_cont_rate0_lane[7:0]	cal_vdda_dll_sel_cont_rate0_lane[7:0] speed value	
+						
+	# addr = 0x0298			AutoSpeed542	AutoSpeed542
+	[31:24]	8'h16	r/w	cal_vdda_dll_eom_sel_cont_rate1_lane[7:0]	cal_vdda_dll_eom_sel_cont_rate1_lane[7:0] speed value	
+	[23:16]	8'h16	r/w	cal_vdda_dll_eom_sel_cont_rate0_lane[7:0]	cal_vdda_dll_eom_sel_cont_rate0_lane[7:0] speed value	
+	[15:8]	8'h16	r/w	cal_vdda_dll_eom_sel_rate1_lane[7:0]	cal_vdda_dll_eom_sel_rate1_lane[7:0] speed value	
+	[7:0]	8'h16	r/w	cal_vdda_dll_eom_sel_rate0_lane[7:0]	cal_vdda_dll_eom_sel_rate0_lane[7:0] speed value	
+						
+	# addr = 0x029c			AutoSpeed543	AutoSpeed543
+	[31:24]	8'h1	r/w	cal_align90_dummy_clk_rate0_div1_lane[7:0]	cal_align90_dummy_clk_rate0_div1_lane[7:0] speed value	
+	[23:16]	8'h1	r/w	cal_align90_dummy_clk_rate0_div0_lane[7:0]	cal_align90_dummy_clk_rate0_div0_lane[7:0] speed value	
+	[15:8]	8'h0	r/w	cal_eom_dpher_rate1_lane[7:0]	cal_eom_dpher_rate1_lane[7:0] speed value	
+	[7:0]	8'h0	r/w	cal_eom_dpher_rate0_lane[7:0]	cal_eom_dpher_rate0_lane[7:0] speed value	
+						
+	# addr = 0x02a0			AutoSpeed544	AutoSpeed544
+	[31:24]	8'h1	r/w	cal_align90_dummy_clk_cont_rate0_div1_lane[7:0]	cal_align90_dummy_clk_cont_rate0_div1_lane[7:0] speed value	
+	[23:16]	8'h1	r/w	cal_align90_dummy_clk_cont_rate0_div0_lane[7:0]	cal_align90_dummy_clk_cont_rate0_div0_lane[7:0] speed value	
+	[15:8]	8'h1	r/w	cal_align90_dummy_clk_rate1_div1_lane[7:0]	cal_align90_dummy_clk_rate1_div1_lane[7:0] speed value	
+	[7:0]	8'h1	r/w	cal_align90_dummy_clk_rate1_div0_lane[7:0]	cal_align90_dummy_clk_rate1_div0_lane[7:0] speed value	
+						
+	# addr = 0x02a4			AutoSpeed545	AutoSpeed545
+	[31:24]	8'h31	r/w	cal_align90_dac_rate0_div1_lane[7:0]	cal_align90_dac_rate0_div1_lane[7:0] speed value	
+	[23:16]	8'h31	r/w	cal_align90_dac_rate0_div0_lane[7:0]	cal_align90_dac_rate0_div0_lane[7:0] speed value	
+	[15:8]	8'h1	r/w	cal_align90_dummy_clk_cont_rate1_div1_lane[7:0]	cal_align90_dummy_clk_cont_rate1_div1_lane[7:0] speed value	
+	[7:0]	8'h1	r/w	cal_align90_dummy_clk_cont_rate1_div0_lane[7:0]	cal_align90_dummy_clk_cont_rate1_div0_lane[7:0] speed value	
+						
+	# addr = 0x02a8			AutoSpeed546	AutoSpeed546
+	[31:24]	8'h3	r/w	cal_align90_dac_cont_rate0_div1_lane[7:0]	cal_align90_dac_cont_rate0_div1_lane[7:0] speed value	
+	[23:16]	8'h3	r/w	cal_align90_dac_cont_rate0_div0_lane[7:0]	cal_align90_dac_cont_rate0_div0_lane[7:0] speed value	
+	[15:8]	8'h31	r/w	cal_align90_dac_rate1_div1_lane[7:0]	cal_align90_dac_rate1_div1_lane[7:0] speed value	
+	[7:0]	8'h31	r/w	cal_align90_dac_rate1_div0_lane[7:0]	cal_align90_dac_rate1_div0_lane[7:0] speed value	
+						
+	# addr = 0x02ac			AutoSpeed547	AutoSpeed547
+	[31:24]	8'h3	r/w	cal_align90_gm_rate0_div1_lane[7:0]	cal_align90_gm_rate0_div1_lane[7:0] speed value	
+	[23:16]	8'h3	r/w	cal_align90_gm_rate0_div0_lane[7:0]	cal_align90_gm_rate0_div0_lane[7:0] speed value	
+	[15:8]	8'h3	r/w	cal_align90_dac_cont_rate1_div1_lane[7:0]	cal_align90_dac_cont_rate1_div1_lane[7:0] speed value	
+	[7:0]	8'h3	r/w	cal_align90_dac_cont_rate1_div0_lane[7:0]	cal_align90_dac_cont_rate1_div0_lane[7:0] speed value	
+						
+	# addr = 0x02b0			AutoSpeed548	AutoSpeed548
+	[31:24]	8'h3	r/w	cal_align90_gm_cont_rate0_div1_lane[7:0]	cal_align90_gm_cont_rate0_div1_lane[7:0] speed value	
+	[23:16]	8'h3	r/w	cal_align90_gm_cont_rate0_div0_lane[7:0]	cal_align90_gm_cont_rate0_div0_lane[7:0] speed value	
+	[15:8]	8'h3	r/w	cal_align90_gm_rate1_div1_lane[7:0]	cal_align90_gm_rate1_div1_lane[7:0] speed value	
+	[7:0]	8'h3	r/w	cal_align90_gm_rate1_div0_lane[7:0]	cal_align90_gm_rate1_div0_lane[7:0] speed value	
+						
+	# addr = 0x02b4			AutoSpeed549	AutoSpeed549
+	[31:24]	8'h8	r/w	cal_sellv_txdata_gen1_lane[7:0]	cal_sellv_txdata_gen1_lane[7:0] speed value	
+	[23:16]	8'h8	r/w	cal_sellv_txdata_gen0_lane[7:0]	cal_sellv_txdata_gen0_lane[7:0] speed value	
+	[15:8]	8'h3	r/w	cal_align90_gm_cont_rate1_div1_lane[7:0]	cal_align90_gm_cont_rate1_div1_lane[7:0] speed value	
+	[7:0]	8'h3	r/w	cal_align90_gm_cont_rate1_div0_lane[7:0]	cal_align90_gm_cont_rate1_div0_lane[7:0] speed value	
+						
+	# addr = 0x02b8			AutoSpeed550	AutoSpeed550
+	[31:24]	8'h8	r/w	cal_sellv_txdata_cont_gen0_lane[7:0]	cal_sellv_txdata_cont_gen0_lane[7:0] speed value	
+	[23:16]	8'h8	r/w	cal_sellv_txdata_gen4_lane[7:0]	cal_sellv_txdata_gen4_lane[7:0] speed value	
+	[15:8]	8'h8	r/w	cal_sellv_txdata_gen3_lane[7:0]	cal_sellv_txdata_gen3_lane[7:0] speed value	
+	[7:0]	8'h8	r/w	cal_sellv_txdata_gen2_lane[7:0]	cal_sellv_txdata_gen2_lane[7:0] speed value	
+						
+	# addr = 0x02bc			AutoSpeed551	AutoSpeed551
+	[31:24]	8'h8	r/w	cal_sellv_txdata_cont_gen4_lane[7:0]	cal_sellv_txdata_cont_gen4_lane[7:0] speed value	
+	[23:16]	8'h8	r/w	cal_sellv_txdata_cont_gen3_lane[7:0]	cal_sellv_txdata_cont_gen3_lane[7:0] speed value	
+	[15:8]	8'h8	r/w	cal_sellv_txdata_cont_gen2_lane[7:0]	cal_sellv_txdata_cont_gen2_lane[7:0] speed value	
+	[7:0]	8'h8	r/w	cal_sellv_txdata_cont_gen1_lane[7:0]	cal_sellv_txdata_cont_gen1_lane[7:0] speed value	
+						
+	# addr = 0x02c0			AutoSpeed552	AutoSpeed552
+	[31:24]	8'h8	r/w	cal_sellv_txclk_gen3_lane[7:0]	cal_sellv_txclk_gen3_lane[7:0] speed value	
+	[23:16]	8'h8	r/w	cal_sellv_txclk_gen2_lane[7:0]	cal_sellv_txclk_gen2_lane[7:0] speed value	
+	[15:8]	8'h8	r/w	cal_sellv_txclk_gen1_lane[7:0]	cal_sellv_txclk_gen1_lane[7:0] speed value	
+	[7:0]	8'h8	r/w	cal_sellv_txclk_gen0_lane[7:0]	cal_sellv_txclk_gen0_lane[7:0] speed value	
+						
+	# addr = 0x02c4			AutoSpeed553	AutoSpeed553
+	[31:24]	8'h8	r/w	cal_sellv_txclk_cont_gen2_lane[7:0]	cal_sellv_txclk_cont_gen2_lane[7:0] speed value	
+	[23:16]	8'h8	r/w	cal_sellv_txclk_cont_gen1_lane[7:0]	cal_sellv_txclk_cont_gen1_lane[7:0] speed value	
+	[15:8]	8'h8	r/w	cal_sellv_txclk_cont_gen0_lane[7:0]	cal_sellv_txclk_cont_gen0_lane[7:0] speed value	
+	[7:0]	8'h8	r/w	cal_sellv_txclk_gen4_lane[7:0]	cal_sellv_txclk_gen4_lane[7:0] speed value	
+						
+	# addr = 0x02c8			AutoSpeed554	AutoSpeed554
+	[31:24]	8'h8	r/w	cal_sellv_rxdataclk_gen1_lane[7:0]	cal_sellv_rxdataclk_gen1_lane[7:0] speed value	
+	[23:16]	8'h8	r/w	cal_sellv_rxdataclk_gen0_lane[7:0]	cal_sellv_rxdataclk_gen0_lane[7:0] speed value	
+	[15:8]	8'h8	r/w	cal_sellv_txclk_cont_gen4_lane[7:0]	cal_sellv_txclk_cont_gen4_lane[7:0] speed value	
+	[7:0]	8'h8	r/w	cal_sellv_txclk_cont_gen3_lane[7:0]	cal_sellv_txclk_cont_gen3_lane[7:0] speed value	
+						
+	# addr = 0x02cc			AutoSpeed555	AutoSpeed555
+	[31:24]	8'h8	r/w	cal_sellv_rxdataclk_cont_gen0_lane[7:0]	cal_sellv_rxdataclk_cont_gen0_lane[7:0] speed value	
+	[23:16]	8'h8	r/w	cal_sellv_rxdataclk_gen4_lane[7:0]	cal_sellv_rxdataclk_gen4_lane[7:0] speed value	
+	[15:8]	8'h8	r/w	cal_sellv_rxdataclk_gen3_lane[7:0]	cal_sellv_rxdataclk_gen3_lane[7:0] speed value	
+	[7:0]	8'h8	r/w	cal_sellv_rxdataclk_gen2_lane[7:0]	cal_sellv_rxdataclk_gen2_lane[7:0] speed value	
+						
+	# addr = 0x02d0			AutoSpeed556	AutoSpeed556
+	[31:24]	8'h8	r/w	cal_sellv_rxdataclk_cont_gen4_lane[7:0]	cal_sellv_rxdataclk_cont_gen4_lane[7:0] speed value	
+	[23:16]	8'h8	r/w	cal_sellv_rxdataclk_cont_gen3_lane[7:0]	cal_sellv_rxdataclk_cont_gen3_lane[7:0] speed value	
+	[15:8]	8'h8	r/w	cal_sellv_rxdataclk_cont_gen2_lane[7:0]	cal_sellv_rxdataclk_cont_gen2_lane[7:0] speed value	
+	[7:0]	8'h8	r/w	cal_sellv_rxdataclk_cont_gen1_lane[7:0]	cal_sellv_rxdataclk_cont_gen1_lane[7:0] speed value	
+						
+	# addr = 0x02d4			AutoSpeed557	AutoSpeed557
+	[31:24]	8'h8	r/w	cal_sellv_txpre_gen3_lane[7:0]	cal_sellv_txpre_gen3_lane[7:0] speed value	
+	[23:16]	8'h8	r/w	cal_sellv_txpre_gen2_lane[7:0]	cal_sellv_txpre_gen2_lane[7:0] speed value	
+	[15:8]	8'h8	r/w	cal_sellv_txpre_gen1_lane[7:0]	cal_sellv_txpre_gen1_lane[7:0] speed value	
+	[7:0]	8'h8	r/w	cal_sellv_txpre_gen0_lane[7:0]	cal_sellv_txpre_gen0_lane[7:0] speed value	
+						
+	# addr = 0x02d8			AutoSpeed558	AutoSpeed558
+	[31:24]	8'h8	r/w	cal_sellv_txpre_cont_gen2_lane[7:0]	cal_sellv_txpre_cont_gen2_lane[7:0] speed value	
+	[23:16]	8'h8	r/w	cal_sellv_txpre_cont_gen1_lane[7:0]	cal_sellv_txpre_cont_gen1_lane[7:0] speed value	
+	[15:8]	8'h8	r/w	cal_sellv_txpre_cont_gen0_lane[7:0]	cal_sellv_txpre_cont_gen0_lane[7:0] speed value	
+	[7:0]	8'h8	r/w	cal_sellv_txpre_gen4_lane[7:0]	cal_sellv_txpre_gen4_lane[7:0] speed value	
+						
+	# addr = 0x02dc			AutoSpeed559	AutoSpeed559
+	[31:24]	8'h8	r/w	cal_sellv_rxsampler_gen1_lane[7:0]	cal_sellv_rxsampler_gen1_lane[7:0] speed value	
+	[23:16]	8'h8	r/w	cal_sellv_rxsampler_gen0_lane[7:0]	cal_sellv_rxsampler_gen0_lane[7:0] speed value	
+	[15:8]	8'h8	r/w	cal_sellv_txpre_cont_gen4_lane[7:0]	cal_sellv_txpre_cont_gen4_lane[7:0] speed value	
+	[7:0]	8'h8	r/w	cal_sellv_txpre_cont_gen3_lane[7:0]	cal_sellv_txpre_cont_gen3_lane[7:0] speed value	
+						
+	# addr = 0x02e0			AutoSpeed560	AutoSpeed560
+	[31:24]	8'h8	r/w	cal_sellv_rxsampler_cont_gen0_lane[7:0]	cal_sellv_rxsampler_cont_gen0_lane[7:0] speed value	
+	[23:16]	8'h8	r/w	cal_sellv_rxsampler_gen4_lane[7:0]	cal_sellv_rxsampler_gen4_lane[7:0] speed value	
+	[15:8]	8'h8	r/w	cal_sellv_rxsampler_gen3_lane[7:0]	cal_sellv_rxsampler_gen3_lane[7:0] speed value	
+	[7:0]	8'h8	r/w	cal_sellv_rxsampler_gen2_lane[7:0]	cal_sellv_rxsampler_gen2_lane[7:0] speed value	
+						
+	# addr = 0x02e4			AutoSpeed561	AutoSpeed561
+	[31:24]	8'h8	r/w	cal_sellv_rxsampler_cont_gen4_lane[7:0]	cal_sellv_rxsampler_cont_gen4_lane[7:0] speed value	
+	[23:16]	8'h8	r/w	cal_sellv_rxsampler_cont_gen3_lane[7:0]	cal_sellv_rxsampler_cont_gen3_lane[7:0] speed value	
+	[15:8]	8'h8	r/w	cal_sellv_rxsampler_cont_gen2_lane[7:0]	cal_sellv_rxsampler_cont_gen2_lane[7:0] speed value	
+	[7:0]	8'h8	r/w	cal_sellv_rxsampler_cont_gen1_lane[7:0]	cal_sellv_rxsampler_cont_gen1_lane[7:0] speed value	
+						
+	# addr = 0x02e8			AutoSpeed562	AutoSpeed562
+	[31:24]	8'h8	r/w	cal_sellv_rxeomclk_gen3_lane[7:0]	cal_sellv_rxeomclk_gen3_lane[7:0] speed value	
+	[23:16]	8'h8	r/w	cal_sellv_rxeomclk_gen2_lane[7:0]	cal_sellv_rxeomclk_gen2_lane[7:0] speed value	
+	[15:8]	8'h8	r/w	cal_sellv_rxeomclk_gen1_lane[7:0]	cal_sellv_rxeomclk_gen1_lane[7:0] speed value	
+	[7:0]	8'h8	r/w	cal_sellv_rxeomclk_gen0_lane[7:0]	cal_sellv_rxeomclk_gen0_lane[7:0] speed value	
+						
+	# addr = 0x02ec			AutoSpeed563	AutoSpeed563
+	[31:24]	8'h8	r/w	cal_sellv_rxeomclk_cont_gen2_lane[7:0]	cal_sellv_rxeomclk_cont_gen2_lane[7:0] speed value	
+	[23:16]	8'h8	r/w	cal_sellv_rxeomclk_cont_gen1_lane[7:0]	cal_sellv_rxeomclk_cont_gen1_lane[7:0] speed value	
+	[15:8]	8'h8	r/w	cal_sellv_rxeomclk_cont_gen0_lane[7:0]	cal_sellv_rxeomclk_cont_gen0_lane[7:0] speed value	
+	[7:0]	8'h8	r/w	cal_sellv_rxeomclk_gen4_lane[7:0]	cal_sellv_rxeomclk_gen4_lane[7:0] speed value	
+						
+	# addr = 0x02f0			AutoSpeed564	AutoSpeed564
+	[31:24]	0	r/w	RESERVED		
+	[23:16]	8'h2	r/w	tx_preset_index_lane[7:0]	tx_preset_index_lane[7:0] speed value	
+	[15:8]	8'h8	r/w	cal_sellv_rxeomclk_cont_gen4_lane[7:0]	cal_sellv_rxeomclk_cont_gen4_lane[7:0] speed value	
+	[7:0]	8'h8	r/w	cal_sellv_rxeomclk_cont_gen3_lane[7:0]	cal_sellv_rxeomclk_cont_gen3_lane[7:0] speed value	

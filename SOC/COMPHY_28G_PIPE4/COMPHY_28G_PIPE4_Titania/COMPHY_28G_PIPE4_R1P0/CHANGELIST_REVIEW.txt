@@ -1,0 +1,1844 @@
+//*********************************************************************
+//	    COMPHY_28G_PIPE4 Firmware Change History			
+//
+//   Copyright (c) 2016 Marvell Semiconductor, Inc. All rights reserved
+//*********************************************************************
+ 9/16/2020 Chun-Kang Chen 0.12.22.129
+  - Add reg_testbus_dbg[15:0] assignment in the pcie power management functions
+  quoted from email Wed 9/16/2020 12:01 PM:
+  "
+ Hi Kang,
+
+The purpose of the debug version is to bring out Ring PLL lock signal to testbus to monitor on scope. The testbus need to be updated as long as the Ring PLL lock signal has any update, please help to create a new version to implement this feature.
+
+Thanks,
+    Shaobing
+  "
+ 8/28/2020 Chun-Kang Chen 0.12.22.128
+  - Debug PLL unlock case to put PLL_SLLP_DAC_FINE_RING on reg_testbus_dbg[15:0] 
+ 8/6/2020 Heejeong Ryu 0.12.22.127
+  - added ringpll fastcal control registers:
+0xe618[23:16] RINGPLL_DAC_FINE_CODE_RATIO[7:0]
+0xe6c8[31:16] RINGPLL_TFINEDAC[7:0]  delay for 2.8
+0xe618[31:24] RINGPLL_DAC_MAX_STEP_NUM[7:0] 
+0xe6d0[15:8] RINGPLL_DAC_MIN_STEP_NUM[7:0] 
+0xe6d0[23:16] RINGPLL_FDIFF_7_0 fdiff_0
+ 7/23/2020 Heejeong Ryu 0.12.22.126
+  - applied RINGPLL power up calibration same as Voltron based on 0.12.22.123
+ 5/15/2020 Chun-Kang Chen 0.12.22.125
+  - Added a debug option for sellv_smpler = 0 at PCIe gen1
+ 4/14/2020 Heejeong Ryu 0.12.22.124
+  - Added sellv_smpler = 0 at PCIe gen1
+ 2/21/2020 Heejeong Ryu 0.12.22.123 
+  - updated to use original Tsen read function from ROM code
+ 2/21/2020 Heejeong Ryu 0.12.22.122
+  - removed wait for other lane access finish in new tsen read
+ 2/21/2020 Heejeong Ryu 0.12.22.121
+  - fixed temperature reading before initial tempc
+  - appplied 7121 tsensor read function.
+ 2/21/2020 Andrew Danilovic 0.12.22.120
+  - Update tempc initial table from Falcon/Eagle svn rev 5657
+ 2/20/2020 Andrew Danilovic 0.12.22.119
+  - Leave dfe_pat_dis_fm_reg_lane at its default value of 0 to enable pattern protection
+  - Change dfe_step_accu*_lane to 3
+ 2/19/2020 Andrew Danilovic 0.12.22.118
+  - changed dfe_res_f0a_high_thres_init_g3_lane: 0x28 => 0x2D
+ 2/19/2020 Andrew Danilovic 0.12.22.117
+  - Set dfe_pat_dis_fm_reg_lane = 1 during phy_init to disable pattern protection
+  - Change DFE DC Workaround duration default delay to 0 (no delay)
+  - Change DFE DC Workaround default start delay to 5ms
+  - Change the dfe step size dfe_step_accu_dc_lane=8, dfe_step_accu_fx_lane=0xa, dfe_step_accu_f0_lane=6
+ 2/14/2020 Andrew Danilovic 0.12.22.116
+  - Based off of 0.12.22.107
+  - Program reg_DFE_POL_LPNUM_LANE to 0x1b
+ 2/12/2020 Andrew Danilovic 0.12.22.115
+  - based on 0.12.22.114, disable interrupts during DFE WA loop
+ 2/12/2020 Andrew Danilovic 0.12.22.114
+  - based on 0.12.22.113, added cmx_DFE_DC_INTERVAL_WA_START_DELAY_3_0 to control delay of dfe sampler workaround start
+ 2/7/2020 Heejeong Ryu 0.12.22.113
+  - based on 0.12.22.109, changed dfe_step_accu_dc_lane=3, dfe_step_accu_fx_lane = 3, dfe_step_accu_f0_lane = 3
+ 2/7/2020 Heejeong Ryu 0.12.22.112
+ - removed CORE RESET phy sync part - need to debug.
+ 2/6/2020 Heejeong Ryu 0.12.22.111
+ - added CORE_RESET sync logic
+ 1/31/2020 Heejeong Ryu 0.12.22.110
+ - based on 0.12.22.107, changed dfe_res_f0a_high_thres_init_g3_lane: 0x28 => 0x2D
+ 1/29/2020 Heejeong Ryu 0.12.22.109
+  - added dfe_dc_interval_eq_duration_sel, dfe_dc_interval_eq_slice_only (temporary added)
+ 1/23/2020 Heejeong Ryu 0.12.22.108
+  - changed dfe_step_accu_dc_lane=4, dfe_step_accu_fx_lane = 4, dfe_step_accu_f0_lane = 4
+  - enabled DFE DC WA as default enabled (0: enable)
+ 1/23/2020 Heejeong Ryu 0.12.22.107
+  - changed both data/slicer sampler adapt in PCIe mode
+ 1/21/2020 Heejeong Ryu 0.12.22.106
+  - added back to use DFE DC WA control bit - 1: enable
+ 1/17/2020 Heejeong Ryu 0.12.22.105
+  - updated dfe_step_accu_f0_lane[3:0] = 3
+ 1/15/2020 Heejeong Ryu 0.12.22.104
+  - added FW 0.12.22.101 + dfe_step_accu_dc_lane=3, dfe_step_accu_fx_lane = 3
+ 1/2/2020 Heejeong Ryu 0.12.22.103
+  - rolled back to 101 version; added back lane margin patch
+  - added back force ffe_pulse_div
+  - added dfe_step_accu_fx control register
+ 12/19/2019 Heejeong Ryu 0.12.22.102
+  - Sync to X2_R2P0; removed Lane Margin patch, use original lane margin function
+ 12/19/2019 Heejeong Ryu 0.12.22.101
+  - Sync to X2_R2P0; removed DFA DC Tap chicken bit
+ 12/16/2019 Heejeong Ryu 0.12.22.100
+  - Sync to X2_R2P0; added back lane_margin patch, dfe_dc_interval_eq_en control flip
+ 12/6/2019 Heejeong Ryu 0.12.22.99
+  - Sync to X2_R2P0; removed lane_margin patch
+ 11/5/2019 Heejeong Ryu 0.12.22.98
+  - Sync to X2_R2P1; fixed eom draw /w dfe_dc_interval_eq_en=1
+ 10/28/2019 Heejeong Ryu  0.12.22.97
+  - added DC hardware bug Firmware workaround
+  - fixed typo on cds_tb[CDS_DATAADAPT]
+  - changed gn1_max to or g0_max information for p2p_hold 
+ 9/18/2019 Andrew Danilovic 0.12.22.95
+  - Modify the ffe_pulse_div_lane program sequence, and skip calling the original ROM code
+ 9/17/2019 Andrew Danilovic 0.12.22.94
+  - Set ffe_pulse_div_lane in all code paths
+ 3/28/2019 Heejeong Ryu 0.12.22.84 [SOC Titania X2 release] =========
+  - sync up with X2
+ 3/27/2019 Heejeong Ryu 0.12.22.71 [SOC Titania X2 release] =========
+  - fixed dfe regression test 
+  - fixed regression test
+ 3/22/2019 Heejeong Ryu 0.12.22.71
+  - removed dfe_res_f0 adapt in PCIe
+  - changed back to add reg_SQ_LPF_EN_LANE = 1
+  -  - Changed dfe_stop_gen3/4_en = 0 in spdtbl
+ 3/21/2019 Heejeong Ryu 0.12.22.70 [SOC Titania X2 release] =========
+ 3/21/2019 Heejeong Ryu 0.12.22.70
+  - Changed dfe_stop_gen4_en = 1 in spdtbl
+  - Split gain train table for gen3 and gen4 
+ 3/21/2019 Heejeong Ryu 0.12.22.69
+  - added SQ Detect in rxinit
+ 3/21/2019 Heejeong Ryu 0.12.22.68
+  - set VDDVCO_VTH_12NM_SEL=1 in init_reg
+  - updated for ofst all 0
+ 3/21/2019 Heejeong Ryu 0.12.22.66
+  1)added DFE_SAT_STOP_GEN3_EN, DFE_SAT_STOP_GEN4_EN to control overall DFE Stop mode. The default is 1.
+                # addr = 0xe698                                tx_save_0                           
+                5              0              r/w         dfe_stop_gen4_en          DFE Stop Condition Enable For PCIe GEN4             internal
+                4              1              r/w         dfe_stop_gen3_en          DFE Stop Condition Enable For PCIe GEN3             internal
+                3              1              r/w         dfe_sat_stop_gen4_en DFE Stop Enable For PCIe GEN4 In DFE Stop Condition OR DFE F0 Saturation     internal
+                2              1              r/w         dfe_sat_stop_gen3_en DFE Stop Enable For PCIe GEN3 In DFE Stop Condition OR DFE F0 Saturation     internal
+  2)Changed TRAIN_FORCE_RXFFE_*_SEL_G2_LANE default value: 500800  --> 600CFF
+  3)Added to latch dfe/dc to *ext  for power wakeup
+  4)Added DFE_RES_F0 adapt; Gain train table changed. Will call 3 more 3 CDS.
+     Before : C index table =  {12, 7, 5}; 
+              Dfe_f0_res force to 3
+     After:  C index table = {12, 12, 12, 12, 7, 5};
+             Dfe_f0_res table = {0, 1, 2, 3, 3, 3} 
+ 3/20/2019 Heejeong Ryu 0.12.22.65
+ - Merged 61 + 63(from 51version)
+ - increased 10 time longer delay for every delay in sampler cal
+ - no rxtrain call in rxinit
+ - added DFE_STOP_GEN3_EN
+ - Set DFE_STOP_GEN3_EN, DFE_STOP_GEN4_EN default value to 0 in spdtbl
+ - updated rxinit no call reset_dfe. Added save DC to DC_EXT for one time load in pwr wakeup
+ 3/20/2019 Heejeong Ryu 0.12.22.64
+ - From FW 0.12.22.63, 
+ - Changed back sampler cal all the delay time to original one
+ - Removed rxtrain in rxinit
+ 3/19/2019 Heejeong Ryu 0.12.22.63
+ - From 0.12.22.62, set reg_RX_PULSE_SHORTB_LANE = 0 during sampler cal
+ 3/19/2019 Heejeong Ryu 0.12.22.62
+ - Based on 0.12.22.51, 
+ - 10 time longer delay  for every delay in sampler cal
+ - Call rxtrain in rxinit for L1 exit test
+ 3/18/2019 Heejeong Ryu 0.12.22.61
+ - added F0d debug dump
+ - Reduced SAS 6G RxTrain Time
+ - updated Tx/PLL continuous calibration before RXinit  
+ - removed PATH_DISABLE_EDGE_LANE=0 if not SERDES mode
+ - disable APTA due to PMEM overflow
+ 3/11/2019 Heejeong Ryu 0.12.22.57
+ - used f0d for ctle train in saturated condition
+ 3/11/2019 Heejeong Ryu 0.12.22.56
+ - debug C force after gain train saturation
+ 3/11/2019 Heejeong Ryu 0.12.22.55
+ - remove previous force one
+ 3/11/2019 Heejeong Ryu 0.12.22.54
+ - added ctle F0a train when staturation condition
+ - bypass rxinit with bypass_pu_rx_p1 option
+ 3/11/2019 Heejeong Ryu 0.12.22.53
+ - updated rxinit dfe load
+ 3/10/2019 Heejeong Ryu 0.12.22.52
+ - added an option to adapt f0 when dfe saturation condition in PCIe Train end
+ 3/8/2019 Heejeong Ryu 0.12.22.51
+ - Dfe stop condition use f0a_max
+ - Normal tracking set slicer sampler only adapt
+ - Changed force ctle ge3 = 500800
+ - F0a_sat_thr_gen4 = 40
+ - Dfe stop condition check at train end
+ 3/8/2019 Heejeong Ryu 0.12.22.42
+ - Force_rxffe_*_g3 = 200800 (default )
+ - DFE_STOP_GEN4_EN =1  (default)
+ - F0a adapt only for gain train, then force to dfe stop if f0a >= F0A_SAT_THR_G3_LANE 
+ - F0a_sat_thr_g2/g4 = ‘d50
+ - added bypass option control for pu_rx off in PCIe P1
+ 3/2/2019 Heejeong Ryu 0.12.22.29
+ - changed back reg_VARAC_BIAS_SEL_2_0=5 for 1.8V ANA
+ - added rxdcc_en_*clk control
+ 3/2/2019 Heejeong Ryu 0.12.22.28
+ - updated dfe stop condition for PCIe GEN4 after train
+ 3/2/2019 Heejeong Ryu 0.12.22.27
+ - set back DFE_ADAPT_SPLR_EN_LANE=0xf in PCIe after train for GEN4 AER test
+ 3/1/2019 Heejeong Ryu 0.12.22.26
+ - updated PCIe RxTrain Timer = 10ms
+ - updated LCPLL_CAL debug dump
+ 2/28/2019 Heejeong Ryu 0.12.22.25 [SOC Voltron X2 release] =========
+ - added LCPLL_CAL debug dump
+ - updated vcon default 
+ 2/25/2019 Heejeong Ryu 0.12.22.21
+ - updated VCON_REF_SEL=3, VARAC_BIAS_SEL=5
+ 2/25/2019 Heejeong Ryu 0.12.22.20
+ - updated to remove res=0 in gain train for long channel
+ - updated vcon_min/max_sel for 1.2V
+ 2/25/2019 Heejeong Ryu 0.12.22.19
+ - changed PCIe gain table = {12,7,5}
+ - clear train pass when CORE Reset trigger
+ 2/23/2019 Heejeong Ryu 0.12.22.18
+ - removed cap1 comparing with 1 in dfe stop condition after train end
+ 2/23/2019 Heejeong Ryu 0.12.22.17
+ - updated for regression
+ 2/23/2019 Heejeong Ryu 0.12.22.16
+ - skip first index in gain tbl 
+ 2/22/2019 Heejeong Ryu 0.12.22.15
+ - set DFE_ADAPT_SPLR_EN_LANE=0xc in PCIe after train to debug bad parts AER (Advanced Error Reporting)
+ 2/22/2019 Heejeong Ryu 0.12.22.14
+ - removed B in PCIe R table
+ 2/22/2019 Heejeong Ryu 0.12.22.13
+ - added train f0a satruate for clte force
+ 2/22/2019 Heejeong Ryu 0.12.22.10
+ - added back dfe_cont stop before power down
+ 2/21/2019 Heejeong Ryu 0.12.22.9
+ - fixed train pass in pcie
+ 2/21/2019 Heejeong Ryu 0.12.22.8
+ - added short trace patch
+ - fixed power on speed txffe load
+ 2/20/2019 Heejeong Ryu 0.12.22.6
+ - added TX_IDLE control during SERDES Speed change
+ 2/19/2019 Heejeong Ryu 0.12.22.5
+ - brought tag_DFE_RES_F0A_HIGH_THRES_INIT to register
+ 2/19/2019 Heejeong Ryu 0.12.22.4
+ - removed init set: GAIN_TRAIN_INIT_EN_LANE, CFG_RX_EQ_CTRL_LANE, TXDETRX_VTH_LANE
+ 2/14/2019 Heejeong Ryu 0.12.22.1
+ - fixed bug for cont_cal not running after EOM drawing
+ 2/11/2019 Heejeong Ryu 0.12.22.0
+ - masked int to fix Serdes lane power up in pwr seq on 
+ 2/6/2019 Heejeong Ryu 0.12.21.35
+ - added back int_enable_all set 
+ - added APTA support back
+ 2/5/2019 Heejeong Ryu 0.12.21.33
+ - added RX_INIT delay dtl coarse
+ 2/4/2019 Heejeong Ryu 0.12.21.32
+ - debug Voltron debug
+ - increase RX_INIT delay
+ 2/4/2019 Heejeong Ryu 0.12.21.27
+ - added RX_INIT_DONE 50usec delay for PCIe power Wake up
+ - Not to support APTA feature due to lack of memory
+ 2/1/2019 Heejeong Ryu 0.12.21.26
+  - block power isr during power up
+ 1/25/2019 Heejeong Ryu 0.12.21.25
+  - debug SERDES Train failure
+  - added back train status
+  - removed RX_INIT_DONE clear during speed change
+ 1/24/2019 Heejeong Ryu 0.12.21.24
+  - sync with latest midas
+  - set REG_DTL_LOOP_FREEZE_LANE = 0
+ 1/21/2019 Heejeong Ryu 0.12.21.23
+  - removed reg_TXDETRX_SAMPLING_POINT_LANE_2_0 control patch to fix direct connect RC4 to EP
+  - restored EQ patch for PIPE Train abort 
+ 1/18/2019 Heejeong Ryu 0.12.21.134
+  - removed EQ Improvement of TxTrain Abort
+  - removed delay before RX_INIT_DONE
+ 1/8/2019 Heejeong Ryu 0.12.21.22
+  - changed toggle reset_dtx handle at speed change always, not support multilane/multispeed
+  - added MASTER_ACT_MCU_RD register
+ 1/4/2019 Heejeong Ryu 0.12.21.21
+  - fix ph_control_mode bug
+ 1/3/2019 Heejeong Ryu 0.12.21.20
+  - added additional reg_TX_FFE_TRAIN_DONE_LANE clear at train abort
+ 1/2/2019 Heejeong Ryu 0.12.21.19
+  - updated for reset dtx control
+  - debug for SERDES power on pll_lock unstable
+ 12/20/2018 Heejeong Ryu 0.12.21.17
+  - debug shared pll lane disable
+ 12/18/2018 Heejeong Ryu 0.12.21.16: rollback to 0.12.21.13 with Trxinit
+ 12/18/2018 Heejeong Ryu 0.12.21.15
+  - added rxinit_done delay control register for test
+  - added slave phy pll wait delay time
+  - changed for SATA speed change /wo pll load at LCPLL only
+  - fixed ringpll timeout regression failure
+ 12/5/2018 Heejeong Ryu 0.12.21.14
+  - updated for master mcu disable
+  - support Lane reduce with lane flip order
+  - added train status output registers
+ 12/3/2018 Heejeong Ryu 0.12.21.13
+  - updated txalignment and reset_dtx order for pcie L1SS lane to Lane skew
+  - added pll_lock check back
+ 11/29/2018 Heejeong Ryu 0.12.21.12
+  - removed extra phy sync step in before spd_chg
+ 11/29/2018 Heejeong Ryu 0.12.21.10
+  - more debug on phy sync
+ 11/29/2018 Heejeong Ryu 0.12.21.8
+  - debug shared pll link disable/enable
+  - changed lnx_MIDPOINT_SMALL_THRES_K_LANE_3_0=0xf, sumtf*
+ 11/28/2018 Heejeong Ryu 0.12.21.7
+  - add PHY sync before and end tx alignment
+  - set DFE_ANA_SETTLE_PATHOFF_3_0 = 0x0d
+  - update PHY Sync bidriction
+ 11/14/2018 Heejeong Ryu 0.12.21.3
+  - update lcpll spedtbl
+ 11/14/2018 Heejeong Ryu 0.12.21.2
+  - added missing pll_clk_ready control, removed pll spdtbl load during gen calibration
+ 11/14/2018 Heejeong Ryu 0.12.21.0
+  - Update LCPLL Speed Table for PCIe bandwith
+  - Improve PCIe Train Time
+  - Add embedded Checksum into Speed Table 
+ 11/6/2018 Heejeong Ryu 0.12.19.1
+  - clean up regression test, optimized for PRAM overflow
+ 11/2/2018 Heejeong Ryu 0.12.19.0 
+  - fixed SQ Threshold Ratio Command Interface Bug
+  - Added Ethernet PT output during train with 100usec delay
+  - Sync with Cobra, Fabrico changes
+ 10/11/2018 Heejeong Ryu 0.12.18.0 
+  - splited from R2P1 ROM update
+=======================================================================
+ 9/19/2018 Heejeong Ryu 0.12.17.4
+  - pll_ready output after phy_status change
+ 9/17/2018 Heejeong Ryu 0.12.17.3
+  - fixed X2_ROM stuck
+ 9/13/2018 Heejeong Ryu 0.12.17.2
+  - set BALANCE_CAL_EN=0 for not SERDES mode
+  - updated error ttiu handle
+  - changed TxFFE coefficient dual argument control
+  - updated for regression test failure
+  - added APTA_TERMINATE_REASON register and control
+ 9/12/2018 Heejeong Ryu 0.12.17.1
+  - removed LCPLL load when timeout
+  - force R1[0]=13 for PCIe 8G
+ 9/11/2018 Heejeong Ryu 0.12.17.0 [SOC HAYABUSA X2 release] =========
+ 9/10/2018 Heejeong Ryu 0.12.16.2
+  - updated Ethernet preset ttui bug fix
+  - apta L_A access enable when LOCAL_CTRL_FIELD_READY=1
+ 9/9/2018 Heejeong Ryu 0.12.16.1
+  - updated TTIU Error handle
+ 9/7/2018 Heejeong Ryu 0.12.16.0 [SOC HAYABUSA X2 release] =========
+ 9/6/2018 Heejeong Ryu 0.12.15.5
+  - updated serdes speed change stuck
+  - added retore dfe_en/dfe_dis in sampler cal  
+ 9/4/2018 Heejeong Ryu 0.12.15.4
+  - updated CORE_RESET pll timeout disable patch 
+  - updated TTIU error handle
+ 9/4/2018 Heejeong Ryu 0.12.15.3
+  - updated local tx preset command if
+  - updated trainif txffe single arq handle 
+ 8/31/2018 Heejeong Ryu 0.12.15.2
+  - set reg_EBUF_THRESHOLD_WIDE_LANE=1 for pcie init
+  - disable lcpll timer when core_reset
+  - load passed pll value when pllcal fail
+ 8/30/2018 Heejeong Ryu 0.12.15.1
+  - updated TTIU error handle 
+ 8/30/2018 Heejeong Ryu 0.12.15.0 [SOC ELNATH release] =========
+  - added TTIU Error hanle after train complete before Train Enable=0
+  - fixed cal seq stuck 
+ 8/29/2018 Heejeong Ryu 0.12.14.2
+  - updated mcu sync for Ethernet Cfg 2/3
+ 8/27/2018 Heejeong Ryu 0.12.14.1
+  - changed ringpll timeout timer to 50msec
+ 8/27/2018 Heejeong Ryu 0.12.14.0 [SOC ELNATH release] =========
+  - clear train_comp/failed when spdchg/pw_state 
+  - updated SAS TTIU error response
+ 8/23/2018 Heejeong Ryu 0.12.13.12
+  - updated PCIe Train; add FS table
+  - updated Gain Train Table
+ 8/22/2018 Heejeong Ryu 0.12.13.11
+  - updated PCIe gain train tb
+  - used TRAIN_G*_LANE register
+  - SERDES power seq sync X4 to X2
+ 8/20/2018 Heejeong Ryu 0.12.13.10
+  - updated SUPPORT_PCIE_F0D_OPT to use full txtrain
+ 8/20/2018 Heejeong Ryu 0.12.13.9
+  - SUPPORT_PCIE_F0D_OPT off
+ 8/20/2018 Heejeong Ryu 0.12.13.8
+  - changed pll lock check timer timeout to 10msec
+ 8/17/2018 Heejeong Ryu 0.12.13.7
+  - set RingPLL timeout to 3msec
+  - updated PCIe DIR mode debug  
+ 8/17/2018 Heejeong Ryu 0.12.13.5
+  - updated train if
+  - enable f0b measure during PCIE TxTrain DIR mode handshake
+ 8/15/2018 Heejeong Ryu 0.12.13.4
+  - set RINGPLL powron_cal timeout timer to 10msec   
+  - added MCU_INIT flag
+  - updated PCIe R table to add 2 more index
+  - replace F0d to F0a for PCIe train
+ 8/15/2018 X.Su 0.12.13.2
+  - CESD-359: Add condition for eom_ui_align function for phase control mode 1.
+ 8/13/2018 Heejeong Ryu 0.12.13.1
+  - 28G_X4_R2P1: Moved Rxtrain/EOM to Bank4
+ 8/10/2018 Heejeong Ryu 0.12.13.0 [SOC ELNATH, CARMELX X2 release] =========
+ 8/9/2018 X.Su (X2_ROM 0.12.12.10)
+  - CESD-348: FW stuck at ST_P2_WK with short transition period for power state change 
+  - CESD-356: Set vcon_min_sel and vcon_max_sel initial value based on analog power info
+ 8/8/2018 Heejeong Ryu 0.12.12.9
+  - Fixed Train Error 
+ 8/7/2018 Heejeong Ryu 0.12.12.8
+  - added EYE_CHK_THRESH_* register
+  - added SUPPORT_CHECK_NORMAL_F0D compile option
+  - clean up
+ 8/3/2018 Heejeong Ryu 0.12.12.7
+  - X2: Ethernet sel_bit control
+ 8/3/2018 Heejeong Ryu 0.12.12.6
+  - X2: PCIe different speed and power state per lane 
+ 8/2/2018 Heejeong Ryu 0.12.12.5
+  - Fixed typo and SAS low rate LCPLL use
+ 7/30/2018 Heejeong Ryu 0.12.12.4
+  - fixed 2X2 lane reduce regression 
+ 7/27/2018 Heejeong Ryu 0.12.12.3
+  - fixed cmd_if tx/rx_imp stuck
+ 7/26/2018 Heejeong Ryu 0.12.12.2
+  - Updated RxTrain Result Save Default Values
+ 7/26/2018 Heejeong Ryu 0.12.12.1
+  - 28G_X4_R2P1: Reduced Power on calibration step for PCIe: LCPLL only 16G, RINGPLL only 10G.
+  - Fixed Align90 save bug
+  - Changed Train restore sequence
+  - added DIS_SHRT_PCIE_GAIN_TRAIN
+ 7/25/2018 X.Su (X2_ROM v0.12.12.0 release)
+  - Set reg_PIN_GPO_LANE[7:0] bit [4] in the speed change replacement function
+ 7/25/2018 Heejeong Ryu 0.12.12.0 [SOC HAYABUSA X1 release] =========
+ 7/23/2018 Heejeong Ryu 0.12.11.9
+  - Set AVDDR12_SEL_MAST_REG=1 when ANA_ID[1:0]=0x2
+  - Set RXDATA_LATENCY_REDUCE_EN_LANE = 1 for SATA
+  - updated Timer3 calculation
+  - Added rate2 structure to support PCIe 32G
+  - Added PCIe gain train tbl  
+ 7/22/2018 X.Su 0.12.11.8 (X2_R2P0)
+  - CESD-338: t_temp_cal test case failure
+ 7/19/2018 Heejeong Ryu 0.12.11.7
+  - Used MCU Timer3 for Frame unlock timer
+  - updated CMD_IF SQ_THRS Ratio 
+  - fixed manual CAL_START stuck
+ 7/18/2018 Minh Tran 0.12.11.6
+  - CESD-337: Clear interrupt enable bits in the SW reset
+  - Set reg_RX_INIT_DONE_LANE = 0 in the SW reset
+ 7/17/2018 Heejeong Ryu 0.12.11.5
+  - 28G_X4_R2P1: updated train save and retore
+  - 28G_X4_R2P1: Fixed CMD_IF SSC_STEP bit match
+  - 28G_X4_R2P1: changed RX_RXFFE_C_INI_LANE=6
+ 7/17/2018 Heejeong Ryu 0.12.11.4
+  - 28G_X4_R2P1: set RX_RXFFE_C_INI_LANE=4 for PCIe DFE saturation
+ 7/17/2018 Minh Tran 0.12.11.3
+  - CESD-336: PM control signal delay time not met (fixed longer than expected delays)
+ 7/16/2018 Minh Tran 0.12.11.2
+  - CESD-336: PM control signal delay time not met (fixed smaller than expected delays)
+ 7/16/2018 Heejeong Ryu 0.12.11.1
+  - 28G_X4_R2P1: fixed typo
+  - updated for regression test
+ 7/13/2018 Heejeong Ryu 0.12.10.3
+  - 28G_X4_R2P1: Fixed PLLDCC_CAL saturated 
+ 7/13/2018 X.Su (Only built X2_ROM 0.12.9.7)
+ - CESD-302: Watch Dog Timer not enabled in all 28G PHY.
+ 7/13/2018 Heejeong Ryu 0.12.10.2
+  - X4_R2P1: Debug Cobra Spdchg failure
+ 7/11/2018 Heejeong Ryu 0.12.10.0 [SOC HAYABUSA X1 release] =========
+ 7/10/2018 Heejeong Ryu 0.12.9.6
+  - 28G_X4_R2P1: enabled cmd_if 
+  - restore int_enable_all 
+  - added TX_LANE_ALIGN_OFF
+ 7/5/2018 Heejeong Ryu 0.12.9.4
+  - X4_R2P1 fixed Ringpll unlock at PCIe 8G 
+ 7/5/2018 Heejeong Ryu 0.12.9.3
+  - updated txcoefficient WA; tx_em_post_en=1 at powrup
+  - clean up for pm timing
+ 7/3/2018 Minh Tran 0.12.9.2
+  - optimized fast calibration performance; changed "wait time" from 4us to 3us per Hui Z.
+ 7/3/2018 Heejeong Ryu 0.12.9.1
+  - optimized PM timing
+  - updated txcoefficient WA; X2_ROM need tx_em_post_en setting follow by spdtbl
+ 6/29/2018 Heejeong Ryu 0.12.9.0
+  - updated APTA limited local_status response
+ 6/29/2018 Heejeong Ryu 0.12.8.4
+  - Debug PCIe Regression and Lane Reduce 
+ 6/29/2018 Minh Tran 0.12.8.3
+  - 28G_PIPE4_X2_ROM: Hui Zhao requested to undo changes in CESD-314
+ 6/25/2018 Heejeong Ryu 0.12.8.2
+  - Changed to check Frame unlock only for SAS
+  - used ex* instead INT_INTERRUPT_ALL in ISR 
+  - clean up
+ 6/25/2018 Minh Tran 0.12.8.1
+  - CESD-294: init Ring PLL with the corrected values.
+  - 28G_PIPE4_X2_ROM: init VDDVCO_VTH_12NM_SEL=1 (CESD-314)
+ 6/22/2018 Minh Tran 28G_X4 0.12.5.2
+  - fixed PCIE speed change from gen1 to gen4
+ 6/21/2018 X.Su 28G_X4 0.12.5.1
+  - CESD-299: Fixed PCIe link training issue that TX training did not train C1.
+ 6/15/2018 Heejeong Ryu 0.12.8.0 [SOC Elnath X2 release] =========
+ 6/14/2018 Heejeong Ryu 0.12.7.1
+  - added double remote_ctrl interrupt trigger protection
+  - removed power interrupt clear after mcu_reset
+ 6/12/2018 Heejeong Ryu
+  - 28G_X4: plldcc_cal cont, fix pcie P1
+  - X2: TXDATA_LATENCY_REDUCE_EN_LANE = 1 for SATA
+ 6/7/2018 Heejeong Ryu 0.12.7.0 [SOC Elnath X2 release] =========
+ 6/5/2018 Heejeong Ryu 0.12.6.3
+  - added int_enable_all control
+  - dtx not to control for SAS speed change
+  - debug regression test
+ 5/31/2018 Heejeong Ryu 0.12.6.2 
+  - send NOTVALID STATE(2) for apta command with PIN_APTA_TRAIN_ENABLE=0
+  - added workaround to fix a tx_coeff bug for PCIe
+  - clean up
+ 5/30/2018 Minh Tran 0.12.6.1
+  - 28G X2_ROM: FW needs to reload speed table after PIN_RESET assert/deassert
+ 5/23/2018 Heejeong Ryu 0.12.6.0 [SOC Elnath X2 release] =========
+ 5/23/2018 Heejeong Ryu
+  - updated for train error
+  - fixed apta regression test fail
+ 5/21/2018 Heejeong Ryu 0.12.6.0
+  - updated for TRAIN_ERROR 3
+  - fixed TTIU local status corner case related train comp
+  - send NOT_VALID status for CMD_IF conflicted with other function
+  - Changed RXFFE even/odd CMD_IF 
+  - Fix PAPTA_R_CTRL_FIELD_READY for APTA corner case
+  - put Slewrate_en=1,2 to invalid cmd value 
+ 5/14/2018 Heejeong Ryu 0.12.4.1
+ - 28G X4: fixed train typo 
+ - change apta train disable interrupt priority
+ 5/11/2018 Heejeong Ryu 0.12.4.0 [SOC Elnath X2 release] =========
+ 5/10/2018 Heejeong Ryu 0.12.3.4
+ - fixed frame detect start
+ 5/9/2018 Heejeong Ryu 0.12.3.3
+ - Updatd cmd_if
+ 5/9/2018 Heejeong Ryu 0.12.3.2
+ - set DFE_CORE_BYPASS_LANE=0 for lane_margin dfe run
+ 5/7/2018 Heejeong Ryu 0.12.3.1
+  - changed ana dfe control sequence during spdchg for RX_DATA=x
+ 5/7/2018 Heejeong Ryu 0.12.3.0
+  -updated frame_lock_timer
+ 5/4/2018 Heejeong Ryu 0.12.2.1
+  - fixed txrain abort test fail from regression
+  - applied serdes speed change pll unlock patch from fabrico
+ 5/3/2018 Heejeong Ryu 0.12.2.0
+  - updated frame lock detect   
+ 5/1/2018 Heejeong Ryu 0.12.1.0
+  - opimize fw size
+  - updated PCIe Lane alignment for Lane Disable
+  - added dfe step mode
+ 4/27/2018 Heejeong Ryu 0.12.0.3 
+  - Add PCIe Lane alignment for Lane Disable as workaround
+  - added framlock fail detect
+ 4/27/2018 Heejeong Ryu 0.12.0.2
+  - change lane_dis control order to de-glitch
+ 4/27/2018 Heejeong Ryu 0.12.0.1
+  - updated lane_dis control for lane alignment
+ 4/26/2018 Heejeong Ryu 0.12.0.0
+  - updated cmd_if - added lane_sel for imp_cal, ffe & dfe, sq_thrs
+  - X4 R2P1: Changed LCPLLCLK_DIV2_SEL control    
+ 4/25/2018 Heejeong Ryu 0.11.0.6
+  - updated cmd_if - txffe debug
+  - fixed rxinit corner case with train  
+ 4/25/2018 X.Su 0.11.0.5
+  - Enabled interrupt (6) for dphy_ana_lane_disable for X2_R2/X1/X2_ROM in PCIE mode only
+ 4/25/2018 Heejeong Ryu 0.11.0.4
+  - updated cmd_if 
+ 4/19/2018 Heejeong Ryu 0.11.0.3
+  - updated cmd_if ssc control, added PHY_REMOTE_CTRL_VALUE_LANE[31] to debug current speed
+ 4/19/2018 Heejeong Ryu 0.11.0.2
+  - updated DFE_DC_SIGN_XOR=1 for only X2
+  - updated cmd_if
+ 4/18/2018 Heejeong Ryu 0.11.0.1
+  - added more train parameters to register
+  - updated FORCE_PARTIAL_PU_RX_ON control; fake RX_INIT, stay PLL_READY_RX=1
+  - updated tx_ffe control for cmd_if
+ 4/17/2018 Heejeong Ryu 0.11.0.0
+  - Separate Phy_mode compile structure
+ 4/16/2018 Heejeong Ryu 0.10.18.1
+  -X4_R2P1 updated spdtbl, spdchg for PCIe 32G
+  - SERDES speed change pll_clk_ready update
+ 4/13/2018 Heejeong Ryu 0.10.18.0 [SOC Elnath X2 release] =========
+ 4/12/2018 Heejeong Ryu 0.10.17.2
+  - set DFE_DC_SIGN_XOR=1 
+  - updated cmd_if;gen=0 is for ana current
+ 4/11/2018 Heejeong Ryu 0.10.17.1
+  - added more cmd_if 
+  - added FORCE_PARTIAL_PU_RX_ON control
+ 4/9/2018 Heejeong Ryu 0.10.17.0 [SOC Elnath PCIe X2 released] =========
+  - fixed mistaken excluded dummy txtrain
+  - Add abort packet_sync_en control during Slumber and Speed change
+ 4/6/2018 Heejeong Ryu 0.10.16.1
+  - moved TRX_VIRTUAL_CTRL location to P1_TXDETRX stage
+ 4/6/2018 Heejeong Ryu 0.10.16.0
+  - fixed missing APTA 
+ 4/6/2018 Heejeong Ryu 0.10.15.0 [SOC Elnath PCIe X2 released] =========
+ 4/5/2018 Heejeong Ryu 0.10.14.5
+  - fixed pipe register midas bug
+ 4/4/2018 Minh Tran 0.10.14.4
+  - fixed Power_Slumber_Wakeup timing; removed changes for CEAMSDV-32 (USB mode does not have poff_txdetrx)
+ 4/4/2018 Heejeong Ryu 0.10.14.3
+  - added skip spdtbl load option for 2LANE_ROM sim fast
+ 4/4/2018 Heejeong Ryu 0.10.14.2
+  - split txtrain file to pcie/sas
+  - added trx_virtual_ctrl_lane control
+  - fixed cal_seq fail
+  - bypass delay when fast_power_on=1
+ 4/2/2018 Heejeong Ryu 0.10.14.0 [SOC Hayabusa X1, Elnath X2 released] =========
+  - updated rx_train corner case
+ 3/30/2018 Heejeong Ryu 0.10.13.0
+  - updated train abort; updated remote_ctrl isr no int mask, add protection   
+ 3/29/2018 Heejeong Ryu 0.10.12.15
+  - updated pcie train
+ 3/28/2018 Minh Tran 0.10.12.14
+  - fixed USB mode poff_txdetrx simulation timeout reported in CEAMSDV-32
+ 3/28/2018 Heejeong Ryu 0.10.12.13
+  - updated pcie fom mode dummy test
+ 3/26/2018 Heejeong Ryu 0.10.12.12
+  - updated train corner case
+  - fixed typo in train_if, adjust BANK1
+ 3/26/2018 Minh Tran 0.10.12.11
+  - fixed some signal timing violation reported in CEAMSDV-33
+ 3/24/2018 Heejeong Ryu 0.10.12.10
+  - added 64nsec+ from pll_ready_tx to ana_pu_tx for entering partial tx
+  - fixed ethernet_cfg mode 2 ringlane abnormal operation in slumber clk wakeup
+ 3/23/2018 Heejeong Ryu 0.10.12.9
+  - fixed typo
+ 3/22/2018 Heejeong Ryu 0.10.12.8
+  - changed ringpll faststartup target freq range to +/-1
+ 3/21/2018 Heejeong Ryu 0.10.12.7
+  - fixed PWRSEQ_ON and DTX_CLK_OFF_RING access conflict 
+ 3/20/2018 Heejeong Ryu 0.10.12.5
+  - updated apta/tx_train_if; not update C2 FFE if C1 is min/max  
+  - fixed pcie CORE_RESET sel_bit issue
+  - rise TX_FFE_TRAIN_DONE_LANE after txtrain done
+ 3/19/2018 Heejeong Ryu 0.10.12.4
+  - updated pwron_seq 
+ 3/16/2018 Heejeong Ryu 0.10.12.1
+  - changed SERDES ETHERNET_CFG mode2/3 power up sequence 
+ 3/16/2018 Heejeong Ryu 0.10.12.0 [SOC Voltron X2 ] =========
+  - updated interrupt enable time in power up
+ 3/15/2018 Heejeong Ryu 0.10.11.0 [SOC Voltron X2 released ] =========
+  - fixed ethernet cfg mode 2 hang during power on
+  - updated power on seq; added pu_pll_ring up, pu_ivref up early
+ 3/14/2018 Minh Tran 0.10.10.3
+  - Update delay values to match the timing spec
+  - Remove PI settling time when there is no initial frequency offset
+ 3/13/2018 Heejeong Ryu 0.10.10.2 [SOC Hayabusa X1 copy 0.10.10.0] =========
+   - Updated APTA CMD IF
+ 3/12/2018 Heejeong Ryu 0.10.10.1
+   - X4: added Ringpll faststartup Temperature Ramping test debug print
+ 3/9/2018 Heejeong Ryu 0.10.10.0 [SOC Elnath X2 released ] 0.10.8.0 + tx_train_comp_wait_frame_lane default value + rx_train_time=19 =========
+   - fixed not to change tx_train_comp_wait_frame_lane default value
+ 3/9/2018 Heejeong Ryu 0.10.9.1
+   - updated RX_TRAIN_TIME = 19, pcie train time=23
+   - updated apta_cmd_if
+ 3/8/2018 Minh Tran 0.10.8.6
+   - Improve delay01() function to be more accurate
+ 3/7/2018 Heejeong Ryu 0.10.8.5
+   - updated interrupt enable time in pwrup
+   - X1: set SUPPORT_X2_RING_LANE option to off
+ 3/6/2018 Heejeong Ryu 0.10.8.4
+   - updated spdtbl;analog added intpi_lcpll, tx_intpr
+   - added g_intpi_lcpll/ring in xdat_cmn to avoid lane access conflict in serdes mode
+ 3/5/2018 Heejeong Ryu 0.10.8.3
+   - updated Partial Tx wake up sequence; independent run from Rx 
+ 3/5/2018 Heejeong Ryu 0.10.8.2
+   - fixed slumber corner case - refclk_dis=1 before pin_pu_pll=0 
+   - fixed Ethernet train if - local_status[14] should be 0
+   - fixed SAS train if - no txffe control when train_comp=1 
+   - reduced slumber partial wakeup time
+ 3/2/2018 Heejeong Ryu 0.10.8.1
+   - updated sellv* control for lane access conflict
+ 2/28/2018 Heejeong Ryu 0.10.8.0
+   - added train parameter for user control
+   - changed train timer = 500msec
+ 2/28/2018 Heejeong Ryu 0.10.7.1
+   - X2_ROM: updated spdtbl load by DMA, set simulation registers
+ 2/27/2018 Heejeong Ryu 0.10.7.0
+   - added ringpll_ind_en for RINGPLL independent control enable, SERDES Ethernet_cfg mode2/3
+   - updated train abort protect - train abort and speed change same time
+   - Changed ANA_PU_PLL_RING address to avoid address conflict
+ 2/20/2018 Heejeong Ryu 0.10.6.1
+   - added RX_INIT_DONE clear inside rxinit interrupt
+ 2/20/2018 Heejeong Ryu 0.10.6.0
+   - Fixed Slumber wakeup for SERDES ETHERNET MODE 2 - Added missing RINGPLL power up
+ 2/15/2018 Heejeong Ryu 0.10.5.1
+   - removed train restoring in case of train fail
+   - added delay 20usec for RINPLL fast start up PLLLOCK glitch
+ 2/14/2018 Heejeong Ryu 0.10.5.0
+   - fixed TX Train stuck
+   - updated Rx/Tx Train Failed control
+   - updated Rx/Tx Train save and restore
+   - added dfe_adapt_cont skip when train_sim_en=1
+ 2/12/2018 Heejeong Ryu 0.10.4.2
+   - removed remote train comp check
+   - move tx_preset_index to lane and add control   
+ 2/8/2018 Heejeong Ryu 0.10.4.1 
+   - added RINGPLL Faststartup drive output monitor to debugf
+ 2/07/2018 Enya Cheng 0.10.4.0
+   - Added the counter for EOM N part. The change is only in EOM function. Some debugging infomation is turned off to save code size.
+ 2/5/2018 Heejeong Ryu 0.10.3.0 
+   - Fixed ringpll bug; abs to abs16
+   - added dfe_adapt_abort control
+ 2/2/2018 Heejeong Ryu 0.10.2.0  [SOC X2/X1 released ] =========
+ 2/1/2018 Heejeong Ryu 0.10.1.0 
+   - Updated for APTA corner case; apta train dis and slumber enter same time
+ 2/1/2018 Heejeong Ryu 0.10.0.0
+   - Changed X1 SELLV_*_CH0 to *_CH1, added _28G_X1 compile option 
+ 2/1/2018 Heejeong Ryu 0.9.18.2
+   - added pin_local_ctrl_field_ready wait before local_ctrl sending for link_train 
+ 1/31/2018 Heejeong Ryu 0.9.18.0
+   - added ringpll_cal_cont_en
+   - updated pu_pll_or control for corner case
+ 1/29/2018 Heejeong Ryu 0.9.17.0 [SOC X2/X1 released ] =========
+   - PCIe PU_PLL_OR control update
+ 1/25/2018 Heejeong Ryu 0.9.16.0
+   - updated apta_cmd_if abort
+   - fixed train_if train_init fail
+   - adjust tx lane align time
+   - updated pu_or corner case. TODO: cont_cal
+ 1/25/2018 Heejeong Ryu 0.9.15.0
+   - updated tx_align to fix hang when master_lane off
+ 1/25/2018 Heejeong Ryu 0.9.14.3
+   - added delay to fix usb10G speed
+ 1/25/2018 Heejeong Ryu 0.9.14.2
+   - updated X2 ROM code
+ 1/25/2018 Heejeong Ryu 0.9.14.1 
+   - cover master lane off for mcu sync
+   - added tx/rx_train_complete clear for force to complete
+ 1/24/2018 Heejeong Ryu 0.9.14.0 [SOC X2 released : Elnath1] =========
+   - clean up 
+ 1/24/2018 Heejeong Ryu 0.9.13.1
+   - updated for train corner 
+ 1/24/2018 Heejeong Ryu 0.9.13.0
+   - updated APTA_cmd_if; en, status output
+   - updated apta train; not to use pin_local_ctrl_field_ready signal
+   - updated for serdes spdchg corner
+   - updated for train corner
+   - X4: pu_pll_or check update   
+ 1/19/2018 Heejeong Ryu 0.9.c.7
+   - updated train abort handle
+   - added PHY_LOCAL_VALUE[31:0], PHY_MCU_LOCAL_ACK register
+   - fixed slumber wakeup corner case
+ 1/17/2018 X.Su 0.9.c.5
+   - X2: Fixed bug that mismatched __bank specification of txdetect_cal() caused FW restart during power up
+ 1/17/2018 Heejeong Ryu 0.9.c.4
+   - updated txdetrx corner case
+   - fixed tx_init wrong send
+ 1/17/2018 Heejeong Ryu 0.9.c.3
+   - updated refclk_dis handle during p1snooze
+ 1/17/2018 Heejeong Ryu 0.9.c.2
+   - changed xdat_lane reg;PHY_REMOTE_CTRL_COMMAND_CODE to 16bit, added train_gn1/g1/g0
+   - updated train abort corner case
+   - switch back int3 and 6
+   - updated p1.clkreq for reduced lane
+ 1/12/2018 Heejeong Ryu 0.9.c.1
+   - X2: added f1_ofst_adj control during RPTA
+ 1/12/2018 Heejeong Ryu 0.9.c.0
+   - X2 ROM maximized
+   - added *_train_complete clear protection
+ 1/11/2018 Heejeong Ryu 0.9.b.e
+   - changed APTA not to use pin_local_ctrl_field_ready_isr
+   - fix sampler_cal ext_en cal_ofst_* value wrong
+ 1/11/2018 Heejeong Ryu 0.9.b.d
+   - changed train_sim_en
+   - updated CDS to fix RTPA pt fail
+ 1/8/2018 Heejeong Ryu 0.9.b.b [SOC X2 released : Voltron, Elnath1] =========
+   - added PHY_REMOTE_CTRL_VALUE for cmd_if
+   - fixed train_if SERDES hang
+ 1/8/2018 Heejeong Ryu 0.9.b.a
+   - fixed spdchg serdes Ethernet_cfg mode1 in 28G X1
+ 1/8/2018 Heejeong Ryu 0.9.b.9
+   - updated F2 DFE Taps resolution table
+   - updated train if error handle
+   - updated watchdog ctrl
+ 1/8/2018 Heejeong Ryu 0.9.b.8
+   - added watchdog ctrl
+ 1/7/2018 Heejeong Ryu 0.9.b.7
+   - updated train_if txffe ctrl
+ 1/4/2018 Heejeong Ryu 0.9.b.6
+   - updated for APTA corner case
+ 1/3/2018 Heejeong Ryu 0.9.b.5
+   - updated train error handle corner
+ 1/3/2018 Heejeong Ryu 0.9.b.4
+   - updated APTA R_L error handle
+   - added LOCAL_STATUS_FIELD_INIT control 
+ 1/2/2018 Heejeong Ryu 0.9.b.3
+   - updated APTA R_L error handle
+ 1/2/2018 Heejeong Ryu 0.9.b.2
+   - fixed RTPA and clean up CDS
+   - updated ATPA error handle
+ 12/23/2017 Heejeong Ryu 0.9.b.1
+   - updated train_if error handle corner case
+ 12/23/2017 Heejeong Ryu 0.9.b.0
+   - added APTA cmd_if 
+ 12/22/2017 Heejeong Ryu 0.9.a.16 [Hayabusa2 SOC X1 released ] =========
+   - fixed Hayabusa2 SATA RX_CK_SEL no toggle issue 
+ 12/22/2017 Heejeong Ryu 0.9.a.15 [Elnath1 SOC X2 released ] =========
+   - fixed APTA corner case;PAPTA_TRAIN_DISABLE and remote_ctrl happen same time. 
+ 12/21/2017 X.Su 0.9.a.14
+   - built binary with updated Makefile
+  12/21/2017 Heejeong Ryu 0.9.a.13 [SOC X2 released ] =========
+   - fixed local_ctrl_field_ready_isr corner case
+ 12/20/2017 Heejeong Ryu 0.9.a.12 [SOC X2 released ] =========
+   - fixed constseg isr7 issue
+ 12/19/2017 Heejeong Ryu 0.9.a.11
+   - fixed apta R_L error handle issue
+   - clean up
+ 12/19/2017 Heejeong Ryu 0.9.a.10
+   - fixed constseg in isr7, caused to txffe "XX" 
+ 12/19/2017 Heejeong Ryu 0.9.a.f
+   - set FAST_DFE_TIMER_EN_LANE=1, DFE_CORE_BYPASS_LANE=1 when TRAIN_SIM_EN=1
+ 12/18/2017 Heejeong Ryu 0.9.a.e
+   - fixed typo on lane margin
+ 12/18/2017 Heejeong Ryu 0.9.a.d
+   - debug for phase train variation/RTPA related New CDS
+   - updated for APTA corner case; APTA_TRAIN_ENABLE glitch -TODO MCU missing isr
+   - debug TRAIN_SIM 2 step command
+ 12/13/2017 Heejeong Ryu 0.9.a.c [SOC X2 released rev2.0.0_08] ========= 
+   - fixed APTA R_L comp error
+   - added APTA L_R error handle 
+   - fixed sampler_cal bug
+   - debugging phase train variation and RPTA
+ 12/14/2017 Enya Cheng 0.9.a.b
+   - fix offset calculation for eom count.
+ 12/13/2017 Heejeong Ryu 0.9.a.9
+   - cut down dummy txtrain to 2 step for TSB request
+   - moved cli to BANK0  
+   - debug RPTA for new CDS
+ 12/11/2017 Heejeong Ryu 0.9.a.8
+   - optimized for fw size
+ 12/11/2017 Heejeong Ryu 0.9.a.7
+   -X2: cut APTA L_R sim tb size to 2 command
+   - added align90 train save and restore
+   - eom depher restore after ESM
+ 12/8/2017 Heejeong Ryu 0.9.a.6
+   -X2: updated dfe dc load sequence
+ 12/7/2017 Heejeong Ryu 0.9.a.5 [SOC X2 CP2 Released rev2.0.0_07] =========
+   -X2: updated dfe dc load sequence
+ 12/7/2017 Heejeong Ryu 0.9.a.3
+   -X2: updated APTA error handle
+   -X2: shorten APTA L_R sim table size for TSB request
+   - updated rxinit use def_en_fm_reg in case of pin_dfe_en=0
+   - added dfe save/restore during spdchg including floating tap
+ 12/5/2017 Heejeong Ryu 0.9.a.2
+   -X2: support PIN_PAPTA_TRAIN_DISABLE_ISR
+ 12/1/2017 Heejeong Ryu 0.9.a.1
+   - updated tempc dac valid control, jump to idle for conner case
+   - added vcon_force_control for LCPLL WA
+   - added RINGPLL DAC fine cod ratio and max step num register control
+   - X2: used CAL_OFST_*_LANE for dc_load 
+   - sampler cal/train xdat register order changed - even/odd
+ 12/01/2017 Enya Cheng 0.9.a.0
+   - use more registers seperate for both EOM top-half and bottom-half. Need to implement the counter for bottom-half after free some code size.
+ 12/1/2017 Heejeong Ryu 0.9.9.11
+   - aded ringpll control registers:ringpll_dac_max_step_num[7:0], ringpll_dac_fine_code_ratio[7:0]
+ 11/30/2017 Heejeong Ryu 0.9.9.f
+   - disable apta l_r timeout
+   - rollback old CDS 
+ 11/28/2017 Heejeong Ryu 0.9.9.e
+   - fixed LCPLL unlock issue by VCON analog registers and TEMPC_DAC_CTRL=3
+ 11/28/2017 Heejeong Ryu 0.9.9.d
+   -X2: APTA bug fixed - bit13 should be 0 all the time
+   - clean up old CDS
+ 11/27/2017 Heejeong Ryu 0.9.9.c
+   -X4: updated txffe coeff wa    
+   - changed rxtrain result save registers name
+   - added txffe force control
+   - removed LOCK_DFE_ON_LANE clear for user control 
+   -X2: replaced RESET_DTL_LANE to RESET_DTL_SYNC_LANE in CDS
+ 11/23/2017 Heejeong Ryu 0.9.9.b
+   -X4 Cobra2: applied rxtrain restore support 
+   -X4 Cobra2: applied Ringpll cont_cal to cover corner case
+ 11/23/2017 Heejeong Ryu 0.9.9.a
+   -X4 Cobra2: applied GEN3 RINGPLL support 
+ 11/23/2017 Heejeong Ryu 0.9.9.9
+   -X4 Cobra2: applied txtrain_ffe_done control change to fix regression test
+ 11/22/2017 Heejeong Ryu 0.9.9.8
+   -X4 Cobra2: changed fw back to 0.9.8.7 with current speed    
+ 11/24/2017 Heejeong Ryu 0.9.9.7
+   - X4: txtrain_ffe_done control changed 
+ 11/20/2017 Heejeong Ryu 0.9.9.5
+   - X4: txffe_force seq change to avoid sending garbage
+ 11/20/2017 Heejeong Ryu 0.9.9.1 [SOC released for X2] ========= 
+   - X2: updated apta error handle
+   - updated rxinit
+ 11/20/2017 Heejeong Ryu 0.9.9.0
+   - added rxtrain restore during spdchg 
+   - added SATA short train: disable phase train, train_ph_control_mode=0
+   - updated ringpll cont_cal to cover conner case  
+   - added bypass CTLE train by bypass_ctle_train_lane    
+   - X2: apta debug for restart
+   - rxinit DC load control changed for pin_dfe_en=0
+   - support PCIe GEN3 Ringpll
+   - removed PCIe force P7 and delays
+ 11/17/2017 Enya Cheng 0.9.8.14
+ 	- EOM feature for the latest spec update. The accumulation loop to count vld_cnt implemented in fw.
+ 11/16/2017 Heejeong Ryu 0.9.8.13
+   - removed force tx_idle 
+ 11/16/2017 Heejeong Ryu 0.9.8.12
+   - updated SAS tx_trainif error handle 
+ 11/16/2017 Heejeong Ryu 0.9.8.10
+   - X4: Cobra WA - force tx_idle enable during spdchg, release it 100usec after pin_pll_ready_tx
+   			Enya Cheng 0.9.8.11
+   - code for pll_temp_cal mode 1.
+ 11/15/2017 Heejeong Ryu 0.9.8.f
+   - added ringpll settling 100usec for wakeup/spdchg
+ 11/15/2017 Heejeong Ryu 0.9.8.c
+   - updated SAS train if error handle 
+   -X2: updated apta
+ 11/14/2017 Heejeong Ryu 0.9.8.b
+   - updated rx_init seq
+ 11/14/2017 Heejeong Ryu 0.9.8.a
+   -X4: force P4 for GEN4 all the time for test
+ 11/14/2017 Heejeong Ryu 0.9.8.9
+   -X2: updated apta sim seq
+   -X4: Cobra2 GEN4 debug
+ 11/14/2017 Heejeong Ryu 0.9.8.7
+   -X4: changed tx_em_pre control for PCIe WA
+ 11/13/2017 Heejeong Ryu 0.9.8.6
+   - X2: removed apta debug cmd if 
+   - updated ana_em_* for WA
+ 11/13/2017 Heejeong Ryu 0.9.8.5
+   - updated train if error handle
+   - fixed dll_cal cont typo
+   - updated PCIe force tx_em_po for power wake up
+   - X2: add apta debug cmd if 
+ 11/8/2017 Heejeong Ryu 0.9.8.3
+   -X4: updated PCIe force tx_em_po for power wake up as WA
+ 11/8/2017 Heejeong Ryu 0.9.8.2
+   - X4: added PCIe GEN1/GEN2 force tx_em_po for power wake up as WA
+ 11/8/2017 Heejeong Ryu 0.9.8.1
+   - X4: added PCIe GEN1/GEN2 force tx_em_po as WA
+ 11/8/2017 Heejeong Ryu 0.9.8.0
+   - added apta user command if
+ 11/8/2017 Heejeong Ryu 0.9.7.17
+   - added end_xdat_lane/cmn
+   - updated rxinit seq
+   - updated apta
+ 11/8/2017 Heejeong Ryu 0.9.7.16
+   - changed back tx_train_p2p_hold control for APTA
+   - optimize SATA speed change timing
+   - optimize code size
+   - added back REMOTE_CTRL_FIELD_HIGH_LANE for APTA WA
+ 11/7/2017 Heejeong Ryu 0.9.7.15
+   - add SATA *cont_cal initial
+   - add APTA_TRAIN_SIM_EN 
+ 11/7/2017 Heejeong Ryu 0.9.7.14
+   - updated isr to cut off cont_cal
+ 11/6/2017 X. Su 0.9.7.12
+   - According to analog designer, for post divider DCC calibration, TXDCCCAL_EN=1 is required (doc updated)
+	Heejeong Ryu 0.9.7.13
+   - disable SUPPORT_LCPLL_ALWAYS_ON option
+   - update SAS txtrain_if error handle
+ 11/3/2017 Heejeong Ryu 0.9.7.11
+   - updated tx_train_if error handle
+ 11/2/2017 Heejeong Ryu 0.9.7.10
+   - fixed SERDES sim fail 
+   - X4: excluded txffe force control for GEN1/GEN2 
+ 11/2/2017 Heejeong Ryu 0.9.7.f
+   - updated apta 
+ 11/1/2017 Heejeong Ryu 0.9.7.e 
+   - fixed LCPLL unlock issue
+   - updated speed change timing
+ 10/30/2017 Heejeong Ryu 0.9.7.d
+   - updated APTA txtrain_if
+   - optimized rx_init timing
+ 10/26/2017 Heejeong Ryu 0.9.7.a
+   - optimized spdchg timing
+   - optimized ringpll faststartup/sndchg time
+   - optimized load_cal_data func
+   - fixed spdchg hang
+   - X2: updated SERDES speed change; skip vdd_cal/td_cal   
+ 10/23/2017 Heejeong Ryu 0.9.7.9
+   - added cdr_dfe_f0d_norm_adapt feature
+   - added LOCK_DFE_ON for rxinit fastacq (sync with old CDS)
+   - bug fixed phy_gen_max for SERDES speed change group/ SERDES 
+   - ATPA train update
+ 10/23/2017 Heejeong Ryu 0.9.7.8 Fabrico1 Released 
+   - Updated PLL_TEMP_CAL_EXT_EN to load tempc initial table
+   - changed back pll_tempc_speed_adj timeout; Cobra spdchg test fail
+ 10/22/2017 Heejeong Ryu 0.9.7.7
+   - X2: fixed SERDES regression fail
+   - spdtbl changed - tempc_dac_mode =2, tempc_step_ctrl=2 default for Cobra2
+   - spdchg tempc adj changed for fast settle
+ 10/20/2017 Heejeong Ryu
+   - X2: fixed regression fail. 
+ 10/19/2017 Heejeong Ryu 0.9.7.5
+   - added PCIe txffe force control for firmware workaround
+ 10/19/2017 Heejeong Ryu 0.9.7.4
+   - change INI_PHASE_TRAIN_OFFSET_2C_LANE=0 for PCIe  
+ 10/19/2017 Heejeong Ryu 0.9.7.3
+   - X2: added CAL_DONE_LANE for SERDES Speed change in different lane
+   - X2: updated pll_cal to fix simulation fail
+   - added reg_VREF_VDDACAL_SEL_2_0=6 for vdd rxsampler cal
+ 10/18/2017 Heejeong Ryu 0.9.7.2
+   - updated tx_train_if for PCIe FOM
+ 10/18/2017 Heejeong Ryu 0.9.7.1
+   - updated fast_pwr_on_en
+ 10/18/2017 Heejeong Ryu 0.9.6.10h
+   - added pwron_seq to cover power on different time different lane
+   - fixed eom_align_cal bug
+ 10/17/2017 Heejeong Ryu 0.9.6.f
+   - reduce rx_init time, debug train
+   - X2: added reset_dtx/clk_off control during SERDES speed change
+   - fix pll_tempc updated simulation stuck
+   - updated tsensor ready to 1 when fast_power_on_en=1
+ 10/16/2017 Heejeong Ryu 0.9.6.e
+   - cds reset load calibration sampler value for during the train.
+   - X2: move load_cal_data* to ROM
+   - Cobra debug
+ 10/15/2017 Heejeong Ryu
+   - fixed pll_tempc_cal mode1/2 regression test fail
+   - updated ROM function call misplace 
+   - optimized timing   
+ 10/13/2017 Heejeong Ryu
+   -X2: ROM optimized
+ 10/13/2017 Heejeong Ryu 0.9.6.d
+   - fixed dfe f1 unbalance issue by dfe_step_acc size change
+   - fixed lcpll_cal lcvco_dac discrepancy issue - changed lsb/msb update same time
+ 10/13/2017 Heejeong Ryu 0.9.6.c
+   - cds debug; dc polarity wrong
+   - cds debug; disable dfe_update in dc adapt stage
+   - added tag_INIT_OFST_ADAPT_EN option
+   - X2: move pll_on, PowerUp_Seq_Test out of ROM
+ 10/12/2017 Heejeong Ryu 0.9.6.b
+   - NEW CDS debug; DC save/load
+   - train algorithm updated; add initial ofst adapt
+   - fixed PCIe power P2 regression test fail
+   - Cobra2 debug
+ 10/11/2017 Heejeong Ryu 0.9.6.a
+   - debug NEW CDS eye_check_pass
+ 10/10/2017 Heejeong Ryu 0.9.6.4
+   - Cobra debug; bugfix new CDS, updated FOM mode
+ 10/9/2017 Heejeong Ryu 0.9.6.0
+   - X2: moved pll_temp_cal, dll_cal, several code to ROM
+   - added LCVCOCAL_BUF_EN to align with SHRTR in faststartup/spdchg
+   - fixed slumber wakeup regression test case
+   - fix rxdcc_*_cal result save for serdes mode
+   - moved tsen_dat to global variable
+   - use tempc_mux_sel/hold_sel to xdat_cmn register, no rate control
+   - debugging cobra2
+   - optimized code
+ 10/6/2017 Heejeong Ryu 0.9.5.3
+   - added FAST_POWER_ON_EN for simulation fast
+   - removed cal_cont reset to power save
+ 10/5/2017 Heejeong Ryu 0.9.5.1
+   - added auto_rx_init option for spdchg
+   - moved eom_align_cal to inside train
+   - fixed dfe f1 saturate; restore ffe_pulse_en after sampler_cal
+   - X2: fixed *dcc_cal_pass clear, sync up plldcc_cal issue from X4 R2P0
+ 10/5/2017 Heejeong Ryu 0.9.5.0
+   - support mcu_freq
+   - X2: move some power code to ROM code
+ 10/5/2017 Heejeong Ryu [X2R1P0 Fabrico FW released]
+ 10/4/2017 Heejeong Ryu 0.9.4.f
+   - bug fix rxdll_cal vref_rxdll_sel calculation with temperature formula
+   - updated tempc mux sel initial table values
+ 10/3/2017 Heejeong Ryu 0.9.4.d
+   - updated con_cal clear for Cobra debug
+ 10/3/2017 Heejeong Ryu 0.9.4.c
+   - updated new CDS sel_mu_f control for rx_init 
+ 10/2/2017 Heejeong Ryu 0.9.4.b
+   - added TEMPC_MUX_SEL control for fast startup/spdchg
+ 10/2/2017 Heejeong Ryu 0.9.4.a
+   - X2: debug spdchg ethernet_cfg mode3
+   - fixed align90 shift default values in phy_mode_lane
+   - updated align90_cal for SAS speed change simulation 
+ 9/28/2017 Heejeong Ryu 0.9.4.9
+   - fixed link train failure
+   - fixed TSEN ana_tsen_adc_en=0 issue
+ 9/28/2017 Heejeong Ryu 0.9.4.1
+   - updated xdat_cmn/lane default values sync up with R1P0
+   - align90_cal load debug
+   - apta train restore
+ 9/28/2017 Heejeong Ryu 0.9.4.0
+   - updated spdtbl memory map
+ 9/28/2017 Heejeong Ryu 0.9.3.9
+   - debug new CDS/EOM
+ 9/28/2017 X.Su x4: 0.9.3.8
+   - CESD-222: RX DCC EOMCLK calibration saturated.
+ 9/25/2017 Heejeong Ryu 0.9.3.7
+   - moved eom_align_cal to inside train
+   - removed txdetect_cal load during spdchg for SAS spdchg time
+ 9/25/2017 Heejeong Ryu 0.9.3.6
+   - clean up 
+   - new CDS EOM debug
+   - moved eom_align_cal to inside train
+ 9/24/2017 Heejeong Ryu 0.9.3.5
+   - added rxtrain_bypass register in xdat_lane
+   - fixed tx_train_if regression test
+   - X2: added LCPLL_LANE_SEL control  
+ 9/24/2017 Heejeong Ryu 0.9.3.2
+   - moved TSEN access to cal module for tx_train_if regression 
+   - updated fw_gen.csh for main_ext.mem
+   - added tx_train_error[1:0] control
+   - X2: tx_train_if ERROR CODE DV issue debug
+ 9/21/2017 X.Su 4lane 0.9.3.1
+   - Enable build using external RAM. Moved *_romfix.c to BANK4
+   - Added main_rom.dat to make easy diff in SVN (main.mem sometimes has address offset change)
+ 9/20/2017 Heejeong Ryu 0.9.3.0
+   - debug NEW CDS and added options for PCIe. TODO:EOM/RTPA for new CDS
+ 9/20/2017 Heejeong Ryu 0.9.2.3
+   - bugfix spdchg
+ 9/20/2017 Heejeong Ryu 0.9.2.2 [CESD-223]
+   - added EOM_/DLL_FREQ_SEL_LANE_2 control
+ 9/20/2017 Heejeong Ryu 0.9.2.1
+   - changed speed memory map address
+   - updated ETHERNET_CFG function; added one more group
+ 9/20/2017 Heejeong Ryu 0.9.1.0
+   - sync up with R1P0 - TODO: dfe_f1 saturate
+   - added NEW_CDS - TODO: EOM, RTPA, cds_lane
+   - X2: update xdat_cmn/lane midas
+   - ETHERNET_CFG[1:0] midas changed for Fabrico SOC
+ 9/19/2017 Heejeong Ryu
+   - X2: followed ana NT/25M register name change
+ 9/18/2017 Heejeong Ryu
+   - X2: changed SSC control; moved calculation to hardware
+ 9/15/2017 Enya Cheng 0.9.0.2
+ 	- convert tsensor read out to temperature for DLL calibration.
+ 9/14/2017 Enya Cheng
+   - fix pll dcc power on calibration saturation issue.
+ 9/13/2017 Heejeong Ryu
+   - X2: moved PHY_CONFIG[1:0] to cmn_cmn
+ 9/12/2017 Heejeong Ryu 0.8.0.9
+   - added ANA_CMN_IMPCAL_OUT_REQ=1 for every plldcc_cal, and use ROM.
+ 9/12/2017 Heejeong Ryu 0.8.0.8
+   - added patch for PROM code not working; toggle ANA_CMN_IMPCAL_OUT_REQ, fixed cont_cal 
+   - added PLL_PWEXP_DIS_RING = 0 at pwr up
+   - move SHRTR=1 to PowerUp_Seq_Test for COSIM only
+ 9/11/2017 Heejeong Ryu 0.8.0.7
+   - fixed sampler_cal_ext bug
+ 9/8/2017 Heejeong Ryu
+   - X2: updated pll clk share
+   - X4: fix typo in pll_clk_ready_ring_0
+          Enya Cheng
+   - share: use correct value for pll temp initialization.
+ 9/7/2017 Heejeong Ryu
+   - X2: added pll_clk_ready transfer in shared pll mode
+ 9/6/2017 Heejeong Ryu
+   - X2: mcu_sync debug
+ 9/1/2017 Heejeong Ryu
+   - X2: added TX/RXCLK_NT control
+ 8/31/2017 Heejeong Ryu
+   - clean up; removed shared PLL, this is TODO.
+   - updated speed table for X2 RXCLK_NT**
+   - added pll_or_isr clear
+   Enya
+   - DLL calibration use formula for initial values. The function can be enabled by #define FORMULA_ENABLED.
+ 8/28/2017 Heejeong Ryu
+   - move tx_lane_align function to 2lane, 4lane src folder
+   - added mcu_freq
+ 8/22/2017 Heejeong Ryu
+   - updated ttui error handle
+   - added ssc_amp_ring=ssc_amp, ssc_dspread_tx_ring = ssc_dspread_tx in power on
+ 8/21/2017 Heejeong Ryu
+   - applied ssc_step control design change
+   - debug DV Train IF issue
+ 8/18/2017 Heejeong Ryu
+    - added pin_dfe_en check
+    - updated _isr to use _isr_clear
+ 8/16/2017 Heejeong Ryu
+    - debug txtrain DV issues
+    - added txtrain_if _isr workaround(temp)
+ 8/14/2017 Heejeong Ryu
+    - fixed pll_cal fbdiv_cal load in serdes
+ 8/12/2017 Heejeong Ryu
+    - Updated Error Handling used local_error_field_valid_lane register for X2 only
+    - fixed Hayabusa2 SOC txtrain hang	
+//===================================================================== from 16FFC_COMPHY_28G_PIPE4_X4 R2P0 firmware
+ 8/2/2017 Heejeong Ryu
+    - delete tx_init timeout
+    - sync to R1P0
+    - added ANA_TX_EM_PEAK_EN_LANE=1 in tx init stage
+ 7/31/2017 Heejeong Ryu 0.8.0.3
+    - ttui tx_init debug
+    - updated ttui error handling
+ 7/28/2017 Heejeong Ryu 0.8.0.2
+    - debug train_if 
+ 7/25/2017 Heejeong Ryu 0.8.0.1
+    - updated speed change
+ 7/24/2017 Heejeong Ryu 0.8.0.0
+    - changed speed table address map to support SERDES Speed Change
+    - support new speed table address map, Ethernet_Cfg Ring PLL Lane
+ 7/7/2017 Heejeong Ryu
+    - fixed speed table script and c header script
+ 7/5/2017 X.Su
+	- CESD-96,in ring_pll_cont(), ringpll_dac_fine was using const CONT_FINE_STEP to update, fixed to use register.  
+ 7/5/2017 Heejeong Ryu
+    - sync up CDS & real time phase adaptation to R1P0
+    - updated train_if error ouput
+ 6/27/2017 Heejeong Ryu
+    - moved pol_swch_time force control inside rx_init
+    - removed tap_sign_mode ctrl, pattern_protect_dis(user control)
+    - removed 10us delay for pin_pll_ready_tx/rx in partial slumber 
+    - reduced rx_init time
+ 6/26/2017 Heejeong Ryu
+    - rx_init cds control changed
+    - debug dfe_dc load and cover hard bug;digital load first and then analog ofst
+ 6/14/2017 Heejeong Ryu
+    - syncup with R1P0
+    - added dfe_core_bypass
+    - changed tx_status_pcie_mode address 
+ 6/12/2017 Heejeong Ryu
+    - move tsen init to calibration start
+ 6/06/2017 Enya Cheng
+    - Load pll_temp calibration results from temp sensor when cmx_PLL_TEMP_CAL_EXT_EN is set.
+ 6/05/2017 Enya Cheng
+    - PLL temp calibration bug fixing, save the TEMPC_MUX_HOLD_SEL for the first step.
+ 5/25/2017 Enya Cheng
+    - EOM align calibration new algorithm code improvement.
+ 5/24/2017 Heejeong Ryu
+    - updated cal_top, added missing BANK declaration
+    - update master_mcu check
+        Enya Cheng
+    - EOM calibration read EOM_ALIGN_COMP_OUT less time to save time and aviod inconsistance.
+ 5/23/2017 Heejeong Ryu
+    - removed set_mcu_int_lane0, mcu_init_done control
+    - changed train_sim_en and fast_dfe_timer_en usage
+ 5/22/2017 Enya Cheng
+    - New EOM_align calibration with the latest defined spec.
+	Heejeong Ryu
+	- changed ICP to ICP_LC
+    - changed phy_mode_cmn/lane to fixed address
+ 5/17/2017 Heejeong Ryu 0.5.0.0
+    - Changed xdat_cmn start address: 0xE600, internal firmware xdata_data start address: 0x6600 to support SERDES Speed change in the future.
+    - sync up
+ 5/17/2017 Heejeong Ryu
+    - updated SYNC_SATUS_P2_2_P1_ON control
+    - changed cal_top, vdd_cal; vdd_cal control sequence changed
+    - added vdd_cal gen save 
+ 5/16/2017 Heejeong Ryu
+    - added ana_pu_pll in pu_rx_on; need gate pu_rx 
+ 5/15/2017 Heejeong Ryu
+    - updated fw to fix typo in pu_rx_off
+    - changed AUTO_RX_INIT_EN control
+ 5/14/2017 Heejeong Ryu
+    - two phy txalign updated
+ 5/12/2017 X.Su
+    - Made txdetect_cal.c to BANK2(ROM). v0.4.1.0
+	- Moved process_cal.c to BANK2(ROM), moved dll_cal.c out of BANK2. v0.4.2.0
+	Heejeong Ryu
+    - changed ANA_TRX_ANA_RSVD_IN_LANE[8] to ana_rx_pu_dly2_lane register access
+    - added delay 10uSec slumber wakeup before pin_pll_ready_tx/rx=1
+ 5/10/2017 Heejeong Ryu
+    - added test pattern to vdd_cal, td_cal 
+    - changed slumber wakeup pu_tx
+ 5/9/2017 Heejeong Ryu
+    - fixed partial slumber fail
+ 5/8/2017 Heejeong Ryu
+    - added ACCAP control, updated CTLE table
+    - removed isolation_en_force in process_cal
+    - syncup; added dfe control options, clean up 
+ 5/7/2017 X.Su
+    - Disabled code banking. FW built with previous version of phy_reg_c_cmn_cmn.h and phy_reg_c_tx_cmn.h.
+ 5/6/2017 X.Su
+    - plldcc_cal() used pointer which resulted library function calls whose address will change with non BANK2 change. Replaced the function with is_toggle_pat();
+	- imp_cal() used 16-bit division and multiplication which resulted libr function calls. Replaced with BANK2 functions added in misc_rom.c
+ 5/4/2017 Heejeong Ryu
+    - updated p0_beacon
+    - fixed sas rxpartial pll_ready_rx deassert
+	- added train_sim_en for soc sim faster, debug *train_dummy
+	X.Su
+	- Removed BANK4 from code banking;
+	- Added boundary check for squelch calibration;
+	Enya Cheng
+    - Add 100us delay for TEMPC_DAC_SEL;
+    - Add 40us delay for the first TEMPC_DAC_VALID=1.
+ 5/3/2017 Enya Cheng
+    - Save TEMP calibration results for different rates.
+ 5/1/2017 Heejeong Ryu
+    - updated pcie p2_p0 fast startup call
+    - fixed sel_mu_f reset 
+ 4/30/2017 X.Su
+    - updated code banking: removed some files from BANK2/ROM since they need to call external functions;
+	- constants like tables in BANK2/ROM are now in the same bank instead of common segment;
+	- moved functions in misc.c and cal_top.c to misc_rom.c as these functions are needed for BANK2 files;
+	- moved lane_margin.c to BANK4 so that this feature (external RAM) can be tested on this chip;
+	- fixed issues in squelch_cal() as reported by Ping-jui in his simulation;
+	- updated makefile accordingly.
+ 4/27/2017 Heejeong Ryu
+    - changed back tx_train_if remote status
+    - added txspeed_div
+    - updated tx_init_bit
+    - added p0_beacon mode	
+    - fixed txdetrx issue
+ 4/26/2017 X.Su
+    - turned on code banking. makefile and ihex2mem.pl are updated accordingly.
+	Enya Cheng
+    - protect cnt limit for align90 pattern detection.
+ 4/25/2017 Heejeong Ryu
+    - updated dtx control for txalign
+ 4/24/2017 Enya Cheng
+    - Align90 power on calibration, use the shared toggling pattern matching function with other calibrations.
+ 4/21/2017 Enya Cheng
+    - Align90 power on calibration, do not init dac and gm for calibration.
+	Heejeong Ryu
+	- fixed dfe_dis spdtbl load, rx_init sel_mu_f not assert.
+ 4/19/2017 Heejeong Ryu
+    - added two phy tx lane alignment
+ 4/18/2017 Enya Cheng
+    - Update the align90 DAC and GM when the value at boundary.
+    Heejeong Ryu
+    - updated tx_init; moved txffe init to spdtbl
+ 4/17/2017 Heejeong Ryu
+    - optimized fw, tx/rximp, trainif to reduce code size
+    - updated rx_init_fast_acq mode
+ 4/14/2017 Heejeong Ryu
+    - use cds in rx_init
+    - load train_sampler_offset in cds reset
+    - added sampler train save sets in xdat_lane for dfe_init_reg
+	- pin_reset_core debug; add delay between pin_pll_ready* and others
+	Enya Cheng
+    - EOM align calibration EOM_ALIGN_CMP_OUT read function to use the req register.
+    - EOM align calibration, set the dac pass when reach the boundary.
+    - Toggle the req register for TEMPC_LEVEL_TODIG read.
+ 4/13/2017 Enya Cheng
+    - Eom align fine calibration reset loop for the second round.
+    - EOM align calibration camparator offset dac update at boundary.
+    - EOM align calibration timeout disable.
+    - EOM align calibration max loop time.
+    - EOM align calibration power on skip load.
+	Heejeong Ryu
+    - removed tx partial cal load
+    - added TX_LESS_CUR_IDLE_LANE in p1off -> p1
+ 4/12/2017 Enya Cheng
+    - Added align90 pd output read protect feature.
+ 4/11/2017 Enya Cheng
+    - Reset the parameter for is_toggle_pat before the second round of fine calibration.
+    Heejeong Ryu
+    - updated cal_top cont
+ 4/10/2017 Heejeong Ryu
+    - added PLL_VCON_POLARITY_INV, PLL_VDDVCO_POLARITY_INV
+ 4/7/2017 Heejeong Ryu
+    - optimized pu_pll
+    - added remote ctrl option (moved from isr) 
+    - added PIN_CORE_RESET function for PCIe
+    - added MASTER_MCU_SEL for master mcu selectable
+    - added load_cal_data_dll for power wakeup cal load	
+ 4/6/2017 Enya Cheng
+    - Added frictional noise filter;
+    - Align90 continuous mode loop cont controled by register;
+    - Align90 power on and continuous calibration share some code.
+ 4/4/2017 Heejeong Ryu
+    - use refclk_dis_en_int_en=1/0 in only mcu stop or wakeup
+    - fixed ringpll save compiler error
+    - added lane_margine compile option
+    - updated pll_speed max to 23 
+ 4/3/2017 Heejeong Ryu 
+    - updated ringpll_cal
+    - fixed cal stuck
+    - fixed sas10gkr train_if wrong train_pattern_num
+	  Enya Cheng
+    - Added register to enable/disable calibration timeout;
+    - Added align90_cal_done;
+    - Use pattern matching function; 
+    - Added register to select process calibration result.
+ 3/30/2017 Heejeong Ryu 
+    - added pll_lock check in *faststartup
+    - optimized force_cal_ext 	
+ 3/29/2017 Heejeong Ryu 
+    - changed cal_top_cont flow to spd/pwr_save 
+    - removed mcu_reset in power_save/spdchg enter
+    - fixed ringpll issues: pu_pll_ring toggle, load wrong values, long valid time during spdchg, timout_dis hang 
+	- added *cal_done for pll_cal/ring_cal fast wakeup
+    - optimized pll_cal
+ 3/28/2017 Heejeong Ryu 
+    - fixed usb speed fail, dtx toggle
+    - fixed pll_cal timeout_dis fail
+ 3/27/2017 Heejeong Ryu 
+    - added lc_pll_used, updated spdchg flow
+    - added pin_apta_train_enable handle
+ 3/24/2017 Heejeong Ryu 
+    - SERDES PLL_CAL fbdiv bug fix
+    - updated pll_amp_cont 
+    - changed ringpll_cal pll_cal_en/fbdiv order to avoid sim disturb
+    - changed pll_cal_done toggle for pllcal_ext_en 
+    - changed pcie4_en = 0 as midas default
+    - removed *stop_sel. use cal_done instead.
+ 3/23/2017 Heejeong Ryu 
+    - added *cal_ext_en to sq_cal
+    - changed 2byte hi/lo order in spdtbl
+ 3/21/2017 Heejeong Ryu 
+    - updated ringpll_cal vcoovth name correct
+    - disabled cap_final_optimaization function. 
+    - updated preocess_cal isolation fix
+    - reduced ringpll timeout 50mS -> 1mS
+ 3/20/2017 Heejeong Ryu 
+    - added cal*ext_en to sq_Cal, sampler_cal
+    - changed rx/tx_imp_cal to use cal result as cal*ext
+ 3/17/2017 Heejeong Ryu 
+    - updated DTL_LOOP_FREEZE_LANE control
+    - moved train pattern control to spdtbl
+    - added align90 speed_div_2 in phy_mode_lane	
+ 3/15/2017 Heejeong Ryu 
+    - removed *ext in phy_mode_*. 
+    - updated spdtbl for pcie high rate pll selection
+    - optimized spdtbl load for fast force_cal_done
+	- added *DLL_FREQ_SEL_LANE_2 control
+    - changed ANA_RSVD6_LANE[7:0] to new register name.
+ 3/13/2017 Heejeong Ryu 
+     - changed ringpll *OVERTH_RING according to R2P0 design fix
+     - added pll_cal lccap max calculation
+ 3/12/2017 Heejeong Ryu 
+     - spdtbl load code optimized
+     - added cal_*_ext_en func, digital filter 
+ 3/9/2017 Heejeong Ryu 
+     - added ext/cont in phy_mode_cmn, updated plldcc_cal
+ 3/8/2017 Heejeong Ryu 
+     - speed table structure changed, cal_top flow changed.
+ 3/1/2017 Heejeong Ryu 
+     - syncup with R1.0 and updated cache code uisng new mcu register
+ 2/21/2017 Heejeong Ryu 
+     - updated speed table structure and xdat_cmn/lane 
+//===================================================================== from FFC_28G R1P0 frimware
+ 2/17/2017 Heejeong Ryu 0.3.2.0
+      - enabled rxffe_accap func 
+ 2/15/2017 Enya Cheng
+      - Fix bug for lc pll calibration can not finish.
+ 2/14/2017 Heejeong Ryu 0.3.1.0 CESD-25
+      - fixed rxpartial dfe_clk_off signal control, added vdd_cal sync debug
+      - tximp, rximp, td_cal lane sync fw optimized	  
+ 2/8/2017 Heejeong Ryu CESD-24
+      - added tx/rx_use_ringpll in spdtbl for pcie
+ 2/7/2017 Heejeong Ryu 
+      - opt fw size
+          Enya Cheng
+      - add register to save TXDCC_PDIV calibration result for different rates.
+ 2/2/2017 Heejeong Ryu 
+      - added pcie multi lane power state only for lane enable/disable (CESD-22)
+ 2/01/2017 Enya Cheng
+      - add pass indicator for tx dcc post divider calibration.
+ 1/31/2017 Heejeong Ryu
+      - syncup with FFP: dfe_cont mode
+      - added accap func.
+      - updated dll_cal: VREF_RXDLL tbl changed for wide temp range
+ 1/27/2017 Heejeong Ryu
+      - syncup FFP fw: move ffe_data_rate,dfe_tap_settle_scale to rx spdtbl
+      - added SUPPORT_POWER_SIMPLE compile option for reduce fw size. To run COMSIM, please enable this.  
+      - rxinit ffp sync up, added dfe_reset design bug patch(still there)
+ 1/26/2017 Enya Cheng
+      - Improve timing for pll_fast_cal.
+           Heejeong Ryu
+      - fix train regression test fail
+      - changed txdcc_cont_cal control in cal top
+      - optimized fw size and enable eom, vdd_cal as compile option	  
+  1/25/2017 X.Su
+      - CESD-13: Fix issue that Signal DFE_CLK_OFF/DTL_CLK_OFF/RESET_DTL/RESET_DFE toggles more than expected.
+ 1/24/2017 Heejeong Ryu
+      - syncup with FFP FW; midas, dfe/train related, eom, align90_cal, eom_align_cal, process_cal, cal_top, cpu, int, fw_top, sampler_cal
+      - fix apta train unsupported cmd
+      - added compile option for vdd_cal/rpta/eom because of lack of memory
+      - fix pll_clk_ready_** control 
+ 1/19/2017 Enya Cheng
+      - Fix isue for TX DCC post division calibration to support COSIM.
+ 1/18/2017 X.Su
+      - CESD-14: The previous fix will cause issue in other state change. Removed PHY_STATUS assignment in ring_pll_fast_cal() so FFC behaves similar to FFP FW.
+ 1/17/2017 X.Su
+      - CESD-14: Fix issue that TX_IDLE_HIZ_EN did not go low for lane 0, when          PCIE power state P1OFF->P1.
+ 1/16/2017 Enya Cheng
+      - spd_ctrl.c fix typos.
+ 1/13/2017 Heejeong Ryu
+      - usb p2 to p0 corner case bug fix
+ 1/10/2017 Heejeong Ryu
+      - set_timer typo fix
+ 1/9/2017 Heejeong Ryu
+      - pcie txtrain error fix; p2p_hold=1 (default)
+ 1/6/2017 Heejeong Ryu
+      - bugfix pcie txtrain
+ 01/06/2017 Eugene Kim
+      - When less than 8-bit values are saved to array, |(OR) with 0x00. 
+      	Added this OR function in rximp_cal() & tximp_cal().
+ 01/04/2017 Eugene Kim
+      - Added adiitional parameter before saving to rximp[i].
+	    Enya Cheng
+      - Added code for txdetect_cal continuous mode. 
+ 12/21/2016 Heejeong Ryu
+      - use fbck_sel* to actual registers
+ 12/19/2016 Heejeong Ryu
+      - skip frame_lock check for no serdes mode
+      - syncup with ffp
+            Eugene Kim
+      - Added fbc_cnt_timer in cal_top all_cal_ext for bypassing calibration.
+ 12/16/2016 Eugene Kim
+      - Added ring size counter flag in all_cal_ext() in cal_top.
+ 12/15/2016 Eugene Kim
+      - Updated ring PLL fast startup for the case when the fmea is the same as
+        SPEED_THRESH but different at the second time. 
+ 12/13/2016 Heejeong Ryu
+      - added speedup registers to xdat_cmn, tx_train_p2p_hold_lane to xdat_lane
+	    Eugene Kim
+	 - Updated ring_pll power up cal following the power up spec. 
+ 12/06/2016 Enya Cheng
+         - Modified the delay for reg_RESET_ANA, to align timing.
+	 - Added reg_RXIMPCAL_EN in calibration.
+ 12/05/2016 Enya Cheng
+         - Modified the TEMPC_MUX_HOLD_SEL max index to 11 for FFC fast start-up LC PLL calibration.
+	 - Moved the PU_PLL and PU_PLL_DLY to PLL_fast_cal(), to align timing.
+	 Heejeong Ryu
+	 - shorten PowerUp_Seq_Test time for cosim  
+ 12/01/2016 Enya Cheng
+	 - Modified the TEMPC_MUX_HOLD_SEL max index to 11 for FFC.
+        Heejeong Ryu
+	 - added PLL_CAL_EN_RING 10us settling time, remove PLL_BAND_SEL_RING control during cal.
+ 11/30/2016 Heejeong Ryu
+	 - changed control sequence for pu_pll_ring on cal_top
+     - changed unix EOL format
+     - changed xdata_base to 0x6200, xdat_lane base to 0x6000 to sync up with ffp
+ 11/28/2016 Heejeong Ryu
+	 - Updated pll*ring controls in pm/spd/cal.
+     - Removed txlane_again at txpartial slumber.
+ 11/24/2016 Eugene Kim
+	 - Added cal values to force for ring pll fast start up.
+         - Added boundaries in operations for ring pll fast start up. 
+	 - Added a function in ring pll for fast start up mode from the power
+	   spec. 
+ 11/23/2016 Enya Cheng
+         - Added TXDCC post divider related in txlane_align.
+ 11/22/2016 Eugene Kim
+         - Added MCU_DEBUGA_LANE_7_0 temporary so designer can monitor counter
+           in ring pll for simulation. 
+	 - Updated the ring PLL fast cal / cont_cal.
+ 11/20/2016 Eugene Kim
+         - Updated the main PLL_SPEED_RING searching logic. 
+ 11/18/2016 Heejeong Ryu
+         - fixed reset_dfe/dtl_clk_off not working in sas/sata mode.
+         - added gen_pll_rate to get correct pll_rate rx/tx cal data correctly.
+	    Enya Cheng
+         - added TXDCC post divider calibration function and registers.
+ 11/17/2016 Enya Cheng
+	 - Change TXIMP calibration thermal code update portion.	 
+	    Eugene Kim
+	 - Updated spd_ctrl to load PLL_RATE_SEL_RING.
+         - Inserted delay after the sync clock in ring_pll upon designer's request. 
+ 11/16/2016 Heejeong Ryu
+         - syncup ffp txtrain stuck resolved.
+	   Eugene Kim
+         - Updated ring_pll_fast_cal with delays upon analog designer's request
+         - Added t_ring_pll_cal.c test case.
+           Enya Cheng
+         - Added firmware enable bit for TXDCC post divider calibration.
+         - Added done flag and fileld to store the result for TXDCC post divider calibration.
+         - Added more complex register read and write tests.
+ 11/10/2016 Eugene Kim
+	 - Following new design spec requirement in ring_pll, added
+	   PLL_SHRTR_RING signal in main ring_pll function. 
+ 11/9/2016 Eugene Kim
+	 - Updated operations and functions in ring pll fast wake up. 
+ 11/8/2016 Eugene Kim
+	 - Updated ring_pll fast wake up and added new signals. 
+ 11/4/2016 Heejeong Ryu
+         - bugfix pu_pll_or wakeup
+ 11/3/2016 Heejeong Ryu
+         - Changed USB/SERDES calibration sequence: LC and pll_rate=0 only
+	   Eugene Kim
+	 - Added reg_ANA_PU_PLL_RING=1 to power_sata.c
+	 - Added reg_ANA_PLL_CLK_READY signal in power_sata/pcie.c
+ 11/1/2016 Heejeong Ryu
+         - fixed LC spdthresh load typo.
+ 10/31/2016 Heejeong Ryu
+         - missing siganl PLL_CLK_READY_RING hardware bug patch; control CMN_ANA_RSVD_IN[3]. ==> changed back! hardware connected!
+         - applied smplr_cal_sel register name changed.		 
+ 10/27/2016 Heejeong Ryu
+         - bug fixed p1off bug 
+ 10/26/2016 Enya Cheng
+         - Updated release/t_cal.mem. 
+	 - Updated reg_midas reg descriptions in xdat_cmn & xdat_lane.
+ 10/24/2016 Heejeong Ryu
+         - added PIN_PHY_INT_OUT(set_mcu_int) to SOC when mcu_init_done=1. expect SOC to clear it.
+         - updated tempc hold_sel_max
+ 10/21/2016 Enya Cheng
+         - Modified TxImp calibraton process to match the specification.
+	 - Modified the method to calculate the calibration results.
+	 - Verified by simulation and hand calculation.
+ 10/21/2016 Heejeong Ryu
+         - tempc_mux_sel max changed to 'd10.
+ 10/19/2016 Heejeong Ryu
+         - move phy_gen_max to separate register bits for not conflict with mcu_init_done.
+         - adjust pll_clk_ready** time for sim
+         - changed pipe4 fom mode control. fom mode should be done once before dir mode.
+ 10/18/2016 Heejeong Ryu
+         - added missing ring_pu_pll ctrl in PCIe pmctrl.
+ 10/14/2016 Heejeong Ryu
+         - ring_pll: cover hardware bug. use testbus to check pll_vddvco_overth_ring/pll_vcon_overth_ring
+         - updated apta txtrain - no hold/ready step. 
+         - added FORCE_SKIP_XDAT_INIT (??) TODO
+ 10/13/2016 Heejeong Ryu
+         - ring_pll: remove fbc_ratio for fbc_timer
+         - added apta txtrain 
+ 10/12/2016 Heejeong Ryu
+         - updated apta access register to REMOTE_CTRL_FIELD_RD_LANE_15_0. 
+         - sync tempc to ffp fw.
+         - added ring pll vddvco_overth eco register access
+ 10/10/2016 Heejeong Ryu
+         - updated train_pat_num_lane[8:0]=0x88 for Serdes mode. 
+         - removed ivref protection for sim fail.
+         - set PIPE4_EN=1 as default if phy_mode==PCIe
+	    Eugene Kim
+	 - As Xinyu requested, added to wait until  PIN_PU_IVREF=1 before
+	   power up start.   
+ 10/07/2016 Heejeong Ryu
+         - moved tx_ffe_train_done_lane=1 before local_tx_train_complete_lane=1 
+	    Eugene Kim
+	 - added the analog output detect pattern for 0x9 and 0xA to  squelch_cal 
+ 10/03/2016 Heejeong Ryu
+         - bugfix: add PIN_LOCAL_CTRL_FIELD_READY_INT_EN 
+ 09/30/2016 Heejeong Ryu
+         - fixed pipe l1 clkoff state refclk_dis_isr not clear
+ 09/29/2016 Heejeong Ryu
+         - changed train_pat**
+         - bug fix on sq_cal, ring_pll_cal		 
+ 09/27/2016 Heejeong Ryu
+         - moved dtx speedtbl load to pll download for LC/RING  
+ 09/23/2016 Heejeong Ryu
+         - added dtx_ring control  
+ 09/21/2016 Heejeong Ryu
+         - support multilane power mode in SAS/SATA/SERDAS 
+		 - intpr bit changed   
+ 09/19/2016 Heejeong Ryu
+         - moved ring_pll_disable to xdat_cmn
+ 09/15/2016 Heejeong Ryu
+         - tx_clk_div_rst removed. 
+         - tx_clk_div_div removed from design. spdtbl changed.
+ 09/12/2016 Heejeong Ryu
+         - added one_lane skip_slumber for soc test ==== > need to modify later
+         - pwr_on txlane_align, no spdchg txlane_align in ringpll_disable_en=0 for sata/sas
+         - spdcng txlane_align in ringpll_disable_en=0 for pcie
+         - updated ana register bit order according to midas changed
+         - removed POLARITY_VCON_RING in midas.		 
+ 09/8/2016  Heejeong Ryu
+         - added reg_ANA_REFCLK_SEL = reg_PIN_REFCLK_SEL_RD on pwr seq top;  
+         - Bug fix reg_packet_sync_dis_lane/reg_sync_det_dis_lane control in spdchg
+ 09/8/2016  Eugene Kim
+	     - updated Tx impedance in imp_cal.c following the thermal code spec change.
+ 09/6/2016  Eugene Kim
+	     - ring_pll_cal.c - continuous mode / fast_pll portions are
+	       updated with following changes:
+		- added cnt_rdy function for reg_FBC_PLLCAL_CNT_15_0 from the
+		  main ring_pll block.
+		- corrected continuous function to update SLLP_DAC_FINE_RING
+		  properly.
+		- updated to the latest register names in fast_pll. 
+		- added a new register reg_POLARITY_VCON_RING that changes
+		  analog output polarity. 
+ 09/5/2016  Heejeong Ryu
+             - updated sq_cal according new sq ana design.
+ 09/2/2016  Heejeong Ryu
+             - Changed speed table **fbck for div_1g, fbdiv_ring, init_txoffs_ring
+             - added ring_ref_div_sel control.
+             - bug fix in get_tx_status.
+             - reg_DET_BYPASS_LANE=1 for pcie/usb
+ 08/31/2016 Heejeong Ryu
+             - bug fix on tx_train_if: clear time_out.
+             - bug fix on tx/rx_ck_sel in serdas 10GKR 
+ 08/29/2016 Heejeong Ryu
+             - moved RING_PLL_DIS to cmn
+             - pcie PLL order : LC(0)/RING(1) ; same as other phy_mode
+             - phy_mode -> pin_phy_mode_rd
+ 08/28/2016 Heejeong Ryu
+             - added one pll option by RING_PLL_DIS 
+ 08/25/2016 Heejeong Ryu
+             - added ring_pll_cal 
+             - pcie reversed: pll_rate=1 ->LC, pll_rate=0 -> RING
+ 08/24/2016 Heejeong Ryu
+             - support multi speed in multilane by tx/rx_ck_sel 
+             - add RING_PLL_DISABLE and DIV_1G_EN=1 control
+             - changed cal sequence; added ring pll rate
+             - added Ring_pll speed table
+			 - added tx_ck_sel control in spdchg
+ 08/18/2016 Heejeong Ryu
+             - included ana*top/bot c header              
+ 08/12/2016  Heejeong Ryu
+             - Updated xdat init sequence, cont_cal condition, ESM (Syncup with FFP_28G)
+ 07/27/2016  Heejeong Ryu
+             - Syncup with FFP_28G 
+			 - Added APTA TX Adjust
+ 06/27/2016  Heejeong Ryu
+             - Updated tx_train_pat_sel/num/toggle for SAS 22.5G 
+//===================================================================== from FFP_28G firmware
+ 04/26/2016  Heejeong Ryu
+             - updated **_cal one read up/dn signal
+ 04/20/2016  Heejeong Ryu
+             - updated dll_cal
+             - added sel_bit control
+             - added auto_rx_init_en control
+ 04/15/2016  Heejeong Ryu
+             - added txclk_sync_en_pll control in tx patial slumber 
+             - bug fixed for pll_temp_cal,rxdcc_c cont 
+             - added mcuclk=400MHz option
+ 04/12/2016  Heejeong Ryu
+             - pu_rx, pu_rx_dly off flow changed 
+             - bug fixed sampler_cal
+             - adjusted dcc_cal, eom_align_cal timing.
+ 04/08/2016  Heejeong Ryu
+             - updated td_cal for continuous mode support, add SLC_EN control			 
+ 04/07/2016  Heejeong Ryu
+             - added align90 soft-lookup, used for phase tracking.  
+             - added continuous cal 
+             - **dcc support "0" step 
+ 04/01/2016  Heejeong Ryu
+             - support usb3 txdetrx  
+ 03/31/2016  Heejeong Ryu  
+             - added train_if pcie_pip4 mode
+             - added pm control signals;  ffe_pulse_en, pu_pll2			 
+ 03/29/2016  Heejeong Ryu    
+             - RXDCC**/TXDCC/PLLDCC calibration data changed: gray code -> SM.
+             - tximp changed according to spec update; cal start values, pattern check changed.  
+ 03/26/2016  Heejeong Ryu
+             - added pu_pll_dly control   
+             - adjusted txdetectrx timing, added reg_pin_txdetrx_valid_lane control in txdetectrx			 
+             - removed pwron_seq=0 at the begining. 
+             - changed after p0_txdetectrx done, go to st_pll_ready.
+             %% Firmware Expect %%: 
+               During Training, TxDetectRx never happen! 
+               P0_TxDetectRx stage should be happened after pin_pll_ready_tx/rx, before rx_init_done.                       
+ 03/25/2016  Heejeong Ryu
+             - phase tracking bug fixed 
+ 03/24/2016  Heejeong Ryu
+             - Added TXRXIMP_CKCAL control in plldcc_cal
+			 - support refclk_dis lagging in sata/pcie
+             - added reg_trxdccin_sel_lane[2:0]=4 in txdcc_cal	
+             - Changed delay time to 10uS from reset_dtx=0 to pin_pll_ready_tx=1
+             - Bug fix: train_if status sending typo.
+             - added td_cal missing reg_tx_tdcal_en_lane control
+ 03/23/2016  Heejeong Ryu
+             - added 20uS delay PU_BG to PU_IVREF for SATA and PCIe    
+             - moved RESET_ANA=1 to inside pll_cal
+             - changed trximp_cal sync clock to TRX_IMPCAL_CLK			 
+ 03/22/2016  Heejeong Ryu
+             - Align90_cal dac control bug fixed
+			 - deleted ssc_en control in firmware
+ 03/21/2016  Heejeong Ryu sos rev84
+             - added spdtbl load before pu_pll assert
+             - VIND_BAND_SEL used to init vco_dac init in pll_cal 
+             - bug fixed tx_comp clear after train              
+03/21/2016  Heejeong Ryu sos rev83
+             - fixed control_field = 0x28 case. changed dec -> inc emph1
+			 - splited local tx_comp and remote tx_comp control, and tx_train complete done by hardware
+ 03/20/2016  Heejeong Ryu sos rev82
+             - added mcu_status_and/or for mcu sync
+ 03/19/2016  Heejeong Ryu sos rev77
+             - deleted rx_init_done control in trx_train
+ 03/19/2016  Heejeong Ryu sos rev76
+             - added control signals in SMAPLER_CAL
+             - bug fixed in PROCESS_CAL
+             - dfe_done check follow changed.
+             - interactive mcu lane sync			 
+ 03/15/2016  Heejeong Ryu sos rev60
+             - added CHECK_SPEED_TABLE_LOAD checker
+             - added pll_cal time delay options
+             - modified pll_cal lccap_msb thermo control             
+ 03/12/2016  Heejeong Ryu sos rev56
+             - added prcess_cal 10 time avarage.  
+ 03/11/2016  Heejeong Ryu sos rev55
+             - link train bug fix: reset after first time train.  
+ 03/11/2016  Heejeong Ryu sos rev54
+             - Disabled reg_dme_enc_balance_cal_en_lane in ethernet mode
+             - adjusted reset_dfe/dtx/dtl timing during spdchg
+             - changed reg_dfe_mcu_clk_en_lane=1 during calibration for ana dfe register access in sampler_cal .  			 
+ 03/10/2016  Heejeong Ryu sos rev52 
+             - pll_cal pattern checker bug fixed              
+ 03/09/2016  Heejeong Ryu sos rev50
+             - train_comp init/clear bug.(Xiaojun)
+ 03/09/2016  Heejeong Ryu sos rev47
+             - Added speedchg int clear to cover tx/rx gen change different time
+             - TRAIN_PAT_NUM_LANE bit load for ethernet. 	
+             - USB speed table data changed; added min_gen ingo into Speedtabla data structure.
+ 03/08/2016  Heejeong Ryu sos rev46
+             - Updated txlane_align mcu sync issue fixed.
+             - Updated register name: ana_vcoamp_hi, remote_status_g**,pin_local_ctrl_field_ready_rd 
+ 03/07/2016  Heejeong Ryu sos rev45
+             - changed slumber wakeup reset dfe/dtl timing 
+             - changed pll_clk_ready on timing
+             - train interrupt bug fixed
+             - Align90_cal check pattern bug fixed.   
+             - added Port control in cpu sfr. 		
+             - added link train mode               			 
+ 03/05/2016  Heejeong Ryu sos rev39
+             - Align90 PD monitor register changed: reg_ANA_RX_ALIGN90_PD_OUT_RD_LANE
+             - PU_IVREF_** power down sequentially.
+             - set DFE_MCU_CLK_EN_LANE=1 during sampler_cal for ana dfe * register access. 
+             - Bug fixed: TxTrain_if valid code search index error
+ 03/02/2016  Heejeong Ryu sos rev35
+             - added local_status_field|train_comp.
+             - fixed train_complete wait. 
+             - removed rx/tx_sel_bits in SERDES; user define.  
+ 03/02/2016  Heejeong Ryu   sos rev33
+             - added more phy_state for dv team request. 
+             - changed fbck_sel to user control
+             - rx_init pin interrupt issue fixed 
+ 03/01/2016  Heejeong Ryu   sos rev32
+             - Changed tx_train complete flow for correct fix pin_tx_train_complete control.  
+ 03/01/2016  Heejeong Ryu   sos rev31
+             - Bug fixed: isr3 phy_state=st_slumber when refclk_dis=1.
+             - aded align90_ref[5:0]=0x1e (90') during align90_cal.
+             - added pin_tx_train_complete_rd_lane checking after train_comp=1.
+ 02/29/2016  Heejeong Ryu   sos rev28
+             - Added PHY_INT_LANE at MCU_STATUS_LANE[31:24]
+             - fixed loadspeedtbl_rx typo
+             - Deleted pll_clk_ready toggle during power on seq. 
+ 02/25/2016  Heejeong Ryu   sos rev27
+             - Speed table total size changed to 256*4Byte
+             - Moved xdata default setting before MCU_INIT_DONE
+ 02/24/2016  Heejeong Ryu   sos rev25
+             - Speed table changed; refclk_freq deleted. Have to be user defined.
+ 02/23/2016  Heejeong Ryu   sos rev24
+             - SSC_M register bit changed
+             - xdata init moved to after PIN_PU_PLL on
+ 02/23/2016  Heejeong Ryu   sos rev22
+             - Added tx_idle=1 during calibration
+             - Changed loading phy_max_gen tx/rx speed table during calibration
+             - splited power.c to power.c/power_sata.c/power_pcie.c	
+             - temporary fixed ssc_m bit operation issue
+ 02/19/2016  Heejeong Ryu   sos rev18
+             - PLL Speed table Updated
+             - Added adapt_alg=MMSE_ADAPT_MODE in init stage
+             - Updated cal_seq. fixed pll_cal rate control.
+             - TXIMP_CAL bug fixed; P_TUNEx=0 
+ 02/19/2016  Heejeong Ryu   sos rev17
+             - bug fixed; Added ST_SLUMBER_CLK in slumber wakeup interrupt.
+             - added rxinit pseudo code
+             - temporary added default as PLL_CAL_EN=1 when FORCE_EXIT_CAL==0 && all other cal_en==0 in SIM_ENV.
+ 02/18/2016  Heejeong Ryu   sos rev16
+             - Changed FBCK_SEL control.
+ 02/18/2016  Heejeong Ryu   sos rev15
+             - Added missing tximp_cal_en signal control.
+             - Updatd SERDES speedtable 
+ 02/17/2016  Heejeong Ryu   sos rev14
+             - Added PHY_GEN_MAX init value.
+ 02/17/2016  Heejeong Ryu   sos rev13
+             - CAL Top: calibration sequence is changed with PHY_GEN_MAX.
+             - Added PLLDCC_CAL
+             - Adjusted dcc_cal clk/data timing(by Mengxun)
+             - Register name and address changed:ANA_PLL_CLK_READY_PRE0,ANA_PLL_CLK_READY_PRE1,ANA_PLL_CLK_READY,ANA_PU_BG,ANA_PU_RX_DLY_LANE (new)
+               ANA_TXDETRX_START_LANE,ANA_TXCLK_SYNC_EN_PLL,ANA_TX_TXCLK_SYNC_EN_LANE
+ 02/12/2016  Heejeong Ryu   sos rev12
+             - Changed sellv_rxdll[5:0] bit width
+             - Changed reg_DRO_EN as PROCESSMON_SWITCH
+ 02/11/2016  Heejeong Ryu   sos rev11
+             - speedtable changed; added max_pll.
+             - default xx_CAL_EN all disable(SIM). defined Calibration_force_enable to SET_MCU_COMMAND_LANE[23:8] 			 
+             - fixed dfe dma bug.
+ 02/10/2016  Heejeong Ryu   sos rev10
+             - defined max_gen=0 in SERDES/USB. 
+             - modified pll_cal; (1)if max_gen=0, run pll_cal once.(2)changed start VCO_DAC value.  
+             - moveed tsensor initial read time to after calibration.
+             - fixed dcc_cal register name
+             - added cdr_dfe_scheme  
+ 02/04/2016  Heejoeng Ryu   sos rev9
+             - changed BYPASS_DELAY to BYPASS_DELAY[1:0]: delay_time>>BYPASS_DELAY[1:0]
+             - fbc_pll_cal_ready & fbc_cnt_start timing mismatch fixed
+             - Added reg_pll_clk_ready_pre1 and reg_pll_clk_ready_pre0 signal control 
+             - Added LD_CAL_DATA in x_pll_fast_cal
+             - Changed phy_gen read register to PIN_PHY_GEN_TX/RX_RD_LANE[3:0]
+             - Speedtbl covert script bug fixed - Speed_threshold binary conversion error
+ 02/02/2016  Heejoeng Ryu    sos rev7 
+             - Speedtbl load bug fixed
+             - Applied TSEN register name change
+             - PLL_CAL init LCCAP_LSB value t0 0x1f 
+ 01/30/2016  Heejoeng Ryu    sos rev6 
+             - added BYPASS_DELAY defined at MCU_COMMAND_LANE[2] 
+             - added tx_train psedo code for train_if test
+//********************************************************************* 

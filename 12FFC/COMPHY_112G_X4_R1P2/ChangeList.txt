@@ -1,0 +1,489 @@
+//*********************************************************************
+//	    COMPHY_112G_X4 Firmware Change History			
+//
+//   Copyright (c) 2019 Marvell Semiconductor, Inc. All rights reserved
+//*********************************************************************
+//Rule:
+// <date> <name> <revision#> <JIRA#> <CETask#> <SOC release info>
+// - summary of "what" change for "why" 
+//*********************************************************************
+10/20/2020 Xunzhi Wang 0.10.11.75
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@6645
+  - [SIM] Bypass tsen simulation
+  -- Following last version, bypass first TSEN_ADC_RDY waiting instead. Keep simulate normal state machine based tsen.
+10/19/2020 Xunzhi Wang 0.10.11.74
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@6641
+  - [SIM] Bypass tsen simulation
+  -- Requester: Xu Han
+  -- Why: SoC reported tx_training simulation incomplete for too long. Cause is MCU_CMN takes too long for tsen simulation, and fails to respond for tbus reading.
+  -- What: Bypass read_tsen_ram in MCU_CMN when FAST_POWER_ON_EN
+  -- Test: Simulation tx training
+10/07/2020 Xunzhi Wang 0.10.11.73
+  - [r1.2][CONFIG] Enabled SUPPORT_PHASE_ADAPT_HR.
+  - Note: 0.10.11.67:On -> 0.10.11.70:Off -> 0.10.11.73:On
+10/06/2020 Xunzhi Wang 0.10.11.72
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@6629
+  - GLC5616-613
+  -- Requester: Samuel Zhang, confirmed by Hui Zhao
+  -- Why: 1.25G has crosstalk issue as 10.3125/20.625G
+  -- What: PLL rate0 also forces LANE_ALIGN_POFFSET_LANE to be different values for adjacent lanes
+  -- Test: Bench observation
+10/06/2020 Xunzhi Wang 0.10.11.71
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@6627
+  - IPCE_COMPHY-2154
+  -- Requester: Samuel Zhang, confirmed by Guoping Cui/Fang Dong
+  -- Why: From 1G to 106G, there are cases current SQ setting cannot detect signal
+  -- What: Change sq_refthr to 3 for all speeds
+  -- Test: Bench observation on bad channels
+09/15/2020 Xunzhi Wang 0.10.11.70
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@6605
+  - Added support of 16.5T NT clock for RX@<=10g and TX@all_speed (Xu)
+08/25/2020 Xunzhi Wang 0.10.11.69 <> M-2375
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@6569
+  - [r1.2]'Embedded Firmware Version and PHY mode in fixed firmware binary location. This is required for SOC to recognize firmware revision version number and PHY mode from binary file before they download into PMEM.' rev@0x200 mode@0x204 (Heejeong)
+08/24/2020 Xunzhi Wang 0.10.11.68
+  - Added state based read_tsen_ram for fast response from mcu_cmn
+08/22/2020 Xunzhi Wang 0.10.11.67
+  - [r1.2] Moved ctle_adaptation.c, phase_adaptation.c to bank3
+  - [r1.2][CONFIG] Enabled SUPPORT_PHASE_ADAPT_HR. tag_PHASE_EN_HR default disabled.
+08/21/2020 Xunzhi Wang 0.10.11.66
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@6552
+  - mcu_cmn_debug22_lane[7:0].6->sweep_r_without_dfe_tap_mode_change_rd (Xin)
+08/20/2020 Xunzhi Wang 0.10.11.65
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@6548
+  - R train: sweep index from 3 to 15 for all rates (Xin)
+  - R train: RESET_DFE_TAP_MODE=1 during r sweep (Xin)
+08/19/2020 Xunzhi Wang 0.10.11.64
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@6539
+  - Added read_testbus0 for final remote_control_bits to get realtime TTIU, so wrong TTIU latched at remote tx complete does not affect grey code setting (Xu)
+  -- Changed lane/cmn handshake interface
+  -- train_debug3_lane[7:0].3->tag_NO_CONTROL_BITS_BY_TESTBUS
+  - [CONFIG] disable RUN_REGRESSION
+  - train_debug3_lane[7:0].4->tag_SINGLE_RX_TRAIN_FOR_TX_TRAIN
+08/12/2020 Xunzhi Wang 0.10.11.63
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@6524
+  - sync with r1.1 0.10.12.28
+  - [53G] Final res train uses CDS_EN_RECOVER_HR (0x420F30, remove reset_en stage) (Xin)
+  -- Improved 1/4000 tx training f0d failure (SoC,GLC5616-501)
+08/03/2020 Xunzhi Wang 0.10.11.62
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@6515
+  - train_debug3_lane[7:0].5->tag_STOP_DFE_CONT_AFTER_TRAIN, debug feature set before training (Xin)
+08/25/2020 Xunzhi Wang 0.10.11.69 <> M-2375
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@6569
+  - [r1.2]'Embedded Firmware Version and PHY mode in fixed firmware binary location. This is required for SOC to recognize firmware revision version number and PHY mode from binary file before they download into PMEM.' rev@0x200 mode@0x204 (Heejeong)
+08/24/2020 Xunzhi Wang 0.10.11.68
+  - Added state based read_tsen_ram for fast response from mcu_cmn
+08/22/2020 Xunzhi Wang 0.10.11.67
+  - [r1.2] Moved ctle_adaptation.c, phase_adaptation.c to bank3
+  - [r1.2][CONFIG] Enabled SUPPORT_PHASE_ADAPT_HR. tag_PHASE_EN_HR default disabled.
+08/21/2020 Xunzhi Wang 0.10.11.66
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@6552
+  - mcu_cmn_debug22_lane[7:0].6->sweep_r_without_dfe_tap_mode_change_rd (Xin)
+08/20/2020 Xunzhi Wang 0.10.11.65
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@6548
+  - R train: sweep index from 3 to 15 for all rates (Xin)
+  - R train: RESET_DFE_TAP_MODE=1 during r sweep (Xin)
+08/19/2020 Xunzhi Wang 0.10.11.64
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@6539
+  - Added read_testbus0 for final remote_control_bits to get realtime TTIU, so wrong TTIU latched at remote tx complete does not affect grey code setting (Xu)
+  -- Changed lane/cmn handshake interface
+  -- train_debug3_lane[7:0].3->tag_NO_CONTROL_BITS_BY_TESTBUS
+  - [CONFIG] disable RUN_REGRESSION
+  - train_debug3_lane[7:0].4->tag_SINGLE_RX_TRAIN_FOR_TX_TRAIN
+08/12/2020 Xunzhi Wang 0.10.11.63
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@6524
+  - sync with r1.1 0.10.12.28
+  - [53G] Final res train uses CDS_EN_RECOVER_HR (0x420F30, remove reset_en stage) (Xin)
+  -- Improved 1/4000 tx training f0d failure (SoC,GLC5616-501)
+08/03/2020 Xunzhi Wang 0.10.11.62
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@6515
+  - train_debug3_lane[7:0].5->tag_STOP_DFE_CONT_AFTER_TRAIN, debug feature set before training (Xin)
+07/30/2020 Xunzhi Wang 0.10.11.61
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r6509
+  - Removed unused mcu_align_0
+  - cmx_PHY_GEN_MAX_4_0 only set to 0x1f in mcu_cmn (do not use max_gen in lane speedtable) (Xu)
+  - Added cds_call CDS_EN_FINAL_MEASURE
+  - Add bit_performing_phase_train_adv for tracking_dfe_adaptation
+  - Changed f0d measure cds to CDS_EN_FINAL_MEASURE
+  - Added CTLE_TIMER, PHASE_TIMER init
+07/29/2020 Xunzhi Wang 0.10.11.60
+  - Kept reg_RESET_DFE_TAP_MODE_LANE=1 during final res train->vref res change would not cause eye closure (Xin/Grace)
+  - DFE_SAT_EN restore at the end of trx_train_end; SQ*EN after trx_train_end
+  - Added debug features
+07/22/2020 Xunzhi Wang 0.10.11.59
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r6496
+  - Changed drv_train_if_cfg as specification changed (Xu)
+  -- PAM4's tx_train_pat_coding_sel_lane=0 before first tx request
+  -- LOCAL_TX_PRESET_INDEX_LANE = 1
+07/22/2020 Xunzhi Wang 0.10.11.58
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r6494
+  - tx_reset without cds call before it to prevent short channel cdr no lock. (Xin)
+  - [53G] Added tx_reset_adjust after tx_reset: request post+6,pre2-2 (Xin/Xu)
+  - Added _DBG_TXTRAIN_STATUS_VALID debug feature
+  -- mcu_debug_lane[31:0]->valid_bits for tx requests. Bit0 is latest request.
+  -- mcu_reservedx23_lane[7:0]->count of requests
+07/14/2020 Xunzhi Wang 0.10.11.57
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r6483
+  - [SIM] Added ANA_TRX_PLL_TXCLK_SYNC_EN, ANA_TX_TXCLK_SYNC_EN sequence for all_cal_ext
+07/13/2020 Xunzhi Wang 0.10.11.56
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r6481
+  - sync with r1.1 0.10.12.21
+  - During speed change unexpected pattern issue
+  -- do not set ana_pu_tx if already on
+  -- Added ANA_TRX_PLL_TXCLK_SYNC_EN, ANA_TX_TXCLK_SYNC_EN sequence
+  -- [Workaround] do not touch tx_idle control (do not define SUPPORT_TX_IDLE)
+  -- Future macro SUPPORT_TX_IDLE:
+  -- Changed tx_idle sequence: mainly only set after ana_pu_tx to enter tx_idle correctly instead of unexpected pattern. This is the key change. (Peng Liu)
+  -- Strictly followed reg_ANA_TX_IDLE_FORCE_LANE=0 is after reg_PIN_PLL_READY_TX_LANE=1 (Xu)
+  - Moved rx training timer config to init_xdata_at_core_reset
+  - reg_TRX_TRAIN_TIMEOUT_EN_LANE = 0 once for all in init_xdata_at_core_reset to get cleaner txdata when train fails(SoC)
+  - Disabled reg_PATTERN_LOCK_LOST_TIMEOUT_EN_LANE also for r1.2 to improve tx train success rate (Xu); Moved this part to init_xdata_at_core_reset
+  - Fixed after tx train unexpected pattern issue (Xu)
+  -- Checked reg_INT_TX_TRAIN_FAILED_LANE when checking TX_READY
+  -- Added PT_TX_CLK_EN_LANE control along with TX_TRAIN_PAT_EN_LANE
+  - Added train abort workaround: return when entering dfe_adaptation if train_en is 0. Sped up tx and rx train abort.
+  - Fixed conflict debug reg: cmx_MCU_DEBUG_CMN_25/24_7_0 changed to cmx_MCU_DEBUG_CMN_27/26_7_0 at r train for dfe_loop. Also guarded by _DBG_R_TRAIN_DFE_LOOP
+06/30/2020 Xunzhi Wang 0.10.11.55
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r6452
+  - sync with r1.1 0.10.12.20
+  - Changed to CDS_EN_F0D (changed to 0x820000: restore dfe regs) to measure f0d->not affect long trace BER (Xin)
+  -- Added dfe_adapt_en+dfe_accu_en before CDS_EN_F0D with tag_DFE_LOAD_EN = 0 
+  - Do not set ana_pu_pll before pin_pu_pll=1->r1.2 no unexplained current without mode
+  - [r1.2] Changed reg_TX_EMPH3_DEFAULT2_LANE_4_0 to 0x0. Correct preset value. (Xu)
+06/18/2020 Xunzhi Wang 0.10.11.54
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r6432
+  - sync with r1.1 0.10.12.18
+  - Added more debug records for 53G short channel tx_gray_code_en issue (Xu)
+  - Removed reg_REMOTE_RD_REQ_LANE = 0 (to not affect tx training complete sequence)
+  - Do not set pll ready when slumber/partial slumber wakeup, if next state is still slumber/partial slumber (Xu)
+  - 53G short channel tx_gray_code_en issue: read REMOTE_CTRL_BITS_LANE at different places for debugging (Xu)
+  - Syncing with pll speed table on rate 1 by hard code (ICP/LPFR/LPFC). Reduce crosstalk. (Hui)
+  - PLL rate 1: force LANE_ALIGN_POFFSET_LANE to be different values for adjacent lanes to reduce crosstalk (Hui)
+  -- mcu_reservedx08_lane[7:0].[6:0]->lane_align_poffset_rate1, default lane0/2:0x4,lane1/3:0x14
+  - 53G short channel tx_gray_code_en issue: read REMOTE_CTRL_BITS_LANE before it could be cleared (Xu)
+  - [25G](Extend from 53g)train_debug1_lane[7:0].0->good_ber, train_debug2_lane*8*32>train_f0b_lane(average_eye)*ber_indicator_factor_25g (John)
+  -- mcu_debug_cmn_24[7:0]->ber_indicator_factor_25g, default 90 (set by FW)
+  - Fixed train.eo/train.f0_data's calculation by using sum_f0d/sum_f0x. No impact. (Grace)
+  - Enabled RUN_REGRESSION
+  - Fixed RXCLK_25M_DIV_LANE and RXCLK_25M_FIX_DIV_EN loading from speedtable
+05/19/2020 Xunzhi Wang 0.10.11.53
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r6381
+  - sync with r1.1 0.10.12.12
+  - [SIM] Use delay_ram for slumber_wakeup_delay to enable speed up
+05/07/2020 Xunzhi Wang 0.10.11.52
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r6355
+  - sync with r1.1 0.10.12.11
+  - [SIM] Do not set reg_INT_RX_TRAIN_FAILED_LANE = opt.eye_check_pass==0 in simulation
+05/05/2020 Xunzhi Wang 0.10.11.51
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r6349
+  - sync with r1.1 0.10.12.10
+  - Changed short channel R train:
+  -- Changed R train short channel cds call to CDS_EN_PHASETRAIN
+  -- mcu_debug_cmn_22[7:0].[3:0]->0 means 15, non-0 value would be forced short channel r index
+  -- mcu_debug_cmn_22[7:0].4->always_sweep_r, no matter short channel or not
+  -- Added PAUSE_ST_TEST_B at R train to test cds
+  -- [53G] Changed Tdfe_coarse/Tdfe_fine to (mcu_debug_cmn_25[7:0]<<8|mcu_debug_cmn_24[7:0])(if not 0) only for the cds after R train
+  - Added reg_DTL_CLAMPING_SEL_LANE_2_0 = 0x7; reg_DTL_CLAMPING_SCALE_LANE = 1 (Xinyu)
+  -- 'The new DTL clamping setting, is to limit the frequency offset within +/- 400 ppm. With the original setting, the DTL frequency offset might go to a large value like 7000 ppm and cannot recover. Ideally the DTL should be still recover. But the test in 7nm 56G PHY shows we need extra steps to pre-adapt VREF/F0 first.'
+  -- mcu_debug_cmn_22[7:0].5->short_channel_change_step_vref_rd. [53G] If 1, change DFE_STEP_COARSE/FINE_VREF to 1,3 only for the CDS_EN_RECOVER after R train  - Break down CDS_EN_RECOVER at R train, and change recording regs
+  - Added mcu_debug7_lane[7:0] for [31:24] of training time
+  - Removed redundant checksum check
+  - [r1.2] Update get_program_memory_checksum for checksum 1 (Ping-Jui)
+  - (John/Grace) Train failure condition change:
+  -- Added INT_RX_TRAIN_FAILED_LANE condition: eye_check_pass=0
+  -- Changed eye_check_pass condition from train.eo>=tag_EYE_CHECK_EO_THRE to train.eo>tag_EYE_CHECK_EO_THRE
+  - Removed PT_OUT_TIME_TRAIN_COMP_LANE setting->provide user with full control
+  - Changed mem2dat.pl to add checksum padding back to main.mem
+  - Make sure parameter strings of DBG_PS/DBG_Printf are optimized out
+  - Added checking SQ to guard realtime functions (CTLE_Adaptation,dc_vref_adj)(John)
+  - Changed tx_fir_init sequence: set tx_fir_update=0 at the start and end of the function<-analog takes effect on tx_fir_update level instead of rising edge.
+  - dfe_spd_init(): Added disable dfe for 1G (Mo)
+  - Renamed init_xdata_bank1 as init_xdata_at_core_reset
+  - Added all tx fir min/max restore as SoC request
+  - Changed tag_VREF_RES_HIGH_THRES's alias to variable
+  - Changed mcuclk_mc address to 0xe710 for mcu_cmn to access -> Fixed wrong delay in mcu_cmn
+  - Set EA=1 for mcu_cmn
+  - Moved functions to misc*.c
+  - Moved dfe_cnt,dfe_max_cnt to local; Comment on global.c
+  - Moved unused files into not-compiled folders
+  - Created misc1.c/misc2.c/misc3.c for different banks
+  - [PAM2] Uncomment tx.gn1_is_max/tx.gn1_is_min checking to fix fir sum <63 when gn1 hit boundary
+  - [PAM2] Added decrease g0 before per-tap fir train to let gx_is_min/max indicate per-tap boundary. Restore g0 afterwards. Note: gx_index may still have one code mismatch.
+  - [112G] phase adapt: clear vote every 8 callings
+  - [r1.2] Comphy interrupt 0x17: added pre3 support
+04/08/2020 Xunzhi Wang 0.10.11.50
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r6267
+  - sync with r1.1 0.10.12.9
+  - Changed RX_Init() in tx train to rx_init_internal() to leave rx_init_done untouched
+  - [r1.2]TX_READY patch: abort if reg_PIN_PLL_READY_RX_LANE=0
+  - Removed reg_PT_TX_PATTERN_SEL_LANE_5_0 restore in restore_xdata so FW does not control it
+  - Removed pt_en restore in restore_xdata <- Note: reconsider if later SUPPORT_PRBS_CHECKER is defined
+03/30/2020 Marc Yu 0.10.11.49
+  - Xu's modified TX_READY patch
+03/26/2020 Marc Yu 0.10.11.48
+  - added patch code for TX_READY_PATCH_EN
+  - this is to patch SOC train complete hardware interface
+  - this patch is enable if lnx_TX_READY_PATCH_EN_LANE == 1
+  - reg_PIN_MCU_REMOTE_COMMAND_RD_LANE_7_0 is used if the patch is enabled 
+03/26/2020 Marc Yu 0.10.11.47
+  - Added TX_READY_PATCH_EN_LANE in midas
+  - updated header file, reg.midas and reg_map.mfl only
+03/11/2020 Xunzhi Wang 0.10.11.47
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r6153
+  - sync with r1.1 0.10.12.7
+03/09/2020 Xunzhi Wang 0.10.11.46
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r6129
+  - sync with r1.1 0.10.12.6
+  - Adjusted BANK size for r1.2 (r1.2 bank2 needs ~0.35% more)
+03/09/2020 Xunzhi Wang 0.10.11.45
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r6123
+  - sync with r1.1 0.10.12.5
+03/06/2020 Xunzhi Wang 0.10.11.44
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r6115
+  - sync with r1.1 0.10.12.4 including config.h/mem2dat.pl(support 0x1ffff)
+01/30/2020 Xunzhi Wang 0.10.11.43
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r5813
+  - sync with r1.1 0.10.12.1 including midas
+01/14/2020 Xunzhi Wang 0.10.11.42 IPCE_COMPHY-1661
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r5659
+01/09/2020 Xunzhi Wang 0.10.11.41 IPCE_COMPHY-1661
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r5585
+12/05/2019 Xunzhi Wang 0.10.11.40
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r5351
+12/05/2019 Xunzhi Wang 0.10.11.39
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r5280
+12/05/2019 Xunzhi Wang 0.10.11.38
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r5270
+12/03/2019 Xunzhi Wang 0.10.11.37
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r5213
+12/03/2019 Marc Yu 0.10.11.36
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r5195
+  - r1.1Dev@0.10.11.84
+12/03/2019 Marc Yu 0.10.11.35
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r5176
+  - r1.1Dev@0.10.11.84-(r1.1Trunk@r5160,r5010:r4923)
+12/02/2019 Xunzhi Wang 0.10.11.34
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r5160
+12/02/2019 Marc Yu 0.10.11.33
+  - modified fw_gen.csh and ihex2mem.pl to enable 128KB pram
+11/27/2019 Xunzhi Wang 0.10.11.32
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r5134
+11/25/2019 Xunzhi Wang 0.10.11.31
+  - Sync up config.h for 0.10.11.30
+11/25/2019 Xunzhi Wang 0.10.11.30
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r5061
+11/21/2019 Marc Yu 0.10.11.29
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r5017
+11/20/2019 Marc Yu 0.10.11.28
+  - build based on external ver = https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1@r4967
+11/14/2019 Marc Yu 0.10.11.27
+  - build based on external ver = r4899@https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1
+11/06/2019 Marc Yu 0.10.11.26
+  - external ver = r4778@https://vc01.marvell.com/svn/CESD/fw_repo/12FFC/COMPHY_112G_X4_R1P1
+  - compiled all reg
+  - updated to latest speed table
+10/25/2019 Marc Yu 0.10.11.25
+  - Made ./shared/ and ./4lane/src/ svn externals to share copies of R1.1
+  - Added #define _12FFC_COMPHY_112G_X4_R1P2 in config.h 
+10/25/2019 Marc Yu 
+  - Removed ./shared/, ./4lane/src/, and etc. to prepare for bringing in R1.1 shared files
+09/30/2019 Marc Yu 0.10.11.24
+  - Updated FAST_POWER_ON_EN to combine all the fast simulation option registers to one register
+  - https://ceproject.marvell.com/index.html#/task/1848
+08/23/2019 Marc Yu 
+  - Engineering image for Datacom X7121 (0.10.11.23)
+  - Support of 53G TRX training
+  - Support of stage 1 COMPHY INT funtions (0x0, 0x10, 0x11, 0x12, 0x13, 0x14, 0x17, 0x20)
+  - Limitation: For 53G data rate, if long trace training results are applied to short trace, TXFFE C-1 need to be decreased under saturation condition.
+08/23/2019 Marc Yu 0.10.11.23
+  - Commented out _LAB to remove UART debug information print-out
+08/22/2019 Marc Yu 0.10.11.22
+  - Added Datacom COMPHY_INT feature, supporting function: 0x0, 0x10 ~ 0x14, 0x17, 0x20
+08/21/2019 Xunzhi Wang 0.10.11.21
+  - Changed rx_init polling to interrupt with mcu_reset to make sure 
+  - Removed set_dfe_cont in ctle adaptation to avoid issue after mcu_reset
+  - Changed prbs_check_uninit position for simulation
+08/18/2019 Marc Yu
+  - Repo locked for X7121 release preparation
+08/15/2019 Marc Yu 0.10.11.20
+  - Merged changes from R1P0 upto r4117
+08/08/2019 Xunzhi Wang 0.10.11.19 IPCE_COMPHY-1424 M-1587
+  - Added TX_TRAIN_CODING_MODE_LANE option for user to choose gray code setting at training
+  - Removed rom test calling for SoC simulation
+  - At training end, added waiting for reg_REMOTE_STATUS_BITS_LANE_15_0 bit 15 to 1
+08/01/2019 Xunzhi Wang 0.10.11.18 <> M-1587
+  - Update reg_TRAIN_TX_SEL_BITS_LANE/reg_TRAIN_RX_SEL_BITS_LANE sequence at trx_train: set 1 at ethernet mode(0 otherwise), and take reg_*_sel_bits_lane when completed.
+06/12/2019 Xinyu Yi 0.10.11.17
+  - In CDS function, use register reg_DFE_EN_LANE to replace FW varibale dfe_dis to skip DFE run.
+05/13/2019 Marc Yu 0.10.11.16
+  - Generated ROM code for DataCom SOC release
+  - Re-structured ROM/RAM files and codes
+  - Moved unused code to unused folders
+05/10/2019 Xinyu Yi 0.10.11.15
+  - Change the bit width for reg_RXTRAIN_C_IDX_LANE from 4 to 8.
+04/25/2019 Xunzhi Wang 0.10.11.14 <> M-1587
+  - Clear gray code en bits at trx_train
+  - Update Xu's trx_train ending sequence with enough TTIU and no exposed clock change 
+04/24/2019 Xinyu Yi 0.10.11.13 
+  - Updated CDS timer to get faster training time. These values are based on testing result from previous COMPHY_56G_X4 PHY. 
+04/15/2019 Xunzhi Wang 0.10.10.13 <> M-1587
+  - Update reg_TRAIN_TX_SEL_BITS_LANE/reg_TRAIN_RX_SEL_BITS_LANE sequence at trx_train.
+04/12/2019 Marc Yu 0.10.10.12
+  - Merged latest R1P0 and R1P1
+  - R1P0: 0.10.10.19, svn rev: 3319, Last Changed Author: pmurriza
+  - R1P1: 0.10.10.11, svn rev: 3254, Last Changed Author: my
+  - Added R1P0 latest changes to R1P1
+  - Kept R1P1-specific new RTL changes and latest FW changes
+  - Updated and re-compiled header files to latest midas 
+  - Combined reg_PT_TX_PATTERN_SEL_LANE_5_0_b_0 and reg_PT_TX_PATTERN_SEL_LANE_5_0_b_1 into the new midas-defined reg_PT_TX_PATTERN_SEL_LANE_5_0 
+03/07/2019 Marc Yu 0.10.10.11
+  - modified txspeed.txt, DSP made change to swap tx_emph0_default3_lane[4:0] and tx_emph1_default3_lane[4:0] contents
+  - no compiling need, only SERDES_REFxxMHz_SPDCHG0_LANE.dat and SERDES_REFxxMHz_SPDCHG0_LANE.mem are committed 
+03/05/2019 Marc Yu 0.10.10.10
+  - change the hard-coded registers to follow the speed table values
+03/01/2019 Heejeong Ryu
+  - fixed train simulation failue
+02/27/2019 Heejeong Ryu 0.10.10.8
+  - updated uart to use MCUCLK=400MHz
+  - added MCU_FREQ control and updated delay_ram function  
+  - fixed train_if simulation stuck
+  - updated spdtbl, spdchg
+02/21/2019 Paulo Urriza
+  - update train_done_lane everytime trx_train_control is called
+02/21/2019 Peter Wang
+  - clear repeater mode clamping flag for rx and tx
+02/21/2019 Heejeong Ryu
+  - updated spdtbl
+02/20/2019 Heejeong Ryu
+  - Roll back MCU_FREQ for temp
+02/15/2019 Heejeong Ryu
+  - fixed delay time for various mcuclk
+  - updated tx preset 3 default value (0,f,30,0): TODO: speed table update
+02/16/2019 Paulo Urriza
+  - increase g0 again if gn1 or gn2 magnitude increase failed (maintain
+    p2phold)
+  - display remote_status_g after set_remote_tx() is called (not before)
+  - increase tx step num from 6 to 10 (just for safety)
+  - tx train now functional, and preserves p2p
+02/15/2019 Heejeong Ryu
+  - added MCU_FREQ and updated delay function
+02/14/2019 Paulo Urriza
+  - temporarily disable TX_TRAIN_FAILED_LANE condition (trx train is still
+    > 3sec which causes timeout)
+02/14/2019 Paulo Urriza
+  - fix order of tx train remote commands to avoid exceeding P2P
+  - move order of debug message in req_local_ctrl
+  - do CDS call before first tx train vote
+02/14/2019 Paulo Urriza
+  - set f0x_select to FN2 during trx_train_init if in HR mode
+02/13/2019 Paulo Urriza
+  - use CDS_PHASETRAIN2 for tx train
+  - reverse gn1_adjust voting polarity
+  - change order of tx train and rx train
+  - do txtrain twice
+  - tx train is functional on relatively short channels
+02/12/2019 Paulo Urriza
+  - remove extra CDS call before phase train
+  - use f0a_max for f0_res adaptation instead of average f0
+02/12/2019 Peter Wang
+  - remove config_sampler_p1to3_ext and config_sampler_p2to4_ext from power up functions 
+02/12/2019 Paulo Urriza
+  - re-adapt DFE after phase jump at end of gain train
+02/10/2019 Paulo Urriza
+  - use single vref_low threshold
+02/09/2019 Paulo Urriza
+  - start VREF_SHIFT=1 (identical to 0)
+  - remove reset from CDS_RECOVER
+  - use VREF forcing value (25) when using VREF_SHIFT 
+02/07/2019 Paulo Urriza
+  - added CDS_RECOVER cds_call (to re-adapt VREF from reset)
+  - do vref resolution adapt after Rx-FFE
+  - change vref_low_thres to all 25 (avoid toggling of vref_res)
+  - cds_call=CDS_RECOVER whenever vref_shift is changed
+02/06/2019 Paulo Urriza
+  - reset ctrl_cdr_phase_on to 0 after phase train
+  - do vref resoultion adapt at trx_train_end
+  - reversed changelist again (was reversed on previous commit)
+02/06/2019 Peter Wang
+  - toggle reg_clear_dtl_clamping_triggered_lane before RX_INIT_DONE, RX_TRAIN_COMPLETE, and TX_TRAIN_COMPLETE
+    this is to clear DTL clamping info before normal data transfer 
+02/05/2019 Heejeong Ryu
+  - added CDR_PHASE_OPT_FIRST_EN_LANE control register
+  - reversed train gn1 polarity
+  - fixed PT pattern change after txtrain
+02/05/2019 Paulo Urriza
+  - reorder ChangeList.txt (start from newest)
+  - phase train: don't go right anymore (causes phase jump)
+  - phase train: changed phase clamps to clamp16
+  - enable midpoint on phase train (default k=12/16)
+02/05/2019 Minh Tran 0.10.0.4
+  - missing BANKING_CTRL in reset_pwr_reg() caused FW keeps restarting
+  - reset reg_RX_INIT_DONE_LANE, reg_PIN_PLL_READY_RX_LANE and reg_PIN_PLL_READY_TX_LANE
+    early as suggested by designer
+02/05/2019 Paulo Urriza
+  - replace ++ with >> for excel display
+  - added more levels of R (via rs2) to maximize 16 R settings
+  - changed gain train R to 3, which matches the old 7
+02/02/2019 Paulo Urriza
+  - fix long channel training failures after final resolution train
+  - change phase train range to [-160,0] (positive ofsts are never optimal)
+  - simplified CDS call for restrain (only DFE adapt)
+  - bugfix: CDS_RESTRAIN was not properly called
+  - [edit] redo dfe_init1/2 in phase train to reduce dependence from step to
+    step
+01/31/2019 Heejeong Ryu
+  - set tag_MAX_BIG_LOOP=0
+  - Updated txtrain driver polarity
+  - updated trxtrain sequence
+01/31/2019 Paulo Urriza
+  - adjusted boost targets
+  - fixed signs of boost target calculation
+  - rx train will now prefer less boosting CTLE setting
+  - [edit] slight correction to boost target based on all benchmark data
+01/31/2019 Paulo Urriza
+  - PAM2 fixes
+  - use DFE_F0_RES_DOUBLE in outer eye calculation
+  - bring gain train phase back to -80
+01/30/2019 Heejeong Ryu
+  - added FINAL_GAIN_ADJUST_EN register
+01/30/2019 Paulo Urriza
+  - added Final Gain Adjust feature (tag_FINAL_GAIN_ADJUST)
+  - do not adapt vref during tx_train_init (ony f0)
+01/30/2019 Heejeong Ryu
+  - txtrain sequnce: do rxtrain first then txtrain
+  - added P2P hold
+  - forced tx ffe preset 2, 3 default value for test
+  - fixed typo
+  - c-1, c-2 reverse direction
+1/29/2019 Peter Wang 
+  - restated startup code that checks and clears reset status. This fixes a soc simulation issue where one lane does not power up after reset 
+01/29/2019 Paulo Urriza
+  - updated boost target based on 1st benchmark data
+01/28/2019 Paulo Urriza
+  - added DFE_FX_SEL_FP1 for f0x_select x = +1 (measure f1 in 112g)
+  - added CLI command 0xF8 to measure fx via train_fn2_lane[7:0]
+  - bug fix: fn2 readback was assigned to fn1
+01/28/2019 Heejeong Ryu
+  - added train_fn2_lane[7:0], train_f0x_lane[7:0] registers
+  - updated txtrain 
+  - added pt_out restore after train
+  - set tx_preset_index = 3
+01/25/2019 Paulo Urriza
+  - added f0x measurement to CDS_PHASETRAIN and CDS_PHASETRAIN2 (used for
+    benchmarking)
+  - fixed missing train.f0x average (used in calculating fn2)
+  - add vref resolution adaptation in trx_train_init()  
+01/24/2019 Xu Han
+  - fixed CDS stuck issue by adding delay before check calibration done in align90ee and ph_ctrl
+01/24/2019 Paulo Urriza
+  - refactored vrefshift code for improved clarity
+  - no functional change from previous training algorithm
+01/23/2019 Heejeong Ryu 
+  - added missing txtrain rx sel bit control
+01/23/2019 Paulo Urriza
+  - added vrefshift to gaintrain (for very short channels)
+  - added vrefshift to vref resolution train
+  - fixed bug in phase train which causes early termination if f0d>f0a.
+    This happens in short channel due to custom f0d resolution 
+01/23/2019 Heejeong Ryu 0.10.0.1
+  - added DFE_F0X_SEL_LANE control for Half rate F0x select to Fn2  

@@ -1,0 +1,1 @@
+xcopy Y:\28G_FFC\R2P0\2lane\release\pcie\main*.dat Z:\28G_FFC\R2P0\2lane\release\pcie\. /y

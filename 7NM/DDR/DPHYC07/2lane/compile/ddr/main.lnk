@@ -1,0 +1,26 @@
+-myux
+-i ./ddr/main.ihx
+-Y
+-a 0x0100
+-v 0x0200
+-w 0x1ffff
+-b HOME = 0x0000
+-b DSEG = 0x0018
+-b XSEG = 0x6600
+-b PSEG = 0x6600
+-b ISEG = 0x0000
+-b BSEG = 0x0000
+-bCSEG=0x000000
+-bCONST=0x00000
+-r
+-k /proj/caesys/bin/linux64-rh0/../../share/sdcc/lib/small-stack-auto
+-k /proj/caesys/share/sdcc/lib/small-stack-auto
+-l mcs51
+-l libsdcc
+-l libint
+-l liblong
+-l libfloat
+./ddr/main.rel
+./ddr/cpu.rel
+
+-e

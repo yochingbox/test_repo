@@ -1,0 +1,7125 @@
+;--------------------------------------------------------
+; File Created by SDCC : free open source ANSI-C Compiler
+; Version 3.0.0 #6037 (May 26 2011) (Linux)
+; This file was generated Thu Oct 18 21:22:04 2018
+;--------------------------------------------------------
+	.module spd_ctrl
+	.optsdcc -mmcs51 --model-small
+	
+;--------------------------------------------------------
+; Public variables in this module
+;--------------------------------------------------------
+	.globl _TF2
+	.globl _TI
+	.globl _RI
+	.globl _EX12
+	.globl _EX11
+	.globl _EX10
+	.globl _EX9
+	.globl _EX8
+	.globl _ES1
+	.globl _PS1
+	.globl _EX6
+	.globl _EX5
+	.globl _EX4
+	.globl _EX3
+	.globl _EX2
+	.globl _EX7
+	.globl _EA
+	.globl _WDT
+	.globl _ET2
+	.globl _ES
+	.globl _ET1
+	.globl _EX1
+	.globl _ET0
+	.globl _EX0
+	.globl _TF1
+	.globl _TR1
+	.globl _TF0
+	.globl _TR0
+	.globl _IE1
+	.globl _IT1
+	.globl _IE0
+	.globl _IT0
+	.globl _P3_7
+	.globl _P3_6
+	.globl _P3_5
+	.globl _P3_4
+	.globl _P3_3
+	.globl _P3_2
+	.globl _P3_1
+	.globl _P3_0
+	.globl _P2_7
+	.globl _P2_6
+	.globl _P2_5
+	.globl _P2_4
+	.globl _P2_3
+	.globl _P2_2
+	.globl _P2_1
+	.globl _P2_0
+	.globl _P1_7
+	.globl _P1_6
+	.globl _P1_5
+	.globl _P1_4
+	.globl _P1_3
+	.globl _P1_2
+	.globl _P1_1
+	.globl _P1_0
+	.globl _P0_7
+	.globl _P0_6
+	.globl _P0_5
+	.globl _P0_4
+	.globl _P0_3
+	.globl _P0_2
+	.globl _P0_1
+	.globl _P0_0
+	.globl _DMAC
+	.globl _DMATA
+	.globl _DMASA
+	.globl _TMR2
+	.globl _TMR1
+	.globl _TMR0
+	.globl _SRST
+	.globl _B
+	.globl _EIE
+	.globl _ACC
+	.globl _ADCON
+	.globl _PSW
+	.globl _TH2
+	.globl _TL2
+	.globl _RCAP2H
+	.globl _RCAP2L
+	.globl _T2CON
+	.globl _CCEN
+	.globl _IRCON
+	.globl _S0RELH
+	.globl _IP1
+	.globl _IEN1
+	.globl _DMAM1
+	.globl _DMAM0
+	.globl _DMASEL
+	.globl _DMAC2
+	.globl _DMAC1
+	.globl _DMAC0
+	.globl _P3
+	.globl _S0RELL
+	.globl _IP0
+	.globl _IEN0
+	.globl _DMAT2
+	.globl _DMAT1
+	.globl _DMAT0
+	.globl _DMAS2
+	.globl _DMAS1
+	.globl _DMAS0
+	.globl _P2
+	.globl _IEN2
+	.globl _SBUF
+	.globl _SCON
+	.globl _PSBANK
+	.globl _DPS
+	.globl _P1
+	.globl _CKCON
+	.globl _TH1
+	.globl _TH0
+	.globl _TL1
+	.globl _TL0
+	.globl _TMOD
+	.globl _TCON
+	.globl _PCON
+	.globl _WDTREL
+	.globl _DPH
+	.globl _DPL
+	.globl _P0
+	.globl _sq_thrs_ratio_tb
+	.globl _train_save_tb
+	.globl _tx_tb
+	.globl _UPHY_ANAREG_REV_0
+	.globl _dfe_sm_save
+	.globl _dfe_sm_dc
+	.globl _dfe_sm
+	.globl _cds28
+	.globl _lnx_calx_align90_gm
+	.globl _lnx_calx_align90_dac
+	.globl _lnx_calx_align90_dummy_clk
+	.globl _lnx_calx_eom_dpher
+	.globl _lnx_calx_vdda_dll_eom_sel
+	.globl _lnx_calx_dll_eom_gmsel
+	.globl _lnx_calx_vdda_dll_sel
+	.globl _lnx_calx_dll_gmsel
+	.globl _lnx_calx_rxdcc_dll_hg
+	.globl _lnx_calx_rxdcc_dll
+	.globl _lnx_calx_txdcc_hg
+	.globl _lnx_calx_txdcc
+	.globl _lnx_calx_txdcc_pdiv_hg
+	.globl _lnx_calx_txdcc_pdiv
+	.globl _lnx_spdoft_tx_preset_index_lane
+	.globl _lnx_cal_sellv_rxeomclk
+	.globl _lnx_cal_sellv_rxsampler
+	.globl _lnx_cal_sellv_txpre
+	.globl _lnx_cal_sellv_rxdataclk
+	.globl _lnx_cal_sellv_txclk
+	.globl _lnx_cal_sellv_txdata
+	.globl _lnx_cal_align90_gm
+	.globl _lnx_cal_align90_dac
+	.globl _lnx_cal_align90_dummy_clk
+	.globl _lnx_cal_eom_dpher
+	.globl _lnx_cal_vdda_dll_eom_sel
+	.globl _lnx_cal_dll_eom_gmsel
+	.globl _lnx_cal_vdda_dll_sel
+	.globl _lnx_cal_dll_gmsel
+	.globl _lnx_cal_rxdcc_eom_hg
+	.globl _lnx_cal_rxdcc_eom
+	.globl _lnx_cal_rxdcc_data_hg
+	.globl _lnx_cal_rxdcc_data
+	.globl _lnx_cal_rxdcc_dll_hg
+	.globl _lnx_cal_rxdcc_dll
+	.globl _lnx_cal_txdcc_hg
+	.globl _lnx_cal_txdcc
+	.globl _lnx_cal_txdcc_pdiv_hg
+	.globl _lnx_cal_txdcc_pdiv
+	.globl _cmx_cal_sllp_dac_fine_ring
+	.globl _cmx_cal_pll_sllp_dac_coarse_ring
+	.globl _cmx_cal_pll_speed_ring
+	.globl _cmx_cal_plldcc
+	.globl _cmx_cal_lccap_lsb
+	.globl _cmx_cal_lccap_msb
+	.globl _cmx_cal_lcvco_dac_msb
+	.globl _cmx_cal_lcvco_dac_lsb
+	.globl _cmx_cal_lcvco_dac
+	.globl _local_tx_preset_tb
+	.globl _train_g0_index
+	.globl _train_g1_index
+	.globl _train_gn1_index
+	.globl _phase_save
+	.globl _txffe_save
+	.globl _rc_save
+	.globl _phy_mode_lane_table
+	.globl _speedtable
+	.globl _min_gen
+	.globl _max_gen
+	.globl _phy_mode_cmn_table
+	.globl _ring_speedtable
+	.globl _lc_speedtable
+	.globl _TXTRAIN_IF_REG0
+	.globl _CDS_READ_MISC1
+	.globl _CDS_READ_MISC0
+	.globl _DFE_READ_F0D_RIGHT_ODD
+	.globl _DFE_READ_F0D_RIGHT_EVEN
+	.globl _DFE_READ_F0D_LEFT_ODD
+	.globl _DFE_READ_F0D_LEFT_EVEN
+	.globl _DFE_READ_F0D_ODD
+	.globl _DFE_READ_F0D_EVEN
+	.globl _DFE_READ_F0B_ODD
+	.globl _DFE_READ_F0B_EVEN
+	.globl _DFE_READ_F0A_ODD
+	.globl _DFE_READ_F0A_EVEN
+	.globl _DFE_READ_ODD_REG8
+	.globl _DFE_READ_EVEN_REG8
+	.globl _DFE_READ_ODD_REG7
+	.globl _DFE_READ_ODD_REG6
+	.globl _DFE_READ_ODD_REG5
+	.globl _DFE_READ_ODD_REG4
+	.globl _DFE_READ_ODD_REG3
+	.globl _DFE_READ_ODD_REG2
+	.globl _DFE_READ_ODD_REG1
+	.globl _DFE_READ_ODD_REG0
+	.globl _DFE_READ_EVEN_REG7
+	.globl _DFE_READ_EVEN_REG6
+	.globl _DFE_READ_EVEN_REG5
+	.globl _DFE_READ_EVEN_REG4
+	.globl _DFE_READ_EVEN_REG3
+	.globl _DFE_READ_EVEN_REG2
+	.globl _DFE_READ_EVEN_REG1
+	.globl _DFE_READ_EVEN_REG0
+	.globl _TX_TRAIN_IF_REG8
+	.globl _TX_TRAIN_CTRL_LANE
+	.globl _TX_TRAIN_IF_REG7
+	.globl _TX_TRAIN_IF_REG6
+	.globl _TX_TRAIN_IF_REG5
+	.globl _TX_TRAIN_IF_REG4
+	.globl _TRX_TRAIN_IF_INTERRUPT_CLEAR_LANE
+	.globl _TRX_TRAIN_IF_INTERRUPT_MASK0_LANE
+	.globl _TRX_TRAIN_IF_INTERRUPT_LANE
+	.globl _TX_AMP_CTRL_REG0
+	.globl _TX_DRV_RD_OUT_REG0
+	.globl _LINK_TRAIN_MODE0
+	.globl _TX_EMPH_CTRL_REG0
+	.globl _TX_TRAIN_DEFAULT_REG5
+	.globl _TX_TRAIN_DEFAULT_REG4
+	.globl _TX_TRAIN_DEFAULT_REG3
+	.globl _TX_TRAIN_DEFAULT_REG2
+	.globl _TX_TRAIN_DEFAULT_REG1
+	.globl _TX_TRAIN_DEFAULT_REG0
+	.globl _TX_TRAIN_DRIVER_REG2
+	.globl _TX_TRAIN_DRIVER_REG1
+	.globl _TX_TRAIN_DRIVER_REG0
+	.globl _TX_TRAIN_PATTTERN_REG0
+	.globl _TX_TRAIN_IF_REG3
+	.globl _TX_TRAIN_IF_REG2
+	.globl _TX_TRAIN_IF_REG1
+	.globl _TX_TRAIN_IF_REG0
+	.globl _DME_DEC_REG1
+	.globl _DME_DEC_REG0
+	.globl _DME_ENC_REG2
+	.globl _DME_ENC_REG1
+	.globl _DME_ENC_REG0
+	.globl _END_XDAT_CMN
+	.globl _MCU_INFO_13
+	.globl _MCU_INFO_12
+	.globl _MCU_INFO_5
+	.globl _MCU_INFO_4
+	.globl _SYNC_INFO
+	.globl _CDS_EYE_CLK_THR
+	.globl _TX_SAVE_4
+	.globl _TX_SAVE_3
+	.globl _TX_SAVE_2
+	.globl _TX_SAVE_1
+	.globl _TX_SAVE_0
+	.globl _ETH_PRESET1_TB
+	.globl _ETH_PRESET0_TB
+	.globl _SAS_PRESET2_TB
+	.globl _SAS_PRESET1_TB
+	.globl _SAS_PRESET0_TB
+	.globl _G_SELLV_RXSAMPLER
+	.globl _G_SELLV_RXDATACLK
+	.globl _G_SELLV_RXEOMCLK
+	.globl _G_SELLV_TXPRE
+	.globl _G_SELLV_TXDATA
+	.globl _G_SELLV_TXCLK
+	.globl _TIMER_SEL3
+	.globl _TIMER_SEL2
+	.globl _TIMER_SEL1
+	.globl _MCU_CONFIG1
+	.globl _LOOP_CNTS
+	.globl _CAL_DATA1
+	.globl _MCU_CONFIG
+	.globl _CAL_STATUS_READ
+	.globl _CAL_TIME_OUT_AND_DIS
+	.globl _CON_CAL_STEP_SIZE5
+	.globl _CON_CAL_STEP_SIZE4
+	.globl _CON_CAL_STEP_SIZE3
+	.globl _CON_CAL_STEP_SIZE2
+	.globl _CON_CAL_STEP_SIZE1
+	.globl _CONTROL_CONFIG9
+	.globl _CONTROL_CONFIG8
+	.globl _TRAIN_IF_CONFIG
+	.globl _CAL_DATA0
+	.globl _CONTROL_CONFIG7
+	.globl _CONTROL_CONFIG6
+	.globl _CONTROL_CONFIG5
+	.globl _CONTROL_CONFIG4
+	.globl _CONTROL_CONFIG3
+	.globl _CONTROL_CONFIG2
+	.globl _CONTROL_CONFIG1
+	.globl _CONTROL_CONFIG0
+	.globl _FW_REV
+	.globl _CID_REG1
+	.globl _CID_REG0
+	.globl _CMN_MCU_REG
+	.globl _SET_LANE_ISR
+	.globl _CMN_ISR_MASK_1
+	.globl _CMN_ISR_1
+	.globl _CMN_MCU_TIMER3_CONTROL
+	.globl _CMN_MCU_TIMER2_CONTROL
+	.globl _CMN_MCU_TIMER1_CONTROL
+	.globl _CMN_MCU_TIMER0_CONTROL
+	.globl _CMN_MCU_TIMER_CTRL_5_LANE
+	.globl _CMN_MCU_TIMER_CTRL_4_LANE
+	.globl _CMN_MCU_TIMER_CTRL_3_LANE
+	.globl _CMN_MCU_TIMER_CTRL_2_LANE
+	.globl _CMN_MCU_TIMER_CONTROL
+	.globl _CMN_CACHE_DEBUG1
+	.globl _CMN_MCU_GPIO
+	.globl _CMN_ISR_CLEAR_2
+	.globl _CMN_ISR_MASK_2
+	.globl _CMN_ISR_2
+	.globl _MCU_INT_ADDR
+	.globl _CMN_CACHE_DEBUG0
+	.globl _MCU_SDT_CMN
+	.globl _XDATA_MEM_CHECKSUM_CMN_2
+	.globl _XDATA_MEM_CHECKSUM_CMN_1
+	.globl _XDATA_MEM_CHECKSUM_CMN_0
+	.globl _TEST5
+	.globl _PM_CMN_REG2
+	.globl _INPUT_CMN_PIN_REG3
+	.globl __FIELDNAME_
+	.globl _CMN_CALIBRATION
+	.globl _OUTPUT_CMN_PIN_REG0
+	.globl _SPD_CMN_REG1
+	.globl _CLKGEN_CMN_REG1
+	.globl _PLLCAL_REG1
+	.globl _PLLCAL_REG0
+	.globl _ANA_TSEN_CONTROL
+	.globl _INPUT_CMN_PIN_REG2
+	.globl _INPUT_CMN_PIN_REG1
+	.globl _INPUT_CMN_PIN_REG0
+	.globl _PM_CMN_REG1
+	.globl _SYSTEM
+	.globl _TEST4
+	.globl _TEST3
+	.globl _TEST2
+	.globl _TEST1
+	.globl _TEST0
+	.globl _MCU_SYNC2
+	.globl _MCU_SYNC1
+	.globl _MEM_IRQ_CLEAR
+	.globl _APB_CONTROL_REG
+	.globl _ANA_IF_CMN_REG0
+	.globl _MEM_IRQ_MASK
+	.globl _MEM_IRQ
+	.globl _ANA_IF_CMN_REG1
+	.globl _MEM_CMN_ECC_ERR_ADDRESS0
+	.globl _MCU_INFO_3
+	.globl _MCU_INFO_2
+	.globl _MCU_INFO_1
+	.globl _MCU_INFO_0
+	.globl _MEMORY_CONTROL_4
+	.globl _MEMORY_CONTROL_3
+	.globl _MEMORY_CONTROL_2
+	.globl _MEMORY_CONTROL_1
+	.globl _MEMORY_CONTROL_0
+	.globl _MCU_DEBUG1
+	.globl _MCU_DEBUG0
+	.globl _MCU_CONTROL_4
+	.globl _MCU_CONTROL_3
+	.globl _MCU_CONTROL_2
+	.globl _MCU_CONTROL_1
+	.globl _MCU_CONTROL_0
+	.globl _GLOB_L1_SUBSTATES_CFG
+	.globl _GLOB_PIPE_REVISION
+	.globl _GLOB_BIST_DATA_HI
+	.globl _GLOB_BIST_SEQR_CFG
+	.globl _GLOB_BIST_RESULT
+	.globl _GLOB_BIST_MASK
+	.globl _GLOB_BIST_START
+	.globl _GLOB_BIST_LANE_TYPE
+	.globl _GLOB_BIST_CTRL
+	.globl _GLOB_DP_BAL_CFG4
+	.globl _GLOB_DP_BAL_CFG2
+	.globl _GLOB_DP_BAL_CFG0
+	.globl _GLOB_PM_DP_CTRL
+	.globl _GLOB_COUNTER_HI
+	.globl _GLOB_COUNTER_CTRL
+	.globl _GLOB_PM_CFG0
+	.globl _GLOB_DP_SAL_CFG5
+	.globl _GLOB_DP_SAL_CFG3
+	.globl _GLOB_DP_SAL_CFG1
+	.globl _GLOB_DP_SAL_CFG
+	.globl _GLOB_MISC_CTRL
+	.globl _GLOB_CLK_SRC_HI
+	.globl _GLOB_CLK_SRC_LO
+	.globl _GLOB_RST_CLK_CTRL
+	.globl _DFE_STATIC_REG6
+	.globl _DFE_STATIC_REG5
+	.globl _DFE_STATIC_REG4
+	.globl _DFE_STATIC_REG3
+	.globl _DFE_STATIC_REG1
+	.globl _DFE_STATIC_REG0
+	.globl _RX_CMN_0
+	.globl _SRIS_REG1
+	.globl _SRIS_REG0
+	.globl _DTX_PHY_ALIGN_REG2
+	.globl _DTX_PHY_ALIGN_REG1
+	.globl _DTX_PHY_ALIGN_REG0
+	.globl _DTX_REG4
+	.globl _DTX_REG3
+	.globl _DTX_REG2
+	.globl _DTX_REG1
+	.globl _DTX_REG0
+	.globl _TX_CMN_REG
+	.globl _END_XDAT_LANE
+	.globl _TRAIN_CONTROL_17
+	.globl _TRAIN_CONTROL_16
+	.globl _TRAIN_CONTROL_15
+	.globl _TRAIN_CONTROL_14
+	.globl _TRAIN_CONTROL_13
+	.globl _ESM_ERR_N_CNT_LOW_LANE
+	.globl _ESM_POP_N_CNT_LOW_LANE
+	.globl _TRAIN_CONTROL_12
+	.globl _TRAIN_CONTROL_11
+	.globl _TRAIN_CONTROL_10
+	.globl _TRAIN_CONTROL_9
+	.globl _TRAIN_CONTROL_8
+	.globl _TRAIN_CONTROL_7
+	.globl _TRAIN_CONTROL_6
+	.globl _TRAIN_CONTROL_5
+	.globl _TRAIN_CONTROL_4
+	.globl _TRAIN_CONTROL_3
+	.globl _ESM_ERR_POP_CNT_HIGH_LANE
+	.globl _ESM_ERR_P_CNT_LOW_LANE
+	.globl _ESM_POP_P_CNT_LOW_LANE
+	.globl _CDS_CTRL_REG1
+	.globl _CDS_CTRL_REG0
+	.globl _DFE_CONTROL_11
+	.globl _DFE_CONTROL_10
+	.globl _DFE_CONTROL_9
+	.globl _DFE_CONTROL_8
+	.globl _DFE_CONTROL_7
+	.globl _DFE_TEST_5
+	.globl _DFE_TEST_4
+	.globl _DFE_TEST_1
+	.globl _DFE_TEST_0
+	.globl _DFE_CONTROL_6
+	.globl _TRAIN_PARA_3
+	.globl _TRAIN_PARA_2
+	.globl _TRAIN_PARA_1
+	.globl _TRAIN_PARA_0
+	.globl _DLL_CAL
+	.globl _RPTA_CONFIG_1
+	.globl _RPTA_CONFIG_0
+	.globl _TRAIN_CONTROL_2
+	.globl _TRAIN_CONTROL_1
+	.globl _TRAIN_CONTROL_0
+	.globl _DFE_CONTROL_5
+	.globl _DFE_CONTROL_4
+	.globl _DFE_CONTROL_3
+	.globl _DFE_CONTROL_2
+	.globl _DFE_CONTROL_1
+	.globl _DFE_CONTROL_0
+	.globl _TRX_TRAIN_IF_TIMERS_ENABLE_LANE
+	.globl _TRX_TRAIN_IF_TIMERS2_LANE
+	.globl _TRX_TRAIN_IF_TIMERS1_LANE
+	.globl _PHY_LOCAL_VALUE_LANE
+	.globl _PHY_REMOTE_CTRL_VALUE_LANE
+	.globl _PHY_REMOTE_CTRL_COMMAND_LANE
+	.globl _CAL_SAVE_DATA3_LANE
+	.globl _CAL_SAVE_DATA2_LANE
+	.globl _CAL_SAVE_DATA1_LANE
+	.globl _CAL_CTRL4_LANE
+	.globl _CAL_CTRL3_LANE
+	.globl _CAL_CTRL2_LANE
+	.globl _CAL_CTRL1_LANE
+	.globl _LANE_MARGIN_REG0
+	.globl _EOM_VLD_REG4
+	.globl _EOM_REG0
+	.globl _EOM_ERR_REG3
+	.globl _EOM_ERR_REG2
+	.globl _EOM_ERR_REG1
+	.globl _EOM_ERR_REG0
+	.globl _EOM_VLD_REG3
+	.globl _EOM_VLD_REG2
+	.globl _EOM_VLD_REG1
+	.globl _EOM_VLD_REG0
+	.globl _DFE_STATIC_LANE_REG6
+	.globl _DFE_STATIC_LANE_REG5
+	.globl _DFE_STATIC_LANE_REG4
+	.globl _DFE_STATIC_LANE_REG3
+	.globl _DFE_STATIC_LANE_REG1
+	.globl _DFE_STATIC_LANE_REG0
+	.globl _DFE_DCE_REG0
+	.globl _CAL_OFST_REG2
+	.globl _CAL_OFST_REG1
+	.globl _CAL_OFST_REG0
+	.globl _DFE_READ_ODD_2C_REG8
+	.globl _DFE_READ_EVEN_2C_REG8
+	.globl _DFE_READ_ODD_2C_REG7
+	.globl _DFE_READ_ODD_2C_REG6
+	.globl _DFE_READ_ODD_2C_REG5
+	.globl _DFE_READ_ODD_2C_REG4
+	.globl _DFE_READ_ODD_2C_REG3
+	.globl _DFE_READ_ODD_2C_REG2
+	.globl _DFE_READ_ODD_2C_REG1
+	.globl _DFE_READ_ODD_2C_REG0
+	.globl _DFE_READ_EVEN_2C_REG7
+	.globl _DFE_READ_EVEN_2C_REG6
+	.globl _DFE_READ_EVEN_2C_REG5
+	.globl _DFE_READ_EVEN_2C_REG4
+	.globl _DFE_READ_EVEN_2C_REG3
+	.globl _DFE_READ_EVEN_2C_REG2
+	.globl _DFE_READ_EVEN_2C_REG1
+	.globl _DFE_READ_EVEN_2C_REG0
+	.globl _DFE_READ_ODD_SM_REG8
+	.globl _DFE_READ_EVEN_SM_REG8
+	.globl _DFE_READ_ODD_SM_REG7
+	.globl _DFE_READ_ODD_SM_REG6
+	.globl _DFE_READ_ODD_SM_REG5
+	.globl _DFE_READ_ODD_SM_REG4
+	.globl _DFE_READ_ODD_SM_REG3
+	.globl _DFE_READ_ODD_SM_REG2
+	.globl _DFE_READ_ODD_SM_REG1
+	.globl _DFE_READ_ODD_SM_REG0
+	.globl _DFE_READ_EVEN_SM_REG7
+	.globl _DFE_READ_EVEN_SM_REG6
+	.globl _DFE_READ_EVEN_SM_REG5
+	.globl _DFE_READ_EVEN_SM_REG4
+	.globl _DFE_READ_EVEN_SM_REG3
+	.globl _DFE_READ_EVEN_SM_REG2
+	.globl _DFE_READ_EVEN_SM_REG1
+	.globl _DFE_READ_EVEN_SM_REG0
+	.globl _DFE_FEXT_ODD_REG7
+	.globl _DFE_FEXT_ODD_REG6
+	.globl _DFE_FEXT_ODD_REG5
+	.globl _DFE_FEXT_ODD_REG4
+	.globl _DFE_FEXT_ODD_REG3
+	.globl _DFE_FEXT_ODD_REG2
+	.globl _DFE_FEXT_ODD_REG1
+	.globl _DFE_FEXT_ODD_REG0
+	.globl _DFE_FEXT_EVEN_REG7
+	.globl _DFE_FEXT_EVEN_REG6
+	.globl _DFE_FEXT_EVEN_REG5
+	.globl _DFE_FEXT_EVEN_REG4
+	.globl _DFE_FEXT_EVEN_REG3
+	.globl _DFE_FEXT_EVEN_REG2
+	.globl _DFE_FEXT_EVEN_REG1
+	.globl _DFE_FEXT_EVEN_REG0
+	.globl _DFE_DC_ODD_REG8
+	.globl _DFE_DC_EVEN_REG8
+	.globl _DFE_FEN_ODD_REG
+	.globl _DFE_FEN_EVEN_REG
+	.globl _DFE_STEP_REG1
+	.globl _DFE_STEP_REG0
+	.globl _DFE_ANA_REG1
+	.globl _DFE_ANA_REG0
+	.globl _DFE_CTRL_REG4
+	.globl _RX_EQ_CLK_CTRL
+	.globl _DFE_CTRL_REG3
+	.globl _DFE_CTRL_REG2
+	.globl _DFE_CTRL_REG1
+	.globl _DFE_CTRL_REG0
+	.globl _PT_COUNTER2
+	.globl _PT_COUNTER1
+	.globl _PT_COUNTER0
+	.globl _PT_USER_PATTERN2
+	.globl _PT_USER_PATTERN1
+	.globl _PT_USER_PATTERN0
+	.globl _PT_CONTROL1
+	.globl _PT_CONTROL0
+	.globl _XDATA_MEM_CHECKSUM_LANE1
+	.globl _XDATA_MEM_CHECKSUM_LANE0
+	.globl _MEM_ECC_ERR_ADDRESS0
+	.globl _MCU_COMMAND0
+	.globl _MCU_INT_CONTROL_13
+	.globl _MCU_WDT_LANE
+	.globl _MCU_IRQ_ISR_LANE
+	.globl _ANA_IF_DFEO_REG0
+	.globl _ANA_IF_DFEE_REG0
+	.globl _ANA_IF_TRX_REG0
+	.globl _EXT_INT_CONTROL
+	.globl _MCU_DEBUG_LANE
+	.globl _MCU_DEBUG3_LANE
+	.globl _MCU_DEBUG2_LANE
+	.globl _MCU_DEBUG1_LANE
+	.globl _MCU_DEBUG0_LANE
+	.globl _MCU_TIMER_CTRL_7_LANE
+	.globl _MCU_TIMER_CTRL_6_LANE
+	.globl _MCU_TIMER_CTRL_5_LANE
+	.globl _MCU_TIMER_CTRL_4_LANE
+	.globl _MCU_TIMER_CTRL_3_LANE
+	.globl _MCU_TIMER_CTRL_2_LANE
+	.globl _MCU_TIMER_CTRL_1_LANE
+	.globl _MCU_MEM_REG2_LANE
+	.globl _MCU_MEM_REG1_LANE
+	.globl _MCU_IRQ_MASK_LANE
+	.globl _MCU_IRQ_LANE
+	.globl _MCU_TIMER3_CONTROL
+	.globl _MCU_TIMER2_CONTROL
+	.globl _MCU_TIMER1_CONTROL
+	.globl _MCU_TIMER0_CONTROL
+	.globl _MCU_TIMER_CONTROL
+	.globl _MCU_INT12_CONTROL
+	.globl _MCU_INT11_CONTROL
+	.globl _MCU_INT10_CONTROL
+	.globl _MCU_INT9_CONTROL
+	.globl _MCU_INT8_CONTROL
+	.globl _MCU_INT7_CONTROL
+	.globl _MCU_INT6_CONTROL
+	.globl _MCU_INT5_CONTROL
+	.globl _MCU_INT4_CONTROL
+	.globl _MCU_INT3_CONTROL
+	.globl _MCU_INT2_CONTROL
+	.globl _MCU_INT1_CONTROL
+	.globl _MCU_INT0_CONTROL
+	.globl _MCU_STATUS3_LANE
+	.globl _MCU_STATUS2_LANE
+	.globl _MCU_STATUS1_LANE
+	.globl _MCU_STATUS0_LANE
+	.globl _LANE_SYSTEM0
+	.globl _CACHE_DEBUG1
+	.globl _CACHE_DEBUG0
+	.globl _MCU_GPIO
+	.globl _MCU_CONTROL_LANE
+	.globl _LANE_32G_PRESET_CFG16_LANE
+	.globl _LANE_32G_PRESET_CFG14_LANE
+	.globl _LANE_32G_PRESET_CFG12_LANE
+	.globl _LANE_32G_PRESET_CFG10_LANE
+	.globl _LANE_32G_PRESET_CFG8_LANE
+	.globl _LANE_32G_PRESET_CFG6_LANE
+	.globl _LANE_32G_PRESET_CFG4_LANE
+	.globl _LANE_32G_PRESET_CFG2_LANE
+	.globl _LANE_32G_PRESET_CFG0_LANE
+	.globl _LANE_EQ_32G_CFG0_LANE
+	.globl _LANE_16G_PRESET_CFG16_LANE
+	.globl _LANE_16G_PRESET_CFG14_LANE
+	.globl _LANE_16G_PRESET_CFG12_LANE
+	.globl _LANE_16G_PRESET_CFG10_LANE
+	.globl _LANE_16G_PRESET_CFG8_LANE
+	.globl _LANE_16G_PRESET_CFG6_LANE
+	.globl _LANE_16G_PRESET_CFG4_LANE
+	.globl _LANE_16G_PRESET_CFG2_LANE
+	.globl _LANE_16G_PRESET_CFG0_LANE
+	.globl _LANE_EQ_16G_CFG0_LANE
+	.globl _LANE_REMOTE_SET_LANE
+	.globl _LANE_COEFF_MAX0_LANE
+	.globl _LANE_PRESET_CFG16_LANE
+	.globl _LANE_PRESET_CFG14_LANE
+	.globl _LANE_PRESET_CFG12_LANE
+	.globl _LANE_PRESET_CFG10_LANE
+	.globl _LANE_PRESET_CFG8_LANE
+	.globl _LANE_PRESET_CFG6_LANE
+	.globl _LANE_PRESET_CFG4_LANE
+	.globl _LANE_PRESET_CFG2_LANE
+	.globl _LANE_PRESET_CFG0_LANE
+	.globl _LANE_EQ_CFG1_LANE
+	.globl _LANE_EQ_CFG0_LANE
+	.globl _LANE_USB_DP_CFG2_LANE
+	.globl _LANE_USB_DP_CFG1_LANE
+	.globl _LANE_DP_PIE8_CFG0_LANE
+	.globl _LANE_CFG_STATUS3_LANE
+	.globl _LANE_CFG4
+	.globl _LANE_CFG2_LANE
+	.globl _LANE_CFG_STATUS2_LANE
+	.globl _LANE_STATUS0
+	.globl _LANE_CFG0
+	.globl _SQ_REG0
+	.globl _DTL_REG3
+	.globl _DTL_REG2
+	.globl _DTL_REG1
+	.globl _DTL_REG0
+	.globl _RX_LANE_INTERRUPT_REG1
+	.globl _RX_CALIBRATION_REG
+	.globl _INPUT_RX_PIN_REG3_LANE
+	.globl _RX_DATA_PATH_REG
+	.globl _RX_LANE_INTERRUPT_MASK
+	.globl _RX_LANE_INTERRUPT
+	.globl _CDR_LOCK_REG
+	.globl _FRAME_SYNC_DET_REG6
+	.globl _FRAME_SYNC_DET_REG5
+	.globl _FRAME_SYNC_DET_REG4
+	.globl _FRAME_SYNC_DET_REG3
+	.globl _FRAME_SYNC_DET_REG2
+	.globl _FRAME_SYNC_DET_REG1
+	.globl _FRAME_SYNC_DET_REG0
+	.globl _CLKGEN_RX_LANE_REG1_LANE
+	.globl _DIG_RX_RSVD_REG0
+	.globl _SPD_CTRL_RX_LANE_REG1_LANE
+	.globl _INPUT_RX_PIN_REG2_LANE
+	.globl _INPUT_RX_PIN_REG1_LANE
+	.globl _INPUT_RX_PIN_REG0_LANE
+	.globl _RX_SYSTEM_LANE
+	.globl _PM_CTRL_RX_LANE_REG1_LANE
+	.globl _MON_TOP
+	.globl _ANALOG_TX_REALTIME_REG_1
+	.globl _SPD_CTRL_INTERRUPT_CLEAR_REG1_LANE
+	.globl _PM_CTRL_INTERRUPT_ISR_REG1_LANE
+	.globl __FIELDNAME__LANE
+	.globl _INPUT_TX_PIN_REG5_LANE
+	.globl _DIG_TX_RSVD_REG0
+	.globl _TX_CALIBRATION_LANE
+	.globl _INPUT_TX_PIN_REG4_LANE
+	.globl _TX_SYSTEM_LANE
+	.globl _SPD_CTRL_TX_LANE_REG1_LANE
+	.globl _SPD_CTRL_INTERRUPT_REG2
+	.globl _SPD_CTRL_INTERRUPT_REG1_LANE
+	.globl _TX_SPEED_CONVERT_LANE
+	.globl _CLKGEN_TX_LANE_REG1_LANE
+	.globl _PM_CTRL_INTERRUPT_REG2
+	.globl _PM_CTRL_INTERRUPT_REG1_LANE
+	.globl _INPUT_TX_PIN_REG3_LANE
+	.globl _INPUT_TX_PIN_REG2_LANE
+	.globl _INPUT_TX_PIN_REG1_LANE
+	.globl _INPUT_TX_PIN_REG0_LANE
+	.globl _PM_CTRL_TX_LANE_REG2_LANE
+	.globl _PM_CTRL_TX_LANE_REG1_LANE
+	.globl _UPHY14_CMN_ANAREG_TOP_214
+	.globl _UPHY14_CMN_ANAREG_TOP_213
+	.globl _UPHY14_CMN_ANAREG_TOP_212
+	.globl _UPHY14_CMN_ANAREG_TOP_211
+	.globl _UPHY14_CMN_ANAREG_TOP_210
+	.globl _UPHY14_CMN_ANAREG_TOP_209
+	.globl _UPHY14_CMN_ANAREG_TOP_208
+	.globl _UPHY14_CMN_ANAREG_TOP_207
+	.globl _UPHY14_CMN_ANAREG_TOP_206
+	.globl _UPHY14_CMN_ANAREG_TOP_205
+	.globl _UPHY14_CMN_ANAREG_TOP_204
+	.globl _UPHY14_CMN_ANAREG_TOP_203
+	.globl _UPHY14_CMN_ANAREG_TOP_202
+	.globl _UPHY14_CMN_ANAREG_TOP_201
+	.globl _UPHY14_CMN_ANAREG_TOP_200
+	.globl _UPHY14_CMN_ANAREG_TOP_199
+	.globl _UPHY14_CMN_ANAREG_TOP_198
+	.globl _UPHY14_CMN_ANAREG_TOP_197
+	.globl _UPHY14_CMN_ANAREG_TOP_196
+	.globl _UPHY14_CMN_ANAREG_TOP_195
+	.globl _UPHY14_CMN_ANAREG_TOP_194
+	.globl _UPHY14_CMN_ANAREG_TOP_193
+	.globl _UPHY14_CMN_ANAREG_TOP_192
+	.globl _UPHY14_CMN_ANAREG_TOP_191
+	.globl _UPHY14_CMN_ANAREG_TOP_190
+	.globl _UPHY14_CMN_ANAREG_TOP_189
+	.globl _UPHY14_CMN_ANAREG_TOP_188
+	.globl _UPHY14_CMN_ANAREG_TOP_187
+	.globl _UPHY14_CMN_ANAREG_TOP_186
+	.globl _UPHY14_CMN_ANAREG_TOP_185
+	.globl _UPHY14_CMN_ANAREG_TOP_184
+	.globl _UPHY14_CMN_ANAREG_TOP_183
+	.globl _UPHY14_CMN_ANAREG_TOP_182
+	.globl _UPHY14_CMN_ANAREG_TOP_181
+	.globl _UPHY14_CMN_ANAREG_TOP_180
+	.globl _UPHY14_CMN_ANAREG_TOP_179
+	.globl _UPHY14_CMN_ANAREG_TOP_178
+	.globl _UPHY14_CMN_ANAREG_TOP_177
+	.globl _UPHY14_CMN_ANAREG_TOP_176
+	.globl _UPHY14_CMN_ANAREG_TOP_175
+	.globl _UPHY14_CMN_ANAREG_TOP_174
+	.globl _UPHY14_CMN_ANAREG_TOP_173
+	.globl _UPHY14_CMN_ANAREG_TOP_172
+	.globl _UPHY14_CMN_ANAREG_TOP_171
+	.globl _UPHY14_CMN_ANAREG_TOP_170
+	.globl _UPHY14_CMN_ANAREG_TOP_169
+	.globl _UPHY14_CMN_ANAREG_TOP_168
+	.globl _UPHY14_CMN_ANAREG_TOP_167
+	.globl _UPHY14_CMN_ANAREG_TOP_166
+	.globl _UPHY14_CMN_ANAREG_TOP_165
+	.globl _UPHY14_CMN_ANAREG_TOP_164
+	.globl _UPHY14_CMN_ANAREG_TOP_163
+	.globl _UPHY14_CMN_ANAREG_TOP_162
+	.globl _UPHY14_CMN_ANAREG_TOP_161
+	.globl _UPHY14_CMN_ANAREG_TOP_160
+	.globl _UPHY14_CMN_ANAREG_TOP_159
+	.globl _UPHY14_CMN_ANAREG_TOP_158
+	.globl _UPHY14_CMN_ANAREG_TOP_157
+	.globl _UPHY14_CMN_ANAREG_TOP_156
+	.globl _UPHY14_CMN_ANAREG_TOP_155
+	.globl _UPHY14_CMN_ANAREG_TOP_154
+	.globl _UPHY14_CMN_ANAREG_TOP_153
+	.globl _UPHY14_CMN_ANAREG_TOP_152
+	.globl _UPHY14_CMN_ANAREG_TOP_151
+	.globl _UPHY14_CMN_ANAREG_TOP_150
+	.globl _UPHY14_CMN_ANAREG_TOP_149
+	.globl _UPHY14_CMN_ANAREG_TOP_148
+	.globl _UPHY14_CMN_ANAREG_TOP_147
+	.globl _UPHY14_CMN_ANAREG_TOP_146
+	.globl _UPHY14_CMN_ANAREG_TOP_145
+	.globl _UPHY14_CMN_ANAREG_TOP_144
+	.globl _UPHY14_CMN_ANAREG_TOP_143
+	.globl _UPHY14_CMN_ANAREG_TOP_142
+	.globl _UPHY14_CMN_ANAREG_TOP_141
+	.globl _UPHY14_CMN_ANAREG_TOP_140
+	.globl _UPHY14_CMN_ANAREG_TOP_139
+	.globl _UPHY14_CMN_ANAREG_TOP_138
+	.globl _UPHY14_CMN_ANAREG_TOP_137
+	.globl _UPHY14_CMN_ANAREG_TOP_136
+	.globl _UPHY14_CMN_ANAREG_TOP_135
+	.globl _UPHY14_CMN_ANAREG_TOP_134
+	.globl _UPHY14_CMN_ANAREG_TOP_133
+	.globl _UPHY14_CMN_ANAREG_TOP_132
+	.globl _UPHY14_CMN_ANAREG_TOP_131
+	.globl _UPHY14_CMN_ANAREG_TOP_130
+	.globl _UPHY14_CMN_ANAREG_TOP_129
+	.globl _UPHY14_CMN_ANAREG_TOP_128
+	.globl _ANA_DFEO_REG_0B
+	.globl _ANA_DFEO_REG_0A
+	.globl _ANA_DFEO_REG_09
+	.globl _ANA_DFEO_REG_08
+	.globl _ANA_DFEO_REG_07
+	.globl _ANA_DFEO_REG_06
+	.globl _ANA_DFEO_REG_05
+	.globl _ANA_DFEO_REG_04
+	.globl _ANA_DFEO_REG_03
+	.globl _ANA_DFEO_REG_02
+	.globl _ANA_DFEO_REG_01
+	.globl _ANA_DFEO_REG_00
+	.globl _ANA_DFEO_REG_27
+	.globl _ANA_DFEO_REG_26
+	.globl _ANA_DFEO_REG_25
+	.globl _ANA_DFEO_REG_24
+	.globl _ANA_DFEO_REG_23
+	.globl _ANA_DFEO_REG_22
+	.globl _ANA_DFEO_REG_21
+	.globl _ANA_DFEO_REG_20
+	.globl _ANA_DFEO_REG_1F
+	.globl _ANA_DFEO_REG_1E
+	.globl _ANA_DFEO_REG_1D
+	.globl _ANA_DFEO_REG_1C
+	.globl _ANA_DFEO_REG_1B
+	.globl _ANA_DFEO_REG_1A
+	.globl _ANA_DFEO_REG_19
+	.globl _ANA_DFEO_REG_18
+	.globl _ANA_DFEO_REG_17
+	.globl _ANA_DFEO_REG_16
+	.globl _ANA_DFEO_REG_15
+	.globl _ANA_DFEO_REG_14
+	.globl _ANA_DFEO_REG_13
+	.globl _ANA_DFEO_REG_12
+	.globl _ANA_DFEO_REG_11
+	.globl _ANA_DFEO_REG_10
+	.globl _ANA_DFEO_REG_0F
+	.globl _ANA_DFEO_REG_0E
+	.globl _ANA_DFEO_REG_0D
+	.globl _ANA_DFEO_REG_0C
+	.globl _ANA_DFEE_REG_1D
+	.globl _ANA_DFEE_REG_1C
+	.globl _ANA_DFEE_REG_1B
+	.globl _ANA_DFEE_REG_1A
+	.globl _ANA_DFEE_REG_19
+	.globl _ANA_DFEE_REG_18
+	.globl _ANA_DFEE_REG_17
+	.globl _ANA_DFEE_REG_16
+	.globl _ANA_DFEE_REG_15
+	.globl _ANA_DFEE_REG_14
+	.globl _ANA_DFEE_REG_13
+	.globl _ANA_DFEE_REG_12
+	.globl _ANA_DFEE_REG_11
+	.globl _ANA_DFEE_REG_10
+	.globl _ANA_DFEE_REG_0F
+	.globl _ANA_DFEE_REG_0E
+	.globl _ANA_DFEE_REG_0D
+	.globl _ANA_DFEE_REG_0C
+	.globl _ANA_DFEE_REG_0B
+	.globl _ANA_DFEE_REG_0A
+	.globl _ANA_DFEE_REG_09
+	.globl _ANA_DFEE_REG_08
+	.globl _ANA_DFEE_REG_07
+	.globl _ANA_DFEE_REG_06
+	.globl _ANA_DFEE_REG_05
+	.globl _ANA_DFEE_REG_04
+	.globl _ANA_DFEE_REG_03
+	.globl _ANA_DFEE_REG_02
+	.globl _ANA_DFEE_REG_01
+	.globl _ANA_DFEE_REG_00
+	.globl _ANA_DFEE_REG_27
+	.globl _ANA_DFEE_REG_26
+	.globl _ANA_DFEE_REG_25
+	.globl _ANA_DFEE_REG_24
+	.globl _ANA_DFEE_REG_23
+	.globl _ANA_DFEE_REG_22
+	.globl _ANA_DFEE_REG_21
+	.globl _ANA_DFEE_REG_20
+	.globl _ANA_DFEE_REG_1F
+	.globl _ANA_DFEE_REG_1E
+	.globl _UPHY14_TRX_ANAREG_BOT_32
+	.globl _UPHY14_TRX_ANAREG_BOT_31
+	.globl _UPHY14_TRX_ANAREG_BOT_30
+	.globl _UPHY14_TRX_ANAREG_BOT_29
+	.globl _UPHY14_TRX_ANAREG_BOT_28
+	.globl _UPHY14_TRX_ANAREG_BOT_27
+	.globl _UPHY14_TRX_ANAREG_BOT_26
+	.globl _UPHY14_TRX_ANAREG_BOT_25
+	.globl _UPHY14_TRX_ANAREG_BOT_24
+	.globl _UPHY14_TRX_ANAREG_BOT_23
+	.globl _UPHY14_TRX_ANAREG_BOT_22
+	.globl _UPHY14_TRX_ANAREG_BOT_21
+	.globl _UPHY14_TRX_ANAREG_BOT_20
+	.globl _UPHY14_TRX_ANAREG_BOT_19
+	.globl _UPHY14_TRX_ANAREG_BOT_18
+	.globl _UPHY14_TRX_ANAREG_BOT_17
+	.globl _UPHY14_TRX_ANAREG_BOT_16
+	.globl _UPHY14_TRX_ANAREG_BOT_15
+	.globl _UPHY14_TRX_ANAREG_BOT_14
+	.globl _UPHY14_TRX_ANAREG_BOT_13
+	.globl _UPHY14_TRX_ANAREG_BOT_12
+	.globl _UPHY14_TRX_ANAREG_BOT_11
+	.globl _UPHY14_TRX_ANAREG_BOT_10
+	.globl _UPHY14_TRX_ANAREG_BOT_9
+	.globl _UPHY14_TRX_ANAREG_BOT_8
+	.globl _UPHY14_TRX_ANAREG_BOT_7
+	.globl _UPHY14_TRX_ANAREG_BOT_6
+	.globl _UPHY14_TRX_ANAREG_BOT_5
+	.globl _UPHY14_TRX_ANAREG_BOT_4
+	.globl _UPHY14_TRX_ANAREG_BOT_3
+	.globl _UPHY14_TRX_ANAREG_BOT_2
+	.globl _UPHY14_TRX_ANAREG_BOT_1
+	.globl _UPHY14_TRX_ANAREG_BOT_0
+	.globl _UPHY14_TRX_ANAREG_TOP_157
+	.globl _UPHY14_TRX_ANAREG_TOP_156
+	.globl _UPHY14_TRX_ANAREG_TOP_155
+	.globl _UPHY14_TRX_ANAREG_TOP_154
+	.globl _UPHY14_TRX_ANAREG_TOP_153
+	.globl _UPHY14_TRX_ANAREG_TOP_152
+	.globl _UPHY14_TRX_ANAREG_TOP_151
+	.globl _UPHY14_TRX_ANAREG_TOP_150
+	.globl _UPHY14_TRX_ANAREG_TOP_149
+	.globl _UPHY14_TRX_ANAREG_TOP_148
+	.globl _UPHY14_TRX_ANAREG_TOP_147
+	.globl _UPHY14_TRX_ANAREG_TOP_146
+	.globl _UPHY14_TRX_ANAREG_TOP_145
+	.globl _UPHY14_TRX_ANAREG_TOP_144
+	.globl _UPHY14_TRX_ANAREG_TOP_143
+	.globl _UPHY14_TRX_ANAREG_TOP_142
+	.globl _UPHY14_TRX_ANAREG_TOP_141
+	.globl _UPHY14_TRX_ANAREG_TOP_140
+	.globl _UPHY14_TRX_ANAREG_TOP_139
+	.globl _UPHY14_TRX_ANAREG_TOP_138
+	.globl _UPHY14_TRX_ANAREG_TOP_137
+	.globl _UPHY14_TRX_ANAREG_TOP_136
+	.globl _UPHY14_TRX_ANAREG_TOP_135
+	.globl _UPHY14_TRX_ANAREG_TOP_134
+	.globl _UPHY14_TRX_ANAREG_TOP_133
+	.globl _UPHY14_TRX_ANAREG_TOP_132
+	.globl _UPHY14_TRX_ANAREG_TOP_131
+	.globl _UPHY14_TRX_ANAREG_TOP_130
+	.globl _UPHY14_TRX_ANAREG_TOP_129
+	.globl _UPHY14_TRX_ANAREG_TOP_128
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_143
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_142
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_141
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_140
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_139
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_138
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_137
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_136
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_135
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_134
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_133
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_132
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_131
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_130
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_129
+	.globl _UPHY14_TRX_LANEPLL_ANAREG_TOP_128
+	.globl _SpeedChange
+	.globl _sata_speedchange
+	.globl _loadspeedtbl_pll
+	.globl _loadspeedtbl_ringpll
+	.globl _get_gen_memory_index
+	.globl _loadspeedtbl_gen
+	.globl _loadSpeedtbl
+	.globl _loadSpdtbl_4_fcnt
+	.globl _ringloadSpdtbl_4_fcnt
+;--------------------------------------------------------
+; special function registers
+;--------------------------------------------------------
+	.area RSEG    (ABS,DATA)
+	.org 0x0000
+_P0	=	0x0080
+_DPL	=	0x0082
+_DPH	=	0x0083
+_WDTREL	=	0x0086
+_PCON	=	0x0087
+_TCON	=	0x0088
+_TMOD	=	0x0089
+_TL0	=	0x008a
+_TL1	=	0x008b
+_TH0	=	0x008c
+_TH1	=	0x008d
+_CKCON	=	0x008e
+_P1	=	0x0090
+_DPS	=	0x0092
+_PSBANK	=	0x0094
+_SCON	=	0x0098
+_SBUF	=	0x0099
+_IEN2	=	0x009a
+_P2	=	0x00a0
+_DMAS0	=	0x00a1
+_DMAS1	=	0x00a2
+_DMAS2	=	0x00a3
+_DMAT0	=	0x00a4
+_DMAT1	=	0x00a5
+_DMAT2	=	0x00a6
+_IEN0	=	0x00a8
+_IP0	=	0x00a9
+_S0RELL	=	0x00aa
+_P3	=	0x00b0
+_DMAC0	=	0x00b1
+_DMAC1	=	0x00b2
+_DMAC2	=	0x00b3
+_DMASEL	=	0x00b4
+_DMAM0	=	0x00b5
+_DMAM1	=	0x00b6
+_IEN1	=	0x00b8
+_IP1	=	0x00b9
+_S0RELH	=	0x00ba
+_IRCON	=	0x00c0
+_CCEN	=	0x00c1
+_T2CON	=	0x00c8
+_RCAP2L	=	0x00ca
+_RCAP2H	=	0x00cb
+_TL2	=	0x00cc
+_TH2	=	0x00cd
+_PSW	=	0x00d0
+_ADCON	=	0x00d8
+_ACC	=	0x00e0
+_EIE	=	0x00e8
+_B	=	0x00f0
+_SRST	=	0x00f7
+_TMR0	=	0x8c8a
+_TMR1	=	0x8d8b
+_TMR2	=	0xcdcc
+_DMASA	=	0xa2a1
+_DMATA	=	0xa5a4
+_DMAC	=	0xb2b1
+;--------------------------------------------------------
+; special function bits
+;--------------------------------------------------------
+	.area RSEG    (ABS,DATA)
+	.org 0x0000
+_P0_0	=	0x0080
+_P0_1	=	0x0081
+_P0_2	=	0x0082
+_P0_3	=	0x0083
+_P0_4	=	0x0084
+_P0_5	=	0x0085
+_P0_6	=	0x0086
+_P0_7	=	0x0087
+_P1_0	=	0x0090
+_P1_1	=	0x0091
+_P1_2	=	0x0092
+_P1_3	=	0x0093
+_P1_4	=	0x0094
+_P1_5	=	0x0095
+_P1_6	=	0x0096
+_P1_7	=	0x0097
+_P2_0	=	0x00a0
+_P2_1	=	0x00a1
+_P2_2	=	0x00a2
+_P2_3	=	0x00a3
+_P2_4	=	0x00a4
+_P2_5	=	0x00a5
+_P2_6	=	0x00a6
+_P2_7	=	0x00a7
+_P3_0	=	0x00b0
+_P3_1	=	0x00b1
+_P3_2	=	0x00b2
+_P3_3	=	0x00b3
+_P3_4	=	0x00b4
+_P3_5	=	0x00b5
+_P3_6	=	0x00b6
+_P3_7	=	0x00b7
+_IT0	=	0x0088
+_IE0	=	0x0089
+_IT1	=	0x008a
+_IE1	=	0x008b
+_TR0	=	0x008c
+_TF0	=	0x008d
+_TR1	=	0x008e
+_TF1	=	0x008f
+_EX0	=	0x00a8
+_ET0	=	0x00a9
+_EX1	=	0x00aa
+_ET1	=	0x00ab
+_ES	=	0x00ac
+_ET2	=	0x00ad
+_WDT	=	0x00ae
+_EA	=	0x00af
+_EX7	=	0x00b8
+_EX2	=	0x00b9
+_EX3	=	0x00ba
+_EX4	=	0x00bb
+_EX5	=	0x00bc
+_EX6	=	0x00bd
+_PS1	=	0x00be
+_ES1	=	0x009a
+_EX8	=	0x009b
+_EX9	=	0x009c
+_EX10	=	0x009d
+_EX11	=	0x009e
+_EX12	=	0x009f
+_RI	=	0x0098
+_TI	=	0x0099
+_TF2	=	0x00c6
+;--------------------------------------------------------
+; overlayable register banks
+;--------------------------------------------------------
+	.area REG_BANK_0	(REL,OVR,DATA)
+	.ds 8
+;--------------------------------------------------------
+; overlayable bit register bank
+;--------------------------------------------------------
+	.area BIT_BANK	(REL,OVR,DATA)
+bits:
+	.ds 1
+	b0 = bits[0]
+	b1 = bits[1]
+	b2 = bits[2]
+	b3 = bits[3]
+	b4 = bits[4]
+	b5 = bits[5]
+	b6 = bits[6]
+	b7 = bits[7]
+;--------------------------------------------------------
+; internal ram data
+;--------------------------------------------------------
+	.area DSEG    (DATA)
+;--------------------------------------------------------
+; overlayable items in internal ram 
+;--------------------------------------------------------
+	.area OSEG    (OVR,DATA)
+;--------------------------------------------------------
+; indirectly addressable internal ram data
+;--------------------------------------------------------
+	.area ISEG    (DATA)
+;--------------------------------------------------------
+; absolute internal ram data
+;--------------------------------------------------------
+	.area IABS    (ABS,DATA)
+	.area IABS    (ABS,DATA)
+;--------------------------------------------------------
+; bit data
+;--------------------------------------------------------
+	.area BSEG    (BIT)
+;--------------------------------------------------------
+; paged external ram data
+;--------------------------------------------------------
+	.area PSEG    (PAG,XDATA)
+;--------------------------------------------------------
+; external ram data
+;--------------------------------------------------------
+	.area XSEG    (XDATA)
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_128	=	0x1000
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_129	=	0x1004
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_130	=	0x1008
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_131	=	0x100c
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_132	=	0x1010
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_133	=	0x1014
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_134	=	0x1018
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_135	=	0x101c
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_136	=	0x1020
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_137	=	0x1024
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_138	=	0x1028
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_139	=	0x102c
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_140	=	0x1030
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_141	=	0x1034
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_142	=	0x1038
+_UPHY14_TRX_LANEPLL_ANAREG_TOP_143	=	0x103c
+_UPHY14_TRX_ANAREG_TOP_128	=	0x0200
+_UPHY14_TRX_ANAREG_TOP_129	=	0x0204
+_UPHY14_TRX_ANAREG_TOP_130	=	0x0208
+_UPHY14_TRX_ANAREG_TOP_131	=	0x020c
+_UPHY14_TRX_ANAREG_TOP_132	=	0x0210
+_UPHY14_TRX_ANAREG_TOP_133	=	0x0214
+_UPHY14_TRX_ANAREG_TOP_134	=	0x0218
+_UPHY14_TRX_ANAREG_TOP_135	=	0x021c
+_UPHY14_TRX_ANAREG_TOP_136	=	0x0220
+_UPHY14_TRX_ANAREG_TOP_137	=	0x0224
+_UPHY14_TRX_ANAREG_TOP_138	=	0x0228
+_UPHY14_TRX_ANAREG_TOP_139	=	0x022c
+_UPHY14_TRX_ANAREG_TOP_140	=	0x0230
+_UPHY14_TRX_ANAREG_TOP_141	=	0x0234
+_UPHY14_TRX_ANAREG_TOP_142	=	0x0238
+_UPHY14_TRX_ANAREG_TOP_143	=	0x023c
+_UPHY14_TRX_ANAREG_TOP_144	=	0x0240
+_UPHY14_TRX_ANAREG_TOP_145	=	0x0244
+_UPHY14_TRX_ANAREG_TOP_146	=	0x0248
+_UPHY14_TRX_ANAREG_TOP_147	=	0x024c
+_UPHY14_TRX_ANAREG_TOP_148	=	0x0250
+_UPHY14_TRX_ANAREG_TOP_149	=	0x0254
+_UPHY14_TRX_ANAREG_TOP_150	=	0x0258
+_UPHY14_TRX_ANAREG_TOP_151	=	0x025c
+_UPHY14_TRX_ANAREG_TOP_152	=	0x0260
+_UPHY14_TRX_ANAREG_TOP_153	=	0x0264
+_UPHY14_TRX_ANAREG_TOP_154	=	0x0268
+_UPHY14_TRX_ANAREG_TOP_155	=	0x026c
+_UPHY14_TRX_ANAREG_TOP_156	=	0x0270
+_UPHY14_TRX_ANAREG_TOP_157	=	0x0274
+_UPHY14_TRX_ANAREG_BOT_0	=	0x0000
+_UPHY14_TRX_ANAREG_BOT_1	=	0x0004
+_UPHY14_TRX_ANAREG_BOT_2	=	0x0008
+_UPHY14_TRX_ANAREG_BOT_3	=	0x000c
+_UPHY14_TRX_ANAREG_BOT_4	=	0x0010
+_UPHY14_TRX_ANAREG_BOT_5	=	0x0014
+_UPHY14_TRX_ANAREG_BOT_6	=	0x0018
+_UPHY14_TRX_ANAREG_BOT_7	=	0x001c
+_UPHY14_TRX_ANAREG_BOT_8	=	0x0020
+_UPHY14_TRX_ANAREG_BOT_9	=	0x0024
+_UPHY14_TRX_ANAREG_BOT_10	=	0x0028
+_UPHY14_TRX_ANAREG_BOT_11	=	0x002c
+_UPHY14_TRX_ANAREG_BOT_12	=	0x0030
+_UPHY14_TRX_ANAREG_BOT_13	=	0x0034
+_UPHY14_TRX_ANAREG_BOT_14	=	0x0038
+_UPHY14_TRX_ANAREG_BOT_15	=	0x003c
+_UPHY14_TRX_ANAREG_BOT_16	=	0x0040
+_UPHY14_TRX_ANAREG_BOT_17	=	0x0044
+_UPHY14_TRX_ANAREG_BOT_18	=	0x0048
+_UPHY14_TRX_ANAREG_BOT_19	=	0x004c
+_UPHY14_TRX_ANAREG_BOT_20	=	0x0050
+_UPHY14_TRX_ANAREG_BOT_21	=	0x0054
+_UPHY14_TRX_ANAREG_BOT_22	=	0x0058
+_UPHY14_TRX_ANAREG_BOT_23	=	0x005c
+_UPHY14_TRX_ANAREG_BOT_24	=	0x0060
+_UPHY14_TRX_ANAREG_BOT_25	=	0x0064
+_UPHY14_TRX_ANAREG_BOT_26	=	0x0068
+_UPHY14_TRX_ANAREG_BOT_27	=	0x006c
+_UPHY14_TRX_ANAREG_BOT_28	=	0x0070
+_UPHY14_TRX_ANAREG_BOT_29	=	0x0074
+_UPHY14_TRX_ANAREG_BOT_30	=	0x0078
+_UPHY14_TRX_ANAREG_BOT_31	=	0x007c
+_UPHY14_TRX_ANAREG_BOT_32	=	0x0080
+_ANA_DFEE_REG_1E	=	0x0478
+_ANA_DFEE_REG_1F	=	0x047c
+_ANA_DFEE_REG_20	=	0x0480
+_ANA_DFEE_REG_21	=	0x0484
+_ANA_DFEE_REG_22	=	0x0488
+_ANA_DFEE_REG_23	=	0x048c
+_ANA_DFEE_REG_24	=	0x0490
+_ANA_DFEE_REG_25	=	0x0494
+_ANA_DFEE_REG_26	=	0x0498
+_ANA_DFEE_REG_27	=	0x049c
+_ANA_DFEE_REG_00	=	0x0400
+_ANA_DFEE_REG_01	=	0x0404
+_ANA_DFEE_REG_02	=	0x0408
+_ANA_DFEE_REG_03	=	0x040c
+_ANA_DFEE_REG_04	=	0x0410
+_ANA_DFEE_REG_05	=	0x0414
+_ANA_DFEE_REG_06	=	0x0418
+_ANA_DFEE_REG_07	=	0x041c
+_ANA_DFEE_REG_08	=	0x0420
+_ANA_DFEE_REG_09	=	0x0424
+_ANA_DFEE_REG_0A	=	0x0428
+_ANA_DFEE_REG_0B	=	0x042c
+_ANA_DFEE_REG_0C	=	0x0430
+_ANA_DFEE_REG_0D	=	0x0434
+_ANA_DFEE_REG_0E	=	0x0438
+_ANA_DFEE_REG_0F	=	0x043c
+_ANA_DFEE_REG_10	=	0x0440
+_ANA_DFEE_REG_11	=	0x0444
+_ANA_DFEE_REG_12	=	0x0448
+_ANA_DFEE_REG_13	=	0x044c
+_ANA_DFEE_REG_14	=	0x0450
+_ANA_DFEE_REG_15	=	0x0454
+_ANA_DFEE_REG_16	=	0x0458
+_ANA_DFEE_REG_17	=	0x045c
+_ANA_DFEE_REG_18	=	0x0460
+_ANA_DFEE_REG_19	=	0x0464
+_ANA_DFEE_REG_1A	=	0x0468
+_ANA_DFEE_REG_1B	=	0x046c
+_ANA_DFEE_REG_1C	=	0x0470
+_ANA_DFEE_REG_1D	=	0x0474
+_ANA_DFEO_REG_0C	=	0x0830
+_ANA_DFEO_REG_0D	=	0x0834
+_ANA_DFEO_REG_0E	=	0x0838
+_ANA_DFEO_REG_0F	=	0x083c
+_ANA_DFEO_REG_10	=	0x0840
+_ANA_DFEO_REG_11	=	0x0844
+_ANA_DFEO_REG_12	=	0x0848
+_ANA_DFEO_REG_13	=	0x084c
+_ANA_DFEO_REG_14	=	0x0850
+_ANA_DFEO_REG_15	=	0x0854
+_ANA_DFEO_REG_16	=	0x0858
+_ANA_DFEO_REG_17	=	0x085c
+_ANA_DFEO_REG_18	=	0x0860
+_ANA_DFEO_REG_19	=	0x0864
+_ANA_DFEO_REG_1A	=	0x0868
+_ANA_DFEO_REG_1B	=	0x086c
+_ANA_DFEO_REG_1C	=	0x0870
+_ANA_DFEO_REG_1D	=	0x0874
+_ANA_DFEO_REG_1E	=	0x0878
+_ANA_DFEO_REG_1F	=	0x087c
+_ANA_DFEO_REG_20	=	0x0880
+_ANA_DFEO_REG_21	=	0x0884
+_ANA_DFEO_REG_22	=	0x0888
+_ANA_DFEO_REG_23	=	0x088c
+_ANA_DFEO_REG_24	=	0x0890
+_ANA_DFEO_REG_25	=	0x0894
+_ANA_DFEO_REG_26	=	0x0898
+_ANA_DFEO_REG_27	=	0x089c
+_ANA_DFEO_REG_00	=	0x0800
+_ANA_DFEO_REG_01	=	0x0804
+_ANA_DFEO_REG_02	=	0x0808
+_ANA_DFEO_REG_03	=	0x080c
+_ANA_DFEO_REG_04	=	0x0810
+_ANA_DFEO_REG_05	=	0x0814
+_ANA_DFEO_REG_06	=	0x0818
+_ANA_DFEO_REG_07	=	0x081c
+_ANA_DFEO_REG_08	=	0x0820
+_ANA_DFEO_REG_09	=	0x0824
+_ANA_DFEO_REG_0A	=	0x0828
+_ANA_DFEO_REG_0B	=	0x082c
+_UPHY14_CMN_ANAREG_TOP_128	=	0x8200
+_UPHY14_CMN_ANAREG_TOP_129	=	0x8204
+_UPHY14_CMN_ANAREG_TOP_130	=	0x8208
+_UPHY14_CMN_ANAREG_TOP_131	=	0x820c
+_UPHY14_CMN_ANAREG_TOP_132	=	0x8210
+_UPHY14_CMN_ANAREG_TOP_133	=	0x8214
+_UPHY14_CMN_ANAREG_TOP_134	=	0x8218
+_UPHY14_CMN_ANAREG_TOP_135	=	0x821c
+_UPHY14_CMN_ANAREG_TOP_136	=	0x8220
+_UPHY14_CMN_ANAREG_TOP_137	=	0x8224
+_UPHY14_CMN_ANAREG_TOP_138	=	0x8228
+_UPHY14_CMN_ANAREG_TOP_139	=	0x822c
+_UPHY14_CMN_ANAREG_TOP_140	=	0x8230
+_UPHY14_CMN_ANAREG_TOP_141	=	0x8234
+_UPHY14_CMN_ANAREG_TOP_142	=	0x8238
+_UPHY14_CMN_ANAREG_TOP_143	=	0x823c
+_UPHY14_CMN_ANAREG_TOP_144	=	0x8240
+_UPHY14_CMN_ANAREG_TOP_145	=	0x8244
+_UPHY14_CMN_ANAREG_TOP_146	=	0x8248
+_UPHY14_CMN_ANAREG_TOP_147	=	0x824c
+_UPHY14_CMN_ANAREG_TOP_148	=	0x8250
+_UPHY14_CMN_ANAREG_TOP_149	=	0x8254
+_UPHY14_CMN_ANAREG_TOP_150	=	0x8258
+_UPHY14_CMN_ANAREG_TOP_151	=	0x825c
+_UPHY14_CMN_ANAREG_TOP_152	=	0x8260
+_UPHY14_CMN_ANAREG_TOP_153	=	0x8264
+_UPHY14_CMN_ANAREG_TOP_154	=	0x8268
+_UPHY14_CMN_ANAREG_TOP_155	=	0x826c
+_UPHY14_CMN_ANAREG_TOP_156	=	0x8270
+_UPHY14_CMN_ANAREG_TOP_157	=	0x8274
+_UPHY14_CMN_ANAREG_TOP_158	=	0x8278
+_UPHY14_CMN_ANAREG_TOP_159	=	0x827c
+_UPHY14_CMN_ANAREG_TOP_160	=	0x8280
+_UPHY14_CMN_ANAREG_TOP_161	=	0x8284
+_UPHY14_CMN_ANAREG_TOP_162	=	0x8288
+_UPHY14_CMN_ANAREG_TOP_163	=	0x828c
+_UPHY14_CMN_ANAREG_TOP_164	=	0x8290
+_UPHY14_CMN_ANAREG_TOP_165	=	0x8294
+_UPHY14_CMN_ANAREG_TOP_166	=	0x8298
+_UPHY14_CMN_ANAREG_TOP_167	=	0x829c
+_UPHY14_CMN_ANAREG_TOP_168	=	0x82a0
+_UPHY14_CMN_ANAREG_TOP_169	=	0x82a4
+_UPHY14_CMN_ANAREG_TOP_170	=	0x82a8
+_UPHY14_CMN_ANAREG_TOP_171	=	0x82ac
+_UPHY14_CMN_ANAREG_TOP_172	=	0x82b0
+_UPHY14_CMN_ANAREG_TOP_173	=	0x82b4
+_UPHY14_CMN_ANAREG_TOP_174	=	0x82b8
+_UPHY14_CMN_ANAREG_TOP_175	=	0x82bc
+_UPHY14_CMN_ANAREG_TOP_176	=	0x82c0
+_UPHY14_CMN_ANAREG_TOP_177	=	0x82c4
+_UPHY14_CMN_ANAREG_TOP_178	=	0x82c8
+_UPHY14_CMN_ANAREG_TOP_179	=	0x82cc
+_UPHY14_CMN_ANAREG_TOP_180	=	0x82d0
+_UPHY14_CMN_ANAREG_TOP_181	=	0x82d4
+_UPHY14_CMN_ANAREG_TOP_182	=	0x82d8
+_UPHY14_CMN_ANAREG_TOP_183	=	0x82dc
+_UPHY14_CMN_ANAREG_TOP_184	=	0x82e0
+_UPHY14_CMN_ANAREG_TOP_185	=	0x82e4
+_UPHY14_CMN_ANAREG_TOP_186	=	0x82e8
+_UPHY14_CMN_ANAREG_TOP_187	=	0x82ec
+_UPHY14_CMN_ANAREG_TOP_188	=	0x82f0
+_UPHY14_CMN_ANAREG_TOP_189	=	0x82f4
+_UPHY14_CMN_ANAREG_TOP_190	=	0x82f8
+_UPHY14_CMN_ANAREG_TOP_191	=	0x82fc
+_UPHY14_CMN_ANAREG_TOP_192	=	0x8300
+_UPHY14_CMN_ANAREG_TOP_193	=	0x8304
+_UPHY14_CMN_ANAREG_TOP_194	=	0x8308
+_UPHY14_CMN_ANAREG_TOP_195	=	0x830c
+_UPHY14_CMN_ANAREG_TOP_196	=	0x8310
+_UPHY14_CMN_ANAREG_TOP_197	=	0x8314
+_UPHY14_CMN_ANAREG_TOP_198	=	0x8318
+_UPHY14_CMN_ANAREG_TOP_199	=	0x831c
+_UPHY14_CMN_ANAREG_TOP_200	=	0x8320
+_UPHY14_CMN_ANAREG_TOP_201	=	0x8324
+_UPHY14_CMN_ANAREG_TOP_202	=	0x8328
+_UPHY14_CMN_ANAREG_TOP_203	=	0x832c
+_UPHY14_CMN_ANAREG_TOP_204	=	0x8330
+_UPHY14_CMN_ANAREG_TOP_205	=	0x8334
+_UPHY14_CMN_ANAREG_TOP_206	=	0x8338
+_UPHY14_CMN_ANAREG_TOP_207	=	0x833c
+_UPHY14_CMN_ANAREG_TOP_208	=	0x8340
+_UPHY14_CMN_ANAREG_TOP_209	=	0x8344
+_UPHY14_CMN_ANAREG_TOP_210	=	0x8348
+_UPHY14_CMN_ANAREG_TOP_211	=	0x834c
+_UPHY14_CMN_ANAREG_TOP_212	=	0x8350
+_UPHY14_CMN_ANAREG_TOP_213	=	0x8354
+_UPHY14_CMN_ANAREG_TOP_214	=	0x8358
+_PM_CTRL_TX_LANE_REG1_LANE	=	0x2000
+_PM_CTRL_TX_LANE_REG2_LANE	=	0x2004
+_INPUT_TX_PIN_REG0_LANE	=	0x2008
+_INPUT_TX_PIN_REG1_LANE	=	0x200c
+_INPUT_TX_PIN_REG2_LANE	=	0x2010
+_INPUT_TX_PIN_REG3_LANE	=	0x2014
+_PM_CTRL_INTERRUPT_REG1_LANE	=	0x2018
+_PM_CTRL_INTERRUPT_REG2	=	0x201c
+_CLKGEN_TX_LANE_REG1_LANE	=	0x2020
+_TX_SPEED_CONVERT_LANE	=	0x2024
+_SPD_CTRL_INTERRUPT_REG1_LANE	=	0x2028
+_SPD_CTRL_INTERRUPT_REG2	=	0x202c
+_SPD_CTRL_TX_LANE_REG1_LANE	=	0x2030
+_TX_SYSTEM_LANE	=	0x2034
+_INPUT_TX_PIN_REG4_LANE	=	0x203c
+_TX_CALIBRATION_LANE	=	0x2040
+_DIG_TX_RSVD_REG0	=	0x2044
+_INPUT_TX_PIN_REG5_LANE	=	0x2048
+__FIELDNAME__LANE	=	0x204c
+_PM_CTRL_INTERRUPT_ISR_REG1_LANE	=	0x2050
+_SPD_CTRL_INTERRUPT_CLEAR_REG1_LANE	=	0x2054
+_ANALOG_TX_REALTIME_REG_1	=	0x2058
+_MON_TOP	=	0x205c
+_PM_CTRL_RX_LANE_REG1_LANE	=	0x2100
+_RX_SYSTEM_LANE	=	0x2104
+_INPUT_RX_PIN_REG0_LANE	=	0x2108
+_INPUT_RX_PIN_REG1_LANE	=	0x210c
+_INPUT_RX_PIN_REG2_LANE	=	0x2110
+_SPD_CTRL_RX_LANE_REG1_LANE	=	0x2114
+_DIG_RX_RSVD_REG0	=	0x2118
+_CLKGEN_RX_LANE_REG1_LANE	=	0x211c
+_FRAME_SYNC_DET_REG0	=	0x2120
+_FRAME_SYNC_DET_REG1	=	0x2124
+_FRAME_SYNC_DET_REG2	=	0x2128
+_FRAME_SYNC_DET_REG3	=	0x212c
+_FRAME_SYNC_DET_REG4	=	0x2130
+_FRAME_SYNC_DET_REG5	=	0x2134
+_FRAME_SYNC_DET_REG6	=	0x2138
+_CDR_LOCK_REG	=	0x213c
+_RX_LANE_INTERRUPT	=	0x2140
+_RX_LANE_INTERRUPT_MASK	=	0x2144
+_RX_DATA_PATH_REG	=	0x2148
+_INPUT_RX_PIN_REG3_LANE	=	0x214c
+_RX_CALIBRATION_REG	=	0x2150
+_RX_LANE_INTERRUPT_REG1	=	0x2158
+_DTL_REG0	=	0x2160
+_DTL_REG1	=	0x2164
+_DTL_REG2	=	0x2168
+_DTL_REG3	=	0x216c
+_SQ_REG0	=	0x2170
+_LANE_CFG0	=	0x4000
+_LANE_STATUS0	=	0x4004
+_LANE_CFG_STATUS2_LANE	=	0x4008
+_LANE_CFG2_LANE	=	0x400c
+_LANE_CFG4	=	0x4010
+_LANE_CFG_STATUS3_LANE	=	0x4014
+_LANE_DP_PIE8_CFG0_LANE	=	0x4018
+_LANE_USB_DP_CFG1_LANE	=	0x401c
+_LANE_USB_DP_CFG2_LANE	=	0x4020
+_LANE_EQ_CFG0_LANE	=	0x4024
+_LANE_EQ_CFG1_LANE	=	0x4028
+_LANE_PRESET_CFG0_LANE	=	0x402c
+_LANE_PRESET_CFG2_LANE	=	0x4030
+_LANE_PRESET_CFG4_LANE	=	0x4034
+_LANE_PRESET_CFG6_LANE	=	0x4038
+_LANE_PRESET_CFG8_LANE	=	0x403c
+_LANE_PRESET_CFG10_LANE	=	0x4040
+_LANE_PRESET_CFG12_LANE	=	0x4044
+_LANE_PRESET_CFG14_LANE	=	0x4048
+_LANE_PRESET_CFG16_LANE	=	0x404c
+_LANE_COEFF_MAX0_LANE	=	0x4050
+_LANE_REMOTE_SET_LANE	=	0x4054
+_LANE_EQ_16G_CFG0_LANE	=	0x4058
+_LANE_16G_PRESET_CFG0_LANE	=	0x405c
+_LANE_16G_PRESET_CFG2_LANE	=	0x4060
+_LANE_16G_PRESET_CFG4_LANE	=	0x4064
+_LANE_16G_PRESET_CFG6_LANE	=	0x4068
+_LANE_16G_PRESET_CFG8_LANE	=	0x406c
+_LANE_16G_PRESET_CFG10_LANE	=	0x4070
+_LANE_16G_PRESET_CFG12_LANE	=	0x4074
+_LANE_16G_PRESET_CFG14_LANE	=	0x4078
+_LANE_16G_PRESET_CFG16_LANE	=	0x407c
+_LANE_EQ_32G_CFG0_LANE	=	0x4080
+_LANE_32G_PRESET_CFG0_LANE	=	0x4084
+_LANE_32G_PRESET_CFG2_LANE	=	0x4088
+_LANE_32G_PRESET_CFG4_LANE	=	0x408c
+_LANE_32G_PRESET_CFG6_LANE	=	0x4090
+_LANE_32G_PRESET_CFG8_LANE	=	0x4094
+_LANE_32G_PRESET_CFG10_LANE	=	0x4098
+_LANE_32G_PRESET_CFG12_LANE	=	0x409c
+_LANE_32G_PRESET_CFG14_LANE	=	0x40a0
+_LANE_32G_PRESET_CFG16_LANE	=	0x40a4
+_MCU_CONTROL_LANE	=	0x2200
+_MCU_GPIO	=	0x2204
+_CACHE_DEBUG0	=	0x2208
+_CACHE_DEBUG1	=	0x220c
+_LANE_SYSTEM0	=	0x2210
+_MCU_STATUS0_LANE	=	0x2230
+_MCU_STATUS1_LANE	=	0x2234
+_MCU_STATUS2_LANE	=	0x2238
+_MCU_STATUS3_LANE	=	0x223c
+_MCU_INT0_CONTROL	=	0x2240
+_MCU_INT1_CONTROL	=	0x2244
+_MCU_INT2_CONTROL	=	0x2248
+_MCU_INT3_CONTROL	=	0x224c
+_MCU_INT4_CONTROL	=	0x2250
+_MCU_INT5_CONTROL	=	0x2254
+_MCU_INT6_CONTROL	=	0x2258
+_MCU_INT7_CONTROL	=	0x225c
+_MCU_INT8_CONTROL	=	0x2260
+_MCU_INT9_CONTROL	=	0x2264
+_MCU_INT10_CONTROL	=	0x2268
+_MCU_INT11_CONTROL	=	0x226c
+_MCU_INT12_CONTROL	=	0x2270
+_MCU_TIMER_CONTROL	=	0x2274
+_MCU_TIMER0_CONTROL	=	0x2278
+_MCU_TIMER1_CONTROL	=	0x227c
+_MCU_TIMER2_CONTROL	=	0x2280
+_MCU_TIMER3_CONTROL	=	0x2284
+_MCU_IRQ_LANE	=	0x2288
+_MCU_IRQ_MASK_LANE	=	0x228c
+_MCU_MEM_REG1_LANE	=	0x2290
+_MCU_MEM_REG2_LANE	=	0x2294
+_MCU_TIMER_CTRL_1_LANE	=	0x2298
+_MCU_TIMER_CTRL_2_LANE	=	0x229c
+_MCU_TIMER_CTRL_3_LANE	=	0x22a0
+_MCU_TIMER_CTRL_4_LANE	=	0x22a4
+_MCU_TIMER_CTRL_5_LANE	=	0x22a8
+_MCU_TIMER_CTRL_6_LANE	=	0x22ac
+_MCU_TIMER_CTRL_7_LANE	=	0x22b0
+_MCU_DEBUG0_LANE	=	0x22b4
+_MCU_DEBUG1_LANE	=	0x22b8
+_MCU_DEBUG2_LANE	=	0x22bc
+_MCU_DEBUG3_LANE	=	0x22c0
+_MCU_DEBUG_LANE	=	0x22c4
+_EXT_INT_CONTROL	=	0x22c8
+_ANA_IF_TRX_REG0	=	0x22cc
+_ANA_IF_DFEE_REG0	=	0x22d0
+_ANA_IF_DFEO_REG0	=	0x22d4
+_MCU_IRQ_ISR_LANE	=	0x22d8
+_MCU_WDT_LANE	=	0x22dc
+_MCU_INT_CONTROL_13	=	0x22e0
+_MCU_COMMAND0	=	0x22e4
+_MEM_ECC_ERR_ADDRESS0	=	0x22f4
+_XDATA_MEM_CHECKSUM_LANE0	=	0x22f8
+_XDATA_MEM_CHECKSUM_LANE1	=	0x22fc
+_PT_CONTROL0	=	0x2300
+_PT_CONTROL1	=	0x2304
+_PT_USER_PATTERN0	=	0x2308
+_PT_USER_PATTERN1	=	0x230c
+_PT_USER_PATTERN2	=	0x2310
+_PT_COUNTER0	=	0x2314
+_PT_COUNTER1	=	0x2318
+_PT_COUNTER2	=	0x231c
+_DFE_CTRL_REG0	=	0x2400
+_DFE_CTRL_REG1	=	0x2404
+_DFE_CTRL_REG2	=	0x2408
+_DFE_CTRL_REG3	=	0x240c
+_RX_EQ_CLK_CTRL	=	0x2410
+_DFE_CTRL_REG4	=	0x2414
+_DFE_ANA_REG0	=	0x2418
+_DFE_ANA_REG1	=	0x241c
+_DFE_STEP_REG0	=	0x2420
+_DFE_STEP_REG1	=	0x2424
+_DFE_FEN_EVEN_REG	=	0x2430
+_DFE_FEN_ODD_REG	=	0x2434
+_DFE_DC_EVEN_REG8	=	0x2438
+_DFE_DC_ODD_REG8	=	0x243c
+_DFE_FEXT_EVEN_REG0	=	0x2440
+_DFE_FEXT_EVEN_REG1	=	0x2444
+_DFE_FEXT_EVEN_REG2	=	0x2448
+_DFE_FEXT_EVEN_REG3	=	0x244c
+_DFE_FEXT_EVEN_REG4	=	0x2450
+_DFE_FEXT_EVEN_REG5	=	0x2454
+_DFE_FEXT_EVEN_REG6	=	0x2458
+_DFE_FEXT_EVEN_REG7	=	0x245c
+_DFE_FEXT_ODD_REG0	=	0x2460
+_DFE_FEXT_ODD_REG1	=	0x2464
+_DFE_FEXT_ODD_REG2	=	0x2468
+_DFE_FEXT_ODD_REG3	=	0x246c
+_DFE_FEXT_ODD_REG4	=	0x2470
+_DFE_FEXT_ODD_REG5	=	0x2474
+_DFE_FEXT_ODD_REG6	=	0x2478
+_DFE_FEXT_ODD_REG7	=	0x247c
+_DFE_READ_EVEN_SM_REG0	=	0x2480
+_DFE_READ_EVEN_SM_REG1	=	0x2484
+_DFE_READ_EVEN_SM_REG2	=	0x2488
+_DFE_READ_EVEN_SM_REG3	=	0x248c
+_DFE_READ_EVEN_SM_REG4	=	0x2490
+_DFE_READ_EVEN_SM_REG5	=	0x2494
+_DFE_READ_EVEN_SM_REG6	=	0x2498
+_DFE_READ_EVEN_SM_REG7	=	0x249c
+_DFE_READ_ODD_SM_REG0	=	0x24a0
+_DFE_READ_ODD_SM_REG1	=	0x24a4
+_DFE_READ_ODD_SM_REG2	=	0x24a8
+_DFE_READ_ODD_SM_REG3	=	0x24ac
+_DFE_READ_ODD_SM_REG4	=	0x24b0
+_DFE_READ_ODD_SM_REG5	=	0x24b4
+_DFE_READ_ODD_SM_REG6	=	0x24b8
+_DFE_READ_ODD_SM_REG7	=	0x24bc
+_DFE_READ_EVEN_SM_REG8	=	0x24c0
+_DFE_READ_ODD_SM_REG8	=	0x24c4
+_DFE_READ_EVEN_2C_REG0	=	0x24d0
+_DFE_READ_EVEN_2C_REG1	=	0x24d4
+_DFE_READ_EVEN_2C_REG2	=	0x24d8
+_DFE_READ_EVEN_2C_REG3	=	0x24dc
+_DFE_READ_EVEN_2C_REG4	=	0x24e0
+_DFE_READ_EVEN_2C_REG5	=	0x24e4
+_DFE_READ_EVEN_2C_REG6	=	0x24e8
+_DFE_READ_EVEN_2C_REG7	=	0x24ec
+_DFE_READ_ODD_2C_REG0	=	0x24f0
+_DFE_READ_ODD_2C_REG1	=	0x24f4
+_DFE_READ_ODD_2C_REG2	=	0x24f8
+_DFE_READ_ODD_2C_REG3	=	0x24fc
+_DFE_READ_ODD_2C_REG4	=	0x2500
+_DFE_READ_ODD_2C_REG5	=	0x2504
+_DFE_READ_ODD_2C_REG6	=	0x2508
+_DFE_READ_ODD_2C_REG7	=	0x250c
+_DFE_READ_EVEN_2C_REG8	=	0x2510
+_DFE_READ_ODD_2C_REG8	=	0x2514
+_CAL_OFST_REG0	=	0x2518
+_CAL_OFST_REG1	=	0x251c
+_CAL_OFST_REG2	=	0x2520
+_DFE_DCE_REG0	=	0x2530
+_DFE_STATIC_LANE_REG0	=	0x2540
+_DFE_STATIC_LANE_REG1	=	0x2544
+_DFE_STATIC_LANE_REG3	=	0x2548
+_DFE_STATIC_LANE_REG4	=	0x254c
+_DFE_STATIC_LANE_REG5	=	0x2550
+_DFE_STATIC_LANE_REG6	=	0x2554
+_EOM_VLD_REG0	=	0x2560
+_EOM_VLD_REG1	=	0x2564
+_EOM_VLD_REG2	=	0x2568
+_EOM_VLD_REG3	=	0x256c
+_EOM_ERR_REG0	=	0x2570
+_EOM_ERR_REG1	=	0x2574
+_EOM_ERR_REG2	=	0x2578
+_EOM_ERR_REG3	=	0x257c
+_EOM_REG0	=	0x2580
+_EOM_VLD_REG4	=	0x25f0
+_LANE_MARGIN_REG0	=	0x25f4
+_CAL_CTRL1_LANE	=	0x6000
+_CAL_CTRL2_LANE	=	0x6004
+_CAL_CTRL3_LANE	=	0x6008
+_CAL_CTRL4_LANE	=	0x600c
+_CAL_SAVE_DATA1_LANE	=	0x6010
+_CAL_SAVE_DATA2_LANE	=	0x6014
+_CAL_SAVE_DATA3_LANE	=	0x6018
+_PHY_REMOTE_CTRL_COMMAND_LANE	=	0x601c
+_PHY_REMOTE_CTRL_VALUE_LANE	=	0x6020
+_PHY_LOCAL_VALUE_LANE	=	0x6024
+_TRX_TRAIN_IF_TIMERS1_LANE	=	0x6028
+_TRX_TRAIN_IF_TIMERS2_LANE	=	0x602c
+_TRX_TRAIN_IF_TIMERS_ENABLE_LANE	=	0x6030
+_DFE_CONTROL_0	=	0x6034
+_DFE_CONTROL_1	=	0x6038
+_DFE_CONTROL_2	=	0x6040
+_DFE_CONTROL_3	=	0x6044
+_DFE_CONTROL_4	=	0x6048
+_DFE_CONTROL_5	=	0x604c
+_TRAIN_CONTROL_0	=	0x6050
+_TRAIN_CONTROL_1	=	0x6054
+_TRAIN_CONTROL_2	=	0x6058
+_RPTA_CONFIG_0	=	0x605c
+_RPTA_CONFIG_1	=	0x6060
+_DLL_CAL	=	0x6064
+_TRAIN_PARA_0	=	0x6068
+_TRAIN_PARA_1	=	0x606c
+_TRAIN_PARA_2	=	0x6070
+_TRAIN_PARA_3	=	0x6074
+_DFE_CONTROL_6	=	0x6078
+_DFE_TEST_0	=	0x607c
+_DFE_TEST_1	=	0x6080
+_DFE_TEST_4	=	0x6084
+_DFE_TEST_5	=	0x6088
+_DFE_CONTROL_7	=	0x608c
+_DFE_CONTROL_8	=	0x6090
+_DFE_CONTROL_9	=	0x6094
+_DFE_CONTROL_10	=	0x6098
+_DFE_CONTROL_11	=	0x609c
+_CDS_CTRL_REG0	=	0x60a0
+_CDS_CTRL_REG1	=	0x60a4
+_ESM_POP_P_CNT_LOW_LANE	=	0x60a8
+_ESM_ERR_P_CNT_LOW_LANE	=	0x60ac
+_ESM_ERR_POP_CNT_HIGH_LANE	=	0x60b0
+_TRAIN_CONTROL_3	=	0x60b4
+_TRAIN_CONTROL_4	=	0x60b8
+_TRAIN_CONTROL_5	=	0x60bc
+_TRAIN_CONTROL_6	=	0x60c0
+_TRAIN_CONTROL_7	=	0x60c4
+_TRAIN_CONTROL_8	=	0x60c8
+_TRAIN_CONTROL_9	=	0x60cc
+_TRAIN_CONTROL_10	=	0x60d0
+_TRAIN_CONTROL_11	=	0x60d4
+_TRAIN_CONTROL_12	=	0x60d8
+_ESM_POP_N_CNT_LOW_LANE	=	0x60dc
+_ESM_ERR_N_CNT_LOW_LANE	=	0x60e0
+_TRAIN_CONTROL_13	=	0x60e4
+_TRAIN_CONTROL_14	=	0x60e8
+_TRAIN_CONTROL_15	=	0x60ec
+_TRAIN_CONTROL_16	=	0x60f0
+_TRAIN_CONTROL_17	=	0x60f4
+_END_XDAT_LANE	=	0x60f8
+_TX_CMN_REG	=	0xa000
+_DTX_REG0	=	0xa008
+_DTX_REG1	=	0xa00c
+_DTX_REG2	=	0xa010
+_DTX_REG3	=	0xa014
+_DTX_REG4	=	0xa018
+_DTX_PHY_ALIGN_REG0	=	0xa01c
+_DTX_PHY_ALIGN_REG1	=	0xa024
+_DTX_PHY_ALIGN_REG2	=	0xa028
+_SRIS_REG0	=	0xa02c
+_SRIS_REG1	=	0xa030
+_RX_CMN_0	=	0xa100
+_DFE_STATIC_REG0	=	0xa110
+_DFE_STATIC_REG1	=	0xa114
+_DFE_STATIC_REG3	=	0xa118
+_DFE_STATIC_REG4	=	0xa11c
+_DFE_STATIC_REG5	=	0xa120
+_DFE_STATIC_REG6	=	0xa124
+_GLOB_RST_CLK_CTRL	=	0x4200
+_GLOB_CLK_SRC_LO	=	0x4204
+_GLOB_CLK_SRC_HI	=	0x4208
+_GLOB_MISC_CTRL	=	0x420c
+_GLOB_DP_SAL_CFG	=	0x4210
+_GLOB_DP_SAL_CFG1	=	0x4214
+_GLOB_DP_SAL_CFG3	=	0x4218
+_GLOB_DP_SAL_CFG5	=	0x421c
+_GLOB_PM_CFG0	=	0x4220
+_GLOB_COUNTER_CTRL	=	0x4224
+_GLOB_COUNTER_HI	=	0x4228
+_GLOB_PM_DP_CTRL	=	0x422c
+_GLOB_DP_BAL_CFG0	=	0x4230
+_GLOB_DP_BAL_CFG2	=	0x4234
+_GLOB_DP_BAL_CFG4	=	0x4238
+_GLOB_BIST_CTRL	=	0x423c
+_GLOB_BIST_LANE_TYPE	=	0x4240
+_GLOB_BIST_START	=	0x4244
+_GLOB_BIST_MASK	=	0x4248
+_GLOB_BIST_RESULT	=	0x424c
+_GLOB_BIST_SEQR_CFG	=	0x4250
+_GLOB_BIST_DATA_HI	=	0x4254
+_GLOB_PIPE_REVISION	=	0x4258
+_GLOB_L1_SUBSTATES_CFG	=	0x425c
+_MCU_CONTROL_0	=	0xa200
+_MCU_CONTROL_1	=	0xa204
+_MCU_CONTROL_2	=	0xa208
+_MCU_CONTROL_3	=	0xa20c
+_MCU_CONTROL_4	=	0xa210
+_MCU_DEBUG0	=	0xa214
+_MCU_DEBUG1	=	0xa218
+_MEMORY_CONTROL_0	=	0xa21c
+_MEMORY_CONTROL_1	=	0xa220
+_MEMORY_CONTROL_2	=	0xa224
+_MEMORY_CONTROL_3	=	0xa228
+_MEMORY_CONTROL_4	=	0xa22c
+_MCU_INFO_0	=	0xa234
+_MCU_INFO_1	=	0xa238
+_MCU_INFO_2	=	0xa23c
+_MCU_INFO_3	=	0xa240
+_MEM_CMN_ECC_ERR_ADDRESS0	=	0xa244
+_ANA_IF_CMN_REG1	=	0xa2e0
+_MEM_IRQ	=	0xa2e4
+_MEM_IRQ_MASK	=	0xa2e8
+_ANA_IF_CMN_REG0	=	0xa2ec
+_APB_CONTROL_REG	=	0xa2f0
+_MEM_IRQ_CLEAR	=	0xa2f4
+_MCU_SYNC1	=	0xa2f8
+_MCU_SYNC2	=	0xa2fc
+_TEST0	=	0xa300
+_TEST1	=	0xa304
+_TEST2	=	0xa308
+_TEST3	=	0xa30c
+_TEST4	=	0xa310
+_SYSTEM	=	0xa314
+_PM_CMN_REG1	=	0xa318
+_INPUT_CMN_PIN_REG0	=	0xa31c
+_INPUT_CMN_PIN_REG1	=	0xa320
+_INPUT_CMN_PIN_REG2	=	0xa324
+_ANA_TSEN_CONTROL	=	0xa328
+_PLLCAL_REG0	=	0xa32c
+_PLLCAL_REG1	=	0xa330
+_CLKGEN_CMN_REG1	=	0xa334
+_SPD_CMN_REG1	=	0xa338
+_OUTPUT_CMN_PIN_REG0	=	0xa33c
+_CMN_CALIBRATION	=	0xa340
+__FIELDNAME_	=	0xa344
+_INPUT_CMN_PIN_REG3	=	0xa348
+_PM_CMN_REG2	=	0xa34c
+_TEST5	=	0xa354
+_XDATA_MEM_CHECKSUM_CMN_0	=	0xa358
+_XDATA_MEM_CHECKSUM_CMN_1	=	0xa35c
+_XDATA_MEM_CHECKSUM_CMN_2	=	0xa360
+_MCU_SDT_CMN	=	0xa364
+_CMN_CACHE_DEBUG0	=	0xa368
+_MCU_INT_ADDR	=	0xa36c
+_CMN_ISR_2	=	0xa370
+_CMN_ISR_MASK_2	=	0xa374
+_CMN_ISR_CLEAR_2	=	0xa378
+_CMN_MCU_GPIO	=	0xa37c
+_CMN_CACHE_DEBUG1	=	0xa380
+_CMN_MCU_TIMER_CONTROL	=	0xa384
+_CMN_MCU_TIMER_CTRL_2_LANE	=	0xa388
+_CMN_MCU_TIMER_CTRL_3_LANE	=	0xa38c
+_CMN_MCU_TIMER_CTRL_4_LANE	=	0xa390
+_CMN_MCU_TIMER_CTRL_5_LANE	=	0xa394
+_CMN_MCU_TIMER0_CONTROL	=	0xa398
+_CMN_MCU_TIMER1_CONTROL	=	0xa39c
+_CMN_MCU_TIMER2_CONTROL	=	0xa3a0
+_CMN_MCU_TIMER3_CONTROL	=	0xa3a4
+_CMN_ISR_1	=	0xa3a8
+_CMN_ISR_MASK_1	=	0xa3ac
+_SET_LANE_ISR	=	0xa3b0
+_CMN_MCU_REG	=	0xa3f4
+_CID_REG0	=	0xa3f8
+_CID_REG1	=	0xa3fc
+_FW_REV	=	0xe600
+_CONTROL_CONFIG0	=	0xe604
+_CONTROL_CONFIG1	=	0xe608
+_CONTROL_CONFIG2	=	0xe60c
+_CONTROL_CONFIG3	=	0xe610
+_CONTROL_CONFIG4	=	0xe614
+_CONTROL_CONFIG5	=	0xe618
+_CONTROL_CONFIG6	=	0xe61c
+_CONTROL_CONFIG7	=	0xe620
+_CAL_DATA0	=	0xe624
+_TRAIN_IF_CONFIG	=	0xe628
+_CONTROL_CONFIG8	=	0xe62c
+_CONTROL_CONFIG9	=	0xe630
+_CON_CAL_STEP_SIZE1	=	0xe634
+_CON_CAL_STEP_SIZE2	=	0xe638
+_CON_CAL_STEP_SIZE3	=	0xe63c
+_CON_CAL_STEP_SIZE4	=	0xe640
+_CON_CAL_STEP_SIZE5	=	0xe644
+_CAL_TIME_OUT_AND_DIS	=	0xe648
+_CAL_STATUS_READ	=	0xe64c
+_MCU_CONFIG	=	0xe650
+_CAL_DATA1	=	0xe654
+_LOOP_CNTS	=	0xe658
+_MCU_CONFIG1	=	0xe65c
+_TIMER_SEL1	=	0xe660
+_TIMER_SEL2	=	0xe664
+_TIMER_SEL3	=	0xe668
+_G_SELLV_TXCLK	=	0xe66c
+_G_SELLV_TXDATA	=	0xe670
+_G_SELLV_TXPRE	=	0xe674
+_G_SELLV_RXEOMCLK	=	0xe678
+_G_SELLV_RXDATACLK	=	0xe67c
+_G_SELLV_RXSAMPLER	=	0xe680
+_SAS_PRESET0_TB	=	0xe684
+_SAS_PRESET1_TB	=	0xe688
+_SAS_PRESET2_TB	=	0xe68c
+_ETH_PRESET0_TB	=	0xe690
+_ETH_PRESET1_TB	=	0xe694
+_TX_SAVE_0	=	0xe698
+_TX_SAVE_1	=	0xe69c
+_TX_SAVE_2	=	0xe6a0
+_TX_SAVE_3	=	0xe6a4
+_TX_SAVE_4	=	0xe6a8
+_CDS_EYE_CLK_THR	=	0xe6ac
+_SYNC_INFO	=	0xe6b0
+_MCU_INFO_4	=	0xe6b4
+_MCU_INFO_5	=	0xe6b8
+_MCU_INFO_12	=	0xe6bc
+_MCU_INFO_13	=	0xe6c0
+_END_XDAT_CMN	=	0xe6c4
+_DME_ENC_REG0	=	0x2600
+_DME_ENC_REG1	=	0x2604
+_DME_ENC_REG2	=	0x2608
+_DME_DEC_REG0	=	0x260c
+_DME_DEC_REG1	=	0x2610
+_TX_TRAIN_IF_REG0	=	0x2614
+_TX_TRAIN_IF_REG1	=	0x2618
+_TX_TRAIN_IF_REG2	=	0x261c
+_TX_TRAIN_IF_REG3	=	0x2620
+_TX_TRAIN_PATTTERN_REG0	=	0x2624
+_TX_TRAIN_DRIVER_REG0	=	0x2628
+_TX_TRAIN_DRIVER_REG1	=	0x262c
+_TX_TRAIN_DRIVER_REG2	=	0x2630
+_TX_TRAIN_DEFAULT_REG0	=	0x2634
+_TX_TRAIN_DEFAULT_REG1	=	0x2638
+_TX_TRAIN_DEFAULT_REG2	=	0x263c
+_TX_TRAIN_DEFAULT_REG3	=	0x2640
+_TX_TRAIN_DEFAULT_REG4	=	0x2644
+_TX_TRAIN_DEFAULT_REG5	=	0x2648
+_TX_EMPH_CTRL_REG0	=	0x264c
+_LINK_TRAIN_MODE0	=	0x2650
+_TX_DRV_RD_OUT_REG0	=	0x2654
+_TX_AMP_CTRL_REG0	=	0x2658
+_TRX_TRAIN_IF_INTERRUPT_LANE	=	0x265c
+_TRX_TRAIN_IF_INTERRUPT_MASK0_LANE	=	0x2660
+_TRX_TRAIN_IF_INTERRUPT_CLEAR_LANE	=	0x2664
+_TX_TRAIN_IF_REG4	=	0x2668
+_TX_TRAIN_IF_REG5	=	0x266c
+_TX_TRAIN_IF_REG6	=	0x2670
+_TX_TRAIN_IF_REG7	=	0x2674
+_TX_TRAIN_CTRL_LANE	=	0x2678
+_TX_TRAIN_IF_REG8	=	0x267c
+_DFE_READ_EVEN_REG0	=	0x6100
+_DFE_READ_EVEN_REG1	=	0x6104
+_DFE_READ_EVEN_REG2	=	0x6108
+_DFE_READ_EVEN_REG3	=	0x610c
+_DFE_READ_EVEN_REG4	=	0x6110
+_DFE_READ_EVEN_REG5	=	0x6114
+_DFE_READ_EVEN_REG6	=	0x6118
+_DFE_READ_EVEN_REG7	=	0x611c
+_DFE_READ_ODD_REG0	=	0x6120
+_DFE_READ_ODD_REG1	=	0x6124
+_DFE_READ_ODD_REG2	=	0x6128
+_DFE_READ_ODD_REG3	=	0x612c
+_DFE_READ_ODD_REG4	=	0x6130
+_DFE_READ_ODD_REG5	=	0x6134
+_DFE_READ_ODD_REG6	=	0x6138
+_DFE_READ_ODD_REG7	=	0x613c
+_DFE_READ_EVEN_REG8	=	0x6140
+_DFE_READ_ODD_REG8	=	0x6144
+_DFE_READ_F0A_EVEN	=	0x6148
+_DFE_READ_F0A_ODD	=	0x614c
+_DFE_READ_F0B_EVEN	=	0x6150
+_DFE_READ_F0B_ODD	=	0x6154
+_DFE_READ_F0D_EVEN	=	0x6158
+_DFE_READ_F0D_ODD	=	0x615c
+_DFE_READ_F0D_LEFT_EVEN	=	0x6160
+_DFE_READ_F0D_LEFT_ODD	=	0x6164
+_DFE_READ_F0D_RIGHT_EVEN	=	0x6168
+_DFE_READ_F0D_RIGHT_ODD	=	0x616c
+_CDS_READ_MISC0	=	0x6170
+_CDS_READ_MISC1	=	0x6174
+_TXTRAIN_IF_REG0	=	0x6214
+_lc_speedtable	=	0xe000
+_ring_speedtable	=	0xe1c0
+_phy_mode_cmn_table	=	0xe5c0
+_max_gen	=	0x6300
+_min_gen	=	0x6301
+_speedtable	=	0x6304
+_phy_mode_lane_table	=	0x65d4
+_rc_save	=	0x60b4
+_txffe_save	=	0x60d0
+_phase_save	=	0x60e4
+_train_gn1_index	=	0x6030
+_train_g1_index	=	0x6031
+_train_g0_index	=	0x6032
+_local_tx_preset_tb	=	0xe6b0
+_cmx_cal_lcvco_dac	=	0xe5c1
+_cmx_cal_lcvco_dac_lsb	=	0xe5c1
+_cmx_cal_lcvco_dac_msb	=	0xe5c4
+_cmx_cal_lccap_msb	=	0xe5ca
+_cmx_cal_lccap_lsb	=	0xe5c8
+_cmx_cal_plldcc	=	0xe5cc
+_cmx_cal_pll_speed_ring	=	0xe5d0
+_cmx_cal_pll_sllp_dac_coarse_ring	=	0xe5d4
+_cmx_cal_sllp_dac_fine_ring	=	0xe5d8
+_lnx_cal_txdcc_pdiv	=	0x65d4
+_lnx_cal_txdcc_pdiv_hg	=	0x65d8
+_lnx_cal_txdcc	=	0x65da
+_lnx_cal_txdcc_hg	=	0x65de
+_lnx_cal_rxdcc_dll	=	0x65e0
+_lnx_cal_rxdcc_dll_hg	=	0x65e4
+_lnx_cal_rxdcc_data	=	0x65e6
+_lnx_cal_rxdcc_data_hg	=	0x65f0
+_lnx_cal_rxdcc_eom	=	0x65f5
+_lnx_cal_rxdcc_eom_hg	=	0x65ff
+_lnx_cal_dll_gmsel	=	0x6604
+_lnx_cal_vdda_dll_sel	=	0x6606
+_lnx_cal_dll_eom_gmsel	=	0x660a
+_lnx_cal_vdda_dll_eom_sel	=	0x660c
+_lnx_cal_eom_dpher	=	0x6610
+_lnx_cal_align90_dummy_clk	=	0x6612
+_lnx_cal_align90_dac	=	0x661a
+_lnx_cal_align90_gm	=	0x6622
+_lnx_cal_sellv_txdata	=	0x662a
+_lnx_cal_sellv_txclk	=	0x6634
+_lnx_cal_sellv_rxdataclk	=	0x663e
+_lnx_cal_sellv_txpre	=	0x6648
+_lnx_cal_sellv_rxsampler	=	0x6652
+_lnx_cal_sellv_rxeomclk	=	0x665c
+_lnx_spdoft_tx_preset_index_lane	=	0x6666
+_lnx_calx_txdcc_pdiv	=	0x6490
+_lnx_calx_txdcc_pdiv_hg	=	0x6496
+_lnx_calx_txdcc	=	0x6499
+_lnx_calx_txdcc_hg	=	0x649f
+_lnx_calx_rxdcc_dll	=	0x64a2
+_lnx_calx_rxdcc_dll_hg	=	0x64a8
+_lnx_calx_dll_gmsel	=	0x64ab
+_lnx_calx_vdda_dll_sel	=	0x64ae
+_lnx_calx_dll_eom_gmsel	=	0x64b4
+_lnx_calx_vdda_dll_eom_sel	=	0x64b7
+_lnx_calx_eom_dpher	=	0x64bd
+_lnx_calx_align90_dummy_clk	=	0x64c0
+_lnx_calx_align90_dac	=	0x64cc
+_lnx_calx_align90_gm	=	0x64d8
+_cds28	=	0x6100
+_dfe_sm	=	0x6178
+_dfe_sm_dc	=	0x61b8
+_dfe_sm_save	=	0x61c0
+_UPHY_ANAREG_REV_0	=	0x03fc
+_tx_tb	=	0xe684
+_train_save_tb	=	0xe698
+_sq_thrs_ratio_tb	=	0x607c
+;--------------------------------------------------------
+; absolute external ram data
+;--------------------------------------------------------
+	.area XABS    (ABS,XDATA)
+;--------------------------------------------------------
+; external initialized ram data
+;--------------------------------------------------------
+	.area HOME    (CODE)
+	.area GSINIT0 (CODE)
+	.area GSINIT1 (CODE)
+	.area GSINIT2 (CODE)
+	.area GSINIT3 (CODE)
+	.area GSINIT4 (CODE)
+	.area GSINIT5 (CODE)
+	.area GSINIT  (CODE)
+	.area GSFINAL (CODE)
+	.area CSEG    (CODE)
+;--------------------------------------------------------
+; global & static initialisations
+;--------------------------------------------------------
+	.area HOME    (CODE)
+	.area GSINIT  (CODE)
+	.area GSFINAL (CODE)
+	.area GSINIT  (CODE)
+;--------------------------------------------------------
+; Home
+;--------------------------------------------------------
+	.area HOME    (CODE)
+	.area HOME    (CODE)
+;--------------------------------------------------------
+; code
+;--------------------------------------------------------
+	.area CSEG    (CODE)
+;------------------------------------------------------------
+;Allocation info for local variables in function 'SpeedChange'
+;------------------------------------------------------------
+;dtx_off                   Allocated to registers r2 
+;------------------------------------------------------------
+;	../../shared/src/spd_ctrl.c:26: void SpeedChange(){
+;	-----------------------------------------
+;	 function SpeedChange
+;	-----------------------------------------
+_SpeedChange:
+	ar2 = 0x02
+	ar3 = 0x03
+	ar4 = 0x04
+	ar5 = 0x05
+	ar6 = 0x06
+	ar7 = 0x07
+	ar0 = 0x00
+	ar1 = 0x01
+;	../../shared/src/spd_ctrl.c:30: dtx_off = 0;
+	mov	r2,#0x00
+;	../../shared/src/spd_ctrl.c:32: SPD_CTRL_INTERRUPT_CLEAR_REG1_LANE.BT.B3 = 0xc0;
+;	../../shared/src/spd_ctrl.c:33: SPD_CTRL_INTERRUPT_CLEAR_REG1_LANE.BT.B3 = 0;
+	mov	dptr,#(_SPD_CTRL_INTERRUPT_CLEAR_REG1_LANE + 0x0003)
+	mov	a,#0xC0
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:35: rxinit_4_spdchg_en = 0;
+	clr	a
+	movx	@dptr,a
+	mov	dptr,#_rxinit_4_spdchg_en
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:37: new_gen_tx = reg_PIN_PHY_GEN_TX_RD_LANE_3_0; new_gen_tx = (new_gen_tx<cmx_PHY_GEN_MAX_3_0)? new_gen_tx: cmx_PHY_GEN_MAX_3_0;
+	mov	dptr,#(_SPD_CTRL_TX_LANE_REG1_LANE + 0x0003)
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r3,a
+	mov	dptr,#_new_gen_tx
+	movx	@dptr,a
+	mov	dptr,#_CONTROL_CONFIG8
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r4,a
+	mov	ar5,r3
+	clr	c
+	mov	a,r5
+	xrl	a,#0x80
+	mov	b,r4
+	xrl	b,#0x80
+	subb	a,b
+	jnc	00160$
+	sjmp	00161$
+00160$:
+	mov	dptr,#_CONTROL_CONFIG8
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r4,a
+	mov	r3,a
+00161$:
+	mov	dptr,#_new_gen_tx
+	mov	a,r3
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:38: new_gen_rx = reg_PIN_PHY_GEN_RX_RD_LANE_3_0; new_gen_rx = (new_gen_rx<cmx_PHY_GEN_MAX_3_0)? new_gen_rx: cmx_PHY_GEN_MAX_3_0;
+	mov	dptr,#(_SPD_CTRL_RX_LANE_REG1_LANE + 0x0003)
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	r4,a
+	mov	dptr,#_new_gen_rx
+	movx	@dptr,a
+	mov	dptr,#_CONTROL_CONFIG8
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r5,a
+	mov	ar6,r4
+	clr	c
+	mov	a,r6
+	xrl	a,#0x80
+	mov	b,r5
+	xrl	b,#0x80
+	subb	a,b
+	jnc	00162$
+	sjmp	00163$
+00162$:
+	mov	dptr,#_CONTROL_CONFIG8
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r5,a
+	mov	r4,a
+00163$:
+	mov	dptr,#_new_gen_rx
+	mov	a,r4
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:40: if ((new_gen_tx != gen_tx || new_gen_rx != gen_rx /*|| ( pwrsq_on && phy_mode!=SERDES )*/ ) && phy_mode!=SERDES) {
+	mov	dptr,#_gen_tx
+	movx	a,@dptr
+	mov	r5,a
+	mov	a,r3
+	cjne	a,ar5,00152$
+	mov	dptr,#_gen_rx
+	movx	a,@dptr
+	mov	r5,a
+	mov	a,r4
+	cjne	a,ar5,00200$
+	ljmp	00150$
+00200$:
+00152$:
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r5,a
+	cjne	r5,#0x04,00201$
+	ljmp	00150$
+00201$:
+;	../../shared/src/spd_ctrl.c:42: reg_PIN_PLL_READY_RX_LANE = 0;
+	mov	dptr,#(_PM_CTRL_RX_LANE_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	anl	a,#0xbf
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:43: reg_PIN_PLL_READY_TX_LANE = 0;
+	mov	dptr,#(_PM_CTRL_TX_LANE_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	anl	a,#0xfb
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:54: gen_tx = new_gen_tx;
+	mov	dptr,#_gen_tx
+	mov	a,r3
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:55: gen_rx = new_gen_rx;
+	mov	dptr,#_gen_rx
+	mov	a,r4
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:59: if(phy_mode==SATA) { //SATA must support 1.5G/3G/6G only!! 
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	jnz	00147$
+;	../../shared/src/spd_ctrl.c:60: sata_speedchange();
+	lcall	_sata_speedchange
+	ljmp	00150$
+00147$:
+;	../../shared/src/spd_ctrl.c:63: gen_pll_rate = speedtable[gen_tx][spdoft_pll_rate_sel_tx]; 
+	mov	ar4,r3
+	mov	a,r4
+	mov	b,#0x50
+	mul	ab
+	add	a,#_speedtable
+	mov	dpl,a
+	mov	a,#(_speedtable >> 8)
+	addc	a,b
+	mov	dph,a
+	movx	a,@dptr
+	mov	r4,a
+	mov	dptr,#_gen_pll_rate
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:65: use_ring_pll = speedtable[gen_tx][spdoft_tx_ck_sel_lane];
+	mov	a,r3
+	mov	b,#0x50
+	mul	ab
+	add	a,#_speedtable
+	mov	r3,a
+	mov	a,#(_speedtable >> 8)
+	addc	a,b
+	mov	r5,a
+	mov	dpl,r3
+	mov	dph,r5
+	inc	dptr
+	movx	a,@dptr
+	add	a,#0xff
+	mov	_use_ring_pll,c
+;	../../shared/src/spd_ctrl.c:80: if (((!ring_pll_enabled || !lc_pll_used ||
+	jnb	_ring_pll_enabled,00113$
+	jnb	_lc_pll_used,00113$
+;	../../shared/src/spd_ctrl.c:81: (phy_mode==PCIE && (use_ring_pll==1? gen_pll_rate!=pre_ringpll_rate : gen_pll_rate!=pre_lcpll_rate)))
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r3,a
+	cjne	r3,#0x03,00109$
+	jnb	_use_ring_pll,00164$
+	mov	dptr,#_pre_ringpll_rate
+	movx	a,@dptr
+	mov	r3,a
+	mov	a,r4
+	cjne	a,ar3,00208$
+	mov	a,#0x01
+	sjmp	00209$
+00208$:
+	clr	a
+00209$:
+	mov	r3,a
+	cjne	a,#0x01,00210$
+00210$:
+	mov	b0,c
+	sjmp	00165$
+00164$:
+	mov	dptr,#_pre_lcpll_rate
+	movx	a,@dptr
+	mov	r3,a
+	mov	a,r4
+	cjne	a,ar3,00211$
+	mov	a,#0x01
+	sjmp	00212$
+00211$:
+	clr	a
+00212$:
+	mov	r4,a
+	cjne	a,#0x01,00213$
+00213$:
+	mov	b0,c
+00165$:
+	jnb	b0,00109$
+00113$:
+;	../../shared/src/spd_ctrl.c:82: /*|| pwrsq_on*/) && !no_pllspdchg /*&& !force_exit_cal*/) {
+	jb	_no_pllspdchg,00109$
+;	../../shared/src/spd_ctrl.c:83: if(mcuid==master_mcu) {
+	mov	dptr,#_MCU_CONTROL_LANE
+	movx	a,@dptr
+	mov	r3,a
+	mov	dptr,#_MCU_CONFIG
+	movx	a,@dptr
+	mov	r4,a
+	mov	a,r3
+	cjne	a,ar4,00102$
+;	../../shared/src/spd_ctrl.c:84: pll_clk_ready_all_0();
+	mov	r0,#_pll_clk_ready_all_0
+	mov	r1,#(_pll_clk_ready_all_0 >> 8)
+	mov	r2,#(_pll_clk_ready_all_0 >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/spd_ctrl.c:91: while(reg_ANA_PLL_CLK_READY_PRE0==1 || reg_ANA_PLL_CLK_READY_RING==1);
+	sjmp	00107$
+00102$:
+	mov	dptr,#(_PM_CMN_REG2 + 0x0003)
+	movx	a,@dptr
+	rr	a
+	rr	a
+	anl	a,#0x01
+	mov	r3,a
+	cjne	r3,#0x01,00218$
+	sjmp	00102$
+00218$:
+	mov	dptr,#(_PM_CMN_REG2 + 0x0002)
+	movx	a,@dptr
+	swap	a
+	rr	a
+	anl	a,#0x01
+	mov	r3,a
+	cjne	r3,#0x01,00219$
+	sjmp	00102$
+00219$:
+00107$:
+;	../../shared/src/spd_ctrl.c:94: dtx_off = 1;
+	mov	r2,#0x01
+00109$:
+;	../../shared/src/spd_ctrl.c:98: DTL_DTX_DFE_clkoff_reset_1(dtx_off);
+	mov	dpl,r2
+	mov	r0,#_DTL_DTX_DFE_clkoff_reset_1
+	mov	r1,#(_DTL_DTX_DFE_clkoff_reset_1 >> 8)
+	mov	r2,#(_DTL_DTX_DFE_clkoff_reset_1 >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/spd_ctrl.c:100: loadspeedtbl_gen();
+	lcall	_loadspeedtbl_gen
+;	../../shared/src/spd_ctrl.c:102: reg_MCU_DEBUG0_LANE_7_0 = 0x34;
+	mov	dptr,#_MCU_DEBUG0_LANE
+	mov	a,#0x34
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:103: reg_MCU_DEBUG1_LANE_7_0 = gen_tx;
+	mov	dptr,#_gen_tx
+	movx	a,@dptr
+	mov	r2,a
+	mov	dptr,#(_MCU_DEBUG0_LANE + 0x0001)
+	mov	a,r2
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:104: reg_MCU_DEBUG2_LANE_7_0 = lc_pll_used;
+	mov	c,_lc_pll_used
+	clr	a
+	rlc	a
+	mov	r2,a
+	mov	dptr,#(_MCU_DEBUG0_LANE + 0x0002)
+	mov	a,r2
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:105: reg_MCU_DEBUG3_LANE_7_0 = gen_pll_rate;
+	mov	dptr,#_gen_pll_rate
+	movx	a,@dptr
+	mov	r2,a
+	mov	dptr,#(_MCU_DEBUG0_LANE + 0x0003)
+	mov	a,r2
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:106: reg_MCU_DEBUG4_LANE_7_0 = max_gen;
+	mov	dptr,#_max_gen
+	movx	a,@dptr
+	mov	r3,a
+	mov	dptr,#_MCU_DEBUG1_LANE
+	mov	a,r3
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:107: reg_MCU_DEBUG5_LANE_7_0 = ring_pll_enabled;
+	mov	c,_ring_pll_enabled
+	clr	a
+	rlc	a
+	mov	r3,a
+	mov	dptr,#(_MCU_DEBUG1_LANE + 0x0001)
+	mov	a,r3
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:108: reg_MCU_DEBUG6_LANE_7_0 = use_ring_pll;
+	mov	c,_use_ring_pll
+	clr	a
+	rlc	a
+	mov	r3,a
+	mov	dptr,#(_MCU_DEBUG1_LANE + 0x0002)
+	mov	a,r3
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:109: reg_MCU_DEBUG7_LANE_7_0 = tx_pll_rate;
+	mov	c,_tx_pll_rate
+	clr	a
+	rlc	a
+	mov	r3,a
+	mov	dptr,#(_MCU_DEBUG1_LANE + 0x0003)
+	mov	a,r3
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:110: reg_MCU_DEBUG8_LANE_7_0 = ring_lane_sel;
+	mov	dptr,#_ring_lane_sel
+	movx	a,@dptr
+	mov	r3,a
+	mov	dptr,#_MCU_DEBUG2_LANE
+	mov	a,r3
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:111: reg_MCU_DEBUG9_LANE_7_0 = serdes_ring_lane_en;
+	mov	dptr,#_serdes_ring_lane_en
+	movx	a,@dptr
+	mov	r3,a
+	mov	dptr,#(_MCU_DEBUG2_LANE + 0x0001)
+	mov	a,r3
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:112: reg_MCU_DEBUGA_LANE_7_0 = master_mcu;
+	mov	dptr,#_MCU_CONFIG
+	movx	a,@dptr
+	mov	r3,a
+	mov	dptr,#(_MCU_DEBUG2_LANE + 0x0002)
+	mov	a,r3
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:115: if (mcuid == master_mcu) {
+	mov	dptr,#_MCU_CONTROL_LANE
+	movx	a,@dptr
+	mov	r3,a
+	mov	dptr,#_MCU_CONFIG
+	movx	a,@dptr
+	mov	r4,a
+	mov	a,r3
+	cjne	a,ar4,00129$
+;	../../shared/src/spd_ctrl.c:139: if((!ring_pll_enabled && !no_pllspdchg ) ||
+	jb	_ring_pll_enabled,00125$
+	jnb	_no_pllspdchg,00120$
+00125$:
+;	../../shared/src/spd_ctrl.c:140: (phy_mode==PCIE && !use_ring_pll && gen_pll_rate!=pre_lcpll_rate)) {
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r3,a
+	cjne	r3,#0x03,00121$
+	jb	_use_ring_pll,00121$
+	mov	dptr,#_pre_lcpll_rate
+	movx	a,@dptr
+	mov	r3,a
+	mov	a,r2
+	cjne	a,ar3,00227$
+	sjmp	00121$
+00227$:
+00120$:
+;	../../shared/src/spd_ctrl.c:142: if (phy_mode==PCIE)
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r3,a
+	cjne	r3,#0x03,00115$
+;	../../shared/src/spd_ctrl.c:145: loadspeedtbl_pll(gen_pll_rate);
+	mov	dpl,r2
+	lcall	_loadspeedtbl_pll
+	sjmp	00116$
+00115$:
+;	../../shared/src/spd_ctrl.c:148: loadspeedtbl_pll(tx_pll_rate);
+	mov	c,_tx_pll_rate
+	clr	a
+	rlc	a
+	mov	dpl,a
+	lcall	_loadspeedtbl_pll
+00116$:
+;	../../shared/src/spd_ctrl.c:150: if(slave_phy_on) {
+	mov	dptr,#_slave_phy_on
+	movx	a,@dptr
+	mov	r2,a
+	jz	00118$
+;	../../shared/src/spd_ctrl.c:152: pll_clk_ready_1();
+	mov	r0,#_pll_clk_ready_1
+	mov	r1,#(_pll_clk_ready_1 >> 8)
+	mov	r2,#(_pll_clk_ready_1 >> 16)
+	lcall	__sdcc_banked_call
+	sjmp	00121$
+00118$:
+;	../../shared/src/spd_ctrl.c:155: spdchg_pll_fast_cal();
+	mov	r0,#_spdchg_pll_fast_cal
+	mov	r1,#(_spdchg_pll_fast_cal >> 8)
+	mov	r2,#(_spdchg_pll_fast_cal >> 16)
+	lcall	__sdcc_banked_call
+00121$:
+;	../../shared/src/spd_ctrl.c:159: if(reg_ANA_PLL_CLK_READY==0) pll_clk_ready_1();
+	mov	dptr,#(_PM_CMN_REG2 + 0x0003)
+	movx	a,@dptr
+	jb	acc.0,00129$
+	mov	r0,#_pll_clk_ready_1
+	mov	r1,#(_pll_clk_ready_1 >> 8)
+	mov	r2,#(_pll_clk_ready_1 >> 16)
+	lcall	__sdcc_banked_call
+00129$:
+;	../../shared/src/spd_ctrl.c:162: if( ring_lane_sel )
+	mov	dptr,#_ring_lane_sel
+	movx	a,@dptr
+	mov	r2,a
+	jz	00141$
+;	../../shared/src/spd_ctrl.c:177: if( !lc_pll_used || (phy_mode==PCIE && use_ring_pll && gen_pll_rate!=pre_ringpll_rate) ) { 
+	jnb	_lc_pll_used,00133$
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r2,a
+	cjne	r2,#0x03,00134$
+	jnb	_use_ring_pll,00134$
+	mov	dptr,#_gen_pll_rate
+	movx	a,@dptr
+	mov	r2,a
+	mov	dptr,#_pre_ringpll_rate
+	movx	a,@dptr
+	mov	r3,a
+	mov	a,r2
+	cjne	a,ar3,00237$
+	sjmp	00134$
+00237$:
+00133$:
+;	../../shared/src/spd_ctrl.c:178: loadspeedtbl_ringpll(tx_pll_rate);
+	mov	c,_tx_pll_rate
+	clr	a
+	rlc	a
+	mov	dpl,a
+	lcall	_loadspeedtbl_ringpll
+;	../../shared/src/spd_ctrl.c:180: if(slave_phy_on) {
+	mov	dptr,#_slave_phy_on
+	movx	a,@dptr
+	mov	r2,a
+	jz	00131$
+;	../../shared/src/spd_ctrl.c:182: pll_clk_ready_ring_1();
+	mov	r0,#_pll_clk_ready_ring_1
+	mov	r1,#(_pll_clk_ready_ring_1 >> 8)
+	mov	r2,#(_pll_clk_ready_ring_1 >> 16)
+	lcall	__sdcc_banked_call
+	sjmp	00134$
+00131$:
+;	../../shared/src/spd_ctrl.c:186: ring_pll_fast_cal();
+	mov	r0,#_ring_pll_fast_cal
+	mov	r1,#(_ring_pll_fast_cal >> 8)
+	mov	r2,#(_ring_pll_fast_cal >> 16)
+	lcall	__sdcc_banked_call
+00134$:
+;	../../shared/src/spd_ctrl.c:193: if(reg_ANA_PLL_CLK_READY_RING==0) pll_clk_ready_ring_1();
+	mov	dptr,#(_PM_CMN_REG2 + 0x0002)
+	movx	a,@dptr
+	jb	acc.5,00141$
+	mov	r0,#_pll_clk_ready_ring_1
+	mov	r1,#(_pll_clk_ready_ring_1 >> 8)
+	mov	r2,#(_pll_clk_ready_ring_1 >> 16)
+	lcall	__sdcc_banked_call
+00141$:
+;	../../shared/src/spd_ctrl.c:197: if(serdes_ring_lane_en==0)
+	mov	dptr,#_serdes_ring_lane_en
+	movx	a,@dptr
+	mov	r2,a
+	jnz	00143$
+;	../../shared/src/spd_ctrl.c:198: check_pll_clk_ready();
+	mov	r0,#_check_pll_clk_ready
+	mov	r1,#(_check_pll_clk_ready >> 8)
+	mov	r2,#(_check_pll_clk_ready >> 16)
+	lcall	__sdcc_banked_call
+00143$:
+;	../../shared/src/spd_ctrl.c:204: if(!force_exit_cal)
+	jb	_force_exit_cal,00150$
+;	../../shared/src/spd_ctrl.c:205: load_cal_data_all();
+	mov	r0,#_load_cal_data_all
+	mov	r1,#(_load_cal_data_all >> 8)
+	mov	r2,#(_load_cal_data_all >> 16)
+	lcall	__sdcc_banked_call
+00150$:
+;	../../shared/src/spd_ctrl.c:217: restore_train();
+	lcall	_restore_train
+;	../../shared/src/spd_ctrl.c:219: DTL_DTX_DFE_clkoff_reset_0();
+	mov	r0,#_DTL_DTX_DFE_clkoff_reset_0
+	mov	r1,#(_DTL_DTX_DFE_clkoff_reset_0 >> 8)
+	mov	r2,#(_DTL_DTX_DFE_clkoff_reset_0 >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/spd_ctrl.c:221: if(phy_mode!=SATA) 
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	jz	00154$
+;	../../shared/src/spd_ctrl.c:222: delay01(90);
+	mov	dptr,#0x005A
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+00154$:
+;	../../shared/src/spd_ctrl.c:224: lnx_EOM_ALIGN_CAL_DONE_LANE = 0; //moved eom_align_cal to inside train
+	mov	dptr,#(_CAL_CTRL1_LANE + 0x0001)
+	movx	a,@dptr
+	anl	a,#0xfb
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:228: reg_RST_FRAME_SYNC_DET_CLK_LANE = 1;
+	mov	dptr,#(_CLKGEN_RX_LANE_REG1_LANE + 0x0003)
+	movx	a,@dptr
+	orl	a,#0x04
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:229: delay01(10);
+	mov	dptr,#0x000A
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/spd_ctrl.c:230: reg_RST_FRAME_SYNC_DET_CLK_LANE = 0;
+	mov	dptr,#(_CLKGEN_RX_LANE_REG1_LANE + 0x0003)
+	movx	a,@dptr
+	anl	a,#0xfb
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:232: PHY_STATUS_INT = IDLE;
+	mov	dptr,#_MCU_STATUS2_LANE
+	clr	a
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:233: pre_gen_pll_rate = gen_pll_rate;
+	mov	dptr,#_gen_pll_rate
+	movx	a,@dptr
+	mov	dptr,#_pre_gen_pll_rate
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:234: rxinit_4_spdchg_en = 1;
+	mov	dptr,#_rxinit_4_spdchg_en
+	mov	a,#0x01
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:243: delay01(5); //TXCLK need more time 0.5sec even in bypassed delay
+	mov	dptr,#0x0005
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/spd_ctrl.c:245: reg_PIN_PLL_READY_RX_LANE = 1;
+	mov	dptr,#(_PM_CTRL_RX_LANE_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	orl	a,#0x40
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:246: reg_PIN_PLL_READY_TX_LANE = 1;
+	mov	dptr,#(_PM_CTRL_TX_LANE_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	orl	a,#0x04
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:248: if(cmx_AUTO_RX_INIT_EN == 0)
+	mov	dptr,#(_CONTROL_CONFIG8 + 0x0002)
+	movx	a,@dptr
+	jb	acc.0,00156$
+;	../../shared/src/spd_ctrl.c:249: PHY_STATUS = ST_PLLREADY; 
+	mov	dptr,#_MCU_STATUS0_LANE
+	mov	a,#0x27
+	movx	@dptr,a
+	ret
+00156$:
+;	../../shared/src/spd_ctrl.c:251: PHY_STATUS = ST_DTL;
+	mov	dptr,#_MCU_STATUS0_LANE
+	mov	a,#0x2C
+	movx	@dptr,a
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'sata_speedchange'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	../../shared/src/spd_ctrl.c:255: void sata_speedchange(void) {
+;	-----------------------------------------
+;	 function sata_speedchange
+;	-----------------------------------------
+_sata_speedchange:
+;	../../shared/src/spd_ctrl.c:258: reg_DTL_CLK_OFF_LANE= 1; 
+	mov	dptr,#(_PM_CTRL_RX_LANE_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	orl	a,#0x10
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:259: reg_DFE_CLK_OFF_LANE = 1; 
+	mov	dptr,#_RX_EQ_CLK_CTRL
+	movx	a,@dptr
+	orl	a,#0x01
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:260: reg_RESET_DTL_LANE = 1;
+	mov	dptr,#(_PM_CTRL_RX_LANE_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	orl	a,#0x20
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:261: CKCON = 0x07 ;  //MCU WAIT time the slowest
+	mov	_CKCON,#0x07
+;	../../shared/src/spd_ctrl.c:262: reg_RESET_DFE_LANE = 1;
+	mov	dptr,#_RX_EQ_CLK_CTRL
+	movx	a,@dptr
+	orl	a,#0x04
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:263: CKCON = 0x00 ; //MCU WAIT time setting back to normal.
+	mov	_CKCON,#0x00
+;	../../shared/src/spd_ctrl.c:266: loadspeedtbl_gen();
+	lcall	_loadspeedtbl_gen
+;	../../shared/src/spd_ctrl.c:269: reg_TXDCCCAL_PDIV_CNT_LANE_5_0 = lnx_cal_txdcc_pdiv[PWR + cmx_TXDCC_PDIV_CAL_CONT_CUR_LOAD_EN][tx_pll_rate];  
+	mov	dptr,#(_CONTROL_CONFIG9 + 0x0002)
+	movx	a,@dptr
+	rl	a
+	rl	a
+	anl	a,#0x01
+	add	a,acc
+	add	a,#_lnx_cal_txdcc_pdiv
+	mov	r2,a
+	clr	a
+	addc	a,#(_lnx_cal_txdcc_pdiv >> 8)
+	mov	r3,a
+	mov	c,_tx_pll_rate
+	clr	a
+	rlc	a
+	add	a,r2
+	mov	dpl,a
+	clr	a
+	addc	a,r3
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_151
+	add	a,acc
+	add	a,acc
+	anl	a,#0xfc
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x03
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:270: reg_TRXDCC_CAL_CLK100KHZ_LANE = 1;
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_136
+	movx	a,@dptr
+	orl	a,#0x01
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:271: txdcc_pdiv_step_cnt = TXDCC_PDIV_CAL_STEP_SIZE;    //when speed change, restore the fracition code to middle
+	mov	dptr,#(_CON_CAL_STEP_SIZE3 + 0x0002)
+	movx	a,@dptr
+	mov	dptr,#_txdcc_pdiv_step_cnt
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:272: reg_TRXDCC_CAL_CLK100KHZ_LANE = 0;
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_136
+	movx	a,@dptr
+	anl	a,#0xfe
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:279: reg_DTL_CLK_OFF_LANE= 0; 
+	mov	dptr,#(_PM_CTRL_RX_LANE_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	anl	a,#0xef
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:280: reg_DFE_CLK_OFF_LANE = 0;
+	mov	dptr,#_RX_EQ_CLK_CTRL
+	movx	a,@dptr
+	anl	a,#0xfe
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:281: delay01(5);
+	mov	dptr,#0x0005
+	mov	r0,#_delay01
+	mov	r1,#(_delay01 >> 8)
+	mov	r2,#(_delay01 >> 16)
+	lcall	__sdcc_banked_call
+;	../../shared/src/spd_ctrl.c:282: reg_RESET_DTL_LANE = 0;
+	mov	dptr,#(_PM_CTRL_RX_LANE_REG1_LANE + 0x0002)
+	movx	a,@dptr
+	anl	a,#0xdf
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:283: reg_RESET_DFE_LANE = 0;
+	mov	dptr,#_RX_EQ_CLK_CTRL
+	movx	a,@dptr
+	anl	a,#0xfb
+	movx	@dptr,a
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'loadspeedtbl_pll'
+;------------------------------------------------------------
+;rate                      Allocated to registers r2 
+;temp                      Allocated to stack - offset 1
+;fbck                      Allocated to registers r3 
+;rate_no                   Allocated to registers r5 
+;------------------------------------------------------------
+;	../../shared/src/spd_ctrl.c:287: void loadspeedtbl_pll(uint8_t rate) {
+;	-----------------------------------------
+;	 function loadspeedtbl_pll
+;	-----------------------------------------
+_loadspeedtbl_pll:
+	push	_bp
+	mov	_bp,sp
+	inc	sp
+	inc	sp
+	mov	r2,dpl
+;	../../shared/src/spd_ctrl.c:291: fbck = fbck_sel;
+	mov	dptr,#(_PM_CMN_REG1 + 0x0001)
+	movx	a,@dptr
+	rr	a
+	anl	a,#0x01
+	mov	r3,a
+;	../../shared/src/spd_ctrl.c:293: reg_MCU_DEBUG0_LANE_7_0 = 0x35;
+	mov	dptr,#_MCU_DEBUG0_LANE
+	mov	a,#0x35
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:295: if(phy_mode==SERDES)
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r4,a
+	cjne	r4,#0x04,00102$
+;	../../shared/src/spd_ctrl.c:302: rate = gen_pll_rate;
+	mov	dptr,#_gen_pll_rate
+	movx	a,@dptr
+	mov	r2,a
+00102$:
+;	../../shared/src/spd_ctrl.c:304: rate_no				= lc_speedtable[fbck][rate][spdoft_pll_rate_sel];
+	mov	a,r3
+	mov	b,#0xE0
+	mul	ab
+	mov	r3,a
+	mov	r4,b
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	swap	a
+	rl	a
+	anl	a,#0xe0
+	mov	r2,a
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	dpl,r5
+	mov	dph,r6
+	inc	dptr
+	movx	a,@dptr
+	mov	r5,a
+;	../../shared/src/spd_ctrl.c:305: if(rate_no>1 || phy_mode==SERDES) rate_no = 0;
+	mov	a,#0x01
+	cjne	a,ar5,00126$
+00126$:
+	jc	00103$
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r6,a
+	cjne	r6,#0x04,00104$
+00103$:
+	mov	r5,#0x00
+00104$:
+;	../../shared/src/spd_ctrl.c:306: PLL_RATE_SEL = rate_no;
+	mov	dptr,#(_CONTROL_CONFIG6 + 0x0002)
+	mov	a,r5
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:308: reg_PLL_REG_SEL_2_0		= lc_speedtable[fbck][rate][spdoft_pll_reg_sel];
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_183
+	swap	a
+	anl	a,#(0xf0&0x70)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x8f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:309: reg_FBDIV_7_0 			= lc_speedtable[fbck][rate][spdoft_fbdiv];
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	dpl,r5
+	mov	dph,r6
+	inc	dptr
+	inc	dptr
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_169
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:310: reg_FBDIV_9_8			= lc_speedtable[fbck][rate][spdoft_fbdiv+1];
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	dpl,r5
+	mov	dph,r6
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_168
+	swap	a
+	anl	a,#(0xf0&0x30)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xcf
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:311: reg_REFDIV_3_0 			= lc_speedtable[fbck][rate][spdoft_refdiv];
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x06
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_170
+	swap	a
+	anl	a,#(0xf0&0xf0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x0f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:312: reg_VIND_BAND_SEL 		= lc_speedtable[fbck][rate][spdoft_vind_band_sel];
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x07
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_167
+	rrc	a
+	movx	a,@dptr
+	mov	acc.1,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:313: if(reg_RING_REF_DIV_SEL==1) {
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_181
+	movx	a,@dptr
+	rl	a
+	anl	a,#0x01
+	mov	r5,a
+	cjne	r5,#0x01,00107$
+;	../../shared/src/spd_ctrl.c:314: reg_DIV_1G_7_0 		= lc_speedtable[fbck][rate][spdoft_div_1g_fbck];
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x0B
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_186
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:315: reg_DIV_1G_9_8 		= lc_speedtable[fbck][rate][spdoft_div_1g_fbck+1];
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x0C
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	r5,a
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_185
+	rr	a
+	rr	a
+	anl	a,#(0xc0&0xc0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x3f
+	orl	a,b
+	movx	@dptr,a
+	sjmp	00108$
+00107$:
+;	../../shared/src/spd_ctrl.c:318: reg_DIV_1G_7_0 		= lc_speedtable[fbck][rate][spdoft_div_1g];
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x09
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_186
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:319: reg_DIV_1G_9_8 		= lc_speedtable[fbck][rate][spdoft_div_1g+1];
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x0A
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	r5,a
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_185
+	rr	a
+	rr	a
+	anl	a,#(0xc0&0xc0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x3f
+	orl	a,b
+	movx	@dptr,a
+00108$:
+;	../../shared/src/spd_ctrl.c:321: reg_ICP_LC_4_0			= lc_speedtable[fbck][rate][spdoft_icp_lc];
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x0D
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_205
+	anl	a,#0x1f
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xe0
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:322: reg_PLL_LPFR_1_0		= lc_speedtable[fbck][rate][spdoft_pll_lpfr];
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x0E
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_170
+	anl	a,#0x03
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xfc
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:323: reg_PLL_LPFC_1_0		= lc_speedtable[fbck][rate][spdoft_pll_lpfc];
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x0F
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_170
+	add	a,acc
+	add	a,acc
+	anl	a,#0x0c
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf3
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:324: cmx_G_INTPI_LCPLL_7_0		= lc_speedtable[fbck][rate][spdoft_intpi_lcpll];
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x10
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+;	../../shared/src/spd_ctrl.c:325: reg_INTPI_LCPLL_3_0 = cmx_G_INTPI_LCPLL_7_0;
+	mov	dptr,#(_CAL_DATA1 + 0x0002)
+	movx	@dptr,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_131
+	swap	a
+	anl	a,#(0xf0&0xf0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x0f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:326: reg_INTPI_RING_3_0 = cmx_G_INTPI_RING_7_0;
+	mov	dptr,#(_CAL_DATA1 + 0x0003)
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_131
+	anl	a,#0x0f
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf0
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:327: reg_TX_INTPR_1_0		= lc_speedtable[fbck][rate][spdoft_tx_intpr];
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x11
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_187
+	rr	a
+	rr	a
+	anl	a,#(0xc0&0xc0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x3f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:328: reg_INIT_TXFOFFS_9_0_b0		= lc_speedtable[fbck][rate][spdoft_init_txfoffs]; 
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x12
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_DTX_REG0
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:329: reg_INIT_TXFOFFS_9_0_b1		= lc_speedtable[fbck][rate][spdoft_init_txfoffs+1];
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x13
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DTX_REG0 + 0x0001)
+	anl	a,#0x03
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xfc
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:330: temp				= (uint16_t)lc_speedtable[fbck][rate][spdoft_speed_thresh+1]; temp<<=8;
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x15
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	r5,a
+	mov	r0,_bp
+	inc	r0
+	mov	@r0,ar5
+	inc	r0
+	mov	@r0,#0x00
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	inc	r0
+	mov	@r0,a
+	dec	r0
+	mov	@r0,#0x00
+;	../../shared/src/spd_ctrl.c:331: temp				+= (uint16_t)lc_speedtable[fbck][rate][spdoft_speed_thresh];
+	mov	ar7,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r5,a
+	mov	a,r2
+	add	a,r7
+	mov	r7,a
+	clr	a
+	addc	a,r5
+	mov	r5,a
+	mov	a,#0x14
+	add	a,r7
+	mov	dpl,a
+	clr	a
+	addc	a,r5
+	mov	dph,a
+	movx	a,@dptr
+	mov	r5,a
+	mov	r6,#0x00
+	mov	r0,_bp
+	inc	r0
+	mov	a,r5
+	add	a,@r0
+	mov	@r0,a
+	mov	a,r6
+	inc	r0
+	addc	a,@r0
+	mov	@r0,a
+;	../../shared/src/spd_ctrl.c:332: temp <<= FBC_RATIO;
+	mov	dptr,#_CONTROL_CONFIG4
+	movx	a,@dptr
+	mov	r5,a
+	mov	b,r5
+	inc	b
+	mov	r0,_bp
+	inc	r0
+	sjmp	00133$
+00132$:
+	mov	a,@r0
+	add	a,acc
+	mov	@r0,a
+	inc	r0
+	mov	a,@r0
+	rlc	a
+	mov	@r0,a
+	dec	r0
+00133$:
+	djnz	b,00132$
+;	../../shared/src/spd_ctrl.c:333: cmx_SPEED_THRESH_15_0 = temp;
+	mov	dptr,#_CONTROL_CONFIG6
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	movx	@dptr,a
+	inc	dptr
+	inc	r0
+	mov	a,@r0
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:335: reg_LCCAP_USB			= lc_speedtable[fbck][rate][spdoft_lccap_usb];
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x16
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_176
+	rrc	a
+	movx	a,@dptr
+	mov	acc.4,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:336: reg_SSC_STEP_125PPM_3_0 	= lc_speedtable[fbck][rate][spdoft_ssc_step_125ppm]; 
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x18
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DTX_REG0 + 0x0001)
+	add	a,acc
+	add	a,acc
+	anl	a,#0x3c
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xc3
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:337: reg_SSC_M_12_0_b0		= lc_speedtable[fbck][rate][spdoft_ssc_m];
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x19
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DTX_REG1 + 0x0002)
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:338: reg_SSC_M_12_0_b1		= lc_speedtable[fbck][rate][spdoft_ssc_m+1];
+	mov	ar5,r3
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r6,a
+	mov	a,r2
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x1A
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DTX_REG1 + 0x0003)
+	anl	a,#0x1f
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xe0
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:346: reg_LCPLLCLK_DIV2_SEL = lc_speedtable[fbck][rate][spdoft_lcpllclk_div2_sel];
+	mov	a,#(_lc_speedtable >> 8)
+	add	a,r4
+	mov	r4,a
+	mov	a,r2
+	add	a,r3
+	mov	r2,a
+	clr	a
+	addc	a,r4
+	mov	r5,a
+	mov	a,#0x08
+	add	a,r2
+	mov	dpl,a
+	clr	a
+	addc	a,r5
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_207
+	rrc	a
+	movx	a,@dptr
+	mov	acc.1,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:347: if(mcuid==master_mcu && !use_ring_pll && phy_mode==PCIE) {
+	mov	dptr,#_MCU_CONTROL_LANE
+	movx	a,@dptr
+	mov	r2,a
+	mov	dptr,#_MCU_CONFIG
+	movx	a,@dptr
+	mov	r3,a
+	mov	a,r2
+	cjne	a,ar3,00112$
+	jb	_use_ring_pll,00112$
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r2,a
+	cjne	r2,#0x03,00112$
+;	../../shared/src/spd_ctrl.c:348: if (gen_tx == 4)
+	mov	dptr,#_gen_tx
+	movx	a,@dptr
+	mov	r2,a
+	cjne	r2,#0x04,00112$
+;	../../shared/src/spd_ctrl.c:349: reg_LCPLLCLK_DIV2_SEL = 1;
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_207
+	movx	a,@dptr
+	orl	a,#0x02
+	movx	@dptr,a
+00112$:
+;	../../shared/src/spd_ctrl.c:353: reg_MCU_DEBUG0_LANE_7_0 = 0x39;
+	mov	dptr,#_MCU_DEBUG0_LANE
+	mov	a,#0x39
+	movx	@dptr,a
+	mov	sp,_bp
+	pop	_bp
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'loadspeedtbl_ringpll'
+;------------------------------------------------------------
+;rate                      Allocated to registers r2 
+;temp                      Allocated to stack - offset 1
+;fbck                      Allocated to registers r3 
+;ck1g                      Allocated to registers r4 
+;rate_no                   Allocated to registers r3 
+;sloc0                     Allocated to stack - offset 3
+;------------------------------------------------------------
+;	../../shared/src/spd_ctrl.c:356: void loadspeedtbl_ringpll(uint8_t rate) {
+;	-----------------------------------------
+;	 function loadspeedtbl_ringpll
+;	-----------------------------------------
+_loadspeedtbl_ringpll:
+	push	_bp
+	mov	a,sp
+	mov	_bp,a
+	add	a,#0x04
+	mov	sp,a
+	mov	r2,dpl
+;	../../shared/src/spd_ctrl.c:360: fbck = fbck_sel_ring;
+	mov	dptr,#_PM_CMN_REG1
+	movx	a,@dptr
+	rr	a
+	rr	a
+	anl	a,#0x01
+	mov	r3,a
+;	../../shared/src/spd_ctrl.c:361: reg_MCU_DEBUG0_LANE_7_0 = 0x36;
+	mov	dptr,#_MCU_DEBUG0_LANE
+	mov	a,#0x36
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:366: ck1g = ring_use_250m;
+	mov	c,_ring_use_250m
+	clr	a
+	rlc	a
+	mov	r4,a
+;	../../shared/src/spd_ctrl.c:368: if(phy_mode==SERDES) rate = gen_pll_rate;
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r5,a
+	cjne	r5,#0x04,00102$
+	mov	dptr,#_gen_pll_rate
+	movx	a,@dptr
+	mov	r2,a
+00102$:
+;	../../shared/src/spd_ctrl.c:370: rate_no					= ring_speedtable[ck1g][fbck][rate][spdoft_pll_rate_sel_ring];
+	mov	r5,#0x00
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	mov	dptr,#0x0120
+	lcall	__mulint
+	mov	r4,dpl
+	mov	r5,dph
+	dec	sp
+	dec	sp
+	pop	ar3
+	pop	ar2
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r6,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r7,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,r3
+	mov	b,#0x90
+	mul	ab
+	mov	@r0,a
+	inc	r0
+	mov	@r0,b
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r6
+	mov	r6,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r7
+	mov	r7,a
+	mov	a,r2
+	mov	b,#0x24
+	mul	ab
+	mov	r2,a
+	add	a,r6
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	mov	r3,a
+;	../../shared/src/spd_ctrl.c:371: if(rate_no>1 || phy_mode==SERDES) rate_no = 0;
+	mov	a,#0x01
+	cjne	a,ar3,00116$
+00116$:
+	jc	00103$
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r6,a
+	cjne	r6,#0x04,00104$
+00103$:
+	mov	r3,#0x00
+00104$:
+;	../../shared/src/spd_ctrl.c:372: PLL_RATE_SEL_RING = rate_no;
+	mov	dptr,#(_CONTROL_CONFIG6 + 0x0003)
+	mov	a,r3
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:377: reg_PLL_REFDIV_RING_3_0			= ring_speedtable[ck1g][fbck][rate][spdoft_pll_refdiv_ring];
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r3,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r3
+	mov	r3,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r6
+	mov	r6,a
+	mov	a,r2
+	add	a,r3
+	mov	r3,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	dpl,r3
+	mov	dph,r6
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_188
+	swap	a
+	rr	a
+	anl	a,#(0xf8&0x78)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x87
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:379: if(reg_RING_REF_DIV_SEL==1) {
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_181
+	movx	a,@dptr
+	rl	a
+	anl	a,#0x01
+	mov	r3,a
+	cjne	r3,#0x01,00120$
+	sjmp	00121$
+00120$:
+	ljmp	00107$
+00121$:
+;	../../shared/src/spd_ctrl.c:386: reg_PLL_FBDIV_RING_7_0 			= ring_speedtable[ck1g][fbck][rate][spdoft_pll_fbdiv_ring_fbck];
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r3,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r3
+	mov	r3,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r6
+	mov	r6,a
+	mov	a,r2
+	add	a,r3
+	mov	r3,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x06
+	add	a,r3
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_189
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:387: reg_PLL_FBDIV_RING_9_8			= ring_speedtable[ck1g][fbck][rate][spdoft_pll_fbdiv_ring_fbck+1];
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r3,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r3
+	mov	r3,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r6
+	mov	r6,a
+	mov	a,r2
+	add	a,r3
+	mov	r3,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x07
+	add	a,r3
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_188
+	add	a,acc
+	anl	a,#0x06
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf9
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:388: reg_INIT_TXFOFFS_RING_9_0_b0		= ring_speedtable[ck1g][fbck][rate][spdoft_init_txfoffs_ring_fbck];
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r3,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r3
+	mov	r3,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r6
+	mov	r6,a
+	mov	a,r2
+	add	a,r3
+	mov	r3,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x15
+	add	a,r3
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_DTX_REG2
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:389: reg_INIT_TXFOFFS_RING_9_0_b1		= ring_speedtable[ck1g][fbck][rate][spdoft_init_txfoffs_ring_fbck+1];
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r3,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r3
+	mov	r3,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r6
+	mov	r6,a
+	mov	a,r2
+	add	a,r3
+	mov	r3,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x16
+	add	a,r3
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	r3,a
+	mov	dptr,#(_DTX_REG2 + 0x0001)
+	anl	a,#0x03
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xfc
+	orl	a,b
+	movx	@dptr,a
+	ljmp	00108$
+00107$:
+;	../../shared/src/spd_ctrl.c:399: reg_PLL_FBDIV_RING_7_0 			= ring_speedtable[ck1g][fbck][rate][spdoft_pll_fbdiv_ring];
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r3,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r3
+	mov	r3,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r6
+	mov	r6,a
+	mov	a,r2
+	add	a,r3
+	mov	r3,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	dpl,r3
+	mov	dph,r6
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_189
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:400: reg_PLL_FBDIV_RING_9_8			= ring_speedtable[ck1g][fbck][rate][spdoft_pll_fbdiv_ring+1];
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r3,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r3
+	mov	r3,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r6
+	mov	r6,a
+	mov	a,r2
+	add	a,r3
+	mov	r3,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	dpl,r3
+	mov	dph,r6
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_188
+	add	a,acc
+	anl	a,#0x06
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf9
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:401: reg_INIT_TXFOFFS_RING_9_0_b0		= ring_speedtable[ck1g][fbck][rate][spdoft_init_txfoffs_ring];
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r3,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r3
+	mov	r3,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r6
+	mov	r6,a
+	mov	a,r2
+	add	a,r3
+	mov	r3,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x13
+	add	a,r3
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_DTX_REG2
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:402: reg_INIT_TXFOFFS_RING_9_0_b1		= ring_speedtable[ck1g][fbck][rate][spdoft_init_txfoffs_ring+1];
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r3,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r3
+	mov	r3,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r6
+	mov	r6,a
+	mov	a,r2
+	add	a,r3
+	mov	r3,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x14
+	add	a,r3
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	r3,a
+	mov	dptr,#(_DTX_REG2 + 0x0001)
+	anl	a,#0x03
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xfc
+	orl	a,b
+	movx	@dptr,a
+00108$:
+;	../../shared/src/spd_ctrl.c:406: cmx_G_INTPI_RING_7_0				= ring_speedtable[ck1g][fbck][rate][spdoft_intpi_ring];
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r3,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r3
+	mov	r3,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r6
+	mov	r6,a
+	mov	a,r2
+	add	a,r3
+	mov	r3,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x0D
+	add	a,r3
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_CAL_DATA1 + 0x0003)
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:407: reg_INTPI_LCPLL_3_0 = cmx_G_INTPI_LCPLL_7_0;
+	mov	dptr,#(_CAL_DATA1 + 0x0002)
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_131
+	swap	a
+	anl	a,#(0xf0&0xf0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x0f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:408: reg_INTPI_RING_3_0 = cmx_G_INTPI_RING_7_0;
+	mov	dptr,#(_CAL_DATA1 + 0x0003)
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_131
+	anl	a,#0x0f
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf0
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:409: reg_TX_INTPR_RING_1_0				= ring_speedtable[ck1g][fbck][rate][spdoft_tx_intpr_ring];
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r3,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r3
+	mov	r3,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r6
+	mov	r6,a
+	mov	a,r2
+	add	a,r3
+	mov	r3,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x0E
+	add	a,r3
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_196
+	swap	a
+	anl	a,#(0xf0&0x30)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xcf
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:417: reg_ICP_RING_3_0				= ring_speedtable[ck1g][fbck][rate][spdoft_icp_ring];
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r3,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r3
+	mov	r3,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r6
+	mov	r6,a
+	mov	a,r2
+	add	a,r3
+	mov	r3,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x08
+	add	a,r3
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_190
+	swap	a
+	anl	a,#(0xf0&0xf0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x0f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:418: reg_PLL_BAND_SEL_RING				= ring_speedtable[ck1g][fbck][rate][spdoft_pll_band_sel_ring];
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r3,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r3
+	mov	r3,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r6
+	mov	r6,a
+	mov	a,r2
+	add	a,r3
+	mov	r3,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x0F
+	add	a,r3
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_192
+	rrc	a
+	movx	a,@dptr
+	mov	acc.2,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:419: reg_PLL_LPF_C1_SEL_RING_1_0			= ring_speedtable[ck1g][fbck][rate][spdoft_pll_lpf_c1_sel_ring]; 
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r3,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r3
+	mov	r3,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r6
+	mov	r6,a
+	mov	a,r2
+	add	a,r3
+	mov	r3,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x10
+	add	a,r3
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_191
+	rr	a
+	rr	a
+	anl	a,#(0xc0&0xc0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x3f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:420: reg_PLL_LPF_C2_SEL_RING_1_0			= ring_speedtable[ck1g][fbck][rate][spdoft_pll_lpf_c2_sel_ring]; 
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r3,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r3
+	mov	r3,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r6
+	mov	r6,a
+	mov	a,r2
+	add	a,r3
+	mov	r3,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x11
+	add	a,r3
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_191
+	swap	a
+	anl	a,#(0xf0&0x30)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xcf
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:421: reg_PLL_LPF_R1_SEL_RING_2_0			= ring_speedtable[ck1g][fbck][rate][spdoft_pll_lpf_r1_sel_ring]; 
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r3,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r3
+	mov	r3,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r6
+	mov	r6,a
+	mov	a,r2
+	add	a,r3
+	mov	r3,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x12
+	add	a,r3
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_190
+	add	a,acc
+	anl	a,#0x0e
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf1
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:423: temp			= (uint16_t)ring_speedtable[ck1g][fbck][rate][spdoft_pll_speed_thresh_ring+1]; 	temp<<=8;
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r3,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r3
+	mov	r3,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r6
+	mov	r6,a
+	mov	a,r2
+	add	a,r3
+	mov	r3,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x0A
+	add	a,r3
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	r3,a
+	mov	r0,_bp
+	inc	r0
+	mov	@r0,ar3
+	inc	r0
+	mov	@r0,#0x00
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	inc	r0
+	mov	@r0,a
+	dec	r0
+	mov	@r0,#0x00
+;	../../shared/src/spd_ctrl.c:424: temp			+= (uint16_t)ring_speedtable[ck1g][fbck][rate][spdoft_pll_speed_thresh_ring];
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r7,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r3,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r7
+	mov	r7,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r3
+	mov	r3,a
+	mov	a,r2
+	add	a,r7
+	mov	r7,a
+	clr	a
+	addc	a,r3
+	mov	r3,a
+	mov	a,#0x09
+	add	a,r7
+	mov	dpl,a
+	clr	a
+	addc	a,r3
+	mov	dph,a
+	movx	a,@dptr
+	mov	r3,a
+	mov	r6,#0x00
+	mov	r0,_bp
+	inc	r0
+	mov	a,r3
+	add	a,@r0
+	mov	@r0,a
+	mov	a,r6
+	inc	r0
+	addc	a,@r0
+	mov	@r0,a
+;	../../shared/src/spd_ctrl.c:425: temp <<= FBC_RATIO;
+	mov	dptr,#_CONTROL_CONFIG4
+	movx	a,@dptr
+	mov	r3,a
+	mov	b,r3
+	inc	b
+	mov	r0,_bp
+	inc	r0
+	sjmp	00123$
+00122$:
+	mov	a,@r0
+	add	a,acc
+	mov	@r0,a
+	inc	r0
+	mov	a,@r0
+	rlc	a
+	mov	@r0,a
+	dec	r0
+00123$:
+	djnz	b,00122$
+;	../../shared/src/spd_ctrl.c:426: cmx_PLL_SPEED_THRESH_RING_15_0 = temp;
+	mov	dptr,#_CONTROL_CONFIG5
+	mov	r0,_bp
+	inc	r0
+	mov	a,@r0
+	movx	@dptr,a
+	inc	dptr
+	inc	r0
+	mov	a,@r0
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:433: reg_SSC_STEP_125PPM_RING_3_0		= ring_speedtable[ck1g][fbck][rate][spdoft_ssc_step_125ppm_ring];
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r3,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r3
+	mov	r3,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r6
+	mov	r6,a
+	mov	a,r2
+	add	a,r3
+	mov	r3,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x18
+	add	a,r3
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_DTX_REG1
+	anl	a,#0x0f
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf0
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:434: reg_SSC_M_RING_12_0_b0			= ring_speedtable[ck1g][fbck][rate][spdoft_ssc_m_ring];
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r3,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r6,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r3
+	mov	r3,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r6
+	mov	r6,a
+	mov	a,r2
+	add	a,r3
+	mov	r3,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x19
+	add	a,r3
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DTX_REG3 + 0x0002)
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:435: reg_SSC_M_RING_12_0_b1			= ring_speedtable[ck1g][fbck][rate][spdoft_ssc_m_ring+1];
+	mov	a,r4
+	add	a,#_ring_speedtable
+	mov	r4,a
+	mov	a,r5
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r5,a
+	mov	a,_bp
+	add	a,#0x03
+	mov	r0,a
+	mov	a,@r0
+	add	a,r4
+	mov	r4,a
+	inc	r0
+	mov	a,@r0
+	addc	a,r5
+	mov	r5,a
+	mov	a,r2
+	add	a,r4
+	mov	r2,a
+	clr	a
+	addc	a,r5
+	mov	r3,a
+	mov	a,#0x1A
+	add	a,r2
+	mov	dpl,a
+	clr	a
+	addc	a,r3
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DTX_REG3 + 0x0003)
+	anl	a,#0x1f
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xe0
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:438: reg_MCU_DEBUG0_LANE_7_0 = 0x39;
+	mov	dptr,#_MCU_DEBUG0_LANE
+	mov	a,#0x39
+	movx	@dptr,a
+	mov	sp,_bp
+	pop	_bp
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'get_gen_memory_index'
+;------------------------------------------------------------
+;gen                       Allocated to registers r2 
+;serdes_gen_tb0            Allocated to stack - offset 1
+;serdes_gen_tb1            Allocated to stack - offset 18
+;------------------------------------------------------------
+;	../../shared/src/spd_ctrl.c:443: uint8_t get_gen_memory_index(uint8_t gen) {
+;	-----------------------------------------
+;	 function get_gen_memory_index
+;	-----------------------------------------
+_get_gen_memory_index:
+	push	_bp
+	mov	a,sp
+	mov	_bp,a
+	add	a,#0x22
+	mov	sp,a
+	mov	r2,dpl
+;	../../shared/src/spd_ctrl.c:446: uint8_t serdes_gen_tb0[] = { 0, 1, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0};
+	mov	r0,_bp
+	inc	r0
+	mov	@r0,#0x00
+	mov	a,r0
+	inc	a
+	mov	r1,a
+	mov	@r1,#0x01
+	mov	a,#0x02
+	add	a,r0
+	mov	r1,a
+	mov	@r1,#0x02
+	mov	a,#0x03
+	add	a,r0
+	mov	r1,a
+	mov	@r1,#0x00
+	mov	a,#0x04
+	add	a,r0
+	mov	r1,a
+	mov	@r1,#0x03
+	mov	a,#0x05
+	add	a,r0
+	mov	r1,a
+	mov	@r1,#0x00
+	mov	a,#0x06
+	add	a,r0
+	mov	r1,a
+	mov	@r1,#0x00
+	mov	a,#0x07
+	add	a,r0
+	mov	r1,a
+	mov	@r1,#0x00
+	mov	a,#0x08
+	add	a,r0
+	mov	r1,a
+	mov	@r1,#0x00
+	mov	a,#0x09
+	add	a,r0
+	mov	r1,a
+	mov	@r1,#0x00
+	mov	a,#0x0A
+	add	a,r0
+	mov	r1,a
+	mov	@r1,#0x00
+	mov	a,#0x0B
+	add	a,r0
+	mov	r1,a
+	mov	@r1,#0x00
+	mov	a,#0x0C
+	add	a,r0
+	mov	r1,a
+	mov	@r1,#0x00
+	mov	a,#0x0D
+	add	a,r0
+	mov	r1,a
+	mov	@r1,#0x04
+	mov	a,#0x0E
+	add	a,r0
+	mov	r1,a
+	mov	@r1,#0x00
+	mov	a,#0x0F
+	add	a,r0
+	mov	r1,a
+	mov	@r1,#0x00
+	mov	a,#0x10
+	add	a,r0
+	mov	r1,a
+	mov	@r1,#0x00
+;	../../shared/src/spd_ctrl.c:447: uint8_t serdes_gen_tb1[] = { 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	mov	a,_bp
+	add	a,#0x12
+	mov	r1,a
+	mov	@r1,#0x00
+	mov	a,r1
+	inc	a
+	push	ar0
+	mov	r0,a
+	mov	@r0,#0x01
+	mov	a,#0x02
+	add	a,r1
+	mov	r0,a
+	mov	@r0,#0x00
+	mov	a,#0x03
+	add	a,r1
+	mov	r0,a
+	mov	@r0,#0x00
+	mov	a,#0x04
+	add	a,r1
+	mov	r0,a
+	mov	@r0,#0x02
+	mov	a,#0x05
+	add	a,r1
+	mov	r0,a
+	mov	@r0,#0x00
+	mov	a,#0x06
+	add	a,r1
+	mov	r0,a
+	mov	@r0,#0x00
+	mov	a,#0x07
+	add	a,r1
+	mov	r0,a
+	mov	@r0,#0x03
+	mov	a,#0x08
+	add	a,r1
+	mov	r0,a
+	mov	@r0,#0x00
+	mov	a,#0x09
+	add	a,r1
+	mov	r0,a
+	mov	@r0,#0x00
+	mov	a,#0x0A
+	add	a,r1
+	mov	r0,a
+	mov	@r0,#0x00
+	mov	a,#0x0B
+	add	a,r1
+	mov	r0,a
+	mov	@r0,#0x00
+	mov	a,#0x0C
+	add	a,r1
+	mov	r0,a
+	mov	@r0,#0x00
+	mov	a,#0x0D
+	add	a,r1
+	mov	r0,a
+	mov	@r0,#0x00
+	mov	a,#0x0E
+	add	a,r1
+	mov	r0,a
+	mov	@r0,#0x00
+	mov	a,#0x0F
+	add	a,r1
+	mov	r0,a
+	mov	@r0,#0x00
+	mov	a,#0x10
+	add	a,r1
+	mov	r0,a
+	mov	@r0,#0x00
+	pop	ar0
+;	../../shared/src/spd_ctrl.c:449: if(cmx_ETHERNET_CFG_1_0==1 || cmx_ETHERNET_CFG_1_0==2) return serdes_gen_tb0[gen];
+	mov	dptr,#_CONTROL_CONFIG0
+	movx	a,@dptr
+	anl	a,#0x03
+	mov	r3,a
+	cjne	r3,#0x01,00112$
+	sjmp	00104$
+00112$:
+	mov	dptr,#_CONTROL_CONFIG0
+	movx	a,@dptr
+	anl	a,#0x03
+	mov	r3,a
+	cjne	r3,#0x02,00105$
+00104$:
+	mov	a,r2
+	add	a,r0
+	mov	r0,a
+	mov	dpl,@r0
+	sjmp	00108$
+00105$:
+;	../../shared/src/spd_ctrl.c:450: else if(cmx_ETHERNET_CFG_1_0==3) return	serdes_gen_tb1[gen];
+	mov	dptr,#_CONTROL_CONFIG0
+	movx	a,@dptr
+	anl	a,#0x03
+	mov	r3,a
+	cjne	r3,#0x03,00102$
+	mov	a,r2
+	add	a,r1
+	mov	r1,a
+	mov	dpl,@r1
+	sjmp	00108$
+00102$:
+;	../../shared/src/spd_ctrl.c:451: else return 0;
+	mov	dpl,#0x00
+00108$:
+	mov	sp,_bp
+	pop	_bp
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'loadspeedtbl_gen'
+;------------------------------------------------------------
+;temp                      Allocated to registers r4 r5 
+;gen                       Allocated to registers r2 
+;------------------------------------------------------------
+;	../../shared/src/spd_ctrl.c:455: void loadspeedtbl_gen(void) {
+;	-----------------------------------------
+;	 function loadspeedtbl_gen
+;	-----------------------------------------
+_loadspeedtbl_gen:
+;	../../shared/src/spd_ctrl.c:460: gen = gen_tx;
+	mov	dptr,#_gen_tx
+	movx	a,@dptr
+	mov	r2,a
+;	../../shared/src/spd_ctrl.c:463: if(phy_mode==SERDES) { 
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r3,a
+	cjne	r3,#0x04,00102$
+;	../../shared/src/spd_ctrl.c:464: gen = min(reg_PIN_PHY_GEN_TX_RD_LANE_3_0, cmx_PHY_GEN_MAX_3_0);
+	mov	dptr,#_CONTROL_CONFIG8
+	movx	a,@dptr
+	anl	a,#0x0f
+	mov	r3,a
+	mov	dptr,#(_SPD_CTRL_TX_LANE_REG1_LANE + 0x0003)
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x0f
+	mov	dpl,a
+	push	ar3
+	mov	r0,#_min
+	mov	r1,#(_min >> 8)
+	mov	r2,#(_min >> 16)
+	lcall	__sdcc_banked_call
+	mov	r3,dpl
+	dec	sp
+	mov	ar2,r3
+;	../../shared/src/spd_ctrl.c:465: gen = get_gen_memory_index(gen);
+	mov	dpl,r2
+	lcall	_get_gen_memory_index
+	mov	r3,dpl
+	mov	ar2,r3
+00102$:
+;	../../shared/src/spd_ctrl.c:497: gen_pll_rate = speedtable[gen][spdoft_pll_rate_sel_tx]; 
+	mov	a,r2
+	mov	b,#0x50
+	mul	ab
+	mov	r3,a
+	mov	r4,b
+	add	a,#_speedtable
+	mov	dpl,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	dph,a
+	movx	a,@dptr
+	mov	r5,a
+	mov	dptr,#_gen_pll_rate
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:498: if(gen_pll_rate>1 || phy_mode==SERDES) tx_pll_rate = 0;
+	mov	a,#0x01
+	cjne	a,ar5,00207$
+00207$:
+	jc	00103$
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r6,a
+	cjne	r6,#0x04,00104$
+00103$:
+	clr	_tx_pll_rate
+	sjmp	00105$
+00104$:
+;	../../shared/src/spd_ctrl.c:499: else tx_pll_rate = gen_pll_rate;
+	mov	a,r5
+	add	a,#0xff
+	mov	_tx_pll_rate,c
+00105$:
+;	../../shared/src/spd_ctrl.c:500: use_ring_pll = speedtable[gen][spdoft_tx_ck_sel_lane]; 
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	dpl,r6
+	mov	dph,r7
+	inc	dptr
+	movx	a,@dptr
+	add	a,#0xff
+	mov	_use_ring_pll,c
+;	../../shared/src/spd_ctrl.c:502: reg_MCU_DEBUG0_LANE_7_0 = 0x33;
+	mov	dptr,#_MCU_DEBUG0_LANE
+	mov	a,#0x33
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:503: reg_MCU_DEBUG1_LANE_7_0 = gen_tx;
+	mov	dptr,#_gen_tx
+	movx	a,@dptr
+	mov	dptr,#(_MCU_DEBUG0_LANE + 0x0001)
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:504: reg_MCU_DEBUG2_LANE_7_0 = gen;
+	mov	dptr,#(_MCU_DEBUG0_LANE + 0x0002)
+	mov	a,r2
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:505: reg_MCU_DEBUG3_LANE_7_0 = gen_pll_rate;
+	mov	dptr,#(_MCU_DEBUG0_LANE + 0x0003)
+	mov	a,r5
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:506: reg_MCU_DEBUG4_LANE_7_0 = max_gen;
+	mov	dptr,#_max_gen
+	movx	a,@dptr
+	mov	dptr,#_MCU_DEBUG1_LANE
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:507: reg_MCU_DEBUG5_LANE_7_0 = ring_pll_enabled;
+	mov	c,_ring_pll_enabled
+	clr	a
+	rlc	a
+	mov	dptr,#(_MCU_DEBUG1_LANE + 0x0001)
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:508: reg_MCU_DEBUG6_LANE_7_0 = use_ring_pll;
+	mov	c,_use_ring_pll
+	clr	a
+	rlc	a
+	mov	dptr,#(_MCU_DEBUG1_LANE + 0x0002)
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:509: reg_MCU_DEBUG7_LANE_7_0 = tx_pll_rate;
+	mov	c,_tx_pll_rate
+	clr	a
+	rlc	a
+	mov	dptr,#(_MCU_DEBUG1_LANE + 0x0003)
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:510: reg_MCU_DEBUG8_LANE_7_0 = ring_lane_sel;
+	mov	dptr,#_ring_lane_sel
+	movx	a,@dptr
+	mov	r5,a
+	mov	dptr,#_MCU_DEBUG2_LANE
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:513: if(speedtable[gen][spdoft_pu_f1p_s_o_lane]) reg_PU_F1P_S_O_LANE = 1;
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x35
+	add	a,r6
+	mov	r6,a
+	clr	a
+	addc	a,r7
+	mov	r7,a
+	mov	dpl,r6
+	mov	dph,r7
+	movx	a,@dptr
+	jz	00108$
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_24
+	movx	a,@dptr
+	orl	a,#0x20
+	movx	@dptr,a
+00108$:
+;	../../shared/src/spd_ctrl.c:514: if(speedtable[gen][spdoft_pu_f1p_d_o_lane]) reg_PU_F1P_D_O_LANE = 1;
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x33
+	add	a,r6
+	mov	r6,a
+	clr	a
+	addc	a,r7
+	mov	r7,a
+	mov	dpl,r6
+	mov	dph,r7
+	movx	a,@dptr
+	jz	00110$
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_24
+	movx	a,@dptr
+	orl	a,#0x80
+	movx	@dptr,a
+00110$:
+;	../../shared/src/spd_ctrl.c:515: if(speedtable[gen][spdoft_pu_f1p_d_e_lane]) reg_PU_F1P_D_E_LANE = 1;
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x2F
+	add	a,r6
+	mov	r6,a
+	clr	a
+	addc	a,r7
+	mov	r7,a
+	mov	dpl,r6
+	mov	dph,r7
+	movx	a,@dptr
+	jz	00112$
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_23
+	movx	a,@dptr
+	orl	a,#0x08
+	movx	@dptr,a
+00112$:
+;	../../shared/src/spd_ctrl.c:516: if(phy_mode!=SATA || PHY_STATUS!=ST_SPDCHG || pwrsq_on) { 
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	jnz	00123$
+	mov	dptr,#_MCU_STATUS0_LANE
+	movx	a,@dptr
+	mov	r6,a
+	cjne	r6,#0x19,00123$
+	mov	dptr,#_pwrsq_on
+	movx	a,@dptr
+	mov	r6,a
+	jnz	00217$
+	ljmp	00124$
+00217$:
+00123$:
+;	../../shared/src/spd_ctrl.c:517: if(speedtable[gen][spdoft_pu_f1n_s_o_lane]) reg_PU_F1N_S_O_LANE = 1;
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x36
+	add	a,r6
+	mov	r6,a
+	clr	a
+	addc	a,r7
+	mov	r7,a
+	mov	dpl,r6
+	mov	dph,r7
+	movx	a,@dptr
+	jz	00114$
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_24
+	movx	a,@dptr
+	orl	a,#0x10
+	movx	@dptr,a
+00114$:
+;	../../shared/src/spd_ctrl.c:518: if(speedtable[gen][spdoft_pu_f1n_d_o_lane]) reg_PU_F1N_D_O_LANE = 1;
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x34
+	add	a,r6
+	mov	r6,a
+	clr	a
+	addc	a,r7
+	mov	r7,a
+	mov	dpl,r6
+	mov	dph,r7
+	movx	a,@dptr
+	jz	00116$
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_24
+	movx	a,@dptr
+	orl	a,#0x40
+	movx	@dptr,a
+00116$:
+;	../../shared/src/spd_ctrl.c:519: if(speedtable[gen][spdoft_pu_f1n_s_e_lane]) reg_PU_F1N_S_E_LANE = 1;
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x32
+	add	a,r6
+	mov	r6,a
+	clr	a
+	addc	a,r7
+	mov	r7,a
+	mov	dpl,r6
+	mov	dph,r7
+	movx	a,@dptr
+	jz	00118$
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_23
+	movx	a,@dptr
+	orl	a,#0x01
+	movx	@dptr,a
+00118$:
+;	../../shared/src/spd_ctrl.c:520: if(speedtable[gen][spdoft_pu_f1n_d_e_lane]) reg_PU_F1N_D_E_LANE = 1;
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x30
+	add	a,r6
+	mov	r6,a
+	clr	a
+	addc	a,r7
+	mov	r7,a
+	mov	dpl,r6
+	mov	dph,r7
+	movx	a,@dptr
+	jz	00120$
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_23
+	movx	a,@dptr
+	orl	a,#0x04
+	movx	@dptr,a
+00120$:
+;	../../shared/src/spd_ctrl.c:521: if(speedtable[gen][spdoft_pu_f1p_s_e_lane]) reg_PU_F1P_S_E_LANE = 1;
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x31
+	add	a,r6
+	mov	r6,a
+	clr	a
+	addc	a,r7
+	mov	r7,a
+	mov	dpl,r6
+	mov	dph,r7
+	movx	a,@dptr
+	jz	00124$
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_23
+	movx	a,@dptr
+	orl	a,#0x02
+	movx	@dptr,a
+00124$:
+;	../../shared/src/spd_ctrl.c:525: reg_TX_SPEED_DIV_LANE_2_0		= speedtable[gen][spdoft_tx_speed_div_lane]; 
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	dpl,r6
+	mov	dph,r7
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_150
+	anl	a,#0x07
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf8
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:526: reg_TXSPEED_DIV_LANE_2_0 		= speedtable[gen][spdoft_tx_speed_div_lane]; //duplicated for digital use
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	dpl,r6
+	mov	dph,r7
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	movx	a,@dptr
+	mov	dptr,#_SPD_CTRL_TX_LANE_REG1_LANE
+	anl	a,#0x07
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf8
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:528: reg_RX_SPEED_DIV_LANE_2_0		= speedtable[gen][spdoft_rx_speed_div_lane]; 
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x18
+	add	a,r6
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_138
+	add	a,acc
+	add	a,acc
+	anl	a,#0x1c
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xe3
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:529: reg_DTL_CLK_SPEEDUP_LANE_2_0  		= speedtable[gen][spdoft_dtl_clk_speedup_lane]; 
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x19
+	add	a,r6
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_138
+	swap	a
+	rl	a
+	anl	a,#(0xe0&0xe0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x1f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:530: reg_RX_REG0P9_SPEED_TRACK_DATA_LANE_2_0	= speedtable[gen][spdoft_rx_reg0p9_speed_track_data_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x21
+	add	a,r6
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_142
+	add	a,acc
+	anl	a,#0x0e
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf1
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:532: switch(lnx_TXDCLK_NT_SEL_LANE_1_0) {
+	mov	dptr,#(_CAL_CTRL1_LANE + 0x0002)
+	movx	a,@dptr
+	swap	a
+	anl	a,#0x03
+	mov	r6,a
+	add	a,acc
+	add	a,r6
+	mov	dptr,#00223$
+	jmp	@a+dptr
+00223$:
+	ljmp	00127$
+	ljmp	00128$
+	ljmp	00129$
+	ljmp	00130$
+;	../../shared/src/spd_ctrl.c:533: case 0: UPHY14_TRX_ANAREG_BOT_30.BT.B0 = 0x24; break;
+00127$:
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_30
+	mov	a,#0x24
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:534: case 1: UPHY14_TRX_ANAREG_BOT_30.BT.B0 = 0x84; break;
+	sjmp	00131$
+00128$:
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_30
+	mov	a,#0x84
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:535: case 2: UPHY14_TRX_ANAREG_BOT_30.BT.B0 = 0x2b; break;
+	sjmp	00131$
+00129$:
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_30
+	mov	a,#0x2B
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:536: case 3: UPHY14_TRX_ANAREG_BOT_30.BT.B0 = 0x42; break;
+	sjmp	00131$
+00130$:
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_30
+	mov	a,#0x42
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:537: }
+00131$:
+;	../../shared/src/spd_ctrl.c:538: if(reg_RX_SPEED_DIV_LANE_2_0&0x04) {
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_138
+	movx	a,@dptr
+	rr	a
+	rr	a
+	anl	a,#0x07
+	mov	r6,a
+	jb	acc.2,00224$
+	ljmp	00143$
+00224$:
+;	../../shared/src/spd_ctrl.c:539: switch(lnx_RXDCLK_NT_SEL_LANE_1_0) {
+	mov	dptr,#(_CAL_CTRL1_LANE + 0x0002)
+	movx	a,@dptr
+	rl	a
+	rl	a
+	anl	a,#0x03
+	mov	r6,a
+	add	a,acc
+	add	a,r6
+	mov	dptr,#00225$
+	jmp	@a+dptr
+00225$:
+	ljmp	00132$
+	ljmp	00133$
+	ljmp	00134$
+	ljmp	00135$
+;	../../shared/src/spd_ctrl.c:540: case 0: UPHY14_TRX_ANAREG_TOP_155.BT.B0 = (UPHY14_TRX_ANAREG_TOP_155.BT.B0&0x04)|0x40; reg_RXCLK_NT_FIX_DIV_EN_LANE = 1; break;
+00132$:
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_155
+	movx	a,@dptr
+	mov	r6,a
+	mov	a,#0x04
+	anl	a,r6
+	orl	a,#0x40
+	mov	r6,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_155
+	movx	@dptr,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_152
+	movx	a,@dptr
+	orl	a,#0x08
+	movx	@dptr,a
+	ljmp	00144$
+;	../../shared/src/spd_ctrl.c:541: case 1: UPHY14_TRX_ANAREG_TOP_155.BT.B0 = (UPHY14_TRX_ANAREG_TOP_155.BT.B0&0x04)|0x82; reg_RXCLK_NT_FIX_DIV_EN_LANE = 1; break;
+00133$:
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_155
+	movx	a,@dptr
+	mov	r6,a
+	mov	a,#0x04
+	anl	a,r6
+	orl	a,#0x82
+	mov	r6,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_155
+	movx	@dptr,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_152
+	movx	a,@dptr
+	orl	a,#0x08
+	movx	@dptr,a
+	ljmp	00144$
+;	../../shared/src/spd_ctrl.c:542: case 2: UPHY14_TRX_ANAREG_TOP_155.BT.B0 = (UPHY14_TRX_ANAREG_TOP_155.BT.B0&0x04)|0x5b; reg_RXCLK_NT_FIX_DIV_EN_LANE = 1; break;
+00134$:
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_155
+	movx	a,@dptr
+	mov	r6,a
+	mov	a,#0x04
+	anl	a,r6
+	orl	a,#0x5B
+	mov	r6,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_155
+	movx	@dptr,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_152
+	movx	a,@dptr
+	orl	a,#0x08
+	movx	@dptr,a
+	ljmp	00144$
+;	../../shared/src/spd_ctrl.c:543: case 3: UPHY14_TRX_ANAREG_TOP_155.BT.B0 = (UPHY14_TRX_ANAREG_TOP_155.BT.B0&0x04)|0x8a; reg_RXCLK_NT_FIX_DIV_EN_LANE = 1; break;
+00135$:
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_155
+	movx	a,@dptr
+	mov	r6,a
+	mov	a,#0x04
+	anl	a,r6
+	orl	a,#0x8A
+	mov	r6,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_155
+	movx	@dptr,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_152
+	movx	a,@dptr
+	orl	a,#0x08
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:544: }
+	sjmp	00144$
+00143$:
+;	../../shared/src/spd_ctrl.c:547: switch(lnx_RXDCLK_NT_SEL_LANE_1_0) {
+	mov	dptr,#(_CAL_CTRL1_LANE + 0x0002)
+	movx	a,@dptr
+	rl	a
+	rl	a
+	anl	a,#0x03
+	mov	r6,a
+	add	a,acc
+	add	a,r6
+	mov	dptr,#00226$
+	jmp	@a+dptr
+00226$:
+	ljmp	00137$
+	ljmp	00138$
+	ljmp	00139$
+	ljmp	00140$
+;	../../shared/src/spd_ctrl.c:548: case 0: UPHY14_TRX_ANAREG_TOP_155.BT.B0 = (UPHY14_TRX_ANAREG_TOP_155.BT.B0&0x04)|0x20; reg_RXCLK_NT_FIX_DIV_EN_LANE = 1; break;
+00137$:
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_155
+	movx	a,@dptr
+	mov	r6,a
+	mov	a,#0x04
+	anl	a,r6
+	orl	a,#0x20
+	mov	r6,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_155
+	movx	@dptr,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_152
+	movx	a,@dptr
+	orl	a,#0x08
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:549: case 1: UPHY14_TRX_ANAREG_TOP_155.BT.B0 = (UPHY14_TRX_ANAREG_TOP_155.BT.B0&0x04)|0x80; reg_RXCLK_NT_FIX_DIV_EN_LANE = 1; break;
+	sjmp	00144$
+00138$:
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_155
+	movx	a,@dptr
+	mov	r6,a
+	mov	a,#0x04
+	anl	a,r6
+	orl	a,#0x80
+	mov	r6,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_155
+	movx	@dptr,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_152
+	movx	a,@dptr
+	orl	a,#0x08
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:550: case 2: UPHY14_TRX_ANAREG_TOP_155.BT.B0 = (UPHY14_TRX_ANAREG_TOP_155.BT.B0&0x04)|0x2b; reg_RXCLK_NT_FIX_DIV_EN_LANE = 0; break;
+	sjmp	00144$
+00139$:
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_155
+	movx	a,@dptr
+	mov	r6,a
+	mov	a,#0x04
+	anl	a,r6
+	orl	a,#0x2B
+	mov	r6,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_155
+	movx	@dptr,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_152
+	movx	a,@dptr
+	anl	a,#0xf7
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:551: case 3: UPHY14_TRX_ANAREG_TOP_155.BT.B0 = (UPHY14_TRX_ANAREG_TOP_155.BT.B0&0x04)|0x42; reg_RXCLK_NT_FIX_DIV_EN_LANE = 0; break;
+	sjmp	00144$
+00140$:
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_155
+	movx	a,@dptr
+	mov	r6,a
+	mov	a,#0x04
+	anl	a,r6
+	orl	a,#0x42
+	mov	r6,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_155
+	movx	@dptr,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_152
+	movx	a,@dptr
+	anl	a,#0xf7
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:552: }
+00144$:
+;	../../shared/src/spd_ctrl.c:555: reg_RX_SELMUFF_LANE_2_0 		= speedtable[gen][spdoft_rx_selmuff_lane];
+	push	ar5
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x23
+	add	a,r6
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DTL_REG1 + 0x0001)
+	swap	a
+	rl	a
+	anl	a,#(0xe0&0xe0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x1f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:556: dfe_dis					= speedtable[gen][spdoft_reg_dfe_dis_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x41
+	add	a,r6
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	mov	r6,a
+	mov	dptr,#_dfe_dis
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:557: reg_DFE_TAP_SETTLE_SCALE_LANE_1_0	= speedtable[gen][spdoft_reg_dfe_tap_settle_scale_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r7,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r5,a
+	mov	a,#0x42
+	add	a,r7
+	mov	dpl,a
+	clr	a
+	addc	a,r5
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DFE_CTRL_REG2 + 0x0003)
+	anl	a,#0x03
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xfc
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:558: reg_FFE_DATA_RATE_LANE_3_0  		= speedtable[gen][spdoft_ffe_data_rate_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x43
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	mov	r5,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_130
+	swap	a
+	anl	a,#(0xf0&0xf0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x0f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:559: reg_DFE_EN_LANE = dfe_dis==0;  reg_DFE_DIS_LANE = dfe_dis;
+	mov	a,r6
+	cjne	a,#0x01,00227$
+00227$:
+	clr	a
+	rlc	a
+	mov	dptr,#_RX_EQ_CLK_CTRL
+	rrc	a
+	movx	a,@dptr
+	mov	acc.4,c
+	movx	@dptr,a
+	mov	dptr,#_DFE_CTRL_REG3
+	mov	a,r6
+	rrc	a
+	movx	a,@dptr
+	mov	acc.6,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:561: if(phy_mode!=SATA || PHY_STATUS!=ST_SPDCHG || pwrsq_on) {
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	pop	ar5
+	jnz	00156$
+	mov	dptr,#_MCU_STATUS0_LANE
+	movx	a,@dptr
+	mov	r6,a
+	cjne	r6,#0x19,00156$
+	mov	dptr,#_pwrsq_on
+	movx	a,@dptr
+	mov	r6,a
+	jnz	00231$
+	ljmp	00157$
+00231$:
+00156$:
+;	../../shared/src/spd_ctrl.c:562: reg_TX_CK_SEL_LANE 			= use_ring_pll|(serdes_ring_lane_en & ring_lane_sel);
+	push	ar2
+	mov	dptr,#_serdes_ring_lane_en
+	movx	a,@dptr
+	mov	r6,a
+	mov	a,r5
+	anl	a,r6
+	mov	r7,a
+	mov	c,_use_ring_pll
+	clr	a
+	rlc	a
+	orl	ar7,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_150
+	mov	a,r7
+	rrc	a
+	movx	a,@dptr
+	mov	acc.3,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:563: reg_TX_CK_SEL_DIG_LANE			= reg_TX_CK_SEL_LANE;	//duplicated for digital use
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_150
+	movx	a,@dptr
+	swap	a
+	rl	a
+	anl	a,#0x01
+	mov	dptr,#(_CLKGEN_TX_LANE_REG1_LANE + 0x0001)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.0,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:564: reg_TX_REG_SPEED_TRK_CLK_LANE_2_0	= speedtable[gen][spdoft_tx_reg_speed_trk_clk_lane];  
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r2,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	dpl,r2
+	mov	dph,r7
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_18
+	swap	a
+	rl	a
+	anl	a,#(0xe0&0xe0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x1f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:565: reg_TX_REG_SPEED_TRK_DATA_LANE_2_0	= speedtable[gen][spdoft_tx_reg_speed_trk_data_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r2,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	dpl,r2
+	mov	dph,r7
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_18
+	add	a,acc
+	add	a,acc
+	anl	a,#0x1c
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xe3
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:567: reg_TX_EM_CTRL_REG_EN_LANE		= speedtable[gen][spdoft_tx_em_ctrl_reg_en_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r2,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x08
+	add	a,r2
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0003)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.7,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:569: reg_TX_COE_FM_PIPE_LANE			= speedtable[gen][spdoft_tx_coe_fm_pipe_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r2,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x06
+	add	a,r2
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_TX_TRAIN_DRIVER_REG2
+	rrc	a
+	movx	a,@dptr
+	mov	acc.2,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:570: reg_PCIE_GEN12_SEL_LANE			= speedtable[gen][spdoft_pcie_gen12_sel_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r2,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x07
+	add	a,r2
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_TX_EMPH_CTRL_REG0 + 0x0001)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.2,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:574: reg_ANA_TX_EM_PRE_EN_LANE		= speedtable[gen][spdoft_tx_em_pre_en_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r2,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x09
+	add	a,r2
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0002)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.6,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:575: reg_ANA_TX_EM_PEAK_EN_LANE		= speedtable[gen][spdoft_tx_em_peak_en_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r2,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x0A
+	add	a,r2
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0002)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.7,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:576: if(phy_mode != PCIE)
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r2,a
+	cjne	r2,#0x03,00232$
+	pop	ar2
+	sjmp	00146$
+00232$:
+	pop	ar2
+;	../../shared/src/spd_ctrl.c:577: reg_ANA_TX_EM_PO_EN_LANE	= speedtable[gen][spdoft_tx_em_po_en_lane];
+	push	ar6
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r7,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x0B
+	add	a,r7
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_LINK_TRAIN_MODE0 + 0x0002)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.5,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:692: reg_MCU_DEBUG0_LANE_7_0 = 0x39;
+	pop	ar6
+;	../../shared/src/spd_ctrl.c:577: reg_ANA_TX_EM_PO_EN_LANE	= speedtable[gen][spdoft_tx_em_po_en_lane];
+00146$:
+;	../../shared/src/spd_ctrl.c:579: reg_SLEWRATE_EN_LANE_1_0		= speedtable[gen][spdoft_slewrate_en_lane];
+	push	ar6
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r7,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x0C
+	add	a,r7
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_19
+	rr	a
+	rr	a
+	anl	a,#(0xc0&0xc0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x3f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:580: reg_SLEWCTRL1_LANE_1_0			= speedtable[gen][spdoft_slewctrl1_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x0D
+	add	a,r6
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_19
+	add	a,acc
+	add	a,acc
+	anl	a,#0x0c
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf3
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:581: reg_SLEWCTRL0_LANE_1_0			= speedtable[gen][spdoft_slewctrl0_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x0E
+	add	a,r6
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_19
+	swap	a
+	anl	a,#(0xf0&0x30)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xcf
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:582: reg_TX_TRAIN_PAT_SEL_LANE_1_0		= speedtable[gen][spdoft_tx_train_pat_sel_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x0F
+	add	a,r6
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_PT_CONTROL0
+	swap	a
+	anl	a,#(0xf0&0x30)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xcf
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:583: reg_TRAIN_PAT_NUM_LANE_8_0_b0		= speedtable[gen][spdoft_train_pat_num_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x10
+	add	a,r6
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_FRAME_SYNC_DET_REG1
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:584: reg_TRAIN_PAT_NUM_LANE_8_0_b1		= speedtable[gen][spdoft_train_pat_num_lane+1];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x11
+	add	a,r6
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_FRAME_SYNC_DET_REG1 + 0x0001)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.0,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:585: reg_TX_TRAIN_PAT_TOGGLE_LANE		= speedtable[gen][spdoft_tx_train_pat_toggle_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x12
+	add	a,r6
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_TX_TRAIN_PATTTERN_REG0 + 0x0001)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.1,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:586: reg_PACKET_SYNC_DIS_LANE		= speedtable[gen][spdoft_packet_sync_dis_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x13
+	add	a,r6
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_FRAME_SYNC_DET_REG1 + 0x0001)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.7,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:587: reg_SYNC_DET_DIS_LANE			= speedtable[gen][spdoft_sync_det_dis_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x14
+	add	a,r6
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_FRAME_SYNC_DET_REG1 + 0x0002)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.0,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:591: rx_pll_rate				= speedtable[gen][spdoft_pll_rate_sel_rx]; 
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r6,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r7,a
+	mov	a,#0x15
+	add	a,r6
+	mov	dpl,a
+	clr	a
+	addc	a,r7
+	mov	dph,a
+	movx	a,@dptr
+	add	a,#0xff
+	mov	_rx_pll_rate,c
+;	../../shared/src/spd_ctrl.c:592: if(rx_pll_rate>1 || phy_mode==SERDES) rx_pll_rate = 0;
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r6,a
+	cjne	r6,#0x04,00233$
+	sjmp	00234$
+00233$:
+	pop	ar6
+	sjmp	00148$
+00234$:
+	pop	ar6
+	clr	_rx_pll_rate
+00148$:
+;	../../shared/src/spd_ctrl.c:593: reg_RX_CK_SEL_LANE 			= speedtable[gen][spdoft_rx_ck_sel_lane] | (serdes_ring_lane_en & ring_lane_sel);  
+	push	ar2
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r7,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r2,a
+	mov	a,#0x16
+	add	a,r7
+	mov	dpl,a
+	clr	a
+	addc	a,r2
+	mov	dph,a
+	mov	a,r6
+	anl	ar5,a
+	movx	a,@dptr
+	orl	ar5,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_150
+	mov	a,r5
+	rrc	a
+	movx	a,@dptr
+	mov	acc.4,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:594: reg_INTPI_LANE_3_0			= speedtable[gen][spdoft_intpi_lane]; 
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r2,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r5,a
+	mov	a,#0x1A
+	add	a,r2
+	mov	dpl,a
+	clr	a
+	addc	a,r5
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_11
+	add	a,acc
+	anl	a,#0x1e
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xe1
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:595: reg_INTPR_LANE_1_0			= speedtable[gen][spdoft_intpr_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r2,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r5,a
+	mov	a,#0x1B
+	add	a,r2
+	mov	dpl,a
+	clr	a
+	addc	a,r5
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_133
+	anl	a,#0x03
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xfc
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:596: reg_DLL_FREQ_SEL_LANE_1_0		= speedtable[gen][spdoft_dll_freq_sel_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r2,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r5,a
+	mov	a,#0x1C
+	add	a,r2
+	mov	dpl,a
+	clr	a
+	addc	a,r5
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_7
+	rr	a
+	rr	a
+	anl	a,#(0xc0&0xc0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x3f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:597: if(speedtable[gen][spdoft_dll_freq_sel_lane]&0x04) reg_DLL_FREQ_SEL_LANE_2 = 1;
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r2,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r5,a
+	mov	a,#0x1C
+	add	a,r2
+	mov	dpl,a
+	clr	a
+	addc	a,r5
+	mov	dph,a
+	movx	a,@dptr
+	pop	ar2
+	jnb	acc.2,00151$
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_29
+	movx	a,@dptr
+	orl	a,#0x40
+	movx	@dptr,a
+	sjmp	00152$
+00151$:
+;	../../shared/src/spd_ctrl.c:598: else reg_DLL_FREQ_SEL_LANE_2 = 0;
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_29
+	movx	a,@dptr
+	anl	a,#0xbf
+	movx	@dptr,a
+00152$:
+;	../../shared/src/spd_ctrl.c:599: reg_EOM_DLL_FREQ_SEL_LANE_1_0		= speedtable[gen][spdoft_eom_dll_freq_sel_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x1D
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_8
+	anl	a,#0x03
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xfc
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:600: if(speedtable[gen][spdoft_eom_dll_freq_sel_lane]&0x04) reg_EOM_DLL_FREQ_SEL_LANE_2 = 1;
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x1D
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	r5,a
+	jnb	acc.2,00154$
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_29
+	movx	a,@dptr
+	orl	a,#0x80
+	movx	@dptr,a
+	sjmp	00155$
+00154$:
+;	../../shared/src/spd_ctrl.c:601: else reg_EOM_DLL_FREQ_SEL_LANE_2 = 0;
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_29
+	movx	a,@dptr
+	anl	a,#0x7f
+	movx	@dptr,a
+00155$:
+;	../../shared/src/spd_ctrl.c:602: reg_ALIGN90_8G_EN_LANE			= speedtable[gen][spdoft_align90_8g_en_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x1E
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_28
+	rrc	a
+	movx	a,@dptr
+	mov	acc.3,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:603: reg_RX_REG0P9_SPEED_TRACK_CLK_LANE_2_0	= speedtable[gen][spdoft_rx_reg0p9_speed_track_clk_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x1F
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_142
+	swap	a
+	rl	a
+	anl	a,#(0xe0&0xe0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x1f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:604: reg_RX_REG0P9_SPEED_TRACK_CLK_HALF_LANE	= speedtable[gen][spdoft_rx_reg0p9_speed_track_clk_half_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x20
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_142
+	rrc	a
+	movx	a,@dptr
+	mov	acc.4,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:605: reg_RX_SELMUFI_LANE_2_0			= speedtable[gen][spdoft_rx_selmufi_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x22
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DTL_REG1 + 0x0001)
+	add	a,acc
+	add	a,acc
+	anl	a,#0x1c
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xe3
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:606: reg_REG_SELMUPI_LANE_3_0		= speedtable[gen][spdoft_reg_selmupi_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x24
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_139
+	anl	a,#0x0f
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf0
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:607: reg_REG_SELMUPF_LANE_3_0		= speedtable[gen][spdoft_reg_selmupf_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x25
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_140
+	swap	a
+	anl	a,#(0xf0&0xf0)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x0f
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:608: reg_DTL_CLK_MODE_LANE_1_0		= speedtable[gen][spdoft_dtl_clk_mode_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x2A
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DTL_REG0 + 0x0003)
+	swap	a
+	anl	a,#(0xf0&0x30)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xcf
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:609: reg_RX_FOFFSET_EXTRA_M_LANE_13_0_b0	= speedtable[gen][spdoft_rx_foffset_extra_m_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x2B
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_DTL_REG2
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:610: reg_RX_FOFFSET_EXTRA_M_LANE_13_0_b1	= speedtable[gen][spdoft_rx_foffset_extra_m_lane+1];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x2C
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DTL_REG2 + 0x0001)
+	anl	a,#0x3f
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xc0
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:611: reg_INIT_RXFOFFS_LANE_9_0_b0		= speedtable[gen][spdoft_init_rxfoffs_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x2D
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_DTL_REG1
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:612: reg_INIT_RXFOFFS_LANE_9_0_b1		= speedtable[gen][spdoft_init_rxfoffs_lane+1];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x2E
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DTL_REG1 + 0x0001)
+	anl	a,#0x03
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xfc
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:615: reg_RXCLK_25M_CTRL_LANE_1_0		= speedtable[gen][spdoft_rx_rxclk_25m_ctrl_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x26
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_152
+	add	a,acc
+	anl	a,#0x06
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf9
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:616: reg_RXCLK_25M_DIV1P5_EN_LANE		= speedtable[gen][spdoft_rx_rxclk_25m_div1p5_en_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x27
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_152
+	rrc	a
+	movx	a,@dptr
+	mov	acc.0,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:617: reg_RXCLK_25M_DIV_LANE_7_0		= speedtable[gen][spdoft_rx_rxclk_25m_div_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x28
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_154
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:618: reg_RXCLK_25M_FIX_DIV_EN_LANE		= speedtable[gen][spdoft_rx_rxclk_25m_fix_div_en_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x29
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_TOP_152
+	rrc	a
+	movx	a,@dptr
+	mov	acc.5,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:622: rxdll_temp_a_lane = speedtable[gen][spdoft_rxdll_temp_a_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x44
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_rxdll_temp_a_lane
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:623: rxdll_temp_b_lane = speedtable[gen][spdoft_rxdll_temp_b_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x45
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_rxdll_temp_b_lane
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:626: reg_PATH_DISABLE_EDGE_LANE		= speedtable[gen][spdoft_path_disable_edge_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x37
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_19
+	rrc	a
+	movx	a,@dptr
+	mov	acc.1,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:627: reg_ANA_RX_DFE_F1_POL_EN_D_LANE		= speedtable[gen][spdoft_dfe_f1_pol_en_d_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x38
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DFE_ANA_REG0 + 0x0001)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.2,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:628: reg_ANA_RX_DFE_F1_POL_EN_S_LANE		= speedtable[gen][spdoft_dfe_f1_pol_en_s_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x39
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DFE_ANA_REG0 + 0x0001)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.3,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:629: reg_ANA_RX_DFE_F1_POL_D_LANE		= speedtable[gen][spdoft_dfe_f1_pol_d_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x3A
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DFE_ANA_REG0 + 0x0002)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.2,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:630: reg_ANA_RX_DFE_F1_POL_S_LANE		= speedtable[gen][spdoft_dfe_f1_pol_s_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x3B
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DFE_ANA_REG0 + 0x0002)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.3,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:631: reg_ANA_RX_DFE_F1_POL_EN_D_FORCE_LANE	= speedtable[gen][spdoft_reg_ana_rx_dfe_f1_pol_en_d_force_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x3C
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DFE_ANA_REG1 + 0x0001)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.2,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:632: reg_ANA_RX_DFE_F1_POL_EN_S_FORCE_LANE	= speedtable[gen][spdoft_reg_ana_rx_dfe_f1_pol_en_s_force_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x3D
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DFE_ANA_REG1 + 0x0001)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.3,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:633: reg_ANA_RX_DFE_F1_POL_D_FORCE_LANE	= speedtable[gen][spdoft_reg_ana_rx_dfe_f1_pol_d_force_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x3E
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DFE_ANA_REG1 + 0x0002)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.2,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:634: reg_ANA_RX_DFE_F1_POL_S_FORCE_LANE	= speedtable[gen][spdoft_reg_ana_rx_dfe_f1_pol_s_force_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x3F
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DFE_ANA_REG1 + 0x0002)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.3,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:635: reg_DFE_FULL_RATE_MODE_LANE		= speedtable[gen][spdoft_reg_dfe_full_rate_mode_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x40
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#(_DFE_CTRL_REG3 + 0x0001)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.0,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:638: reg_PU_F1N_S_O_LANE			= speedtable[gen][spdoft_pu_f1n_s_o_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x36
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_24
+	rrc	a
+	movx	a,@dptr
+	mov	acc.4,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:639: reg_PU_F1N_D_O_LANE			= speedtable[gen][spdoft_pu_f1n_d_o_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x34
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_24
+	rrc	a
+	movx	a,@dptr
+	mov	acc.6,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:640: reg_PU_F1N_S_E_LANE			= speedtable[gen][spdoft_pu_f1n_s_e_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x32
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_23
+	rrc	a
+	movx	a,@dptr
+	mov	acc.0,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:641: reg_PU_F1N_D_E_LANE			= speedtable[gen][spdoft_pu_f1n_d_e_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x30
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_23
+	rrc	a
+	movx	a,@dptr
+	mov	acc.2,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:642: reg_PU_F1P_S_E_LANE			= speedtable[gen][spdoft_pu_f1p_s_e_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x31
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	r5,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_23
+	rrc	a
+	movx	a,@dptr
+	mov	acc.1,c
+	movx	@dptr,a
+00157$:
+;	../../shared/src/spd_ctrl.c:645: reg_PU_F1P_S_O_LANE			= speedtable[gen][spdoft_pu_f1p_s_o_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x35
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_24
+	rrc	a
+	movx	a,@dptr
+	mov	acc.5,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:646: reg_PU_F1P_D_O_LANE			= speedtable[gen][spdoft_pu_f1p_d_o_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r6,a
+	mov	a,#0x33
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	r5,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_24
+	rrc	a
+	movx	a,@dptr
+	mov	acc.7,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:647: reg_PU_F1P_D_E_LANE			= speedtable[gen][spdoft_pu_f1p_d_e_lane];
+	mov	a,r3
+	add	a,#_speedtable
+	mov	r3,a
+	mov	a,r4
+	addc	a,#(_speedtable >> 8)
+	mov	r4,a
+	mov	a,#0x2F
+	add	a,r3
+	mov	dpl,a
+	clr	a
+	addc	a,r4
+	mov	dph,a
+	movx	a,@dptr
+	mov	r3,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_23
+	rrc	a
+	movx	a,@dptr
+	mov	acc.3,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:650: if(cmx_TX_SSC_CTRL_SEL) {
+	mov	dptr,#(_CONTROL_CONFIG3 + 0x0003)
+	movx	a,@dptr
+	jb	acc.4,00237$
+	ljmp	00167$
+00237$:
+;	../../shared/src/spd_ctrl.c:651: reg_SSC_EN_FM_REG_LANE = 1;
+	mov	dptr,#_INPUT_TX_PIN_REG1_LANE
+	movx	a,@dptr
+	orl	a,#0x02
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:652: if(train_save_tb[gen].ssc_en) 
+	mov	a,r2
+	add	a,r2
+	add	a,acc
+	mov	r3,a
+	add	a,#_train_save_tb
+	mov	r4,a
+	clr	a
+	addc	a,#(_train_save_tb >> 8)
+	mov	r5,a
+	mov	dpl,r4
+	mov	dph,r5
+	movx	a,@dptr
+	jnb	acc.0,00161$
+;	../../shared/src/spd_ctrl.c:653: reg_SSC_EN_LANE = 1;
+	mov	dptr,#_INPUT_TX_PIN_REG1_LANE
+	movx	a,@dptr
+	orl	a,#0x04
+	movx	@dptr,a
+	sjmp	00162$
+00161$:
+;	../../shared/src/spd_ctrl.c:654: else reg_SSC_EN_LANE = 0;
+	mov	dptr,#_INPUT_TX_PIN_REG1_LANE
+	movx	a,@dptr
+	anl	a,#0xfb
+	movx	@dptr,a
+00162$:
+;	../../shared/src/spd_ctrl.c:656: if(use_ring_pll) {
+	jnb	_use_ring_pll,00164$
+;	../../shared/src/spd_ctrl.c:661: reg_SSC_DSPREAD_TX_RING			= tx_tb[gen].ssc_dspread;
+	mov	a,r3
+	add	a,#_tx_tb
+	mov	r4,a
+	clr	a
+	addc	a,#(_tx_tb >> 8)
+	mov	r5,a
+	mov	dpl,r4
+	mov	dph,r5
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	movx	a,@dptr
+	rl	a
+	anl	a,#0x01
+	mov	dptr,#(_DTX_REG2 + 0x0003)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.6,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:662: reg_SSC_AMP_RING_6_0			= tx_tb[gen].ssc_amp;
+	mov	a,r3
+	add	a,#_tx_tb
+	mov	r4,a
+	clr	a
+	addc	a,#(_tx_tb >> 8)
+	mov	r5,a
+	mov	dpl,r4
+	mov	dph,r5
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	movx	a,@dptr
+	anl	a,#0x7f
+	mov	r4,a
+	mov	dptr,#(_DTX_REG4 + 0x0003)
+	add	a,acc
+	anl	a,#0xfe
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x01
+	orl	a,b
+	movx	@dptr,a
+	sjmp	00167$
+00164$:
+;	../../shared/src/spd_ctrl.c:666: reg_SSC_DSPREAD_TX 			= tx_tb[gen].ssc_dspread;
+	mov	a,r3
+	add	a,#_tx_tb
+	mov	r4,a
+	clr	a
+	addc	a,#(_tx_tb >> 8)
+	mov	r5,a
+	mov	dpl,r4
+	mov	dph,r5
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	movx	a,@dptr
+	rl	a
+	anl	a,#0x01
+	mov	dptr,#(_DTX_REG0 + 0x0003)
+	rrc	a
+	movx	a,@dptr
+	mov	acc.6,c
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:667: reg_SSC_AMP_6_0				= tx_tb[gen].ssc_amp;
+	mov	a,r3
+	add	a,#_tx_tb
+	mov	r3,a
+	clr	a
+	addc	a,#(_tx_tb >> 8)
+	mov	r4,a
+	mov	dpl,r3
+	mov	dph,r4
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	movx	a,@dptr
+	anl	a,#0x7f
+	mov	r3,a
+	mov	dptr,#(_DTX_REG2 + 0x0002)
+	anl	a,#0x7f
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x80
+	orl	a,b
+	movx	@dptr,a
+00167$:
+;	../../shared/src/spd_ctrl.c:672: if(sq_thrs_ratio_gen_en & (0x01<<gen)) {
+	mov	b,r2
+	inc	b
+	mov	r3,#0x01
+	mov	r4,#0x00
+	sjmp	00241$
+00240$:
+	mov	a,r3
+	add	a,r3
+	mov	r3,a
+	mov	a,r4
+	rlc	a
+	mov	r4,a
+00241$:
+	djnz	b,00240$
+	mov	dptr,#_sq_thrs_ratio_gen_en
+	movx	a,@dptr
+	mov	r5,a
+	mov	r6,#0x00
+	anl	ar3,a
+	mov	a,r6
+	anl	ar4,a
+	mov	a,r3
+	orl	a,r4
+	jz	00172$
+;	../../shared/src/spd_ctrl.c:673: sq_thrs_ratio = sq_thrs_ratio_tb[gen];
+	mov	a,r2
+	add	a,#_sq_thrs_ratio_tb
+	mov	dpl,a
+	clr	a
+	addc	a,#(_sq_thrs_ratio_tb >> 8)
+	mov	dph,a
+	movx	a,@dptr
+	mov	r3,a
+	mov	dptr,#_sq_thrs_ratio
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:674: temp = lnx_CAL_SQ_THRESH_LANE_7_0;
+	mov	dptr,#(_CAL_SAVE_DATA1_LANE + 0x0003)
+	movx	a,@dptr
+	mov	r4,a
+	mov	r5,#0x00
+;	../../shared/src/spd_ctrl.c:675: if(sq_thrs_ratio==0)
+	mov	a,r3
+	jnz	00169$
+;	../../shared/src/spd_ctrl.c:676: reg_SQ_THRESH_LANE_5_0 = (uint8_t)temp;
+	mov	ar6,r4
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_4
+	mov	a,r6
+	add	a,r6
+	add	a,acc
+	anl	a,#0xfc
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x03
+	orl	a,b
+	movx	@dptr,a
+	sjmp	00172$
+00169$:
+;	../../shared/src/spd_ctrl.c:678: temp = temp * sq_thrs_ratio;
+	mov	r6,#0x00
+	push	ar2
+	push	ar3
+	push	ar6
+	mov	dpl,r4
+	mov	dph,r5
+	lcall	__mulint
+	mov	r3,dpl
+	mov	r6,dph
+	dec	sp
+	dec	sp
+	pop	ar2
+	mov	ar4,r3
+	mov	ar5,r6
+;	../../shared/src/spd_ctrl.c:679: reg_SQ_THRESH_LANE_5_0 = (lnx_CAL_SQ_THRESH_LANE_7_0&0x20) | ((uint8_t)(temp>>5));
+	mov	dptr,#(_CAL_SAVE_DATA1_LANE + 0x0003)
+	movx	a,@dptr
+	mov	r3,a
+	anl	ar3,#0x20
+	mov	a,r5
+	swap	a
+	rr	a
+	xch	a,r4
+	swap	a
+	rr	a
+	anl	a,#0x07
+	xrl	a,r4
+	xch	a,r4
+	anl	a,#0x07
+	xch	a,r4
+	xrl	a,r4
+	xch	a,r4
+	mov	r5,a
+	mov	a,r4
+	orl	ar3,a
+	mov	dptr,#_UPHY14_TRX_ANAREG_BOT_4
+	mov	a,r3
+	add	a,r3
+	add	a,acc
+	anl	a,#0xfc
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0x03
+	orl	a,b
+	movx	@dptr,a
+00172$:
+;	../../shared/src/spd_ctrl.c:686: if(phy_mode == SAS && gen==4) reg_TX_TRAIN_IF_CLK_EN_LANE = 1;
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r3,a
+	cjne	r3,#0x01,00174$
+	cjne	r2,#0x04,00174$
+	mov	dptr,#(_TX_TRAIN_IF_REG0 + 0x0003)
+	movx	a,@dptr
+	orl	a,#0x40
+	movx	@dptr,a
+	sjmp	00175$
+00174$:
+;	../../shared/src/spd_ctrl.c:687: else reg_TX_TRAIN_IF_CLK_EN_LANE = 0;
+	mov	dptr,#(_TX_TRAIN_IF_REG0 + 0x0003)
+	movx	a,@dptr
+	anl	a,#0xbf
+	movx	@dptr,a
+00175$:
+;	../../shared/src/spd_ctrl.c:692: reg_MCU_DEBUG0_LANE_7_0 = 0x39;
+	mov	dptr,#_MCU_DEBUG0_LANE
+	mov	a,#0x39
+	movx	@dptr,a
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'loadSpeedtbl'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	../../shared/src/spd_ctrl.c:696: void loadSpeedtbl(void) {
+;	-----------------------------------------
+;	 function loadSpeedtbl
+;	-----------------------------------------
+_loadSpeedtbl:
+;	../../shared/src/spd_ctrl.c:698: loadspeedtbl_gen();
+	lcall	_loadspeedtbl_gen
+;	../../shared/src/spd_ctrl.c:706: if( mcuid== master_mcu ) {
+	mov	dptr,#_MCU_CONTROL_LANE
+	movx	a,@dptr
+	mov	r2,a
+	mov	dptr,#_MCU_CONFIG
+	movx	a,@dptr
+	mov	r3,a
+	mov	a,r2
+	cjne	a,ar3,00111$
+;	../../shared/src/spd_ctrl.c:709: if(!use_ring_pll) {
+	jb	_use_ring_pll,00107$
+;	../../shared/src/spd_ctrl.c:712: if (phy_mode==PCIE)
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r2,a
+	cjne	r2,#0x03,00102$
+;	../../shared/src/spd_ctrl.c:715: loadspeedtbl_pll(gen_pll_rate);
+	mov	dptr,#_gen_pll_rate
+	movx	a,@dptr
+	mov	dpl,a
+	ljmp	_loadspeedtbl_pll
+00102$:
+;	../../shared/src/spd_ctrl.c:718: loadspeedtbl_pll(tx_pll_rate);
+	mov	c,_tx_pll_rate
+	clr	a
+	rlc	a
+	mov	dpl,a
+	ljmp	_loadspeedtbl_pll
+00107$:
+;	../../shared/src/spd_ctrl.c:722: if( tx_pll_rate != PLL_RATE_SEL_RING )
+	mov	dptr,#(_CONTROL_CONFIG6 + 0x0003)
+	movx	a,@dptr
+	mov	r2,a
+	mov	c,_tx_pll_rate
+	clr	a
+	rlc	a
+	mov	r3,a
+	cjne	a,ar2,00122$
+	ret
+00122$:
+;	../../shared/src/spd_ctrl.c:723: loadspeedtbl_ringpll(tx_pll_rate);
+	mov	c,_tx_pll_rate
+	clr	a
+	rlc	a
+	mov	dpl,a
+	ljmp	_loadspeedtbl_ringpll
+00111$:
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'loadSpdtbl_4_fcnt'
+;------------------------------------------------------------
+;fbck                      Allocated to registers 
+;rate                      Allocated to registers r2 
+;------------------------------------------------------------
+;	../../shared/src/spd_ctrl.c:732: void loadSpdtbl_4_fcnt(void) {
+;	-----------------------------------------
+;	 function loadSpdtbl_4_fcnt
+;	-----------------------------------------
+_loadSpdtbl_4_fcnt:
+;	../../shared/src/spd_ctrl.c:736: if(phy_mode==SERDES) rate = gen_pll_rate;
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r2,a
+	cjne	r2,#0x04,00102$
+	mov	dptr,#_gen_pll_rate
+	movx	a,@dptr
+	mov	r2,a
+	sjmp	00103$
+00102$:
+;	../../shared/src/spd_ctrl.c:737: else rate = PLL_RATE_SEL;
+	mov	dptr,#(_CONTROL_CONFIG6 + 0x0002)
+	movx	a,@dptr
+	mov	r3,a
+	mov	r2,a
+00103$:
+;	../../shared/src/spd_ctrl.c:739: reg_FBDIV_7_0 		= lc_speedtable[fbck][rate][spdoft_fbdiv_cal];
+	mov	a,r2
+	swap	a
+	rl	a
+	anl	a,#0xe0
+	mov	r2,a
+	mov	r3,a
+	mov	r4,#(_lc_speedtable >> 8)
+	mov	dpl,r3
+	mov	dph,r4
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_169
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:740: reg_FBDIV_9_8 		= lc_speedtable[fbck][rate][spdoft_fbdiv_cal+1];
+	mov	r3,#(_lc_speedtable >> 8)
+	mov	dpl,r2
+	mov	dph,r3
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	inc	dptr
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_168
+	swap	a
+	anl	a,#(0xf0&0x30)
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xcf
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:741: reg_ANA_FBCK_SEL = 0;
+	mov	dptr,#(_PM_CMN_REG1 + 0x0001)
+	movx	a,@dptr
+	anl	a,#0xfd
+	movx	@dptr,a
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'ringloadSpdtbl_4_fcnt'
+;------------------------------------------------------------
+;fbck                      Allocated to registers 
+;ck1g                      Allocated to registers r2 
+;rate                      Allocated to registers r3 
+;------------------------------------------------------------
+;	../../shared/src/spd_ctrl.c:745: void ringloadSpdtbl_4_fcnt(void) {
+;	-----------------------------------------
+;	 function ringloadSpdtbl_4_fcnt
+;	-----------------------------------------
+_ringloadSpdtbl_4_fcnt:
+;	../../shared/src/spd_ctrl.c:749: ck1g = ring_use_250m;
+	mov	c,_ring_use_250m
+	clr	a
+	rlc	a
+	mov	r2,a
+;	../../shared/src/spd_ctrl.c:750: if(phy_mode==SERDES) rate = gen_pll_rate;
+	mov	dptr,#(_SYSTEM + 0x0002)
+	movx	a,@dptr
+	anl	a,#0x07
+	mov	r3,a
+	cjne	r3,#0x04,00102$
+	mov	dptr,#_gen_pll_rate
+	movx	a,@dptr
+	mov	r3,a
+	sjmp	00103$
+00102$:
+;	../../shared/src/spd_ctrl.c:751: else rate = PLL_RATE_SEL_RING;
+	mov	dptr,#(_CONTROL_CONFIG6 + 0x0003)
+	movx	a,@dptr
+	mov	r4,a
+	mov	r3,a
+00103$:
+;	../../shared/src/spd_ctrl.c:758: reg_PLL_FBDIV_RING_7_0 = ring_speedtable[ck1g][fbck][rate][spdoft_fbdiv_cal_ring];
+	mov	r4,#0x00
+	push	ar3
+	push	ar2
+	push	ar4
+	mov	dptr,#0x0120
+	lcall	__mulint
+	mov	r2,dpl
+	mov	r4,dph
+	dec	sp
+	dec	sp
+	pop	ar3
+	mov	a,r2
+	add	a,#_ring_speedtable
+	mov	r5,a
+	mov	a,r4
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r6,a
+	mov	a,r3
+	mov	b,#0x24
+	mul	ab
+	mov	r3,a
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	a,#0x0B
+	add	a,r5
+	mov	dpl,a
+	clr	a
+	addc	a,r6
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_189
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:759: reg_PLL_FBDIV_RING_9_8 = ring_speedtable[ck1g][fbck][rate][spdoft_fbdiv_cal_ring+1];
+	mov	a,r2
+	add	a,#_ring_speedtable
+	mov	r2,a
+	mov	a,r4
+	addc	a,#(_ring_speedtable >> 8)
+	mov	r4,a
+	mov	a,r3
+	add	a,r2
+	mov	r3,a
+	clr	a
+	addc	a,r4
+	mov	r5,a
+	mov	a,#0x0C
+	add	a,r3
+	mov	dpl,a
+	clr	a
+	addc	a,r5
+	mov	dph,a
+	movx	a,@dptr
+	mov	dptr,#_UPHY14_CMN_ANAREG_TOP_188
+	add	a,acc
+	anl	a,#0x06
+	mov	b,a
+	movx	a,@dptr
+	anl	a,#0xf9
+	orl	a,b
+	movx	@dptr,a
+;	../../shared/src/spd_ctrl.c:760: reg_ANA_FBCK_SEL_RING = 0;
+	mov	dptr,#_PM_CMN_REG1
+	movx	a,@dptr
+	anl	a,#0xfb
+	movx	@dptr,a
+	ret
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+	.area CABS    (ABS,CODE)

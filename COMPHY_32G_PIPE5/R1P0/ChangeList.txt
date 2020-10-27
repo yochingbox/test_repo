@@ -1,0 +1,125 @@
+//*********************************************************************
+//	    COMPHY_32G_PIPE5_X2 Firmware Change History			
+//
+//   Copyright (c) 2016 Marvell Semiconductor, Inc. All rights reserved
+//*********************************************************************
+ 10/15/2018 Heejeong Ryu 
+  - Fixed SQ Threshold ratio calculation
+ 10/5/2018 Minh Tran 0.12.8.38
+  - Supported SYNC_STATUS_LANE and SYNC_STATUS_LANE_EN.
+  - Moved sampler_cal to ROM.
+ 10/4/2018 Minh Tran 0.12.8.37
+  - Fixed spd_chg hung caused by sync status typo in cal_top.c
+ 10/3/2018 Minh Tran 0.12.8.36
+  - Added CMN XDATA registers to sync status between MCU.
+  - Fixed nightly regression PM test case failures.
+ 10/1/2018 Minh Tran 0.12.8.35
+  - Typo during the merge with 28G_X2 and clean up.
+ 9/27/2018 Minh Tran 0.12.8.34
+  - Update new speed table
+	1. Removed tx_em_pre_ctrl_lane[3:0] and tx_em_po_ctrl_lane[3:0].
+	2. Added tx_em_peak_en_lane.
+ 9/27/2018 Minh Tran 0.12.8.33
+  - Designer asked FW not to change the following registers in ASIC mode:
+	reg_tx_em_peak_en
+	reg_tx_em_peak_ctrl
+	reg_tx_em_pre_en
+	reg_tx_em_pre_ctrl
+	reg_tx_em_post_en
+	reg_tx_em_post_ctrl
+
+ 9/27/2018 Minh Tran 0.12.8.32
+  - Fixed the tx_train_if test case failures by using the SERDES tx_preset_index = 2
+ 9/26/2018 Minh Tran 0.12.8.31
+  - Merged changes from 28G_X2
+  - Speed table updated
+ 9/21/2018 Minh Tran 0.12.8.30
+  - Fixed SERDES spd_chg failures.
+  - New speed tables
+ 9/20/2018 Minh Tran 0.12.8.29
+  - Build binaries with Train Timeout Stuck fix.
+  - Fixed RPLL build
+ 9/19/2018 Heejeong Ryu 
+  - Fixed Train Timeout Stuck
+ 9/17/2018 Minh Tran 0.12.8.28
+  - Fixed nightly regression pm_ctrl_pcie.
+ 9/17/2018 Minh Tran 0.12.8.27
+  - Fixed nightly regression USB spd_chg failures.
+ 9/17/2018 Minh Tran 0.12.8.26
+  - Designer requested FW to remove init reg_REMOTE_COMP_FM_REG_EN_LANE = 1
+  - Added MCU_COMMAND_ALL0_LANE register to xdat_cmn
+  - CESD-375: ANA_TX0_PU_TX is not correct in PHY state Tx partial slumber enter
+  - CESD-376: Reference clock disable sequence fails
+ 9/14/2018 Minh Tran 0.12.8.25
+  - PIN_RESET_CORE now reset Lane MCU
+ 9/12/2018 Minh Tran 0.12.8.24
+  - Designer requested to program reg_ethernet_mode_lane to 1 when PHY mode is SerDes
+ 9/10/2018 Minh Tran 0.12.8.23
+  - Added _lane to TX speed table pcie_gen12_sel and tx_coe_fm_pipe fields
+ 9/10/2018 Minh Tran 0.12.8.22
+  - Updated speed tables from Sharepoint
+ 9/06/2018 Minh Tran 0.12.8.21
+  - Added new register tx_train_mode_lane (0=ASIC, 1=MCU); Default = 1
+  - Support new Tx training IF; Rename some tx_train_if related registers and init registers.
+  - Updated speed tables
+ 8/17/2018 Minh Tran 0.12.8.20
+  - Fixed problem of loading bad ring PLL speed tables
+ 8/17/2018 Minh Tran 0.12.8.19
+  - Updated new speed table to support PCIE GEN5
+ 8/15/2018 Minh Tran 0.12.8.18
+  - Only master MCU needs to access common Ring PLL registers
+  - Merged CESD-359: Add condition for eom_ui_align function for phase control mode 1.
+  - Merged r2290 changes.
+ 8/14/2018 Minh Tran 0.12.8.17
+  - Updated xdata lane default values
+ 8/13/2018 Minh Tran 0.12.8.16
+  - Build FW binaries with latest merge (28G_PIPE4_X2 r2280)
+ 8/10/2018 Minh Tran
+  - Check in 32G_PIPE5_X2's specific files to compile with 28G_PIPE4_X2 r2280 merged
+ 8/08/2018 Minh Tran 0.12.8.15
+  - Build FW binaries include fix for CESD-354
+
+*** 8/08/2018 - copy the file from COMPHY_28G_PIPE4_RPLL since the codes are shared
+
+ 8/07/2018 Minh Tran 0.12.8.13i
+  - Merged from 28G_PIPE4_X2 upto r2224
+ 7/24/2018 Minh Tran 0.12.8.12
+  - Removed local variables warning
+  - Merged with 16FFC_COMPHY_28G_PIPE4_X2 upto r2189
+ 7/23/2018 Minh Tran 0.12.8.11
+  - Added compiler option _LANE_RPLL and initial support of common RPLL
+ 7/20/2018 Minh Tran 0.12.8.10
+  - Clean up _28G_X2 compiler option
+  - CESD-337: clear the interrupt enable bits in the SW reset
+ 7/13/2018 Minh Tran 0.12.8.9
+  - Updated tx_lane header file from share point
+  - Fixed FW not taking rpll_lane out of reset properly, plus typo
+ 7/13/2018 X.Su
+  - CESD-302: Watch Dog Timer not enabled in all 28G PHY. (Applied change. No build)
+ 7/10/2018 Minh Tran 0.12.8.8
+  - Merged with 16FFC_COMPHY_28G_PIPE4_X2 upto r2107
+  - Fixed issues reported by Wei.
+	reg_ssc_step_125ppm_tx_ring_lane mapping
+	L1.1 entry latency exceeds spec (fixed from merge)
+ 7/10/2018 Minh Tran 0.12.8.7
+  - Fixed the tx alignment issue
+ 7/06/2018 Minh Tran 0.12.8.6
+  - Fixed the PCIe P1CLKREQ_WK hung issue
+ 7/06/2018 Minh Tran 0.12.8.5
+  - Sync up from X2 changes. Optimized fast calibration performance; changed "wait time" from 4us to 3us
+  - Updated RPLL remapped register reg_ANA_TX_PLL_LOCK_RING_RD_LANE
+ 7/05/2018 Minh Tran 0.12.8.4
+  - Fixed lane 1 (none master) load wrong data from Ring PLL speed table
+ 7/03/2018 Minh Tran 0.12.8.3
+    Updated to latest reg files from share point
+    Fixed lane 1 hung in calibration and more registers remapped changes
+    New RPLL binaries
+ 7/01/2018 Minh Tran 0.12.8.2
+  - Initial RPLL support 
+    New reg files from share point
+    New registers remapped with compiled code
+ 6/21/2018 X.Su 0.12.8.1
+  - Applied CESD-299 (PCIe link training issue) fix from 28G_PIPE4 FW.
+ 6/18/2018 X.Su 0.12.8.0
+  - First revision copied from 28G_PIPE4 R2.0 firmware with 2lane and shared folders
+//********************************************************************* 

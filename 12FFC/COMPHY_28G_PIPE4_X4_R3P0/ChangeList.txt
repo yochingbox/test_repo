@@ -1,0 +1,10 @@
+//*********************************************************************
+//	    COMPHY_28G_PIPE4_X4 R3P0 Firmware Change History			
+//
+//   Copyright (c) 2020 Marvell Semiconductor, Inc. All rights reserved
+//*********************************************************************
+ 9/4/2020 Heejeong Ryu 0.0.0.2
+  - increased xdat_lane memory size to 4K
+  - added rx metasatibity patch
+ 9/1/2020 Heejeong Ryu 0.0.0.1
+  - Initial version, Linked shared folder with SoC Titania2 

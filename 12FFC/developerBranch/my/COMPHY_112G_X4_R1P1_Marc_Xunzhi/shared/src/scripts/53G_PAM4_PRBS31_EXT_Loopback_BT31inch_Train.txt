@@ -1,0 +1,137 @@
+RPT SCRIPT RUN ..\SERDES_G10_53G_40MHz_Init_Seq.txt
+
+RPT FIELDMAP FIELD 10 BROADCAST 0
+%% Power down
+
+RPT FIELDMAP FIELD 9 ana_pu_pll_lane 0
+RPT FIELDMAP FIELD 8 ana_pu_pll_lane 0
+RPT FIELDMAP FIELD 6 ana_pu_pll_lane 0
+
+%% PHY_Test PRBS31
+RPT FIELDMAP FIELD 7 PT_RX_PATTERN_SEL_LANE[5:0] 1A
+RPT FIELDMAP FIELD 7 PT_TX_PATTERN_SEL_LANE[5:0] 1A
+RPT FIELDMAP FIELD 7 TX_IDLE_LANE 0
+RPT FIELDMAP FIELD 7 PT_EN_LANE 0
+RPT FIELDMAP FIELD 7 PT_PHYREADY_FORCE_LANE 0
+RPT FIELDMAP FIELD 7 PT_EN_MODE_LANE[1:0] 2
+RPT FIELDMAP FIELD 7 PT_EN_LANE 1
+RPT FIELDMAP FIELD 7 PT_RST_LANE 1
+RPT sys delay 200 %%mSec
+RPT FIELDMAP FIELD 7 PT_RST_LANE 0
+RPT FIELDMAP FIELD 7 PT_PHYREADY_FORCE_LANE 1
+
+
+RPT SCRIPT RUN .\dfe_misc_Ext.txt
+
+RPT FIELDMAP FIELD 7 cdr_mode_lane[2:0] 3
+
+RPT FIELDMAP FIELD 7 tx_fir_update_force_lane 0
+RPT FIELDMAP FIELD 7 tx_fir_update_lane 0
+RPT FIELDMAP FIELD 7 tx_fir_c_ctrl1_lane[5:0] 00
+RPT FIELDMAP FIELD 7 tx_fir_c_ctrl2_lane[5:0] 00
+RPT FIELDMAP FIELD 7 tx_fir_c_ctrl3_lane[5:0] 00
+%% set manually to IEEE preset 2
+RPT FIELDMAP FIELD 7 tx_em_pre2_ctrl_lane[4:0] 00
+RPT FIELDMAP FIELD 7 tx_em_pre_ctrl_lane[4:0] 09
+RPT FIELDMAP FIELD 7 tx_em_main_ctrl_lane[6:0] 30
+RPT FIELDMAP FIELD 7 tx_em_post_ctrl_lane[4:0] 06
+%% LJ old settings (manual)
+%% RPT FIELDMAP FIELD 7 tx_em_pre2_ctrl_lane[4:0] 02
+%% RPT FIELDMAP FIELD 7 tx_em_pre_ctrl_lane[4:0] 0C
+%% RPT FIELDMAP FIELD 7 tx_em_main_ctrl_lane[6:0] 31
+%% RPT FIELDMAP FIELD 7 tx_em_post_ctrl_lane[4:0] 00
+RPT FIELDMAP FIELD 7 tx_fir_update_lane 1
+
+RPT FIELDMAP FIELD 7 ctle_cap1_sel_lane[5:0] 1C
+RPT FIELDMAP FIELD 7 ctle_cap2_sel_lane[4:0] 1F
+RPT FIELDMAP FIELD 7 ctle_res1_sel_lane[3:0] A
+RPT FIELDMAP FIELD 7 ctle_res1_sel_post_lane[3:0] 0
+RPT FIELDMAP FIELD 7 ctle_res1_sel_pre_lane[3:0] 0
+RPT FIELDMAP FIELD 7 ctle_rl1_sel_post_lane[3:0] 0
+RPT FIELDMAP FIELD 7 ctle_rl1_sel_pre_lane[3:0] 0
+RPT FIELDMAP FIELD 7 ctle_current2_sel_g_p2_lane[3:0] 5
+RPT FIELDMAP FIELD 7 ctle_current2_sel_g_p4_lane[3:0] 5
+RPT FIELDMAP FIELD 7 ctle_current2_sel_g_p1_lane[3:0] 2
+RPT FIELDMAP FIELD 7 ctle_current2_sel_g_p3_lane[3:0] 2
+RPT FIELDMAP FIELD 7 ctle_rl2_sel_g_p1_lane[3:0] 2
+RPT FIELDMAP FIELD 7 ctle_rl2_sel_g_p2_lane[3:0] 7
+RPT FIELDMAP FIELD 7 ctle_rl2_sel_g_p3_lane[3:0] 2
+RPT FIELDMAP FIELD 7 ctle_rl2_sel_g_p4_lane[3:0] 2
+RPT FIELDMAP FIELD 7 ctle_rl2_tune_p1_lane[2:0] 3
+RPT FIELDMAP FIELD 7 ctle_rl2_tune_p2_lane[2:0] 3
+RPT FIELDMAP FIELD 7 ctle_rl2_tune_p3_lane[2:0] 3
+RPT FIELDMAP FIELD 7 ctle_rl2_tune_p4_lane[2:0] 3
+RPT FIELDMAP FIELD 7 ctle_rs2_sel_g_p4_lane[3:0] 0
+RPT FIELDMAP FIELD 7 ctle_rs2_sel_g_p1_lane[3:0] 1
+RPT FIELDMAP FIELD 7 ctle_rs2_sel_g_p2_lane[3:0] 0
+RPT FIELDMAP FIELD 7 ctle_rs2_sel_g_p3_lane[3:0] 1
+
+RPT FIELDMAP FIELD 7 ctle_cs1_mid_lane[1:0] 1
+RPT FIELDMAP FIELD 7 en_ctle_mid_freq_lane 1
+RPT FIELDMAP FIELD 7 ctle_rs1_mid_lane[1:0] 1
+
+RPT FIELDMAP FIELD 7 reset_dtl_lane 0
+
+RPT FIELDMAP FIELD 7 dfe_res_double_lane[1:0] 1
+RPT FIELDMAP FIELD 7 dfe_res_f0_lane[1:0] 1
+RPT FIELDMAP FIELD 7 dfe_res_f15171921_lane 1
+RPT FIELDMAP FIELD 7 dfe_res_f16182022_lane 0
+RPT FIELDMAP FIELD 7 dfe_res_f2_lane[1:0] 2
+RPT FIELDMAP FIELD 7 dfe_res_f23252729_lane 0
+RPT FIELDMAP FIELD 7 dfe_res_f24262830_lane 0
+RPT FIELDMAP FIELD 7 dfe_res_f3to4_lane[1:0] 0
+RPT FIELDMAP FIELD 7 dfe_res_f5to8_lane 0
+RPT FIELDMAP FIELD 7 dfe_res_f9to14_lane 0
+RPT FIELDMAP FIELD 7 dfe_res_vref_lane[1:0] 3
+RPT FIELDMAP FIELD 7 ofst_res_lane 0
+
+RPT FIELDMAP FIELD 7 dfe_adapt_lpnum_lane[9:0] 0FF
+RPT FIELDMAP FIELD 7 dfe_pol_lpnum_lane[9:0] 0FF
+RPT FIELDMAP FIELD 7 dfe_sq_en_lane 0
+RPT FIELDMAP FIELD 7 dfe_update_ub_en_lane 1
+RPT FIELDMAP FIELD 7 dfe_update_ut_en_lane 1
+
+RPT FIELDMAP FIELD 7 dll_top_cont_start_lane 1
+RPT FIELDMAP FIELD 7 DTL_FLOOP_EN_LANE 0
+RPT FIELDMAP FIELD 7 dtl_floop_freeze_lane 1
+RPT FIELDMAP FIELD 7 DTL_SQ_DET_EN_LANE 0
+
+RPT FIELDMAP FIELD 7 rx_align90_de_cal_setting_lane[10:3] 31
+RPT FIELDMAP FIELD 7 rx_align90_de_cal_setting_lane[2:0] 4
+RPT FIELDMAP FIELD 7 rx_clk_top_cont_start_lane 1
+RPT FIELDMAP FIELD 7 tx_align90_dcc_top_cont_start_lane 1
+
+RPT FIELDMAP FIELD 7 dfe_adapt_cont_lane 0
+RPT FIELDMAP FIELD 7 dfe_start_lane 0
+RPT FIELDMAP FIELD 7 reset_dfe_lane 1
+RPT SYS DELAY 1000
+RPT FIELDMAP FIELD 7 reset_dfe_lane 0
+
+RPT SCRIPT RUN ./Set_fine_step size.txt
+%%RPT SCRIPT RUN ./DC_CAL_LOAD.txt
+RPT SCRIPT RUN ./MMSE_INIT1.txt
+RPT SCRIPT RUN ./Call_DFE.txt
+RPT SCRIPT RUN ./MMSE_INIT2.txt
+RPT SCRIPT RUN ./Call_DFE.txt
+RPT SCRIPT RUN ./MMSE_TRACK.txt
+RPT SCRIPT RUN ./Call_DFE.txt
+RPT SCRIPT RUN ./MMSE_TRACK+DC.txt
+RPT SCRIPT RUN ./CDS timer.txt
+
+RPT FIELDMAP FIELD 7 dfe_start_lane 0
+RPT FIELDMAP FIELD 7 dfe_adapt_cont_lane 1
+RPT FIELDMAP FIELD 7 dfe_start_lane 1
+
+%%RPT FIELDMAP FIELD 7 DFE_UPDATE_DC_EN_LANE 1
+
+%%%%%%%%%%%%%%%% For Train change %%%%%%%%%%%%%%%%%%%%%%%
+RPT FIELDMAP FIELD 7 saturate_disable_lane 0
+RPT FIELDMAP FIELD 7 rx_rxffe_r_ini_lane[3:0] 7
+RPT FIELDMAP FIELD 7 dfe_load_en_lane 1
+RPT FIELDMAP FIELD 7 mcu_debugf_lane[7:0] 2
+RPT FIELDMAP FIELD 7 cli_cmd_lane[7:0] F7
+RPT FIELDMAP FIELD 7 eo_based_lane 1
+RPT FIELDMAP FIELD 7 cds_f0dk_res_custom_en_lane 1
+RPT FIELDMAP FIELD 7 cds_f0d_res_custom_lane[1:0] 0
+RPT FIELDMAP FIELD 7 cds_f0k_res_custom_lane[1:0] 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,448 @@
+//*********************************************************************
+//	    COMPHY_112G_X4 Firmware Change History			
+//
+//   Copyright (c) 2019 Marvell Semiconductor, Inc. All rights reserved
+//*********************************************************************
+//Rule:
+// <date> <name> <revision#> <JIRA#> <CETask#> <SOC release info>
+// - summary of "what" change for "why" 
+//*********************************************************************
+03/13/2020 Marc Yu  0.0.0.40
+ - time-zero check-in to SOS
+ - svn URL: https://vc01.marvell.com/svn/CESD/fw_repo/5NM/COMPHY_112G_ADC_X4_R1P0
+ - ./shared/ is external https://vc01.marvell.com/svn/CESD/fw_repo/7NM/COMPHY_112G_ADC_X4_R1P0/shared@r6172
+03/12/2020 Jue Wang 0.0.0.39
+ - Add TXPAM2_DUM_EN write in drv_tx_func_cfg() to match ana_tx model update
+03/12/2020 Marc Yu  0.0.0.38
+ - added wtag debug feature
+ - wtag = reg_MCU_DEBUGA_LANE_7_0
+03/09/2020 Jue Wang 0.0.0.37
+ - Add drv_pwr_opt file
+ - Add TX/RX_4X/2X_CLK_SEL signal into reset restoration list
+ - Add GB_CLK_EN/RST toggle function for better flexibility
+03/04/2020 Jue Wang 0.0.0.36
+ - Add define around FAST_POWER_ON temp patch for 5nm simulation only
+03/03/2020 Jue Wang 0.0.0.35
+ - Change Serdes mode SPD/PU event handling to be consistent as SFT_RST
+ - Re-structure PU/SFT_RST/SPD_CHG ISR event and add scheduling mechanism to avoid conflict
+ - Add pu_sq, pwron_seq to sft_rst HW clear driver
+ - Change reg_pin_pll_ready assertion condition by adding SPD&PU ISRs to block unintended rising
+ - Add rx_sft_rst ISR clear to clear_all_isr and clear_rx_isr function
+ - Separate drv_default_toggle into TX&RX sub-function and call each in TX/RX soft reset release function.
+ - Call drv_spd_cfg_dec in TX/RX/TRX soft reset release functions
+ - Remove conditions in tx_pll_dig_on that bypasses drv_pll_ts/rs_dig_prot_dis calling. It will always be called in Serdes mode
+02/28/2020 Marc Yu 0.0.0.34
+ - reverted changes of 0.0.0.32
+ - added wait_for(reg_PIN_PU_PLL_RD_LANE,0);
+ - commented out the second FAST_POWER_ON_EN branch in init_xdata function
+02/26/2020 Minh Tran 0.0.0.33
+ - set BYPASS_RX_INIT to 1 if FAST_POWER_ON_EN = 1
+02/26/2020 Marc Yu 0.0.0.32
+ - moved drv_power_on_seq() in front of FAST_POWER_ON_EN
+ - reason: reg_PIN_PU_PLL_RD_LANE high indicates SOC finishing writing registers, including FAST_POWRER_ON_EN
+ - drv_power_on_seq() waits for reg_PIN_PU_PLL_RD_LANE high, therefore, FAST_POWER_ON_EN won't be missed
+02/19/2020 Marc Yu 0.0.0.31
+ - compiled -r5925
+02/18/2020 Marc Yu 0.0.0.30
+ - Added cmx_BYPASS_SPEED_TABLE_LOAD_DIS in power.c for Palladium
+ - Binary was based on shared/@r5917 -c -r5905
+02/07/2020 Jue Wang 0.0.0.29
+ - Driver update for enough delay between GB CLK_EN in delay-bypassed simulations
+01/31/2020 Minh Tran 0.0.0.28
+ - synced with 7NM Midas reg changes
+01/14/2020 Marc Yu 0.0.0.27
+ - updated speedtable based on Hui Zhao's change on 1/27/2020
+01/14/2020 Minh Tran 0.0.0.26
+ - synced VDD cal in multi-lane
+01/14/2020 Yung-Hung Chen 0.0.0.25
+ - Updated chest and eom driver for midas update.
+01/9/2020 Minh Tran 0.0.0.24
+ - need to finish handling the sft rst (raising and falling ISRs) before handling other requests
+	fixed the race condition when both soft reset and speed change requested at the same time.
+01/9/2020 Xinyu Yi 0.0.0.23
+ - Moved the reset assertion functions to HW driver function.
+01/8/2020 Minh Tran 0.0.0.22
+ - changed PHY_STATUS = ST_PLLREADY after Rx/Tx soft reset is handled
+01/8/2020 Minh Tran 0.0.0.21
+ - when handling both rising and falling reset ISR, clear the ISR after each ISR is handled
+01/7/2020 Minh Tran 0.0.0.20
+ - make mcu_enx depended on PIN_PU_PLL
+01/6/2020 Minh Tran 0.0.0.18
+ - copied all the drv*.c files to 4lane/src
+01/2/2020 Minh Tran 0.0.0.17
+ - handled reset ISR before clearing ISR request
+12/20/2019 Xinyu Yi 0.0.0.16
+ - Added register reset for the soft reset functions. 
+12/20/2019 Xinyu Yi 0.0.0.15
+ - Replaced the RSVD register control to the dedicated register control for reg_cmn_ana_pu_masreg.
+12/18/2019 Marc Yu 0.0.0.14
+ - added #define _5FF_COMPHY_112G_ADC_X4_8PLL
+ - turned off time/date print out for _5FF_COMPHY_112G_ADC_X4_8PLL
+12/13/2019 Jue Wang 0.0.0.13
+ - Updated delay bypass removal between GB_ADCCLK_EN and GB_DATA_CLK_EN for fast simulation
+12/12/2019 Xinyu Yi 0.0.0.12
+ - Updated the header files for CP2 release.
+12/11/2019 Xinyu Yi 0.0.0.11
+ - Updated the header files for the FEC histgram registers. 
+12/09/2019 Marc Yu 0.0.0.9
+ - updated speed table src to the latest sharepoint version
+12/6/2019 Xinyu Yi 0.0.0.8
+ - Re-compile due to the updates in 7nm silicon FW change. 
+12/6/2019 Xinyu Yi 0.0.0.7
+ - Updated header files for all new header files.
+12/5/2019 Xinyu Yi 0.0.0.6
+ - Updated header files for new analog CP2 release.
+12/3/2019 Minh Tran 0.0.0.5
+ - synced up with SharePoint Midas
+ - updated code to compile
+12/2/2019 Xinyu Yi 0.0.0.4
+ - Updated header files for new analog CP2 release.
+12/2/2019 Mo Yang 0.0.0.3
+ - Updated speed table
+11/27/2019 Minh Tran 0.0.0.2
+ - Added compile flag NEED_REMAP_REGS to get 5NM 112G_ADC compile
+ - Synced up the xdata lane and cmn MIDAS register files
+10/22/2019 Marc Yu 0.0.0.1
+ - Created fresh svn repo for 5NM COMPHY_112G_ADC_X4_R1P0
+ - svn repo: https://vc01.marvell.com/svn/CESD/fw_repo/5NM/COMPHY_112G_ADC_X4_R1P0/
+ - reset ver to 0.0.0.1
+ - copied 4lane/, ChangeList.txt, test/, tools/, from https://vc01.marvell.com/svn/CESD/fw_repo/7NM/COMPHY_112G_ADC_X4_R1P0/@r4605, these files/folders will be modified later to 5nm COMPHY_112G_ADC_X4_R1P0 spec
+ - made shared/ folder to be an svn external of https://vc01.marvell.com/svn/CESD/fw_repo/7NM/COMPHY_112G_ADC_X4_R1P0/shared/@r4605, 5nm and 7nm will have a common shared/ folder
+ - ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+11/08/2019 Minh Tran
+ - include 5nm specific interface headers
+10/18/2019 Minh Tran 0.10.02.75
+ - Applied correct mask for calling Serdes_Power_Management()
+ - CEAMSDV-643 TX_IMP calibration
+10/15/2119 Minh Tran 0.10.02.74
+ - Added training control top registers
+ - Fixed DV calibration test results
+09/30/2119 Minh Tran 0.10.02.73
+ - sync up to 56G: updated process_cal
+09/30/2119 Minh Tran 0.10.02.72
+ - Support swithching between temperature and voltage reading mode
+ - Added ADC common mode cal and ADC vddr cal
+ - Reorg C files and code clean up
+09/27/2019 Heejeong Ryu
+ - sync up to 56G; updated fast_power_on_en control
+09/25/2019 Xinyu Yi 0.10.02.71
+ - Added bypass option for function check_cdr_lock. When TRAIN_SIM_EN is high, this function always returns 1 immediately.
+09/17/2019 Xinyu Yi 0.10.02.70
+ - Added function check_cdr_lock inside drv_cds.c file. This function is for the training.
+09/05/2019 Heejeong Ryu 0.10.02.69
+ - added pll vdaa calibration call in pll_cal
+09/03/2119 Minh Tran 0.10.02.68
+  - Update TX/RX_RESET_ANA, PLL_TS/RS_CLK_READY, PLL_TS/RS_RESET_ANA does not toggle correctly
+    during spd_chg_tx/rx when EXT_FORCE_CAL_DONE = 1
+08/29/2119 Minh Tran 0.10.02.67
+  - Fixed Bank0 overflow. Moved cal_top and all calibrations code to BANK1
+08/29/2119 Minh Tran 0.10.02.66
+  - Moved common.h to shared/inc; Moved SERDES_speed.c to 4lane/src
+  - Clean up calibrations code
+08/28/2119 Minh Tran 0.10.02.65
+  - Speed up simulation, don't wait for cmx_PROCESS_CAL_DONE
+08/28/2119 Minh Tran 0.10.02.64
+  - Fixed the PIN_RX_INIT_DONE is not asserted
+08/28/2119 Minh Tran 0.10.02.63
+  - More update on calibrations (power on, RX, TX)
+  - Support PLL_SEL_LANE[1:0]
+	0: TX is using TS PLL, RX is using RS PLL 
+	1: TX is using TS PLL, RX is using TS PLL 
+	2: TX is using RS PLL, RX is using RS PLL 
+	3: TX is using RS PLL, RX is using TS PLL
+08/22/2119 Minh Tran 0.10.02.62
+  - Synced up process cal from 56G.
+08/21/2119 Minh Tran 0.10.02.61
+  - Updating calibrations modules based on 112G_ADC pseudo code
+  - move all calibration code to BANK1
+08/20/2119 Minh Tran 0.10.02.60
+  - Update speed table C using the corrected non speed mask
+08/08/2119 Minh Tran 0.10.02.59
+  - fixed spd_chg regression failure
+08/07/2119 Minh Tran 0.10.02.58
+  - add eom support
+  - remove sampler cal code from 112G_ADC
+08/06/2119 Minh Tran 0.10.02.57
+  - Fixed pll cal failure
+08/05/2119 Minh Tran 0.10.02.56
+  - Support PM
+  - Structure FW functional blocks similar to 56G
+  - enabled DCC cal
+  - Update speed table c code
+07/22/2119 Heeejong Ryu 0.10.02.55
+ - updated pll_cal for accurate fbc_cnt_timer
+07/16/2119 Minh Tran 0.10.02.54
+  - checked in drv_rx_func_cfg.c drv_tx_func_cfg.c driver files
+  - integrate driver functions
+07/16/2119 Heeejong Ryu 0.10.02.53
+ - updated LCCAP LSB exit loop condition for pll_cal
+07/15/2119 Heeejong Ryu 0.10.02.52
+ - updated fbc_cnt_timer x4 for pll_cal
+07/11/2119 Heeejong Ryu 0.10.02.51
+  - added reset_ana signal control in pll_cal
+07/10/2119 Minh Tran 0.10.02.50
+  - Moved power driver functions into pwr_drv.c
+07/08/2119 Minh Tran 0.10.02.49
+  - Sync up SharePoint Midas registers
+  - Update speed table c code
+07/03/2119 Minh Tran 0.10.02.48
+  - init reg_DET_BYPASS_LANE = 1 as requested by Digital team
+ 6/24/2019 Heeejong Ryu 0.10.02.47
+  - enabled trxtrain 
+ 6/24/2019 Heeejong Ryu 0.10.02.46
+  - changed pll_rs_cal_ctrl_lane name to fix auto speed gen script error
+06/18/2119 Minh Tran 0.10.02.45
+  - Update speed table c code
+06/18/2119 Minh Tran 0.10.02.44
+  - MCU_CMN now run xdat_cmn_init()
+06/14/2119 Minh Tran 0.10.02.43
+  - Update speed table c code
+ 6/13/2019 Heeejong Ryu
+  - updated pll_cal
+ 6/12/2019 Heeejong Ryu
+  - added pll_lock check before pin_pll_ready
+  - added train_if, train from 56G
+06/04/2119 Minh Tran 0.10.02.42
+  - Synced up and enabled Rx/Tx PLL Cal
+05/29/2119 Minh Tran 0.10.02.41
+  - Added prefix drv_ to power related functions.
+  - Use more details PHY_STATUS for RX/TX soft reset and calibration states
+05/21/2119 Minh Tran 0.10.02.40
+  - Support bypass speed table load
+05/13/2119 Minh Tran 0.10.02.39
+  - Updated SharePoint Midas register and speed tables
+05/10/2119 Minh Tran 0.10.02.38
+  - Removed unused code
+  - Fixed Cal hung issue
+  - Merged Rx/Tx PLL Cal (need verification before turn on)
+  - Added Tx_align90_dcc calibrations (need verification before turn on)
+05/06/2119 Minh Tran 0.10.02.37
+  - GENs 42, 43, 44, 45 were added into the speed table
+05/06/2119 Minh Tran 0.10.02.36
+  - Fixed typo
+05/06/2119 Minh Tran 0.10.02.35
+  - Undo 0.10.02.34 change
+  - Calibration bypass now uses x_data register
+  - CMN MCU need to wait until PIN_PU* are asserted (SOC updated x_data) before continue
+  - Update Sharepoint Midas and speed table
+05/02/2119 Minh Tran 0.10.02.34
+  - commented out reg_ANA_TSEN_ADC_RESET in all_cal_ext per Jue requested
+05/02/2119 Minh Tran 0.10.02.33
+  - Enable option to skip Process cal
+04/26/2119 Minh Tran 0.10.02.32
+  - Clean up
+  - S-1393-9 Improved the accuracy of the delay function
+  - Enable TSEN
+  - Enable cal top sequence
+
+04/22/2119 Minh Tran 0.10.02.31
+  - Updated speed table
+  - Synced up SharePoint Midas registers
+
+
+//********  SVN copy ChangeList.txt from COMPHY_112G_X4_R1P0  *********
+04/19/2019 Paulo Urriza 0.10.10.21
+  - CTLE_BYPASS1_EN for very short channels included in gain train
+  - CTLE_BYPASS1_EN is asserted when gain train table end is reached,
+    vref_shift>1 and F0A threshold is still exceeded
+  - RxTrain (train_r) is limited to 3 instead of 15 when short_flag is asserted
+04/04/2019 Marc Yu/Xunzhi Wang 0.10.10.20
+  - Marc Yu:
+  - Fixed Tsense reset sequence
+  - Moved proc_cal() in front of Tsense reset and start
+  - Xunzhi Wang:
+  - IPCE_COMPHY-1083 M-1640: PLL AMP Cal needs delay before first reading done bit: Update the delay to be 0.5us
+03/28/2019 Paulo Urriza 0.10.10.19
+  - soft transition to DFE continuous mode via CDS_FINAL
+03/27/2019 Paulo Urriza
+  - do not allow vref_shift to go down to 0 (identical to 1)
+03/27/2019 Paulo Urriza
+  - Reverted change in r3280 (03/25/2019 Marc Yu)
+03/25/2019 Paulo Urriza
+  - Tx train is sometimes skipped due to train.level==5
+  - Fixed: always tx train except if train.level==4 (excellent_eo)
+03/25/2019 Marc Yu 0.10.10.18
+  - added optimization for short trace only in shared/src/trx_train.c 
+    For short trace, set reg_CTLE_BYPASS1_EN_LANE = 1, for other cases, reg_CTLE_BYPASS1_EN_LANE = 0
+03/22/2018 Xunzhi Wang 0.10.10.17 IPCE_COMPHY-1083 M-1640
+  - Add 10us delay between setting PLL_AMP_TOP_START_LANE=1 and reading PLL_AMP_TOP_DONE_LANE because of low refclock frequency used by amp calibration
+03/21/2019 Marc Yu 0.10.10.16
+  - Added switch in shared/src/printf.c to turn on and off UART print
+03/21/2019 Paulo Urriza
+  - TRX re-train feature whenever eye check fails (at end of first TRX train)
+03/19/2019 Paulo Urriza
+  - revert change to CTLE table (add back RL2)
+03/18/2019 Paulo Urriza
+  - reverted CTLE table to before RL2
+  - RL2 is now done at end of Rx Train (based on F0D)
+  - force phase train and tx train in all conditions via
+    tag_CDR_PHASE_LAST_ALWAYS 
+03/18/2019 Xunzhi Wang 0.10.10.15
+  - fix signal waiting after trx_training for datacom unplug simulation hanging: already changed in R1P1. Plus images.
+03/15/2019 Paulo Urriza
+  - add protection on ffe_final_gain_adjust to not exceed f0a > F0A_HIGH
+  - removed Rl2_sel=7 (AE observes worse performance on this setting)
+03/13/2019 Paulo Urriza
+  - added RL2/CURRENT2 tuning to C-table of CTLE table (for short channels)
+03/07/2019 Marc Yu 0.10.10.14
+  - modified txspeed.txt, DSP made change to swap tx_emph0_default3_lane[4:0] and tx_emph1_default3_lane[4:0] contents
+  - no compiling need, only SERDES_REFxxMHz_SPDCHG0_LANE.dat and SERDES_REFxxMHz_SPDCHG0_LANE.mem are committed 
+03/05/2019 Marc Yu 0.10.10.13
+  - change the hard-coded registers to follow the speed table values
+03/04/2019 Xunzhi Wang 0.10.10.12
+  - fix second tx training stuck issue: R1P0 and R1P1 mismatch 
+03/04/2019 Peter Wang 
+  - added back config_sampler_p1to3_ext and config_sampler_p2to4_ext from power up functions  
+03/04/2019 Peter Wang 
+  - Turned on EOM supporf 
+03/01/2019 Paulo Urriza
+  - use CDS_DEFAULT at start of RxTrain
+02/28/2019 Heejeong Ryu
+  - updated for speed change
+02/27/2019 Marc Yu 0.10.10.9
+  - updated tx_speed_table accroding to the latest excel file
+02/27/2019 Heejeong Ryu 0.10.10.8
+  - updated uart to use MCUCLK=400MHz
+  - added MCU_FREQ control and updated delay_ram function  
+  - fixed train_if simulation stuck
+02/21/2019 Paulo Urriza
+  - update train_done_lane everytime trx_train_control is called
+02/21/2019 Peter Wang
+  - clear repeater mode clamping flag for rx and tx
+02/21/2019 Heejeong Ryu
+  - updated spdtbl
+02/20/2019 Heejeong Ryu
+  - Roll back MCU_FREQ for temp
+02/15/2019 Heejeong Ryu
+  - fixed delay time for various mcuclk
+  - updated tx preset 3 default value (0,f,30,0): TODO: speed table update
+02/16/2019 Paulo Urriza
+  - increase g0 again if gn1 or gn2 magnitude increase failed (maintain
+    p2phold)
+  - display remote_status_g after set_remote_tx() is called (not before)
+  - increase tx step num from 6 to 10 (just for safety)
+  - tx train now functional, and preserves p2p
+02/15/2019 Heejeong Ryu
+  - added MCU_FREQ and updated delay function
+02/14/2019 Paulo Urriza
+  - temporarily disable TX_TRAIN_FAILED_LANE condition (trx train is still
+    > 3sec which causes timeout)
+02/14/2019 Paulo Urriza
+  - fix order of tx train remote commands to avoid exceeding P2P
+  - move order of debug message in req_local_ctrl
+  - do CDS call before first tx train vote
+02/14/2019 Paulo Urriza
+  - set f0x_select to FN2 during trx_train_init if in HR mode
+02/13/2019 Paulo Urriza
+  - use CDS_PHASETRAIN2 for tx train
+  - reverse gn1_adjust voting polarity
+  - change order of tx train and rx train
+  - do txtrain twice
+  - tx train is functional on relatively short channels
+02/12/2019 Paulo Urriza
+  - remove extra CDS call before phase train
+  - use f0a_max for f0_res adaptation instead of average f0
+02/12/2019 Peter Wang
+  - remove config_sampler_p1to3_ext and config_sampler_p2to4_ext from power up functions 
+02/12/2019 Paulo Urriza
+  - re-adapt DFE after phase jump at end of gain train
+02/10/2019 Paulo Urriza
+  - use single vref_low threshold
+02/09/2019 Paulo Urriza
+  - start VREF_SHIFT=1 (identical to 0)
+  - remove reset from CDS_RECOVER
+  - use VREF forcing value (25) when using VREF_SHIFT 
+02/07/2019 Paulo Urriza
+  - added CDS_RECOVER cds_call (to re-adapt VREF from reset)
+  - do vref resolution adapt after Rx-FFE
+  - change vref_low_thres to all 25 (avoid toggling of vref_res)
+  - cds_call=CDS_RECOVER whenever vref_shift is changed
+02/06/2019 Paulo Urriza
+  - reset ctrl_cdr_phase_on to 0 after phase train
+  - do vref resoultion adapt at trx_train_end
+  - reversed changelist again (was reversed on previous commit)
+02/06/2019 Peter Wang
+  - toggle reg_clear_dtl_clamping_triggered_lane before RX_INIT_DONE, RX_TRAIN_COMPLETE, and TX_TRAIN_COMPLETE
+    this is to clear DTL clamping info before normal data transfer 
+02/05/2019 Heejeong Ryu
+  - added CDR_PHASE_OPT_FIRST_EN_LANE control register
+  - reversed train gn1 polarity
+  - fixed PT pattern change after txtrain
+02/05/2019 Paulo Urriza
+  - reorder ChangeList.txt (start from newest)
+  - phase train: don't go right anymore (causes phase jump)
+  - phase train: changed phase clamps to clamp16
+  - enable midpoint on phase train (default k=12/16)
+02/05/2019 Minh Tran 0.10.0.4
+  - missing BANKING_CTRL in reset_pwr_reg() caused FW keeps restarting
+  - reset reg_RX_INIT_DONE_LANE, reg_PIN_PLL_READY_RX_LANE and reg_PIN_PLL_READY_TX_LANE
+    early as suggested by designer
+02/05/2019 Paulo Urriza
+  - replace ++ with >> for excel display
+  - added more levels of R (via rs2) to maximize 16 R settings
+  - changed gain train R to 3, which matches the old 7
+02/02/2019 Paulo Urriza
+  - fix long channel training failures after final resolution train
+  - change phase train range to [-160,0] (positive ofsts are never optimal)
+  - simplified CDS call for restrain (only DFE adapt)
+  - bugfix: CDS_RESTRAIN was not properly called
+  - [edit] redo dfe_init1/2 in phase train to reduce dependence from step to
+    step
+01/31/2019 Heejeong Ryu
+  - set tag_MAX_BIG_LOOP=0
+  - Updated txtrain driver polarity
+  - updated trxtrain sequence
+01/31/2019 Paulo Urriza
+  - adjusted boost targets
+  - fixed signs of boost target calculation
+  - rx train will now prefer less boosting CTLE setting
+  - [edit] slight correction to boost target based on all benchmark data
+01/31/2019 Paulo Urriza
+  - PAM2 fixes
+  - use DFE_F0_RES_DOUBLE in outer eye calculation
+  - bring gain train phase back to -80
+01/30/2019 Heejeong Ryu
+  - added FINAL_GAIN_ADJUST_EN register
+01/30/2019 Paulo Urriza
+  - added Final Gain Adjust feature (tag_FINAL_GAIN_ADJUST)
+  - do not adapt vref during tx_train_init (ony f0)
+01/30/2019 Heejeong Ryu
+  - txtrain sequnce: do rxtrain first then txtrain
+  - added P2P hold
+  - forced tx ffe preset 2, 3 default value for test
+  - fixed typo
+  - c-1, c-2 reverse direction
+1/29/2019 Peter Wang 
+  - restated startup code that checks and clears reset status. This fixes a soc simulation issue where one lane does not power up after reset 
+01/29/2019 Paulo Urriza
+  - updated boost target based on 1st benchmark data
+01/28/2019 Paulo Urriza
+  - added DFE_FX_SEL_FP1 for f0x_select x = +1 (measure f1 in 112g)
+  - added CLI command 0xF8 to measure fx via train_fn2_lane[7:0]
+  - bug fix: fn2 readback was assigned to fn1
+01/28/2019 Heejeong Ryu
+  - added train_fn2_lane[7:0], train_f0x_lane[7:0] registers
+  - updated txtrain 
+  - added pt_out restore after train
+  - set tx_preset_index = 3
+01/25/2019 Paulo Urriza
+  - added f0x measurement to CDS_PHASETRAIN and CDS_PHASETRAIN2 (used for
+    benchmarking)
+  - fixed missing train.f0x average (used in calculating fn2)
+  - add vref resolution adaptation in trx_train_init()  
+01/24/2019 Xu Han
+  - fixed CDS stuck issue by adding delay before check calibration done in align90ee and ph_ctrl
+01/24/2019 Paulo Urriza
+  - refactored vrefshift code for improved clarity
+  - no functional change from previous training algorithm
+01/23/2019 Heejeong Ryu 
+  - added missing txtrain rx sel bit control
+01/23/2019 Paulo Urriza
+  - added vrefshift to gaintrain (for very short channels)
+  - added vrefshift to vref resolution train
+  - fixed bug in phase train which causes early termination if f0d>f0a.
+    This happens in short channel due to custom f0d resolution 
+01/23/2019 Heejeong Ryu 0.10.0.1
+  - added DFE_F0X_SEL_LANE control for Half rate F0x select to Fn2 
+01/06/2020 Chuan Lyu
+  - Updated SERDES_speed.c 

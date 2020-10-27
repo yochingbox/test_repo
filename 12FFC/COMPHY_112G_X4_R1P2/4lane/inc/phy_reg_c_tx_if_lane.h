@@ -1,0 +1,96 @@
+#ifndef PHY_REG_C_TX_IF_LANE_H
+#define PHY_REG_C_TX_IF_LANE_H
+
+
+
+// 0x0000	INPUT_PIN_DEBUG_REG0		PHY Isolation Debug Register0
+typedef union {
+	struct {
+		uint8_t RESERVED_0                               : 3;	/*  [2:0]     r/w   0*/
+		uint8_t PIN_REMOTE_CTRL_FIELD_VALID_RD_LANE      : 1;	/*      3       r   0*/
+		uint8_t PIN_REMOTE_CTRL_FIELD_RESET_RD_LANE_3_0  : 4;	/*  [7:4]       r   0*/
+		uint8_t PIN_REMOTE_CTRL_FIELD_PAT_RD_LANE_1_0    : 2;	/*  [9:8]       r   0*/
+		uint8_t PIN_REMOTE_CTRL_FIELD_RD_LANE_5_0        : 6;	/*[15:10]       r   0*/
+		uint8_t PIN_PU_TX_RD_LANE                        : 1;	/*     16       r   0*/
+		uint8_t PIN_PU_PLL_RD_LANE                       : 1;	/*     17       r   0*/
+		uint8_t PIN_PHY_GEN_TX_RD_LANE_4_0               : 5;	/*[22:18]       r   0*/
+		uint8_t PIN_LOCAL_CTRL_FIELD_READY_RD_LANE       : 1;	/*     23       r   0*/
+		uint8_t PIN_GPI_RD_LANE_7_0                      : 8;	/*[31:24]       r   0*/
+	} BF;
+	struct{uint8_t B0:8;uint8_t B1:8;uint8_t B2:8;uint8_t B3:8;}BT;
+	uint32_t VAL;
+} INPUT_PIN_DEBUG_REG0_t;
+__xdata __at( 0x2e00 ) volatile INPUT_PIN_DEBUG_REG0_t INPUT_PIN_DEBUG_REG0;
+#define reg_PIN_REMOTE_CTRL_FIELD_VALID_RD_LANE  INPUT_PIN_DEBUG_REG0.BF.PIN_REMOTE_CTRL_FIELD_VALID_RD_LANE
+#define reg_PIN_REMOTE_CTRL_FIELD_RESET_RD_LANE_3_0  INPUT_PIN_DEBUG_REG0.BF.PIN_REMOTE_CTRL_FIELD_RESET_RD_LANE_3_0
+#define reg_PIN_REMOTE_CTRL_FIELD_PAT_RD_LANE_1_0  INPUT_PIN_DEBUG_REG0.BF.PIN_REMOTE_CTRL_FIELD_PAT_RD_LANE_1_0
+#define reg_PIN_REMOTE_CTRL_FIELD_RD_LANE_5_0  INPUT_PIN_DEBUG_REG0.BF.PIN_REMOTE_CTRL_FIELD_RD_LANE_5_0
+#define reg_PIN_PU_TX_RD_LANE  INPUT_PIN_DEBUG_REG0.BF.PIN_PU_TX_RD_LANE
+#define reg_PIN_PU_PLL_RD_LANE  INPUT_PIN_DEBUG_REG0.BF.PIN_PU_PLL_RD_LANE
+#define reg_PIN_PHY_GEN_TX_RD_LANE_4_0  INPUT_PIN_DEBUG_REG0.BF.PIN_PHY_GEN_TX_RD_LANE_4_0
+#define reg_PIN_LOCAL_CTRL_FIELD_READY_RD_LANE  INPUT_PIN_DEBUG_REG0.BF.PIN_LOCAL_CTRL_FIELD_READY_RD_LANE
+#define reg_PIN_GPI_RD_LANE_7_0  INPUT_PIN_DEBUG_REG0.BF.PIN_GPI_RD_LANE_7_0
+
+// 0x0004	INPUT_PIN_DEBUG_REG1		PHY Isolation Debug Register1
+typedef union {
+	struct {
+		uint8_t PIN_RESERVED_INPUT_TX_RD_LANE_15_0_b0    : 8;	/* [15:0]       r   0*/
+		uint8_t PIN_RESERVED_INPUT_TX_RD_LANE_15_0_b1    : 8;	/* [15:0]       r   0*/
+		uint8_t RESERVED_16                              : 6;	/*[21:16]     r/w   0*/
+		uint8_t PIN_REMOTE_STATUS_FIELD_VALID_RD_LANE    : 1;	/*     22       r   0*/
+		uint8_t PIN_REMOTE_STATUS_FIELD_RESET_RD_LANE    : 1;	/*     23       r   0*/
+		uint8_t PIN_REMOTE_STATUS_FIELD_PAT_RD_LANE_1_0  : 2;	/*[25:24]       r   0*/
+		uint8_t PIN_REMOTE_STATUS_FIELD_RD_LANE_5_0      : 6;	/*[31:26]       r   0*/
+	} BF;
+	struct{uint8_t B0:8;uint8_t B1:8;uint8_t B2:8;uint8_t B3:8;}BT;
+	struct{uint16_t W0:16;uint16_t W1:16;}WT;
+	uint32_t VAL;
+} INPUT_PIN_DEBUG_REG1_t;
+__xdata __at( 0x2e04 ) volatile INPUT_PIN_DEBUG_REG1_t INPUT_PIN_DEBUG_REG1;
+#define reg_PIN_RESERVED_INPUT_TX_RD_LANE_15_0_b0  INPUT_PIN_DEBUG_REG1.BF.PIN_RESERVED_INPUT_TX_RD_LANE_15_0_b0
+#define reg_PIN_RESERVED_INPUT_TX_RD_LANE_15_0_b1  INPUT_PIN_DEBUG_REG1.BF.PIN_RESERVED_INPUT_TX_RD_LANE_15_0_b1
+#define reg_PIN_REMOTE_STATUS_FIELD_VALID_RD_LANE  INPUT_PIN_DEBUG_REG1.BF.PIN_REMOTE_STATUS_FIELD_VALID_RD_LANE
+#define reg_PIN_REMOTE_STATUS_FIELD_RESET_RD_LANE  INPUT_PIN_DEBUG_REG1.BF.PIN_REMOTE_STATUS_FIELD_RESET_RD_LANE
+#define reg_PIN_REMOTE_STATUS_FIELD_PAT_RD_LANE_1_0  INPUT_PIN_DEBUG_REG1.BF.PIN_REMOTE_STATUS_FIELD_PAT_RD_LANE_1_0
+#define reg_PIN_REMOTE_STATUS_FIELD_RD_LANE_5_0  INPUT_PIN_DEBUG_REG1.BF.PIN_REMOTE_STATUS_FIELD_RD_LANE_5_0
+#define reg_PIN_RESERVED_INPUT_TX_RD_LANE_15_0  INPUT_PIN_DEBUG_REG1.WT.W0
+
+// 0x0008	INPUT_PIN_DEBUG_REG2		PHY Isolation Debug Register2
+typedef union {
+	struct {
+		uint8_t ANA_TRX_ANA_RSVD_OUT_RD_LANE_15_0_b0     : 8;	/* [15:0]       r   0*/
+		uint8_t ANA_TRX_ANA_RSVD_OUT_RD_LANE_15_0_b1     : 8;	/* [15:0]       r   0*/
+		uint8_t RESERVED_16                              : 2;	/*[17:16]     r/w   0*/
+		uint8_t ANA_TRX_PLL_TEMPC_LEVEL_TODIG_RD_LANE_1_0 : 2;	/*[19:18]       r   0*/
+		uint8_t ANA_TRX_PLL_LOCK_RD_LANE                 : 1;	/*     20       r   0*/
+		uint8_t PIN_TXDCLK_NT_SEL_RD_LANE_2_0            : 3;	/*[23:21]       r   0*/
+		uint8_t PIN_COUPLE_MODE_EN_RD_LANE               : 1;	/*     24       r   0*/
+		uint8_t PIN_AN_ENABLE_RD_LANE                    : 1;	/*     25       r   0*/
+		uint8_t PIN_TX_TRAIN_FRAME_LOCK_ENABLE_RD_LANE   : 1;	/*     26       r   0*/
+		uint8_t PIN_TX_TRAIN_ENABLE_RD_LANE              : 1;	/*     27       r   0*/
+		uint8_t PIN_TX_ACJTAG_IN_RD_LANE                 : 1;	/*     28       r   0*/
+		uint8_t PIN_TX_ACJTAG_EN_RD_LANE                 : 1;	/*     29       r   0*/
+		uint8_t PIN_SSC_EN_RD_LANE                       : 1;	/*     30       r   0*/
+		uint8_t PIN_REPEAT_MODE_EN_RD_LANE               : 1;	/*     31       r   0*/
+	} BF;
+	struct{uint8_t B0:8;uint8_t B1:8;uint8_t B2:8;uint8_t B3:8;}BT;
+	struct{uint16_t W0:16;uint16_t W1:16;}WT;
+	uint32_t VAL;
+} INPUT_PIN_DEBUG_REG2_t;
+__xdata __at( 0x2e08 ) volatile INPUT_PIN_DEBUG_REG2_t INPUT_PIN_DEBUG_REG2;
+#define reg_ANA_TRX_ANA_RSVD_OUT_RD_LANE_15_0_b0  INPUT_PIN_DEBUG_REG2.BF.ANA_TRX_ANA_RSVD_OUT_RD_LANE_15_0_b0
+#define reg_ANA_TRX_ANA_RSVD_OUT_RD_LANE_15_0_b1  INPUT_PIN_DEBUG_REG2.BF.ANA_TRX_ANA_RSVD_OUT_RD_LANE_15_0_b1
+#define reg_ANA_TRX_PLL_TEMPC_LEVEL_TODIG_RD_LANE_1_0  INPUT_PIN_DEBUG_REG2.BF.ANA_TRX_PLL_TEMPC_LEVEL_TODIG_RD_LANE_1_0
+#define reg_ANA_TRX_PLL_LOCK_RD_LANE  INPUT_PIN_DEBUG_REG2.BF.ANA_TRX_PLL_LOCK_RD_LANE
+#define reg_PIN_TXDCLK_NT_SEL_RD_LANE_2_0  INPUT_PIN_DEBUG_REG2.BF.PIN_TXDCLK_NT_SEL_RD_LANE_2_0
+#define reg_PIN_COUPLE_MODE_EN_RD_LANE  INPUT_PIN_DEBUG_REG2.BF.PIN_COUPLE_MODE_EN_RD_LANE
+#define reg_PIN_AN_ENABLE_RD_LANE  INPUT_PIN_DEBUG_REG2.BF.PIN_AN_ENABLE_RD_LANE
+#define reg_PIN_TX_TRAIN_FRAME_LOCK_ENABLE_RD_LANE  INPUT_PIN_DEBUG_REG2.BF.PIN_TX_TRAIN_FRAME_LOCK_ENABLE_RD_LANE
+#define reg_PIN_TX_TRAIN_ENABLE_RD_LANE  INPUT_PIN_DEBUG_REG2.BF.PIN_TX_TRAIN_ENABLE_RD_LANE
+#define reg_PIN_TX_ACJTAG_IN_RD_LANE  INPUT_PIN_DEBUG_REG2.BF.PIN_TX_ACJTAG_IN_RD_LANE
+#define reg_PIN_TX_ACJTAG_EN_RD_LANE  INPUT_PIN_DEBUG_REG2.BF.PIN_TX_ACJTAG_EN_RD_LANE
+#define reg_PIN_SSC_EN_RD_LANE  INPUT_PIN_DEBUG_REG2.BF.PIN_SSC_EN_RD_LANE
+#define reg_PIN_REPEAT_MODE_EN_RD_LANE  INPUT_PIN_DEBUG_REG2.BF.PIN_REPEAT_MODE_EN_RD_LANE
+#define reg_ANA_TRX_ANA_RSVD_OUT_RD_LANE_15_0  INPUT_PIN_DEBUG_REG2.WT.W0
+
+#endif

@@ -1,0 +1,1379 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods + Flat24  (Intel 8051), page 1.
+
+Symbol Table
+
+    .__.ABS.                                                    =  0000 G
+    A                                                              00E0 
+    A.0                                                            00E0 
+    A.1                                                            00E1 
+    A.2                                                            00E2 
+    A.3                                                            00E3 
+    A.4                                                            00E4 
+    A.5                                                            00E5 
+    A.6                                                            00E6 
+    A.7                                                            00E7 
+    AC                                                             00D6 
+    ACC                                                            00E0 
+    ACC.0                                                          00E0 
+    ACC.1                                                          00E1 
+    ACC.2                                                          00E2 
+    ACC.3                                                          00E3 
+    ACC.4                                                          00E4 
+    ACC.5                                                          00E5 
+    ACC.6                                                          00E6 
+    ACC.7                                                          00E7 
+    B                                                              00F0 
+    B.0                                                            00F0 
+    B.1                                                            00F1 
+    B.2                                                            00F2 
+    B.3                                                            00F3 
+    B.4                                                            00F4 
+    B.5                                                            00F5 
+    B.6                                                            00F6 
+    B.7                                                            00F7 
+    CPRL2                                                          00C8 
+    CT2                                                            00C9 
+    CY                                                             00D7 
+    DPH                                                            0083 
+    DPL                                                            0082 
+    EA                                                             00AF 
+    ES                                                             00AC 
+    ET0                                                            00A9 
+    ET1                                                            00AB 
+    ET2                                                            00AD 
+    EX0                                                            00A8 
+    EX1                                                            00AA 
+    EXEN2                                                          00CB 
+    EXF2                                                           00CE 
+    F0                                                             00D5 
+    IE                                                             00A8 
+    IE.0                                                           00A8 
+    IE.1                                                           00A9 
+    IE.2                                                           00AA 
+    IE.3                                                           00AB 
+    IE.4                                                           00AC 
+    IE.5                                                           00AD 
+    IE.7                                                           00AF 
+    IE0                                                            0089 
+    IE1                                                            008B 
+    INT0                                                           00B2 
+    INT1                                                           00B3 
+    IP                                                             00B8 
+    IP.0                                                           00B8 
+    IP.1                                                           00B9 
+    IP.2                                                           00BA 
+    IP.3                                                           00BB 
+    IP.4                                                           00BC 
+    IP.5                                                           00BD 
+    IT0                                                            0088 
+    IT1                                                            008A 
+    OV                                                             00D2 
+    P                                                              00D0 
+    P0                                                             0080 
+    P0.0                                                           0080 
+    P0.1                                                           0081 
+    P0.2                                                           0082 
+    P0.3                                                           0083 
+    P0.4                                                           0084 
+    P0.5                                                           0085 
+    P0.6                                                           0086 
+    P0.7                                                           0087 
+    P1                                                             0090 
+    P1.0                                                           0090 
+    P1.1                                                           0091 
+    P1.2                                                           0092 
+    P1.3                                                           0093 
+    P1.4                                                           0094 
+    P1.5                                                           0095 
+    P1.6                                                           0096 
+    P1.7                                                           0097 
+    P2                                                             00A0 
+    P2.0                                                           00A0 
+    P2.1                                                           00A1 
+    P2.2                                                           00A2 
+    P2.3                                                           00A3 
+    P2.4                                                           00A4 
+    P2.5                                                           00A5 
+    P2.6                                                           00A6 
+    P2.7                                                           00A7 
+    P3                                                             00B0 
+    P3.0                                                           00B0 
+    P3.1                                                           00B1 
+    P3.2                                                           00B2 
+    P3.3                                                           00B3 
+    P3.4                                                           00B4 
+    P3.5                                                           00B5 
+    P3.6                                                           00B6 
+    P3.7                                                           00B7 
+    PCON                                                           0087 
+    PS                                                             00BC 
+    PSW                                                            00D0 
+    PSW.0                                                          00D0 
+    PSW.1                                                          00D1 
+    PSW.2                                                          00D2 
+    PSW.3                                                          00D3 
+    PSW.4                                                          00D4 
+    PSW.5                                                          00D5 
+    PSW.6                                                          00D6 
+    PSW.7                                                          00D7 
+    PT0                                                            00B9 
+    PT1                                                            00BB 
+    PT2                                                            00BD 
+    PX0                                                            00B8 
+    PX1                                                            00BA 
+    RB8                                                            009A 
+    RCAP2H                                                         00CB 
+    RCAP2L                                                         00CA 
+    RCLK                                                           00CD 
+    REN                                                            009C 
+    RI                                                             0098 
+    RS0                                                            00D3 
+    RS1                                                            00D4 
+    RXD                                                            00B0 
+    SBUF                                                           0099 
+    SCON                                                           0098 
+    SCON.0                                                         0098 
+    SCON.1                                                         0099 
+    SCON.2                                                         009A 
+    SCON.3                                                         009B 
+    SCON.4                                                         009C 
+    SCON.5                                                         009D 
+    SCON.6                                                         009E 
+    SCON.7                                                         009F 
+    SM0                                                            009F 
+    SM1                                                            009E 
+    SM2                                                            009D 
+    SP                                                             0081 
+    T2CON                                                          00C8 
+    T2CON.0                                                        00C8 
+    T2CON.1                                                        00C9 
+    T2CON.2                                                        00CA 
+    T2CON.3                                                        00CB 
+    T2CON.4                                                        00CC 
+    T2CON.5                                                        00CD 
+    T2CON.6                                                        00CE 
+    T2CON.7                                                        00CF 
+    TB8                                                            009B 
+    TCLK                                                           00CC 
+    TCON                                                           0088 
+    TCON.0                                                         0088 
+    TCON.1                                                         0089 
+    TCON.2                                                         008A 
+    TCON.3                                                         008B 
+    TCON.4                                                         008C 
+    TCON.5                                                         008D 
+    TCON.6                                                         008E 
+    TCON.7                                                         008F 
+    TF0                                                            008D 
+    TF1                                                            008F 
+    TF2                                                            00CF 
+    TH0                                                            008C 
+    TH1                                                            008D 
+    TH2                                                            00CD 
+    TI                                                             0099 
+    TL0                                                            008A 
+    TL1                                                            008B 
+    TL2                                                            00CC 
+    TMOD                                                           0089 
+    TR0                                                            008C 
+    TR1                                                            008E 
+    TR2                                                            00CA 
+    TXD                                                            00B1 
+    _ACC                                                        =  00E0 G
+    _ADCON                                                      =  00D8 G
+    _ANALOG_TX_REALTIME_REG_1                                   =  2058 G
+    _ANA_DFEE_REG_00                                            =  0400 G
+    _ANA_DFEE_REG_01                                            =  0404 G
+    _ANA_DFEE_REG_02                                            =  0408 G
+    _ANA_DFEE_REG_03                                            =  040C G
+    _ANA_DFEE_REG_04                                            =  0410 G
+    _ANA_DFEE_REG_05                                            =  0414 G
+    _ANA_DFEE_REG_06                                            =  0418 G
+    _ANA_DFEE_REG_07                                            =  041C G
+    _ANA_DFEE_REG_08                                            =  0420 G
+    _ANA_DFEE_REG_09                                            =  0424 G
+    _ANA_DFEE_REG_0A                                            =  0428 G
+    _ANA_DFEE_REG_0B                                            =  042C G
+    _ANA_DFEE_REG_0C                                            =  0430 G
+    _ANA_DFEE_REG_0D                                            =  0434 G
+    _ANA_DFEE_REG_0E                                            =  0438 G
+    _ANA_DFEE_REG_0F                                            =  043C G
+    _ANA_DFEE_REG_10                                            =  0440 G
+    _ANA_DFEE_REG_11                                            =  0444 G
+    _ANA_DFEE_REG_12                                            =  0448 G
+    _ANA_DFEE_REG_13                                            =  044C G
+    _ANA_DFEE_REG_14                                            =  0450 G
+    _ANA_DFEE_REG_15                                            =  0454 G
+    _ANA_DFEE_REG_16                                            =  0458 G
+    _ANA_DFEE_REG_17                                            =  045C G
+    _ANA_DFEE_REG_18                                            =  0460 G
+    _ANA_DFEE_REG_19                                            =  0464 G
+    _ANA_DFEE_REG_1A                                            =  0468 G
+    _ANA_DFEE_REG_1B                                            =  046C G
+    _ANA_DFEE_REG_1C                                            =  0470 G
+    _ANA_DFEE_REG_1D                                            =  0474 G
+    _ANA_DFEE_REG_1E                                            =  0478 G
+    _ANA_DFEE_REG_1F                                            =  047C G
+    _ANA_DFEE_REG_20                                            =  0480 G
+    _ANA_DFEE_REG_21                                            =  0484 G
+    _ANA_DFEE_REG_22                                            =  0488 G
+    _ANA_DFEE_REG_23                                            =  048C G
+    _ANA_DFEE_REG_24                                            =  0490 G
+    _ANA_DFEE_REG_25                                            =  0494 G
+    _ANA_DFEE_REG_26                                            =  0498 G
+    _ANA_DFEE_REG_27                                            =  049C G
+    _ANA_DFEO_REG_00                                            =  0800 G
+    _ANA_DFEO_REG_01                                            =  0804 G
+    _ANA_DFEO_REG_02                                            =  0808 G
+    _ANA_DFEO_REG_03                                            =  080C G
+    _ANA_DFEO_REG_04                                            =  0810 G
+    _ANA_DFEO_REG_05                                            =  0814 G
+    _ANA_DFEO_REG_06                                            =  0818 G
+    _ANA_DFEO_REG_07                                            =  081C G
+    _ANA_DFEO_REG_08                                            =  0820 G
+    _ANA_DFEO_REG_09                                            =  0824 G
+    _ANA_DFEO_REG_0A                                            =  0828 G
+    _ANA_DFEO_REG_0B                                            =  082C G
+    _ANA_DFEO_REG_0C                                            =  0830 G
+    _ANA_DFEO_REG_0D                                            =  0834 G
+    _ANA_DFEO_REG_0E                                            =  0838 G
+    _ANA_DFEO_REG_0F                                            =  083C G
+    _ANA_DFEO_REG_10                                            =  0840 G
+    _ANA_DFEO_REG_11                                            =  0844 G
+    _ANA_DFEO_REG_12                                            =  0848 G
+    _ANA_DFEO_REG_13                                            =  084C G
+    _ANA_DFEO_REG_14                                            =  0850 G
+    _ANA_DFEO_REG_15                                            =  0854 G
+    _ANA_DFEO_REG_16                                            =  0858 G
+    _ANA_DFEO_REG_17                                            =  085C G
+    _ANA_DFEO_REG_18                                            =  0860 G
+    _ANA_DFEO_REG_19                                            =  0864 G
+    _ANA_DFEO_REG_1A                                            =  0868 G
+    _ANA_DFEO_REG_1B                                            =  086C G
+    _ANA_DFEO_REG_1C                                            =  0870 G
+    _ANA_DFEO_REG_1D                                            =  0874 G
+    _ANA_DFEO_REG_1E                                            =  0878 G
+    _ANA_DFEO_REG_1F                                            =  087C G
+    _ANA_DFEO_REG_20                                            =  0880 G
+    _ANA_DFEO_REG_21                                            =  0884 G
+    _ANA_DFEO_REG_22                                            =  0888 G
+    _ANA_DFEO_REG_23                                            =  088C G
+    _ANA_DFEO_REG_24                                            =  0890 G
+    _ANA_DFEO_REG_25                                            =  0894 G
+    _ANA_DFEO_REG_26                                            =  0898 G
+    _ANA_DFEO_REG_27                                            =  089C G
+    _ANA_IF_CMN_REG0                                            =  A2EC G
+    _ANA_IF_CMN_REG1                                            =  A2E0 G
+    _ANA_IF_DFEE_REG0                                           =  22D0 G
+    _ANA_IF_DFEO_REG0                                           =  22D4 G
+    _ANA_IF_TRX_REG0                                            =  22CC G
+    _ANA_TSEN_CONTROL                                           =  A328 G
+    _APB_CONTROL_REG                                            =  A2F0 G
+    _B                                                          =  00F0 G
+    _CACHE_DEBUG0                                               =  2208 G
+    _CACHE_DEBUG1                                               =  220C G
+    _CAL_CTRL1_LANE                                             =  6000 G
+    _CAL_CTRL2_LANE                                             =  6004 G
+    _CAL_CTRL3_LANE                                             =  6008 G
+    _CAL_CTRL4_LANE                                             =  600C G
+    _CAL_DATA0                                                  =  E624 G
+    _CAL_DATA1                                                  =  E654 G
+    _CAL_OFST_REG0                                              =  2518 G
+    _CAL_OFST_REG1                                              =  251C G
+    _CAL_OFST_REG2                                              =  2520 G
+    _CAL_SAVE_DATA1_LANE                                        =  6010 G
+    _CAL_SAVE_DATA2_LANE                                        =  6014 G
+    _CAL_SAVE_DATA3_LANE                                        =  6018 G
+    _CAL_STATUS_READ                                            =  E64C G
+    _CAL_TIME_OUT_AND_DIS                                       =  E648 G
+    _CCEN                                                       =  00C1 G
+    _CDR_LOCK_REG                                               =  213C G
+    _CDS_CTRL_REG0                                              =  60A0 G
+    _CDS_CTRL_REG1                                              =  60A4 G
+    _CDS_EYE_CLK_THR                                            =  E6AC G
+    _CDS_READ_MISC0                                             =  6170 G
+    _CDS_READ_MISC1                                             =  6174 G
+    _CID_REG0                                                   =  A3F8 G
+    _CID_REG1                                                   =  A3FC G
+    _CKCON                                                      =  008E G
+    _CLKGEN_CMN_REG1                                            =  A334 G
+    _CLKGEN_RX_LANE_REG1_LANE                                   =  211C G
+    _CLKGEN_TX_LANE_REG1_LANE                                   =  2020 G
+    _CMN_CACHE_DEBUG0                                           =  A368 G
+    _CMN_CACHE_DEBUG1                                           =  A380 G
+    _CMN_CALIBRATION                                            =  A340 G
+    _CMN_ISR_1                                                  =  A3A8 G
+    _CMN_ISR_2                                                  =  A370 G
+    _CMN_ISR_CLEAR_2                                            =  A378 G
+    _CMN_ISR_MASK_1                                             =  A3AC G
+    _CMN_ISR_MASK_2                                             =  A374 G
+    _CMN_MCU_GPIO                                               =  A37C G
+    _CMN_MCU_REG                                                =  A3F4 G
+    _CMN_MCU_TIMER0_CONTROL                                     =  A398 G
+    _CMN_MCU_TIMER1_CONTROL                                     =  A39C G
+    _CMN_MCU_TIMER2_CONTROL                                     =  A3A0 G
+    _CMN_MCU_TIMER3_CONTROL                                     =  A3A4 G
+    _CMN_MCU_TIMER_CONTROL                                      =  A384 G
+    _CMN_MCU_TIMER_CTRL_2_LANE                                  =  A388 G
+    _CMN_MCU_TIMER_CTRL_3_LANE                                  =  A38C G
+    _CMN_MCU_TIMER_CTRL_4_LANE                                  =  A390 G
+    _CMN_MCU_TIMER_CTRL_5_LANE                                  =  A394 G
+    _CONTROL_CONFIG0                                            =  E604 G
+    _CONTROL_CONFIG1                                            =  E608 G
+    _CONTROL_CONFIG2                                            =  E60C G
+    _CONTROL_CONFIG3                                            =  E610 G
+    _CONTROL_CONFIG4                                            =  E614 G
+    _CONTROL_CONFIG5                                            =  E618 G
+    _CONTROL_CONFIG6                                            =  E61C G
+    _CONTROL_CONFIG7                                            =  E620 G
+    _CONTROL_CONFIG8                                            =  E62C G
+    _CONTROL_CONFIG9                                            =  E630 G
+    _CON_CAL_STEP_SIZE1                                         =  E634 G
+    _CON_CAL_STEP_SIZE2                                         =  E638 G
+    _CON_CAL_STEP_SIZE3                                         =  E63C G
+    _CON_CAL_STEP_SIZE4                                         =  E640 G
+    _CON_CAL_STEP_SIZE5                                         =  E644 G
+    _DFE_ANA_REG0                                               =  2418 G
+    _DFE_ANA_REG1                                               =  241C G
+    _DFE_CONTROL_0                                              =  6034 G
+    _DFE_CONTROL_1                                              =  6038 G
+    _DFE_CONTROL_10                                             =  6098 G
+    _DFE_CONTROL_11                                             =  609C G
+    _DFE_CONTROL_2                                              =  6040 G
+    _DFE_CONTROL_3                                              =  6044 G
+    _DFE_CONTROL_4                                              =  6048 G
+    _DFE_CONTROL_5                                              =  604C G
+    _DFE_CONTROL_6                                              =  6078 G
+    _DFE_CONTROL_7                                              =  608C G
+    _DFE_CONTROL_8                                              =  6090 G
+    _DFE_CONTROL_9                                              =  6094 G
+    _DFE_CTRL_REG0                                              =  2400 G
+    _DFE_CTRL_REG1                                              =  2404 G
+    _DFE_CTRL_REG2                                              =  2408 G
+    _DFE_CTRL_REG3                                              =  240C G
+    _DFE_CTRL_REG4                                              =  2414 G
+    _DFE_DCE_REG0                                               =  2530 G
+    _DFE_DC_EVEN_REG8                                           =  2438 G
+    _DFE_DC_ODD_REG8                                            =  243C G
+    _DFE_FEN_EVEN_REG                                           =  2430 G
+    _DFE_FEN_ODD_REG                                            =  2434 G
+    _DFE_FEXT_EVEN_REG0                                         =  2440 G
+    _DFE_FEXT_EVEN_REG1                                         =  2444 G
+    _DFE_FEXT_EVEN_REG2                                         =  2448 G
+    _DFE_FEXT_EVEN_REG3                                         =  244C G
+    _DFE_FEXT_EVEN_REG4                                         =  2450 G
+    _DFE_FEXT_EVEN_REG5                                         =  2454 G
+    _DFE_FEXT_EVEN_REG6                                         =  2458 G
+    _DFE_FEXT_EVEN_REG7                                         =  245C G
+    _DFE_FEXT_ODD_REG0                                          =  2460 G
+    _DFE_FEXT_ODD_REG1                                          =  2464 G
+    _DFE_FEXT_ODD_REG2                                          =  2468 G
+    _DFE_FEXT_ODD_REG3                                          =  246C G
+    _DFE_FEXT_ODD_REG4                                          =  2470 G
+    _DFE_FEXT_ODD_REG5                                          =  2474 G
+    _DFE_FEXT_ODD_REG6                                          =  2478 G
+    _DFE_FEXT_ODD_REG7                                          =  247C G
+    _DFE_READ_EVEN_2C_REG0                                      =  24D0 G
+    _DFE_READ_EVEN_2C_REG1                                      =  24D4 G
+    _DFE_READ_EVEN_2C_REG2                                      =  24D8 G
+    _DFE_READ_EVEN_2C_REG3                                      =  24DC G
+    _DFE_READ_EVEN_2C_REG4                                      =  24E0 G
+    _DFE_READ_EVEN_2C_REG5                                      =  24E4 G
+    _DFE_READ_EVEN_2C_REG6                                      =  24E8 G
+    _DFE_READ_EVEN_2C_REG7                                      =  24EC G
+    _DFE_READ_EVEN_2C_REG8                                      =  2510 G
+    _DFE_READ_EVEN_REG0                                         =  6100 G
+    _DFE_READ_EVEN_REG1                                         =  6104 G
+    _DFE_READ_EVEN_REG2                                         =  6108 G
+    _DFE_READ_EVEN_REG3                                         =  610C G
+    _DFE_READ_EVEN_REG4                                         =  6110 G
+    _DFE_READ_EVEN_REG5                                         =  6114 G
+    _DFE_READ_EVEN_REG6                                         =  6118 G
+    _DFE_READ_EVEN_REG7                                         =  611C G
+    _DFE_READ_EVEN_REG8                                         =  6140 G
+    _DFE_READ_EVEN_SM_REG0                                      =  2480 G
+    _DFE_READ_EVEN_SM_REG1                                      =  2484 G
+    _DFE_READ_EVEN_SM_REG2                                      =  2488 G
+    _DFE_READ_EVEN_SM_REG3                                      =  248C G
+    _DFE_READ_EVEN_SM_REG4                                      =  2490 G
+    _DFE_READ_EVEN_SM_REG5                                      =  2494 G
+    _DFE_READ_EVEN_SM_REG6                                      =  2498 G
+    _DFE_READ_EVEN_SM_REG7                                      =  249C G
+    _DFE_READ_EVEN_SM_REG8                                      =  24C0 G
+    _DFE_READ_F0A_EVEN                                          =  6148 G
+    _DFE_READ_F0A_ODD                                           =  614C G
+    _DFE_READ_F0B_EVEN                                          =  6150 G
+    _DFE_READ_F0B_ODD                                           =  6154 G
+    _DFE_READ_F0D_EVEN                                          =  6158 G
+    _DFE_READ_F0D_LEFT_EVEN                                     =  6160 G
+    _DFE_READ_F0D_LEFT_ODD                                      =  6164 G
+    _DFE_READ_F0D_ODD                                           =  615C G
+    _DFE_READ_F0D_RIGHT_EVEN                                    =  6168 G
+    _DFE_READ_F0D_RIGHT_ODD                                     =  616C G
+    _DFE_READ_ODD_2C_REG0                                       =  24F0 G
+    _DFE_READ_ODD_2C_REG1                                       =  24F4 G
+    _DFE_READ_ODD_2C_REG2                                       =  24F8 G
+    _DFE_READ_ODD_2C_REG3                                       =  24FC G
+    _DFE_READ_ODD_2C_REG4                                       =  2500 G
+    _DFE_READ_ODD_2C_REG5                                       =  2504 G
+    _DFE_READ_ODD_2C_REG6                                       =  2508 G
+    _DFE_READ_ODD_2C_REG7                                       =  250C G
+    _DFE_READ_ODD_2C_REG8                                       =  2514 G
+    _DFE_READ_ODD_REG0                                          =  6120 G
+    _DFE_READ_ODD_REG1                                          =  6124 G
+    _DFE_READ_ODD_REG2                                          =  6128 G
+    _DFE_READ_ODD_REG3                                          =  612C G
+    _DFE_READ_ODD_REG4                                          =  6130 G
+    _DFE_READ_ODD_REG5                                          =  6134 G
+    _DFE_READ_ODD_REG6                                          =  6138 G
+    _DFE_READ_ODD_REG7                                          =  613C G
+    _DFE_READ_ODD_REG8                                          =  6144 G
+    _DFE_READ_ODD_SM_REG0                                       =  24A0 G
+    _DFE_READ_ODD_SM_REG1                                       =  24A4 G
+    _DFE_READ_ODD_SM_REG2                                       =  24A8 G
+    _DFE_READ_ODD_SM_REG3                                       =  24AC G
+    _DFE_READ_ODD_SM_REG4                                       =  24B0 G
+    _DFE_READ_ODD_SM_REG5                                       =  24B4 G
+    _DFE_READ_ODD_SM_REG6                                       =  24B8 G
+    _DFE_READ_ODD_SM_REG7                                       =  24BC G
+    _DFE_READ_ODD_SM_REG8                                       =  24C4 G
+    _DFE_STATIC_LANE_REG0                                       =  2540 G
+    _DFE_STATIC_LANE_REG1                                       =  2544 G
+    _DFE_STATIC_LANE_REG3                                       =  2548 G
+    _DFE_STATIC_LANE_REG4                                       =  254C G
+    _DFE_STATIC_LANE_REG5                                       =  2550 G
+    _DFE_STATIC_LANE_REG6                                       =  2554 G
+    _DFE_STATIC_REG0                                            =  A110 G
+    _DFE_STATIC_REG1                                            =  A114 G
+    _DFE_STATIC_REG3                                            =  A118 G
+    _DFE_STATIC_REG4                                            =  A11C G
+    _DFE_STATIC_REG5                                            =  A120 G
+    _DFE_STATIC_REG6                                            =  A124 G
+    _DFE_STEP_REG0                                              =  2420 G
+    _DFE_STEP_REG1                                              =  2424 G
+    _DFE_TEST_0                                                 =  607C G
+    _DFE_TEST_1                                                 =  6080 G
+    _DFE_TEST_4                                                 =  6084 G
+    _DFE_TEST_5                                                 =  6088 G
+    _DIG_RX_RSVD_REG0                                           =  2118 G
+    _DIG_TX_RSVD_REG0                                           =  2044 G
+    _DLL_CAL                                                    =  6064 G
+    _DMAC                                                       =  B2B1 G
+    _DMAC0                                                      =  00B1 G
+    _DMAC1                                                      =  00B2 G
+    _DMAC2                                                      =  00B3 G
+    _DMAM0                                                      =  00B5 G
+    _DMAM1                                                      =  00B6 G
+    _DMAS0                                                      =  00A1 G
+    _DMAS1                                                      =  00A2 G
+    _DMAS2                                                      =  00A3 G
+    _DMASA                                                      =  A2A1 G
+    _DMASEL                                                     =  00B4 G
+    _DMAT0                                                      =  00A4 G
+    _DMAT1                                                      =  00A5 G
+    _DMAT2                                                      =  00A6 G
+    _DMATA                                                      =  A5A4 G
+    _DME_DEC_REG0                                               =  260C G
+    _DME_DEC_REG1                                               =  2610 G
+    _DME_ENC_REG0                                               =  2600 G
+    _DME_ENC_REG1                                               =  2604 G
+    _DME_ENC_REG2                                               =  2608 G
+    _DPH                                                        =  0083 G
+    _DPL                                                        =  0082 G
+    _DPS                                                        =  0092 G
+    _DTL_REG0                                                   =  2160 G
+    _DTL_REG1                                                   =  2164 G
+    _DTL_REG2                                                   =  2168 G
+    _DTL_REG3                                                   =  216C G
+    _DTX_PHY_ALIGN_REG0                                         =  A01C G
+    _DTX_PHY_ALIGN_REG1                                         =  A024 G
+    _DTX_PHY_ALIGN_REG2                                         =  A028 G
+    _DTX_REG0                                                   =  A008 G
+    _DTX_REG1                                                   =  A00C G
+    _DTX_REG2                                                   =  A010 G
+    _DTX_REG3                                                   =  A014 G
+    _DTX_REG4                                                   =  A018 G
+    _EA                                                         =  00AF G
+    _EIE                                                        =  00E8 G
+    _END_XDAT_CMN                                               =  E6C4 G
+    _END_XDAT_LANE                                              =  60F8 G
+    _EOM_ERR_REG0                                               =  2570 G
+    _EOM_ERR_REG1                                               =  2574 G
+    _EOM_ERR_REG2                                               =  2578 G
+    _EOM_ERR_REG3                                               =  257C G
+    _EOM_REG0                                                   =  2580 G
+    _EOM_VLD_REG0                                               =  2560 G
+    _EOM_VLD_REG1                                               =  2564 G
+    _EOM_VLD_REG2                                               =  2568 G
+    _EOM_VLD_REG3                                               =  256C G
+    _EOM_VLD_REG4                                               =  25F0 G
+    _ES                                                         =  00AC G
+    _ES1                                                        =  009A G
+    _ESM_ERR_N_CNT_LOW_LANE                                     =  60E0 G
+    _ESM_ERR_POP_CNT_HIGH_LANE                                  =  60B0 G
+    _ESM_ERR_P_CNT_LOW_LANE                                     =  60AC G
+    _ESM_POP_N_CNT_LOW_LANE                                     =  60DC G
+    _ESM_POP_P_CNT_LOW_LANE                                     =  60A8 G
+    _ET0                                                        =  00A9 G
+    _ET1                                                        =  00AB G
+    _ET2                                                        =  00AD G
+    _ETH_PRESET0_TB                                             =  E690 G
+    _ETH_PRESET1_TB                                             =  E694 G
+    _EX0                                                        =  00A8 G
+    _EX1                                                        =  00AA G
+    _EX10                                                       =  009D G
+    _EX11                                                       =  009E G
+    _EX12                                                       =  009F G
+    _EX2                                                        =  00B9 G
+    _EX3                                                        =  00BA G
+    _EX4                                                        =  00BB G
+    _EX5                                                        =  00BC G
+    _EX6                                                        =  00BD G
+    _EX7                                                        =  00B8 G
+    _EX8                                                        =  009B G
+    _EX9                                                        =  009C G
+    _EXT_INT_CONTROL                                            =  22C8 G
+    _FRAME_SYNC_DET_REG0                                        =  2120 G
+    _FRAME_SYNC_DET_REG1                                        =  2124 G
+    _FRAME_SYNC_DET_REG2                                        =  2128 G
+    _FRAME_SYNC_DET_REG3                                        =  212C G
+    _FRAME_SYNC_DET_REG4                                        =  2130 G
+    _FRAME_SYNC_DET_REG5                                        =  2134 G
+    _FRAME_SYNC_DET_REG6                                        =  2138 G
+    _FW_REV                                                     =  E600 G
+    _GLOB_BIST_CTRL                                             =  423C G
+    _GLOB_BIST_DATA_HI                                          =  4254 G
+    _GLOB_BIST_LANE_TYPE                                        =  4240 G
+    _GLOB_BIST_MASK                                             =  4248 G
+    _GLOB_BIST_RESULT                                           =  424C G
+    _GLOB_BIST_SEQR_CFG                                         =  4250 G
+    _GLOB_BIST_START                                            =  4244 G
+    _GLOB_CLK_SRC_HI                                            =  4208 G
+    _GLOB_CLK_SRC_LO                                            =  4204 G
+    _GLOB_COUNTER_CTRL                                          =  4224 G
+    _GLOB_COUNTER_HI                                            =  4228 G
+    _GLOB_DP_BAL_CFG0                                           =  4230 G
+    _GLOB_DP_BAL_CFG2                                           =  4234 G
+    _GLOB_DP_BAL_CFG4                                           =  4238 G
+    _GLOB_DP_SAL_CFG                                            =  4210 G
+    _GLOB_DP_SAL_CFG1                                           =  4214 G
+    _GLOB_DP_SAL_CFG3                                           =  4218 G
+    _GLOB_DP_SAL_CFG5                                           =  421C G
+    _GLOB_L1_SUBSTATES_CFG                                      =  425C G
+    _GLOB_MISC_CTRL                                             =  420C G
+    _GLOB_PIPE_REVISION                                         =  4258 G
+    _GLOB_PM_CFG0                                               =  4220 G
+    _GLOB_PM_DP_CTRL                                            =  422C G
+    _GLOB_RST_CLK_CTRL                                          =  4200 G
+    _G_SELLV_RXDATACLK                                          =  E67C G
+    _G_SELLV_RXEOMCLK                                           =  E678 G
+    _G_SELLV_RXSAMPLER                                          =  E680 G
+    _G_SELLV_TXCLK                                              =  E66C G
+    _G_SELLV_TXDATA                                             =  E670 G
+    _G_SELLV_TXPRE                                              =  E674 G
+    _IE0                                                        =  0089 G
+    _IE1                                                        =  008B G
+    _IEN0                                                       =  00A8 G
+    _IEN1                                                       =  00B8 G
+    _IEN2                                                       =  009A G
+    _INPUT_CMN_PIN_REG0                                         =  A31C G
+    _INPUT_CMN_PIN_REG1                                         =  A320 G
+    _INPUT_CMN_PIN_REG2                                         =  A324 G
+    _INPUT_CMN_PIN_REG3                                         =  A348 G
+    _INPUT_RX_PIN_REG0_LANE                                     =  2108 G
+    _INPUT_RX_PIN_REG1_LANE                                     =  210C G
+    _INPUT_RX_PIN_REG2_LANE                                     =  2110 G
+    _INPUT_RX_PIN_REG3_LANE                                     =  214C G
+    _INPUT_TX_PIN_REG0_LANE                                     =  2008 G
+    _INPUT_TX_PIN_REG1_LANE                                     =  200C G
+    _INPUT_TX_PIN_REG2_LANE                                     =  2010 G
+    _INPUT_TX_PIN_REG3_LANE                                     =  2014 G
+    _INPUT_TX_PIN_REG4_LANE                                     =  203C G
+    _INPUT_TX_PIN_REG5_LANE                                     =  2048 G
+    _IP0                                                        =  00A9 G
+    _IP1                                                        =  00B9 G
+    _IRCON                                                      =  00C0 G
+    _IT0                                                        =  0088 G
+    _IT1                                                        =  008A G
+    _LANE_16G_PRESET_CFG0_LANE                                  =  405C G
+    _LANE_16G_PRESET_CFG10_LANE                                 =  4070 G
+    _LANE_16G_PRESET_CFG12_LANE                                 =  4074 G
+    _LANE_16G_PRESET_CFG14_LANE                                 =  4078 G
+    _LANE_16G_PRESET_CFG16_LANE                                 =  407C G
+    _LANE_16G_PRESET_CFG2_LANE                                  =  4060 G
+    _LANE_16G_PRESET_CFG4_LANE                                  =  4064 G
+    _LANE_16G_PRESET_CFG6_LANE                                  =  4068 G
+    _LANE_16G_PRESET_CFG8_LANE                                  =  406C G
+    _LANE_32G_PRESET_CFG0_LANE                                  =  4084 G
+    _LANE_32G_PRESET_CFG10_LANE                                 =  4098 G
+    _LANE_32G_PRESET_CFG12_LANE                                 =  409C G
+    _LANE_32G_PRESET_CFG14_LANE                                 =  40A0 G
+    _LANE_32G_PRESET_CFG16_LANE                                 =  40A4 G
+    _LANE_32G_PRESET_CFG2_LANE                                  =  4088 G
+    _LANE_32G_PRESET_CFG4_LANE                                  =  408C G
+    _LANE_32G_PRESET_CFG6_LANE                                  =  4090 G
+    _LANE_32G_PRESET_CFG8_LANE                                  =  4094 G
+    _LANE_CFG0                                                  =  4000 G
+    _LANE_CFG2_LANE                                             =  400C G
+    _LANE_CFG4                                                  =  4010 G
+    _LANE_CFG_STATUS2_LANE                                      =  4008 G
+    _LANE_CFG_STATUS3_LANE                                      =  4014 G
+    _LANE_COEFF_MAX0_LANE                                       =  4050 G
+    _LANE_DP_PIE8_CFG0_LANE                                     =  4018 G
+    _LANE_EQ_16G_CFG0_LANE                                      =  4058 G
+    _LANE_EQ_32G_CFG0_LANE                                      =  4080 G
+    _LANE_EQ_CFG0_LANE                                          =  4024 G
+    _LANE_EQ_CFG1_LANE                                          =  4028 G
+    _LANE_MARGIN_REG0                                           =  25F4 G
+    _LANE_PRESET_CFG0_LANE                                      =  402C G
+    _LANE_PRESET_CFG10_LANE                                     =  4040 G
+    _LANE_PRESET_CFG12_LANE                                     =  4044 G
+    _LANE_PRESET_CFG14_LANE                                     =  4048 G
+    _LANE_PRESET_CFG16_LANE                                     =  404C G
+    _LANE_PRESET_CFG2_LANE                                      =  4030 G
+    _LANE_PRESET_CFG4_LANE                                      =  4034 G
+    _LANE_PRESET_CFG6_LANE                                      =  4038 G
+    _LANE_PRESET_CFG8_LANE                                      =  403C G
+    _LANE_REMOTE_SET_LANE                                       =  4054 G
+    _LANE_STATUS0                                               =  4004 G
+    _LANE_SYSTEM0                                               =  2210 G
+    _LANE_USB_DP_CFG1_LANE                                      =  401C G
+    _LANE_USB_DP_CFG2_LANE                                      =  4020 G
+    _LINK_TRAIN_MODE0                                           =  2650 G
+    _LOOP_CNTS                                                  =  E658 G
+    _MCU_COMMAND0                                               =  22E4 G
+    _MCU_CONFIG                                                 =  E650 G
+    _MCU_CONFIG1                                                =  E65C G
+    _MCU_CONTROL_0                                              =  A200 G
+    _MCU_CONTROL_1                                              =  A204 G
+    _MCU_CONTROL_2                                              =  A208 G
+    _MCU_CONTROL_3                                              =  A20C G
+    _MCU_CONTROL_4                                              =  A210 G
+    _MCU_CONTROL_LANE                                           =  2200 G
+    _MCU_DEBUG0                                                 =  A214 G
+    _MCU_DEBUG0_LANE                                            =  22B4 G
+    _MCU_DEBUG1                                                 =  A218 G
+    _MCU_DEBUG1_LANE                                            =  22B8 G
+    _MCU_DEBUG2_LANE                                            =  22BC G
+    _MCU_DEBUG3_LANE                                            =  22C0 G
+    _MCU_DEBUG_LANE                                             =  22C4 G
+    _MCU_GPIO                                                   =  2204 G
+    _MCU_INFO_0                                                 =  A234 G
+    _MCU_INFO_1                                                 =  A238 G
+    _MCU_INFO_12                                                =  E6BC G
+    _MCU_INFO_13                                                =  E6C0 G
+    _MCU_INFO_2                                                 =  A23C G
+    _MCU_INFO_3                                                 =  A240 G
+    _MCU_INFO_4                                                 =  E6B4 G
+    _MCU_INFO_5                                                 =  E6B8 G
+    _MCU_INT0_CONTROL                                           =  2240 G
+    _MCU_INT10_CONTROL                                          =  2268 G
+    _MCU_INT11_CONTROL                                          =  226C G
+    _MCU_INT12_CONTROL                                          =  2270 G
+    _MCU_INT1_CONTROL                                           =  2244 G
+    _MCU_INT2_CONTROL                                           =  2248 G
+    _MCU_INT3_CONTROL                                           =  224C G
+    _MCU_INT4_CONTROL                                           =  2250 G
+    _MCU_INT5_CONTROL                                           =  2254 G
+    _MCU_INT6_CONTROL                                           =  2258 G
+    _MCU_INT7_CONTROL                                           =  225C G
+    _MCU_INT8_CONTROL                                           =  2260 G
+    _MCU_INT9_CONTROL                                           =  2264 G
+    _MCU_INT_ADDR                                               =  A36C G
+    _MCU_INT_CONTROL_13                                         =  22E0 G
+    _MCU_IRQ_ISR_LANE                                           =  22D8 G
+    _MCU_IRQ_LANE                                               =  2288 G
+    _MCU_IRQ_MASK_LANE                                          =  228C G
+    _MCU_MEM_REG1_LANE                                          =  2290 G
+    _MCU_MEM_REG2_LANE                                          =  2294 G
+    _MCU_SDT_CMN                                                =  A364 G
+    _MCU_STATUS0_LANE                                           =  2230 G
+    _MCU_STATUS1_LANE                                           =  2234 G
+    _MCU_STATUS2_LANE                                           =  2238 G
+    _MCU_STATUS3_LANE                                           =  223C G
+    _MCU_SYNC1                                                  =  A2F8 G
+    _MCU_SYNC2                                                  =  A2FC G
+    _MCU_TIMER0_CONTROL                                         =  2278 G
+    _MCU_TIMER1_CONTROL                                         =  227C G
+    _MCU_TIMER2_CONTROL                                         =  2280 G
+    _MCU_TIMER3_CONTROL                                         =  2284 G
+    _MCU_TIMER_CONTROL                                          =  2274 G
+    _MCU_TIMER_CTRL_1_LANE                                      =  2298 G
+    _MCU_TIMER_CTRL_2_LANE                                      =  229C G
+    _MCU_TIMER_CTRL_3_LANE                                      =  22A0 G
+    _MCU_TIMER_CTRL_4_LANE                                      =  22A4 G
+    _MCU_TIMER_CTRL_5_LANE                                      =  22A8 G
+    _MCU_TIMER_CTRL_6_LANE                                      =  22AC G
+    _MCU_TIMER_CTRL_7_LANE                                      =  22B0 G
+    _MCU_WDT_LANE                                               =  22DC G
+    _MEMORY_CONTROL_0                                           =  A21C G
+    _MEMORY_CONTROL_1                                           =  A220 G
+    _MEMORY_CONTROL_2                                           =  A224 G
+    _MEMORY_CONTROL_3                                           =  A228 G
+    _MEMORY_CONTROL_4                                           =  A22C G
+    _MEM_CMN_ECC_ERR_ADDRESS0                                   =  A244 G
+    _MEM_ECC_ERR_ADDRESS0                                       =  22F4 G
+    _MEM_IRQ                                                    =  A2E4 G
+    _MEM_IRQ_CLEAR                                              =  A2F4 G
+    _MEM_IRQ_MASK                                               =  A2E8 G
+    _MON_TOP                                                    =  205C G
+    _OUTPUT_CMN_PIN_REG0                                        =  A33C G
+    _P0                                                         =  0080 G
+    _P0_0                                                       =  0080 G
+    _P0_1                                                       =  0081 G
+    _P0_2                                                       =  0082 G
+    _P0_3                                                       =  0083 G
+    _P0_4                                                       =  0084 G
+    _P0_5                                                       =  0085 G
+    _P0_6                                                       =  0086 G
+    _P0_7                                                       =  0087 G
+    _P1                                                         =  0090 G
+    _P1_0                                                       =  0090 G
+    _P1_1                                                       =  0091 G
+    _P1_2                                                       =  0092 G
+    _P1_3                                                       =  0093 G
+    _P1_4                                                       =  0094 G
+    _P1_5                                                       =  0095 G
+    _P1_6                                                       =  0096 G
+    _P1_7                                                       =  0097 G
+    _P2                                                         =  00A0 G
+    _P2_0                                                       =  00A0 G
+    _P2_1                                                       =  00A1 G
+    _P2_2                                                       =  00A2 G
+    _P2_3                                                       =  00A3 G
+    _P2_4                                                       =  00A4 G
+    _P2_5                                                       =  00A5 G
+    _P2_6                                                       =  00A6 G
+    _P2_7                                                       =  00A7 G
+    _P3                                                         =  00B0 G
+    _P3_0                                                       =  00B0 G
+    _P3_1                                                       =  00B1 G
+    _P3_2                                                       =  00B2 G
+    _P3_3                                                       =  00B3 G
+    _P3_4                                                       =  00B4 G
+    _P3_5                                                       =  00B5 G
+    _P3_6                                                       =  00B6 G
+    _P3_7                                                       =  00B7 G
+    _PCON                                                       =  0087 G
+    _PHY_LOCAL_VALUE_LANE                                       =  6024 G
+    _PHY_REMOTE_CTRL_COMMAND_LANE                               =  601C G
+    _PHY_REMOTE_CTRL_VALUE_LANE                                 =  6020 G
+    _PLLCAL_REG0                                                =  A32C G
+    _PLLCAL_REG1                                                =  A330 G
+    _PM_CMN_REG1                                                =  A318 G
+    _PM_CMN_REG2                                                =  A34C G
+    _PM_CTRL_INTERRUPT_ISR_REG1_LANE                            =  2050 G
+    _PM_CTRL_INTERRUPT_REG1_LANE                                =  2018 G
+    _PM_CTRL_INTERRUPT_REG2                                     =  201C G
+    _PM_CTRL_RX_LANE_REG1_LANE                                  =  2100 G
+    _PM_CTRL_TX_LANE_REG1_LANE                                  =  2000 G
+    _PM_CTRL_TX_LANE_REG2_LANE                                  =  2004 G
+    _PS1                                                        =  00BE G
+    _PSBANK                                                     =  0094 G
+    _PSW                                                        =  00D0 G
+    _PT_CONTROL0                                                =  2300 G
+    _PT_CONTROL1                                                =  2304 G
+    _PT_COUNTER0                                                =  2314 G
+    _PT_COUNTER1                                                =  2318 G
+    _PT_COUNTER2                                                =  231C G
+    _PT_USER_PATTERN0                                           =  2308 G
+    _PT_USER_PATTERN1                                           =  230C G
+    _PT_USER_PATTERN2                                           =  2310 G
+    _RCAP2H                                                     =  00CB G
+    _RCAP2L                                                     =  00CA G
+    _RI                                                         =  0098 G
+    _RPTA_CONFIG_0                                              =  605C G
+    _RPTA_CONFIG_1                                              =  6060 G
+    _RX_CALIBRATION_REG                                         =  2150 G
+    _RX_CMN_0                                                   =  A100 G
+    _RX_DATA_PATH_REG                                           =  2148 G
+    _RX_EQ_CLK_CTRL                                             =  2410 G
+    _RX_LANE_INTERRUPT                                          =  2140 G
+    _RX_LANE_INTERRUPT_MASK                                     =  2144 G
+    _RX_LANE_INTERRUPT_REG1                                     =  2158 G
+    _RX_SYSTEM_LANE                                             =  2104 G
+    _S0RELH                                                     =  00BA G
+    _S0RELL                                                     =  00AA G
+    _SAS_PRESET0_TB                                             =  E684 G
+    _SAS_PRESET1_TB                                             =  E688 G
+    _SAS_PRESET2_TB                                             =  E68C G
+    _SBUF                                                       =  0099 G
+    _SCON                                                       =  0098 G
+    _SET_LANE_ISR                                               =  A3B0 G
+    _SPD_CMN_REG1                                               =  A338 G
+    _SPD_CTRL_INTERRUPT_CLEAR_REG1_LANE                         =  2054 G
+    _SPD_CTRL_INTERRUPT_REG1_LANE                               =  2028 G
+    _SPD_CTRL_INTERRUPT_REG2                                    =  202C G
+    _SPD_CTRL_RX_LANE_REG1_LANE                                 =  2114 G
+    _SPD_CTRL_TX_LANE_REG1_LANE                                 =  2030 G
+    _SQ_REG0                                                    =  2170 G
+    _SRIS_REG0                                                  =  A02C G
+    _SRIS_REG1                                                  =  A030 G
+    _SRST                                                       =  00F7 G
+    _SYNC_INFO                                                  =  E6B0 G
+    _SYSTEM                                                     =  A314 G
+    _T2CON                                                      =  00C8 G
+    _TCON                                                       =  0088 G
+    _TEST0                                                      =  A300 G
+    _TEST1                                                      =  A304 G
+    _TEST2                                                      =  A308 G
+    _TEST3                                                      =  A30C G
+    _TEST4                                                      =  A310 G
+    _TEST5                                                      =  A354 G
+    _TF0                                                        =  008D G
+    _TF1                                                        =  008F G
+    _TF2                                                        =  00C6 G
+    _TH0                                                        =  008C G
+    _TH1                                                        =  008D G
+    _TH2                                                        =  00CD G
+    _TI                                                         =  0099 G
+    _TIMER_SEL1                                                 =  E660 G
+    _TIMER_SEL2                                                 =  E664 G
+    _TIMER_SEL3                                                 =  E668 G
+    _TL0                                                        =  008A G
+    _TL1                                                        =  008B G
+    _TL2                                                        =  00CC G
+    _TMOD                                                       =  0089 G
+    _TMR0                                                       =  8C8A G
+    _TMR1                                                       =  8D8B G
+    _TMR2                                                       =  CDCC G
+    _TR0                                                        =  008C G
+    _TR1                                                        =  008E G
+    _TRAIN_CONTROL_0                                            =  6050 G
+    _TRAIN_CONTROL_1                                            =  6054 G
+    _TRAIN_CONTROL_10                                           =  60D0 G
+    _TRAIN_CONTROL_11                                           =  60D4 G
+    _TRAIN_CONTROL_12                                           =  60D8 G
+    _TRAIN_CONTROL_13                                           =  60E4 G
+    _TRAIN_CONTROL_14                                           =  60E8 G
+    _TRAIN_CONTROL_15                                           =  60EC G
+    _TRAIN_CONTROL_16                                           =  60F0 G
+    _TRAIN_CONTROL_17                                           =  60F4 G
+    _TRAIN_CONTROL_2                                            =  6058 G
+    _TRAIN_CONTROL_3                                            =  60B4 G
+    _TRAIN_CONTROL_4                                            =  60B8 G
+    _TRAIN_CONTROL_5                                            =  60BC G
+    _TRAIN_CONTROL_6                                            =  60C0 G
+    _TRAIN_CONTROL_7                                            =  60C4 G
+    _TRAIN_CONTROL_8                                            =  60C8 G
+    _TRAIN_CONTROL_9                                            =  60CC G
+    _TRAIN_IF_CONFIG                                            =  E628 G
+    _TRAIN_PARA_0                                               =  6068 G
+    _TRAIN_PARA_1                                               =  606C G
+    _TRAIN_PARA_2                                               =  6070 G
+    _TRAIN_PARA_3                                               =  6074 G
+    _TRX_TRAIN_IF_INTERRUPT_CLEAR_LANE                          =  2664 G
+    _TRX_TRAIN_IF_INTERRUPT_LANE                                =  265C G
+    _TRX_TRAIN_IF_INTERRUPT_MASK0_LANE                          =  2660 G
+    _TRX_TRAIN_IF_TIMERS1_LANE                                  =  6028 G
+    _TRX_TRAIN_IF_TIMERS2_LANE                                  =  602C G
+    _TRX_TRAIN_IF_TIMERS_ENABLE_LANE                            =  6030 G
+    _TXTRAIN_IF_REG0                                            =  6214 G
+    _TX_AMP_CTRL_REG0                                           =  2658 G
+    _TX_CALIBRATION_LANE                                        =  2040 G
+    _TX_CMN_REG                                                 =  A000 G
+    _TX_DRV_RD_OUT_REG0                                         =  2654 G
+    _TX_EMPH_CTRL_REG0                                          =  264C G
+    _TX_SAVE_0                                                  =  E698 G
+    _TX_SAVE_1                                                  =  E69C G
+    _TX_SAVE_2                                                  =  E6A0 G
+    _TX_SAVE_3                                                  =  E6A4 G
+    _TX_SAVE_4                                                  =  E6A8 G
+    _TX_SPEED_CONVERT_LANE                                      =  2024 G
+    _TX_SYSTEM_LANE                                             =  2034 G
+    _TX_TRAIN_CTRL_LANE                                         =  2678 G
+    _TX_TRAIN_DEFAULT_REG0                                      =  2634 G
+    _TX_TRAIN_DEFAULT_REG1                                      =  2638 G
+    _TX_TRAIN_DEFAULT_REG2                                      =  263C G
+    _TX_TRAIN_DEFAULT_REG3                                      =  2640 G
+    _TX_TRAIN_DEFAULT_REG4                                      =  2644 G
+    _TX_TRAIN_DEFAULT_REG5                                      =  2648 G
+    _TX_TRAIN_DRIVER_REG0                                       =  2628 G
+    _TX_TRAIN_DRIVER_REG1                                       =  262C G
+    _TX_TRAIN_DRIVER_REG2                                       =  2630 G
+    _TX_TRAIN_IF_REG0                                           =  2614 G
+    _TX_TRAIN_IF_REG1                                           =  2618 G
+    _TX_TRAIN_IF_REG2                                           =  261C G
+    _TX_TRAIN_IF_REG3                                           =  2620 G
+    _TX_TRAIN_IF_REG4                                           =  2668 G
+    _TX_TRAIN_IF_REG5                                           =  266C G
+    _TX_TRAIN_IF_REG6                                           =  2670 G
+    _TX_TRAIN_IF_REG7                                           =  2674 G
+    _TX_TRAIN_IF_REG8                                           =  267C G
+    _TX_TRAIN_PATTTERN_REG0                                     =  2624 G
+    _UPHY14_CMN_ANAREG_TOP_128                                  =  8200 G
+    _UPHY14_CMN_ANAREG_TOP_129                                  =  8204 G
+    _UPHY14_CMN_ANAREG_TOP_130                                  =  8208 G
+    _UPHY14_CMN_ANAREG_TOP_131                                  =  820C G
+    _UPHY14_CMN_ANAREG_TOP_132                                  =  8210 G
+    _UPHY14_CMN_ANAREG_TOP_133                                  =  8214 G
+    _UPHY14_CMN_ANAREG_TOP_134                                  =  8218 G
+    _UPHY14_CMN_ANAREG_TOP_135                                  =  821C G
+    _UPHY14_CMN_ANAREG_TOP_136                                  =  8220 G
+    _UPHY14_CMN_ANAREG_TOP_137                                  =  8224 G
+    _UPHY14_CMN_ANAREG_TOP_138                                  =  8228 G
+    _UPHY14_CMN_ANAREG_TOP_139                                  =  822C G
+    _UPHY14_CMN_ANAREG_TOP_140                                  =  8230 G
+    _UPHY14_CMN_ANAREG_TOP_141                                  =  8234 G
+    _UPHY14_CMN_ANAREG_TOP_142                                  =  8238 G
+    _UPHY14_CMN_ANAREG_TOP_143                                  =  823C G
+    _UPHY14_CMN_ANAREG_TOP_144                                  =  8240 G
+    _UPHY14_CMN_ANAREG_TOP_145                                  =  8244 G
+    _UPHY14_CMN_ANAREG_TOP_146                                  =  8248 G
+    _UPHY14_CMN_ANAREG_TOP_147                                  =  824C G
+    _UPHY14_CMN_ANAREG_TOP_148                                  =  8250 G
+    _UPHY14_CMN_ANAREG_TOP_149                                  =  8254 G
+    _UPHY14_CMN_ANAREG_TOP_150                                  =  8258 G
+    _UPHY14_CMN_ANAREG_TOP_151                                  =  825C G
+    _UPHY14_CMN_ANAREG_TOP_152                                  =  8260 G
+    _UPHY14_CMN_ANAREG_TOP_153                                  =  8264 G
+    _UPHY14_CMN_ANAREG_TOP_154                                  =  8268 G
+    _UPHY14_CMN_ANAREG_TOP_155                                  =  826C G
+    _UPHY14_CMN_ANAREG_TOP_156                                  =  8270 G
+    _UPHY14_CMN_ANAREG_TOP_157                                  =  8274 G
+    _UPHY14_CMN_ANAREG_TOP_158                                  =  8278 G
+    _UPHY14_CMN_ANAREG_TOP_159                                  =  827C G
+    _UPHY14_CMN_ANAREG_TOP_160                                  =  8280 G
+    _UPHY14_CMN_ANAREG_TOP_161                                  =  8284 G
+    _UPHY14_CMN_ANAREG_TOP_162                                  =  8288 G
+    _UPHY14_CMN_ANAREG_TOP_163                                  =  828C G
+    _UPHY14_CMN_ANAREG_TOP_164                                  =  8290 G
+    _UPHY14_CMN_ANAREG_TOP_165                                  =  8294 G
+    _UPHY14_CMN_ANAREG_TOP_166                                  =  8298 G
+    _UPHY14_CMN_ANAREG_TOP_167                                  =  829C G
+    _UPHY14_CMN_ANAREG_TOP_168                                  =  82A0 G
+    _UPHY14_CMN_ANAREG_TOP_169                                  =  82A4 G
+    _UPHY14_CMN_ANAREG_TOP_170                                  =  82A8 G
+    _UPHY14_CMN_ANAREG_TOP_171                                  =  82AC G
+    _UPHY14_CMN_ANAREG_TOP_172                                  =  82B0 G
+    _UPHY14_CMN_ANAREG_TOP_173                                  =  82B4 G
+    _UPHY14_CMN_ANAREG_TOP_174                                  =  82B8 G
+    _UPHY14_CMN_ANAREG_TOP_175                                  =  82BC G
+    _UPHY14_CMN_ANAREG_TOP_176                                  =  82C0 G
+    _UPHY14_CMN_ANAREG_TOP_177                                  =  82C4 G
+    _UPHY14_CMN_ANAREG_TOP_178                                  =  82C8 G
+    _UPHY14_CMN_ANAREG_TOP_179                                  =  82CC G
+    _UPHY14_CMN_ANAREG_TOP_180                                  =  82D0 G
+    _UPHY14_CMN_ANAREG_TOP_181                                  =  82D4 G
+    _UPHY14_CMN_ANAREG_TOP_182                                  =  82D8 G
+    _UPHY14_CMN_ANAREG_TOP_183                                  =  82DC G
+    _UPHY14_CMN_ANAREG_TOP_184                                  =  82E0 G
+    _UPHY14_CMN_ANAREG_TOP_185                                  =  82E4 G
+    _UPHY14_CMN_ANAREG_TOP_186                                  =  82E8 G
+    _UPHY14_CMN_ANAREG_TOP_187                                  =  82EC G
+    _UPHY14_CMN_ANAREG_TOP_188                                  =  82F0 G
+    _UPHY14_CMN_ANAREG_TOP_189                                  =  82F4 G
+    _UPHY14_CMN_ANAREG_TOP_190                                  =  82F8 G
+    _UPHY14_CMN_ANAREG_TOP_191                                  =  82FC G
+    _UPHY14_CMN_ANAREG_TOP_192                                  =  8300 G
+    _UPHY14_CMN_ANAREG_TOP_193                                  =  8304 G
+    _UPHY14_CMN_ANAREG_TOP_194                                  =  8308 G
+    _UPHY14_CMN_ANAREG_TOP_195                                  =  830C G
+    _UPHY14_CMN_ANAREG_TOP_196                                  =  8310 G
+    _UPHY14_CMN_ANAREG_TOP_197                                  =  8314 G
+    _UPHY14_CMN_ANAREG_TOP_198                                  =  8318 G
+    _UPHY14_CMN_ANAREG_TOP_199                                  =  831C G
+    _UPHY14_CMN_ANAREG_TOP_200                                  =  8320 G
+    _UPHY14_CMN_ANAREG_TOP_201                                  =  8324 G
+    _UPHY14_CMN_ANAREG_TOP_202                                  =  8328 G
+    _UPHY14_CMN_ANAREG_TOP_203                                  =  832C G
+    _UPHY14_CMN_ANAREG_TOP_204                                  =  8330 G
+    _UPHY14_CMN_ANAREG_TOP_205                                  =  8334 G
+    _UPHY14_CMN_ANAREG_TOP_206                                  =  8338 G
+    _UPHY14_CMN_ANAREG_TOP_207                                  =  833C G
+    _UPHY14_CMN_ANAREG_TOP_208                                  =  8340 G
+    _UPHY14_CMN_ANAREG_TOP_209                                  =  8344 G
+    _UPHY14_CMN_ANAREG_TOP_210                                  =  8348 G
+    _UPHY14_CMN_ANAREG_TOP_211                                  =  834C G
+    _UPHY14_CMN_ANAREG_TOP_212                                  =  8350 G
+    _UPHY14_CMN_ANAREG_TOP_213                                  =  8354 G
+    _UPHY14_CMN_ANAREG_TOP_214                                  =  8358 G
+    _UPHY14_TRX_ANAREG_BOT_0                                    =  0000 G
+    _UPHY14_TRX_ANAREG_BOT_1                                    =  0004 G
+    _UPHY14_TRX_ANAREG_BOT_10                                   =  0028 G
+    _UPHY14_TRX_ANAREG_BOT_11                                   =  002C G
+    _UPHY14_TRX_ANAREG_BOT_12                                   =  0030 G
+    _UPHY14_TRX_ANAREG_BOT_13                                   =  0034 G
+    _UPHY14_TRX_ANAREG_BOT_14                                   =  0038 G
+    _UPHY14_TRX_ANAREG_BOT_15                                   =  003C G
+    _UPHY14_TRX_ANAREG_BOT_16                                   =  0040 G
+    _UPHY14_TRX_ANAREG_BOT_17                                   =  0044 G
+    _UPHY14_TRX_ANAREG_BOT_18                                   =  0048 G
+    _UPHY14_TRX_ANAREG_BOT_19                                   =  004C G
+    _UPHY14_TRX_ANAREG_BOT_2                                    =  0008 G
+    _UPHY14_TRX_ANAREG_BOT_20                                   =  0050 G
+    _UPHY14_TRX_ANAREG_BOT_21                                   =  0054 G
+    _UPHY14_TRX_ANAREG_BOT_22                                   =  0058 G
+    _UPHY14_TRX_ANAREG_BOT_23                                   =  005C G
+    _UPHY14_TRX_ANAREG_BOT_24                                   =  0060 G
+    _UPHY14_TRX_ANAREG_BOT_25                                   =  0064 G
+    _UPHY14_TRX_ANAREG_BOT_26                                   =  0068 G
+    _UPHY14_TRX_ANAREG_BOT_27                                   =  006C G
+    _UPHY14_TRX_ANAREG_BOT_28                                   =  0070 G
+    _UPHY14_TRX_ANAREG_BOT_29                                   =  0074 G
+    _UPHY14_TRX_ANAREG_BOT_3                                    =  000C G
+    _UPHY14_TRX_ANAREG_BOT_30                                   =  0078 G
+    _UPHY14_TRX_ANAREG_BOT_31                                   =  007C G
+    _UPHY14_TRX_ANAREG_BOT_32                                   =  0080 G
+    _UPHY14_TRX_ANAREG_BOT_4                                    =  0010 G
+    _UPHY14_TRX_ANAREG_BOT_5                                    =  0014 G
+    _UPHY14_TRX_ANAREG_BOT_6                                    =  0018 G
+    _UPHY14_TRX_ANAREG_BOT_7                                    =  001C G
+    _UPHY14_TRX_ANAREG_BOT_8                                    =  0020 G
+    _UPHY14_TRX_ANAREG_BOT_9                                    =  0024 G
+    _UPHY14_TRX_ANAREG_TOP_128                                  =  0200 G
+    _UPHY14_TRX_ANAREG_TOP_129                                  =  0204 G
+    _UPHY14_TRX_ANAREG_TOP_130                                  =  0208 G
+    _UPHY14_TRX_ANAREG_TOP_131                                  =  020C G
+    _UPHY14_TRX_ANAREG_TOP_132                                  =  0210 G
+    _UPHY14_TRX_ANAREG_TOP_133                                  =  0214 G
+    _UPHY14_TRX_ANAREG_TOP_134                                  =  0218 G
+    _UPHY14_TRX_ANAREG_TOP_135                                  =  021C G
+    _UPHY14_TRX_ANAREG_TOP_136                                  =  0220 G
+    _UPHY14_TRX_ANAREG_TOP_137                                  =  0224 G
+    _UPHY14_TRX_ANAREG_TOP_138                                  =  0228 G
+    _UPHY14_TRX_ANAREG_TOP_139                                  =  022C G
+    _UPHY14_TRX_ANAREG_TOP_140                                  =  0230 G
+    _UPHY14_TRX_ANAREG_TOP_141                                  =  0234 G
+    _UPHY14_TRX_ANAREG_TOP_142                                  =  0238 G
+    _UPHY14_TRX_ANAREG_TOP_143                                  =  023C G
+    _UPHY14_TRX_ANAREG_TOP_144                                  =  0240 G
+    _UPHY14_TRX_ANAREG_TOP_145                                  =  0244 G
+    _UPHY14_TRX_ANAREG_TOP_146                                  =  0248 G
+    _UPHY14_TRX_ANAREG_TOP_147                                  =  024C G
+    _UPHY14_TRX_ANAREG_TOP_148                                  =  0250 G
+    _UPHY14_TRX_ANAREG_TOP_149                                  =  0254 G
+    _UPHY14_TRX_ANAREG_TOP_150                                  =  0258 G
+    _UPHY14_TRX_ANAREG_TOP_151                                  =  025C G
+    _UPHY14_TRX_ANAREG_TOP_152                                  =  0260 G
+    _UPHY14_TRX_ANAREG_TOP_153                                  =  0264 G
+    _UPHY14_TRX_ANAREG_TOP_154                                  =  0268 G
+    _UPHY14_TRX_ANAREG_TOP_155                                  =  026C G
+    _UPHY14_TRX_ANAREG_TOP_156                                  =  0270 G
+    _UPHY14_TRX_ANAREG_TOP_157                                  =  0274 G
+    _UPHY14_TRX_LANEPLL_ANAREG_TOP_128                          =  1000 G
+    _UPHY14_TRX_LANEPLL_ANAREG_TOP_129                          =  1004 G
+    _UPHY14_TRX_LANEPLL_ANAREG_TOP_130                          =  1008 G
+    _UPHY14_TRX_LANEPLL_ANAREG_TOP_131                          =  100C G
+    _UPHY14_TRX_LANEPLL_ANAREG_TOP_132                          =  1010 G
+    _UPHY14_TRX_LANEPLL_ANAREG_TOP_133                          =  1014 G
+    _UPHY14_TRX_LANEPLL_ANAREG_TOP_134                          =  1018 G
+    _UPHY14_TRX_LANEPLL_ANAREG_TOP_135                          =  101C G
+    _UPHY14_TRX_LANEPLL_ANAREG_TOP_136                          =  1020 G
+    _UPHY14_TRX_LANEPLL_ANAREG_TOP_137                          =  1024 G
+    _UPHY14_TRX_LANEPLL_ANAREG_TOP_138                          =  1028 G
+    _UPHY14_TRX_LANEPLL_ANAREG_TOP_139                          =  102C G
+    _UPHY14_TRX_LANEPLL_ANAREG_TOP_140                          =  1030 G
+    _UPHY14_TRX_LANEPLL_ANAREG_TOP_141                          =  1034 G
+    _UPHY14_TRX_LANEPLL_ANAREG_TOP_142                          =  1038 G
+    _UPHY14_TRX_LANEPLL_ANAREG_TOP_143                          =  103C G
+    _UPHY_ANAREG_REV_0                                          =  03FC G
+    _WDT                                                        =  00AE G
+    _WDTREL                                                     =  0086 G
+    _XDATA_MEM_CHECKSUM_CMN_0                                   =  A358 G
+    _XDATA_MEM_CHECKSUM_CMN_1                                   =  A35C G
+    _XDATA_MEM_CHECKSUM_CMN_2                                   =  A360 G
+    _XDATA_MEM_CHECKSUM_LANE0                                   =  22F8 G
+    _XDATA_MEM_CHECKSUM_LANE1                                   =  22FC G
+    __FIELDNAME_                                                =  A344 G
+    __FIELDNAME__LANE                                           =  204C G
+    __sdcc_banked_call                                             **** GX
+    __sdcc_banked_ret                                              **** GX
+    _adapt_data_en                                                 **** GX
+    _adapt_slicer_en                                               **** GX
+    _adapted_phase                                                 **** GX
+ 17 _advanced_clk_align                                            0003 GR
+    _bp                                                            **** GX
+    _cdr                                                           **** GX
+ 17 _cdr_phase_opt                                                 0000 GR
+    _cds28                                                      =  6100 G
+    _cds_dfe_ofst                                                  **** GX
+    _clamp                                                         **** GX
+    _cmx_cal_lccap_lsb                                          =  E5C8 G
+    _cmx_cal_lccap_msb                                          =  E5CA G
+    _cmx_cal_lcvco_dac                                          =  E5C1 G
+    _cmx_cal_lcvco_dac_lsb                                      =  E5C1 G
+    _cmx_cal_lcvco_dac_msb                                      =  E5C4 G
+    _cmx_cal_pll_sllp_dac_coarse_ring                           =  E5D4 G
+    _cmx_cal_pll_speed_ring                                     =  E5D0 G
+    _cmx_cal_plldcc                                             =  E5CC G
+    _cmx_cal_sllp_dac_fine_ring                                 =  E5D8 G
+ 17 _dfe_adapt_align                                               02F6 GR
+    _dfe_adaptation                                                **** GX
+    _dfe_sm                                                     =  6178 G
+    _dfe_sm_dc                                                  =  61B8 G
+    _dfe_sm_save                                                =  61C0 G
+    _lc_speedtable                                              =  E000 G
+    _lnx_cal_align90_dac                                        =  661A G
+    _lnx_cal_align90_dummy_clk                                  =  6612 G
+    _lnx_cal_align90_gm                                         =  6622 G
+    _lnx_cal_dll_eom_gmsel                                      =  660A G
+    _lnx_cal_dll_gmsel                                          =  6604 G
+    _lnx_cal_eom_dpher                                          =  6610 G
+    _lnx_cal_rxdcc_data                                         =  65E6 G
+    _lnx_cal_rxdcc_data_hg                                      =  65F0 G
+    _lnx_cal_rxdcc_dll                                          =  65E0 G
+    _lnx_cal_rxdcc_dll_hg                                       =  65E4 G
+    _lnx_cal_rxdcc_eom                                          =  65F5 G
+    _lnx_cal_rxdcc_eom_hg                                       =  65FF G
+    _lnx_cal_sellv_rxdataclk                                    =  663E G
+    _lnx_cal_sellv_rxeomclk                                     =  665C G
+    _lnx_cal_sellv_rxsampler                                    =  6652 G
+    _lnx_cal_sellv_txclk                                        =  6634 G
+    _lnx_cal_sellv_txdata                                       =  662A G
+    _lnx_cal_sellv_txpre                                        =  6648 G
+    _lnx_cal_txdcc                                              =  65DA G
+    _lnx_cal_txdcc_hg                                           =  65DE G
+    _lnx_cal_txdcc_pdiv                                         =  65D4 G
+    _lnx_cal_txdcc_pdiv_hg                                      =  65D8 G
+    _lnx_cal_vdda_dll_eom_sel                                   =  660C G
+    _lnx_cal_vdda_dll_sel                                       =  6606 G
+    _lnx_calx_align90_dac                                       =  64CC G
+    _lnx_calx_align90_dummy_clk                                 =  64C0 G
+    _lnx_calx_align90_gm                                        =  64D8 G
+    _lnx_calx_dll_eom_gmsel                                     =  64B4 G
+    _lnx_calx_dll_gmsel                                         =  64AB G
+    _lnx_calx_eom_dpher                                         =  64BD G
+    _lnx_calx_rxdcc_dll                                         =  64A2 G
+    _lnx_calx_rxdcc_dll_hg                                      =  64A8 G
+    _lnx_calx_txdcc                                             =  6499 G
+    _lnx_calx_txdcc_hg                                          =  649F G
+    _lnx_calx_txdcc_pdiv                                        =  6490 G
+    _lnx_calx_txdcc_pdiv_hg                                     =  6496 G
+    _lnx_calx_vdda_dll_eom_sel                                  =  64B7 G
+    _lnx_calx_vdda_dll_sel                                      =  64AE G
+    _lnx_spdoft_tx_preset_index_lane                            =  6666 G
+    _local_tx_preset_tb                                         =  E6B0 G
+    _max_gen                                                    =  6300 G
+    _min_gen                                                    =  6301 G
+    _ph_control_mode                                               **** GX
+    _phase_control_func                                            **** GX
+    _phase_save                                                 =  60E4 G
+    _phy_mode_cmn_table                                         =  E5C0 G
+    _phy_mode_lane_table                                        =  65D4 G
+    _rc_save                                                    =  60B4 G
+    _ring_speedtable                                            =  E1C0 G
+    _set_ph_mode                                                   **** GX
+    _speedtable                                                 =  6304 G
+    _sq_thrs_ratio_tb                                           =  607C G
+    _train                                                         **** GX
+    _train_g0_index                                             =  6032 G
+    _train_g1_index                                             =  6031 G
+    _train_gn1_index                                            =  6030 G
+    _train_save_tb                                              =  E698 G
+    _tx_tb                                                      =  E684 G
+    _txffe_save                                                 =  60D0 G
+    a                                                              00E0 
+    a.0                                                            00E0 
+    a.1                                                            00E1 
+    a.2                                                            00E2 
+    a.3                                                            00E3 
+    a.4                                                            00E4 
+    a.5                                                            00E5 
+    a.6                                                            00E6 
+    a.7                                                            00E7 
+    ac                                                             00D6 
+    acc                                                            00E0 
+    acc.0                                                          00E0 
+    acc.1                                                          00E1 
+    acc.2                                                          00E2 
+    acc.3                                                          00E3 
+    acc.4                                                          00E4 
+    acc.5                                                          00E5 
+    acc.6                                                          00E6 
+    acc.7                                                          00E7 
+    ar0                                                         =  0000 
+    ar1                                                         =  0001 
+    ar2                                                         =  0002 
+    ar3                                                         =  0003 
+    ar4                                                         =  0004 
+    ar5                                                         =  0005 
+    ar6                                                         =  0006 
+    ar7                                                         =  0007 
+    b                                                              00F0 
+    b.0                                                            00F0 
+    b.1                                                            00F1 
+    b.2                                                            00F2 
+    b.3                                                            00F3 
+    b.4                                                            00F4 
+    b.5                                                            00F5 
+    b.6                                                            00F6 
+    b.7                                                            00F7 
+    cprl2                                                          00C8 
+    ct2                                                            00C9 
+    cy                                                             00D7 
+    dph                                                            0083 
+    dpl                                                            0082 
+    ea                                                             00AF 
+    es                                                             00AC 
+    et0                                                            00A9 
+    et1                                                            00AB 
+    et2                                                            00AD 
+    ex0                                                            00A8 
+    ex1                                                            00AA 
+    exen2                                                          00CB 
+    exf2                                                           00CE 
+    f0                                                             00D5 
+    ie                                                             00A8 
+    ie.0                                                           00A8 
+    ie.1                                                           00A9 
+    ie.2                                                           00AA 
+    ie.3                                                           00AB 
+    ie.4                                                           00AC 
+    ie.5                                                           00AD 
+    ie.7                                                           00AF 
+    ie0                                                            0089 
+    ie1                                                            008B 
+    int0                                                           00B2 
+    int1                                                           00B3 
+    ip                                                             00B8 
+    ip.0                                                           00B8 
+    ip.1                                                           00B9 
+    ip.2                                                           00BA 
+    ip.3                                                           00BB 
+    ip.4                                                           00BC 
+    ip.5                                                           00BD 
+    it0                                                            0088 
+    it1                                                            008A 
+    ov                                                             00D2 
+    p                                                              00D0 
+    p0                                                             0080 
+    p0.0                                                           0080 
+    p0.1                                                           0081 
+    p0.2                                                           0082 
+    p0.3                                                           0083 
+    p0.4                                                           0084 
+    p0.5                                                           0085 
+    p0.6                                                           0086 
+    p0.7                                                           0087 
+    p1                                                             0090 
+    p1.0                                                           0090 
+    p1.1                                                           0091 
+    p1.2                                                           0092 
+    p1.3                                                           0093 
+    p1.4                                                           0094 
+    p1.5                                                           0095 
+    p1.6                                                           0096 
+    p1.7                                                           0097 
+    p2                                                             00A0 
+    p2.0                                                           00A0 
+    p2.1                                                           00A1 
+    p2.2                                                           00A2 
+    p2.3                                                           00A3 
+    p2.4                                                           00A4 
+    p2.5                                                           00A5 
+    p2.6                                                           00A6 
+    p2.7                                                           00A7 
+    p3                                                             00B0 
+    p3.0                                                           00B0 
+    p3.1                                                           00B1 
+    p3.2                                                           00B2 
+    p3.3                                                           00B3 
+    p3.4                                                           00B4 
+    p3.5                                                           00B5 
+    p3.6                                                           00B6 
+    p3.7                                                           00B7 
+    pcon                                                           0087 
+    ps                                                             00BC 
+    psw                                                            00D0 
+    psw.0                                                          00D0 
+    psw.1                                                          00D1 
+    psw.2                                                          00D2 
+    psw.3                                                          00D3 
+    psw.4                                                          00D4 
+    psw.5                                                          00D5 
+    psw.6                                                          00D6 
+    psw.7                                                          00D7 
+    pt0                                                            00B9 
+    pt1                                                            00BB 
+    pt2                                                            00BD 
+    px0                                                            00B8 
+    px1                                                            00BA 
+    rb8                                                            009A 
+    rcap2h                                                         00CB 
+    rcap2l                                                         00CA 
+    rclk                                                           00CD 
+    ren                                                            009C 
+    ri                                                             0098 
+    rs0                                                            00D3 
+    rs1                                                            00D4 
+    rxd                                                            00B0 
+    sbuf                                                           0099 
+    scon                                                           0098 
+    scon.0                                                         0098 
+    scon.1                                                         0099 
+    scon.2                                                         009A 
+    scon.3                                                         009B 
+    scon.4                                                         009C 
+    scon.5                                                         009D 
+    scon.6                                                         009E 
+    scon.7                                                         009F 
+    sm0                                                            009F 
+    sm1                                                            009E 
+    sm2                                                            009D 
+    sp                                                             0081 
+    t2con                                                          00C8 
+    t2con.0                                                        00C8 
+    t2con.1                                                        00C9 
+    t2con.2                                                        00CA 
+    t2con.3                                                        00CB 
+    t2con.4                                                        00CC 
+    t2con.5                                                        00CD 
+    t2con.6                                                        00CE 
+    t2con.7                                                        00CF 
+    tb8                                                            009B 
+    tclk                                                           00CC 
+    tcon                                                           0088 
+    tcon.0                                                         0088 
+    tcon.1                                                         0089 
+    tcon.2                                                         008A 
+    tcon.3                                                         008B 
+    tcon.4                                                         008C 
+    tcon.5                                                         008D 
+    tcon.6                                                         008E 
+    tcon.7                                                         008F 
+    tf0                                                            008D 
+    tf1                                                            008F 
+    tf2                                                            00CF 
+    th0                                                            008C 
+    th1                                                            008D 
+    th2                                                            00CD 
+    ti                                                             0099 
+    tl0                                                            008A 
+    tl1                                                            008B 
+    tl2                                                            00CC 
+    tmod                                                           0089 
+    tr0                                                            008C 
+    tr1                                                            008E 
+    tr2                                                            00CA 
+    txd                                                            00B1 
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods + Flat24  (Intel 8051), page 2.
+
+Area Table
+
+   0 _CODE                                      size    0   flags 0
+   1 RSEG                                       size    0   flags 8
+   2 RSEG0                                      size    0   flags 8
+   3 RSEG1                                      size    0   flags 8
+   4 REG_BANK_0                                 size    8   flags 4
+   5 DSEG                                       size    0   flags 0
+   6 OSEG                                       size    0   flags 4
+   7 ISEG                                       size    0   flags 0
+   8 IABS                                       size    0   flags 8
+   9 BSEG                                       size    0   flags 80
+   A PSEG                                       size    0   flags 50
+   B XSEG                                       size    0   flags 40
+   C XABS                                       size    0   flags 48
+   D HOME                                       size    0   flags 20
+   E GSINIT0                                    size    0   flags 20
+   F GSINIT1                                    size    0   flags 20
+  10 GSINIT2                                    size    0   flags 20
+  11 GSINIT3                                    size    0   flags 20
+  12 GSINIT4                                    size    0   flags 20
+  13 GSINIT5                                    size    0   flags 20
+  14 GSINIT                                     size    0   flags 20
+  15 GSFINAL                                    size    0   flags 20
+  16 CSEG                                       size    0   flags 20
+  17 BANK1                                      size  319   flags 20
+  18 CABS                                       size    0   flags 28

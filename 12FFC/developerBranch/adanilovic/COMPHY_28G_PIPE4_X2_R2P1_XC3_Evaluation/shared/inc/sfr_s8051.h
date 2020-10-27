@@ -1,0 +1,146 @@
+/******************************************************************
+*	Marvell Semiconductor
+*******************************************************************
+*\file   sfr_s8051.h
+*\purpose Special Function Registers for S8051XC3CPU
+*\History
+*	7/24/2019   	HeejeongRyu		Initial
+*/
+#ifndef SFR_REFFILE_H
+#define SFR_REFFILE_H
+/////////////////////////////////
+//InternalSFR
+/////////////////////////////////
+
+SFR(P0,0x80);
+SFR(SP,0x81);
+SFR(DPL,0x82);
+SFR(DPH,0x83);
+SFR(DPS,0x86);
+SFR(PCON,0x87);
+SFR(TCON,0x88);
+SFR(TMOD,0x89);
+SFR(TL0,0x8A);
+SFR(TL1,0x8B);
+SFR(TH0,0x8C);
+SFR(TH1,0x8D);
+SFR(CKCON,	0x8E);
+SFR(SDR,0x8F);
+SFR(P1,0x90);
+SFR(SCON,0x98);
+SFR(SBUF,0x99);
+SFR(P2,0xA0);
+SFR(SP0CNFG,0xA1);
+SFR(SP0CKR,0xA2);
+SFR(SP0DAT,0xA3);
+SFR(PSBANK, 0xA4);
+SFR(WDTRST,0xA6);
+SFR(PMOD,0xA7);
+SFR(IEN0,0xA8);
+SFR(SADDR,0xA9);
+SFR(P3,0xB0);
+SFR(IPH0,0xB7);
+SFR(IPL0,0xB8);
+SFR(SADEN,0xB9);
+SFR(SMB0CN,0xC0);
+SFR(SMB0CF,0xC1);
+SFR(SMB0DAT,0xC2);
+SFR(T2CON,0xC8);
+SFR(T2MOD,0xC9);
+SFR(RCAP2L,0xCA);
+SFR(RCAP2H,0xCB);
+SFR(TL2,0xCC);
+SFR(TH2,0xCD);
+SFR(PSW,0xD0);
+SFR(CCON,0xD8);
+SFR(CMOD,0xD9);
+SFR(CCAPM0,0xDA);
+SFR(CCAPM1,0xDB);
+SFR(CCAPM2,0xDC);
+SFR(CCAPM3,0xDD);
+SFR(CCAPM4,0xDE);
+SFR(ACC,0xE0);
+SFR(IRCON2,0xE1);
+SFR(IEN1,0xE6);
+SFR(IEN2,0xE7);
+SFR(CL,0xE9);
+SFR(CCAP0L,0xEA);
+SFR(CCAP1L,0xEB);
+SFR(CCAP2L,0xEC);
+SFR(CCAP3L,0xED);
+SFR(CCAP4L,0xEE);
+SFR(B,0xF0);
+SFR(IRCON1,0xF1);
+SFR(IPH2,0xF3);
+SFR(IPL2,0xF4);
+SFR(IPH1,0xF5);
+SFR(IPL1,0xF6);
+SFR(SP0CTRL,0xF8);
+SFR(CH,0xF9);
+SFR(CCAP0H,0xFA);
+SFR(CCAP1H,0xFB);
+SFR(CCAP2H,0xFC);
+SFR(CCAP3H,0xFD);
+SFR(CCAP4H,0xFE);
+
+SFR16E(TMR0,    0x8C8A);
+SFR16E(TMR1,    0x8D8B);
+SFR16E(TMR2,    0xCDCC);
+//-------------
+// Bit-Addressable Internal SFR
+// TCON
+SBIT(IT0,	0x88, 0);
+SBIT(IE0,	0x88, 1);
+SBIT(IT1,	0x88, 2);
+SBIT(IE1,	0x88, 3);
+SBIT(TR0,	0x88, 4);
+SBIT(TF0,	0x88, 5);
+SBIT(TR1,	0x88, 6);
+SBIT(TF1,	0x88, 7);
+
+// T2CON
+SBIT(CPRL2,	0x88, 0);
+SBIT(CT2,	0x88, 1);
+SBIT(TR2,	0x88, 2);
+SBIT(EXEN2,	0x88, 3);
+SBIT(TCKL,	0x88, 4);
+SBIT(RCLK,	0x88, 5);
+SBIT(EXF2,	0x88, 6);
+SBIT(TF2,	0x88, 7);
+
+// IEN0
+SBIT(EX0,	0xA8, 0);
+SBIT(ET0,	0xA8, 1);
+SBIT(EX1,	0xA8, 2);
+SBIT(ET1,	0xA8, 3);
+SBIT(ES,	0xA8, 4);
+SBIT(ET2,	0xA8, 5);
+SBIT(WDT,	0xA8, 6);
+SBIT(EA,	0xA8, 7);
+
+// IEN1
+SBIT(ESPI,  0xE6, 0);
+SBIT(ESI,   0xE6, 1);
+SBIT(EX2,   0xE6, 2);
+SBIT(EX3,   0xE6, 3);
+SBIT(EX4,   0xE6, 4);
+SBIT(EX5,   0xE6, 5);
+SBIT(EX6,   0xE6, 6);
+SBIT(EX7,   0xE6, 7);
+
+// IEN2
+SBIT(EX8,   0xE7, 0);
+SBIT(EX9,   0xE7, 1);
+SBIT(EX10,  0xE7, 2);
+SBIT(EX11,  0xE7, 3);
+SBIT(EX12,  0xE7, 4);
+SBIT(EX13,  0xE7, 5);
+SBIT(EX14,  0xE7, 6);
+SBIT(EX15,  0xE7, 7);
+
+//SCON
+SBIT(RI, 0x98, 0);
+SBIT(TI, 0x98, 1);
+
+
+#endif
